@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <title>Asignación Clientes Varios</title>
+</head>
+<body>
+    <h3 class="h1">Actualizar Asignaciones clientes varios</h3>
+    <br>
+    <div class="container">
+        <form id="editAsignacion" method="PUT" enctype="multipart/form-data">
+            <input type="hidden" id="id_asignacion" name="id_asignacion">
+            <input type="hidden" id="id_preventa" name="id_preventa">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Placa</label>
+                        <input type="text" id="placa" class="form-control" readonly="readonly" required />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Conductor</label>
+                        <input type="text" id="conductor" class="form-control" readonly="readonly" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Aliado</label>
+                        <input type="text" id="aliado" class="form-control" readonly="readonly" required>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">Telefono</label>
+                        <input type="text" class="form-control" id="celular" readonly="readonly" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">Ruta</label>
+                        <select name="id_ruta" id="id_ruta" required>
+                            <option value="">Seleccione la ruta</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">tarifa</label>
+                        <input type="text" id="tarifa" class="form-control" readonly="readonly" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+              
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">Tipo operacion:</label>
+                        <select id="id_tipo_operacion" name="id_tipo_operacion" class="form-control" required>
+                            <option value="">Seleccione una Opción</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">Terminal</label>
+                        <select name="id_sitio_inspeccion" id="id_sitio_inspeccion" class="form-control" required>
+                            <option value="">Seleccione Destino</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">fecha cita</label>
+                        <input type="date" id="fecha_cita" name="fecha_cita" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">Hora cita</label>
+                        <input type="time" id="hora_cita" name="hora_cita" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-between">
+                    <button  class="btn btn-primary" onclick="history.back()">Volver</button>
+                    <button  class="btn btn-primary" id="BtnEdittAsignacion">Actualizar</button>
+                    <!-- <button  class="btn btn-danger" id="GeneReport">Generar pdf</button>
+                    <button  class="btn btn-success" id="GeneReportExcel">Generar excel</button> -->
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- <div class="container">
+        <div id="asignacionesEd"></div>
+    </div> -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <script type="text/javascript" src="/js/asignacion/editAsignacionCl.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarRutaClientesV.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarDestino.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarTipoServicio.js"></script>
+    <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

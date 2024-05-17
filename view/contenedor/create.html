@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+<title>SP</title>
+</head>
+<body>
+    <h3 class="h1">SP</h3>
+    <br>
+        <div class="container">
+            <form id="saveContenedor" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="" class="form-label">SP</label>
+                            <input type="text" id="do_sp" class="form-control" readonly>
+                        </div>  
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="" class="form-label">DO PEDIDO</label>
+                            <input type="text" id="do_pedido" class="form-control" readonly>
+                        </div>  
+                    </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">Contenedores</label>
+                        <input type="text" id="contendedor" class="form-control" readonly>
+                    </div>  
+                </div>
+                <input type="hidden" id="id_cliente">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">Cliente</label>
+                        <input type="text" id="cliente" class="form-control" readonly>
+                    </div>  
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="" class="form-label">Tipo Transporte</label>
+                        <input type="text" id="imp_exp" class="form-control" readonly>
+                    </div>  
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="" class="form-label">Fecha Eta</label>
+                        <input type="text" id="eta" class="form-control" readonly>
+                    </div>  
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="" class="form-label">Fecha Levante</label>
+                        <input type="text" id="levante" class="form-control" readonly>
+                    </div>  
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="" class="form-label">Fecha documental</label>
+                        <input type="text" id="documental" class="form-control" readonly>
+                    </div>  
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="" class="form-label">Fecha Cutoff Fisico</label>
+                        <input type="text" id="fisico" class="form-control" readonly>
+                    </div>  
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="" class="form-label">Libre Hasta</label>
+                        <input type="text" id="libre_hasta" class="form-control" readonly>
+                    </div>  
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">Bodegaje Hasta</label>
+                        <input type="text" id="bodega_hasta" class="form-control" readonly>
+                    </div>  
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">Fecha Propuesta</label>
+                        <input type="text" id="propuesta" class="form-control" readonly>
+                    </div>  
+                </div>
+            </div>
+                <hr>
+          <!-- Formulario Contenedor -->
+             <h4>Crear contenedor</h4>
+             
+                     <input type="hidden" name="id_solicitud_servicio" id="id_solicitud_servicio">
+                     <div class="row">
+                         <div class="col-md-6">
+                             <div class="form-group">
+                             <label for="" class="form-label">Tipo Contenedor</label>
+                                     <select name="id_tipo_contenedor" id="id_tipo_contenedor" class="form-control">
+                                         <option value="">Seleccione</option>
+                                     </select>
+                             </div>
+                         </div>
+         
+                         <div class="col-md-6">
+                             <div class="form-group">
+                                 <label for="" class="form-label">Numero Contenedor</label>
+                                 <input type="text" id="nu_serie" name="nu_serie" class="form-control" required>
+                             </div>
+                         </div>
+                     </div>
+                     <br>
+                     <div class="row">
+                         <div class="col-12 d-flex justify-content-between">
+                             <a class="btn btn-primary" href="/view/solicitudes_servicios/seacrh_do_service.html">Volver</a>
+                             <button type="submit"  class="btn btn-primary" id="BtnSave">Guardar</button>
+                         </div>
+                     </div>
+             </form>
+        </div>
+    
+    <div class="container">
+        <div id="contenedor"></div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <script type="text/javascript" src="/js/contenedor/createContenedor.js"></script>
+    <script type="text/javascript" src="/js/cargar/CargarTipoContenedor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+h4 {
+    text-align: center;
+    margin-top: 10px;
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.btn {
+    padding: 10px 25px;
+    margin-right: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-info {
+    background-color: #09B6D9;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+.alert-info {
+    background-color: #f8d7da;
+    color: #09B6D9;
+    border-color: #f5c6cb;
+}
+/*
+.container {
+    margin-top: 50px;
+    margin: 0px auto;
+    width: 100%;
+    overflow-x: auto;
+} */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centra verticalmente */
+    height: 70%; /* Hace que el contenedor ocupe el 100% de la altura del viewport */
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Cambia la dirección de flexión en pantallas más pequeñas */
+        height: auto; /* Ajusta la altura automáticamente */
+    }
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.mb-2 {
+    margin-bottom: 20px;
+}
+
+.row1 {
+    margin-bottom: 20px;
+}
+
+.row {
+    margin-bottom: 0px;
+}
+
+.table {
+    margin: 0 auto;
+}
+
+
+.gerenate{
+    margin-left:500px ;
+}
+
+
+/* Estilo general para los gráficos */
+
+.canvas-container {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+
+/* Estilo para los títulos de los gráficos */
+
+.chart-title {
+    font-size: 18px;
+    /* Tamaño de fuente */
+    color: #333;
+    /* Color de texto */
+    margin-bottom: 10px;
+    /* Espaciado entre título y gráfico */
+}
+
+.container-a {
+    margin: 25px;
+    padding: 25px;
+}
+
+
+/* Aplicar estilos a los contenedores de los gráficos */
+
+#pro1,
+#pro {
+    width: 30%;
+    /* Ajustar el ancho */
+}
+
+
+.modal-title{
+    text-align: center;
+}

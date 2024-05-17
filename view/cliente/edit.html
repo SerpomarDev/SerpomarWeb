@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <title>create</title>
+</head>
+    <body>
+        <h2 class="h1">Actualizar Clientes</h2>
+        <br>
+        <div class="container">
+            <form id="editCliente" method="PUT" enctype="multipart/form-data">
+                <div class="row">
+                    <input type="hidden" id="id" name="id">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre">
+                        </div>
+                    </div>
+        
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="" class="form-label">Identificación</label>
+                            <input type="text" class="form-control" id="identificacion" name="identificacion">
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="" class="form-label">Dirección</label>
+                            <input type="text" class="form-label" id="direccion" name="direccion">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="" class="form-label">Ciudad</label>
+                            <input type="text" class="form-label" id="ciudad" name="ciudad">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10 d-flex justify-content-between">
+                        <button  class="btn btn-primary" id="BtnEditCliente">Enviar</button>
+                        <a class="btn btn-primary" href="/view/cliente/create.html">Volver</a>
+                    </div>
+                </div>
+            </form>
+        </div> 
+        <div class="container">
+            <div id="clienteEdit"></div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+        <script type="text/javascript" src="/js/cliente/editCliente.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
