@@ -4,8 +4,12 @@ const credentials = {
     "juan@123.com": "contraseña",
     "maria@456.com": "claveMaria",
     "pedro@789.com": "clavePedro",
+<<<<<<< HEAD
     "luisa@101.com": "claveLuisa",
 
+=======
+    "alexander.jimenez@serpomar.com": "serpomar2024",
+>>>>>>> origin/main
     "admin@serpomar.com": "serpomar2024"
 
 };
