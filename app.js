@@ -1,13 +1,12 @@
 // Objeto con las credenciales válidas
 const credentials = {
-<<<<<<< HEAD
+
     "juan@123.com": "contraseña",
     "maria@456.com": "claveMaria",
     "pedro@789.com": "clavePedro",
-    "luisa@101.com": "claveLuisa"
-=======
+    "alexander.jimenez@serpomar.com": "serpomar2024",
     "admin@serpomar.com": "serpomar2024"
->>>>>>> c36bf0ab2abb2e6b9669eac4a62bbe593ce190a9
+
 };
 
 document.getElementById('login-form').addEventListener('submit', function(event) {
