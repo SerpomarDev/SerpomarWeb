@@ -78,7 +78,7 @@
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
 							<div class="dashboard_bar">
-                                Actualizar ruta operación
+                                Pre Liquidar
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
@@ -265,77 +265,68 @@
 		<!-- Page Content  -->
         <div id="content" class="p-4 p-md-5 pt-5">
             <div class="container">
-                <form id="ActualizarOperacion" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" id="id" name="id">
+                <form id="saveLiquidacion" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" id="id_cliente">
+                    <input type="hidden" id="tarifa">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label">Placa</label>
-                                <input type="text" id="placa" class="form-control" readonly="readonly" required>
-                            </div>
-                        </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Conductor</label>
-                                <input type="text" id="conductor" class="form-control" readonly="readonly" required>
-                            </div>
-                        </div>
-        
-                    </div>
-        
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Aliado</label>
-                                <input type="text" id="aliado" class="form-control" readonly="readonly" required>
-                            </div>
-                        </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">cliente</label>
-                                <input type="text" class="form-control" id="cliente" readonly="readonly" required>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Ruta</label>
-                                <select name="id_ruta" id="id_ruta" required>
-                                    <option value="">Seleccione la ruta</option>
+                                <label for="" class="form-label">SP</label>
+                                <select name="id_sp" id="id_sp" class="form-control">
+                                    <option value="">Seleccione sp</option>
                                 </select>
                             </div>
                         </div>
-        
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="" class="form-label">tarifa</label>
-                                <input type="text" id="tarifa" class="form-control" readonly="readonly" required>
+                                <label for="" class="form-label">Cliente</label>
+                                <input type="text" id="cliente" class="form-control" readonly>
                             </div>
                         </div>
-        
                     </div>
-        
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="" class="form-label">Fecha</label>
-                                <input type="date" id="fecha" name="fecha" class="form-control" >
+                                <label for="" class="form-label">Cantidad Conrtenedor</label>
+                                <input type="text" id="cantidad_contenedor" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-label">Modalidad</label>
+                                <input type="text" id="imp_exp" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-label">Conceptos</label>
+                               <select name="id_tarifa" id="id_tarifa" class="form-control">
+                                <option value="">Seleccione concepto</option>
+                               </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-label">Valor</label>
+                                <input type="text" id="valor" name="valor" class="form-control" readonly>
                             </div>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-12 d-flex justify-content-between">
-                            <button id="actualizarRtOp" class="btn btn-primary">Enviar</button>
-                            <a class="btn btn-primary" href="/view/operacion/operacion.html">Volver</a>
+                            <button  class="btn btn-primary" onclick="history.back()">Volver</button>
+                            <button  class="btn btn-primary" id="BtnSaveLiquidar" >Guardar</button>
                         </div>
                     </div>
                 </form>
             </div>
+            <div class="container">
+                <div id="liquidar"></div>
+            </div>
+        </div>
         <!--**********************************
             Content body end
         ***********************************-->
@@ -396,8 +387,9 @@
     <script src="/js/styleSwitcher.js"></script>
 	
 
-    <script type="text/javascript" src="/js/operacion/editOperacion.js"></script>
-    <script type="text/javascript" src="/js/cargar/cargarRuta.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <script type="module" src="/js/cargar/cargarSp.js"></script>
+    <script type="module" src="/js/Liquidar/create.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
