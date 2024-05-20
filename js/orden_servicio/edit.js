@@ -22,6 +22,7 @@ fetch(`https://esenttiapp-production.up.railway.app/api/uploadordensevid/${id}`)
         document.getElementById('fecha_devolucion').value  = ordenSev.fecha_devolucion
         document.getElementById('fecha_inspeccion').value  = ordenSev.fecha_devolucion
         document.getElementById('id_naviera').value  = ordenSev.fecha_devolucion
+        document.getElementById('patio').value  = ordenSev.patio
         console.log(ordenSev)
 
         let idContenedor = ordenSev.id_contenedor
@@ -52,7 +53,7 @@ function table(idContenedor){
         columns: [{
             name:'id_ords',
             hidden:false,
-        },"Numero serie","Fecha cargue", "Hora cargue", "Fecha descargue", "Hora descargue","Fecha devolucion", "Fecha inspeccion"],
+        },"Numero serie","Fecha cargue", "Hora cargue", "Fecha descargue", "Hora descargue","Fecha devolucion", "Fecha inspeccion","Patio"],
         server: {
             url: `https://esenttiapp-production.up.railway.app/api/showordenerv/${idContenedor}`,
             then: (data) => {
@@ -65,7 +66,8 @@ function table(idContenedor){
                         ordenSev.fecha_descargue,
                         ordenSev.hora_descargue,
                         ordenSev.fecha_devolucion,
-                        ordenSev.fecha_inspeccion
+                        ordenSev.fecha_inspeccion,
+                        ordenSev.patio
                     ]);
                 } else {
                     console.error("La respuesta del servidor no contiene datos válidos.");

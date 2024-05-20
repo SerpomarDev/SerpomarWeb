@@ -60,7 +60,7 @@ function tableByClt(id_cliente){
     sort: false,
     columns: [{
       name:'id_co',
-      hidden:false,
+      hidden:true,
     },"SP","DO PEDIDO","Numero contenedor","Tipo transporte","Cliente",{
     name:'Acción',
       formatter:(cell,row)=>{

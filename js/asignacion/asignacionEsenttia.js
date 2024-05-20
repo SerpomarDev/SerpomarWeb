@@ -63,7 +63,7 @@ function cargarValores(id){
       sort: false,
       columns: [{ 
         name:'id_contenedor',
-        hidden:false
+        hidden:true
       },
       {
         name:'asignacion_contenedor',
@@ -137,10 +137,10 @@ function cargarValores(id){
     sort: false,
     columns: [{ 
       name:'id_contenedor',
-      hidden:false
+      hidden:true
     },{
       name:'asignacion_contenedor',
-      hidden:false,
+      hidden:true,
     },"Cliente","Placa","Conductor",{
       name:"Numero contenedor",
       attributes: (cell,row)=>{

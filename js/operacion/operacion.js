@@ -45,19 +45,12 @@ new gridjs.Grid({
     columns: [{
       name:"#",
       hidden: false,
-    },"Placa","Conductor","Aliado","Cliente","Ruta","Tarifa","Cliente","Estado operación","Fecha",{
+    },"Placa","Conductor","Aliado","Cliente","Ruta","Tarifa","Estado operación","Fecha",{
         name:'Estado Operación',
         formatter: (cell, row) => {
           return gridjs.h('select', {
               onchange: (e) => {
                   const nuevoEstado = e.target.value;
-                  /* const color = nuevoEstado === 'en_curso' ? 'green' : 'red';
-                  e.target.parentElement.style.backgroundColor = color;
-                  if (nuevoEstado === 'finalizado') {
-                      e.target.disabled = true;
-                  } */
-
-                  // Llamar a la función actualizarEstado con el ID de la operación y el nuevo estado
                   actualizarEstado(row.cells[0].data, nuevoEstado);
               },
           }, [
@@ -78,7 +71,6 @@ new gridjs.Grid({
                   asignacion.placa,
                   asignacion.conductor,
                   asignacion.aliado,
-                  asignacion.cliente,
                   asignacion.ruta,
                   asignacion.tarifa,
                   asignacion.cliente,

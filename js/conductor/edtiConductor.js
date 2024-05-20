@@ -17,7 +17,6 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editconductor/${id}`)
           document.getElementById("identificacion").value = conductor.identificacion
           document.getElementById("telefono").value = conductor.telefono
           document.getElementById("email").value = conductor.email
-          //console.log(conductor)
 
       } else {
         console.log('La propiedad array no existe en la respuesta');

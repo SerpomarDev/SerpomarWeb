@@ -260,12 +260,10 @@
             Sidebar end
         ***********************************-->
         <div class="content-body">
-            <!-- row -->
-			
-				
-				
+            <!-- row -->		
 		<!-- Page Content  -->
         <div id="content" class="p-4 p-md-5 pt-5">
+
             <div class="container">
                 <form id="saveSolicitud" method="POST" enctype="multipart/form-data">
                     <div class="row">
@@ -285,15 +283,6 @@
                             </div>
                         </div>
                    </div>
-                        <!-- <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Tipo de Servicio</label>
-                                <select name="id_tipo_servicio" id="id_tipo_servicio" required>
-                                    <option value="">Seleccione Servicio</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div> -->
         
                     <div class="row">
                        
@@ -378,7 +367,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="" class="form-label">Abjuntos</label>
-                                <input type="file" name="abjunto" id="abjunto" class="form-control" multiple>
+                                <input type="file" name="files[]" id="file" class="form-control" multiple>
                             </div>
                        </div>
         
@@ -395,12 +384,12 @@
                     <br>
                     <div class="row">
                         <div class="col-12 d-flex justify-content-between">
-                            <button type="submit"  class="btn btn-primary" id="BtnSaveSolicitud">Enviar</button>
                             <a class="btn btn-primary" href="/index.html">Volver</a>
+                            <button type="submit"  class="btn btn-primary" id="BtnSaveSolicitud">Enviar</button>
                         </div>
                     </div>
                 </form>
-            </div>
+           
         </div>
         <!--**********************************
             Content body end

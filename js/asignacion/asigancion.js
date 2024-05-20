@@ -66,7 +66,7 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
     sort: false,
     columns: [{ 
       name:'id_contenedor',
-      hidden:false
+      hidden:true
     },
     {
       name:'asignacion_contenedor',
@@ -77,8 +77,8 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
         if(cell){
             return{
               'data-cell-content': cell,
-              onclick:()=>addordenSer(row.cells[0].data),
-              'style': 'cursor: pointer',
+              onclick:()=>addordenSer(row.cells[1].data),
+              'style': 'cursor: pointer; background-color: #ffcccc;',
             }
         }
       }
@@ -140,18 +140,18 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
   sort: false,
   columns: [{ 
     name:'id_contenedor',
-    hidden:false
+    hidden:true
   },{
     name:'asignacion_contenedor',
-    hidden:false,
+    hidden:true,
   },"Cliente","Placa","Conductor",{
     name:"Numero contenedor",
     attributes: (cell,row)=>{
       if(cell){
           return{
             'data-cell-content': cell,
-            onclick:()=>addordenSer(row.cells[0].data),
-            'style': 'cursor: pointer',
+            onclick:()=>addordenSer(row.cells[1].data),
+            'style': 'cursor: pointer; color: #6495ED;  font-weight: bold;',
           }
       }
     }
@@ -206,7 +206,6 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
     const formData = new FormData(this);
     const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-    console.log(jsonData)
     fetch("https://esenttiapp-production.up.railway.app/api/saveasignacion", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

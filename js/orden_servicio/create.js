@@ -18,7 +18,7 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`)
         document.getElementById('nu_serie').value = contenedor.numero;
     }
     else {
-      console.log('La propiedad array no existe en la respuesta en contenedor');
+      console.log('La propiedad array no existe en la respuesta');
     }
   })
   .catch((error) => {
@@ -30,13 +30,12 @@ document.getElementById('saveOrdenServicio').addEventListener('submit',function(
     event.preventDefault();
 
     const formData = new FormData(this);
-    const jsonData = JSON.stringify(Object.fromEntries(formData));
+    //const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-    console.log(jsonData)
     fetch('https://esenttiapp-production.up.railway.app/api/ordenservicios',{
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: jsonData
+        body: formData
     })
     .then(response => {
         if (!response.ok) {
@@ -51,7 +50,7 @@ document.getElementById('saveOrdenServicio').addEventListener('submit',function(
         });
     })
     .then((response)=>{
-      //time();
+      time();
     })
     .catch((error) => {
         console.error("Error:", error);
@@ -62,7 +61,7 @@ document.getElementById('saveOrdenServicio').addEventListener('submit',function(
   function time() {
     document.getElementById('saveOrdenServicio').reset();
     setTimeout(() => {
-        window.location.href = `/view/orden_servicio/create.html`; 
+        window.location.href = ``; 
     },  1200);
   }  
 
@@ -81,8 +80,11 @@ document.getElementById('saveOrdenServicio').addEventListener('submit',function(
     sort: false,
     columns: [{
         name:'id_ords',
-        hidden:false,
-    },"Numero serie","Fecha cargue", "Hora cargue", "Fecha descargue", "Hora descargue","Fecha devolucion", "Fecha inspeccion",{
+        hidden:true,
+    },{
+      name:'id_asig_cont',
+      hidden:true,
+    },"Numero serie","Fecha cargue", "Hora cargue", "Fecha descargue", "Hora descargue","Fecha devolucion", "Fecha inspeccion","Patio",{
         name:'Acción',
         formatter:(cell,row)=>{
             return gridjs.h('button',{
@@ -90,20 +92,32 @@ document.getElementById('saveOrdenServicio').addEventListener('submit',function(
               onClick: () => editOrdenseV(row.cells[0].data)
             },'Editar')
           }
+    },{
+      name:"Patio",
+      hidden:true,
+      formatter:(cell,row)=>{
+        return gridjs.h('button',{
+          className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
+          onclick:()=>patio(row.cells[0].data)
+        },'Ir')
+      }
     }],
     server: {
         url: `https://esenttiapp-production.up.railway.app/api/showordenerv/${id}`,
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
-                return data.map((ordenSev) => [
+                return data.map((
+                  ordenSev) => [
                     ordenSev.id,
+                    ordenSev.id_asig_cont,
                     ordenSev.numero_co,
                     ordenSev.fecha_cargue,
                     ordenSev.hora_cargue,
                     ordenSev.fecha_descargue,
                     ordenSev.hora_descargue,
                     ordenSev.fecha_devolucion,
-                    ordenSev.fecha_inspeccion
+                    ordenSev.fecha_inspeccion,
+                    ordenSev.patio
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
@@ -115,4 +129,8 @@ document.getElementById('saveOrdenServicio').addEventListener('submit',function(
 
 function editOrdenseV(id){
     window.location.href = `/view/orden_servicio/edit.html?id=${id}`
+}
+
+function patio(id){
+  window.location.href = `/view/patio/solicitud_ingreso.html?id=${id}`
 }

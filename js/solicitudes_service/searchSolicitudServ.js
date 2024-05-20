@@ -23,7 +23,7 @@ new gridjs.Grid({
                 return{
                   'data-cell-content': cell,
                   onclick:()=>showOrdenService(row.cells[0].data),
-                  'style': 'cursor: pointer',
+                  'style': 'cursor: pointer; color: #6495ED;  font-weight: bold;',
                 }
             }
         }
