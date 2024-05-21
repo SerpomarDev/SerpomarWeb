@@ -172,15 +172,9 @@
 1200 - 1800: Normal styles
 1800+ : Big Desktop
 1em = 16px
-The smaller device rules always should write below the bigger device rules
-Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Component
+
 */
-/*!
- * Bootstrap v5.1.3 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+
  :root {
   --bs-blue: #1e90ff;
   --bs-indigo: #1c86ee;
