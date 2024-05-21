@@ -8875,7 +8875,7 @@ label {
       left: 0; } }
 
 .nav-header {
-  height: 6.3rem;
+  height: 6rem;
   width: 20.5rem;
   display: inline-block;
   text-align: left;
@@ -8906,7 +8906,7 @@ label {
     display: flex;
     height: 100%;
     width: 100%;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     font-size: 1.125rem;
     color: #fff;
@@ -28288,3 +28288,26 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     [data-theme-version="dark"] .footer .copyright a {
       color: #fff; }
 
+/* Habilitar desplazamiento en la barra lateral */
+.sidebar-scroll {
+  overflow-y: auto;
+  max-height: 100vh; /* Ajustar según la altura máxima deseada */
+}
+
+/* Estilizar la barra de desplazamiento */
+.sidebar-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

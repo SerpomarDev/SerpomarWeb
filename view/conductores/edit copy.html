@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <title>Edit</title>
+</head>
+<body>
+    <h2 class="h1">Actualizar Conducutores</h2>
+    <br>
+    <div class="container">
+        <form id="editConductor" method="PUT" enctype="multipart/form-data">
+            <input type="hidden" id="id" name="id">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre">
+                    </div>
+                </div>
+    
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">Identificacion</label>
+                        <input type="text" class="form-control" id="identificacion" name="identificacion">
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">Telefono</label>
+                        <input type="text" class="form-control" id="telefono" name="telefono">
+                    </div>
+                </div>
+    
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="email" name="email">
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-10 d-flex justify-content-between">
+                    <label for="" class="form-label"></label>
+                    <button  class="btn btn-primary" id="editBtn">Enviar</button>
+                    <a class="btn btn-primary" href="/view/conductores/create.html">Volver</a>
+                </div>
+            </div>
+        </form>
+    </div> 
+    <div class="container">
+        <div id="conductoresedit"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <script type="text/javascript" src="/js/conductor/edtiConductor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
