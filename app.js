@@ -7,6 +7,7 @@ const credentials = {
     "luisa@101.com": "claveLuisa",
     "alexander.jimenez@serpomar.com": "serpomar2024",
     "admin@serpomar.com": "serpomar2024"
+    "transporte@serpomar,com": "Stransporte2024"
 };
 
 document.getElementById('login-form').addEventListener('submit', function(event) {
