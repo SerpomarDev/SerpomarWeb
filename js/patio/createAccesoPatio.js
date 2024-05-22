@@ -14,14 +14,14 @@
       columns: [{
         name:'id_co',
         hidden:true,
-      },"SP","DO PEDIDO","Numero contenedor","Tipo transporte","Cliente",{
+      },"contenedor","cliente","Tipo de contenedor","Tipo transporte","Cutoff",{
         name:'Acción',
-        formatter:(cell,row)=>{
-          return gridjs.h('button',{
-            className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-            onClick: () => asignar(row.cells[0].data)
-          },'Asignar');
-        }
+            formatter:(cell,row)=>{
+                return gridjs.h('button',{
+                  className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
+                  onClick: () => asignar(row.cells[0].data)
+                },'Asignar');
+              },
       }],
       fixedHeader: true,
       server: {
@@ -29,12 +29,7 @@
         then: (data) => {
           if (Array.isArray(data) && data.length > 0) {
             return data.map((contenedorEx) => [
-              contenedorEx.id,
-              contenedorEx.do_sp,
-              contenedorEx.do_pedido,
-              contenedorEx.numero_co,
-              contenedorEx.tipo_transporte,
-              contenedorEx.cliente
+
             ]);
           } else {
             console.error("La respuesta del servidor no contiene datos válidos.");
