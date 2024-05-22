@@ -67,7 +67,6 @@
                                 </div>
                             </div>
 
-
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="id_placa" class="form-label">Placa</label>
@@ -124,7 +123,7 @@
         
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="id_sitio_inspeccion" class="form-label">Destino 2</label>
+                                    <label for="id_sitio_inspeccion1" class="form-label">Destino 2</label>
                                     <select id="id_sitio_inspeccion1" name="id_sitio_inspeccion1" class="form-control">
                                         <option value="">Seleccione una Opción</option>
                                         <!-- Agrega las opciones aquí -->
@@ -134,7 +133,7 @@
         
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="id_sitio_inspeccion" class="form-label">Destino 3</label>
+                                    <label for="id_sitio_inspeccion2" class="form-label">Destino 3</label>
                                     <select id="id_sitio_inspeccion2" name="id_sitio_inspeccion2" class="form-control">
                                         <option value="">Seleccione una Opción</option>
                                         <!-- Agrega las opciones aquí -->
@@ -192,7 +191,7 @@
         
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="vencimiento_cutofi" class="form-label">Vencimiento Cut Off</label>
+                                    <label for="vencimiento_cutoff" class="form-label">Vencimiento Cut Off</label>
                                     <input type="date" class="form-control" id="vencimiento_cutoff" name="vencimiento_cutoff" required>
                                 </div>
                             </div>
@@ -224,7 +223,7 @@
                             <div class="col-12 d-flex justify-content-between">
                                 <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
                                 <button class="btn btn-primary" id="BtnSavePlaca">Enviar</button>
-                                <button class="btn btn-secondary" id="generateQR">Generar QR</button>
+                                <button type="button" class="btn btn-secondary" id="generateQR">Generar QR</button>
                             </div>
                         </div>
                     </form>
@@ -236,18 +235,15 @@
         </div>
         
         <!-- QR Code Modal -->
-        <div class="modal fade" id="qrModal" tabindex="-1" role="dialog">
+        <div class="modal" id="qrModal" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Código QR</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <h5 class="modal-title">QR - Orden de Cargue</h5>
                     </div>
                     <div class="modal-body" id="qrcode" style="text-align: center;"></div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-secondary" id="downloadQR">Descargar QR</button>
                     </div>
                 </div>
             </div>
@@ -286,6 +282,111 @@
     <script type="text/javascript" src="/js/cargar/cargarNaviera.js"></script>
     <script type="text/javascript" src="/js/cargar/CargarTipoContenedor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/js/qr-generator.js"></script>
+
+    <!-- QR Code generation script -->
+    <script>
+        document.getElementById('generateQR').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // Check if all required fields are filled
+            var requiredFields = document.querySelectorAll('#createOrdenCargue [required]');
+            var allFieldsFilled = true;
+            requiredFields.forEach(function(field) {
+                if (!field.value) {
+                    allFieldsFilled = false;
+                }
+            });
+
+            if (!allFieldsFilled) {
+                alert('Por favor, complete todos los campos requeridos.');
+                return;
+            }
+
+            function getSelectedText(id) {
+                var select = document.getElementById(id);
+                return select.options[select.selectedIndex].text;
+            }
+
+            var fechaSolicitud = document.getElementById('fecha_solicitud').value;
+            var idPlaca = getSelectedText('id_placa');
+            var idCliente = getSelectedText('id_cliente');
+            var idConductor = getSelectedText('id_conductor');
+            var modalidad = document.getElementById('modalidad').value;
+            var idTipoOperacion = getSelectedText('id_tipo_operacion');
+            var idDestino1 = getSelectedText('id_sitio_inspeccion');
+            var idDestino2 = getSelectedText('id_sitio_inspeccion1');
+            var idDestino3 = getSelectedText('id_sitio_inspeccion2');
+            var idNaviera = getSelectedText('id_naviera');
+            var contenedor = document.getElementById('contenedor').value;
+            var idTipoContenedor = getSelectedText('id_tipo_contenedor');
+            var peso = document.getElementById('peso').value;
+            var funcionarioTransporte = document.getElementById('funcionario_transporte').value;
+            var precinto = document.getElementById('precinto').value;
+            var vencimientoCutofi = document.getElementById('vencimiento_cutoff').value;
+            var horaSoli = document.getElementById('hora_soli').value;
+            var fechaSoli = document.getElementById('fecha_soli').value;
+            var observaciones = document.getElementById('observaciones').value;
+
+            var qrData = `
+                Fecha de Solicitud: ${fechaSolicitud}
+                Placa: ${idPlaca}
+                ID Cliente: ${idCliente}
+                Conductor: ${idConductor}
+                Modalidad: ${modalidad}
+                Tipo de Servicio: ${idTipoOperacion}
+                Destino 1: ${idDestino1}
+                Destino 2: ${idDestino2}
+                Destino 3: ${idDestino3}
+                Naviera: ${idNaviera}
+                Contenedor: ${contenedor}
+                Tipo de Contenedor: ${idTipoContenedor}
+                Peso: ${peso}
+                Funcionario de Transporte: ${funcionarioTransporte}
+                Precinto: ${precinto}
+                Vencimiento Cut Off: ${vencimientoCutofi}
+                Hora de Solicitud: ${horaSoli}
+                Fecha de Solicitud: ${fechaSoli}
+                Observaciones: ${observaciones}
+            `;
+
+            var qr = qrcode(0, 'L');
+            qr.addData(qrData);
+            qr.make();
+            document.getElementById('qrcode').innerHTML = qr.createImgTag();
+            
+            // Show the modal
+            $('#qrModal').modal('show');
+        });
+
+        // Ensure the modal can be closed properly
+        $('#qrModal').on('hidden.bs.modal', function (e) {
+            document.getElementById('qrcode').innerHTML = '';
+        });
+
+        // Download QR Code as image
+        document.getElementById('downloadQR').addEventListener('click', function() {
+            var qrImg = document.querySelector('#qrcode img');
+            var qrCanvas = document.createElement('canvas');
+            var context = qrCanvas.getContext('2d');
+            var qrImgWidth = qrImg.width;
+            var qrImgHeight = qrImg.height;
+            var titleHeight = 40;
+            qrCanvas.width = qrImgWidth;
+            qrCanvas.height = qrImgHeight + titleHeight;
+
+            // Add title above the QR code
+            context.font = "20px Arial";
+            context.textAlign = "center";
+            context.fillText("Orden de Cargue", qrCanvas.width / 2, 30);
+
+            // Draw QR code
+            context.drawImage(qrImg, 0, titleHeight, qrImgWidth, qrImgHeight);
+
+            var link = document.createElement('a');
+            link.href = qrCanvas.toDataURL("image/png");
+            link.download = 'qr_code.png';
+            link.click();
+        });
+    </script>
 </body>
 </html>
