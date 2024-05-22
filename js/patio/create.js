@@ -25,7 +25,7 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
         });
     })
     .then((response)=>{
-     //time();
+     time();
     })
   });
 

@@ -79,14 +79,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="id_cliente" class="form-label">ID Cliente</label>
-                                    <input type="date" class="form-control" id="id_cliente" name="fecha_solicitud" required>
-                                </div>
-                            </div>
-        
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="id_placa" class="form-label">Placa</label>
-                                    <select id="id_placa" name="id_placa" class="form-control" required>
+                                    <select id="id_cliente" name="id_cliente" class="form-control" required>
                                         <option value="">Seleccione una Opción</option>
                                     </select>
                                 </div>
@@ -131,13 +124,8 @@
         
                             <div class="col-md-4">
                                 <div class="form-group">
-<<<<<<< HEAD
                                     <label for="id_sitio_inspeccion" class="form-label">Destino 2</label>
-                                    <select id="id_sitio_inspeccion" name="id_sitio_inspeccion" class="form-control">
-=======
-                                    <label for="id_destino2" class="form-label">Destino 2</label>
                                     <select id="id_sitio_inspeccion1" name="id_sitio_inspeccion1" class="form-control">
->>>>>>> 0173e52082aff1b99b73f7abcda575a54e2d3ce4
                                         <option value="">Seleccione una Opción</option>
                                         <!-- Agrega las opciones aquí -->
                                     </select>
@@ -146,13 +134,8 @@
         
                             <div class="col-md-4">
                                 <div class="form-group">
-<<<<<<< HEAD
                                     <label for="id_sitio_inspeccion" class="form-label">Destino 3</label>
-                                    <select id="id_sitio_inspeccion" name="id_sitio_inspeccion" class="form-control">
-=======
-                                    <label for="id_destino3" class="form-label">Destino 3</label>
                                     <select id="id_sitio_inspeccion2" name="id_sitio_inspeccion2" class="form-control">
->>>>>>> 0173e52082aff1b99b73f7abcda575a54e2d3ce4
                                         <option value="">Seleccione una Opción</option>
                                         <!-- Agrega las opciones aquí -->
                                     </select>
@@ -210,7 +193,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="vencimiento_cutofi" class="form-label">Vencimiento Cut Off</label>
-                                    <input type="date" class="form-control" id="vencimiento_cutofi" name="vencimiento_cutofi" required>
+                                    <input type="date" class="form-control" id="vencimiento_cutoff" name="vencimiento_cutoff" required>
                                 </div>
                             </div>
         
@@ -294,6 +277,7 @@
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
     <script type="text/javascript" src="/js/patio/create.js"></script>
     <script type="text/javascript" src="/js/cargar/cargarPlaca.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarClientes.js"></script>
     <script type="text/javascript" src="/js/cargar/cargarConductores.js"></script>
     <script type="text/javascript" src="/js/cargar/cargarTipoServicio.js"></script>
     <script type="text/javascript" src="/js/cargar/cargarDestino.js"></script>
