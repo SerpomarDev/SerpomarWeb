@@ -64,7 +64,7 @@
         <div class="content-body">
             <div id="content" class="p-4 p-md-5 pt-5">
                 <div class="container">
-                    <form id="createPlaca" method="post" enctype="multipart/form-data">
+                    <form id="createOrdenCargue" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -78,7 +78,6 @@
                                     <label for="id_placa" class="form-label">Placa</label>
                                     <select id="id_placa" name="id_placa" class="form-control" required>
                                         <option value="">Seleccione una Opción</option>
-                                        <!-- Agrega las opciones aquí -->
                                     </select>
                                 </div>
                             </div>
@@ -103,7 +102,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="id_tipo_servici" class="form-label">Tipo de Servicio</label>
-                                    <select id="id_tipo_servici" name="id_tipo_servici" class="form-control" required>
+                                    <select id="id_tipo_operacion" name="id_tipo_operacion" class="form-control" required>
                                         <option value="">Seleccione una Opción</option>
                                         <!-- Agrega las opciones aquí -->
                                     </select>
@@ -113,7 +112,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="id_destino1" class="form-label">Destino 1</label>
-                                    <select id="id_destino1" name="id_destino1" class="form-control" required>
+                                    <select id="id_sitio_inspeccion" name="id_sitio_inspeccion" class="form-control" required>
                                         <option value="">Seleccione una Opción</option>
                                         <!-- Agrega las opciones aquí -->
                                     </select>
@@ -123,7 +122,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="id_destino2" class="form-label">Destino 2</label>
-                                    <select id="id_destino2" name="id_destino2" class="form-control">
+                                    <select id="id_sitio_inspeccion" name="id_sitio_inspeccion" class="form-control">
                                         <option value="">Seleccione una Opción</option>
                                         <!-- Agrega las opciones aquí -->
                                     </select>
@@ -133,7 +132,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="id_destino3" class="form-label">Destino 3</label>
-                                    <select id="id_destino3" name="id_destino3" class="form-control">
+                                    <select id="id_sitio_inspeccion" name="id_sitio_inspeccion" class="form-control">
                                         <option value="">Seleccione una Opción</option>
                                         <!-- Agrega las opciones aquí -->
                                     </select>
@@ -160,7 +159,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="id_tipoContenedor" class="form-label">Tipo de Contenedor</label>
-                                    <select id="id_tipoContenedor" name="id_tipoContenedor" class="form-control" required>
+                                    <select id="id_tipo_contenedor" name="id_tipo_contenedor" class="form-control" required>
                                         <option value="">Seleccione una Opción</option>
                                         <!-- Agrega las opciones aquí -->
                                     </select>
@@ -227,6 +226,9 @@
                     </form>
                 </div>
             </div>
+            <div class="container">
+                <div id="orden_cargue"></div>
+            </div>
         </div>
         
     
@@ -257,9 +259,12 @@
 	
 
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-    <script type="text/javascript" src="/js/placa/createPlaca.js"></script>
-    <script type="text/javascript" src="/js/cargar/cargarAliados.js"></script>
-    <script type="text/javascript" src="/js/placa/deletePlaca.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarPlaca.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarConductores.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarTipoServicio.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarDestino.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarNaviera.js"></script>
+    <script type="text/javascript" src="/js/cargar/CargarTipoContenedor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 

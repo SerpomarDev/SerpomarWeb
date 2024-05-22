@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=0.2">
 	<!-- PAGE TITLE HERE -->
 	<title>SerpomarWeb</title>
 	
@@ -13,34 +13,31 @@
 	<link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
 	<!-- Style css -->
     <link href="/css/style-Dash.css" rel="stylesheet">
-	
-   
-    <link href="/css/pages.css" rel="stylesheet" />
+
     <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 
 </head>
 <body>
 
-
- <!-- Contenedor para el preloader -->
- <div id="preloader-container"></div>
- <!-- Contenedor para el preloader -->
-
-
- <!-- Contenedor para el nav-header -->
- <div id="navheader-container"></div>
- <!-- Contenedor para el nav-header -->
-
-
- <div id="main-wrapper">
+      <!-- Contenedor para el preloader -->
+      <div id="preloader-container"></div>
+      <!-- Contenedor para el preloader -->
+  
+  
+      <!-- Contenedor para el nav-header -->
+      <div id="navheader-container"></div>
+      <!-- Contenedor para el nav-header -->
+  
+  
+      <div id="main-wrapper">
         <div class="header">
             <div class="header-content">
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
 							<div class="dashboard_bar">
-                                Crear Conductor
+                                Crear Placa Patio
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
@@ -67,60 +64,61 @@
         <div class="content-body">
         <div id="content" class="p-4 p-md-5 pt-5">
             <div class="container">
-                <form id="createConductor" method="POST" enctype="multipart/form-data">
+                <form id="createPlaca" method="post" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                <label for="" class="form-label">Placa</label>
+                                <input type="text" class="form-control" id="placa" name="placa" required>
                             </div>
                         </div>
             
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="" class="form-label">Identificacion</label>
-                                <input type="text" class="form-control" id="identificacion" name="identificacion" required>
+                                <label for="" class="form-label">Eje</label>
+                                <input type="text" class="form-control" id="eje" name="eje" required>
+                            </div>
+                        </div>
+            
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="form-label">Tipologia</label>
+                                <input type="text" class="form-control" id="tipologia" name="tipologia" required>
                             </div>
                         </div>
                     </div>
             
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="" class="form-label">Telefono</label>
-                                <input type="text" class="form-label" id="telefono" name="telefono" required>
-                            </div>
-                        </div>
-            
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="email" name="email">
+                                <label for="" class="form-label">Propietario</label>
+                                <select id="id_aliado" name="id_aliado" class="form-control" required>
+                                    <option value="">Seleccione una Opción</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-            
+            <br>
                     <div class="row">
-                        <div class="col-12 d-flex justify-content-between">
-                            <button  class="btn btn-primary" id="BtnSaveConductor">Enviar</button>
+                        <div class="col-10 d-flex justify-content-between">
+                            <button  class="btn btn-primary" id="BtnSavePlaca">Enviar</button>
                             <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
                         </div>
                     </div>
                 </form>
-            </div>
-            <div class="container">
-                <div id="conductores"></div>
-            </div>
+               </div> 
+            
+               <div class="container">
+                <div id="Placa"></div>
+               </div>
         </div>
 	</div>
-   
-
     
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/componentes/loadSidebar.js"></script>
     <script src="/componentes/loadPreloader.js"></script>
     <script src="/componentes/loadNavHeader.js"></script>
-    
     <!-- Required vendors -->
     <script src="/vendor/global/global.min.js"></script>
 	<script src="/vendor/chart.js/Chart.bundle.min.js"></script>
@@ -143,8 +141,9 @@
 	
 
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-    <script type="text/javascript" src="/js/conductor/createConductor.js"></script>
-    <script type="text/javascript" src="/js/conductor/deleteConductor.js"></script>
+    <script type="text/javascript" src="/js/placa/createPlaca.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarAliados.js"></script>
+    <script type="text/javascript" src="/js/placa/deletePlaca.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
