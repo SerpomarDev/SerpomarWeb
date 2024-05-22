@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=0.2">
+	<!-- PAGE TITLE HERE -->
+	<title>SerpomarWeb</title>
+	
+	<link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+	<link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
+	<!-- Style css -->
+    <link href="/css/style-Dash.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+
+</head>
+<body>
+
+      <!-- Contenedor para el preloader -->
+      <div id="preloader-container"></div>
+      <!-- Contenedor para el preloader -->
+  
+  
+      <!-- Contenedor para el nav-header -->
+      <div id="navheader-container"></div>
+      <!-- Contenedor para el nav-header -->
+  
+  
+      <div id="main-wrapper">
+        <div class="header">
+            <div class="header-content">
+                <nav class="navbar navbar-expand">
+                    <div class="collapse navbar-collapse justify-content-between">
+                        <div class="header-left">
+							<div class="dashboard_bar">
+                                Crear Orden de Cargue
+                            </div>
+                        </div>
+                        <ul class="navbar-nav header-right">
+							<li class="nav-item">
+								<div class="input-group search-area">
+									<input type="text" class="form-control" placeholder="Buscar...">
+									<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
+								</div>
+							</li>
+                            <li class="nav-item">
+								<a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a>
+							</li>
+                        </ul>
+                    </div>
+				</nav>
+			</div>
+		</div>
+
+
+
+        <div id="sidebar-container"></div>
+
+
+        <div class="content-body">
+            <div id="content" class="p-4 p-md-5 pt-5">
+                <div class="container">
+                    <form id="createPlaca" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="fecha_solicitud" class="form-label">Fecha de Solicitud</label>
+                                    <input type="date" class="form-control" id="fecha_solicitud" name="fecha_solicitud" required>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="id_placa" class="form-label">Placa</label>
+                                    <select id="id_placa" name="id_placa" class="form-control" required>
+                                        <option value="">Seleccione una Opción</option>
+                                        <!-- Agrega las opciones aquí -->
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="id_conductor" class="form-label">Conductor</label>
+                                    <select id="id_conductor" name="id_conductor" class="form-control" required>
+                                        <option value="">Seleccione una Opción</option>
+                                        <!-- Agrega las opciones aquí -->
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="modalidad" class="form-label">Modalidad</label>
+                                    <input type="text" class="form-control" id="modalidad" name="modalidad" required>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="id_tipo_servici" class="form-label">Tipo de Servicio</label>
+                                    <select id="id_tipo_servici" name="id_tipo_servici" class="form-control" required>
+                                        <option value="">Seleccione una Opción</option>
+                                        <!-- Agrega las opciones aquí -->
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="id_destino1" class="form-label">Destino 1</label>
+                                    <select id="id_destino1" name="id_destino1" class="form-control" required>
+                                        <option value="">Seleccione una Opción</option>
+                                        <!-- Agrega las opciones aquí -->
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="id_destino2" class="form-label">Destino 2</label>
+                                    <select id="id_destino2" name="id_destino2" class="form-control">
+                                        <option value="">Seleccione una Opción</option>
+                                        <!-- Agrega las opciones aquí -->
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="id_destino3" class="form-label">Destino 3</label>
+                                    <select id="id_destino3" name="id_destino3" class="form-control">
+                                        <option value="">Seleccione una Opción</option>
+                                        <!-- Agrega las opciones aquí -->
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="id_naviera" class="form-label">Naviera</label>
+                                    <select id="id_naviera" name="id_naviera" class="form-control" required>
+                                        <option value="">Seleccione una Opción</option>
+                                        <!-- Agrega las opciones aquí -->
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="contenedor" class="form-label">Contenedor</label>
+                                    <input type="text" class="form-control" id="contenedor" name="contenedor" required>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="id_tipoContenedor" class="form-label">Tipo de Contenedor</label>
+                                    <select id="id_tipoContenedor" name="id_tipoContenedor" class="form-control" required>
+                                        <option value="">Seleccione una Opción</option>
+                                        <!-- Agrega las opciones aquí -->
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="peso" class="form-label">Peso</label>
+                                    <input type="number" step="0.01" class="form-control" id="peso" name="peso" required>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="funcionario_transporte" class="form-label">Funcionario de Transporte</label>
+                                    <input type="text" class="form-control" id="funcionario_transporte" name="funcionario_transporte" required>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="precinto" class="form-label">Precinto</label>
+                                    <input type="text" class="form-control" id="precinto" name="precinto" required>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="vencimiento_cutofi" class="form-label">Vencimiento Cut Off</label>
+                                    <input type="date" class="form-control" id="vencimiento_cutofi" name="vencimiento_cutofi" required>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="hora_soli" class="form-label">Hora de Solicitud</label>
+                                    <input type="time" class="form-control" id="hora_soli" name="hora_soli" required>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="fecha_soli" class="form-label">Fecha de Solicitud</label>
+                                    <input type="date" class="form-control" id="fecha_soli" name="fecha_soli" required>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="observaciones" class="form-label">Observaciones</label>
+                                    <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <br>
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-between">
+                                <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
+                                <button class="btn btn-primary" id="BtnSavePlaca">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/componentes/loadSidebar.js"></script>
+    <script src="/componentes/loadPreloader.js"></script>
+    <script src="/componentes/loadNavHeader.js"></script>
+    <!-- Required vendors -->
+    <script src="/vendor/global/global.min.js"></script>
+	<script src="/vendor/chart.js/Chart.bundle.min.js"></script>
+	<script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Apex Chart -->
+	<script src="/vendor/apexchart/apexchart.js"></script>
+	<script src="/vendor/nouislider/nouislider.min.js"></script>
+	<script src="/vendor/wnumb/wNumb.js"></script>
+	
+	<!-- Dashboard 1 -->
+	<script src="/js/dashboard/dashboard-1.js"></script>
+
+    <script src="/js/custom.min.js"></script>
+	<script src="/js/dlabnav-init.js"></script>
+	<script src="/js/demo.js"></script>
+    <script src="/js/styleSwitcher.js"></script>
+	
+
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <script type="text/javascript" src="/js/placa/createPlaca.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarAliados.js"></script>
+    <script type="text/javascript" src="/js/placa/deletePlaca.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
