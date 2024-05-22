@@ -7,7 +7,7 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
 
     console.log(jsonData)
     
-    fetch('http://esenttiapp.test/api/ordenCargue', {
+    fetch('https://esenttiapp-production.up.railway.app/api/ordencargue', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: jsonData
@@ -25,7 +25,7 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
         });
     })
     .then((response)=>{
-     time();
+     //time();
     })
   });
 
@@ -33,5 +33,5 @@ function time() {
     document.getElementById('createOrdenCargue').reset();
     setTimeout(() => {
         window.location.href = ``; 
-    },  1200);
+    },1200);
 }
