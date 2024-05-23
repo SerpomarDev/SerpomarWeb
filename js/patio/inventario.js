@@ -44,3 +44,9 @@ new gridjs.Grid({
       table: {with:"80%"}
     }
   }).render(document.getElementById('inventario'));
+
+  function time() {
+    setTimeout(() => {
+      window.location.href = `/view/patio/inventario.html`;
+    }, 1500);
+  }
