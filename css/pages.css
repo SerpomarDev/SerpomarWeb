@@ -169,8 +169,8 @@ select:focus {
 }
 
 .container-a {
-    margin: 25px;
-    padding: 25px;
+    margin: 10px;
+    padding: 10px;
 }
 
 
@@ -178,11 +178,21 @@ select:focus {
 
 #pro1,
 #pro {
-    width: 30%;
+    width: 50%;
     /* Ajustar el ancho */
 }
 
 
 .modal-title{
     text-align: center;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin-left: 0;
+    }
+
+    .container.open {
+        margin-left: 250px;
+    }
 }

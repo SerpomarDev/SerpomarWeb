@@ -28316,3 +28316,80 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .sidebar-scroll::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* Estilos generales para el nav-header */
+.nav-header {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 10px;
+  background-color: #eaeaea; /* Color del fondo del navbar */
+}
+
+/* Estilos para los logos */
+.logo-large {
+  display: block;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+.logo-small {
+  display: none;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+/* Estilos para el botón de toggle en pantallas pequeñas */
+.sidebar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Estilos para el contenedor del logo en pantallas pequeñas */
+@media (max-width: 768px) {
+  .nav-header {
+      justify-content: center;
+      padding: 5px;
+  }
+
+  .logo-large {
+      display: none;
+  }
+
+  .logo-small {
+      display: block;
+  }
+
+  .sidebar-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+}
+
+/* Estilos para el sidebar en pantallas pequeñas */
+@media (max-width: 768px) {
+  .dlabnav {
+      position: fixed;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #fff;
+      transition: left 0.3s ease;
+      z-index: 1000;
+  }
+
+  .dlabnav.open {
+      left: 0;
+  }
+
+  .container.open {
+      margin-left: 250px;
+  }
+}
+
