@@ -222,7 +222,7 @@
                             <div class="col-12 d-flex justify-content-between">
                                 <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
                                 <button class="btn btn-primary" id="BtnSavePlaca">Enviar</button>
-                                <button type="button" class="btn btn-secondary" id="generateQR">Generar QR</button>
+                                <!-- <button type="button" class="btn btn-secondary" id="generateQR">Generar QR</button> -->
                             </div>
                         </div>
                     </form>
@@ -284,7 +284,7 @@
 
     <!-- QR Code generation script -->
     <script>
-        document.getElementById('generateQR').addEventListener('click', function(event) {
+        document.getElementById('BtnSavePlaca').addEventListener('click', function(event) {
             event.preventDefault();
 
             // Check if all required fields are filled
@@ -297,64 +297,78 @@
             });
 
             if (!allFieldsFilled) {
-                alert('Por favor, complete todos los campos requeridos.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Campos incompletos',
+                    text: 'Por favor, complete todos los campos requeridos.'
+                });
                 return;
             }
 
-            function getSelectedText(id) {
-                var select = document.getElementById(id);
-                return select.options[select.selectedIndex].text;
-            }
+            Swal.fire({
+                icon: 'success',
+                title: 'Formulario enviado',
+                text: 'El formulario ha sido enviado con éxito.',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Generate QR Code
+                    function getSelectedText(id) {
+                        var select = document.getElementById(id);
+                        return select.options[select.selectedIndex].text;
+                    }
 
-            var fechaSolicitud = document.getElementById('fecha_solicitud').value;
-            var idPlaca = getSelectedText('id_placa');
-            var idCliente = getSelectedText('id_cliente');
-            var idConductor = getSelectedText('id_conductor');
-            var modalidad = document.getElementById('modalidad').value;
-            var idTipoOperacion = getSelectedText('id_tipo_operacion');
-            var idDestino1 = getSelectedText('id_sitio_inspeccion');
-            var idDestino2 = getSelectedText('id_sitio_inspeccion1');
-            var idDestino3 = getSelectedText('id_sitio_inspeccion2');
-            var idNaviera = getSelectedText('id_naviera');
-            var contenedor = document.getElementById('contenedor').value;
-            var idTipoContenedor = getSelectedText('id_tipo_contenedor');
-            var peso = document.getElementById('peso').value;
-            var funcionarioTransporte = document.getElementById('funcionario_transporte').value;
-            var precinto = document.getElementById('precinto').value;
-            var vencimientoCutofi = document.getElementById('vencimiento_cutoff').value;
-            var horaSoli = document.getElementById('hora_soli').value;
-            var fechaSoli = document.getElementById('fecha_soli').value;
-            var observaciones = document.getElementById('observaciones').value;
+                    var fechaSolicitud = document.getElementById('fecha_solicitud').value;
+                    var idPlaca = getSelectedText('id_placa');
+                    var idCliente = getSelectedText('id_cliente');
+                    var idConductor = getSelectedText('id_conductor');
+                    var modalidad = document.getElementById('modalidad').value;
+                    var idTipoOperacion = getSelectedText('id_tipo_operacion');
+                    var idDestino1 = getSelectedText('id_sitio_inspeccion');
+                    var idDestino2 = getSelectedText('id_sitio_inspeccion1');
+                    var idDestino3 = getSelectedText('id_sitio_inspeccion2');
+                    var idNaviera = getSelectedText('id_naviera');
+                    var contenedor = document.getElementById('contenedor').value;
+                    var idTipoContenedor = getSelectedText('id_tipo_contenedor');
+                    var peso = document.getElementById('peso').value;
+                    var funcionarioTransporte = document.getElementById('funcionario_transporte').value;
+                    var precinto = document.getElementById('precinto').value;
+                    var vencimientoCutofi = document.getElementById('vencimiento_cutoff').value;
+                    var horaSoli = document.getElementById('hora_soli').value;
+                    var fechaSoli = document.getElementById('fecha_soli').value;
+                    var observaciones = document.getElementById('observaciones').value;
 
-            var qrData = `
-                Fecha de Solicitud: ${fechaSolicitud}
-                Placa: ${idPlaca}
-                ID Cliente: ${idCliente}
-                Conductor: ${idConductor}
-                Modalidad: ${modalidad}
-                Tipo de Servicio: ${idTipoOperacion}
-                Destino 1: ${idDestino1}
-                Destino 2: ${idDestino2}
-                Destino 3: ${idDestino3}
-                Naviera: ${idNaviera}
-                Contenedor: ${contenedor}
-                Tipo de Contenedor: ${idTipoContenedor}
-                Peso: ${peso}
-                Funcionario de Transporte: ${funcionarioTransporte}
-                Precinto: ${precinto}
-                Vencimiento Cut Off: ${vencimientoCutofi}
-                Hora de Solicitud: ${horaSoli}
-                Fecha de Solicitud: ${fechaSoli}
-                Observaciones: ${observaciones}
-            `;
+                    var qrData = `
+                        Fecha de Solicitud: ${fechaSolicitud}
+                        Placa: ${idPlaca}
+                        ID Cliente: ${idCliente}
+                        Conductor: ${idConductor}
+                        Modalidad: ${modalidad}
+                        Tipo de Servicio: ${idTipoOperacion}
+                        Destino 1: ${idDestino1}
+                        Destino 2: ${idDestino2}
+                        Destino 3: ${idDestino3}
+                        Naviera: ${idNaviera}
+                        Contenedor: ${contenedor}
+                        Tipo de Contenedor: ${idTipoContenedor}
+                        Peso: ${peso}
+                        Funcionario de Transporte: ${funcionarioTransporte}
+                        Precinto: ${precinto}
+                        Vencimiento Cut Off: ${vencimientoCutofi}
+                        Hora de Solicitud: ${horaSoli}
+                        Fecha de Solicitud: ${fechaSoli}
+                        Observaciones: ${observaciones}
+                    `;
 
-            var qr = qrcode(0, 'L');
-            qr.addData(qrData);
-            qr.make();
-            document.getElementById('qrcode').innerHTML = qr.createImgTag();
-            
-            // Show the modal
-            $('#qrModal').modal('show');
+                    var qr = qrcode(0, 'L');
+                    qr.addData(qrData);
+                    qr.make();
+                    document.getElementById('qrcode').innerHTML = qr.createImgTag();
+                    
+                    // Show the modal
+                    $('#qrModal').modal('show');
+                }
+            });
         });
 
         // Ensure the modal can be closed properly
