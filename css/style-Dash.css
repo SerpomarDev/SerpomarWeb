@@ -32,6 +32,14 @@
   --link-color: #007bff; /* Enlaces */
 }
 
+.metismenu ul {
+  display: none;
+}
+
+.metismenu ul[aria-expanded="true"] {
+  display: block;
+}
+
 .invoice-card .card-body {
   display: flex;
   align-items: center;

@@ -7,6 +7,8 @@ function loadSidebar() {
 
             // Inicializar menús desplegables usando jQuery
             $(document).ready(function() {
+                console.log('Document ready'); // Mensaje de depuración
+
                 // Asegurarse de que todos los submenús estén cerrados al cargar la página
                 $('.has-arrow').each(function() {
                     var $this = $(this);
