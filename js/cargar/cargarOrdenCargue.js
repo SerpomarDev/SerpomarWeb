@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded',function(){
         data.forEach(cargue => {
             let option = document.createElement('option')
             option.value = cargue.id
-            option.text = cargue.fecha_solicitud
+            option.text = cargue.contenedor
             selectOrdenCargue.appendChild(option)       
         });
 
