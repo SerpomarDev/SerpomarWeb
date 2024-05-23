@@ -120,6 +120,6 @@ document.getElementById('craeateAccesoPatio').addEventListener('submit', functio
 function time() {
     document.getElementById('craeateAccesoPatio').reset();
     setTimeout(() => {
-        window.location.href = ``; 
+        window.location.href = `/view/patio/acceso_patio.html`; 
     },1200);
 }
