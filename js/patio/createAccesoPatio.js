@@ -57,6 +57,11 @@ function actualizarEstado(idOperacion,nuevoEstado) {
               gridjs.h('option', { value: 'RECHAZADO' }, 'RECHAZADO'),
           ]);
       },
+      },{
+        name:"Observacion",
+        formatter: (cell, row) => {
+          return gridjs.html(`<textarea readonly)">${cell || ''}</textarea>`);
+        }
       }],
       fixedHeader: true,
       server: {
@@ -123,3 +128,7 @@ function time() {
         window.location.href = `/view/patio/acceso_patio.html`; 
     },1200);
 }
+
+window.updateComment = (rowIndex, value) => {
+  data[rowIndex][6] = value;
+};
