@@ -1,13 +1,18 @@
 function loadSidebar() {
+    // Verifica si hay un usuario autenticado
+    var loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+        // Redirige a logout.html si no hay usuario autenticado
+        window.location.href = '/logout.html';
+        return;
+    }
+
     fetch('/componentes/sidebar.html')
         .then(response => response.text())
         .then(data => {
             document.querySelector('#sidebar-container').innerHTML = data;
             console.log('Sidebar loaded'); // Mensaje de depuración
 
-            // Obtiene el usuario autenticado del localStorage
-            var loggedInUser = localStorage.getItem('loggedInUser');
-            
             // Inicializa menús desplegables usando jQuery
             $(document).ready(function() {
                 console.log('Document ready'); // Mensaje de depuración
@@ -17,12 +22,12 @@ function loadSidebar() {
 
                 // Verifica si hay un usuario autenticado
                 if (loggedInUser) {
-                    // Muestra solo los menús permitidos según el usuario
+                    // Mostrar solo los menús permitidos según el usuario
                     if (loggedInUser === 'transporte@serpomar.com') {
                         // Mostrar solo Dashboard y Patio
                         $('#menu > li').each(function() {
                             var id = $(this).attr('id');
-                            if (id === 'menu-patio' || $(this).find('.nav-text').text().trim() === 'Dashboard') {
+                            if (id === 'menu-patio' || $(this).find('.nav-text').text().trim() === 'Dashboard' || $(this).find('.nav-text').text().trim() === 'Cerrar sesión') {
                                 $(this).show();
                             }
                         });
