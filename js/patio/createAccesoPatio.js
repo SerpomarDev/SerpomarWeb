@@ -25,11 +25,15 @@
       }],
       fixedHeader: true,
       server: {
-        url: ``,
+        url: `http://esenttiapp.test/api/uploadordencargue`,
         then: (data) => {
           if (Array.isArray(data) && data.length > 0) {
-            return data.map((contenedorEx) => [
-
+            return data.map((ordenCargue) => [
+              ordenCargue.contenedor,
+              ordenCargue.cliente,
+              ordenCargue.tipo_contenedor,
+              ordenCargue.modalidad,
+              ordenCargue.cutoff,
             ]);
           } else {
             console.error("La respuesta del servidor no contiene datos válidos.");
