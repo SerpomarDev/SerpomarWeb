@@ -32,6 +32,18 @@
   --link-color: #007bff; /* Enlaces */
 }
 
+.invoice-card .card-body {
+  display: flex;
+  align-items: center;
+}
+.invoice-card .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px; /* Ajusta este valor según sea necesario */
+  height: 50px; /* Ajusta este valor según sea necesario */
+}
+
 .gradient_one {
   background-image: linear-gradient(to right, rgba(30, 144, 255, 0.85) 0%, rgba(0, 191, 255, 0.85) 100%);
 }

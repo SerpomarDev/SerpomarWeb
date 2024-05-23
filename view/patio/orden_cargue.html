@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=0.2">
+    <meta name="viewport" content="width=device-width, initial-scale=0.1">
     <!-- PAGE TITLE HERE -->
     <title>SerpomarWeb</title>
     
@@ -12,10 +12,9 @@
     <link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
     <!-- Style css -->
     <link href="/css/style-Dash.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -57,6 +56,62 @@
 
         <div class="content-body">
             <div id="content" class="p-4 p-md-5 pt-5">
+
+                <div class="row invoice-card-row">
+                    <div class="col-xl-3 col-xxl-3 col-sm-6">
+                        <div class="card bg-warning invoice-card">
+                            <div class="card-body d-flex">
+                                <div class="icon me-3">
+                                    <i class="fas fa-boxes text-white" style="font-size: 28px;"></i>
+                                </div>
+                                <div>
+                                    <h2 class="text-white invoice-num">----</h2>
+                                    <span class="text-white fs-18">Historico Total Contenedores</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-xxl-3 col-sm-6">
+                        <div class="card bg-success invoice-card">
+                            <div class="card-body d-flex">
+                                <div class="icon me-3">
+                                     <i class="fas fa-pallet text-white" style="font-size: 28px;"></i>
+                                </div>
+                                <div>
+                                    <h2 class="text-white invoice-num">----</h2>
+                                    <span class="text-white fs-18">Total de Contenedores en Patio</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-xxl-3 col-sm-6">
+                        <div class="card bg-info invoice-card">
+                            <div class="card-body d-flex">
+                                <div class="icon me-3">
+                                    <i class="fas fa-shipping-fast text-white" style="font-size: 28px;"></i>
+                                </div>
+                                <div>
+                                    <h2 class="text-white invoice-num">----</h2>
+                                    <span class="text-white fs-18">Total Contenedores Salieron de Patio</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-xxl-3 col-sm-6">
+                        <div class="card bg-secondary invoice-card">
+                            <div class="card-body d-flex">
+                                <div class="icon me-3">
+                                    <i class="fas fa-calendar-check text-white" style="font-size: 28px;"></i>
+                                </div>
+                                <div>
+                                    <h2 class="text-white invoice-num">----</h2>
+                                    <span class="text-white fs-18">Contenedores ingresados en Patio hoy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="container">
                     <form id="createOrdenCargue" method="post" enctype="multipart/form-data">
                         <div class="row">
