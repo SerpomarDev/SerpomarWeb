@@ -28406,3 +28406,8 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   color: white;
   margin-left: 20px;
 }
+
+#historicoTotal{
+  color: white;
+  margin-left: 20px;
+}
