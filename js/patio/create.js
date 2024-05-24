@@ -83,7 +83,6 @@ function generarQRCode() {
     let precinto = document.getElementById('precinto').value;
     let vencimientoCutofi = document.getElementById('vencimiento_cutoff').value;
     let horaSoli = document.getElementById('hora_soli').value;
-    let fechaSoli = document.getElementById('fecha_soli').value;
     let observaciones = document.getElementById('observaciones').value;
 
     let qrData = `
@@ -104,7 +103,6 @@ function generarQRCode() {
         Precinto: ${precinto}
         Vencimiento Cut Off: ${vencimientoCutofi}
         Hora de Solicitud: ${horaSoli}
-        Fecha de Solicitud: ${fechaSoli}
         Observaciones: ${observaciones}
     `;
 
