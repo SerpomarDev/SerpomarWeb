@@ -18,8 +18,6 @@ function actualizarEstado(idOperacion,nuevoEstado) {
         text: "Estado actualizado!",
         icon: "success"
     });
-  })
-  .then((response)=>{
     time()
   })
   .catch((error) => {
@@ -46,6 +44,7 @@ function comentario(id, comentario) {
         text: "Comentario guardado!",
         icon: "success"
       });
+      time()
   })
   .catch((error) => {
       console.error('Error al guardar el comentario:', error);
@@ -59,10 +58,10 @@ function comentario(id, comentario) {
             placeholder: '🔍 Buscar...'
         }
       },
-      pagination: {
-          limit:5,
-          enabled: false,
-      },
+      // pagination: {
+      //     limit:5,
+      //     enabled: false,
+      // },
       sort: false,
       columns: [{
         name:"id",
@@ -74,6 +73,10 @@ function comentario(id, comentario) {
               onchange: (e) => {
                   const nuevoEstado = e.target.value;
                   actualizarEstado(row.cells[0].data, nuevoEstado);
+
+                  if(e.target.value === 'RECHAZADO'){
+                    row.cells[8].data.disabled = true;
+                  }
               },
           }, [
               gridjs.h('option', { value: '' }, 'Seleccione'),
@@ -81,6 +84,7 @@ function comentario(id, comentario) {
               gridjs.h('option', { value: 'SALIDA' }, 'SALIDA'),
               gridjs.h('option', { value: 'RECHAZADO' }, 'RECHAZADO'),
           ]);
+
       },
       }
       ,{
@@ -130,7 +134,7 @@ function comentario(id, comentario) {
     }).render(document.getElementById('acceso'));
 
 function time() {
-    document.getElementById('acceso').reset();
+    document.getElementById('craeateAccesoPatio').reset();
     setTimeout(() => {
         window.location.href = `/view/patio/acceso_patio.html`; 
     },1200);

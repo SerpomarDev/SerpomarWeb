@@ -28,16 +28,16 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
             }
         });
     })
-    .then((response)=>{
-
-    })
+    .catch((error) => {
+        console.error('Error al crear la orden:', error);
+    });
   });
 
 function time() {
     document.getElementById('createOrdenCargue').reset();
     setTimeout(() => {
         window.location.href = ``; 
-    },1200);
+    },);
 }
 
 

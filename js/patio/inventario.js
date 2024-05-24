@@ -22,7 +22,7 @@ new gridjs.Grid({
     }],
     fixedHeader: true,
     server: {
-      url: `https://esenttiapp-production.up.railway.app/api/cargarsinestado`,
+      url: `https://esenttiapp-production.up.railway.app/api/cargarinventario`,
       then: (data) => {
         if (Array.isArray(data) && data.length > 0) {
           return data.map((ordenCargue) => [
