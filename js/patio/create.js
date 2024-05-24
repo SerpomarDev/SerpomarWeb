@@ -19,9 +19,10 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
     })
     .then(data => {
         Swal.fire({
-          title: "¡Buen trabajo!",
-          text: "¡Has creado un Cliente",
-          icon: "success",
+            icon: 'success',
+            title: 'Formulario enviado',
+            text: 'El formulario ha sido enviado con éxito.',
+            confirmButtonText: 'OK'
         });
     })
     .then((response)=>{
@@ -32,6 +33,6 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
 function time() {
     document.getElementById('createOrdenCargue').reset();
     setTimeout(() => {
-        window.location.href = `/view/patio/orden_cargue.html`; 
+        window.location.href = ``; 
     },1200);
 }

@@ -26,6 +26,31 @@ function actualizarEstado(idOperacion,nuevoEstado) {
       console.error('Error al actualizar el estado:', error);
   });
 }
+
+function comentario(id, comentario) {
+  fetch(`https://esenttiapp-production.up.railway.app/api/actualizarcomentario/${comentario}/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id: id,
+      comentario: comentario
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log('Comentario guardado con éxito:', data);
+      Swal.fire({
+        title: "¡Buen trabajo!",
+        text: "Comentario guardado!",
+        icon: "success"
+      });
+  })
+  .catch((error) => {
+      console.error('Error al guardar el comentario:', error);
+  });
+}
     
     new gridjs.Grid({
       search: true,
@@ -42,7 +67,7 @@ function actualizarEstado(idOperacion,nuevoEstado) {
       columns: [{
         name:"id",
         hidden:true,
-      },"contenedor","cliente","Tipo de contenedor","Tipo transporte","Cutoff","operacion",{
+      },"contenedor","cliente","Tipo de contenedor","Tipo transporte","Cutoff","operacion","Comentarios",{
         name:'Acción',
         formatter: (cell, row) => {
           return gridjs.h('select', {
@@ -57,12 +82,25 @@ function actualizarEstado(idOperacion,nuevoEstado) {
               gridjs.h('option', { value: 'RECHAZADO' }, 'RECHAZADO'),
           ]);
       },
-      },{
+      }
+      ,{
         name:"Observacion",
         formatter: (cell, row) => {
-          return gridjs.html(`<textarea readonly)">${cell || ''}</textarea>`);
+          return gridjs.html(`<textarea id="observacion-${row.cells[0].data}">${''}</textarea>`);
         }
-      }],
+      },{
+        name:'Acción',
+      formatter:(cell,row)=>{
+        return gridjs.h('button',{
+          className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
+          onClick: () => {
+            const comentarioTexto = document.getElementById(`observacion-${row.cells[0].data}`).value;
+            comentario(row.cells[0].data, comentarioTexto);
+          }
+        },'guardar');
+      }
+      }
+    ],
       fixedHeader: true,
       server: {
         url: 'https://esenttiapp-production.up.railway.app/api/uploadordencargue',
@@ -75,7 +113,8 @@ function actualizarEstado(idOperacion,nuevoEstado) {
               ordenCargue.tipo_contenedor,
               ordenCargue.modalidad,
               ordenCargue.cutoff,
-              ordenCargue.operacion
+              ordenCargue.operacion,
+              ordenCargue.comentario
 
             ]);
           } else {
@@ -90,45 +129,9 @@ function actualizarEstado(idOperacion,nuevoEstado) {
       }
     }).render(document.getElementById('acceso'));
 
-
-document.getElementById('craeateAccesoPatio').addEventListener('submit', function(event) {
-    event.preventDefault();
-  
-    const formData = new FormData(this);
-  
-    const jsonData = JSON.stringify(Object.fromEntries(formData));
-
-    console.log(jsonData)
-    
-    fetch('https://esenttiapp-production.up.railway.app/api/accesopatio', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: jsonData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error al enviar los datos del formulario');
-        }
-    })
-    .then(data => {
-        Swal.fire({
-          title: "¡Buen trabajo!",
-          text: "¡Has creado un Cliente",
-          icon: "success",
-        });
-    })
-    .then((response)=>{
-     time();
-    })
-  });
-
 function time() {
-    document.getElementById('craeateAccesoPatio').reset();
+    document.getElementById('acceso').reset();
     setTimeout(() => {
         window.location.href = `/view/patio/acceso_patio.html`; 
     },1200);
 }
-
-window.updateComment = (rowIndex, value) => {
-  data[rowIndex][6] = value;
-};
