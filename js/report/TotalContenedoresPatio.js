@@ -15,7 +15,7 @@ document.getElementById('ReporteTotalContenedores').addEventListener('click', fu
         // Crear un enlace <a> para descargar el reporte
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'TotalContenedoresPatio.xlsx';
+        a.download = 'inventario.xlsx';
     
         // Agregar el enlace al documento y hacer clic en él para descargar el reporte
         document.body.appendChild(a);

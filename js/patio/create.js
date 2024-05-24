@@ -32,6 +32,6 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
 function time() {
     document.getElementById('createOrdenCargue').reset();
     setTimeout(() => {
-        window.location.href = ``; 
+        window.location.href = `/view/patio/orden_cargue.html`; 
     },1200);
 }
