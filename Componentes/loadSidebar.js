@@ -20,49 +20,68 @@ function loadSidebar() {
                 // Oculta todo el menú por defecto
                 $('#menu > li').hide();
 
+                // Mostrar siempre Dashboard y Cerrar sesión
+                $('#menu > li').each(function() {
+                    var text = $(this).find('.nav-text').text().trim();
+                    if (text === 'Dashboard' || text === 'Cerrar sesión') {
+                        $(this).show();
+                    }
+                });
+
                 // Verifica si hay un usuario autenticado
                 if (loggedInUser) {
-                    // Mostrar solo los menús permitidos según el usuario
-                    if (loggedInUser === 'transporte@serpomar.com') {
-                        // Mostrar solo Dashboard y Patio
-                        $('#menu > li').each(function() {
-                            var id = $(this).attr('id');
-                            if (id === 'menu-patio' || $(this).find('.nav-text').text().trim() === 'Dashboard' || $(this).find('.nav-text').text().trim() === 'Cerrar sesión') {
-                                $(this).show();
-                            }
-                        });
-                    } else {
-                        // Mostrar todos los menús para otros usuarios
-                        $('#menu > li').show();
+                    // Mostrar menús según el usuario autenticado
+                    switch (loggedInUser) {
+                        case 'controlacceso@serpomar.com':
+                            // Acceso a "acceso a patio", "inventario" y "cerrar sesión"
+                            $('#menu-patio').show();
+                            $('#menu-patio ul li').hide();
+                            $('#menu-patio ul li:contains("Acceso Patio")').show();
+                            $('#menu-patio ul li:contains("Inventario")').show();
+                            break;
+                        case 'patio@serpomar.com':
+                            // Acceso a "inventario" y "cerrar sesión"
+                            $('#menu-patio').show();
+                            $('#menu-patio ul li').hide();
+                            $('#menu-patio ul li:contains("Inventario")').show();
+                            break;
+                        case 'transporte@serpomar.com':
+                            // Acceso a "orden de cargue", "inventario" y "cerrar sesión"
+                            $('#menu-patio').show();
+                            $('#menu-patio ul li').hide();
+                            $('#menu-patio ul li:contains("Orden Cargue")').show();
+                            $('#menu-patio ul li:contains("Inventario")').show();
+                            break;
+                        default:
+                            // Mostrar todos los menús para otros usuarios
+                            $('#menu > li').show();
+                            break;
                     }
 
-                    // Mostrar el botón de cerrar sesión
-                    $('#logout-button').show();
+                    // Funcionalidad del botón de cerrar sesión
+                    $('#logout-button').click(function() {
+                        localStorage.removeItem('loggedInUser');
+                        window.location.href = '/login.html'; // Redirige a la página de inicio de sesión
+                    });
+
+
+                    $('.has-arrow').each(function() {
+                        var $this = $(this);
+                        var $subMenu = $this.next('ul');
+                        $subMenu.hide();
+                        $this.attr('aria-expanded', 'false');
+                        console.log('Submenu hidden for:', $this); 
+                    });
+
+                    $('.has-arrow').click(function(e) {
+                        e.preventDefault();
+                        var $this = $(this);
+                        var $subMenu = $this.next('ul');
+                        $subMenu.slideToggle(300); 
+                        $this.attr('aria-expanded', $this.attr('aria-expanded') === 'false' ? 'true' : 'false');
+                        console.log('Submenu toggled for:', $this); 
+                    });
                 }
-
-                // Funcionalidad del botón de cerrar sesión
-                $('#logout-button').click(function() {
-                    localStorage.removeItem('loggedInUser');
-                    window.location.href = '/login.html'; // Redirige a la página de inicio de sesión
-                });
-
-                // Asegúrate de que todos los submenús estén cerrados al cargar la página
-                $('.has-arrow').each(function() {
-                    var $this = $(this);
-                    var $subMenu = $this.next('ul');
-                    $subMenu.hide();
-                    $this.attr('aria-expanded', 'false');
-                    console.log('Submenu hidden for:', $this); // Mensaje de depuración
-                });
-
-                $('.has-arrow').click(function(e) {
-                    e.preventDefault();
-                    var $this = $(this);
-                    var $subMenu = $this.next('ul');
-                    $subMenu.slideToggle(300); // Aumentar el tiempo de animación para mayor claridad
-                    $this.attr('aria-expanded', $this.attr('aria-expanded') === 'false' ? 'true' : 'false');
-                    console.log('Submenu toggled for:', $this); // Mensaje de depuración
-                });
             });
         })
         .catch(error => console.error('Error loading sidebar:', error));

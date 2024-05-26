@@ -1,11 +1,9 @@
 // Objeto con las credenciales válidas
 const credentials = {
-  "juan@123.com": "contraseña",
-  "maria@456.com": "claveMaria",
-  "pedro@789.com": "clavePedro",
-  "luisa@101.com": "claveLuisa",
   "alexander.jimenez@serpomar.com": "serpomar2024",
   "admin@serpomar.com": "serpomar2024",
+  "controlacceso@serpomar.com": "Cserpomar2024",
+  "patio@serpomar.com": "Pserpomar2024",
   "transporte@serpomar.com": "Stransporte2024"
 };
 
