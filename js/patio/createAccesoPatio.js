@@ -1,29 +1,79 @@
 
-function actualizarEstado(idOperacion,nuevoEstado) {
+// function actualizarEstado(idOperacion,nuevoEstado) {
+//   fetch(`https://esenttiapp-production.up.railway.app/api/actualizaroperacionp/${nuevoEstado}/${idOperacion}`, {
+//       method: 'PUT',
+//       headers: {
+//           'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         estado: nuevoEstado,
+//         id: idOperacion
+//       }),
+//   })
+//   .then(response => response.json())
+//   .then(data => {
+//       console.log('Estado actualizado con éxito:', data);
+//       Swal.fire({
+//         title: "¡Buen trabajo!",
+//         text: "Estado actualizado!",
+//         icon: "success"
+//     });
+//     time()
+//   })
+//   .catch((error) => {
+//       // console.error('Error al actualizar el estado:', error);
+//       Swal.fire({
+//         title: "Error",
+//         text: error.message,
+//         icon: "error"
+//     });
+//   });
+// }
+
+
+function actualizarEstado(idOperacion, nuevoEstado) {
   fetch(`https://esenttiapp-production.up.railway.app/api/actualizaroperacionp/${nuevoEstado}/${idOperacion}`, {
       method: 'PUT',
       headers: {
           'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        estado: nuevoEstado,
-        id: idOperacion
+          estado: nuevoEstado,
+          id: idOperacion
       }),
   })
-  .then(response => response.json())
-  .then(data => {
-      console.log('Estado actualizado con éxito:', data);
-      Swal.fire({
-        title: "¡Buen trabajo!",
-        text: "Estado actualizado!",
-        icon: "success"
-    });
-    time()
+  .then(response => response.json().then(data => ({ status: response.status, body: data })))
+  .then(({ status, body }) => {
+      if (status === 400 && body.message === 'El contenedor no tiene una entrada registrada.') {
+          // Muestra un mensaje de alerta para la restricción
+          Swal.fire({
+              title: "Advertencia",
+              text: body.message,
+              icon: "warning"
+          });
+      } else if (status >= 200 && status < 300) {
+          console.log('Estado actualizado con éxito:', body);
+          Swal.fire({
+              title: "¡Buen trabajo!",
+              text: "Estado actualizado!",
+              icon: "success"
+          });
+          time();
+      } else {
+    
+          throw new Error(body.message);
+      }
   })
   .catch((error) => {
       console.error('Error al actualizar el estado:', error);
+      Swal.fire({
+          title: "Error",
+          text: error.message,
+          icon: "error"
+      });
   });
 }
+
 
 function comentario(id, comentario) {
   fetch(`https://esenttiapp-production.up.railway.app/api/actualizarcomentario/${comentario}/${id}`, {
@@ -69,21 +119,27 @@ function comentario(id, comentario) {
       },"contenedor","cliente","Tipo de contenedor","Tipo transporte","Cutoff","operacion","Comentarios",{
         name:'Acción',
         formatter: (cell, row) => {
-          return gridjs.h('select', {
+
+          const operacion = row.cells[6].data;
+
+          const selectElement = gridjs.h('select', {
               onchange: (e) => {
                   const nuevoEstado = e.target.value;
                   actualizarEstado(row.cells[0].data, nuevoEstado);
 
-                  if(e.target.value === 'RECHAZADO'){
-                    row.cells[8].data.disabled = true;
-                  }
+                  if (nuevoEstado === 'RECHAZADO') {
+                    e.target.disabled = true;
+                }
               },
+                disabled: operacion === 'RECHAZADO'
           }, [
               gridjs.h('option', { value: '' }, 'Seleccione'),
               gridjs.h('option', { value: 'ENTRADA' }, 'ENTRADA'),
               gridjs.h('option', { value: 'SALIDA' }, 'SALIDA'),
               gridjs.h('option', { value: 'RECHAZADO' }, 'RECHAZADO'),
           ]);
+
+           return selectElement;
 
       },
       }
@@ -136,6 +192,34 @@ function comentario(id, comentario) {
 function time() {
     document.getElementById('craeateAccesoPatio').reset();
     setTimeout(() => {
-        window.location.href = `/view/patio/acceso_patio.html`; 
+       window.location.href = `/view/patio/acceso_patio.html`; 
     },1200);
+}
+
+
+function salidaContenedor($contenedor,$operacion){
+
+  fetch(`https://esenttiapp-production.up.railway.app/api/actualizaroperacionp/${contenedor}/${operacion}`, {
+      method: 'PUT',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        estado: nuevoEstado,
+        id: idOperacion
+      }),
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log('Estado actualizado con éxito:', data);
+      Swal.fire({
+        title: "¡Buen trabajo!",
+        text: "Estado actualizado!",
+        icon: "success"
+    });
+    time()
+  })
+  .catch((error) => {
+      console.error('Error al actualizar el estado:', error);
+  });
 }

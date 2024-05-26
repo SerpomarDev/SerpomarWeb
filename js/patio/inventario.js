@@ -5,10 +5,10 @@ new gridjs.Grid({
           placeholder: '🔍 Buscar...'
       }
     },
-    pagination: {
-        limit:5,
-        enabled: false,
-    },
+    // pagination: {
+    //     limit:5,
+    //     enabled: false,
+    // },
     sort: false,
     columns: ["contenedor","cliente","Tipo de contenedor","Tipo transporte","Cutoff","operación",{
       name:'Acción',

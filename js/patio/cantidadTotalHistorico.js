@@ -8,7 +8,6 @@ fetch('https://esenttiapp-production.up.railway.app/api/historicototalcontenedor
   .then(data => {
     const totalRegistrosElement = document.getElementById('historicoTotal');
     totalRegistrosElement.textContent = `${data}`;
-    console.log(totalRegistrosElement)
   })
   .catch(error => {
     console.error('Error:', error);

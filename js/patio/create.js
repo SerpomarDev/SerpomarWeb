@@ -72,9 +72,9 @@ function generarQRCode() {
     let idConductor = getSelectedText('id_conductor');
     let modalidad = document.getElementById('modalidad').value;
     let idTipoOperacion = getSelectedText('id_tipo_operacion');
-    let idDestino1 = getSelectedText('id_sitio_inspeccion');
-    let idDestino2 = getSelectedText('id_sitio_inspeccion1');
-    let idDestino3 = getSelectedText('id_sitio_inspeccion2');
+    let idDestino1 = document.getElementById('id_sitio_inspeccion');
+    let idDestino2 = document.getElementById('id_sitio_inspeccion1');
+    let idDestino3 = document.getElementById('id_sitio_inspeccion2');
     let idNaviera = getSelectedText('id_naviera');
     let contenedor = document.getElementById('contenedor').value;
     let idTipoContenedor = getSelectedText('id_tipo_contenedor');

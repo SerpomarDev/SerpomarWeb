@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="id_cliente" class="form-label">ID Cliente</label>
+                                    <label for="id_cliente" class="form-label">Cliente</label>
                                     <select id="id_cliente" name="id_cliente" class="form-control" required>
                                         <option value="">Seleccione una Opción</option>
                                     </select>
@@ -96,7 +96,12 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="modalidad" class="form-label">Modalidad</label>
-                                    <input type="text" class="form-control" id="modalidad" name="modalidad" required>
+                                    <select id="modalidad" name="modalidad" class="form-control" required>
+                                        <option value="">Seleccione una Opción</option>
+                                        <option value="IMPORTACION">IMPORTACIÓN</option>
+                                        <option value="EXPORTACION">EXPORTACIÓN</option>
+                                        <option value="TRASLADO">TRASLADO</option>
+                                    </select>
                                 </div>
                             </div>
         
@@ -113,30 +118,30 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="id_sitio_inspeccion" class="form-label">Destino 1</label>
-                                    <select id="id_sitio_inspeccion" name="id_sitio_inspeccion" class="form-control">
+                                    <input type="text" class="form-control" id="id_sitio_inspeccion" name="id_sitio_inspeccion" required>
+                                    <!-- <select id="id_sitio_inspeccion" name="id_sitio_inspeccion" class="form-control">
                                         <option value="">Seleccione una Opción</option>
-                                        <!-- Agrega las opciones aquí -->
-                                    </select>
+                                    </select> -->
                                 </div>
                             </div>
         
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="id_sitio_inspeccion1" class="form-label">Destino 2</label>
-                                    <select id="id_sitio_inspeccion1" name="id_sitio_inspeccion1" class="form-control">
+                                    <input type="text" class="form-control" id="id_sitio_inspeccion1" name="id_sitio_inspeccion1" required>
+                                    <!-- <select id="id_sitio_inspeccion1" name="id_sitio_inspeccion1" class="form-control">
                                         <option value="">Seleccione una Opción</option>
-                                        <!-- Agrega las opciones aquí -->
-                                    </select>
+                                    </select> -->
                                 </div>
                             </div>
         
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="id_sitio_inspeccion2" class="form-label">Destino 3</label>
-                                    <select id="id_sitio_inspeccion2" name="id_sitio_inspeccion2" class="form-control">
+                                    <input type="text" class="form-control" id="id_sitio_inspeccion2" name="id_sitio_inspeccion2" required>
+                                    <!-- <select id="id_sitio_inspeccion2" name="id_sitio_inspeccion2" class="form-control">
                                         <option value="">Seleccione una Opción</option>
-                                        <!-- Agrega las opciones aquí -->
-                                    </select>
+                                    </select> -->
                                 </div>
                             </div>
         
