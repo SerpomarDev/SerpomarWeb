@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function(){
         })
         .then(data =>{
             const placa = data[0]
-            console.log(placa)
             if(placa.eje && placa.tipologia && placa.nombre && placa.celular){
                 inputeje.value = placa.eje
                 inputtipologia.value = placa.tipologia
