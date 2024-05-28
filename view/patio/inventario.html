@@ -48,7 +48,13 @@
 								</div>
 							</li>
                             <li class="nav-item">
-								<a href="javascript:void(0);" id="ReporteTotalContenedores" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a>
+								<!-- <a href="javascript:void(0);" id="ReporteTotalContenedores" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a> -->
+                                <label for="ReporteTotalContenedores" class="form-label">Generar Reporte</label>
+                                    <select id="reporteSelector"  class="form-control" required>
+                                        <option value="">Seleccione una Opción</option>
+                                        <option value="endpointone">Reporte de entrada y salida</option>
+                                        <option value="endpointtwo">Reporte inventario en patio</option>
+                                    </select>
 							</li>
                         </ul>
                     </div>
