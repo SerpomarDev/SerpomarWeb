@@ -6,6 +6,7 @@ const credentials = {
   "patio@serpomar.com": "Pserpomar2024",
   "transporte@serpomar.com": "Stransporte2024",
   "Susana.negrette@serpomar.com": "serpomar2024",
+  "trensas@serpomar.com": "Tserpomar2024",
   
 };
 
