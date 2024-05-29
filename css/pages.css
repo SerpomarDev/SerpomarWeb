@@ -1,151 +1,150 @@
-table {
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    background-color: #ffffffef;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.title {
+    font-size: 32px;
+    color: #007BFF;
+    font-weight: 700;
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 40px; /* Ajuste para el espacio de la bolita */
+}
+
+.title::before, .title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px; /* Ajuste para centrar la bolita dentro del contenedor */
+    background-color: #007BFF;
+}
+
+.title::before {
+    width: 18px;
+    height: 18px;
+    background-color: #007BFF;
+}
+
+.title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+    to {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+.message {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.flex label {
+    flex: 1;
+    min-width: 200px;
+}
+
+.form label {
+    position: relative;
     width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
 }
 
-.h1 {
-    text-align: center;
-    margin-top: 50px;
-}
-h4 {
-    text-align: center;
-    margin-top: 10px;
-}
-
-th,
-td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+.form label .input {
+    width: 100%;
+    padding: 12px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s, background-color 0.3s;
 }
 
-th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+.form label .input:focus {
+    border-color: #007BFF;
+    background-color: #e7f3ff;
 }
 
-.btn {
-    padding: 10px 25px;
-    margin-right: 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #007bff;
+.form label .input + span {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    background-color: #fff;
+    color: #999;
+    font-size: 14px;
+    cursor: text;
+    transition: all 0.3s ease;
+    padding: 0 5px;
+}
+
+.form label select.input + span,
+.form label .input:focus + span,
+.form label .input:valid + span,
+.form label select.input:focus + span,
+.form label select.input:valid + span {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #007BFF;
+    background-color: #fff;
+    padding: 0 5px;
+}
+
+.submit {
+    background-color: #007BFF;
+    padding: 12px;
     border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.btn-success {
-    background-color: #28a745;
+.submit:hover {
+    background-color: #0056b3;
 }
 
-.btn-danger {
-    background-color: #dc3545;
+.signin {
+    text-align: center;
+    margin-top: 20px;
 }
 
-.btn-info {
-    background-color: #09B6D9;
+.signin a {
+    color: #007BFF;
+    text-decoration: none;
 }
 
-.alert {
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 4px;
+.signin a:hover {
+    text-decoration: underline;
 }
-
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    border-color: #c3e6cb;
-}
-
-.alert-danger {
-    background-color: #f8d7da;
-    color: #721c24;
-    border-color: #f5c6cb;
-}
-
-.alert-info {
-    background-color: #f8d7da;
-    color: #09B6D9;
-    border-color: #f5c6cb;
-}
-/*
-.container {
-    margin-top: 50px;
-    margin: 0px auto;
-    width: 100%;
-    overflow-x: auto;
-} */
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Centra verticalmente */
-    height: 70%; /* Hace que el contenedor ocupe el 100% de la altura del viewport */
-}
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column; /* Cambia la dirección de flexión en pantallas más pequeñas */
-        height: auto; /* Ajusta la altura automáticamente */
-    }
-}
-
-label {
-    font-weight: bold;
-}
-
-input[type="text"],
-select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-input[type="text"]:focus,
-select:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-
-.pull-left {
-    float: left;
-}
-
-.pull-right {
-    float: right;
-}
-
-.mb-2 {
-    margin-bottom: 20px;
-}
-
-.row1 {
-    margin-bottom: 20px;
-}
-
-.row {
-    margin-bottom: 0px;
-}
-
-.table {
-    margin: 0 auto;
-}
-
-
-.gerenate{
-    margin-left:500px ;
-}
-
 
 /* Estilo general para los gráficos */
 
