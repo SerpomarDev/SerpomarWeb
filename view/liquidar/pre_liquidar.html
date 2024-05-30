@@ -60,13 +60,13 @@
                     <form id="saveLiquidacion" method="POST" enctype="multipart/form-data">
                         <input type="hidden" id="id_cliente">
                         <input type="hidden" id="tarifa">
+                        <input type="hidden" id="id_contenedor" name="id_contenedor">
+                        <input type="hidden" id="id_costo_cliente" name="id_costo_cliente">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="" class="form-label">SP</label>
-                                    <select name="id_sp" id="id_sp" class="form-control">
-                                        <option value="">Seleccione sp</option>
-                                    </select>
+                                    <label for="" class="form-label">Numero contenedor</label>
+                                    <input type="text" id="numero_contenedor" class="form-control" readonly>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -94,9 +94,9 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">Conceptos</label>
-                                    <select name="id_tarifa" id="id_tarifa" class="form-control">
-                                        <option value="">Seleccione concepto</option>
-                                    </select>
+                                   <select id="id_concepto" class="form-control">
+                                    <option value="">Seleccione concepto</option>
+                                   </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -109,8 +109,8 @@
                         <br>
                         <div class="row">
                             <div class="col-12 d-flex justify-content-between">
-                                <button class="btn btn-primary" onclick="history.back()">Volver</button>
-                                <button class="btn btn-primary" id="BtnSaveLiquidar">Guardar</button>
+                                <button  class="btn btn-primary" onclick="history.back()">Volver</button>
+                                <button  class="btn btn-primary" id="BtnSaveLiquidar" >Guardar</button>
                             </div>
                         </div>
                     </form>

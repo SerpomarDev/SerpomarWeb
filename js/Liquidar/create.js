@@ -1,3 +1,7 @@
+let queryString = window.location.search;
+  let urlParams = new URLSearchParams(queryString);
+  let id = urlParams.get("id");
+
 new gridjs.Grid({
     search: false,
     language:{
@@ -11,20 +15,20 @@ new gridjs.Grid({
     },
     resizable: true,
     sort: false,
-    columns: ["SP","Cliente","Concepto",{
+    columns: ["SP","Numero contenedor","Cliente","Concepto",{
         name:"Valor",
-        formatter:(_,row)=> `$ ${(row.cells[3].data).toLocaleString()}`
+        formatter:(_,row)=> `$ ${(row.cells[4].data).toLocaleString()}`
     }],
     server: {
-        url: 'https://esenttiapp-production.up.railway.app/api/showpreliquidar',
+        url: `https://esenttiapp-production.up.railway.app/api/showpreliquidarbycontenedor/${id}`,
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((preliq) => [
                     preliq.do_sp,
+                    preliq.numero_contenedor,
                     preliq.cliente,
                     preliq.concepto,
                     preliq.valor,
-
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
@@ -40,9 +44,9 @@ document.getElementById('saveLiquidacion').addEventListener('submit',function(ev
     const formData = new FormData(this);
     const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-    //console.log(jsonData)
+    console.log(jsonData)
 
-    fetch('https://esenttiapp-production.up.railway.app/api/preLiquidar',{
+    fetch('https://esenttiapp-production.up.railway.app/api/costoclientecontenedor',{
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body:jsonData
@@ -70,6 +74,6 @@ document.getElementById('saveLiquidacion').addEventListener('submit',function(ev
 function time() {
     document.getElementById('saveLiquidacion').reset();
     setTimeout(() => {
-        window.location.href = `/view/liquidar/pre_liquidar.html`; 
+        window.location.href = ``; 
     },  1200);
   }
