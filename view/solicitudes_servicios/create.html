@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=0.2">
-	<!-- PAGE TITLE HERE -->
-	<title>SerpomarWeb</title>
-	
-	<link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-	<link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
-	<!-- Style css -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SerpomarWeb</title>
+    
+    <link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+    <link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
     <link href="/css/style-Dash.css" rel="stylesheet">
     <link href="/css/pages.css" rel="stylesheet" />
-    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
-
+    <style>
+        /* Incluye aquí el CSS proporcionado anteriormente */
+    </style>
 </head>
 <body>
 
@@ -24,11 +22,9 @@
     <div id="preloader-container"></div>
     <!-- Contenedor para el preloader -->
 
-
     <!-- Contenedor para el nav-header -->
     <div id="navheader-container"></div>
     <!-- Contenedor para el nav-header -->
-
 
     <div id="main-wrapper">
         <div class="header">
@@ -36,191 +32,129 @@
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
-							<div class="dashboard_bar">
-                                Solicitud de Servicio
-                            </div>
+                            <p class="title">Solicitud de Servicio</p>
                         </div>
                         <ul class="navbar-nav header-right">
-							<li class="nav-item">
-								<div class="input-group search-area">
-									<input type="text" class="form-control" placeholder="Buscar...">
-									<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
-								</div>
-							</li>
-							
                             <li class="nav-item">
-								<a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a>
-							</li>
+                                <div class="input-group search-area">
+                                    <input type="text" class="form-control" placeholder="Buscar...">
+                                    <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a>
+                            </li>
                         </ul>
                     </div>
-				</nav>
-			</div>
-		</div>
-
+                </nav>
+            </div>
+        </div>
 
         <div id="sidebar-container"></div>
 
-
         <div class="content-body">
-        <div id="content" class="p-4 p-md-5 pt-5">
-
-            <div class="container">
-                <form id="saveSolicitud" method="POST" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Cliente</label>
-                                <select id="id_cliente" name="id_cliente" required>
+            <div id="content" class="p-4 p-md-0 pt-5">
+                <div class="container">
+                    <form id="saveSolicitud" method="POST" enctype="multipart/form-data" class="form">
+                        <p class="message">Complete los campos para crear una nueva solicitud de servicio.</p>
+                        <input type="hidden" id="id_contenedor" name="id_contenedor">
+                        <div class="flex">
+                            <label>
+                                <select id="id_cliente" name="id_cliente" class="input" required>
                                     <option value="">Seleccione cliente</option>
                                 </select>
-                            </div>
-                       </div>
-        
-                       <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Do pedido</label>
-                                <input type="text" name="do_pedido" id="do_pedido" class="form-control" required>
-                            </div>
+                                <span>Cliente</span>
+                            </label>
+                            <label>
+                                <input type="text" id="do_pedido" name="do_pedido" class="input" required>
+                                <span>Do Pedido</span>
+                            </label>
                         </div>
-                   </div>
-        
-                    <div class="row">
-                       
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Cantidad de Contenedores</label>
-                                <input type="text" name="cantidad_contenedor" id="cantidad_contenedor" class="form-control" required>
-                            </div>
-                        </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Modalidad</label>
-                                <select name="imp_exp" id="imp_exp" required>
+                        <div class="flex">
+                            <label>
+                                <input type="text" name="cantidad_contenedor" id="cantidad_contenedor" class="input" required>
+                                <span>Cantidad de Contenedores</span>
+                            </label>
+                            <label>
+                                <select name="imp_exp" id="imp_exp" class="input" required>
                                     <option value="">Seleccione Servicio</option>
                                     <option value="importacion">Importación</option>
                                     <option value="exportacion">Exportación</option>
                                 </select>
-                            </div>
+                                <span>Modalidad</span>
+                            </label>
                         </div>
-                    </div>
-        
-                    <div class="row">
-        
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="" class="form-label">Fecha Eta</label>
-                                <input type="date" name="fecha_eta" id="fecha_eta" class="form-control">
-                            </div>
+                        <div class="flex">
+                            <label>
+                                <input type="date" name="fecha_eta" id="fecha_eta" class="input">
+                                <span>Fecha Eta</span>
+                            </label>
+                            <label>
+                                <input type="date" name="fecha_levante" id="fecha_levante" class="input">
+                                <span>Fecha Levante</span>
+                            </label>
+                            <label>
+                                <input type="date" name="fecha_documental" id="fecha_documental" class="input">
+                                <span>Fecha Documental</span>
+                            </label>
                         </div>
-        
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="" class="form-label">Fecha Levante</label>
-                                <input type="date" name="fecha_levante" id="fecha_levante" class="form-control">
-                            </div>
+                        <div class="flex">
+                            <label>
+                                <input type="date" name="fecha_cutoff_fisico" id="fecha_cutoff_fisico" class="input">
+                                <span>Fecha Cutoff Fisico</span>
+                            </label>
+                            <label>
+                                <input type="date" name="libre_hasta" id="libre_hasta" class="input">
+                                <span>Libre Hasta</span>
+                            </label>
+                            <label>
+                                <input type="date" name="bodegaje_hasta" id="bodegaje_hasta" class="input">
+                                <span>Bodegaje Hasta</span>
+                            </label>
                         </div>
-        
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="" class="form-label">Fecha Documental</label>
-                                <input type="date" name="fecha_documental" id="fecha_documental" class="form-control">
-                            </div>
-                       </div>
-        
-                    </div>
-        
-                    <div class="row">
-        
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="" class="form-label">Fecha Cutoff Fisico</label>
-                                <input type="date" name="fecha_cutoff_fisico" id="fecha_cutoff_fisico" class="form-control">
-                            </div>
+                        <div class="flex">
+                            <label>
+                                <input type="date" name="fecha_propuesta" id="fecha_propuesta" class="input" required>
+                                <span>Fecha Propuesta</span>
+                            </label>
+                            <label>
+                                <input type="file" name="files[]" id="file" class="input" multiple>
+                                <span>Adjuntos</span>
+                            </label>
                         </div>
-        
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="" class="form-label">Libre Hasta</label>
-                                <input type="date" name="libre_hasta" id="libre_hasta" class="form-control">
-                            </div>
-                       </div>
-        
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="" class="form-label">Bodegaje Hasta</label>
-                                <input type="date" name="bodegaje_hasta" id="bodegaje_hasta" class="form-control">
-                            </div>
+                        <div class="form-group">
+                            <label>
+                                <textarea name="observaciones" cols="50" rows="5" placeholder="" class="input"></textarea>
+                                <span>Observaciones</span>
+                            </label>
                         </div>
-        
-                    </div>
-        
-                    <div class="row">
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Fecha Propuesta</label>
-                                <input type="date" name="fecha_propuesta" id="fecha_propuesta" class="form-control" required>
-                            </div>
-                        </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Abjuntos</label>
-                                <input type="file" name="files[]" id="file" class="form-control" multiple>
-                            </div>
-                       </div>
-        
-                    </div>
-        
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="" class="form-label">Observaciones</label>
-                                <textarea name="observaciones" cols="50" rows="5" placeholder="" class="form-control"></textarea>
-                            </div>
-                       </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-between">
-                            <a class="btn btn-primary" href="/index.html">Volver</a>
-                            <button type="submit"  class="btn btn-primary" id="BtnSaveSolicitud">Enviar</button>
-                        </div>
-                    </div>
-                </form>
-           
+                        <button type="submit" class="submit">Enviar</button>
+                        <p class="signin"><a href="#" onclick="history.back()">Volver</a></p>
+                    </form>
+                </div>
+            </div>
         </div>
-	</div>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/componentes/loadSidebar.js"></script>
-    <script src="/componentes/loadPreloader.js"></script>
-    <script src="/componentes/loadNavHeader.js"></script>
-    <!-- Required vendors -->
-    <script src="/vendor/global/global.min.js"></script>
-	<script src="/vendor/chart.js/Chart.bundle.min.js"></script>
-	<script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-	<!-- Apex Chart -->
-	<script src="/vendor/apexchart/apexchart.js"></script>
-	<script src="/vendor/nouislider/nouislider.min.js"></script>
-	<script src="/vendor/wnumb/wNumb.js"></script>
-	
-	<!-- Dashboard 1 -->
-	<script src="/js/dashboard/dashboard-1.js"></script>
-
-    <script src="/js/custom.min.js"></script>
-	<script src="/js/dlabnav-init.js"></script>
-	<script src="/js/demo.js"></script>
-    <script src="/js/styleSwitcher.js"></script>
-	
-
-    <script type="text/javascript" src="/js/solicitudes_service/create.js"></script>
-    <script type="text/javascript" src="/js/cargar/cargarClientes.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="/componentes/loadSidebar.js"></script>
+        <script src="/componentes/loadPreloader.js"></script>
+        <script src="/componentes/loadNavHeader.js"></script>
+        <script src="/vendor/global/global.min.js"></script>
+        <script src="/vendor/chart.js/Chart.bundle.min.js"></script>
+        <script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="/vendor/apexchart/apexchart.js"></script>
+        <script src="/vendor/nouislider/nouislider.min.js"></script>
+        <script src="/vendor/wnumb/wNumb.js"></script>
+        <script src="/js/dashboard/dashboard-1.js"></script>
+        <script src="/js/custom.min.js"></script>
+        <script src="/js/dlabnav-init.js"></script>
+        <script src="/js/demo.js"></script>
+        <script src="/js/styleSwitcher.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+        <script type="text/javascript" src="/js/solicitudes_service/create.js"></script>
+        <script type="text/javascript" src="/js/cargar/cargarClientes.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </div>
 </body>
-
 </html>
