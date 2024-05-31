@@ -54,7 +54,7 @@
 
         <div class="content-body">
             <div id="content" class="p-4 p-md-0 pt-5">
-                <div class="container">
+                <div class="container-fluid main-container">
                     <form id="saveSolicitud" method="POST" enctype="multipart/form-data" class="form">
                         <p class="message">Complete los campos para crear una nueva solicitud de servicio.</p>
                         <input type="hidden" id="id_contenedor" name="id_contenedor">
@@ -86,30 +86,32 @@
                         </div>
                         <div class="flex">
                             <label>
-                                <input type="date" name="fecha_eta" id="fecha_eta" class="input">
-                                <span>Fecha Eta</span>
+                                <input type="date" name="fecha_eta" id="fecha_eta" class="input" required>
+                                <span>Elija Fecha Eta</span>
                             </label>
                             <label>
-                                <input type="date" name="fecha_levante" id="fecha_levante" class="input">
+                                <input type="date" name="fecha_levante" id="fecha_levante" class="input" required>
                                 <span>Fecha Levante</span>
-                            </label>
-                            <label>
-                                <input type="date" name="fecha_documental" id="fecha_documental" class="input">
-                                <span>Fecha Documental</span>
                             </label>
                         </div>
                         <div class="flex">
                             <label>
-                                <input type="date" name="fecha_cutoff_fisico" id="fecha_cutoff_fisico" class="input">
+                                <input type="date" name="fecha_documental" id="fecha_documental" class="input" required>
+                                <span>Fecha Documental</span>
+                            </label>
+                            <label>
+                                <input type="date" name="bodegaje_hasta" id="bodegaje_hasta" class="input" required>
+                                <span>Fecha Bodegaje Hasta</span>
+                            </label>
+                        </div>
+                        <div class="flex">
+                            <label>
+                                <input type="date" name="fecha_cutoff_fisico" id="fecha_cutoff_fisico" class="input" required>
                                 <span>Fecha Cutoff Fisico</span>
                             </label>
                             <label>
-                                <input type="date" name="libre_hasta" id="libre_hasta" class="input">
-                                <span>Libre Hasta</span>
-                            </label>
-                            <label>
-                                <input type="date" name="bodegaje_hasta" id="bodegaje_hasta" class="input">
-                                <span>Bodegaje Hasta</span>
+                                <input type="date" name="libre_hasta" id="libre_hasta" class="input" required>
+                                <span>Fecha Libre Hasta</span>
                             </label>
                         </div>
                         <div class="flex">
@@ -123,12 +125,14 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label>
+                            <label class="full-width">
                                 <textarea name="observaciones" cols="50" rows="5" placeholder="" class="input"></textarea>
                                 <span>Observaciones</span>
                             </label>
                         </div>
-                        <button type="submit" class="submit">Enviar</button>
+                        <div class="submit-container">
+                            <button type="submit" class="submit">Enviar</button>
+                        </div>
                         <p class="signin"><a href="#" onclick="history.back()">Volver</a></p>
                     </form>
                 </div>
