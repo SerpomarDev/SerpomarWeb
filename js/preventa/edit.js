@@ -69,9 +69,9 @@ document.getElementById("PreventaEdit").addEventListener("submit", function (eve
         // Compara los valores actuales con los originales
         let currentValues = {
             id_placa: document.getElementById("id_placa").value,
-            placa: document.getElementById("placa").value,
+            // placa: document.getElementById("placa").value,
             id_conductor: document.getElementById("id_conductor").value,
-            conductor: document.getElementById("conductor").value,
+            // conductor: document.getElementById("conductor").value,
             identificacion: document.getElementById("identificacion").value,
             telefono: document.getElementById("telefono").value,
             eje: document.getElementById("eje").value,
