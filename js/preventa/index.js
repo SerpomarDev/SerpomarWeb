@@ -11,10 +11,10 @@
                 placeholder: '🔍 Buscar...'
             }
         },
-        pagination: {
-            limit:5,
-            enabled: true,
-        },
+        // pagination: {
+        //     limit:5,
+        //     enabled: true,
+        // },
         sort: false,
         //resizable: true,
         columns: [{
