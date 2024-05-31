@@ -73,14 +73,17 @@
         <div id="content" class="p-4 p-md-5 pt-5">
             <div class="container">
                 <form id="PreventaEdit" method="PUT" enctype="multipart/form-data">
-                    <input type="hidden" name="id_placa" id="id_placa" disabled />
                     <input type="hidden" name="id_aliado" id="id_aliado" disabled />
         
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="form-label">Placa</label>
-                                <input type="text" id="placa" name="placa" class="form-control" readonly="readonly" />
+                                <!-- <label class="form-label">Placa</label>
+                                <input type="text" id="placa" name="placa" class="form-control" /> -->
+                                <label class="form-label" for="">Placa</label>
+                                <select name="id_placa" id="id_placa" class="form-control" required>
+                                    <option value="">Seleccione Placa</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -102,11 +105,15 @@
                     </div>
         
                     <div class="row"> 
-                        <input type="hidden" name="id_conductor" id="id_conductor" disabled />
+                        <!-- <input type="hidden" name="id_conductor" id="id_conductor" disabled /> -->
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="form-label">Conductor</label>
-                                <input type="text" id="conductor" class="form-control" readonly="readonly">
+                                <!-- <label class="form-label">Conductor</label>
+                                <input type="text" id="conductor" class="form-control" readonly="readonly"> -->
+                                <label class="form-label" for="">Conductor</label>
+                                <select name="id_conductor" id="id_conductor" class="form-control" required>
+                                    <option value="">Seleccione Conductor</option>
+                                </select>
                             </div>
                         </div>
         
@@ -253,6 +260,8 @@
 	
 
     <script type="text/javascript" src="/js/preventa/edit.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarPlaca.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarConductores.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
