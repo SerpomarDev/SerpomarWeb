@@ -154,14 +154,14 @@ function tableByClt(id_cliente){
 function asignar(id){
   let cliente  = id_cliente;
 
-  // document.getElementById('id_contenedor').value = id; 
-  // $('#asignarModal').modal('show');
+  document.getElementById('id_contenedor').value = id; 
+  $('#asignarModal').modal('show');
 
-  if(cliente === 6){
-    window.location.href = `/view/asignacion_esenttia/asignacion_esenttia.html?id=${id}`;
-  }else{
-    window.location.href = `/view/asignacion/asignacion.html?id=${id}`;
-  }
+  // if(cliente === 6){
+  //   window.location.href = `/view/asignacion_esenttia/asignacion_esenttia.html?id=${id}`;
+  // }else{
+  //   window.location.href = `/view/asignacion/asignacion.html?id=${id}`;
+  // }
 }
 
 function preLiquidar(id){
