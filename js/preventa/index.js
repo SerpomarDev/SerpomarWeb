@@ -20,7 +20,7 @@
         columns: [{
             name: "#",
             hidden: true
-        },"Placa","Nombre","Telefono","Ejes","Puerto","Estado","Flota","Esenttia","Cabot","Fecha",{
+        },"Placa","Nombre","Telefono","Ejes","Puerto","Estado","Flota","Esenttia","Cabot",{
           name :'Asignar',
           hidden: true,
           formatter:(cell, row)=>{
@@ -67,8 +67,7 @@
                       preventa.estado,
                       preventa.flota,
                       preventa.esenttia,
-                      preventa.cabot,
-                      preventa.fecha
+                      preventa.cabot
                     ]);
                 } else {
                     console.error("La respuesta del servidor no contiene datos válidos.");
