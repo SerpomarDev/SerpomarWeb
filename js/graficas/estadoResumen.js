@@ -1,35 +1,95 @@
+let cts = document.getElementById('proyectos');
 
-// Grafico que indica el numero autos asignados a cada proyecto
-let cts = document.getElementById('proyectos')
-    let myCharts = new Chart(cts,{
+let optionsProyectos = {
+    series: [{
+        name: 'Proyectos',
+        data: []
+    }],
+    chart: {
         type: 'bar',
-        data: {
-            labels: [],
-            datasets: [{
-                label: 'Proyectos',
-                backgroundColor: [
-                'rgb(231, 76, 60)',
-                'rgb(26, 188, 156)',
-                'rgb(52, 152, 219)',
-                'rgb(142, 68, 173)',
-                'rgb(155, 89, 182)',
-                'rgb(241, 196, 15)',
-                ],
-                hoverOffset: 4,
-                borderColor: ['black'],
-                borderWidth: 1
-            }],
-        },
-        options:{
-            scales:{
-                y:{
-                    beginAtZero:true,
-                }
+        height: 350,
+        animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 1000,
+            animateGradually: {
+                enabled: true,
+                delay: 150
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 350
             }
         }
-    })
-    
-    let urls = "https://esenttiapp-production.up.railway.app/api/resumenproyectos";
+    },
+    plotOptions: {
+        bar: {
+            borderRadius: 10,
+            horizontal: false,
+            distributed: true,
+        }
+    },
+    dataLabels: {
+        enabled: true,
+        formatter: function (val) {
+            return val + " ";
+        },
+        offsetY: -10,
+        style: {
+            fontSize: '12px',
+            colors: ["#fff"]
+        }
+    },
+    xaxis: {
+        categories: [],
+        position: 'bottom',
+        labels: {
+            offsetY: -5,
+        },
+        axisBorder: {
+            show: true,
+            color: '#78909C'
+        },
+        axisTicks: {
+            show: true,
+            color: '#78909C'
+        }
+    },
+    yaxis: {
+        title: {
+            text: 'Número de Proyectos'
+        }
+    },
+    fill: {
+        gradient: {
+            shade: 'light',
+            type: "horizontal",
+            shadeIntensity: 0.25,
+            gradientToColors: undefined,
+            inverseColors: true,
+            opacityFrom: 0.85,
+            opacityTo: 0.85,
+            stops: [50, 0, 100, 100]
+        },
+    },
+    legend: {
+        position: 'top',
+        horizontalAlign: 'center'
+    },
+    tooltip: {
+        enabled: true,
+        y: {
+            formatter: function (val) {
+                return val + " proyectos";
+            }
+        }
+    }
+};
+
+let myCharts = new ApexCharts(cts, optionsProyectos);
+myCharts.render();
+
+let urls = "https://esenttiapp-production.up.railway.app/api/resumenproyectos";
 fetch(urls)
     .then(response => response.json())
     .then(items => view(items))
@@ -37,55 +97,113 @@ fetch(urls)
 
 const view = (proyectos) => {
     proyectos.forEach(elements => {
-        myCharts.data.labels.push(elements.proyecto); // Añade etiquetas al gráfico
-        myCharts.data.datasets[0].data.push(elements.conteo); // Añade datos al gráfico
+        optionsProyectos.xaxis.categories.push(elements.proyecto);
+        optionsProyectos.series[0].data.push(elements.conteo);
     });
-    myCharts.update(); // Actualiza el gráfico para mostrar los nuevos datos
+    myCharts.updateOptions(optionsProyectos);
 }
 
+let ctx = document.getElementById('estados');
 
-
-    // Grafico que indica estado de los autos
-// Documentacion https://www.chartjs.org/docs/latest/
-let ctx = document.getElementById('estados')
-let myChart = new Chart(ctx,{
-    type:'bar',
-    data:{
-        datasets:[{
-            label:'Estado Operación',
-            backgroundColor: [
-                'rgb(231, 76, 60)',
-                'rgb(26, 188, 156)',
-                'rgb(52, 152, 219)',
-                'rgb(142, 68, 173)',
-                'rgb(155, 89, 182)',
-                'rgb(241, 196, 15)',
-              ],
-              hoverOffset: 4,
-            borderColor:['black'],
-            borderWidth:1
-        }],
+let optionsEstados = {
+    series: [{
+        name: 'Estado Operación',
+        data: []
+    }],
+    chart: {
+        type: 'bar',
+        height: 350,
+        animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 1000,
+            animateGradually: {
+                enabled: true,
+                delay: 150
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 350
+            }
+        }
     },
-    option:{
-        scales:{
-            y:{
-                beginAtZero:true,
+    plotOptions: {
+        bar: {
+            borderRadius: 10,
+            horizontal: false,
+            distributed: true,
+        }
+    },
+    dataLabels: {
+        enabled: true,
+        formatter: function (val) {
+            return val + "";
+        },
+        offsetY: -10,
+        style: {
+            fontSize: '12px',
+            colors: ["#fff"]
+        }
+    },
+    xaxis: {
+        categories: [],
+        position: 'bottom',
+        labels: {
+            offsetY: -5,
+        },
+        axisBorder: {
+            show: true,
+            color: '#78909C'
+        },
+        axisTicks: {
+            show: true,
+            color: '#78909C'
+        }
+    },
+    yaxis: {
+        title: {
+            text: 'Número de Operaciones'
+        }
+    },
+    fill: {
+        gradient: {
+            shade: 'light',
+            type: "horizontal",
+            shadeIntensity: 0.25,
+            gradientToColors: undefined,
+            inverseColors: true,
+            opacityFrom: 0.85,
+            opacityTo: 0.85,
+            stops: [50, 0, 100, 100]
+        },
+    },
+    legend: {
+        position: 'top',
+        horizontalAlign: 'center'
+    },
+    tooltip: {
+        enabled: true,
+        y: {
+            formatter: function (val) {
+                return val + " operaciones";
             }
         }
     }
-})
+};
 
-let url = "https://esenttiapp-production.up.railway.app/api/resumenestados"
+let myChart = new ApexCharts(ctx, optionsEstados);
+myChart.render();
+
+let url = "https://esenttiapp-production.up.railway.app/api/resumenestados";
 fetch(url)
-    .then(response=>response.json())
-    .then(datos=>mostrar(datos))
-    .catch(error => console.log(error))
+    .then(response => response.json())
+    .then(datos => mostrar(datos))
+    .catch(error => console.log(error));
 
-
-const mostrar = (estados)=>{
+const mostrar = (estados) => {
     estados.forEach(element => {
-        myChart.data['labels'].push(element.estado)
-        myChart.data['datasets'][0].data.push(element.conteo)
+        optionsEstados.xaxis.categories.push(element.estado);
+        optionsEstados.series[0].data.push(element.conteo);
     });
-    myChart.update();
+    myChart.updateOptions(optionsEstados);
 }
