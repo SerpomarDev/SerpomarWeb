@@ -32,6 +32,17 @@ function loadSidebar() {
                 if (loggedInUser) {
                     // Mostrar menús según el usuario autenticado
                     switch (loggedInUser) {
+                        case 'henry.goethe@serpomar.com':
+                        case 'susana.negrette@serpomar.com':
+                            // Acceso a las opciones específicas en la sección "Patio"
+                            $('#menu-patio').show();
+                            $('#menu-patio ul li').hide();
+                            $('#menu-patio ul li:contains("Orden Cargue")').show();
+                            $('#menu-patio ul li:contains("Inventario")').show();
+                            $('#menu-patio ul li:contains("Crear Cliente")').show();
+                            $('#menu-patio ul li:contains("Crear Condu")').show();
+                            $('#menu-patio ul li:contains("Crear Placa")').show();
+                            break;
                         case 'controlacceso@serpomar.com':
                             // Acceso a "acceso a patio", "inventario" y "cerrar sesión"
                             $('#menu-patio').show();

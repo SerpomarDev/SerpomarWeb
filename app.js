@@ -5,9 +5,9 @@ const credentials = {
   "controlacceso@serpomar.com": "Cserpomar2024",
   "patio@serpomar.com": "Pserpomar2024",
   "transporte@serpomar.com": "Stransporte2024",
-  "Susana.negrette@serpomar.com": "serpomar2024",
   "trensas@serpomar.com": "Tserpomar2024",
-  
+  "Susana.negrette@serpomar.com": "Sserpomar2024",
+  "henry.goethe@serpomar.com": "Hserpomar2024",
 };
 
 document.getElementById('login-form').addEventListener('submit', function(event) {
