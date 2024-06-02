@@ -2,152 +2,75 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=0.2">
-	<!-- PAGE TITLE HERE -->
-	<title>SerpomarWeb</title>
-	
-	<link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-	<link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
-	<!-- Style css -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SerpomarWeb</title>
+    <link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+    <link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
+    <link rel="stylesheet" href="/css/pages.css">
     <link href="/css/style-Dash.css" rel="stylesheet">
-
-    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
-
 </head>
-<body>
 
-      <!-- Contenedor para el preloader -->
-      <div id="preloader-container"></div>
-      <!-- Contenedor para el preloader -->
-  
-  
-      <!-- Contenedor para el nav-header -->
-      <div id="navheader-container"></div>
-      <!-- Contenedor para el nav-header -->
-  
-  
-      <div id="main-wrapper">
+<body>
+    <!-- Contenido del cuerpo -->
+    <!-- Contenedor para el preloader -->
+    <div id="preloader-container"></div>
+    <!-- Contenedor para el nav-header -->
+    <div id="navheader-container"></div>
+    <div id="main-wrapper">
         <div class="header">
             <div class="header-content">
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
-							<div class="dashboard_bar">
+                            <div class="dashboard_bar">
                                 Acceso a Patio
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
-							<li class="nav-item">
-								<div class="input-group search-area">
-									<input type="text" class="form-control" placeholder="Buscar...">
-									<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
-								</div>
-							</li>
                             <li class="nav-item">
-								<a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a>
-							</li>
+                                <div class="input-group search-area">
+                                    <input type="text" class="form-control" placeholder="Buscar...">
+                                    <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a>
+                            </li>
                         </ul>
                     </div>
-				</nav>
-			</div>
-		</div>
-
-
-
+                </nav>
+            </div>
+        </div>
         <div id="sidebar-container"></div>
-
-
         <div class="content-body">
             <div id="content" class="p-4 p-md-5 pt-5">
-                 <div id="acceso"></div>
-                <div class="container">                     <form id="craeateAccesoPatio" method="" enctype="multipart/form-data">
-                      <!--  <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">ID de Cargue</label>
-                                    <select id="id_cargue" name="id_cargue" class="form-control" required>
-                                        <option value="">Seleccione una Opción</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Funcionario de Seguridad</label>
-                                    <input type="text" class="form-control" id="funcionario_seguridad" name="funcionario_seguridad" required>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Hora</label>
-                                    <input type="time" class="form-control" id="hora" name="hora" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Fecha</label>
-                                    <input type="date" class="form-control" id="fecha" name="fecha" required>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Observaciones</label>
-                                    <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <br>
-        
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-between">
-                                <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
-                                <button class="btn btn-primary" id="BtnSavePlaca">Enviar</button>
-                            </div>
-                        </div>
-                    </form> -->
+                <div class="container">
+                    <div id="acceso"></div>
                 </div>
             </div>
-
         </div>
-        
-        
-    
-
+    </div>
+    <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/componentes/loadSidebar.js"></script>
     <script src="/componentes/loadPreloader.js"></script>
     <script src="/componentes/loadNavHeader.js"></script>
-    <!-- Required vendors -->
     <script src="/vendor/global/global.min.js"></script>
-	<script src="/vendor/chart.js/Chart.bundle.min.js"></script>
-	<script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-	<!-- Apex Chart -->
-	<script src="/vendor/apexchart/apexchart.js"></script>
-	<script src="/vendor/nouislider/nouislider.min.js"></script>
-	<script src="/vendor/wnumb/wNumb.js"></script>
-	
-	<!-- Dashboard 1 -->
-	<script src="/js/dashboard/dashboard-1.js"></script>
-
+    <script src="/vendor/chart.js/Chart.bundle.min.js"></script>
+    <script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/vendor/apexchart/apexchart.js"></script>
+    <script src="/vendor/nouislider/nouislider.min.js"></script>
+    <script src="/vendor/wnumb/wNumb.js"></script>
+    <script src="/js/dashboard/dashboard-1.js"></script>
     <script src="/js/custom.min.js"></script>
-	<script src="/js/dlabnav-init.js"></script>
-	<script src="/js/demo.js"></script>
+    <script src="/js/dlabnav-init.js"></script>
+    <script src="/js/demo.js"></script>
     <script src="/js/styleSwitcher.js"></script>
-	
-
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
     <script type="text/javascript" src="/js/patio/createAccesoPatio.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
