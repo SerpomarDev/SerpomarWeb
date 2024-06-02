@@ -23,7 +23,7 @@ function actualizarEstado(idOperacion,nuevoEstado) {
     });
   })
   .then((response)=>{
-    //time()
+    time()
   })
   .catch((error) => {
       console.error('Error al actualizar el estado:', error);
