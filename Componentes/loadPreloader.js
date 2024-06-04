@@ -1,5 +1,5 @@
 function loadPreloader() {
-    fetch('./componentes/preloader.html')
+    fetch('/componentes/preloader.html')
         .then(response => response.text())
         .then(data => {
             document.querySelector('#preloader-container').innerHTML = data;

@@ -1,5 +1,5 @@
 function loadNavHeader() {
-    fetch('./componentes/navheader.html')
+    fetch('/componentes/navheader.html')
         .then(response => response.text())
         .then(data => {
             document.querySelector('#navheader-container').innerHTML = data;
