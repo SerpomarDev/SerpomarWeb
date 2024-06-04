@@ -7,7 +7,7 @@ function loadSidebar() {
         return;
     }
 
-    fetch('/componentes/sidebar.html')
+    fetch('./componentes/sidebar.html')
         .then(response => response.text())
         .then(data => {
             document.querySelector('#sidebar-container').innerHTML = data;
