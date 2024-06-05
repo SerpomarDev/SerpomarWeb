@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded',function(){
         .then(data=>{
             const aliado = data[0]
             if(aliado.telefono){
-                inputTelefono.value = aliado.telefono
+                inputTelefono.value = aliado.telefono;
             }else{
                 console.error('Los datos esperados no están presentes en la respuesta de la API');
             }

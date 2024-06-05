@@ -84,7 +84,7 @@ function comentario(id, comentario) {
       columns: [{
         name:"id",
         hidden:true,
-      },"contenedor","cliente","Tipo de contenedor","Tipo transporte","Cutoff","operacion","Comentarios",{
+      },"Fecha solicitud","contenedor","cliente","Tipo de contenedor","Tipo transporte","Cutoff","operacion","Comentarios",{
         name:'Acción',
         formatter: (cell, row) => {
 
@@ -136,6 +136,7 @@ function comentario(id, comentario) {
           if (Array.isArray(data) && data.length > 0) {
             return data.map((ordenCargue) => [
               ordenCargue.id,
+              ordenCargue.fecha_solicitud,
               ordenCargue.contenedor,
               ordenCargue.cliente,
               ordenCargue.tipo_contenedor,
