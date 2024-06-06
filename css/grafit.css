@@ -1,0 +1,175 @@
+/* Estilo para los títulos de los gráficos */
+
+.chart-title {
+    font-size: 18px;
+    /* Tamaño de fuente */
+    color: #333;
+    /* Color de texto */
+    margin-bottom: 10px;
+    /* Espaciado entre título y gráfico */
+}
+
+.container-a {
+    margin: 10px;
+    padding: 10px;
+}
+
+
+/* Aplicar estilos a los contenedores de los gráficos */
+
+#pro1,
+#pro {
+    width: 50%;
+    /* Ajustar el ancho */
+}
+
+
+.modal-title{
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin-left: 0;
+    }
+
+    .container.open {
+        margin-left: 250px;
+    }
+}
+
+
+/* ESTILOS PARA TABLAS */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    padding: 0;
+    table-layout: auto;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table thead {
+    background-color: #f4f4f4;
+    text-align: left;
+}
+
+table th, table td {
+    padding: 10px 15px;
+    text-align: left;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Mobile styles */
+@media (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    table thead {
+        display: none; /* Hide the header for mobile */
+    }
+
+    table tr {
+        margin-bottom: 15px;
+        border-radius: 8px;
+        background-color: #f8f8f8;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        position: relative;
+        border-bottom: 1px solid #ddd;
+        background-color: #fff;
+        margin: 5px 0;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    table td::before {
+        content: attr(data-label);
+        flex: 1;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: #333;
+        margin-right: 10px;
+        font-size: 14px;
+    }
+
+    table td:last-child {
+        border-bottom: none;
+    }
+
+    table tr button, table tr select {
+        margin-top: 10px;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    table tr textarea {
+        width: calc(100% - 20px);
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        resize: vertical;
+        font-size: 14px;
+    }
+
+    table tr button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    table tr button:hover {
+        background-color: #0056b3;
+    }
+}
+
+/* Custom scrollbar for better UX */
+body {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+}
+
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    border: 3px solid #f1f1f1;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
