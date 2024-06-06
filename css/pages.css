@@ -170,6 +170,46 @@ body, html {
     }
 }
 
+.file-label {
+  display: flex;
+  padding: 0.75rem 1.5rem;
+  background-color: #488aec;
+  color: #ffffff;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  align-items: center;
+  border-radius: 0.5rem;
+  user-select: none;
+  gap: 0.75rem;
+  box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
+  transition: all .6s ease;
+  cursor: pointer; /* Para mostrar el cursor de mano */
+}
+
+.file-label:hover {
+  box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
+}
+
+.file-label:focus, .file-label:active {
+  opacity: .85;
+  box-shadow: none;
+}
+
+.file-label svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Esconder el input de tipo file pero mantener su funcionalidad */
+.file-label .input {
+  display: none;
+}
+
+
 
 /* Estilo para los títulos de los gráficos */
 
@@ -383,4 +423,3 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 
-/* 
