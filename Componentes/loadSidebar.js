@@ -57,6 +57,7 @@ function loadSidebar() {
                             $('#menu-patio ul li:contains("Inventario")').show();
                             break;
                         case 'transporte@serpomar.com':
+                        case 'esenttiainhouse@serpomar.com':
                             // Acceso a "orden de cargue", "inventario" y "cerrar sesión"
                             $('#menu-patio').show();
                             $('#menu-patio ul li').hide();
