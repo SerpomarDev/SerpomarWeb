@@ -2,33 +2,58 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- PAGE TITLE HERE -->
     <title>SerpomarWeb</title>
     <link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
-    <!-- Style css -->
     <link href="/css/style-Dash.css" rel="stylesheet">
     <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <style>
+        .form-status-container {
+            display: flex;
+            justify-content: space-between;
+        }
 
+        .form-container {
+            flex: 2;
+            margin-right: 20px;
+        }
+
+        .status-container {
+            flex: 1;
+        }
+
+        .cardsp {
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .events .event {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .events .event .icon {
+            margin-right: 10px;
+        }
+
+        .btn {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
-
-
     <!-- Contenedor para el preloader -->
     <div id="preloader-container"></div>
-    <!-- Contenedor para el preloader -->
-
-
     <!-- Contenedor para el nav-header -->
     <div id="navheader-container"></div>
-    <!-- Contenedor para el nav-header -->
-
 
     <div id="main-wrapper">
         <div class="header">
@@ -38,9 +63,9 @@
                         <div class="header-left">
                             <div class="header-left">
                                 <div class="dashboard_bar" id="dashboard_sp">
-                                    SP: 
+                                    SP:
                                 </div>
-                        </div>
+                            </div>
                         </div>
                         <ul class="navbar-nav header-right">
                             <li class="nav-item">
@@ -49,7 +74,6 @@
                                     <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
                                 </div>
                             </li>
-
                             <li class="nav-item">
                                 <a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a>
                             </li>
@@ -59,296 +83,309 @@
             </div>
         </div>
 
-
         <div id="sidebar-container"></div>
-
 
         <div class="content-body">
             <div id="content" class="p-4 p-md-5 pt-5">
-                <div class="container">
-                    <form id="saveContenedor" method="POST" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">SP</label>
-                                    <input type="text" id="do_sp" class="form-control" readonly>
+                <div class="container form-status-container">
+                    <div class="form-container">
+                        <form id="saveContenedor" method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">SP</label>
+                                        <input type="text" id="do_sp" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">DO PEDIDO</label>
+                                        <input type="text" id="do_pedido" class="form-control" readonly>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">DO PEDIDO</label>
-                                    <input type="text" id="do_pedido" class="form-control" readonly>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Contenedores</label>
+                                        <input type="text" id="contendedor" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="id_cliente">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Cliente</label>
+                                        <input type="text" id="cliente" class="form-control" readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Contenedores</label>
-                                    <input type="text" id="contendedor" class="form-control" readonly>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Modalidad</label>
+                                        <input type="text" id="imp_exp" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Fecha Eta</label>
+                                        <input type="text" id="eta" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Fecha Levante</label>
+                                        <input type="text" id="levante" class="form-control" readonly>
+                                    </div>
                                 </div>
                             </div>
-                            <input type="hidden" id="id_cliente">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Cliente</label>
-                                    <input type="text" id="cliente" class="form-control" readonly>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Fecha documental</label>
+                                        <input type="text" id="documental" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Fecha Cutoff Fisico</label>
+                                        <input type="text" id="fisico" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Libre Hasta</label>
+                                        <input type="text" id="libre_hasta" class="form-control" readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Modalidad</label>
-                                    <input type="text" id="imp_exp" class="form-control" readonly>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Bodegaje Hasta</label>
+                                        <input type="text" id="bodega_hasta" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Fecha Propuesta</label>
+                                        <input type="text" id="propuesta" class="form-control" readonly>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Fecha Eta</label>
-                                    <input type="text" id="eta" class="form-control" readonly>
+                            <hr>
+                            <!-- Formulario Contenedor -->
+                            <h4>Crear contenedor</h4>
+                            <input type="hidden" name="id_solicitud_servicio" id="id_solicitud_servicio">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Tipo Contenedor</label>
+                                        <select name="id_tipo_contenedor" id="id_tipo_contenedor" class="form-control">
+                                            <option value="">Seleccione</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Numero Contenedor</label>
+                                        <input type="text" id="nu_serie" name="nu_serie" class="form-control" required>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Fecha Levante</label>
-                                    <input type="text" id="levante" class="form-control" readonly>
+                            <br>
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-between">
+                                    <button class="btn btn-primary" onclick="history.back()">Volver</button>
+                                    <button type="submit" class="btn btn-primary" id="BtnSave">Guardar</button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Fecha documental</label>
-                                    <input type="text" id="documental" class="form-control" readonly>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Fecha Cutoff Fisico</label>
-                                    <input type="text" id="fisico" class="form-control" readonly>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Libre Hasta</label>
-                                    <input type="text" id="libre_hasta" class="form-control" readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Bodegaje Hasta</label>
-                                    <input type="text" id="bodega_hasta" class="form-control" readonly>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Fecha Propuesta</label>
-                                    <input type="text" id="propuesta" class="form-control" readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <!-- Formulario Contenedor -->
-                        <h4>Crear contenedor</h4>
-                        <input type="hidden" name="id_solicitud_servicio" id="id_solicitud_servicio">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Tipo Contenedor</label>
-                                    <select name="id_tipo_contenedor" id="id_tipo_contenedor" class="form-control">
-                                        <option value="">Seleccione</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Numero Contenedor</label>
-                                    <input type="text" id="nu_serie" name="nu_serie" class="form-control" required>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-between">
-                                <button class="btn btn-primary" onclick="history.back()">Volver</button>
-                                <button type="submit" class="btn btn-primary" id="BtnSave">Guardar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="container">
-                <div id="contenedor"></div>
-            </div>
-
-            <div class="modal fade" id="asignarModal" tabindex="-1" aria-labelledby="asignarModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="asignarModalLabel">Asignar Clientes Varios</h1>
-                      <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                        </form>
                     </div>
-                    <form id="saveAsignacion" method="POST" enctype="multipart/form-data">
-                          <div class="modal-body">
-                             
-                                  <input type="text" id="id_contenedor" name="id_contenedor" class="form-control" readonly>
-                                  <input type="text" id="id_cliente"  class="form-control" readonly>
-                                  <input type="text" id="imp_exp" class="form-control" readonly>
-                                  <div class="row">
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="">Placa</label>
-                                              <select name="id_preventa" id="id_preventa">
-                                                  <option value="">Seleccione</option>
-                                              </select>
-                                          </div>
-                                      </div>
-                      
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="" class="form-label">Conductor</label>
-                                              <input type="text" id="conductor" class="form-control" readonly="readonly" required>
-                                          </div>
-                                      </div>
-                                  </div>
-                      
-                                  <div class="row">
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="" class="form-label">Aliado</label>
-                                              <input type="text" id="aliado" class="form-control" readonly="readonly" required>
-                                          </div>
-                                      </div>
-                      
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="" class="form-label">Telefono</label>
-                                              <input type="text" class="form-control" id="celular" readonly="readonly" required>
-                                          </div>
-                                      </div>
-                                  </div>
-                      
-                                  <div class="row">
-                                      
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="" class="form-label">Ruta</label>
-                                              <select name="id_ruta" id="id_ruta" required>
-                                                  <option value="">Seleccione la ruta</option>
-                                              </select>
-                                          </div>
-                                      </div>
-                      
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="" class="form-label">Tarifa</label>
-                                              <input type="text" id="tarifa" class="form-control" readonly="readonly" required>
-                                          </div>
-                                      </div>
-                                  </div>
-                      
-                                  <div class="row">
-                      
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="" class="form-label">Tipo operacion</label>
-                                              <select name="id_tipo_operacion" id="id_tipo_operacion" class="form-control" required>
-                                                  <option value="">seleccione operacion</option>
-                                              </select>
-                                          </div>
-                                      </div>
-                      
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="" class="form-label">Destino</label>
-                                              <select name="id_sitio_inspeccion" id="id_sitio_inspeccion" class="form-control" required>
-                                                  <option value="">Seleccione Destino</option>
-                                              </select>
-                                          </div>
-                                      </div>
-                      
-                                  </div>
-                      
-                                  <div class="row">
-                                      
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="" class="form-label">Fecha cita</label>
-                                              <input type="date" id="fecha_cita" name="fecha_cita" class="form-control">
-                                          </div>
-                                      </div>
-                      
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="" class="form-label">Hora cita</label>
-                                              <input type="time" id="hora_cita" name="hora_cita" class="form-control">
-                                          </div>
-                                      </div>
-                                  </div>
-                          </div>
-                      <div class="modal-footer">
-                              <button  class="btn btn-primary" onclick="history.back()">Volver</button>
-                              <button  class="btn btn-primary" id="BtnSavetAsignacion">Guardar</button>
-  
-                      </div>
-                  </form>
-                  </div>
+
+                    <div class="status-container">
+                        <div class="cardsp">
+                            <h1>ESTATUS DE LA SP</h1>
+                            <div class="search-bar">
+                                <input type="text" id="searchInput" placeholder="Buscar estatus">
+                            </div>
+                            <div class="events">
+                                <div class="event">
+                                    <div class="icon chat">
+                                        <img src="https://img.icons8.com/ios-glyphs/30/ffffff/search.png" alt="Search Icon">
+                                    </div>
+                                    <div class="details">
+                                        <h2>Fase 1</h2>
+                                    </div>
+                                </div>
+                                <div class="event">
+                                    <div class="icon chat">
+                                        <img src="https://img.icons8.com/ios-glyphs/30/ffffff/paper.png" alt="Paper Icon">
+                                    </div>
+                                    <div class="details">
+                                        <h2>Fase 2</h2>
+                                    </div>
+                                </div>
+                                <div class="event">
+                                    <div class="icon chat">
+                                        <img src="https://img.icons8.com/ios-glyphs/30/ffffff/box.png" alt="Car Icon">
+                                    </div>
+                                    <div class="details">
+                                        <h2>Fase 3</h2>
+                                    </div>
+                                </div>
+                                <div class="event">
+                                    <div class="icon chat">
+                                        <img src="https://img.icons8.com/ios-glyphs/30/ffffff/car.png" alt="Car Icon">
+                                    </div>
+                                    <div class="details">
+                                        <h2>Fase 4</h2>
+                                    </div>
+                                </div>
+                                <div class="event">
+                                    <div class="icon chat">
+                                        <img src="https://img.icons8.com/ios-glyphs/30/ffffff/ok.png" alt="Car Icon">
+                                    </div>
+                                    <div class="details">
+                                        <h2>Fase 5</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="markGreenBtn">Marcar como completo</button>
+                        </div>
+                    </div>
                 </div>
-              </div>
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="/componentes/loadSidebar.js"></script>
-            <script src="/componentes/loadPreloader.js"></script>
-            <script src="/componentes/loadNavHeader.js"></script>
-            <!-- Required vendors -->
-            <script src="/vendor/global/global.min.js"></script>
-            <script src="/vendor/chart.js/Chart.bundle.min.js"></script>
-            <script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+                <div class="container">
+                    <div id="contenedor"></div>
+                </div>
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <div class="modal fade" id="asignarModal" tabindex="-1" aria-labelledby="asignarModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="asignarModalLabel">Asignar Clientes Varios</h1>
+                                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                            </div>
+                            <form id="saveAsignacion" method="POST" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    <input type="text" id="id_contenedor" name="id_contenedor" class="form-control" readonly>
+                                    <input type="text" id="id_cliente" class="form-control" readonly>
+                                    <input type="text" id="imp_exp" class="form-control" readonly>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Placa</label>
+                                                <select name="id_preventa" id="id_preventa">
+                                                    <option value="">Seleccione</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Conductor</label>
+                                                <input type="text" id="conductor" class="form-control" readonly="readonly" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Aliado</label>
+                                                <input type="text" id="aliado" class="form-control" readonly="readonly" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Telefono</label>
+                                                <input type="text" class="form-control" id="celular" readonly="readonly" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Ruta</label>
+                                                <select name="id_ruta" id="id_ruta" required>
+                                                    <option value="">Seleccione la ruta</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Tarifa</label>
+                                                <input type="text" id="tarifa" class="form-control" readonly="readonly" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Tipo operacion</label>
+                                                <select name="id_tipo_operacion" id="id_tipo_operacion" class="form-control" required>
+                                                    <option value="">seleccione operacion</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Destino</label>
+                                                <select name="id_sitio_inspeccion" id="id_sitio_inspeccion" class="form-control" required>
+                                                    <option value="">Seleccione Destino</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Fecha cita</label>
+                                                <input type="date" id="fecha_cita" name="fecha_cita" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Hora cita</label>
+                                                <input type="time" id="hora_cita" name="hora_cita" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" onclick="history.back()">Volver</button>
+                                    <button class="btn btn-primary" id="BtnSavetAsignacion">Guardar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Apex Chart -->
-            <script src="/vendor/apexchart/apexchart.js"></script>
-            <script src="/vendor/nouislider/nouislider.min.js"></script>
-            <script src="/vendor/wnumb/wNumb.js"></script>
-
-            <!-- Dashboard 1 -->
-            <script src="/js/dashboard/dashboard-1.js"></script>
-
-            <script src="/js/custom.min.js"></script>
-            <script src="/js/dlabnav-init.js"></script>
-            <script src="/js/demo.js"></script>
-            <script src="/js/styleSwitcher.js"></script>
-
-
-            <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-            <script type="text/javascript" src="/js/contenedor/createContenedor.js"></script>
-            <script type="text/javascript" src="/js/cargar/CargarTipoContenedor.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-             <!-- Asignación -->
-
-            <script type="text/javascript" src="/js/asignacion/asigancion.js"></script>
-            <script type="text/javascript" src="/js/cargar/cargarDestino.js"></script>
-            <script type="text/javascript" src="/js/cargar/cargarRutaClientesV.js"></script>
-            <script type="text/javascript" src="/js/cargar/cargarPrevnetaClienteV.js"></script>
-            <script type="text/javascript" src="/js/cargar/cargarTipoServicio.js"></script>
-
-       
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="/componentes/loadSidebar.js"></script>
+                <script src="/componentes/loadPreloader.js"></script>
+                <script src="/componentes/loadNavHeader.js"></script>
+                <script src="/vendor/global/global.min.js"></script>
+                <script src="/vendor/chart.js/Chart.bundle.min.js"></script>
+                <script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="/vendor/apexchart/apexchart.js"></script>
+                <script src="/vendor/nouislider/nouislider.min.js"></script>
+                <script src="/vendor/wnumb/wNumb.js"></script>
+                <script src="/js/dashboard/dashboard-1.js"></script>
+                <script src="/js/custom.min.js"></script>
+                <script src="/js/dlabnav-init.js"></script>
+                <script src="/js/demo.js"></script>
+                <script src="/js/styleSwitcher.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+                <script type="text/javascript" src="/js/contenedor/createContenedor.js"></script>
+                <script type="text/javascript" src="/js/cargar/CargarTipoContenedor.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script type="text/javascript" src="/js/asignacion/asigancion.js"></script>
+                <script type="text/javascript" src="/js/cargar/cargarDestino.js"></script>
+                <script type="text/javascript" src="/js/cargar/cargarRutaClientesV.js"></script>
+                <script type="text/javascript" src="/js/cargar/cargarPrevnetaClienteV.js"></script>
+                <script type="text/javascript" src="/js/cargar/cargarTipoServicio.js"></script>
+                <script type="text/javascript" src="/js/estatussp/estatussp.js"></script>
 </body>
 
 </html>
