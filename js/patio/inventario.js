@@ -10,7 +10,7 @@ new gridjs.Grid({
     //     enabled: false,
     // },
     sort: false,
-    columns: ["contenedor","cliente","Tipo de contenedor","Tipo transporte","Cutoff","operación",{
+    columns: ["Contenedor","Cliente","Tipo de contenedor","Tipo transporte","Cutoff","Operación",{
       name:'Acción',
       hidden:'true',
           formatter:(cell,row)=>{

@@ -57,11 +57,12 @@
         <div class="content-body">
             <div id="content" class="p-4 p-md-5 pt-5">
                 <div class="container">
-                    <form id="saveLiquidacion" method="POST" enctype="multipart/form-data">
+                    <form id="savePreLiquidacion" method="POST" enctype="multipart/form-data">
                         <input type="hidden" id="id_cliente">
                         <input type="hidden" id="tarifa">
                         <input type="hidden" id="id_contenedor" name="id_contenedor">
                         <input type="hidden" id="id_costo_cliente" name="id_costo_cliente">
+                        <input type="hidden" id="id_solicitud_servicio" name="id_solicitud_servicio">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -116,7 +117,7 @@
                     </form>
                 </div>
                 <div class="container">
-                    <div id="liquidar"></div>
+                    <div id="PreLiquidar"></div>
                 </div>
             </div>
         </div>
@@ -143,7 +144,7 @@
     <script src="/js/styleSwitcher.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
     <script type="module" src="/js/cargar/cargarSp.js"></script>
-    <script type="module" src="/js/Liquidar/create.js"></script>
+    <script type="module" src="/js/liquidar/pre_liquidar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
