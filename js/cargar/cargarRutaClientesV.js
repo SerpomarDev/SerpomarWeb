@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded',function(){
     selectRuta.addEventListener('change', function(){
 
         let idRutaSeleccionada = this.value
-        console.log(idRutaSeleccionada)
 
         fetch(`https://esenttiapp-production.up.railway.app/api/uploadrutaid/${idRutaSeleccionada}`)
         .then(response=>{

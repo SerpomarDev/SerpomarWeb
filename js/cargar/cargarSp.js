@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 .then((data) => {
   if (data.length > 0) {
     const contenedor = data[0];
+    document.getElementById('id_solicitud_servicio').value = contenedor.id_sc;
     document.getElementById('id_cliente').value = contenedor.id_cliente;
     document.getElementById('id_contenedor').value = contenedor.id_contenedor;
     document.getElementById('numero_contenedor').value = contenedor.numero_co;
@@ -37,60 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
 .catch((error) => {
   console.error("Error:", error);
 });
-
-
-    // let selectSp = document.getElementById('id_sp');
-    // let inputCliente = document.getElementById('cliente');
-    // let inputCantidadContenedor = document.getElementById('cantidad_contenedor');
-    // let inputModalidad = document.getElementById('imp_exp');
-    // let inputIdCliente = document.getElementById('id_cliente');
-    // let selectConcepto = document.getElementById('id_concepto');
-    // let inputTarifa = document.getElementById('tarifa');
-    // let inputValor = document.getElementById('valor');
-
-    // fetch('http://esenttiapp.test/api/uploadsp')
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     data.forEach(sp_do => {
-    //       let option = document.createElement('option');
-    //       option.value = sp_do.id_sp;
-    //       option.text = sp_do.do_sp;
-    //       selectSp.appendChild(option);
-    //     });
-    //   });
-  
-    //   selectSp.addEventListener('change', function() {
-
-    //     selectConcepto.value = '';
-    //     inputTarifa.value = '';
-    //     inputValor.value = '';
-
-    //     let idSpSeleccionado = this.value
-
-    //     fetch(`http://esenttiapp.test/api/uploadspbyid/${idSpSeleccionado}`)  
-    //       .then(response => {
-    //         if (!response.ok) {
-    //           throw new Error('Error en la respuesta de la API: ' + response.statusText);
-    //         }
-    //         return response.json();
-    //       })
-    //       .then(data => {
-    //         const sp_do =  data[0]
-    //         if (sp_do.cliente && sp_do.cantidad_contenedor && sp_do.emp_exp && sp_do.id_cliente) {
-    //             inputCliente.value = sp_do.cliente;
-    //             inputCantidadContenedor.value = sp_do.cantidad_contenedor;
-    //             inputModalidad.value = sp_do.emp_exp;
-    //             inputIdCliente.value = sp_do.id_cliente;
-                
-    //             let id  = inputIdCliente.value
-    //             uploadConceptos(id)
-
-    //         } else {
-    //           console.error('Los datos esperados no están presentes en la respuesta de la API');
-    //         } 
-    //       })
-    //       .catch(error => console.error('Error:', error));
-    //   });
 
 
       function uploadConceptos(idcliente){ 
