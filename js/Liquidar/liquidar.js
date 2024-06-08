@@ -30,7 +30,7 @@ let id = urlParams.get("id");
             }
         }],
         server: {
-            url: `http://esenttiapp.test/api/liquidarspt/${id}`,
+            url: `https://esenttiapp-production.up.railway.app/api/liquidarspt/${id}`,
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((preliq) => [
@@ -56,7 +56,7 @@ let id = urlParams.get("id");
     
         console.log(jsonData)
     
-        fetch('http://esenttiapp.test/api/liquidacion',{
+        fetch('https://esenttiapp-production.up.railway.app/api/liquidacion',{
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body:jsonData

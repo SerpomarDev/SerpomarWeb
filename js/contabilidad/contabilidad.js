@@ -16,7 +16,7 @@ new gridjs.Grid({
         formatter:(_,row)=> `$ ${(row.cells[1].data).toLocaleString()}`
     },"Fecha creacion",],
     server: {
-        url: `http://esenttiapp.test/api/showliquidacion`,
+        url: `https://esenttiapp-production.up.railway.app/api/showliquidacion`,
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((liquidacion) => [

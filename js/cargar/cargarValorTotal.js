@@ -2,7 +2,7 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-fetch(`http://esenttiapp.test/api/uploadvalortotal/${id}`)
+fetch(`https://esenttiapp-production.up.railway.app/api/uploadvalortotal/${id}`)
 .then((responde) => {
   if (!responde) {
     throw new Error("Error al obtener los datos de la API");

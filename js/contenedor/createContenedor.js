@@ -147,7 +147,7 @@ function tableByClt(id_primario){
     fixedHeader: true,
     //height: '400px',
     server: {
-        url: `http://esenttiapp.test/api/preasigcont/${id}`,
+        url: `https://esenttiapp-production.up.railway.app/api/preasigcont/${id}`,
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((contenedorEx) => [
