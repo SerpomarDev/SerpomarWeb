@@ -10,7 +10,7 @@ new gridjs.Grid({
     //     enabled: false,
     // },
     sort: false,
-    columns: ["Contenedor","Cliente","Tipo de contenedor","Tipo transporte","Cutoff","Operación",{
+    columns: ["Contenedor","Cliente","Tipo de contenedor","Tipo transporte","Cutoff","Naviera","Operación",{
       name:'Acción',
       hidden:'true',
           formatter:(cell,row)=>{
@@ -31,6 +31,7 @@ new gridjs.Grid({
             ordenCargue.tipo_contenedor,
             ordenCargue.modalidad,
             ordenCargue.cutoff,
+            ordenCargue.naviera,
             ordenCargue.operacion
           ]);
         } else {
