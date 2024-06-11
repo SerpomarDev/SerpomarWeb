@@ -2,7 +2,6 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-cargarValores(id)
 liquidarSp(id)
 
 function actualizarEstado(idOperacion,nuevoEstado) {
@@ -33,6 +32,7 @@ function actualizarEstado(idOperacion,nuevoEstado) {
   });
 }
 
+cargarValores(id)
 
 function cargarValores(id){
   fetch(`https://esenttiapp-production.up.railway.app/api/uploadsolisev/${id}`)
