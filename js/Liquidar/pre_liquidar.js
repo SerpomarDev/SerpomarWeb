@@ -36,7 +36,7 @@ new gridjs.Grid({
             }
         }
     }
-}).render(document.getElementById('liquidar'));
+}).render(document.getElementById('pre_liquidar'));
 
 document.getElementById('saveLiquidacion').addEventListener('submit',function(event){
     event.preventDefault();
@@ -72,7 +72,7 @@ document.getElementById('saveLiquidacion').addEventListener('submit',function(ev
 })
 
 function time() {
-    document.getElementById('saveLiquidacion').reset();
+    document.getElementById('savePreLiquidacion').reset();
     setTimeout(() => {
         window.location.href = ``; 
     },  1200);
