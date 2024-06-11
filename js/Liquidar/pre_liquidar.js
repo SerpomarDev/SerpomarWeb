@@ -38,13 +38,11 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('pre_liquidar'));
 
-document.getElementById('saveLiquidacion').addEventListener('submit',function(event){
+document.getElementById('savePreLiquidacion').addEventListener('submit',function(event){
     event.preventDefault();
 
     const formData = new FormData(this);
     const jsonData = JSON.stringify(Object.fromEntries(formData));
-
-    console.log(jsonData)
 
     fetch('https://esenttiapp-production.up.railway.app/api/costoclientecontenedor',{
         method: 'POST',
