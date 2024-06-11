@@ -30,12 +30,13 @@ document.getElementById('saveOrdenServicio').addEventListener('submit',function(
     event.preventDefault();
 
     const formData = new FormData(this);
-    //const jsonData = JSON.stringify(Object.fromEntries(formData));
+    const jsonData = JSON.stringify(Object.fromEntries(formData));
 
+    console.log(jsonData)
     fetch('https://esenttiapp-production.up.railway.app/api/ordenservicios',{
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: formData
+        body: jsonData
     })
     .then(response => {
         if (!response.ok) {
