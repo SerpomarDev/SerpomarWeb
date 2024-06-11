@@ -44,6 +44,8 @@ document.getElementById('savePreLiquidacion').addEventListener('submit',function
     const formData = new FormData(this);
     const jsonData = JSON.stringify(Object.fromEntries(formData));
 
+    console.log(jsonData)
+    
     fetch('https://esenttiapp-production.up.railway.app/api/costoclientecontenedor',{
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
