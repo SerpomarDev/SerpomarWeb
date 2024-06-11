@@ -34,6 +34,7 @@ function loadSidebar() {
                     switch (loggedInUser) {
                         case 'henry.goethe@serpomar.com':
                         case 'susana.negrette@serpomar.com':
+                        case 'Carlos.carrasquilla@serpomar.com':
                             // Acceso a las opciones específicas en la sección "Patio"
                             $('#menu-patio').show();
                             $('#menu-patio ul li').hide();

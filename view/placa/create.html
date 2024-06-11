@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
 	<!-- Style css -->
     <link href="/css/style-Dash.css" rel="stylesheet">
-
+    <link href="/css/pages.css" rel="stylesheet" />
     <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 
@@ -36,8 +36,8 @@
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
-							<div class="dashboard_bar">
-                                Crear Placa
+						    <div class="header-left">
+                                <p class="title">CREAR PLACA</p>
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
@@ -47,9 +47,9 @@
 									<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
 								</div>
 							</li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
 								<a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a>
-							</li>
+							</li> -->
                         </ul>
                     </div>
 				</nav>
@@ -62,58 +62,44 @@
 
 
         <div class="content-body">
-        <div id="content" class="p-4 p-md-5 pt-5">
-            <div class="container">
-                <form id="createPlaca" method="post" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="" class="form-label">Placa</label>
-                                <input type="text" class="form-control" id="placa" name="placa" required>
-                            </div>
+            <div id="content" class="p-4 p-md-0 pt-5">
+                <div class="container-fluid main-container">
+                    <form id="createPlaca" method="post" enctype="multipart/form-data" class="form">
+                        <p class="message">Complete los campos para crear una nueva placa.</p>
+                        <div class="flex">
+                            <label>
+                                <input type="text" class="input" id="placa" name="placa" required>
+                                <span>Placa</span>
+                            </label>
+                            <label>
+                                <input type="text" class="input" id="eje" name="eje" required>
+                                <span>Eje</span>
+                            </label>
+                            <label>
+                                <input type="text" class="input" id="tipologia" name="tipologia" required>
+                                <span>Tipología</span>
+                            </label>
                         </div>
-            
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="" class="form-label">Eje</label>
-                                <input type="text" class="form-control" id="eje" name="eje" required>
-                            </div>
-                        </div>
-            
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="" class="form-label">Tipologia</label>
-                                <input type="text" class="form-control" id="tipologia" name="tipologia" required>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="" class="form-label">Propietario</label>
-                                <select id="id_aliado" name="id_aliado" class="form-control" required>
+                        <div class="flex">
+                            <label class="full-width">
+                                <select id="id_aliado" name="id_aliado" class="input" required>
                                     <option value="">Seleccione una Opción</option>
                                 </select>
-                            </div>
-                        </div>
-                    </div>
-            <br>
-                    <div class="row">
-                        <div class="col-10 d-flex justify-content-between">
-                            <button  class="btn btn-primary" id="BtnSavePlaca">Enviar</button>
+                                <span>Propietario</span>
+                            </label>
+                        </div><br>
+                        <div class="flex">
                             <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
+                            <button class="btn btn-primary" id="BtnSavePlaca">Enviar</button>
+                            
                         </div>
-                    </div>
-                </form>
-               </div> 
-            
-               <div class="container">
-                <div id="Placa"></div>
-               </div>
+                    </form>
+                </div> 
+                <div class="container">
+                    <div id="Placa"></div>
+                </div>
+            </div>
         </div>
-	</div>
-    
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/componentes/loadSidebar.js"></script>

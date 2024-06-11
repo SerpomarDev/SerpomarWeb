@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
 	<!-- Style css -->
     <link href="/css/style-Dash.css" rel="stylesheet">
-	
+    <link href="/css/pages.css" rel="stylesheet" />
     <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 
@@ -37,8 +37,8 @@
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
-							<div class="dashboard_bar">
-                                Crear Ruta
+                            <div class="header-left">
+                                <p class="title">CREAR RUTA</p>
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
@@ -48,9 +48,9 @@
 									<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
 								</div>
 							</li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
 								<a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a>
-							</li>
+							</li> -->
                         </ul>
                     </div>
 				</nav>
@@ -64,48 +64,37 @@
 
 
         <div class="content-body">
-        <div id="content" class="p-4 p-md-5 pt-5">
-            <div class="container form-container">
-    <form id="createRuta" method="POST" enctype="multipart/form-data">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="item" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="item" name="item" placeholder="Ingrese el nombre">
+            <div id="content" class="p-4 p-md-0 pt-5">
+                <div class="container-fluid main-container">
+                    <form id="createRuta" method="POST" enctype="multipart/form-data" class="form">
+                        <p class="message">Complete los campos para crear una nueva ruta.</p>
+                        <div class="flex">
+                            <label>
+                                <input type="text" class="input" id="item" name="item" placeholder="Ingrese el nombre" required>
+                                <span>Nombre</span>
+                            </label>
+                            <label>
+                                <input type="number" class="input" id="tarifas" name="tarifas" placeholder="Ingrese la tarifa" required>
+                                <span>Tarifa</span>
+                            </label>
+                        </div>
+                        <div class="flex">
+                            <label class="full-width">
+                                <textarea class="input" id="notas" name="notas" rows="4" placeholder="Ingrese un comentario" required></textarea>
+                                <span>Comentarios</span>
+                            </label>
+                        </div><br>
+                        <div class="flex">
+                            <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
+                            <button type="submit" class="btn btn-primary" id="BtnSaveRuta">Enviar</button>
+                        </div>
+                    </form>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="tarifas" class="form-label">Tarifa</label>
-                    <input type="number" class="form-control" id="tarifas" name="tarifas" placeholder="Ingrese la tarifa">
+                <div class="container">
+                    <div id="rutas"></div>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="notas" class="form-label">Comentario</label>
-                    <textarea class="form-control" id="notas" name="notas" rows="4" placeholder="Ingrese un comentario"></textarea>
-                </div>
-            </div>
-        </div><br>
-        <div class="row">
-            <div class="col-12 d-flex justify-content-between">
-                <button type="submit" class="btn btn-primary" id="BtnSaveRuta">Enviar</button>
-                <a class="btn btn-secondary" href="/view/preventas/index.html">Volver</a>
-            </div>
-        </div>
-    </form>
-</div>
-
-            <div class="container">
-                <div id="rutas"></div>
-            </div>
-        </div>
-	</div>
-    
-
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="/componentes/loadSidebar.js"></script>

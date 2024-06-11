@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SerpomarWeb</title>
-    
+    <link href="/css/pages.css" rel="stylesheet" />
     <link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
     <link href="/css/style-Dash.css" rel="stylesheet">
@@ -24,8 +24,8 @@
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
-                            <div class="dashboard_bar">
-                                Crear Cliente
+                            <div class="header-left">
+                                <p class="title">CREAR CLIENTE</p>
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
@@ -35,9 +35,9 @@
                                     <span class="input-group-text"><a href="javascript:void(0)" id="search-button"><i class="flaticon-381-search-2"></i></a></span>
                                 </div>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </nav>
@@ -45,42 +45,33 @@
         </div>
         <div id="sidebar-container"></div>
         <div class="content-body">
-            <div id="content" class="p-4 p-md-5 pt-5">
-                <div class="container">
-                    <form id="createCliente" method="POST" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Identificación</label>
-                                    <input type="number" class="form-control" id="identificacion" name="identificacion">
-                                </div>
-                            </div>
+            <div id="content" class="p-4 p-md-0 pt-5">
+                <div class="container-fluid main-container">
+                    <form id="createCliente" method="POST" enctype="multipart/form-data" class="form">
+                        <p class="message">Complete los campos para crear un nuevo cliente.</p>
+                        <div class="flex">
+                            <label>
+                                <input type="text" class="input" id="nombre" name="nombre">
+                                <span>Nombre</span>
+                            </label>
+                            <label>
+                                <input type="number" class="input" id="identificacion" name="identificacion">
+                                <span>Identificación</span>
+                            </label>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Dirección</label>
-                                    <input type="text" class="form-control" id="direccion" name="direccion">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Ciudad</label>
-                                    <input type="text" class="form-control" id="ciudad" name="ciudad">
-                                </div>
-                            </div>
+                        <div class="flex">
+                            <label>
+                                <input type="text" class="input" id="direccion" name="direccion">
+                                <span>Dirección</span>
+                            </label>
+                            <label>
+                                <input type="text" class="input" id="ciudad" name="ciudad">
+                                <span>Ciudad</span>
+                            </label>
                         </div><br>
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-between">
-                                <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
-                                <button  class="btn btn-primary" id="BtnSaveCliente">Enviar</button>
-                            </div>
+                        <div class="flex">
+                            <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
+                            <button class="btn btn-primary" id="BtnSaveCliente">Enviar</button>
                         </div>
                     </form>
                 </div> 

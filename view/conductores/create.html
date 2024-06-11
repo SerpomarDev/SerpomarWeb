@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
 	<!-- Style css -->
     <link href="/css/style-Dash.css" rel="stylesheet">
-
+    <link href="/css/pages.css" rel="stylesheet" />
     <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 
@@ -37,8 +37,8 @@
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
-							<div class="dashboard_bar">
-                                Crear Conductor
+                            <div class="header-left">
+                                <p class="title">CREAR CONDUCTOR</p>
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
@@ -48,9 +48,9 @@
 									<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
 								</div>
 							</li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
 								<a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a>
-							</li>
+							</li> -->
                         </ul>
                     </div>
 				</nav>
@@ -63,55 +63,41 @@
 
 
         <div class="content-body">
-        <div id="content" class="p-4 p-md-5 pt-5">
-            <div class="container">
-                <form id="createConductor" method="POST" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" required>
-                            </div>
+            <div id="content" class="p-4 p-md-0 pt-5">
+                <div class="container-fluid main-container">
+                    <form id="createConductor" method="POST" enctype="multipart/form-data" class="form">
+                        <p class="message">Complete los campos para crear un nuevo conductor.</p>
+                        <div class="flex">
+                            <label>
+                                <input type="text" class="input" id="nombre" name="nombre" required>
+                                <span>Nombre</span>
+                            </label>
+                            <label>
+                                <input type="number" class="input" id="identificacion" name="identificacion" required>
+                                <span>Identificación</span>
+                            </label>
                         </div>
-            
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Identificacion</label>
-                                <input type="number" class="form-control" id="identificacion" name="identificacion" required>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Telefono</label>
-                                <input type="number" class="form-control" id="telefono" name="telefono" required>
-                            </div>
-                        </div>
-            
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email">
-                            </div>
-                        </div>
-                    </div><br>
-            
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-between">
-                            <button  class="btn btn-primary" id="BtnSaveConductor">Enviar</button>
+                        <div class="flex">
+                            <label>
+                                <input type="number" class="input" id="telefono" name="telefono" required>
+                                <span>Teléfono</span>
+                            </label>
+                            <label>
+                                <input type="email" class="input" id="email" name="email">
+                                <span>Email</span>
+                            </label>
+                        </div><br>
+                        <div class="flex">
+                            <button class="btn btn-primary" id="BtnSaveConductor">Enviar</button>
                             <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="container">
-                <div id="conductores"></div>
+                    </form>
+                </div> 
+                <div class="container">
+                    <div id="conductores"></div>
+                </div>
             </div>
         </div>
-	</div>
-   
 
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
