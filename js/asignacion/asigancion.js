@@ -78,7 +78,7 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
             return{
               'data-cell-content': cell,
               onclick:()=>addordenSer(row.cells[1].data),
-              'style': 'cursor: pointer; background-color: #ffcccc;',
+              'style': 'cursor: pointer; color: #6495ED;  font-weight: bold;',
             }
         }
       }
