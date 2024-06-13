@@ -16,6 +16,7 @@ fetch(`https://esenttiapp-production.up.railway.app/api/cargaredit/${id}`)
     .then((data) => {
       if (data.length > 0) {
         const preventa = data[0];
+        document.getElementById("id").value = preventa.id;
           document.getElementById("id_placa").value = preventa.id_placa;
           document.getElementById("placa").value = preventa.placa;
           document.getElementById("id_conductor").value = preventa.id_conductor;
@@ -25,8 +26,8 @@ fetch(`https://esenttiapp-production.up.railway.app/api/cargaredit/${id}`)
           document.getElementById("eje").value = preventa.eje;
           document.getElementById("tipologia").value = preventa.tipologia;
           document.getElementById("id_aliado").value = preventa.id_aliado;
-          document.getElementById("aliado").value = preventa.aliado;
-          document.getElementById("celular").value = preventa.celular;
+          // document.getElementById("aliado").value = preventa.aliado;
+          // document.getElementById("celular").value = preventa.celular;
           document.getElementById("estado_puerto").value = preventa.puerto;
           document.getElementById("proyecto").value = preventa.proyecto;
           document.getElementById("esenttia").value = preventa.esenttia;

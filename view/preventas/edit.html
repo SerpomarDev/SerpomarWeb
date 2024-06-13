@@ -73,17 +73,17 @@
         <div id="content" class="p-4 p-md-5 pt-5">
             <div class="container">
                 <form id="PreventaEdit" method="PUT" enctype="multipart/form-data">
-                    <input type="hidden" name="id_aliado" id="id_aliado" disabled />
+                    <input type="text" name="id" id="id" disabled />
         
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <!-- <label class="form-label">Placa</label>
-                                <input type="text" id="placa" name="placa" class="form-control" /> -->
-                                <label class="form-label" for="">Placa</label>
+                                <label class="form-label">Placa</label>
+                                <input type="text" id="placa" name="placa" class="form-control" />
+                                <!-- <label class="form-label" for="">Placa</label>
                                 <select name="id_placa" id="id_placa" class="form-control" required>
                                     <option value="">Seleccione Placa</option>
-                                </select>
+                                </select> -->
                             </div>
                         </div>
                     </div>
@@ -105,7 +105,6 @@
                     </div>
         
                     <div class="row"> 
-                        <!-- <input type="hidden" name="id_conductor" id="id_conductor" disabled /> -->
                         <div class="col-md-4">
                             <div class="form-group">
                                 <!-- <label class="form-label">Conductor</label>
@@ -132,7 +131,7 @@
                         </div>
                     </div>
         
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Aliado</label>
@@ -146,10 +145,11 @@
                                 <input type="text" class="form-control" id="celular" readonly>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
+
                     <div class="row">
-        
-                        <div class="col-md-3">
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="" class="form-label">Estado en Puerto</label>
                                 <select id="estado_puerto" name="estado_puerto" class="form-control" required>
@@ -161,7 +161,7 @@
                             </div>
                         </div>
         
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label" for="">Proyectos:</label>
                                 <select name="proyecto" id="proyecto" class="form-control" required>
@@ -171,7 +171,11 @@
                                 </select>
                             </div>
                         </div>
-        
+
+                    </div>
+
+                    <div class="row"> 
+            
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="form-label" for="">Esenttia:</label>
@@ -193,11 +197,8 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
         
-                    <div class="row">
-        
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="" class="form-label">Estado</label>
                                 <select id="estado" name="estado" class="form-control" required>
@@ -210,7 +211,7 @@
                             </div>
                         </div>
         
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="" class="form-label">Flota</label>
                                 <select id="flota" name="flota" class="form-control" required>
