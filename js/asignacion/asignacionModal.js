@@ -30,6 +30,6 @@ document.getElementById("saveAsignacion").addEventListener("submit", function (e
 function time() {
   document.getElementById("saveAsignacion").reset();
   setTimeout(() => {
-    window.location.href = ``;
+    window.location.href = `/view/contenedor/create.html`;
   }, 1500);
 }
