@@ -21,8 +21,7 @@ new gridjs.Grid({
             if(cell){
                 return{
                   'data-cell-content': cell,
-                  onclick:()=>showOrdenService(row.cells[0].data),
-                  'style': 'cursor: pointer; color: #6495ED;  font-weight: bold;',
+                  'style': 'color: #6495ED;  font-weight: bold;',
                 }
             }
         }
@@ -91,9 +90,6 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('ordenService'));
 
-function showOrdenService(id){
-    window.location.href = `/view/contenedor/create.html?id=${id}`
-}
 
 function actualizarEstado(id){
     actualizarEstado(id)

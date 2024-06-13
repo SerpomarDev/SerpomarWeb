@@ -127,7 +127,7 @@ function tableByClt(id_primario){
       }
     },{
       name:'Estado Operación',
-      hidden:false,
+      hidden:true,
       formatter: (cell, row) => {
         return gridjs.h('select', {
             onchange: (e) => {

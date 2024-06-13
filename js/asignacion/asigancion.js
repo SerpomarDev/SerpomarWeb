@@ -87,7 +87,7 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
       }
     },"Tipo transporte","Tipo operacion","Fecha cita","Hora cita","Fecha documental","Cutoff fisico","Fecha propuesta",{
     name:'Acción',
-    hidden:false,
+    hidden:true,
       formatter:(cell,row)=>{
         return gridjs.h('button',{
           className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
@@ -164,7 +164,7 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
     }
   },"Tipo transporte","Tipo operacion","Fecha cita","Hora cita","Fecha eta","Fecha levante","Libre hasta","Bodegaje hasta","Fecha Propuesta",{
     name:'Acción',
-    hidden:false,
+    hidden:true,
       formatter:(cell,row)=>{
         return gridjs.h('button',{
           className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
