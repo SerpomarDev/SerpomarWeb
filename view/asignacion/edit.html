@@ -77,7 +77,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Placa</label>
-                                <input type="text" id="placa" class="form-control" readonly="readonly" required />
+                                <!-- <input type="text" id="placa" class="form-control" required /> -->
+                                <select name="id_placa" id="id_placa" class="form-control" required>
+                                    <option value="">Seleccione la ruta</option>
+                                </select>
                             </div>
                         </div>
         
@@ -110,7 +113,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="" class="form-label">Ruta</label>
-                                <select name="id_ruta" id="id_ruta" required>
+                                <select name="id_ruta" id="id_ruta" class="form-control" required>
                                     <option value="">Seleccione la ruta</option>
                                 </select>
                             </div>
@@ -205,6 +208,7 @@
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
     <script type="text/javascript" src="/js/asignacion/editAsignacionCl.js"></script>
     <script type="text/javascript" src="/js/cargar/cargarRutaClientesV.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarPlaca.js"></script>
     <script type="text/javascript" src="/js/cargar/cargarDestino.js"></script>
     <script type="text/javascript" src="/js/cargar/cargarTipoServicio.js"></script>
     <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>

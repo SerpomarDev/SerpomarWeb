@@ -1,9 +1,11 @@
 let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
+
 let id = urlParams.get("id");
+let id1 = urlParams.get("id1");
 
 
-fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`)
+fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}/${id1}`)
 .then((response)=>{
     if(!response.ok){
       throw new Error("Error al obtener los datos de la API");
@@ -13,6 +15,7 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`)
 .then((data)=>{
     if(data.length > 0) {
       const contenedor = data[0];
+      document.getElementById('id_asignacion_contenedor').value = contenedor.id_asig_cont;
         document.getElementById('id_contenedor').value = contenedor.id;
         document.getElementById('id_tipo_contenedor').value = contenedor.tipo;
         document.getElementById('nu_serie').value = contenedor.numero;
@@ -103,7 +106,7 @@ document.getElementById('saveOrdenServicio').addEventListener('submit',function(
       }
     }],
     server: {
-        url: `https://esenttiapp-production.up.railway.app/api/showordenerv/${id}`,
+        url: `https://esenttiapp-production.up.railway.app/api/showordenerv/${id1}`,
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((

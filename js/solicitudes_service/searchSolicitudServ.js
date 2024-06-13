@@ -6,16 +6,16 @@ new gridjs.Grid({
             placeholder: '🔍 Buscar...'
         }
     },
-    pagination: {
-        limit:7,
-        enabled: true,
-    },
+    // pagination: {
+    //     limit:7,
+    //     enabled: true,
+    // },
     resizable: true,
     sort: false,
     columns: [
         {
             name:"#",
-            hidden:true,
+            hidden:false,
         },{
             name:'SP',
             attributes: (cell,row)=>{
@@ -70,6 +70,7 @@ new gridjs.Grid({
         },
     ],
     }],
+    // sort: true,
     server: {
         url: "https://esenttiapp-production.up.railway.app/api/showsolicitudserv",
         then: (data) => {
