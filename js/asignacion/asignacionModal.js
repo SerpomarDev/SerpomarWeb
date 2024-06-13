@@ -20,16 +20,31 @@ document.getElementById("saveAsignacion").addEventListener("submit", function (e
         text: " La asignacion se ha creado de forma exitosa.",
         icon: "success"
       });
-      time();
+      setTimeout(() => {
+        history.back();
+      }, 1500);
     })
     .catch((error) => {
       console.error("Error:", error);
     });
 });
 
-function time() {
-  document.getElementById("saveAsignacion").reset();
-  setTimeout(() => {
-    window.location.href = `/view/contenedor/create.html`;
-  }, 1500);
-}
+// function time() {
+//   document.getElementById("saveAsignacion").reset();
+//   setTimeout(() => {
+//     window.location.href = `onclick="history.back()"`;
+//   }, 1500);
+// }
+
+document.querySelector(".modal-look .close").addEventListener("click", function() {
+  document.querySelector(".modal-overlay").style.display = "none";
+  history.back();
+});
+
+// // Opcional: manejar el cierre del modal al presionar la tecla ESC
+// document.addEventListener("keydown", function(event) {
+//   if (event.key === "Escape") {
+//     document.querySelector(".modal-overlay").style.display = "none";
+//     history.back();
+//   }
+// });
