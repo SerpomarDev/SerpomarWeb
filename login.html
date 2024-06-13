@@ -1,62 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SerpoMax</title>
-    <link rel="stylesheet" type="text/css" href="./style.css" />
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión - NODHUS</title>
+    <link rel="stylesheet" href="./css/stylesv2.css">
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="forms-container">
-        <div class="signin-signup">
-          <form id="login-form" class="sign-in-form">
-            <img src="./img/logo.png" alt="Logo" class="logo"> <br><br><br>
-            <h2 class="title">INICIAR SESIÓN</h2> <br>
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="email" placeholder="Email" name="email" id="username" required />
+</head>
+<body>
+    <div class="overlay">
+        <img src="./img/logow.png" alt="Serpomar Logística" class="logo">
+        <div class="container">
+            <div class="content">
+                <div class="tagline">
+                    Facilitamos tu experiencias <br><strong>logísticas multimodal</strong>
+                </div>
+                <div class="description">
+                    Información al alcance de tus manos.
+                </div>
             </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" id="password" placeholder="Password" required />
-            </div> <br>
-            <button type="submit" class="btn solid">INGRESAR</button>
-          </form>
-          <form action="" class="sign-up-form">
-            <h2 class="title">CREAR CUENTA</h2>
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Nombre" />
+            <div class="right-side">
+                <div class="login-container">
+                    <h2>Inicio de Sesión</h2>
+                    <div class="logo-container">
+                        <img src="./img/nodhus.png" alt="NODHUS" class="nodhus-logo">
+                    </div>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <input type="email" placeholder="Email..." name="email" id="username" required class="input-field">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" placeholder="Password..." required class="input-field">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="login-button">ACCEDER</button>
+                        </div>
+                        <div class="forgot-password">
+                            ¿Olvidaste la contraseña? <a href="#">Clic aquí</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="input-field">
-              <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Contraseña" />
-            </div>
-            <input type="submit" value="REGISTRARME" class="btn solid" />
-            <p class="social-text">O con otra plataforma</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-            </div>
-          </form>
         </div>
-      </div>
-      <div class="panels-container">
-        <div class="panel left-panel">
-          <img src="./img/log.svg" class="image" alt="">
-        </div>
-      </div>
     </div>
     <script src="./app.js"></script>
-  </body>
+</body>
 </html>
