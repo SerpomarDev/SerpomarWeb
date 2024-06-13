@@ -150,7 +150,7 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
     hidden:true,
   },{
     name:"id_asignacion",
-    hidden:false
+    hidden:true
   },"Cliente","Placa","Conductor",{
     name:"Numero contenedor",
     attributes: (cell,row)=>{
