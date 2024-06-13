@@ -19,7 +19,7 @@ document.getElementById('GeneReportExcelPreliq').addEventListener('click', funct
         // Crear un enlace <a> para descargar el reporte
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'Liquidacion.xlsx';
+        a.download = 'LiquidacionContenedores.xlsx';
     
         // Agregar el enlace al documento y hacer clic en él para descargar el reporte
         document.body.appendChild(a);
