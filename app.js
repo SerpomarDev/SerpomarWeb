@@ -9,7 +9,8 @@ const credentials = {
   "Susana.negrette@serpomar.com": "Sserpomar2024",
   "henry.goethe@serpomar.com": "Hserpomar2024",
   "esenttiainhouse@serpomar.com": "Eserpomar2024",
-  "Carlos.carrasquilla@serpomar.com": "Cserpomar2024"
+  "Carlos.carrasquilla@serpomar.com": "Cserpomar2024",
+  "experiencia@h3max.com": "H3max2024"
 };
 
 document.getElementById('login-form').addEventListener('submit', function(event) {

@@ -8,7 +8,12 @@ function loadSidebar() {
     }
 
     fetch('/componentes/sidebar.html')
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.text();
+        })
         .then(data => {
             document.querySelector('#sidebar-container').innerHTML = data;
             console.log('Sidebar loaded'); // Mensaje de depuración
@@ -20,18 +25,19 @@ function loadSidebar() {
                 // Oculta todo el menú por defecto
                 $('#menu > li').hide();
 
-                // Mostrar siempre Dashboard y Cerrar sesión
-                $('#menu > li').each(function() {
-                    var text = $(this).find('.nav-text').text().trim();
-                    if (text === 'Dashboard' || text === 'Cerrar sesión') {
-                        $(this).show();
-                    }
-                });
-
                 // Verifica si hay un usuario autenticado
                 if (loggedInUser) {
                     // Mostrar menús según el usuario autenticado
                     switch (loggedInUser) {
+                        case 'experiencia@h3max.com':
+                            // Mostrar solo Inicio y Tableros en la sección YARA
+                            $('#menu > li').each(function() {
+                                var text = $(this).find('.nav-text').text().trim();
+                                if (text === 'Inicio' || text === 'Tableros' || text === 'Cerrar sesión') {
+                                    $(this).show();
+                                }
+                            });
+                            break;
                         case 'henry.goethe@serpomar.com':
                         case 'susana.negrette@serpomar.com':
                         case 'Carlos.carrasquilla@serpomar.com':
@@ -76,7 +82,6 @@ function loadSidebar() {
                         localStorage.removeItem('loggedInUser');
                         window.location.href = '/login.html'; // Redirige a la página de inicio de sesión
                     });
-
 
                     $('.has-arrow').each(function() {
                         var $this = $(this);
