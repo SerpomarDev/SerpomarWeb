@@ -1,3 +1,15 @@
+// Colores similares a los de la imagen proporcionada
+const colors = {
+    blue: '#006aff',
+    lightBlue: '#00c8ff',
+    yellow: '#ffce56',
+    green: '#28a745',
+    orange: '#fd7e14',
+    red: '#dc3545',
+    teal: '#20c997',
+    purple: '#6f42c1'
+};
+
 // Gráfico de líneas
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
@@ -7,13 +19,13 @@ var myChart = new Chart(ctx, {
         datasets: [{
             label: '2023',
             data: [246, 288, 200, 250, 259, 245, 259, 159, 144, 291, 168, 310],
-            borderColor: 'rgba(54, 162, 235, 1)',
+            borderColor: colors.blue,
             borderWidth: 2,
             fill: false
         }, {
             label: '2024',
             data: [304, 281, 243, 211, 94],
-            borderColor: 'rgba(255, 99, 132, 1)',
+            borderColor: colors.lightBlue,
             borderWidth: 2,
             fill: false
         }]
@@ -45,15 +57,15 @@ var pieChart = new Chart(ctxPie, {
         datasets: [{
             data: [137, 119, 18, 1, 15, 12, 5, 2, 5],
             backgroundColor: [
-                '#FF6384',
-                '#36A2EB',
-                '#FFCE56',
-                '#4BC0C0',
-                '#9966FF',
-                '#FF9F40',
-                '#FF6384',
-                '#36A2EB',
-                '#FFCE56'
+                colors.blue,
+                colors.lightBlue,
+                colors.yellow,
+                colors.green,
+                colors.orange,
+                colors.red,
+                colors.teal,
+                colors.purple,
+                colors.yellow
             ],
             borderWidth: 1
         }]
