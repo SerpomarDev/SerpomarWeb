@@ -151,6 +151,7 @@ function tableByClt(id_primario){
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((contenedorEx) => [
                   contenedorEx.id,
+                  contenedorEx.id_cliente,
                   contenedorEx.do_sp,
                   contenedorEx.numero_co,
                   contenedorEx.estado_operacion,
