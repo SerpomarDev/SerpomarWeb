@@ -71,6 +71,9 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
     {
       name:'asignacion_contenedor',
       hidden:true,
+    },{
+      name:"id_asignacion",
+      hidden:false,
     },"Cliente","Placa","Conductor",{
       name:"Numero contenedor",
       attributes: (cell,row)=>{
@@ -88,7 +91,7 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
       formatter:(cell,row)=>{
         return gridjs.h('button',{
           className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-          onClick: () => editAsignacion(row.cells[0].data)
+          onClick: () => editAsignacion(row.cells[2].data)
         },'Editar')
       }
   }],
@@ -101,6 +104,7 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
                 return data.map((asigContEx) => [
                   asigContEx.id_contenedor,
                   asigContEx.asignacion_contenedor,
+                  asigContEx.id_asignacion,
                   asigContEx.cliente,
                   asigContEx.placa,
                   asigContEx.conductor,
@@ -144,6 +148,9 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
   },{
     name:'asignacion_contenedor',
     hidden:true,
+  },{
+    name:"id_asignacion",
+    hidden:false
   },"Cliente","Placa","Conductor",{
     name:"Numero contenedor",
     attributes: (cell,row)=>{
@@ -161,7 +168,7 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
       formatter:(cell,row)=>{
         return gridjs.h('button',{
           className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-          onClick: () => editAsignacion(row.cells[0].data)
+          onClick: () => editAsignacion(row.cells[2].data)
         },'Editar')
       }
   }],
@@ -173,6 +180,7 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
               return data.map((asigContImp) => [
                 asigContImp.id_contenedor,
                 asigContImp.asignacion_contenedor,
+                asigContImp.id_asignacion,
                 asigContImp.cliente,
                 asigContImp.placa,
                 asigContImp.conductor,
