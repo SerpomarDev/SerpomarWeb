@@ -275,11 +275,11 @@
 					datasets: [{
 						backgroundColor: [
 							"#496ecc",  // Azul oscuro, manteniendo el que ya es azul
-							"#4a86e8",  // Azul claro
-							"#3173ac",  // Azul medio
-							"#6ca0dc"   // Azul muy claro
+							"#496ecc",  // Azul claro
+							"#4a86e8",  // Azul medio
+							"#4a86e8"   // Azul muy claro
 						],
-						data: [50, 25, 15, 10]
+						data: [25, 25, 10, 10]
 					}]
 				},
 				options: {
