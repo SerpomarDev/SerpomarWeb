@@ -13,6 +13,7 @@ document.getElementById("saveAsignacion").addEventListener("submit", function (e
       if (!response.ok) {
         throw new Error("Error al enviar los datos del formulario");
       }
+      return response.json();
     })
     .then((data) => {
       Swal.fire({
@@ -29,22 +30,8 @@ document.getElementById("saveAsignacion").addEventListener("submit", function (e
     });
 });
 
-// function time() {
-//   document.getElementById("saveAsignacion").reset();
-//   setTimeout(() => {
-//     window.location.href = `onclick="history.back()"`;
-//   }, 1500);
-// }
 
 document.querySelector(".modal-look .close").addEventListener("click", function() {
   document.querySelector(".modal-overlay").style.display = "none";
   history.back();
 });
-
-// // Opcional: manejar el cierre del modal al presionar la tecla ESC
-// document.addEventListener("keydown", function(event) {
-//   if (event.key === "Escape") {
-//     document.querySelector(".modal-overlay").style.display = "none";
-//     history.back();
-//   }
-// });
