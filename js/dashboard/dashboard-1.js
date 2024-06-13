@@ -279,7 +279,7 @@
 							"#3173ac",  // Azul medio
 							"#6ca0dc"   // Azul muy claro
 						],
-						data: [40, 35, 30, 20]
+						data: [50, 25, 15, 10]
 					}]
 				},
 				options: {

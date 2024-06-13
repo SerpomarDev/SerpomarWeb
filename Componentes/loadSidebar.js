@@ -33,7 +33,7 @@ function loadSidebar() {
                             // Mostrar solo Inicio y Tableros en la sección YARA
                             $('#menu > li').each(function() {
                                 var text = $(this).find('.nav-text').text().trim();
-                                if (text === 'Inicio' || text === 'Tableros' || text === 'Cerrar sesión') {
+                                if (text === 'Presentación' || text === 'Tableros' || text === 'Cerrar sesión') {
                                     $(this).show();
                                 }
                             });
