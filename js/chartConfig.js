@@ -1,7 +1,7 @@
 // Colores similares a los de la imagen proporcionada
 const colors = {
-    blue: '#006aff',
-    lightBlue: '#00c8ff',
+    blue: '#007bff',
+    lightBlue: '#36a2eb',
     yellow: '#ffce56',
     green: '#28a745',
     orange: '#fd7e14',
@@ -48,7 +48,7 @@ var myChart = new Chart(ctx, {
     }
 });
 
-// Gráfico de pastel
+// Gráfico de pastel con efecto 3D
 var ctxPie = document.getElementById('pieChart').getContext('2d');
 var pieChart = new Chart(ctxPie, {
     type: 'pie',
@@ -67,7 +67,10 @@ var pieChart = new Chart(ctxPie, {
                 colors.purple,
                 colors.yellow
             ],
-            borderWidth: 1
+            borderColor: '#ffffff',
+            borderWidth: 2,
+            hoverOffset: 10,
+            borderAlign: 'inner'
         }]
     },
     options: {
@@ -78,7 +81,40 @@ var pieChart = new Chart(ctxPie, {
                         return tooltipItem.label + ': ' + tooltipItem.raw;
                     }
                 }
+            },
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    fontColor: '#333',
+                    fontSize: 14,
+                    padding: 20
+                }
             }
+        },
+        layout: {
+            padding: {
+                left: 10,
+                right: 10,
+                top: 10,
+                bottom: 10
+            }
+        }
+    }
+});
+
+// Aplicar sombras para simular efecto 3D
+Chart.plugins.register({
+    beforeDraw: function(chart) {
+        if (chart.config.type === 'pie') {
+            var ctx = chart.chart.ctx;
+            ctx.save();
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+            ctx.shadowBlur = 15;
+            ctx.shadowOffsetX = 3;
+            ctx.shadowOffsetY = 3;
+            ctx.fill();
+            ctx.restore();
         }
     }
 });

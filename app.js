@@ -22,10 +22,16 @@ document.getElementById('login-form').addEventListener('submit', function(event)
 
   // Comprueba si el nombre de usuario existe y si la contraseña coincide
   if (credentials[username] && credentials[username] === password) {
-      // Guarda el usuario en el localStorage
-      localStorage.setItem('loggedInUser', username);
-      window.location.href = './index.html'; // Redirige al usuario a index.html si las credenciales son correctas
+    // Guarda el usuario en el localStorage
+    localStorage.setItem('loggedInUser', username);
+    
+    // Redirige al usuario a la página adecuada
+    if (username === "experiencia@h3max.com") {
+      window.location.href = './index_yara.html';
+    } else {
+      window.location.href = './index.html';
+    }
   } else {
-      alert('Usuario o contraseña incorrectos');
+    alert('Usuario o contraseña incorrectos');
   }
 });
