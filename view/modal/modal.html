@@ -101,7 +101,7 @@
     <div class="modal-overlay">
         <div class="modal-look">
             <span class="close">&times;</span>
-            <h2>Asignación Modal</h2>
+            <h2 class="h2c">Asignación Contenedor</h2>
              <form id="saveAsignacion" method="POST" enctype="multipart/form-data">
                         <div class="modal-body">
                            
@@ -200,10 +200,16 @@
                                     </div>
                                 </div>
                         </div>
-                    <div class="modal-footer">
+                    <!-- <div class="modal-footer">
                             <button  class="btn btn-primary" onclick="history.back()">Volver</button>
                             <button type="submit" class="btn btn-primary" id="BtnSavetAsignacion">Guardar</button>
+                    </div> -->
 
+                    <div class="modal-footer">
+                        <div class="col-12 d-flex justify-content-between">
+                            <button  class="btn btn-primary" onclick="history.back()">Volver</button>
+                            <button type="submit" class="btn btn-primary" id="BtnSavetAsignacion">Guardar</button>
+                        </div>
                     </div>
             </form>
         </div>

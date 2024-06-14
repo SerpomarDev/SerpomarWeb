@@ -4,33 +4,33 @@ let id = urlParams.get("id");
 
 liquidarSp(id)
 
-function actualizarEstado(idOperacion,nuevoEstado) {
-  fetch(`https://esenttiapp-production.up.railway.app/api/actualizarestadocontenedor/${nuevoEstado}/${idOperacion}`, {
-      method: 'PUT',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        estado: nuevoEstado,
-        id: idOperacion
-      }),
-  })
-  .then(response => response.json())
-  .then(data => {
-      console.log('Estado actualizado con éxito:', data);
-      Swal.fire({
-        title: "¡Buen trabajo!",
-        text: "Estado actualizado!",
-        icon: "success"
-    });
-  })
-  .then((response)=>{
-    time()
-  })
-  .catch((error) => {
-      console.error('Error al actualizar el estado:', error);
-  });
-}
+// function actualizarEstado(idOperacion,nuevoEstado) {
+//   fetch(`https://esenttiapp-production.up.railway.app/api/actualizarestadocontenedor/${nuevoEstado}/${idOperacion}`, {
+//       method: 'PUT',
+//       headers: {
+//           'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         estado: nuevoEstado,
+//         id: idOperacion
+//       }),
+//   })
+//   .then(response => response.json())
+//   .then(data => {
+//       console.log('Estado actualizado con éxito:', data);
+//       Swal.fire({
+//         title: "¡Buen trabajo!",
+//         text: "Estado actualizado!",
+//         icon: "success"
+//     });
+//   })
+//   .then((response)=>{
+//     time()
+//   })
+//   .catch((error) => {
+//       console.error('Error al actualizar el estado:', error);
+//   });
+// }
 
 cargarValores(id)
 
