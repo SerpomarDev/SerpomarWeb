@@ -1,0 +1,355 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* styles.css */
+#sidebar {
+    height: 0;
+    transition: height 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+#sidebar.open {
+    height: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 25px;
+    background-color: rgba(0, 0, 0, 0.7); /* Color negro con transparencia */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* Aumentar la altura del header */
+    z-index: 1000;
+}
+
+.logo {
+    cursor: pointer;
+    height: 60px; /* Ajustar el tamaño del logo según la nueva altura del header */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin-right: 20px;
+    flex-grow: 1;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    padding: 5px 0; /* Ajustar el relleno para el espaciado */
+}
+
+nav ul li a.active::after {
+    content: '';
+    display: block;
+    width: 20px; /* Ajustar el ancho para una subraya más corta */
+    height: 2px;
+    background-color: red;
+    position: absolute;
+    bottom: -5px;
+    left: 50%; /* Centrar la subraya */
+    transform: translateX(-50%);
+}
+
+.profile-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #00aaff;
+    padding: 25px 30px; /* Ajustar el relleno para el espaciado */
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.3s;
+    flex-shrink: 0;
+}
+
+.profile-link:hover {
+    background-color: #007acc;
+    transform: translateY(-2px);
+}
+
+/* Estilos para el sidebar */
+.dlabnav {
+    position: fixed;
+    top: 80px; /* Debajo del header */
+    left: 0;
+    width: 250px;
+    height: 0; /* Inicia cerrado */
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.7); /* Color negro con transparencia */
+    z-index: 900; /* Asegúrate de que el z-index sea menor que el del header */
+    transition: height 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.dlabnav.open {
+    height: calc(100% - 80px); /* Abierto completamente */
+}
+
+.dlabnav-scroll {
+    height: 100%;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE y Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.dlabnav-scroll::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari y Opera */
+}
+
+/* Estilos para el sidebar */
+.dlabnav {
+    position: fixed;
+    top: 80px; /* Debajo del header */
+    left: 0;
+    width: 275px;
+    height: 0; /* Inicia cerrado */
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.7); /* Color negro con transparencia */
+    z-index: 900; /* Asegúrate de que el z-index sea menor que el del header */
+    transition: height 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.dlabnav.open {
+    height: calc(100% - 80px); /* Abierto completamente */
+}
+
+.dlabnav-scroll {
+    height: 100%;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE y Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.dlabnav-scroll::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari y Opera */
+}
+
+/* Estilos para el menú */
+#menu {
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+}
+
+#menu li {
+    padding: 10px 20px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#menu li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+#menu li a .nav-text {
+    margin-left: 10px;
+}
+
+#menu li a i {
+    font-size: 20px; /* Tamaño de los iconos */
+    margin-right: 10px;
+    color: #00aaff; /* Color de los iconos */
+}
+
+#menu li a:hover {
+    background-color: rgba(52, 73, 94, 0.8); /* Fondo más oscuro al pasar el ratón */
+    transform: translateX(5px); /* Desplazamiento a la derecha al pasar el ratón */
+}
+
+#menu li.active > a {
+    background-color: #2980b9;
+    font-weight: bold; /* Texto en negrita para el elemento activo */
+    border-radius: 8px;
+}
+
+#menu .dropdown > ul {
+    display: none;
+    padding-left: 20px;
+}
+
+#menu .dropdown.open > ul {
+    display: block;
+}
+
+/* Ajustar el main para que no se superponga con el header */
+
+.hero {
+    position: relative;
+    height: 750px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    padding: 0 20px;
+    overflow: hidden;
+    z-index: 0; /* Asegurar que el z-index sea menor que el del header */
+    background: url('img/IMG_8988.jpg') no-repeat center center fixed; /* Imagen de fondo */
+    background-size: cover; /* Ajustar el tamaño de la imagen de fondo */
+}
+
+.hero .slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300%;
+    height: 100%;
+    display: flex;
+    animation: slide 15s infinite;
+    z-index: 1;
+}
+
+.hero .slide {
+    width: 33.3333%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* Ajustar opacidad según sea necesario */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    background-color: rgba(0, 0, 0, 0.304);
+    padding: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.hero-content .messages {
+    display: flex;
+    width: 300%;
+    animation: slide 15s infinite;
+}
+
+.hero-content .message {
+    width: 33.3333%;
+    flex-shrink: 0;
+}
+
+.hero-content h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero-content h2 {
+    font-size: 24px;
+    color: #00aaff;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.hero-content .underline {
+    width: 50px;
+    height: 3px;
+    background-color: red;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #eaeaea;
+}
+
+.feature {
+    flex: 1;
+    margin: 0 10px;
+    background-color: #00aaff;
+    text-align: center;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.feature a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+    border-bottom: 2px solid red;
+    transition: background-color 0.3s;
+}
+
+.feature a:hover {
+    background-color: #007acc;
+}
+
+.footer-logo {
+    display: block;
+    margin: 20px auto;
+    height: 50px;
+    opacity: 0.5;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    33% {
+        transform: translateX(0);
+    }
+    40% {
+        transform: translateX(-33.3333%);
+    }
+    66% {
+        transform: translateX(-33.3333%);
+    }
+    73% {
+        transform: translateX(-66.6666%);
+    }
+    100% {
+        transform: translateX(-66.6666%);
+    }
+}
