@@ -6,8 +6,71 @@ body, html {
     font-family: 'Roboto', sans-serif;
 }
 
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    height: 70px;
+    pointer-events: none;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    pointer-events: auto;
+}
+
+.circle {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background-color: #007BFF;
+    margin-right: 10px;
+    position: relative;
+}
+
+.circle::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #007BFF;
+    transform: translate(-50%, -50%);
+    animation: pulse 1s linear infinite;
+}
+
+@keyframes pulse {
+    from {
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 1;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1.8);
+        opacity: 0;
+    }
+}
+
+.title {
+    font-size: 32px;
+    color: #007BFF;
+    font-weight: 700;
+    margin: 0;
+    z-index: 1001;
+    pointer-events: auto;
+    padding: 20px 20px;
+}
+
 .main-container {
     padding: 20px;
+    padding-top: 100px;
 }
 
 .form {
@@ -18,49 +81,6 @@ body, html {
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
-}
-
-.title {
-    font-size: 32px;
-    color: #007BFF;
-    font-weight: 700;
-    margin-bottom: 20px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding-left: 40px;
-}
-
-.title::before, .title::after {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    left: 0;
-    background-color: #007BFF;
-}
-
-.title::before {
-    width: 18px;
-    height: 18px;
-}
-
-.title::after {
-    width: 18px;
-    height: 18px;
-    animation: pulse 1s linear infinite;
-}
-
-@keyframes pulse {
-    from {
-        transform: scale(0.9);
-        opacity: 1;
-    }
-    to {
-        transform: scale(1.8);
-        opacity: 0;
-    }
 }
 
 .message {
@@ -82,13 +102,13 @@ body, html {
 .flex label {
     flex: 1 1 45%;
     min-width: 200px;
-    margin-bottom: 0; /* Removed margin-bottom */
+    margin-bottom: 0;
 }
 
 .form label {
     position: relative;
     width: 100%;
-    margin-bottom: 20px; /* Add uniform margin-bottom */
+    margin-bottom: 20px;
 }
 
 .form label .input {
@@ -171,49 +191,48 @@ body, html {
 }
 
 .file-label {
-  display: flex;
-  padding: 0.75rem 1.5rem;
-  background-color: #488aec;
-  color: #ffffff;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  font-weight: 700;
-  text-align: center;
-  text-transform: uppercase;
-  vertical-align: middle;
-  align-items: center;
-  border-radius: 0.5rem;
-  user-select: none;
-  gap: 0.75rem;
-  box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
-  transition: all .6s ease;
-  cursor: pointer; /* Para mostrar el cursor de mano */
+    display: flex;
+    padding: 0.75rem 1.5rem;
+    background-color: #488aec;
+    color: #ffffff;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    align-items: center;
+    border-radius: 0.5rem;
+    user-select: none;
+    gap: 0.75rem;
+    box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
+    transition: all .6s ease;
+    cursor: pointer;
 }
 
 .file-label:hover {
-  box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
+    box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
 }
 
 .file-label:focus, .file-label:active {
-  opacity: .85;
-  box-shadow: none;
+    opacity: .85;
+    box-shadow: none;
 }
 
 .file-label svg {
-  width: 1.25rem;
-  height: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
 }
 
-/* Esconder el input de tipo file pero mantener su funcionalidad */
 .file-label .input {
-  display: none;
+    display: none;
 }
 
-.Yara_logo{
+.Yara_logo {
     height: 75px;
     padding-right: 25px;
 }
 
-.h2c{
-text-align: center;
+.h2c {
+    text-align: center;
 }

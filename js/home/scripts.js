@@ -1,5 +1,5 @@
 $(function() {
-    $("#layout-placeholder").load("Componentes/layout.html", function() {
+    $("#layout-placeholder").load("/Componentes/layout.html", function() {
         initScripts(); // Ejecuta los scripts necesarios después de cargar el componente
     });
 });
