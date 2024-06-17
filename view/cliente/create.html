@@ -2,49 +2,33 @@
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SerpomarWeb</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=0.2">
+	<!-- PAGE TITLE HERE -->
+    <title>Nodhus</title>
+    <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet" />
-    <link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-    <link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
-    <link href="/css/style-Dash.css" rel="stylesheet">
-    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 </head>
 <body>
-    <!-- Contenedor para el preloader -->
-    <div id="preloader-container"></div>
-    <!-- Contenedor para el nav-header -->
-    <div id="navheader-container"></div>
+
+    <div id="layout-placeholder"></div>
+    
     <div id="main-wrapper">
         <div class="header">
-            <div class="header-content">
-                <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-                            <div class="header-left">
-                                <p class="title">CREAR CLIENTE</p>
-                            </div>
-                        </div>
-                        <ul class="navbar-nav header-right">
-                            <li class="nav-item">
-                                <div class="input-group search-area">
-                                    <input type="text" id="search-input" class="form-control" placeholder="Buscar...">
-                                    <span class="input-group-text"><a href="javascript:void(0)" id="search-button"><i class="flaticon-381-search-2"></i></a></span>
-                                </div>
-                            </li>
-                            <!-- <li class="nav-item">
-                                <a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a>
-                            </li> -->
-                        </ul>
-                    </div>
-                </nav>
+            <div class="title-container">
+                <div class="circle"></div>
+                <h1 class="title">CREAR CLIENTE</h1>
             </div>
         </div>
-        <div id="sidebar-container"></div>
-        <div class="content-body">
+        
+ 
+        <div class="margenform">
             <div id="content" class="p-4 p-md-0 pt-5">
                 <div class="container-fluid main-container">
                     <form id="createCliente" method="POST" enctype="multipart/form-data" class="form">
@@ -76,27 +60,20 @@
                     </form>
                 </div> 
                 <div class="container">
+                    <ul class="navbar-nav header-right">
+                        <li class="nav-item">
+                            <div class="input-group search-area">
+                                <input type="text" id="search-input" class="form-control" placeholder="Buscar...">
+                                <span class="input-group-text"><a href="javascript:void(0)" id="search-button"><i class="flaticon-381-search-2"></i></a></span>
+                            </div>
+                        </li>
+                    </ul><br>
                     <div id="cliente"></div>
                 </div>
             </div>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="/componentes/loadSidebar.js"></script>
-        <script src="/componentes/loadPreloader.js"></script>
-        <script src="/componentes/loadNavHeader.js"></script> 
-        <script src="/vendor/global/global.min.js"></script>
-        <script src="/vendor/chart.js/Chart.bundle.min.js"></script>
-        <script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="/vendor/apexchart/apexchart.js"></script>
-        <script src="/vendor/nouislider/nouislider.min.js"></script>
-        <script src="/vendor/wnumb/wNumb.js"></script>
-        <script src="/js/dashboard/dashboard-1.js"></script>
+        <script src="/js/home/scripts.js"></script>    
         <script src="/js/custom.min.js"></script>
-        <script src="/js/dlabnav-init.js"></script>
-        <script src="/js/demo.js"></script>
-        <script src="/js/styleSwitcher.js"></script>
-        
         <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
         <script type="text/javascript" src="/js/cliente/createCliente.js"></script>
         <script type="text/javascript" src="/js/cliente/deleteCliente.js"></script>

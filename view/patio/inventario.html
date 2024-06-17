@@ -7,65 +7,35 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=0.2">
 	<!-- PAGE TITLE HERE -->
-	<title>SerpomarWeb</title>
-	
-	<link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-	<link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
-	<!-- Style css -->
-    <link href="/css/style-Dash.css" rel="stylesheet">
+	<title>Nodhus</title>
+    <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet" />
-    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
-
 </head>
 <body>
+    <div id="layout-placeholder"></div>
 
-      <!-- Contenedor para el preloader -->
-      <div id="preloader-container"></div>
-      <!-- Contenedor para el preloader -->
+    <div class="header">
+        <div class="title-container">
+            <div class="circle"></div>
+            <h1 class="title">BUSCAR SP</h1>
+         
+            <li class="nav-item">
+                <label for="ReporteTotalContenedores" class="form-label"></label>
+                    <select id="reporteSelector"  class="btn btn-primary d-sm-inline-block d-none">Generar Reporte" required>
+                        <option value="">Generar Reporte</option>
+                        <option value="endpointone">Reporte de entrada y salida</option>
+                        <option value="endpointtwo">Reporte inventario en patio</option>
+                    </select>
+            </li>
+        </div>
+    </div>
   
-  
-      <!-- Contenedor para el nav-header -->
-      <div id="navheader-container"></div>
-      <!-- Contenedor para el nav-header -->
-  
-  
-      <div id="main-wrapper">
-        <div class="header">
-            <div class="header-content">
-                <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-                            <p class="title">INVENTARIO</p>
-                        </div>
-                        <ul class="navbar-nav header-right">
-							<li class="nav-item">
-								<div class="input-group search-area">
-									<input type="text" class="form-control" placeholder="Buscar...">
-									<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
-								</div>
-							</li>
-                            <li class="nav-item">
-								<!-- <a href="javascript:void(0);" id="ReporteTotalContenedores" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a> -->
-                                <label for="ReporteTotalContenedores" class="form-label"></label>
-                                    <select id="reporteSelector"  class="btn btn-primary d-sm-inline-block d-none">Generar Reporte" required>
-                                        <option value="">Generar Reporte</option>
-                                        <option value="endpointone">Reporte de entrada y salida</option>
-                                        <option value="endpointtwo">Reporte inventario en patio</option>
-                                    </select>
-							</li>
-                        </ul>
-                    </div>
-				</nav>
-			</div>
-		</div>
-
-
-
-        <div id="sidebar-container"></div>
-
-
-        <div class="content-body">
+  <div class="margenform">
+    
             <div id="content" class="p-4 p-md-5 pt-5">
                 <div class="row invoice-card-row">
                     <div class="col-xl-3 col-xxl-3 col-sm-6">
@@ -114,57 +84,12 @@
                     </div>           
                 </div>
                 <div id="inventario"></div>
-                <div class="container">
-                    <!-- <form id="createPlaca" method="post" enctype="multipart/form-data">
-                        <div class="row">
-                      
-        
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">ID Acceso</label>
-                                    <select id="id_acceso" name="id_acceso" class="form-control" required>
-                                        <option value="">Seleccione una Opción</option>
-                                    </select>
-                                </div>
-                            </div>
-        
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Fecha</label>
-                                    <input type="date" class="form-control" id="fecha" name="fecha" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Hora</label>
-                                    <input type="time" class="form-control" id="hora" name="hora" required>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Observaciones</label>
-                                    <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
-                                </div>
-                            </div>
-                        </div>
-        <br>
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-between">
-                                <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
-                                <button class="btn btn-primary" id="BtnSavePlaca">Enviar</button>
-                            </div>
-                        </div>
-                    </form> -->
-                </div>
+                <div class="container"></div>
             </div>
-        </div>
         
-    
+        
 
+    <script src="/js/home/scripts.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/componentes/loadSidebar.js"></script>
     <script src="/componentes/loadPreloader.js"></script>

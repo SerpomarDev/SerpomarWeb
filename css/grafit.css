@@ -136,13 +136,7 @@ table tr:hover {
         font-size: 14px;
     }
 
-    table tr button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+
 
     table tr button:hover {
         background-color: #0056b3;
