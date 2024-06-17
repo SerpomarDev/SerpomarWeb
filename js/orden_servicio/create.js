@@ -87,7 +87,7 @@ document.getElementById('saveOrdenServicio').addEventListener('submit',function(
     },{
       name:'id_asig_cont',
       hidden:true,
-    },"Numero serie","Fecha cargue", "Hora cargue", "Fecha descargue", "Hora descargue","Fecha devolucion", "Fecha inspeccion","Patio",{
+    },"Numero contenedor","Fecha cargue", "Hora cargue", "Fecha descargue", "Hora descargue","Fecha devolucion", "Fecha inspeccion","Patio",{
         name:'Acción',
         formatter:(cell,row)=>{
             return gridjs.h('button',{

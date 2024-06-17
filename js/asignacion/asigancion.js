@@ -219,6 +219,6 @@ function editAsignacion(id){
   window.location.href = `/view/asignacion/edit.html?id=${id}`
 }
 
-function addordenSer(id, id1) {
+function addordenSer(id,id1) {
   window.location.href = `/view/orden_servicio/create.html?id=${id}&id1=${id1}`;
 }
