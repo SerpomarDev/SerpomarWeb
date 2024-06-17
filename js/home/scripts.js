@@ -4,6 +4,12 @@ $(function() {
     });
 });
 
+$(function() {
+    $("#layoutv2-placeholder").load("/Componentes/layoutv2.html", function() {
+        initScripts(); // Ejecuta los scripts necesarios después de cargar el componente
+    });
+});
+
 function initScripts() {
     const slides = document.querySelector('.slides');
     const messages = document.querySelector('.messages');

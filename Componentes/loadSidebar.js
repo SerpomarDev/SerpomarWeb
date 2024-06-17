@@ -3,8 +3,7 @@ function loadSidebar() {
     var loggedInUser = localStorage.getItem('loggedInUser');
     if (!loggedInUser) {
         // Redirige a logout.html si no hay usuario autenticado
-        window.location.href = '/logout.html';
-        return;
+       
     }
 
     fetch('/componentes/sidebar.html')
