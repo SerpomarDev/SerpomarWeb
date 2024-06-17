@@ -83,7 +83,15 @@
                             <span>Fecha Libre Hasta</span>
                         </label>
                     </div>
+                   
                     <div class="flex">
+                            <label>
+                                <select name="id_naviera" id="id_naviera" class="input" required>
+                                    <option value="">Seleccione naviera</option>
+                                </select>
+                                <span>Naviera</span>
+                            </label>
+
                         <label>
                             <input type="date" name="fecha_propuesta" id="fecha_propuesta" class="input" required>
                             <span>Fecha Propuesta</span>
@@ -116,6 +124,7 @@
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
     <script type="text/javascript" src="/js/solicitudes_service/create.js"></script>
     <script type="text/javascript" src="/js/cargar/cargarClientes.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarNaviera.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
