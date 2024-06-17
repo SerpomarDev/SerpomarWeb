@@ -30,7 +30,6 @@ function loadSidebar() {
                     // Mostrar menús según el usuario autenticado
                     switch (loggedInUser) {
                         case 'experiencia@h3max.com':
-                            // Mostrar solo Inicio y Tableros en la sección YARA
                             $('#menu > li').each(function() {
                                 var text = $(this).find('.nav-text').text().trim();
                                 if (text === 'Presentación' || text === 'Tableros' || text === 'Cerrar sesión') {
@@ -41,7 +40,6 @@ function loadSidebar() {
                         case 'henry.goethe@serpomar.com':
                         case 'susana.negrette@serpomar.com':
                         case 'Carlos.carrasquilla@serpomar.com':
-                            // Acceso a las opciones específicas en la sección "Patio"
                             $('#menu-patio').show();
                             $('#menu-patio ul li').hide();
                             $('#menu-patio ul li:contains("Orden Cargue")').show();
@@ -51,28 +49,24 @@ function loadSidebar() {
                             $('#menu-patio ul li:contains("Crear Placa")').show();
                             break;
                         case 'controlacceso@serpomar.com':
-                            // Acceso a "acceso a patio", "inventario" y "cerrar sesión"
                             $('#menu-patio').show();
                             $('#menu-patio ul li').hide();
                             $('#menu-patio ul li:contains("Acceso Patio")').show();
                             $('#menu-patio ul li:contains("Inventario")').show();
                             break;
                         case 'patio@serpomar.com':
-                            // Acceso a "inventario" y "cerrar sesión"
                             $('#menu-patio').show();
                             $('#menu-patio ul li').hide();
                             $('#menu-patio ul li:contains("Inventario")').show();
                             break;
                         case 'transporte@serpomar.com':
                         case 'esenttiainhouse@serpomar.com':
-                            // Acceso a "orden de cargue", "inventario" y "cerrar sesión"
                             $('#menu-patio').show();
                             $('#menu-patio ul li').hide();
                             $('#menu-patio ul li:contains("Orden Cargue")').show();
                             $('#menu-patio ul li:contains("Inventario")').show();
                             break;
                         default:
-                            // Mostrar todos los menús para otros usuarios
                             $('#menu > li').show();
                             break;
                     }
