@@ -10,7 +10,7 @@ const credentials = {
   "henry.goethe@serpomar.com": "Hserpomar2024",
   "esenttiainhouse@serpomar.com": "Eserpomar2024",
   "Carlos.carrasquilla@serpomar.com": "Cserpomar2024",
-  "gyplac@serpoamr.com": "Gserpomar2024"
+  "gyplac.etex@serpomar.com": "Gserpomar2024"
 };
 
 document.getElementById('login-form').addEventListener('submit', function(event) {
@@ -26,7 +26,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     localStorage.setItem('loggedInUser', username);
     
     // Redirige al usuario a la página adecuada
-    if (username === "gyplac@serpoamr.com") {
+    if (username === "gyplac.etex@serpomar.com") {
       window.location.href = './gyplac.html';
     } else {
       window.location.href = './dashboard.html';

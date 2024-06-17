@@ -28,7 +28,7 @@ function loadSidebar() {
                 if (loggedInUser) {
                     // Mostrar menús según el usuario autenticado
                     switch (loggedInUser) {
-                        case 'gyplac@serpoamr.com':
+                        case 'gyplac.etex@serpomar.com':
                             $('#menu > li').each(function() {
                                 var text = $(this).find('.nav-text').text().trim();
                                 if (text === 'Gyplac' || text === 'Cerrar sesión') {
