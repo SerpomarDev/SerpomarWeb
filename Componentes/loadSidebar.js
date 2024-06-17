@@ -71,11 +71,7 @@ function loadSidebar() {
                             break;
                     }
 
-                    // Funcionalidad del botón de cerrar sesión
-                    $('#logout-button').click(function() {
-                        localStorage.removeItem('loggedInUser');
-                        window.location.href = '/login.html'; // Redirige a la página de inicio de sesión
-                    });
+               
 
                     $('.has-arrow').each(function() {
                         var $this = $(this);

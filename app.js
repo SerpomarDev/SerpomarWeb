@@ -29,7 +29,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     if (username === "experiencia@h3max.com") {
       window.location.href = './index_yara.html';
     } else {
-      window.location.href = './index.html';
+      window.location.href = './dashboard.html';
     }
   } else {
     alert('Usuario o contraseña incorrectos');

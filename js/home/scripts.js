@@ -43,6 +43,12 @@ function initScripts() {
         link.addEventListener('mouseleave', closeSidebarWithDelay);
     });
 
+         // Funcionalidad del botón de cerrar sesión
+         $('#logout-button').click(function() {
+            localStorage.removeItem('loggedInUser');
+            window.location.href = '/login.html'; // Redirige a la página de inicio de sesión
+        });
+
     // Control del submenú
     const dropdowns = document.querySelectorAll('#menu .dropdown > a');
     dropdowns.forEach((dropdown) => {
