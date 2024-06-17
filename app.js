@@ -10,7 +10,7 @@ const credentials = {
   "henry.goethe@serpomar.com": "Hserpomar2024",
   "esenttiainhouse@serpomar.com": "Eserpomar2024",
   "Carlos.carrasquilla@serpomar.com": "Cserpomar2024",
-  "experiencia@h3max.com": "H3max2024"
+  "gyplac@serpoamr.com": "Gserpomar2024"
 };
 
 document.getElementById('login-form').addEventListener('submit', function(event) {
@@ -26,8 +26,8 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     localStorage.setItem('loggedInUser', username);
     
     // Redirige al usuario a la página adecuada
-    if (username === "experiencia@h3max.com") {
-      window.location.href = './index_yara.html';
+    if (username === "gyplac@serpoamr.com") {
+      window.location.href = './gyplac.html';
     } else {
       window.location.href = './dashboard.html';
     }

@@ -28,10 +28,10 @@ function loadSidebar() {
                 if (loggedInUser) {
                     // Mostrar menús según el usuario autenticado
                     switch (loggedInUser) {
-                        case 'experiencia@h3max.com':
+                        case 'gyplac@serpoamr.com':
                             $('#menu > li').each(function() {
                                 var text = $(this).find('.nav-text').text().trim();
-                                if (text === 'Presentación' || text === 'Tableros' || text === 'Cerrar sesión') {
+                                if (text === 'Gyplac' || text === 'Cerrar sesión') {
                                     $(this).show();
                                 }
                             });
