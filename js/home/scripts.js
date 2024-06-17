@@ -11,7 +11,6 @@ function initScripts() {
 
     setInterval(() => {
         index = (index + 1) % 3;
-        slides.style.transform = `translateX(${-index * 100 / 3}%)`;
         messages.style.transform = `translateX(${-index * 100 / 3}%)`;
     }, 5000); // Cambia la imagen y el mensaje cada 5 segundos
 

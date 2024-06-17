@@ -119,7 +119,7 @@ new gridjs.Grid({
     url: 'https://esenttiapp-production.up.railway.app/api/uploadordencargue',
     then: (data) => {
       if (Array.isArray(data) && data.length > 0) {
-        data.sort((a, b) => new Date(b.fecha_solicitud) - new Date(a.fecha_solicitud));
+        // data.sort((a, b) => new Date(b.fecha_solicitud) - new Date(a.fecha_solicitud));
         return data.map((ordenCargue) => [
           ordenCargue.id,
           ordenCargue.fecha_solicitud,
