@@ -44,6 +44,14 @@ function initializeMenu(loggedInUser) {
                     }
                 });
                 break;
+                case 'jglaguado@synergycaribe.com.co':
+                    $('#menu > li').each(function() {
+                        var text = $(this).find('.nav-text').text().trim();
+                        if (text !== 'Cargue' && text !== 'Vacios') {
+                            $(this).show();
+                        }
+                    });
+                    break;
             case 'henry.goethe@serpomar.com':
             case 'susana.negrette@serpomar.com':
             case 'Carlos.carrasquilla@serpomar.com':
