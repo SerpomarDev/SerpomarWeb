@@ -4,12 +4,6 @@ $(function() {
     });
 });
 
-$(function() {
-    $("#layoutv2-placeholder").load("/Componentes/layoutv2.html", function() {
-        initScripts(); // Ejecuta los scripts necesarios después de cargar el componente
-    });
-});
-
 function initScripts() {
     const slides = document.querySelector('.slides');
     const messages = document.querySelector('.messages');
@@ -50,10 +44,10 @@ function initScripts() {
     });
 
          // Funcionalidad del botón de cerrar sesión
-         $('#logout-button').click(function() {
-            localStorage.removeItem('loggedInUser');
-            window.location.href = '/login.html'; // Redirige a la página de inicio de sesión
-        });
+                    $('#logout-button').click(function() {
+                        localStorage.removeItem('loggedInUser');
+                        window.location.href = '/login.html'; // Redirige a la página de inicio de sesión
+                    });
 
     // Control del submenú
     const dropdowns = document.querySelectorAll('#menu .dropdown > a');

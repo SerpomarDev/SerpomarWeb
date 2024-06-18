@@ -6,7 +6,7 @@ function loadSidebar() {
        
     }
 
-    fetch('/componentes/sidebar.html')
+    fetch('/Componentes/layout.html')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);
@@ -14,7 +14,7 @@ function loadSidebar() {
             return response.text();
         })
         .then(data => {
-            document.querySelector('#sidebar-container').innerHTML = data;
+            document.querySelector('#layout-placeholder').innerHTML = data;
             console.log('Sidebar loaded'); // Mensaje de depuración
 
             // Inicializa menús desplegables usando jQuery
