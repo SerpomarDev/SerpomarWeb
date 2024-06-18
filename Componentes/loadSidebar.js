@@ -2,7 +2,7 @@ function loadSidebar() {
     // Verifica si hay un usuario autenticado
     var loggedInUser = localStorage.getItem('loggedInUser');
     if (!loggedInUser) {
-       
+        return;
     }
 
     fetch('/Componentes/layout.html')
@@ -13,11 +13,16 @@ function loadSidebar() {
             return response.text();
         })
         .then(data => {
-            document.querySelector('#layout-placeholder').innerHTML = data;
-            console.log('Sidebar loaded'); // Mensaje de depuración
+            const layoutPlaceholder = document.querySelector('#layout-placeholder');
+            if (layoutPlaceholder) {
+                layoutPlaceholder.innerHTML = data;
+                console.log('Sidebar loaded'); // Mensaje de depuración
 
-            initializeMenu(loggedInUser);
-            initScripts();
+                initializeMenu(loggedInUser);
+                initScripts(); // Mover initScripts aquí puede garantizar que se ejecute después de que el contenido se haya cargado
+            } else {
+                console.error('Error: #layout-placeholder no encontrado');
+            }
         })
         .catch(error => console.error('Error loading sidebar:', error));
 }
@@ -100,43 +105,36 @@ function initializeMenu(loggedInUser) {
 }
 
 function initScripts() {
-    const slides = document.querySelector('.slides');
-    const messages = document.querySelector('.messages');
-    let index = 0;
-
-    setInterval(() => {
-        index = (index + 1) % 3;
-        messages.style.transform = `translateX(${-index * 100 / 3}%)`;
-    }, 5000); // Cambia la imagen y el mensaje cada 5 segundos
-
     // Control de la apertura del sidebar
     const sidebar = document.querySelector('#sidebar');
     const logo = document.querySelector('#nodhus-logo');
-    const links = sidebar.querySelectorAll('a');
+    if (sidebar && logo) {
+        const links = sidebar.querySelectorAll('a');
 
-    let timeout;
+        let timeout;
 
-    const keepSidebarOpen = () => {
-        clearTimeout(timeout);
-        sidebar.classList.add('open');
-    };
+        const keepSidebarOpen = () => {
+            clearTimeout(timeout);
+            sidebar.classList.add('open');
+        };
 
-    const closeSidebarWithDelay = () => {
-        timeout = setTimeout(() => {
-            sidebar.classList.remove('open');
-        }, 500); // Retraso antes de cerrar el sidebar
-    };
+        const closeSidebarWithDelay = () => {
+            timeout = setTimeout(() => {
+                sidebar.classList.remove('open');
+            }, 500); // Retraso antes de cerrar el sidebar
+        };
 
-    logo.addEventListener('mouseenter', keepSidebarOpen);
-    logo.addEventListener('mouseleave', closeSidebarWithDelay);
-    sidebar.addEventListener('mouseenter', keepSidebarOpen);
-    sidebar.addEventListener('mouseleave', closeSidebarWithDelay);
+        logo.addEventListener('mouseenter', keepSidebarOpen);
+        logo.addEventListener('mouseleave', closeSidebarWithDelay);
+        sidebar.addEventListener('mouseenter', keepSidebarOpen);
+        sidebar.addEventListener('mouseleave', closeSidebarWithDelay);
 
-    // Asegurar que el sidebar no se cierra al interactuar con los enlaces
-    links.forEach(link => {
-        link.addEventListener('mouseenter', keepSidebarOpen);
-        link.addEventListener('mouseleave', closeSidebarWithDelay);
-    });
+        // Asegurar que el sidebar no se cierra al interactuar con los enlaces
+        links.forEach(link => {
+            link.addEventListener('mouseenter', keepSidebarOpen);
+            link.addEventListener('mouseleave', closeSidebarWithDelay);
+        });
+    } 
 
     // Control del submenú
     const dropdowns = document.querySelectorAll('#menu .dropdown > a');
@@ -163,5 +161,13 @@ function initScripts() {
 
 document.addEventListener('DOMContentLoaded', function() {
     loadSidebar();
-    $("#layoutv2-placeholder").load("/Componentes/layoutv2.html", initScripts);
+    $("#layoutv2-placeholder").load("/Componentes/layoutv2.html", function() {
+        // Asegurar que initScripts se ejecuta después de que el contenido se haya cargado
+        const layoutV2 = document.querySelector('#layoutv2-placeholder');
+        if (layoutV2) {
+            initScripts();
+        } else {
+            console.error('Error: #layoutv2-placeholder no encontrado');
+        }
+    });
 });
