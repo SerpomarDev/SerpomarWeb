@@ -21,7 +21,7 @@ document.getElementById("saveAsignacion").addEventListener("submit", function (e
         text: " La asignacion se ha creado de forma exitosa.",
         icon: "success"
       });
-      setTimeout(() => {
+      setTimmmmeout(() => {
         history.back();
       }, 1500);
     })

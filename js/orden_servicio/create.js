@@ -1,11 +1,8 @@
 let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
-
 let id = urlParams.get("id");
-let id1 = urlParams.get("id1");
 
-
-fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}/${id1}`)
+fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`)
 .then((response)=>{
     if(!response.ok){
       throw new Error("Error al obtener los datos de la API");
@@ -15,8 +12,8 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}/${i
 .then((data)=>{
     if(data.length > 0) {
       const contenedor = data[0];
-      document.getElementById('id_asignacion_contenedor').value = contenedor.id_asig_cont;
-        document.getElementById('id_contenedor').value = contenedor.id;
+        document.getElementById('id_asignacion_contenedor').value = contenedor.id_asig_cont;
+        document.getElementById('id_contenedor').value = contenedor.id_contenedor;
         document.getElementById('id_tipo_contenedor').value = contenedor.tipo;
         document.getElementById('nu_serie').value = contenedor.numero;
     }
@@ -28,45 +25,6 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}/${i
     console.error('Error:', error);
   });
 
-
-document.getElementById('saveOrdenServicio').addEventListener('submit',function(event){
-    event.preventDefault();
-
-    const formData = new FormData(this);
-    const jsonData = JSON.stringify(Object.fromEntries(formData));
-
-    fetch('https://esenttiapp-production.up.railway.app/api/ordenservicios',{
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: jsonData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error al enviar los datos del formulario');
-        }
-    })
-    .then(data => {
-        Swal.fire({
-          title: "¡Buen trabajo!",
-          text: "¡Has creado una orden de servicio",
-          icon: "success",
-        });
-    })
-    .then((response)=>{
-      time();
-    })
-    .catch((error) => {
-        console.error("Error:", error);
-    });
-  });
-
-
-  function time() {
-    document.getElementById('saveOrdenServicio').reset();
-    setTimeout(() => {
-        window.location.href = ``; 
-    },  1200);
-  }  
 
   new gridjs.Grid({
     search: true,
@@ -83,11 +41,11 @@ document.getElementById('saveOrdenServicio').addEventListener('submit',function(
     sort: false,
     columns: [{
         name:'id_ords',
-        hidden:true,
+        hidden:false,
     },{
       name:'id_asig_cont',
-      hidden:true,
-    },"Numero contenedor","Fecha cargue", "Hora cargue", "Fecha descargue", "Hora descargue","Fecha devolucion", "Fecha inspeccion","Patio",{
+      hidden:false,
+    },"Numero contenedor","Fecha cargue", "Hora cargue", "Fecha descargue", "Hora descargue","Fecha devolucion", "Fecha inspeccion",{
         name:'Acción',
         formatter:(cell,row)=>{
             return gridjs.h('button',{
@@ -106,13 +64,13 @@ document.getElementById('saveOrdenServicio').addEventListener('submit',function(
       }
     }],
     server: {
-        url: `https://esenttiapp-production.up.railway.app/api/showordenerv/${id1}`,
+        url: `https://esenttiapp-production.up.railway.app/api/showordenerv/${id}`,
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((
                   ordenSev) => [
                     ordenSev.id,
-                    ordenSev.id_asig_cont,
+                    ordenSev.id_asigcont,
                     ordenSev.numero_co,
                     ordenSev.fecha_cargue,
                     ordenSev.hora_cargue,
@@ -120,7 +78,6 @@ document.getElementById('saveOrdenServicio').addEventListener('submit',function(
                     ordenSev.hora_descargue,
                     ordenSev.fecha_devolucion,
                     ordenSev.fecha_inspeccion,
-                    ordenSev.patio
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
@@ -137,3 +94,41 @@ function editOrdenseV(id){
 function patio(id){
   window.location.href = `/view/patio/solicitud_ingreso.html?id=${id}`
 }
+
+document.getElementById('saveOrdenServicio').addEventListener('submit',function(event){
+  event.preventDefault();
+
+  const formData = new FormData(this);
+  const jsonData = JSON.stringify(Object.fromEntries(formData));
+
+  fetch('https://esenttiapp-production.up.railway.app/api/ordenservicios',{
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: jsonData
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Error al enviar los datos del formulario');
+      }
+  })
+  .then(data => {
+      Swal.fire({
+        title: "¡Buen trabajo!",
+        text: "¡Has creado una orden de servicio",
+        icon: "success",
+      });
+  })
+  .then((response)=>{
+    time();
+  })
+  .catch((error) => {
+      console.error("Error:", error);
+  });
+});
+
+function time() {
+  document.getElementById('saveOrdenServicio').reset();
+  setTimeout(() => {
+      window.location.href = `/view/contenedor/create.html`; 
+  },  1200);
+}  
