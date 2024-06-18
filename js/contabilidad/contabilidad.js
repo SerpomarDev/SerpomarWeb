@@ -14,7 +14,7 @@ new gridjs.Grid({
     columns: ["SP",{
         name:"Valor Total",
         formatter:(_,row)=> `$ ${(row.cells[1].data).toLocaleString()}`
-    },"Fecha creacion",],
+    },"Fecha notificación",],
     server: {
         url: `https://esenttiapp-production.up.railway.app/api/showliquidacion`,
         then: (data) => {
