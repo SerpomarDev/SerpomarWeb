@@ -66,14 +66,14 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
     sort: false,
     columns: [{ 
       name:'id_contenedor',
-      hidden:false
+      hidden:true
     },
     {
       name:'asignacion_contenedor',
-      hidden:false,
+      hidden:true,
     },{
       name:"id_asignacion",
-      hidden:false,
+      hidden:true,
     },"Cliente","Placa","Conductor",{
       name:"Numero contenedor",
       attributes: (cell,row)=>{
@@ -144,13 +144,13 @@ function crearTablas (id_contenedor,id_cliente, impExpValor){
   sort: false,
   columns: [{ 
     name:'id_contenedor',
-    hidden:false
+    hidden:true
   },{
     name:'asignacion_contenedor',
-    hidden:false,
+    hidden:true,
   },{
     name:"id_asignacion",
-    hidden:false
+    hidden:true
   },"Cliente","Placa","Conductor",{
     name:"Numero contenedor",
     attributes: (cell,row)=>{

@@ -41,10 +41,10 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`)
     sort: false,
     columns: [{
         name:'id_ords',
-        hidden:false,
+        hidden:true,
     },{
       name:'id_asig_cont',
-      hidden:false,
+      hidden:true,
     },"Numero contenedor","Fecha cargue", "Hora cargue", "Fecha descargue", "Hora descargue","Fecha devolucion", "Fecha inspeccion",{
         name:'Acción',
         formatter:(cell,row)=>{
@@ -125,6 +125,6 @@ function editOrdenseV(id){
 function time() {
   document.getElementById('saveOrdenServicio').reset();
   setTimeout(() => {
-    // window.location.href = '/view/orden_servicio/create.html'
+    window.location.href = ``;
   },  1200);
 }  
