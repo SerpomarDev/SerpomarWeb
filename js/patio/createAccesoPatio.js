@@ -80,7 +80,10 @@ new gridjs.Grid({
   columns: [{
     name:"id",
     hidden:true,
-  },"Fecha solicitud","contenedor","cliente","Tipo de contenedor","Tipo transporte","Cutoff","operacion","Comentarios",{
+  },"Fecha solicitud","contenedor","cliente","Tipo de contenedor","Tipo transporte","Cutoff","operacion",{
+    name:"Comentarios",
+    hidden:true,
+  },{
     name:'Acción',
     formatter: (cell, row) => {
       const operacion = row.cells[6].data;
@@ -103,11 +106,13 @@ new gridjs.Grid({
     },
   },{
     name:"Observacion",
+    hidden:true,
     formatter: (cell, row) => {
       return gridjs.html(`<textarea id="observacion-${row.cells[0].data}">${''}</textarea>`);
     }
   },{
     name:'Acción',
+    hidden:true,
     formatter:(cell,row)=>{
       return gridjs.h('button',{
         className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
