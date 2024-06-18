@@ -117,9 +117,9 @@ document.getElementById('saveOrdenServicio').addEventListener('submit',function(
         text: "¡Has creado una orden de servicio",
         icon: "success",
       });
-  })
-  .then((response)=>{
-    time();
+      setTimmmmeout(() => {
+        history.back();
+      }, 1500);
   })
   .catch((error) => {
       console.error("Error:", error);
@@ -128,7 +128,5 @@ document.getElementById('saveOrdenServicio').addEventListener('submit',function(
 
 function time() {
   document.getElementById('saveOrdenServicio').reset();
-  setTimeout(() => {
-      window.location.href = `/view/contenedor/create.html`; 
-  },  1200);
+
 }  
