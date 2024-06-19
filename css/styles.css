@@ -181,21 +181,30 @@ nav ul li a.active::after {
 }
 
 
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+/* Estilos para la sección de características */
 .features {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
-    padding: 20px;
+    padding: 10px;
     background-color: #eaeaea;
 }
 
 .feature {
     flex: 1;
-    margin: 0 10px;
+    margin: 10px;
     background-color: #00aaff;
     text-align: center;
-    padding: 25px;
+    padding: 5px;
     border-radius: 10px;
+    transition: transform 0.3s, background-color 0.3s;
 }
 
 .feature a {
@@ -204,13 +213,41 @@ nav ul li a.active::after {
     font-weight: bold;
     display: block;
     padding: 10px;
-    border-bottom: 2px solid red;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .feature a:hover {
     background-color: #007acc;
+    color: #fff;
+    transform: translateY(-5px);
 }
+
+.feature i {
+    font-size: 30px;
+    color: #FF0041;
+    margin-bottom: 0px;
+}
+
+.feature h3 {
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.feature p {
+    font-size: 14px;
+}
+
+/* Estilos adicionales para una mejor apariencia en pantallas pequeñas */
+@media (max-width: 768px) {
+    .features {
+        flex-direction: column;
+    }
+
+    .feature {
+        margin: 10px 0;
+    }
+}
+
 
 .footer-logo {
     display: block;
