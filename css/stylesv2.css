@@ -39,7 +39,7 @@ body, html {
 }
 
 .login-container {
-    width: 300px;
+    width: 320px;
     padding: 70px 30px;
     background: rgba(0, 0, 0, 0.8); /* Aumentado el contraste del fondo */
     border-radius: 5px; /* Añadido un poco de borde redondeado */
