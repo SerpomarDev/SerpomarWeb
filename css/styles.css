@@ -99,7 +99,7 @@ nav ul li a.active::after {
     position: fixed;
     top: 80px; /* Debajo del header */
     left: 0;
-    width: 250px;
+    width: 280px;
     height: 0; /* Inicia cerrado */
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.7); /* Color negro con transparencia */
@@ -126,12 +126,12 @@ nav ul li a.active::after {
 /* Estilos para el menú */
 #menu {
     list-style: none;
-    padding: 20px 0;
+    padding: 0px 0;
     margin: 0;
 }
 
 #menu li {
-    padding: 10px 20px;
+    padding: 5px 20px;
     transition: background-color 0.3s, transform 0.3s;
 }
 
@@ -142,7 +142,7 @@ nav ul li a.active::after {
     align-items: center;
     font-size: 16px;
     font-weight: 500;
-    padding: 10px 15px;
+    padding: 10px 5px;
     border-radius: 8px; /* Bordes redondeados */
 }
 
