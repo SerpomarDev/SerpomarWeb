@@ -72,9 +72,9 @@ let id = urlParams.get("id");
               text: "Liquidación cerrada",
               icon: "success",
             });
-        })
-        .then((response)=>{
-         time();
+            setTimeout(() => {
+                history.back();
+              }, 1500);
         })
         .catch((error) => {
             console.error('Error:', error);
