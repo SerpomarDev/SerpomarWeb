@@ -199,7 +199,7 @@ nav ul li a.active::after {
 
 .feature {
     flex: 1;
-    margin: 10px;
+    margin: 5px;
     background-color: #00aaff;
     text-align: center;
     padding: 5px;
@@ -237,16 +237,7 @@ nav ul li a.active::after {
     font-size: 14px;
 }
 
-/* Estilos adicionales para una mejor apariencia en pantallas pequeñas */
-@media (max-width: 768px) {
-    .features {
-        flex-direction: column;
-    }
 
-    .feature {
-        margin: 10px 0;
-    }
-}
 
 
 .footer-logo {
