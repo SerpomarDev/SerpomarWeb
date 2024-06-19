@@ -2,10 +2,44 @@
     <header>
         <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
         <nav>
-            <a href="/login.html" class="profile-link" aria-expanded="false">
+            <button class="profile-link" aria-expanded="false" id="login-button">
                 <i class="fas fa-sign-out-alt"></i>
                 <span class="nav-text">INICIAR SESIÓN</span>
-            </a>            
+            </button>
         </nav>
     </header>
-    
+</div>
+
+<!-- Formulario de inicio de sesión -->
+<div class="sesionok">
+    <div class="overlay" id="overlay">
+        <div class="container">
+            <div class="right-side">
+                <div class="login-container" id="login-container">
+                    <span class="close-btn" id="close-btn">&times;</span>
+                    <h2>Iniciar Sesión en:</h2>
+                    <div class="logo-container">
+                        <img src="./img/nodhus.png" alt="NODHUS" class="nodhus-logo">
+                    </div>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <input type="email" placeholder="Email..." name="email" id="username" required class="input-field">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" placeholder="Password..." required class="input-field">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="login-button">ACCEDER</button>
+                        </div>
+                        <div class="forgot-password">
+                            ¿Olvidaste la contraseña? <a href="#">Clic aquí</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
