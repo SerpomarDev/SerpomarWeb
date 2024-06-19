@@ -5,10 +5,10 @@ new gridjs.Grid({
             placeholder: '🔍 Buscar...'
         }
     },
-    // pagination: {
-    //     limit:7,
-    //     enabled: true,
-    // },
+    pagination: {
+        limit:50,
+        enabled: true,
+    },
     resizable: true,
     sort: false,
     columns: [
