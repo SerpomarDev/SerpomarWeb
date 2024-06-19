@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
 function loadSidebar() {
   var loggedInUser = localStorage.getItem('loggedInUser');
   if (!loggedInUser) {
-    return;
+        // Redirige a logout.html si no hay usuario autenticado
+        window.location.href = '/logout.html';
+        return;
   }
 
   fetch('/Componentes/layout.html')
@@ -176,7 +178,7 @@ function resetInactivityTimeout() {
   clearTimeout(inactivityTimeout);
   inactivityTimeout = setTimeout(() => {
     localStorage.removeItem('loggedInUser');
-    window.location.href = '/logout.html';
+    window.location.href = '/inactividad.html';
   }, 5 * 60 * 1000); // 5 minutos en milisegundos
 }
 
