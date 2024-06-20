@@ -19,7 +19,7 @@ document.getElementById('ReportByFecha').addEventListener('click', function(even
             // Crear un enlace <a> para descargar el reporte
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'AsignacionByFecha.xlsx';
+            a.download = 'Liquidacioin_afiliado.xlsx';
         
             // Agregar el enlace al documento y hacer clic en él para descargar el reporte
             document.body.appendChild(a);
