@@ -115,7 +115,9 @@ function editOrdenseV(id){
         });
     })
     .then((response)=>{
-      time();
+      setTimeout(() => {
+        history.back();
+      }, 1500);
     })
     .catch((error) => {
         console.error("Error:", error);
