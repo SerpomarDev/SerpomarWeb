@@ -51,7 +51,7 @@ document.getElementById('saveSolicitud').addEventListener('submit',function(even
     .then(data => {
         Swal.fire({
           title: "¡Buen trabajo!",
-          text: "¡Has creado una ruta",
+          text: "¡Has creado una SP",
           icon: "success",
         });
     })
