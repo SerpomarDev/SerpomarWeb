@@ -179,7 +179,7 @@ function resetInactivityTimeout() {
   inactivityTimeout = setTimeout(() => {
     localStorage.removeItem('loggedInUser');
     window.location.href = '/inactividad.html';
-  }, 5 * 60 * 1000); // 5 minutos en milisegundos
+  }, 10 * 60 * 1000); // 5 minutos en milisegundos
 }
 
 function initializeInactivityMonitor() {
