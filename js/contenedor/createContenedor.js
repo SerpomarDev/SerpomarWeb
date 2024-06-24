@@ -3,35 +3,6 @@ let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
 liquidarSp(id)
-
-// function actualizarEstado(idOperacion,nuevoEstado) {
-//   fetch(`https://esenttiapp-production.up.railway.app/api/actualizarestadocontenedor/${nuevoEstado}/${idOperacion}`, {
-//       method: 'PUT',
-//       headers: {
-//           'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({
-//         estado: nuevoEstado,
-//         id: idOperacion
-//       }),
-//   })
-//   .then(response => response.json())
-//   .then(data => {
-//       console.log('Estado actualizado con éxito:', data);
-//       Swal.fire({
-//         title: "¡Buen trabajo!",
-//         text: "Estado actualizado!",
-//         icon: "success"
-//     });
-//   })
-//   .then((response)=>{
-//     time()
-//   })
-//   .catch((error) => {
-//       console.error('Error al actualizar el estado:', error);
-//   });
-// }
-
 cargarValores(id)
 
 function cargarValores(id){
@@ -115,7 +86,7 @@ function tableByClt(id_primario){
           'data-bs-toggle': 'modal',
           'data-bs-target': '#asignarModal',
         onClick: () => asignar(row.cells[0].data)
-        },'Asignar')
+        },'asignar')
       }
     },{
       name:"Pre-liquidar",
@@ -126,22 +97,13 @@ function tableByClt(id_primario){
         },'ir')
       }
     },{
-      name:'Estado Operación',
-      hidden:true,
-      formatter: (cell, row) => {
-        return gridjs.h('select', {
-            onchange: (e) => {
-                const nuevoEstado = e.target.value;
-                actualizarEstado(row.cells[0].data, nuevoEstado);
-            },
-        }, [
-            gridjs.h('option', { value: '' }, 'Seleccione'),
-            gridjs.h('option', { value: 'En curso' }, 'En curso'),
-            gridjs.h('option', { value: 'Finalizado' }, 'Finalizado'),
-            gridjs.h('option', { value: 'Demora' }, 'Demora'),
-            gridjs.h('option', { value: 'Libre' }, 'Libre')
-        ]);
-    },
+      name:"Acción",
+      formatter:(cell,row)=>{
+        return gridjs.h('button',{
+          className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
+          onClick: () => editContenedor(row.cells[0].data)
+        },'editar')
+      }
     }],
     fixedHeader: true,
     //height: '400px',
@@ -184,16 +146,13 @@ function asignar(id){
   window.location.href = `/view/modal/modal.html?id=${id}`
 }
 
+function editContenedor(id){
+  window.location.href = `/view/contenedor/edit.html?id=${id}`
+}
+
 function preLiquidar(id){
   window.location.href = `/view/liquidar/pre_liquidar.html?id=${id}`
 }
-}
-
-function time() {
-  document.getElementById('saveContenedor').reset();
-  setTimeout(() => {
-    window.location.href = ``;
-  },  1200);
 }
 
 function liquidarSp(id){
