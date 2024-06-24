@@ -11,8 +11,11 @@ const credentials = {
   "esenttiainhouse@serpomar.com": "Eserpomar2024",
   "Carlos.carrasquilla@serpomar.com": "Cserpomar2024",
   "gyplac.etex@serpomar.com": "Gserpomar2024",
-  "jglaguado@synergycaribe.com.co": "Jserpomar2024"
+  "jglaguado@synergycaribe.com.co": "Jserpomar2024",
+  "lmaldonado@serpomar.com": "serpomar2024"
 };
+
+
 
 function attachLoginFormEvent() {
   const loginForm = document.getElementById('login-form');
