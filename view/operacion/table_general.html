@@ -26,12 +26,10 @@
         <div class="margenform">
             <div id="content" class="p-4 p-md-0 pt-5">
                 <div class="container-fluid main-container">
-                    <!-- Botón de filtro por fechas -->
                     <div class="filter-container">
                         <input type="text" id="dateFilter" placeholder="Selecciona una fecha">
                         <button id="filterButton">Filtrar</button>
                     </div>
-                    <!-- Sección de notificaciones estilo semáforo -->
                     <div class="semaforo-container">
                         <div class="notification basic" data-tooltip="Todo en orden">
                             <i class="fas fa-circle"></i>
@@ -47,8 +45,7 @@
                         </div>
                     </div>
                     <div class="charts-grid">
-                         <!-- Sección para el total de vehículos -->
-                         <div class="chart-item vehicle-count">
+                        <div class="chart-item vehicle-count">
                             <h1>Total de Vehículos</h1>
                             <div class="vehicle-icon">
                                 <i class="fas fa-car"></i>
@@ -94,7 +91,7 @@
     <script src="/js/custom.min.js"></script>
     <script src="/js/graficas/charts.js"></script>
     <script src="/componentes/loadSidebar.js"></script>
-    <!-- <script type="text/javascript" src="/js/graficas/volumenes.js"></script> -->
+    <script src="/js/graficas/volumenes.js"></script>
     <script>
         // Inicializar flatpickr
         flatpickr("#dateFilter", {
