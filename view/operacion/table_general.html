@@ -1,320 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=0.2">
-    <!-- PAGE TITLE HERE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nodhus</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <link href="/css/graficos.css" rel="stylesheet" />
-    <link href="/css/finanzas.css" rel="stylesheet" />
+    <link href="/css/pages.css" rel="stylesheet">
+    <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
+
 <body>
-
     <div id="layout-placeholder"></div>
-
-    <div class="header">
-        <div class="title-container">
-            <div class="circle"></div>
-            <h1 class="title">FINANZAS</h1>
-        </div>
-    </div>
-
-    <div class="margenform">
-        <div class="container1">
-            <div class="facturacion-container">
-                <div class="facturacion-column">
-                    <div class="box1">
-                        <div class="title">Total de Facturación del 2023</div>
-                        <div id="facturacion-2023" class="value">$13,255,704,000</div>
-                    </div>
-                    <div class="box1">
-                        <div class="title">Meta flota propia 2024</div> <br>
-                        <div class="value">632,000,000</div>
-                    </div>
-                </div>
-                <div class="facturacion-column">
-                    <div class="box1">
-                        <div class="title">Total de Facturación del 2024</div>
-                        <div id="facturacion-2024" class="value">$6,661,430,000</div>
-                    </div>
-                    <div class="box1">
-                        <div class="title">Rentabilidad Flota propia</div><br>
-                        <div class="value">$1,656,000,000</div>
-                    </div>
-                </div>
-                <div class="facturacion-column">
-                    <div class="box1">
-                        <div class="title">% Variación Facturación 2024-2023</div>
-                        <div id="variacion-facturacion" class="value">12.18%</div>
-                    </div>
-                    <div class="facturacion-column">
-                        <div class="box1">
-                            <div class="title">Volumen de contenedores 2024</div>
-                            <div class="value">14,154</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="facturacion-column">
-                    <div class="green-box box1">
-                        <div class="title">Meta de Facturación 2024</div><br>
-                        <div id="meta-facturacion" class="value">$18,000,000,000</div>
-                    </div>
-                    <div class="facturacion-column">
-                        <div class="green-box box1">
-                            <div class="title">Meta de Movimientos 2024 </div>
-                            <div class="value">14,400</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="facturacion-column">
-                    <div class="orange-box box1">
-                        <div class="title">% Cumplimiento</div><br>
-                        <div id="cumplimiento" class="value">91.87%</div>
-                    </div>
-                    <div class="orange-box box1">
-                        <div class="title">% Cumplimiento DOs</div><br>
-                        <div class="value">85.16%</div>
-                    </div>
-                </div>
+    <div id="main-wrapper">
+        <div class="header">
+            <div class="title-container">
+                <div class="circle"></div>
+                <h1 class="title">TABLERO GENERAL DE OPERACIONES</h1>
             </div>
         </div>
-
-        <div class="container">
-            <div class="header">
-                <div class="info-box" style="background-color: #28a745;">
-                    <img src="/img/comprobado.png" alt="Check Icon">
-                    <div>
-                        <span class="label">FACTURADO</span>
-                        <span class="amount">$ 962,136.082</span>
+        <div class="margenform">
+            <div id="content" class="p-4 p-md-0 pt-5">
+                <div class="container-fluid main-container">
+                    <!-- Botón de filtro por fechas -->
+                    <div class="filter-container">
+                        <input type="text" id="dateFilter" placeholder="Selecciona una fecha">
+                        <button id="filterButton">Filtrar</button>
                     </div>
-                </div>
-                <div class="info-box" style="background-color: #dc3545;">
-                    <img src="/img/alerta.png" alt="Warning Icon">
-                    <div>
-                        <span class="label">PENDIENTE POR Factura</span>
-                        <span class="amount">$ -</span>
-                    </div>
-                </div>
-                <div class="info-box" style="background-color: #007bff;">
-                    <img src="/img/factura.png" alt="Invoice Icon">
-                    <div>
-                        <span class="label">TOTAL DE INGRESOS</span>
-                        <span class="amount">$ 962,136.082</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="main-content">
-                <div class="card"><br>
-                    <h1>Control de Facturación serpomar</h1>
-                    <div class="card-header pb-0 border-0">
-                        <canvas id="lineChart"></canvas>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header d-flex flex-wrap border-0 pb-0">
-                        <div class="me-auto mb-sm-0 mb-3">
-                            <h1>Grafico #2</h1>
+                    <!-- Sección de notificaciones estilo semáforo -->
+                    <div class="semaforo-container">
+                        <div class="notification basic" data-tooltip="Todo en orden">
+                            <i class="fas fa-circle"></i>
+                            <span>Notificación Básica</span>
+                        </div>
+                        <div class="notification medium" data-tooltip="10 contenedores a menos de dos semanas a vencer">
+                            <i class="fas fa-circle"></i>
+                            <span>Notificación Media</span>
+                        </div>
+                        <div class="notification high" data-tooltip="En 2 días se vencen 5 contenedores">
+                            <i class="fas fa-circle"></i>
+                            <span>Notificación Alta</span>
                         </div>
                     </div>
-                    <div class="card-body pb-2">
-                        <div class="d-sm-flex d-block">
-                            <ul class="card-list d-flex mt-sm-0 mt-3">
-                                <li class="me-3"><span class="bg-success circle"></span>#1</li>
-                                <li><span class="bg-danger circle"></span>#2</li>
-                            </ul>
+                    <div class="charts-grid">
+                         <!-- Sección para el total de vehículos -->
+                         <div class="chart-item vehicle-count">
+                            <h1>Total de Vehículos</h1>
+                            <div class="vehicle-icon">
+                                <i class="fas fa-car"></i>
+                                <span id="totalVehicles">48</span>
+                            </div>
                         </div>
-                        <div id="chartBar2" class="bar-chart"></div>
+                        <div class="chart-item">
+                            <h1>Volumen</h1>
+                            <canvas id="myChart"></canvas>
+                        </div>
+                        <div class="chart-item">
+                            <h1>Estado Exportación</h1>
+                            <canvas id="myChart2"></canvas>
+                        </div>
+                        <div class="chart-item">
+                            <h1>Estado Importación</h1>
+                            <div id="polarChart" style="width: 400px; height: 300px;"></div>
+                        </div>
+                        <div class="chart-item">
+                            <h1>Clientes</h1>
+                            <div id="clientChart" style="width: 400px; height: 300px;"></div>
+                        </div>
+                        <div class="chart-item">
+                            <h1>Inventario en Patio</h1>
+                            <div id="impoExpoChart" style="width: 400px; height: 300px;"></div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="card">
-                    <div class="card-header d-flex flex-wrap border-0 pb-0">
-                        <div class="me-auto mb-sm-0 mb-3">
-                            <h1>Facturación vs Meta</h1>
-                        </div>
-                    </div>
-                    <div class="card-body pb-2">
-                        <canvas id="barChart1"></canvas>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header d-flex flex-wrap border-0 pb-0">
-                        <div class="me-auto mb-sm-0 mb-3">
-                            <h1>% Cumplimiento</h1>
-                        </div>
-                    </div>
-                    <div class="card-body pb-2">
-                        <canvas id="barChart2"></canvas>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
 
-    <script>
-        // Datos iniciales
-        const totalFacturacion2023 = 13255704000;
-        let totalFacturacion2024 = 6661430000;
-        const metaFacturacion2024 = 18000000000;
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-        function actualizarValores() {
-            // Calcular variación
-            const variacion = ((totalFacturacion2024 - totalFacturacion2023) / totalFacturacion2023 * 100).toFixed(2);
-            document.getElementById('variacion-facturacion').innerText = variacion + ' %';
-
-            // Calcular cumplimiento
-            const cumplimiento = (totalFacturacion2024 / metaFacturacion2024 * 100).toFixed(2);
-            document.getElementById('cumplimiento').innerText = cumplimiento + ' %';
-        }
-
-        function actualizarFacturacion2024(valor) {
-            totalFacturacion2024 = valor;
-            document.getElementById('facturacion-2024').innerText = '$' + totalFacturacion2024.toLocaleString();
-            actualizarValores();
-            actualizarGraficos();
-        }
-
-        // Inicializar valores
-        actualizarValores();
-
-        // Generar gráficos
-        const ctxLineChart = document.getElementById('lineChart').getContext('2d');
-        const lineChart = new Chart(ctxLineChart, {
-            type: 'line',
-            data: {
-                labels: ['INDEGA', 'KENWORTH', 'ESENTTIA', 'ETEX', 'ARCLAD', 'SYNGENTA', 'QCA & SYRUS', 'EUROFERT', 'PLASTIMIX', 'MANTOSCORP', 'GREEN NETWORK LOGISTICS', 'BDP', 'HUBEMAR', 'GRUPOAQUA'],
-                datasets: [{
-                    label: 'Ingresos ($M)',
-                    data: [420, 163, 154, 73, 53, 42, 31, 9, 8, 2, 2, 2, 1, 1],
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 2,
-                    tension: 0.3,
-                    fill: false,
-                    pointBackgroundColor: 'rgba(255, 99, 132, 1)',
-                    pointRadius: 5,
-                    pointHoverRadius: 7,
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Ingresos ($M)'
-                        },
-                        ticks: {
-                            callback: function (value) {
-                                return '$' + value + 'M';
-                            }
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Clientes'
-                        },
-                        ticks: {
-                            maxRotation: 90,
-                            minRotation: 45
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function (context) {
-                                return `Ingresos: $${context.parsed.y}M`;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        const ctxBarChart1 = document.getElementById('barChart1').getContext('2d');
-        const barChart1 = new Chart(ctxBarChart1, {
-            type: 'bar',
-            data: {
-                labels: ['Facturación', 'Meta'],
-                datasets: [{
-                    label: 'Facturación vs Meta',
-                    data: [totalFacturacion2024, metaFacturacion2024],
-                    backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(75, 192, 192, 0.2)'],
-                    borderColor: ['rgba(54, 162, 235, 1)', 'rgba(75, 192, 192, 1)'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        const ctxBarChart2 = document.getElementById('barChart2').getContext('2d');
-        const barChart2 = new Chart(ctxBarChart2, {
-            type: 'bar',
-            data: {
-                labels: ['% Cumplimiento'],
-                datasets: [{
-                    label: '% Cumplimiento',
-                    data: [(totalFacturacion2024 / metaFacturacion2024 * 100).toFixed(2)],
-                    backgroundColor: ['rgba(255, 206, 86, 0.2)'],
-                    borderColor: ['rgba(255, 206, 86, 1)'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100
-                    }
-                }
-            }
-        });
-
-        function actualizarGraficos() {
-            barChart1.data.datasets[0].data = [totalFacturacion2024, metaFacturacion2024];
-            barChart1.update();
-
-            barChart2.data.datasets[0].data = [(totalFacturacion2024 / metaFacturacion2024 * 100).toFixed(2)];
-            barChart2.update();
-        }
-
-        // Simulación de cambio de valor
-        setTimeout(() => {
-            actualizarFacturacion2024(6661430000);
-        }, 3000);
-
-    </script>
+    <!-- Custom JavaScript -->
+    <script src="/js/home/scripts.js"></script>
+    <script src="/js/custom.min.js"></script>
+    <script src="/js/graficas/charts.js"></script>
     <script src="/componentes/loadSidebar.js"></script>
-    <script src="/js/home/scripts.js"></script>    
-    <!-- Required vendors -->
+    <script>
+        // Inicializar flatpickr
+        flatpickr("#dateFilter", {
+            enableTime: false,
+            dateFormat: "Y-m-d",
+        });
 
-    <!-- Apex Chart -->
-    <script src="/vendor/apexchart/apexchart.js"></script>
-    <script src="/vendor/nouislider/nouislider.min.js"></script>
-    <script src="/vendor/wnumb/wNumb.js"></script>
-    
-    <!-- Dashboard 1 -->
-    <script src="/js/dashboard/dashboard-1.js"></script>
+        // Funcionalidad del botón de filtro
+        document.getElementById('filterButton').addEventListener('click', function() {
+            const selectedDate = document.getElementById('dateFilter').value;
+            if (selectedDate) {
+                // Aquí agregar la lógica de filtrado basada en la fecha seleccionada
+                console.log('Filtrar por fecha: ', selectedDate);
+            } else {
+                alert('Por favor selecciona una fecha');
+            }
+        });
+    </script>
 </body>
+
 </html>

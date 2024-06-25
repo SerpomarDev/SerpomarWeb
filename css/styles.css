@@ -321,3 +321,144 @@ button:hover {
     background-color: #007acc;
     transform: translateY(-2px);
 }
+
+/* Añadir esto al final del archivo */
+.charts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.chart-item {
+    flex: 1 1 calc(50% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px; /* Espacio interior */
+    border: 1px solid #ddd; /* Borde */
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.vehicle-count {
+    flex: 1 1 100%; /* Ocupar toda la fila */
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.vehicle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.vehicle-icon i {
+    font-size: 50px;
+    color: #007BFF;
+    margin-right: 10px;
+}
+
+.vehicle-icon span {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#dateFilter {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+#filterButton {
+    background-color: #00aaff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#filterButton:hover {
+    background-color: #007acc;
+    transform: translateY(-2px);
+}
+
+.semaforo-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.notification {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.notification i {
+    margin-right: 10px;
+}
+
+.notification.basic {
+    background-color: green;
+}
+
+.notification.medium {
+    background-color: yellow;
+    color: black; /* Para mayor contraste */
+}
+
+.notification.high {
+    background-color: red;
+}
+
+/* Tooltips */
+.notification::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.notification:hover::after {
+    opacity: 1;
+}
+
+/* Asegurar que los gráficos se ajusten adecuadamente en pantallas más pequeñas */
+@media (max-width: 768px) {
+    .chart-item {
+        flex: 1 1 100%;
+    }
+    .vehicle-count {
+        flex: 1 1 100%;
+    }
+}
