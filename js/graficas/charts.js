@@ -182,11 +182,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     type: 'text',
                     right: 160,
                     bottom: 60,
-                    style: {
-                        text: 'Clientes',
-                        font: 'bolder 80px monospace',
-                        fill: 'rgba(100, 100, 100, 0.25)'
-                    },
                     z: 100
                 }
             ]

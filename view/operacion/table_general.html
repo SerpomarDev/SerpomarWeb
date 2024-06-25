@@ -11,6 +11,7 @@
     <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body>
@@ -22,31 +23,56 @@
                 <h1 class="title">TABLERO GENERAL DE OPERACIONES</h1>
             </div>
         </div>
-
-
-        
         <div class="margenform">
             <div id="content" class="p-4 p-md-0 pt-5">
                 <div class="container-fluid main-container">
+                    <!-- Botón de filtro por fechas -->
+                    <div class="filter-container">
+                        <input type="text" id="dateFilter" placeholder="Selecciona una fecha">
+                        <button id="filterButton">Filtrar</button>
+                    </div>
+                    <!-- Sección de notificaciones estilo semáforo -->
+                    <div class="semaforo-container">
+                        <div class="notification basic" data-tooltip="Todo en orden">
+                            <i class="fas fa-circle"></i>
+                            <span>Notificación Básica</span>
+                        </div>
+                        <div class="notification medium" data-tooltip="10 contenedores a menos de dos semanas a vencer">
+                            <i class="fas fa-circle"></i>
+                            <span>Notificación Media</span>
+                        </div>
+                        <div class="notification high" data-tooltip="En 2 días se vencen 5 contenedores">
+                            <i class="fas fa-circle"></i>
+                            <span>Notificación Alta</span>
+                        </div>
+                    </div>
                     <div class="charts-grid">
+                         <!-- Sección para el total de vehículos -->
+                         <div class="chart-item vehicle-count">
+                            <h1>Total de Vehículos</h1>
+                            <div class="vehicle-icon">
+                                <i class="fas fa-car"></i>
+                                <span id="totalVehicles">48</span>
+                            </div>
+                        </div>
                         <div class="chart-item">
-                            <h1>Gráficos 1</h1>
+                            <h1>Volumen</h1>
                             <canvas id="myChart"></canvas>
                         </div>
                         <div class="chart-item">
-                            <h1>Gráficos 2</h1>
+                            <h1>Estado Exportación</h1>
                             <canvas id="myChart2"></canvas>
                         </div>
                         <div class="chart-item">
-                            <h1>Gráficos 3</h1>
+                            <h1>Estado Importación</h1>
                             <div id="polarChart" style="width: 400px; height: 300px;"></div>
                         </div>
                         <div class="chart-item">
-                            <h1>Gráficos 4</h1>
+                            <h1>Clientes</h1>
                             <div id="clientChart" style="width: 400px; height: 300px;"></div>
                         </div>
                         <div class="chart-item">
-                            <h1>Gráficos 5</h1>
+                            <h1>Inventario en Patio</h1>
                             <div id="impoExpoChart" style="width: 400px; height: 300px;"></div>
                         </div>
                     </div>
@@ -61,12 +87,31 @@
     <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <!-- Custom JavaScript -->
     <script src="/js/home/scripts.js"></script>
     <script src="/js/custom.min.js"></script>
     <script src="/js/graficas/charts.js"></script>
     <script src="/componentes/loadSidebar.js"></script>
+    <script>
+        // Inicializar flatpickr
+        flatpickr("#dateFilter", {
+            enableTime: false,
+            dateFormat: "Y-m-d",
+        });
+
+        // Funcionalidad del botón de filtro
+        document.getElementById('filterButton').addEventListener('click', function() {
+            const selectedDate = document.getElementById('dateFilter').value;
+            if (selectedDate) {
+                // Aquí agregar la lógica de filtrado basada en la fecha seleccionada
+                console.log('Filtrar por fecha: ', selectedDate);
+            } else {
+                alert('Por favor selecciona una fecha');
+            }
+        });
+    </script>
 </body>
 
 </html>
