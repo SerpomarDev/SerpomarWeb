@@ -321,3 +321,31 @@ button:hover {
     background-color: #007acc;
     transform: translateY(-2px);
 }
+
+/* Añadir esto al final del archivo */
+/* Añadir esto al final del archivo */
+.charts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.chart-item {
+    flex: 1 1 calc(50% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px; /* Espacio interior */
+    border: 1px solid #ddd; /* Borde */
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+/* Asegurar que los gráficos se ajusten adecuadamente en pantallas más pequeñas */
+@media (max-width: 768px) {
+    .chart-item {
+        flex: 1 1 100%;
+    }
+}
