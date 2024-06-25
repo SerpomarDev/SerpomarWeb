@@ -1,28 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // JavaScript to generate the second Chart.js chart
-    const ctx2 = document.getElementById('myChart2').getContext('2d');
-    const myChart2 = new Chart(ctx2, {
-        type: 'bar',
-        data: {
-            labels: ['retiro vacio', 'ingreso puerto', 'pendiente retiro'],
-            datasets: [{
-                label: 'Valores',
-                data: [120, 150, 180],
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            scales: {
-                x: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
+   
 
     // JavaScript to generate the ECharts pie chart
     var chartDom = document.getElementById('polarChart');
@@ -85,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         ]
     };
+    
 
     option && myChartPolar.setOption(option);
 
