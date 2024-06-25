@@ -13,9 +13,10 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editcontenedor/${id}`)
       if (data.length > 0) {
         const contenedor = data[0];
           document.getElementById("id_contenedor").value = contenedor.id_contenedor
+          document.getElementById("id_solicitud_servicio").value = contenedor.id_soliServi
           document.getElementById("tipo_contenedor").value = contenedor.tipo_contenedor
           document.getElementById("nu_serie").value = contenedor.numero_contenedor
-          console.log(contenedor)
+          document.getElementById("estado_operacion").value = contenedor.estado
 
       } else {
         console.log('La propiedad array no existe en la respuesta');
