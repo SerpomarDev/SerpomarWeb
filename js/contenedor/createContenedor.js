@@ -66,7 +66,7 @@ function tableByClt(id_primario){
     sort: false,
     columns: [{
       name:'id_co',
-      hidden: true,
+      hidden: false,
     },"SP",{
       name:"Numero contenedor",
       attributes: (cell,row)=>{

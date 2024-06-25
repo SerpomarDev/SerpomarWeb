@@ -9,20 +9,28 @@ document.getElementById('saveContenedor').addEventListener('submit',function(eve
       headers: { 'Content-Type': 'application/json' },
       body: jsonData
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Error al enviar los datos del formulario');
-      }
-    })
-    .then(data => {
-      Swal.fire({
-        title: "¡Buen trabajo!",
-        text: "¡Has creado un contenedor",
-        icon: "success",
-      });
-    })
-    .then((response)=>{
-      time();
+    .then(response => response.json().then(data => ({ status: response.status, body: data })))
+    .then(({ status, body }) => {
+        if (status === 400 && body.message === 'No se pueden crear más contenedores para esta solicitud de servicio') {
+            Swal.fire({
+                title: "Advertencia",
+                text: body.message,
+                icon: "warning"
+            });
+        } else if (status >= 200 && status < 300) {
+            Swal.fire({
+                title: "¡Buen trabajo!",
+                text: "Contenedor Creado!",
+                icon: "success"
+            });
+             time();
+        } else {
+          Swal.fire({
+            title: "Advertencia",
+            text: body.message || "Ha ocurrido un error",
+            icon: "warning"
+        });
+        }
     })
     .catch((error) => {
       console.error("Error:", error);
