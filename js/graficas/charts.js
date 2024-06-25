@@ -1,32 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // JavaScript to generate the first Chart.js chart
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Expo', 'Impo'],
-            datasets: [{
-                label: 'Valores',
-                data: [5, 2],
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
+   
 
     // JavaScript to generate the second Chart.js chart
     const ctx2 = document.getElementById('myChart2').getContext('2d');

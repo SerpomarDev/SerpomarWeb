@@ -2,6 +2,9 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
+let btnFacturar = document.getElementById('BtnSaveLiquidar').value;
+
+console.log()
     new gridjs.Grid({
         search: false,
         language:{
@@ -54,8 +57,6 @@ let id = urlParams.get("id");
         const formData = new FormData(this);
         const jsonData = JSON.stringify(Object.fromEntries(formData));
     
-        console.log(jsonData)
-    
         fetch('https://esenttiapp-production.up.railway.app/api/liquidacion',{
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -63,6 +64,11 @@ let id = urlParams.get("id");
         })
         .then(response=>{
             if(!response.ok){
+                Swal.fire({
+                    title: "Advertencia",
+                    text: "No se puede enviar una factura vacia",
+                    icon: "warning"
+                });
                 throw new Error('Error al enviar los datos del formulario');
             }
         })
