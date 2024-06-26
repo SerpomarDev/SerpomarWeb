@@ -51,10 +51,7 @@
                                 <!-- Los iconos de vehículos se generarán dinámicamente aquí -->
                             </div>
                         </div>
-                        <div class="chart-item">
-                            <h1>Volumen</h1>
-                            <canvas id="myChart"></canvas>
-                        </div>
+                      
                         <div class="chart-item">
                             <h1>Estado Exportación</h1>
                             <canvas id="myChart2"></canvas>
@@ -64,8 +61,12 @@
                             <canvas id="myChartImportacion"></canvas>
                         </div>
                         <div class="chart-item">
+                            <h1>Volumen</h1>
+                            <canvas id="myChart"></canvas>
+                        </div>
+                        <div class="chart-item">
                             <h1>Clientes</h1>
-                            <canvas id="clientChart" style="width: 400px; height: 300px;"></canvas>
+                            <canvas id="clientChart"></canvas>
                         </div>
                         <div class="chart-item">
                             <h1>Inventario en Patio</h1>
@@ -80,6 +81,7 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <!-- Custom JavaScript -->
@@ -89,7 +91,8 @@
     <script src="/js/graficas/estado_expo.js"></script>
     <script src="/js/graficas/estado_impo.js"></script>
     <script src="/js/graficas/clientes.js"></script>
-    <script src="/js/graficas/vehiculos.js"></script> <!-- Nuevo script para el gráfico de vehículos -->
+    <script src="/js/graficas/vehiculos.js"></script>
+    <script src="/js/graficas/inventario_patio.js"></script> 
 
     <script>
         // Inicializar flatpickr

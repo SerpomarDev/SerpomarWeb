@@ -1,61 +1,56 @@
-// JS para el gráfico de Inventario en Patio
+// JS para mostrar el gráfico radial en "Inventario en Patio"
 
-const ctxInventario = document.getElementById('inventarioChart').getContext('2d');
-const myChartInventario = new Chart(ctxInventario, {
-    type: 'bar',
-    data: {
-        labels: [], // Los nombres de los estados se actualizarán dinámicamente
-        datasets: [{
-            label: 'Conteo de Vehículos',
-            data: [], // Los datos del conteo se actualizarán dinámicamente
-            backgroundColor: [], // Los colores se actualizarán dinámicamente
-            borderColor: [],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
+const domInventario = document.getElementById('impoExpoChart');
+const myChartInventario = echarts.init(domInventario);
 
-fetch('https://esenttiapp-production.up.railway.app/api/resumenestados')
+fetch('https://esenttiapp-production.up.railway.app/api/estadoinventario')
     .then(response => response.json())
     .then(data => {
         if (data && Array.isArray(data)) {
-            const estados = data.map(item => item.estado);
-            const conteos = data.map(item => item.conteo);
-            const colores = estados.map(estado => {
-                switch (estado) {
-                    case 'OK':
-                        return 'rgba(75, 192, 192, 0.2)';
-                    case 'F/S':
-                        return 'rgba(255, 99, 132, 0.2)';
-                    // Añadir más estados y colores según sea necesario
-                    default:
-                        return 'rgba(201, 203, 207, 0.2)';
-                }
-            });
-            const bordes = estados.map(estado => {
-                switch (estado) {
-                    case 'OK':
-                        return 'rgba(75, 192, 192, 1)';
-                    case 'F/S':
-                        return 'rgba(255, 99, 132, 1)';
-                    // Añadir más estados y colores de borde según sea necesario
-                    default:
-                        return 'rgba(201, 203, 207, 1)';
-                }
-            });
+            const chartData = data.map(item => ({
+                value: item.conteo,
+                name: item.modalidad
+            }));
 
-            myChartInventario.data.labels = estados;
-            myChartInventario.data.datasets[0].data = conteos;
-            myChartInventario.data.datasets[0].backgroundColor = colores;
-            myChartInventario.data.datasets[0].borderColor = bordes;
-            myChartInventario.update();
+            const option = {
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    top: '5%',
+                    left: 'center'
+                },
+                series: [
+                    {
+                        name: 'Inventario en Patio',
+                        type: 'pie',
+                        radius: ['40%', '70%'],
+                        avoidLabelOverlap: false,
+                        itemStyle: {
+                            borderRadius: 10,
+                            borderColor: '#fff',
+                            borderWidth: 5
+                        },
+                        label: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            label: {
+                                show: true,
+                                fontSize: 20,
+                                fontWeight: 'bold'
+                            }
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                        data: chartData
+                    }
+                ]
+            };
+
+            myChartInventario.setOption(option);
         } else {
             console.error('Error: Unexpected data format');
         }
