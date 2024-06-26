@@ -68,5 +68,5 @@ document.getElementById('saveSolicitud').addEventListener('submit',function(even
     document.getElementById('saveSolicitud').reset();
     setTimeout(() => {
         window.location.href = `/view/solicitudes_servicios/create.html`; 
-    },  1200);
+    },);
   }  

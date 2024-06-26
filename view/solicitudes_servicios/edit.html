@@ -3,9 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>edit</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 </head>
 <body>
-    
+    <div class="margenform">
+        <div id="content" class="p-4 p-md-0 pt-5">
+            <div class="container-fluid main-container">
+                <form id="editSolicitud" method="PUT" enctype="multipart/form-data" class="form">
+                    <p class="message">Actualizar solicitud de servicio.</p>
+                    <input type="hidden" id="id_solicitud_servicio" name="id_solicitud_servicio">
+                    <div class="flex">
+                        <label>
+                            <span>Cantidad de Contenedores</span>
+                            <input type="number" id="cantidad_contenedor" class="input" required readonly>
+                        </label>
+                        <label>
+                            <span>Modalidad</span>
+                            <input type="text" id="tipo_operacion" class="input" required readonly>
+                        </label>
+                    </div>
+                    <div class="flex">
+                        <label>
+                            <input type="date" name="fecha_eta" id="fecha_eta" class="input" required>
+                            <span>Elija Fecha Eta</span>
+                        </label>
+                        <label>
+                            <input type="date" name="fecha_levante" id="fecha_levante" class="input" required>
+                            <span>Fecha Levante</span>
+                        </label>
+                    </div>
+                    <div class="flex">
+                        <label>
+                            <input type="date" name="fecha_documental" id="fecha_documental" class="input" required>
+                            <span>Fecha Documental</span>
+                        </label>
+                        <label>
+                            <input type="date" name="fecha_cutoff_fisico" id="fecha_cutoff_fisico" class="input" required>
+                            <span>Fecha Cutoff Fisico</span>
+                        </label>
+                    </div>
+                    <div class="flex">
+                        <label>
+                            <input type="date" name="bodegaje_hasta" id="bodegaje_hasta" class="input" required>
+                            <span>Fecha Bodegaje Hasta</span>
+                        </label>
+                        <label>
+                            <input type="date" name="libre_hasta" id="libre_hasta" class="input" required>
+                            <span>Fecha Libre Hasta</span>
+                        </label>
+                    </div>
+                   
+                    <div class="flex">
+                        <label>
+                            <input type="date" name="fecha_propuesta" id="fecha_propuesta" class="input" required>
+                            <span>Fecha Propuesta</span>
+                        </label>
+                    </div>
+                    <div class="submit-container">
+                        <button type="submit" class="submit">Enviar</button>
+                    </div>
+                    <p class="signin"><a href="#" onclick="history.back()">Volver</a></p>
+                </form>
+            </div>
+        </div>
+        <script src="/componentes/loadSidebar.js"></script>
+        <script src="/js/home/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+        <script type="text/javascript" src="/js/solicitudes_service/edit.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

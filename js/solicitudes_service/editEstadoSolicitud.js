@@ -37,32 +37,3 @@ function actualizarEstado(id) {
       }
     });
   }
-
-
-
-
-// fetch(`https://esenttiapp-production.up.railway.app/api/actulizarestado/${id}`, {
-    //     method: "PUT",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: jsonData,
-    // })
-    //     .then((response) => {
-    //         if (!response.ok) {
-    //             throw new Error("Error al enviar los datos del formulario");
-    //         }
-    //         return response.json();
-    //     })
-    //     .then((data) => {
-    //         console.log("Respuesta del servidor:", data);
-    //         Swal.fire({
-    //             title: "¡Buen trabajo!",
-    //             text: "Solicitud procesada.",
-    //             icon: "success",
-    //         });
-    //     })
-    //     .then(response=>{
-    //       time();
-    //     })
-    //     .catch((error) => {
-    //         console.error("Error:", error);
-    //     });

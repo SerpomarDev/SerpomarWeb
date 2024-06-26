@@ -65,6 +65,6 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editcontenedor/${id}`)
     function time() {
         document.getElementById('editContenedor').reset();
         setTimeout(() => {
-          window.location.href = `/view/contenedor/edit.html`;  
+          window.location.href = `/view/`;  
         },  1500);
       }
