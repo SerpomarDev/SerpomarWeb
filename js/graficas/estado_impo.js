@@ -1,15 +1,23 @@
-// JS de Estado Exportación (estado_impo.js)
+// JS de Estado Importación (estado_impo.js)
 
-const ctx2 = document.getElementById('myChart2').getContext('2d');
-const myChart2 = new Chart(ctx2, {
+const ctxImportacion = document.getElementById('myChartImportacion').getContext('2d');
+const myChartImportacion = new Chart(ctxImportacion, {
     type: 'bar',
     data: {
-        labels: ['PENDENTE LIQUIDAR', 'PENDIENTE INGRESO A PUERTO', 'PENDIENTE RETIRO VACIO'],
+        labels: ['P. Retiro', 'P. Devolución', 'P. Liquidar'],
         datasets: [{
             label: 'Valores',
             data: [], // Los datos se actualizarán dinámicamente
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)'
+            ],
             borderWidth: 1
         }]
     },
@@ -23,15 +31,23 @@ const myChart2 = new Chart(ctx2, {
     }
 });
 
-fetch('https://esenttiapp-production.up.railway.app/api/estadoexpo')
+fetch('https://esenttiapp-production.up.railway.app/api/estadoimpo')
     .then(response => response.json())
     .then(data => {
-        const pendienteLiquidar = data.find(item => item.estado === 'PENDENTE LIQUIDAR').conteo;
-        const pendienteIngreso = data.find(item => item.estado === 'PENDIENTE INGRESO A PUERTO').conteo;
-        const pendienteRetiro = data.find(item => item.estado === 'PENDIENTE RETIRO VACIO').conteo;
+        if (data && Array.isArray(data)) {
+            const enCursoData = data.find(item => item.estado === 'EN CURSO');
+            const pendienteData = data.find(item => item.estado === 'PENDIENTE');
+            const liquidarData = data.find(item => item.estado === 'PENDENTE LIQUIDAR');
+            
+            const enCurso = enCursoData ? enCursoData.conteo : 0;
+            const pendiente = pendienteData ? pendienteData.conteo : 0;
+            const liquidar = liquidarData ? liquidarData.conteo : 0;
 
-        myChart2.data.datasets[0].data = [pendienteLiquidar, pendienteIngreso, pendienteRetiro];
-        myChart2.update();
+            myChartImportacion.data.datasets[0].data = [pendiente, enCurso, liquidar];
+            myChartImportacion.update();
+        } else {
+            console.error('Error: Unexpected data format');
+        }
     })
     .catch(error => {
         console.error('Error fetching data:', error);
