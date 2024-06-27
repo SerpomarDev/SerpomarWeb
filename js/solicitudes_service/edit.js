@@ -67,6 +67,6 @@ document.getElementById("editSolicitud").addEventListener("submit", function (ev
 function time() {
     document.getElementById('editSolicitud').reset();
     setTimeout(() => {
-      history.back();
+      window.location.href = `/view/solicitudes_servicios/buscarEdit.html`; 
     },  1500);
   }

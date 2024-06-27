@@ -40,6 +40,7 @@ let id = urlParams.get("id");
             },
             {
             name:'Eliminar',
+            hidden:true,
             formatter:(cell,row)=>{
                 return gridjs.h('a', {
                     href: '/view/',
