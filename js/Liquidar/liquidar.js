@@ -18,9 +18,9 @@ console.log()
         },
         resizable: true,
         sort: false,
-        columns: ["SP","Cliente","Numero contenedores",{
+        columns: ["SP","Cliente",{
             name:"Valor Total",
-            formatter:(_,row)=> `$ ${(row.cells[3].data).toLocaleString()}`
+            formatter:(_,row)=> `$ ${(row.cells[2].data)}`
         },{
             name:"cerrar sp",
             hidden:true,
@@ -39,7 +39,6 @@ console.log()
                     return data.map((preliq) => [
                         preliq.do_sp,
                         preliq.cliente,
-                        preliq.cantidad_contenedor,
                         preliq.valor_total,
                     ]);
                 } else {
