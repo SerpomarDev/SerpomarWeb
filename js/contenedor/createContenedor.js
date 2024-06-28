@@ -156,11 +156,9 @@ function preLiquidar(id){
 }
 
 function liquidarSp(id){
-
   let liquidar  = document.getElementById('BtnLiquidar')
 
   liquidar.addEventListener('click', function(){
-
     window.location.href = `/view/liquidar/liquidar.html?id=${id}`
   })
  }
