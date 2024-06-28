@@ -341,7 +341,12 @@ button:hover {
   --bs-gray-700: #495057;
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
-  --bs-primary: #1e90ff;
+  :root {
+    --bs-primary: #1e90ff;
+    --bs-primary-dark: #1c86ee;
+    /* Otros colores */
+}
+
   --bs-secondary: #709fba;
   --bs-success: #00bfff;
   --bs-info: #87cefa;

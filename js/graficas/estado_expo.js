@@ -1,5 +1,3 @@
-// JS de Estado Exportación (estado_impo.js)
-
 const ctx2 = document.getElementById('myChart2').getContext('2d');
 const myChart2 = new Chart(ctx2, {
     type: 'bar',
@@ -8,8 +6,8 @@ const myChart2 = new Chart(ctx2, {
         datasets: [{
             label: 'Valores',
             data: [], // Los datos se actualizarán dinámicamente
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--bs-primary'), // Ejemplo de uso de una variable CSS
+            borderColor: getComputedStyle(document.documentElement).getPropertyValue('--bs-primary-dark'), // Ejemplo de uso de una variable CSS
             borderWidth: 1
         }]
     },
@@ -22,7 +20,6 @@ const myChart2 = new Chart(ctx2, {
         }
     }
 });
-
 
 fetch('https://esenttiapp-production.up.railway.app/api/estadoexpo')
     .then(response => response.json())
