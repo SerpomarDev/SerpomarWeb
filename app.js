@@ -1,19 +1,6 @@
 // Objeto con las credenciales válidas
 const credentials = {
 
-    // ROL CONTROL ACCESO 
-    "controlacceso@serpomar.com": "Cserpomar2024",
-    // ROL CONTROL ACCESO
-  
-    // ROL ACCESO PATIO
-    "patio@serpomar.com": "Pserpomar2024",
-    // ROL ACCESO PATIO
- 
-    // ROL PATIO
-    "transporte@serpomar.com": "Stransporte2024",
-    "esenttiainhouse@serpomar.com": "Eserpomar2024",
-    // ROL PATIO
-
     // ROL GENERAL
     "alexander.jimenez@serpomar.com": "serpomar2024",
     "admin@serpomar.com": "serpomar2024",
@@ -52,7 +39,21 @@ const credentials = {
     "Recepcion.facturas@serpomar.com": "RFserpomar202414",
     "katerine.pedroza@serpomar.com": "KAserpomar202415",
     "aprendiz.contabilidad@serpomar.com": "APserpomar202416",
-    // ROL CONTABILIDAD         
+    // ROL CONTABILIDAD       
+    
+    // ROL CONTROL ACCESO 
+    "controlacceso@serpomar.com": "Cserpomar2024",
+    // ROL CONTROL ACCESO
+  
+    // ROL ACCESO PATIO
+    "patio@serpomar.com": "Pserpomar2024",
+    // ROL ACCESO PATIO
+ 
+    // ROL PATIO
+    "transporte@serpomar.com": "Stransporte2024",
+    "esenttiainhouse@serpomar.com": "Eserpomar2024",
+    // ROL PATIO
+
 };
 
 
