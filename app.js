@@ -2,7 +2,7 @@
 const credentials = {
 
     // ROL GENERAL
-    "alexander.jimenez@serpomar.com": "serpomar2024",
+    "alexander.jimenez@serpomar.com": "ALserpomar20240",
     "admin@serpomar.com": "serpomar2024",
     "jglaguado@synergycaribe.com.co": "Jserpomar2024",
     "lmaldonado@serpomar.com": "LMserpomar202417",
@@ -19,7 +19,7 @@ const credentials = {
     // ROL COORDINADOR
     "edgar.florez@serpomar.com": "Eserpomar20241",
     "rafael.caicedo@serpomar.com": "Rserpomar20242",
-    "Susana.negrette@serpomar.com": "Sserpomar20243",
+    "susana.negrette@serpomar.com": "Sserpomar20243",
     "brayan.balceiro@serpomar.com": "Bserpomar20244",
     "henry.goethe@serpomar.com": "Hserpomar20245",
     "operacion.nacional1@serpomar.com": "Oserpomar20246",
@@ -53,10 +53,7 @@ const credentials = {
     "transporte@serpomar.com": "Stransporte2024",
     "esenttiainhouse@serpomar.com": "Eserpomar2024",
     // ROL PATIO
-
 };
-
-
 
 function attachLoginFormEvent() {
   const loginForm = document.getElementById('login-form');

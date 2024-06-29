@@ -73,9 +73,9 @@ function initializeMenu(loggedInUser) {
 
 // ROL COORDINADOR ***************************************************
         case 'juan@serpomar.com':
-        case  'edgar.florez@serpomar.com' :
+        case 'edgar.florez@serpomar.com' :
         case 'rafael.caicedo@serpomar.com' :
-        case 'Susana.negrette@serpomar.com ' :
+        case 'susana.negrette@serpomar.com ' :
         case 'brayan.balceiro@serpomar.com ' :
         case 'henry.goethe@serpomar.com' : 
         case 'operacion.nacional1@serpomar.com' : 
