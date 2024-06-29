@@ -1,18 +1,58 @@
 // Objeto con las credenciales válidas
 const credentials = {
-  "alexander.jimenez@serpomar.com": "serpomar2024",
-  "admin@serpomar.com": "serpomar2024",
-  "controlacceso@serpomar.com": "Cserpomar2024",
-  "patio@serpomar.com": "Pserpomar2024",
-  "transporte@serpomar.com": "Stransporte2024",
-  "trensas@serpomar.com": "Tserpomar2024",
-  "Susana.negrette@serpomar.com": "Sserpomar2024",
-  "henry.goethe@serpomar.com": "Hserpomar2024",
-  "esenttiainhouse@serpomar.com": "Eserpomar2024",
-  "Carlos.carrasquilla@serpomar.com": "Cserpomar2024",
-  "gyplac.etex@serpomar.com": "Gserpomar2024",
-  "jglaguado@synergycaribe.com.co": "Jserpomar2024",
-  "lmaldonado@serpomar.com": "serpomar2024"
+
+    // ROL CONTROL ACCESO 
+    "controlacceso@serpomar.com": "Cserpomar2024",
+    // ROL CONTROL ACCESO
+  
+    // ROL ACCESO PATIO
+    "patio@serpomar.com": "Pserpomar2024",
+    // ROL ACCESO PATIO
+ 
+    // ROL PATIO
+    "transporte@serpomar.com": "Stransporte2024",
+    "esenttiainhouse@serpomar.com": "Eserpomar2024",
+    // ROL PATIO
+
+    // ROL GENERAL
+    "alexander.jimenez@serpomar.com": "serpomar2024",
+    "admin@serpomar.com": "serpomar2024",
+    "jglaguado@synergycaribe.com.co": "Jserpomar2024",
+    "lmaldonado@serpomar.com": "LMserpomar202417",
+    "hugo.contreras@serpomar.com": "HCserpomar202418",
+    "daniel.tinoco@serpomar.com": "DTserpomar202419",
+    "yamid.agudelo@serpomar.com": "YAserpomar202420",
+    "piedad.petro@serpomar.com": "PPserpomar202421",
+    "michelle.echeverria@serpomar.com": "MEserpomar202422",
+    "lvera@serpomar.com": "LVserpomar202423",
+    "contabilidad@serpomar.com": "COserpomar202424",
+    "miguel.martinez@serpomar.com": "MMserpomar202425",
+    // ROL GENERAL 
+
+    // ROL COORDINADOR
+    "edgar.florez@serpomar.com": "Eserpomar20241",
+    "rafael.caicedo@serpomar.com": "Rserpomar20242",
+    "Susana.negrette@serpomar.com": "Sserpomar20243",
+    "brayan.balceiro@serpomar.com": "Bserpomar20244",
+    "henry.goethe@serpomar.com": "Hserpomar20245",
+    "operacion.nacional1@serpomar.com": "Oserpomar20246",
+    "carlos.carrasquilla@serpomar.com": "Cserpomar20247",
+    // ROL COORDINADOR
+
+    // ROL ANALISTA
+    "nayelis.tordecilla@serpomar.com": "Nserpomar20248",
+    "keyla.castro@serpomar.com": "Kserpomar20249",
+    "analistaimportaciones@serpomar.com": "Aserpomar202410",
+    "yoleidys.alcazar@serpomar.com": "Yserpomar202411",
+    "hector.fonseca@serpomar.com": "Hserpomar202412",
+    // ROL ANALISTA
+
+    // ROL CONTABILIDAD
+    "recepcion@serpomar.com": "Rserpomar202413",
+    "Recepcion.facturas@serpomar.com": "RFserpomar202414",
+    "katerine.pedroza@serpomar.com": "KAserpomar202415",
+    "aprendiz.contabilidad@serpomar.com": "APserpomar202416",
+    // ROL CONTABILIDAD         
 };
 
 

@@ -45,55 +45,137 @@ function initializeMenu(loggedInUser) {
     $('#menu > li').hide();
 
     switch (loggedInUser) {
-      case 'gyplac.etex@serpomar.com':
-        $('#menu > li').each(function() {
-          var text = $(this).find('.nav-text').text().trim();
-          if (text === 'Cargue' || text === 'Vacios' || text === 'Cerrar sesión') {
-            $(this).show();
-          }
-        });
-        break;
-      case 'jglaguado@synergycaribe.com.co':
-        $('#menu > li').each(function() {
-          var text = $(this).find('.nav-text').text().trim();
-          if (text !== 'Cargue' && text !== 'Vacios') {
-            $(this).show();
-          }
-        });
-        break;
-      case 'henry.goethe@serpomar.com':
-      case 'susana.negrette@serpomar.com':
-      case 'Carlos.carrasquilla@serpomar.com':
-        $('#menu-patio').show();
-        $('#menu-patio ul li').hide();
-        $('#menu-patio ul li:contains("Orden Cargue")').show();
-        $('#menu-patio ul li:contains("Inventario")').show();
-        $('#menu-patio ul li:contains("Crear Cliente")').show();
-        $('#menu-patio ul li:contains("Crear Condu")').show();
-        $('#menu-patio ul li:contains("Crear Placa")').show();
-        break;
-      case 'controlacceso@serpomar.com':
-        $('#menu-patio').show();
-        $('#menu-patio ul li').hide();
-        $('#menu-patio ul li:contains("Acceso Patio")').show();
-        $('#menu-patio ul li:contains("Inventario")').show();
-        break;
-      case 'patio@serpomar.com':
-        $('#menu-patio').show();
-        $('#menu-patio ul li').hide();
-        $('#menu-patio ul li:contains("Inventario")').show();
-        break;
-      case 'transporte@serpomar.com':
-      case 'esenttiainhouse@serpomar.com':
-        $('#menu-patio').show();
-        $('#menu-patio ul li').hide();
-        $('#menu-patio ul li:contains("Orden Cargue")').show();
-        $('#menu-patio ul li:contains("Inventario")').show();
-        break;
-      default:
-        $('#menu > li').show();
-        break;
-    }
+
+
+// ROL GENERAL **************************************************
+        case 'admin@serpomar.com':
+        case 'alexander.jimenez@serpomar.com':
+        case 'lmaldonado@serpomar.com':
+        case 'hugo.contreras@serpomar.com':
+        case 'daniel.tinoco@serpomar.com':
+        case 'yamid.agudelo@serpomar.com':
+        case 'piedad.petro@serpomar.com':
+        case 'michelle.echeverria@serpomar.com':
+        case 'lvera@serpomar.com':
+        case 'contabilidad@serpomar.com':
+        case 'miguel.martinez@serpomar.com':
+        case 'jglaguado@synergycaribe.com.co':
+          $('#menu > li:contains("Tu Rol: General")').show();
+          $('#menu > li').show();
+          $('#menu > li:contains("Tu Rol: Coordinador")').hide();
+          $('#menu > li:contains("Tu Rol: Analista de T.")').hide();
+          $('#menu > li:contains("Tu Rol: Contabilidad")').hide();
+          $('#menu > li:contains("Tu Rol: Control Acceso")').hide();
+          $('#menu > li:contains("Tu Rol: Acceso Patio")').hide();
+          $('#menu > li:contains("Tu Rol: Patio")').hide();
+          break;
+// ROL GENERAL **************************************************  
+
+// ROL COORDINADOR ***************************************************
+        case 'juan@serpomar.com':
+        case  'edgar.florez@serpomar.com' :
+        case 'rafael.caicedo@serpomar.com' :
+        case 'Susana.negrette@serpomar.com ' :
+        case 'brayan.balceiro@serpomar.com ' :
+        case 'henry.goethe@serpomar.com' : 
+        case 'operacion.nacional1@serpomar.com' : 
+        case 'carlos.carrasquilla@serpomar.com' :
+          $('#menu > li:contains("Tu Rol: Coordinador")').show();
+          $('#menu-transporte').show();
+          $('#menu-transporte ul li').show();
+          $('#menu-reporte').show();
+          $('#menu-reporte ul li').show();
+          $('#menu-patio').show();
+          $('#menu-patio ul li').hide();
+          $('#menu-patio ul li:contains("Inventario")').show();
+          $('#menu-patio ul li:contains("Orden Cargue")').show();
+          $('#menu-operaciones').show();
+          $('#menu-operaciones ul li').hide();
+          $('#menu-operaciones ul li:contains("Tablero General de Operaciones")').show();
+          $('#menu-equipos').show();
+          $('#menu-equipos ul li').hide();
+          $('#menu-equipos ul li:contains("Flota")').show();
+          break;
+ // ROL COORDINADOR **************************************************
+
+// ROL ANALISTA **************************************************
+            case 'nayelis.tordecilla@serpomar.com' :
+            case 'keyla.castro@serpomar.com' :
+            case 'analistaimportaciones@serpomar.com' :
+            case 'yoleidys.alcazar@serpomar.com' :
+            case 'hector.fonseca@serpomar.com' : 
+              $('#menu > li:contains("Tu Rol: Analista de T.")').show();
+              $('#menu-transporte').show();
+              $('#menu-transporte ul li').show();
+              $('#menu-reporte').show();
+              $('#menu-reporte ul li').show();
+              $('#menu-patio').show();
+              $('#menu-patio ul li').hide();
+              $('#menu-patio ul li:contains("Inventario")').show();
+              $('#menu-patio ul li:contains("Orden Cargue")').show();
+              $('#menu-operaciones').show();
+              $('#menu-operaciones ul li').hide();
+              $('#menu-operaciones ul li:contains("Tablero General de Operaciones")').show();
+              $('#menu-equipos').show();
+              $('#menu-equipos ul li').hide();
+              $('#menu-equipos ul li:contains("Flota")').show();
+              break;
+// ROL ANALISTA **************************************************
+
+// ROL CONTABILIDAD **************************************************
+            case 'recepcion@serpomar.com':
+            case 'Recepcion.facturas@serpomar.com':
+            case 'katerine.pedroza@serpomar.com':
+            case 'aprendiz.contabilidad@serpomar.com':
+              $('#menu > li:contains("Tu Rol: Contabilidad")').show();
+              $('#menu-contabilidad').show();
+              $('#menu-contabilidad ul li').show();
+              $('#menu-reporte').show();
+              $('#menu-reporte ul li').show();
+              $('#menu-operaciones').show();
+              $('#menu-operaciones ul li').hide();
+              $('#menu-operaciones ul li:contains("Tablero General de Operaciones")').show();
+              break;
+// ROL CONTABILIDAD **************************************************     
+
+
+// ROL CONTROL ACCESO **************************************************
+case 'controlacceso@serpomar.com':
+  $('#menu > li:contains("Tu Rol: Control Acceso")').show();
+  $('#menu-patio').show();
+  $('#menu-patio ul li').hide();
+  $('#menu-patio ul li:contains("Acceso Patio")').show();
+  $('#menu-patio ul li:contains("Inventario")').show();
+  break;
+// ROL CONTROL ACCESO **************************************************
+
+
+// ROL ACCESO PATIO **************************************************
+case 'patio@serpomar.com':
+  $('#menu > li:contains("Tu Rol: Acceso Patio")').show();
+  $('#menu-patio').show();
+  $('#menu-patio ul li').hide();
+  $('#menu-patio ul li:contains("Inventario")').show();
+  break;
+// ROL ACCESO PATIO **************************************************
+
+
+// ROL PATIO **************************************************
+case 'transporte@serpomar.com':
+case 'esenttiainhouse@serpomar.com':
+  $('#menu > li:contains("Tu Rol: Patio")').show();
+  $('#menu-patio').show();
+  $('#menu-patio ul li').hide();
+  $('#menu-patio ul li:contains("Orden Cargue")').show();
+  $('#menu-patio ul li:contains("Inventario")').show();
+  break;
+// ROL PATIO **************************************************
+
+
+        default:
+          $('#menu > li').show();
+          break;
+      }
 
     $('.has-arrow').each(function() {
       var $this = $(this);
@@ -179,7 +261,7 @@ function resetInactivityTimeout() {
   inactivityTimeout = setTimeout(() => {
     localStorage.removeItem('loggedInUser');
     window.location.href = '/inactividad.html';
-  }, 5 * 60 * 1000); // 5 minutos en milisegundos
+  }, 10 * 60 * 1000); // 5 minutos en milisegundos
 }
 
 function initializeInactivityMonitor() {
