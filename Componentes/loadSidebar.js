@@ -18,24 +18,24 @@ function loadSidebar() {
   }
 
   fetch('/Componentes/layout.html')
-    // .then(response => {
-    //   if (!response.ok) {
-    //     throw new Error('Network response was not ok ' + response.statusText);
-    //   }
-    //   return response.text();
-    // })
-    // .then(data => {
-    //   const layoutPlaceholder = document.querySelector('#layout-placeholder');
-    //   if (layoutPlaceholder) {
-    //     layoutPlaceholder.innerHTML = data;
-    //     console.log('Sidebar loaded'); // Mensaje de depuración
-    //     initializeMenu(loggedInUser);
-    //     initScripts(); // Mover initScripts aquí puede garantizar que se ejecute después de que el contenido se haya cargado
-    //   } else {
-    //     console.error('Error: #layout-placeholder no encontrado');
-    //   }
-    // })
-    // .catch(error => console.error('Error loading sidebar:', error));
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.text();
+    })
+    .then(data => {
+      const layoutPlaceholder = document.querySelector('#layout-placeholder');
+      if (layoutPlaceholder) {
+        layoutPlaceholder.innerHTML = data;
+        console.log('Sidebar loaded'); // Mensaje de depuración
+        initializeMenu(loggedInUser);
+        initScripts(); // Mover initScripts aquí puede garantizar que se ejecute después de que el contenido se haya cargado
+      } else {
+        console.error('Error: #layout-placeholder no encontrado');
+      }
+    })
+    .catch(error => console.error('Error loading sidebar:', error));
 }
 
 function initializeMenu(loggedInUser) {
