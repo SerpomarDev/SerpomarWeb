@@ -25,9 +25,6 @@ fetch(`https://esenttiapp-production.up.railway.app/api/cargaredit/${id}`)
           document.getElementById("telefono").value = preventa.telefono;
           document.getElementById("eje").value = preventa.eje;
           document.getElementById("tipologia").value = preventa.tipologia;
-          document.getElementById("id_aliado").value = preventa.id_aliado;
-          // document.getElementById("aliado").value = preventa.aliado;
-          // document.getElementById("celular").value = preventa.celular;
           document.getElementById("estado_puerto").value = preventa.puerto;
           document.getElementById("proyecto").value = preventa.proyecto;
           document.getElementById("esenttia").value = preventa.esenttia;
@@ -77,9 +74,9 @@ document.getElementById("PreventaEdit").addEventListener("submit", function (eve
             telefono: document.getElementById("telefono").value,
             eje: document.getElementById("eje").value,
             tipologia: document.getElementById("tipologia").value,
-            id_aliado: document.getElementById("id_aliado").value,
-            aliado: document.getElementById("aliado").value,
-            celular: document.getElementById("celular").value,
+            //id_aliado: document.getElementById("id_aliado").value,
+            //aliado: document.getElementById("aliado").value,
+            //celular: document.getElementById("celular").value,
             proyecto: document.getElementById("proyecto").value,
             esenttia: document.getElementById("esenttia").value,
             cabot: document.getElementById("cabot").value,

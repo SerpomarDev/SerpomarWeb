@@ -3,6 +3,8 @@ document.getElementById("saveAsignacion").addEventListener("submit", function (e
 
   const formData = new FormData(this);
   const jsonData = JSON.stringify(Object.fromEntries(formData));
+ 
+  console.log(jsonData)
 
   fetch("https://esenttiapp-production.up.railway.app/api/saveasignacion", {
     method: "POST",

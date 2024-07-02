@@ -72,15 +72,15 @@
         <div class="content-body">
         <div id="content" class="p-4 p-md-5 pt-5">
             <div class="container">
-                <form id="PreventaEdit" method="PUT" enctype="multipart/form-data">
-                    <!-- <input type="text" name="id" id="id" disabled /> -->
+                <!-- <form id="PreventaEdit" method="PUT" enctype="multipart/form-data">
+                    <input type="text" name="id" id="id" disabled />
         
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="form-label">Placa</label>
+                                <label class="form-label">Placa</label> -->
                                 <!-- <input type="text" id="placa" name="placa" class="form-control" /> -->
-                                <label class="form-label" for="">Placa</label>
+                                <!-- <label class="form-label" for="">Placa</label>
                                 <select name="id_placa" id="id_placa" class="form-control" required>
                                     <option value="">Seleccione Placa</option>
                                 </select>
@@ -106,10 +106,10 @@
         
                     <div class="row"> 
                         <div class="col-md-4">
-                            <div class="form-group">
+                            <div class="form-group"> -->
                                 <!-- <label class="form-label">Conductor</label>
                                 <input type="text" id="conductor" class="form-control" readonly="readonly"> -->
-                                <label class="form-label" for="">Conductor</label>
+                                <!-- <label class="form-label" for="">Conductor</label>
                                 <select name="id_conductor" id="id_conductor" class="form-control" required>
                                     <option value="">Seleccione Conductor</option>
                                 </select>
@@ -129,7 +129,7 @@
                                 <input type="text" id="telefono" class="form-control" readonly="readonly" />
                             </div>
                         </div>
-                    </div>
+                    </div> -->
         
                     <!-- <div class="row">
                         <div class="col-md-6">
@@ -147,7 +147,7 @@
                         </div>
                     </div>-->
 
-                    <div class="row">
+                    <!-- <div class="row">
 
                         <div class="col-md-6">
                             <div class="form-group">
@@ -231,9 +231,149 @@
                             <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
                             <button id="btnPreventaEdit" class="btn btn-primary">Enviar</button>
                         </div>
-                    </div>
-	</div>
+                    </div> -->
+
+                    <form id="PreventaEdit" method="PUT" enctype="multipart/form-data">
+                        <input type="hidden" name="" id="id">
+                        <input type="hidden" name="id_placa" id="id_placa" disabled />
+                        <input type="hidden" name="id_aliado" id="id_aliado" disabled />
+            
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Placa</label>
+                                    <input type="text" id="placa" name="placa" class="form-control" readonly="readonly" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Ejes</label>
+                                    <input type="text" class="form-control" id="eje" readonly>
+                                </div>
+                            </div>
+            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Tipologia</label>
+                                    <input type="text" id="tipologia" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="row"> 
+                            <input type="hidden" name="id_conductor" id="id_conductor" disabled />
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Conductor</label>
+                                    <input type="text" id="conductor" class="form-control" readonly="readonly">
+                                </div>
+                            </div>
+            
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Cédula</label>
+                                    <input type="text" id="identificacion" class="form-control" readonly="readonly" />
+                                </div>
+                            </div>
+            
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Celular</label>
+                                    <input type="text" id="telefono" class="form-control" readonly="readonly" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+            
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Estado en Puerto</label>
+                                    <select id="estado_puerto" name="estado_puerto" class="form-control" required>
+                                        <option value="">Seleccione una Opción</option>
+                                        <option value="BLOQUEADO">BLOQUEADO</option>
+                                        <option value="INGRESO A PUERTO">INGRESO A PUERTO</option>
+                                        <option value="SOLO VACIO">SOLO VACIO</option>
+                                    </select>
+                                </div>
+                            </div>
+            
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label" for="">Proyectos:</label>
+                                    <select name="proyecto" id="proyecto" class="form-control" required>
+                                        <option value="">Seleccione cliente</option>
+                                        <option value="ESENTTIA SA">ESENTTIA SA</option>
+                                        <option value="CLIENTES VARIOS">CLIENTES VARIOS</option>
+                                    </select>
+                                </div>
+                            </div>
+            
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label" for="">Esenttia:</label>
+                                    <select name="esenttia" id="esenttia" class="form-control" required>
+                                        <option value="">Seleccione</option>
+                                        <option value="HABILITADO">HABILITADO</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+            
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Cabot</label>
+                                    <select name="cabot" id="cabot" class="form-control" required>
+                                        <option value="">Seleccione</option>
+                                        <option value="HABILITADO">HABILITADO</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="row">
+            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Estado</label>
+                                    <select id="estado" name="estado" class="form-control" required>
+                                        <option value="">Seleccione una Opción</option>
+                                        <option value="F/O">F/O</option>
+                                        <option value="F/S">F/S</option>
+                                        <option value="OK">OK</option>
+                                        <option value="S/C">S/C</option>
+                                    </select>
+                                </div>
+                            </div>
+            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Flota</label>
+                                    <select id="flota" name="flota" class="form-control" required>
+                                        <option value="">Seleccione una Opción</option>
+                                        <option value="RENTING">RENTING</option>
+                                        <option value="EXTERNA">EXTERNA</option>
+                                        <option value="APOYO">APOYO</option>
+                                        <option value="BLOQUEADO">BLOQUEADO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-between">
+                                <button id="btnPreventaEdit" class="btn btn-primary">Enviar</button>
+                                <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
+                            </div>
+                        </div>
+                    </form>
+	    </div> 
     
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/componentes/loadSidebar.js"></script>
@@ -261,8 +401,8 @@
 	
 
     <script type="text/javascript" src="/js/preventa/edit.js"></script>
-    <!-- <script type="text/javascript" src="/js/cargar/cargarPlaca.js"></script> -->
-    <!-- <script type="text/javascript" src="/js/cargar/cargarConductores.js"></script> -->
+    <!-- <script type="text/javascript" src="/js/cargar/cargarPlaca.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarConductores.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
