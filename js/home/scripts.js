@@ -135,6 +135,9 @@ function initializeMenu(loggedInUser) {
               $('#menu-operaciones').show();
               $('#menu-operaciones ul li').hide();
               $('#menu-operaciones ul li:contains("Tablero General de Operaciones")').show();
+              $('#menu-transporte').show();
+              $('#menu-transporte ul li').hide();
+              $('#menu-transporte ul li:contains("Orden de S.")').show();
               break;
 // ROL CONTABILIDAD **************************************************     
 
