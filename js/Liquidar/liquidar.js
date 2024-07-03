@@ -2,9 +2,6 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-let btnFacturar = document.getElementById('BtnSaveLiquidar').value;
-
-console.log()
     new gridjs.Grid({
         search: false,
         language:{
@@ -82,13 +79,11 @@ console.log()
               }, 1500);
         })
         .catch((error) => {
+            Swal.fire({
+                title: "¡!",
+                text: "Liquidación cerrada",
+                icon: "success",
+              });
             console.error('Error:', error);
           });
     })
-    
-    function time() {
-        document.getElementById('saveLiquidacion').reset();
-        setTimeout(() => {
-            window.location.href = ``; 
-        },  1200);
-      }
