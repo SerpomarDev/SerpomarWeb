@@ -1,6 +1,11 @@
 // Objeto con las credenciales válidas
 const credentials = {
 
+  
+    // ROL GENERAL
+    "visitante@serpomar.com": "Vserpomar202417",
+    // ROL GENERAL 
+
     // ROL GENERAL
     "alexander.jimenez@serpomar.com": "ALserpomar20240",
     "admin@serpomar.com": "serpomar2024",
