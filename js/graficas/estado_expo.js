@@ -111,11 +111,15 @@ const myChart2 = new Chart(ctx2, {
 fetch('https://esenttiapp-production.up.railway.app/api/estadoexpo')
     .then(response => response.json())
     .then(data => {
-        const pendienteLiquidar = data.find(item => item.estado === 'PENDENTE LIQUIDAR').conteo;
-        const pendienteIngreso = data.find(item => item.estado === 'PENDIENTE INGRESO A PUERTO').conteo;
-        const pendienteRetiro = data.find(item => item.estado === 'PENDIENTE RETIRO VACIO').conteo;
+        const pendienteLiquidar = data.find(item => item.estado === 'PENDENTE LIQUIDAR');
+        const pendienteIngreso = data.find(item => item.estado === 'PENDIENTE INGRESO A PUERTO');
+        const pendienteRetiro = data.find(item => item.estado === 'PENDIENTE RETIRO VACIO');
 
-        myChart2.data.datasets[0].data = [pendienteLiquidar, pendienteIngreso, pendienteRetiro];
+        const pendiente = pendienteLiquidar ? pendienteLiquidar.conteo : 0;
+        const pendienteIng = pendienteIngreso ? pendienteIngreso.conteo : 0;
+        const pendienteRet = pendienteRetiro ? pendienteRetiro.conteo : 0;
+
+        myChart2.data.datasets[0].data = [pendiente, pendienteIng, pendienteRet];
         myChart2.update();
     })
     .catch(error => {
