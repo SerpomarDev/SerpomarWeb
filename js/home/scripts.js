@@ -84,8 +84,8 @@ case 'visitante@serpomar.com':
         case 'juan@serpomar.com':
         case 'edgar.florez@serpomar.com' :
         case 'rafael.caicedo@serpomar.com' :
-        case 'susana.negrette@serpomar.com ' :
-        case 'brayan.balceiro@serpomar.com ' :
+        case 'susana.negrette@serpomar.com' :
+        case 'brayan.balceiro@serpomar.com' :
         case 'henry.goethe@serpomar.com' : 
         case 'operacion.nacional1@serpomar.com' : 
         case 'carlos.carrasquilla@serpomar.com' :
@@ -132,10 +132,10 @@ case 'visitante@serpomar.com':
 // ROL ANALISTA **************************************************
 
 // ROL CONTABILIDAD **************************************************
-            case 'recepcion@serpomar.com':
-            case 'Recepcion.facturas@serpomar.com':
-            case 'katerine.pedroza@serpomar.com':
-            case 'aprendiz.contabilidad@serpomar.com':
+            case 'recepcion@serpomar.com' :
+            case 'Recepcion.facturas@serpomar.com' :
+            case 'katerine.pedroza@serpomar.com' :
+            case 'aprendiz.contabilidad@serpomar.com' :
               $('#menu > li:contains("Tu Rol: Contabilidad")').show();
               $('#menu-contabilidad').show();
               $('#menu-contabilidad ul li').show();
