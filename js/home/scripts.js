@@ -76,6 +76,7 @@ case 'visitante@serpomar.com':
           $('#menu > li:contains("Tu Rol: Control Acceso")').hide();
           $('#menu > li:contains("Tu Rol: Acceso Patio")').hide();
           $('#menu > li:contains("Tu Rol: Patio")').hide();
+          $('#menu > li:contains("Tu Rol: Visitante")').hide();
           break;
 // ROL GENERAL **************************************************  
 
