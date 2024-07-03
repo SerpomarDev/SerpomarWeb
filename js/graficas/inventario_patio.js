@@ -1,5 +1,3 @@
-// JS para mostrar el gráfico radial en "Inventario en Patio"
-
 const domInventario = document.getElementById('impoExpoChart');
 const myChartInventario = echarts.init(domInventario);
 
@@ -7,9 +5,17 @@ fetch('https://esenttiapp-production.up.railway.app/api/estadoinventario')
     .then(response => response.json())
     .then(data => {
         if (data && Array.isArray(data)) {
-            const chartData = data.map(item => ({
+            const chartData = data.map((item, index) => ({
                 value: item.conteo,
-                name: item.modalidad
+                name: item.modalidad,
+                itemStyle: {
+                    color: [
+                        '#00bfff', // --bs-success
+                        '#87cefa', // --bs-info
+                        '#4682b4', // --bs-warning (Steel Blue)
+                        '#1e90ff'  // --bs-danger
+                    ][index % 4]  // Alterna entre los 4 colores
+                }
             }));
 
             const option = {

@@ -1,30 +1,77 @@
-// JS de Volumen (volumenes.js)
-
 const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Expo', 'Impo'],
+        labels: ['Exportaciones', 'Importaciones'],
         datasets: [{
             label: 'Valores',
             data: [],
             backgroundColor: [
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)'
+                '#00bfff',
+                '#1e90ff'
             ],
             borderColor: [
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)'
+                '#1e90ff',
+                '#00bfff'
             ],
-            borderWidth: 1
+            borderWidth: 1,
+            borderRadius: 12
         }]
     },
     options: {
         scales: {
+            x: {
+                ticks: {
+                    color: '#3e4954',
+                    font: {
+                        size: 13,
+                        family: 'poppins',
+                        weight: 400
+                    }
+                },
+                grid: {
+                    display: false
+                }
+            },
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                ticks: {
+                    color: '#3e4954',
+                    font: {
+                        size: 13,
+                        family: 'poppins',
+                        weight: 400
+                    }
+                },
+                grid: {
+                    borderColor: '#eee'
+                }
             }
-        }
+        },
+        plugins: {
+            legend: {
+                display: false,
+                position: 'top',
+                align: 'end',
+                labels: {
+                    color: '#000000',
+                    font: {
+                        size: 12
+                    },
+                    usePointStyle: true,
+                    pointStyleWidth: 18
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return 'Total ' + context.raw ;
+                    }
+                }
+            }
+        },
+        responsive: true,
+        maintainAspectRatio: false
     }
 });
 

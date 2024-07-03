@@ -8,17 +8,64 @@ const myChartClientes = new Chart(ctxClientes, {
         datasets: [{
             label: 'Conteo',
             data: [], // Los datos del conteo se actualizarán dinámicamente
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1
+            backgroundColor: ['#1e90ff', '#00bfff'],
+            borderColor: ['#00bfff', '#1e90ff'],
+            borderWidth: 1,
+            borderRadius: 10,
+            borderSkipped: false
         }]
     },
     options: {
-        scales: {
-            y: {
-                beginAtZero: true
+        plugins: {
+            legend: {
+                display: false,
+                position: 'top',
+                labels: {
+                    color: '#496ecc',
+                    font: {
+                        size: 12
+                    }
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(tooltipItem) {
+                        return "Solicitudes: " + tooltipItem.raw;
+                    }
+                }
             }
-        }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: '#3e4954',
+                    font: {
+                        size: 13,
+                        family: 'poppins',
+                        weight: 400
+                    }
+                },
+                grid: {
+                    display: false
+                }
+            },
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    color: '#496ecc',
+                    font: {
+                        size: 13,
+                        family: 'poppins',
+                        weight: 400
+                    }
+                },
+                grid: {
+                    color: '#eee'
+                }
+            }
+        },
+        responsive: true,
+        maintainAspectRatio: false // Permitir que el gráfico se ajuste a la altura personalizada
     }
 });
 

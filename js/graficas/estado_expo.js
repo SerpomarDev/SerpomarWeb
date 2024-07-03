@@ -1,4 +1,18 @@
 const ctx2 = document.getElementById('myChart2').getContext('2d');
+
+// Crear gradientes para las barras con los colores especificados
+const gradient1 = ctx2.createLinearGradient(0, 0, 0, 400);
+gradient1.addColorStop(0, '#00bfff');
+gradient1.addColorStop(1, '#87cefa');
+
+const gradient2 = ctx2.createLinearGradient(0, 0, 0, 400);
+gradient2.addColorStop(0, '#87cefa');
+gradient2.addColorStop(1, '#4682b4');
+
+const gradient3 = ctx2.createLinearGradient(0, 0, 0, 400);
+gradient3.addColorStop(0, '#4682b4');
+gradient3.addColorStop(1, '#1e90ff');
+
 const myChart2 = new Chart(ctx2, {
     type: 'bar',
     data: {
@@ -6,16 +20,89 @@ const myChart2 = new Chart(ctx2, {
         datasets: [{
             label: 'Valores',
             data: [], // Los datos se actualizarán dinámicamente
-            backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--bs-primary'), // Ejemplo de uso de una variable CSS
-            borderColor: getComputedStyle(document.documentElement).getPropertyValue('--bs-primary-dark'), // Ejemplo de uso de una variable CSS
-            borderWidth: 1
+            backgroundColor: [
+                gradient1,
+                gradient2,
+                gradient3
+            ],
+            borderColor: 'transparent',
+            borderWidth: 0,
+            borderRadius: 15, // Bordes redondeados
+            barPercentage: 0.7, // Ancho de las barras
+            categoryPercentage: 0.6 // Espacio entre barras
         }]
     },
     options: {
         indexAxis: 'y',
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Estado de Exportaciones',
+                font: {
+                    size: 12,
+                    weight: 'bold',
+                    family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+                },
+                padding: {
+                    top: 20,
+                    bottom: 20
+                }
+            },
+            legend: {
+                display: false
+            },
+            tooltip: {
+                backgroundColor: 'rgba(0,0,0,0.7)',
+                titleFont: {
+                    size: 12
+                },
+                bodyFont: {
+                    size: 14
+                },
+                cornerRadius: 5,
+                padding: 10,
+                callbacks: {
+                    label: function(context) {
+                        return ` ${context.dataset.label}: ${context.raw}`;
+                    }
+                }
+            }
+        },
         scales: {
             x: {
-                beginAtZero: true
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Cantidad',
+                    font: {
+                        size: 14,
+                        weight: 'bold',
+                        family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+                    }
+                },
+                ticks: {
+                    color: getComputedStyle(document.documentElement).getPropertyValue('--bs-dark'),
+                    font: {
+                        size: 8
+                    }
+                },
+                grid: {
+                    color: '#e0e0e0', // Color suave para las líneas de la cuadrícula
+                    borderDash: [3, 3]
+                }
+            },
+            y: {
+                ticks: {
+                    color: getComputedStyle(document.documentElement).getPropertyValue('--bs-dark'),
+                    font: {
+                        size: 14,
+                        weight: 'bold'
+                    }
+                },
+                grid: {
+                    display: false // Quitar las líneas de la cuadrícula para un estilo más limpio
+                }
             }
         }
     }

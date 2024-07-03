@@ -7,6 +7,7 @@
     <title>Nodhus</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet">
+    <link href="/css/vehiculos.css" rel="stylesheet">
     <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
@@ -49,27 +50,81 @@
                                 <!-- Los iconos de vehículos se generarán dinámicamente aquí -->
                             </div>
                         </div>
+                        
                       
-                        <div class="chart-item">
-                            <h1>Estado Exportación</h1>
-                            <canvas id="myChart2"></canvas>
+                
+    
+                        <div class="col-xl-3 col-xxl-6">
+                            <div class="card">
+                                <div class="card-header pb-0 border-0">
+                                        <h4 class="card-title mb-2">Estado Exportación</h4>
+                                </div>
+                                <div class="card-body pb-0 pt-3">
+                                    <canvas id="myChart2"></canvas><br>
+                                </div>
+                            </div>
                         </div>
-                        <div class="chart-item">
-                            <h1>Estado Importación</h1>
-                            <canvas id="myChartImportacion"></canvas>
+
+                        <div class="col-xl-3 col-xxl-5">
+                            <div class="card">
+                                <div class="card-header pb-0 border-0">
+                                        <h4 class="card-title mb-2"></h4>Estado Importación</h4>
+                                </div>
+                                <div class="card-body pb-0 pt-3">
+                                    <canvas id="myChartImportacion"></canvas>
+                                </div>
+                           
+                            </div>
                         </div>
-                        <div class="chart-item">
-                            <h1>Volumen</h1>
-                            <canvas id="myChart"></canvas>
+                        
+                       
+                        
+                        <div class="col-xl-3 col-xxl-6">
+                            <div class="card">
+                                <div class="card-header pb-0 border-0">
+                                    <div>
+                                        <h4 class="card-title mb-2">Volumen</h4>
+                                    </div>
+                                    <ul class="card-list">
+                                        <li class="justify-content-end">Expo<span class="bg-success circle me-0 ms-2"></span></li>
+                                        <li class="justify-content-end">Impo<span class="bg-danger circle me-0 ms-2"></span></li>
+                                    </ul>
+                                </div>
+                                <div class="card-body pb-0 pt-3">
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                                <br>
+                            </div>
                         </div>
-                        <div class="chart-item">
-                            <h1>Clientes</h1>
-                            <canvas id="clientChart"></canvas>
+                        
+                        <div class="col-xl-3 col-xxl-5">
+                            <div class="card">
+                                <div class="card-header pb-0 border-0">       
+                                        <h4 class="card-title mb-2">Inventario en Patio</h4>
+                                </div>
+                                <div id="impoExpoChart" style="width: 500px; height: 400px;"></div>
+                            </div>
                         </div>
-                        <div class="chart-item">
-                            <h1>Inventario en Patio</h1>
-                            <div id="impoExpoChart" style="width: 400px; height: 300px;"></div>
+                    
+                        
+                      
+
+                        <div class="col-xl-6 col-xxl-11">
+                            <div class="card">
+                                <div class="card-header d-flex flex-wrap border-0 pb-0">
+                                    <div class="me-auto mb-sm-0 mb-3">
+                                        <h4 class="card-title mb-2">Clientes</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div id="chartBar2" class="bar-chart"></div>
+                                    <canvas id="clientChart" class="custom-chart-height"></canvas>
+                                </div>
+                                <br>
+                            </div>
                         </div>
+                        
+                        
                     </div>
                 </div>
             </div>

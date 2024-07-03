@@ -27592,3 +27592,6 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   margin-left: 20px;
 }
 
+.custom-chart-height {
+  height: 320px; /* Ajusta este valor a la altura que desees */
+}

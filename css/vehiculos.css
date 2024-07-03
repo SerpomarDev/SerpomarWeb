@@ -1,0 +1,44 @@
+
+
+.vehicle-count h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.vehicle-icon {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.icon-wrapper {
+    text-align: center;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 100px;
+}
+
+.icon-wrapper .fa-car,
+.icon-wrapper .fa-bus,
+.icon-wrapper .fa-motorcycle {
+    font-size: 48px;
+    margin-bottom: 5px;
+}
+
+.icon-wrapper .count {
+    font-size: 18px;
+    color: #000;
+    display: block;
+    margin-top: 5px;
+}
+
+.icon-wrapper .state {
+    font-size: 14px;
+    color: #666;
+    display: block;
+    margin-top: 5px;
+}

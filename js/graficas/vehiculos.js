@@ -1,8 +1,7 @@
-// JS para mostrar el total de vehículos con diferentes colores según su estado y cantidad
-
 const estadoColores = {
     "OK": "green",
-    "F/S": "red"
+    "F/S": "orange", // Color para "Fuera de Servicio"
+    "F/O": "red"    // Color para "Fuera de Operación"
 };
 
 fetch('https://esenttiapp-production.up.railway.app/api/resumenestados')
@@ -10,27 +9,27 @@ fetch('https://esenttiapp-production.up.railway.app/api/resumenestados')
     .then(data => {
         if (data && Array.isArray(data)) {
             const vehicleIconsContainer = document.getElementById('vehicleIcons');
-            vehicleIconsContainer.innerHTML = ''; // Limpiar cualquier contenido previo
+            vehicleIconsContainer.innerHTML = '';
 
             data.forEach(item => {
                 const iconWrapper = document.createElement('div');
-                iconWrapper.style.display = 'inline-block';
-                iconWrapper.style.margin = '0 10px';
-                iconWrapper.style.textAlign = 'center';
+                iconWrapper.classList.add('icon-wrapper');
 
                 const icon = document.createElement('span');
-                icon.classList.add('fas', 'fa-car');
-                icon.style.color = estadoColores[item.estado] || 'black'; // Usar color según el estado o negro por defecto
-                icon.style.fontSize = '48px'; // Tamaño del ícono
+                icon.classList.add('fas', 'fa-truck');
+                icon.style.color = estadoColores[item.estado] || 'gray';
 
                 const count = document.createElement('span');
                 count.textContent = item.conteo;
-                count.style.display = 'block';
-                count.style.color = '#000';
-                count.style.fontSize = '14px'; // Tamaño del texto de conteo
+                count.classList.add('count');
+
+                const state = document.createElement('span');
+                state.textContent = item.estado;
+                state.classList.add('state');
 
                 iconWrapper.appendChild(icon);
                 iconWrapper.appendChild(count);
+                iconWrapper.appendChild(state);
                 vehicleIconsContainer.appendChild(iconWrapper);
             });
         } else {
