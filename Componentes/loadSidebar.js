@@ -46,6 +46,14 @@ function initializeMenu(loggedInUser) {
 
     switch (loggedInUser) {
 
+// ROL VISITANTE **************************************************
+case 'visitante@serpomar.com':
+  $('#menu > li:contains("Tu Rol: Visitante")').show();
+  $('#menu-Dashboard').show();
+  $('#menu-Dashboard ul li').hide();
+  $('#menu-Dashboard ul li:contains("Dashboard")').show();
+  break;
+// ROL VISITANTE **************************************************
 
 // ROL GENERAL **************************************************
         case 'admin@serpomar.com':
