@@ -39,8 +39,7 @@ document.getElementById('saveSolicitud').addEventListener('submit',function(even
     const formData = new FormData(this);
     const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-    console.log(jsonData)
-    fetch('https://esenttiapp-production.up.railway.app/api/solicitudservicios',{
+    fetch('https://esenttiapp-production.up.railway.app/api/solicitudservicios', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: jsonData
@@ -51,19 +50,24 @@ document.getElementById('saveSolicitud').addEventListener('submit',function(even
         }
     })
     .then(data => {
-
-        const sp = data.sp; // Asegúrate de que estos nombres coincidan con los campos de tu respuesta
-        const id = data.id;
-        const concatenatedText = sp + id;
-
+        return fetch('https://esenttiapp-production.up.railway.app/api/ultimoresgistro');
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos de la API');
+        }
+        return response.text();
+    })
+    .then(data => {
+        
         Swal.fire({
-          title: "¡Buen trabajo!",
-          text: "¡Has creado una SP" + concatenatedText,
-          icon: "success",
+            title: "¡Buen trabajo!",
+            html: `<p id='ultimoRegistro'>${"SP 202400"+data}</p>`,
+            icon: "success",
         });
     })
-    .then((response)=>{
-      time();
+    .then(response=>{
+        time()
     })
     .catch((error) => {
         console.error("Error:", error);
@@ -75,5 +79,5 @@ document.getElementById('saveSolicitud').addEventListener('submit',function(even
     document.getElementById('saveSolicitud').reset();
     setTimeout(() => {
         window.location.href = `/view/solicitudes_servicios/create.html`; 
-    }, 1500);
+    },2000);
   }  
