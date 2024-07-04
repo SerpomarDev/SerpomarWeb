@@ -40,12 +40,12 @@ const myChart2 = new Chart(ctx2, {
                 display: true,
                 text: 'Estado de Exportaciones',
                 font: {
-                    size: 12,
+                    size: 18,
                     weight: 'bold',
                     family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
                 },
                 padding: {
-                    top: 20,
+                    top: 0,
                     bottom: 20
                 }
             },
