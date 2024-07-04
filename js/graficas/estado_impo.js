@@ -6,7 +6,7 @@ gradient.addColorStop(1, 'rgba(54, 162, 235, 0.2)');
 const myChartImportacion = new Chart(ctxImportacion, {
     type: 'bar',
     data: {
-        labels: ['P. Retiro', 'P. Devolución', 'P. Liquidar'],
+        labels: ['RETIRO', 'DEVOLUCIÓN', 'LIQUIDAR'],
         datasets: [{
             label: 'Conteo de Estados',
             data: [], // Los datos se actualizarán dinámicamente
