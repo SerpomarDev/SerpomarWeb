@@ -2,6 +2,7 @@
     font-size: 28px;
     margin-bottom: 20px;
     color: #ffffff;
+    font-weight: 600;
 }
 
 .vehicle-icon {
@@ -12,7 +13,7 @@
 
 .icon-wrapper {
     text-align: center;
-    background: #ffffff4b;
+    background: #ffffff2d;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
@@ -35,7 +36,7 @@
 
 .icon-wrapper .state {
     font-size: 14px;
-    color: #666;
+    color: #ffffff;
     display: block;
     margin-top: 5px;
 }
@@ -119,29 +120,44 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 15px 25px;
+    border-radius: 8px;
     color: white;
     font-weight: bold;
-    font-size: 14px;
-    transition: background-color 0.3s;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 .notification i {
     margin-right: 10px;
+    font-size: 20px; /* Tamaño del ícono */
+}
+
+.notification .icon {
+    font-size: 24px; /* Tamaño del ícono de la campana */
+    margin-right: 10px;
+    display: flex;
+    align-items: center; /* Asegura que el icono y el texto estén alineados verticalmente */
 }
 
 .notification.basic {
-    background-color: green;
+    background-color: #4CAF50; /* Verde más suave */
 }
 
 .notification.medium {
-    background-color: yellow;
-    color: black; /* Para mayor contraste */
+    background-color: #FFC107; /* Amarillo */
+    color: black; /* Mayor contraste */
 }
 
 .notification.high {
-    background-color: red;
+    background-color: #F44336; /* Rojo */
+}
+
+.notification:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al pasar el ratón */
 }
 
 /* Tooltips */
@@ -153,7 +169,7 @@
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 5px 10px;
+    padding: 8px 12px;
     border-radius: 5px;
     white-space: nowrap;
     opacity: 0;

@@ -38,13 +38,13 @@ const myChartClientes = new Chart(ctxClientes, {
                 ticks: {
                     color: '#3e4954',
                     font: {
-                        size: 11,
+                        size: 10,
                         family: 'poppins',
                         weight: 400
                     },
                     autoSkip: false, // No omitir etiquetas automáticamente
-                    maxRotation: 0, // Rotación máxima de las etiquetas
-                    minRotation: 0 // Rotación mínima de las etiquetas
+                    maxRotation: 8, // Rotación máxima de las etiquetas
+                    minRotation: 8 // Rotación mínima de las etiquetas
                 },
                 grid: {
                     display: false
