@@ -2,10 +2,10 @@ const ctxClientes = document.getElementById('clientChart').getContext('2d');
 const myChartClientes = new Chart(ctxClientes, {
     type: 'bar',
     data: {
-        labels: [], // Los nombres de los clientes se actualizarán dinámicamente
+        labels: [], 
         datasets: [{
             label: 'Conteo',
-            data: [], // Los datos del conteo se actualizarán dinámicamente
+            data: [], 
             backgroundColor: ['#1e90ff', '#00bfff'],
             borderColor: ['#00bfff', '#1e90ff'],
             borderWidth: 1,
@@ -42,9 +42,9 @@ const myChartClientes = new Chart(ctxClientes, {
                         family: 'poppins',
                         weight: 400
                     },
-                    autoSkip: false, // No omitir etiquetas automáticamente
-                    maxRotation: 8, // Rotación máxima de las etiquetas
-                    minRotation: 8 // Rotación mínima de las etiquetas
+                    autoSkip: false, 
+                    maxRotation: 8,
+                    minRotation: 8 
                 },
                 grid: {
                     display: false
@@ -66,14 +66,14 @@ const myChartClientes = new Chart(ctxClientes, {
             }
         },
         responsive: true,
-        maintainAspectRatio: false // Permitir que el gráfico se ajuste a la altura personalizada
+        maintainAspectRatio: false 
     }
 });
 
 fetch('https://esenttiapp-production.up.railway.app/api/estadobyclientes')
     .then(response => response.json())
     .then(data => {
-        console.log('Fetched data:', data); // Log the fetched data
+        console.log('Fetched data:', data); 
         if (data && Array.isArray(data)) {
             // Agrupar los datos por cliente
             const clienteConteo = {};
@@ -84,7 +84,7 @@ fetch('https://esenttiapp-production.up.railway.app/api/estadobyclientes')
                 clienteConteo[item.cliente] += item.cantidad_contenedor;
             });
 
-            console.log('Processed data:', clienteConteo); // Log the processed data
+            console.log('Processed data:', clienteConteo); 
 
             // Actualizar el gráfico con los datos agrupados
             myChartClientes.data.labels = Object.keys(clienteConteo);

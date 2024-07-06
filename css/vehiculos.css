@@ -1,3 +1,4 @@
+/* CSS existente */
 .vehicle-count h1 {
     font-size: 28px;
     margin-bottom: 20px;
@@ -24,7 +25,6 @@
 .icon-wrapper .fa-bus,
 .icon-wrapper .fa-motorcycle {
     font-size: 48px;
-  
 }
 
 .icon-wrapper .count {
@@ -58,7 +58,6 @@
 .vehicle-count {
     flex: 1 1 100%; /* Ocupar toda la fila */
     text-align: center;
-    
 }
 
 .vehicle-icon {
@@ -120,14 +119,19 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding: 15px 25px;
-    border-radius: 8px;
+    flex-direction: row; /* Asegura que el ícono y el texto estén en la misma fila */
+    padding: 5px 25px;
+    border-radius: 10px;
     color: white;
-    font-weight: bold;
     font-size: 16px;
     transition: background-color 0.3s, transform 0.3s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+}
+
+.notification-header {
+    display: flex;
+    align-items: center;
 }
 
 .notification i {
@@ -147,8 +151,8 @@
 }
 
 .notification.medium {
-    background-color: #FFC107; /* Amarillo */
-    color: black; /* Mayor contraste */
+    background-color: #ffcc31; /* Amarillo */
+    color: rgb(255, 255, 255); /* Mayor contraste */
 }
 
 .notification.high {
@@ -160,25 +164,100 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al pasar el ratón */
 }
 
-/* Tooltips */
-.notification::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 8px 12px;
-    border-radius: 5px;
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
+/* Colores específicos para exportación e importación */
+.semaforo-container.export .notification {
+    background-color: #0073FF;
 }
 
-.notification:hover::after {
-    opacity: 1;
+.semaforo-container.import .notification {
+    background-color: #FF0041;
+}
+
+/* Efecto de latencia (parpadeo) */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.notification {
+    animation: blink 2.5s infinite;
+}
+
+/* Desactivar efecto de latencia dentro del modal */
+.modal .notification {
+    animation: none;
+}
+
+/* Modal */
+.modal {
+    padding: 25px;
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    padding-top: 0px; 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    border-radius: 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-title {
+    text-align: center; /* Centramos el título del modal */
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+/* Asegurar que las notificaciones dentro del modal estén alineadas correctamente */
+#modalBody .notification {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.notification-detail {
+    margin: 0; /* Eliminamos el margen entre elementos del mismo SP */
+    padding: 0; /* Eliminamos el padding entre elementos del mismo SP */
+}
+
+.notification-details {
+    border-top: 4px solid #dddddd48;
+    padding-top: 0px; /* Reducimos el padding superior */
+    margin-top: 0px; /* Reducimos el margen superior */
+    margin-bottom: 0px; /* Añadimos un margen inferior para separar diferentes SP */
+}
+
+.notification-separator {
+    border-bottom: 2px solid #cccccc91;
+    margin: 5px 0;
 }
 
 /* Asegurar que los gráficos se ajusten adecuadamente en pantallas más pequeñas */
