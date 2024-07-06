@@ -3,7 +3,6 @@ const apiBodegajeHasta = "https://esenttiapp-production.up.railway.app/api/notib
 const apiFechaDocumental = "https://esenttiapp-production.up.railway.app/api/notifechadocuexp";
 const apiCutoffFisico = "https://esenttiapp-production.up.railway.app/api/noticutofffisexp";
 
-const semaforoContainer = document.querySelector('.semaforo-container');
 let importNotifications = { basic: [], medium: [], high: [] };
 let exportNotifications = { basic: [], medium: [], high: [] };
 
@@ -15,7 +14,7 @@ async function fetchNotificaciones(api, dateKey, type, displayType) {
         const data = await response.json();
 
         data.forEach(item => {
-            if (item[dateKey] && item.fecha_actual) {
+            if (item.estado === "ACEPTADO" && item[dateKey] && item.fecha_actual) {
                 const diferenciaDias = (new Date(item[dateKey]) - new Date(item.fecha_actual)) / (1000 * 60 * 60 * 24);
                 item.dias_diferencia = Math.round(diferenciaDias);
 
@@ -61,7 +60,7 @@ function mergeNotifications(notificationSet1, notificationSet2) {
 }
 
 async function loadImportNotifications() {
-    const libreHastaNotifications = await fetchNotificaciones(apiLibreHasta, 'libre_hasta', 'Exportación', 'libre_hasta');
+    const libreHastaNotifications = await fetchNotificaciones(apiLibreHasta, 'libre_hasta', 'Importación', 'libre_hasta');
     const bodegajeHastaNotifications = await fetchNotificaciones(apiBodegajeHasta, 'bodegaje_hasta', 'Bodegaje', 'bodegaje_hasta');
 
     importNotifications = mergeNotifications(libreHastaNotifications, bodegajeHastaNotifications);
@@ -133,7 +132,7 @@ function closeModal() {
 loadImportNotifications();
 loadExportNotifications();
 
-
+// Close the modal when clicking outside of it
 window.onclick = function(event) {
     const modal = document.getElementById("notificationModal");
     if (event.target == modal) {
