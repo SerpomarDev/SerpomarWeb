@@ -19,9 +19,20 @@ fetch('https://esenttiapp-production.up.railway.app/api/estadoinventario')
             }));
 
             const option = {
+                title: {
+                    text: 'INVENTARIO EN PATIO',
+                    left: 'center',
+                    textStyle: {
+                        fontSize: 18,
+                        fontWeight: 'bold',
+                        fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+                    },
+                    padding: [0, 0, 20, 0] // Top, Right, Bottom, Left
+                },
                 tooltip: {
                     trigger: 'item'
                 },
+                
                 legend: {
                     top: '5%',
                     left: 'center'
