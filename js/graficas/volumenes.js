@@ -43,12 +43,26 @@ const myChart = new Chart(ctx, {
                         weight: 400
                     }
                 },
+                
                 grid: {
-                    borderColor: '#eee'
+                    display: false
                 }
             }
         },
         plugins: {
+            title: {
+                display: true,
+                text: 'Volumenes',
+                font: {
+                    size: 18,
+                    weight: 'bold',
+                    family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+                },
+                padding: {
+                    top: 0,
+                    bottom: 20
+                }
+            },
             legend: {
                 display: false,
                 position: 'top',
@@ -60,7 +74,8 @@ const myChart = new Chart(ctx, {
                     },
                     usePointStyle: true,
                     pointStyleWidth: 18
-                }
+                },
+                
             },
             tooltip: {
                 callbacks: {

@@ -22,100 +22,114 @@
                 <h1 class="title">TABLERO GENERAL DE OPERACIONES</h1>
             </div>
         </div>
-        <div class="margenform">
-            <div id="content" class="p-4 p-md-0 pt-5">
-                <div class="container-fluid main-container">
+    
+    <div class="margenform">
+        <div class="container-fluid">
                     <div class="filter-container">
                         <input type="text" id="dateFilter" placeholder="Selecciona una fecha">
                         <button id="filterButton">Filtrar</button>
                     </div>
+
+                  
+
                     <div class="semaforo-container">
                         <div class="notification basic" data-tooltip="Todo en orden">
-                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-bell icon"></i>
                             <span>Notificación Básica</span>
                         </div>
                         <div class="notification medium" data-tooltip="10 contenedores a menos de dos semanas a vencer">
-                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-bell icon"></i>
                             <span>Notificación Media</span>
                         </div>
                         <div class="notification high" data-tooltip="En 2 días se vencen 5 contenedores">
-                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-bell icon"></i>
                             <span>Notificación Alta</span>
                         </div>
                     </div>
-                    <div class="charts-grid">
-                        <div class="chart-item vehicle-count">
-                            <h1>Total de Vehículos</h1>
-                            <div id="vehicleIcons" class="vehicle-icon">
-                                <!-- Los iconos de vehículos se generarán dinámicamente aquí -->
-                            </div>
-                        </div>
-                        
-                      
-                
-    
-                        <div class="col-xl-3 col-xxl-6">
-                            <div class="card">
-                                <div class="card-header pb-0 border-0">
-                                        <h4 class="card-title mb-2">Estado Exportación</h4>
-                                </div>
-                                <div class="card-body pb-0 pt-3">
-                                    <canvas id="myChart2"></canvas><br>
-                                </div>
-                            </div>
-                        </div>
+                    
+                    
+                    
 
-                        <div class="col-xl-3 col-xxl-5">
-                            <div class="card">
-                                <div class="card-header pb-0 border-0">
-                                        <h4 class="card-title mb-2"></h4>Estado Importación</h4>
+                    <div class="col-xl-12">
+                        <div class="card coin-card">
+                            <div class="card-body d-sm-flex d-block align-items-center">
+                                <div class="chart-item vehicle-count">
+                                    <h1>ESTADO DE LA FLOTA</h1>
+                                    <div id="vehicleIcons" class="vehicle-icon">
+                                        <!-- Los iconos de vehículos se generarán dinámicamente aquí -->
+                                    </div>
                                 </div>
-                                <div class="card-body pb-0 pt-3">
-                                    <canvas id="myChartImportacion"></canvas>
-                                </div>
-                           
                             </div>
                         </div>
-                        
+                    </div>
+                 
                        
                         
-                        <div class="col-xl-3 col-xxl-6">
-                            <div class="card">
-                                <div class="card-header pb-0 border-0">
-                                    <div>
-                                        <h4 class="card-title mb-2">Volumen</h4>
-                                    </div>
-                                    <ul class="card-list">
-                                        <li class="justify-content-end">Expo<span class="bg-success circle me-0 ms-2"></span></li>
-                                        <li class="justify-content-end">Impo<span class="bg-danger circle me-0 ms-2"></span></li>
-                                    </ul>
-                                </div>
-                                <div class="card-body pb-0 pt-3">
-                                    <canvas id="myChart"></canvas>
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-                        
-                        <div class="col-xl-3 col-xxl-5">
-                            <div class="card">
-                                <div class="card-header pb-0 border-0">       
-                                        <h4 class="card-title mb-2">Inventario en Patio</h4>
-                                </div>
-                                <div id="impoExpoChart" style="width: 500px; height: 400px;"></div>
-                            </div>
-                        </div>
-                    
-                        
-                      
+                        <div class="col-xl-12 col-xxl-12">
+                            <div class="row">  
 
-                        <div class="col-xl-6 col-xxl-11">
+
+                                <div class="col-md-6">
+                                    <div class="card progress-card">
+                                        <div class="card-body d-flex">
+                                            <div class="card-body pb-0 pt-3">
+                                                <canvas id="myChart2"></canvas><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card progress-card">
+                                        <div class="card-body d-flex">
+                                            <div class="card-body pb-0 pt-3">
+                                                <canvas id="myChartImportacion"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card progress-card">
+                                        <div class="card-body d-flex">
+                                            
+                                            <ul class="card-list">
+                                                <li class="justify-content-end">Expo<span class="bg-success circle me-0 ms-2"></span></li>
+                                                <li class="justify-content-end">Impo<span class="bg-danger circle me-0 ms-2"></span></li>
+                                            </ul>
+                                            <div class="card-body pb-0 pt-3">
+                                                <canvas id="myChart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="card progress-card">
+                                        <div class="card-body d-flex">
+                                            <ul class="card-list">
+                                                <li class="justify-content-end">1<span class="bg-success circle me-0 ms-2"></span></li>
+                                                <li class="justify-content-end">2<span class="bg-danger circle me-0 ms-2"></span></li>
+                                                <li class="justify-content-end">3<span class="bg-danger circle me-0 ms-2"></span></li>
+                                                <li class="justify-content-end">4<span class="bg-danger circle me-0 ms-2"></span></li>
+                                            </ul>
+                                            <div class="card-body pb-0 pt-3">
+                                                <div id="impoExpoChart" style="width: 500px; height: 400px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+           
                             <div class="card">
                                 <div class="card-header d-flex flex-wrap border-0 pb-0">
                                     <div class="me-auto mb-sm-0 mb-3">
                                         <h4 class="card-title mb-2">Clientes</h4>
                                     </div>
                                 </div>
+
                                 <div class="card-body pb-2">
                                     <div id="chartBar2" class="bar-chart"></div>
                                     <canvas id="clientChart" class="custom-chart-height"></canvas>
@@ -123,13 +137,9 @@
                                 <br>
                             </div>
                         </div>
-                        
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
+                        
+
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

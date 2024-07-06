@@ -16,7 +16,7 @@ gradient3.addColorStop(1, '#1e90ff');
 const myChart2 = new Chart(ctx2, {
     type: 'bar',
     data: {
-        labels: ['PENDENTE LIQUIDAR', 'PENDIENTE INGRESO A PUERTO', 'PENDIENTE RETIRO VACIO'],
+        labels: ['PENDIENTE LIQUIDAR', 'PENDIENTE INGRESO A PUERTO', 'PENDIENTE RETIRO VACIO'],
         datasets: [{
             label: 'Valores',
             data: [], // Los datos se actualizarán dinámicamente
@@ -40,12 +40,12 @@ const myChart2 = new Chart(ctx2, {
                 display: true,
                 text: 'Estado de Exportaciones',
                 font: {
-                    size: 12,
+                    size: 18,
                     weight: 'bold',
                     family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
                 },
                 padding: {
-                    top: 20,
+                    top: 0,
                     bottom: 20
                 }
             },
@@ -111,13 +111,17 @@ const myChart2 = new Chart(ctx2, {
 fetch('https://esenttiapp-production.up.railway.app/api/estadoexpo')
     .then(response => response.json())
     .then(data => {
-        const pendienteLiquidar = data.find(item => item.estado === 'PENDENTE LIQUIDAR');
+        console.log('Fetched data:', data); // Log fetched data to the console
+        
+        const pendienteLiquidar = data.find(item => item.estado === 'PENDIENTE LIQUIDAR');
         const pendienteIngreso = data.find(item => item.estado === 'PENDIENTE INGRESO A PUERTO');
         const pendienteRetiro = data.find(item => item.estado === 'PENDIENTE RETIRO VACIO');
 
         const pendiente = pendienteLiquidar ? pendienteLiquidar.conteo : 0;
         const pendienteIng = pendienteIngreso ? pendienteIngreso.conteo : 0;
         const pendienteRet = pendienteRetiro ? pendienteRetiro.conteo : 0;
+
+        console.log('Mapped data:', pendiente, pendienteIng, pendienteRet); // Log mapped data
 
         myChart2.data.datasets[0].data = [pendiente, pendienteIng, pendienteRet];
         myChart2.update();

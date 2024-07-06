@@ -1,5 +1,3 @@
-// JS para el gráfico de clientes
-
 const ctxClientes = document.getElementById('clientChart').getContext('2d');
 const myChartClientes = new Chart(ctxClientes, {
     type: 'bar',
@@ -40,10 +38,13 @@ const myChartClientes = new Chart(ctxClientes, {
                 ticks: {
                     color: '#3e4954',
                     font: {
-                        size: 13,
+                        size: 10,
                         family: 'poppins',
                         weight: 400
-                    }
+                    },
+                    autoSkip: false, // No omitir etiquetas automáticamente
+                    maxRotation: 8, // Rotación máxima de las etiquetas
+                    minRotation: 8 // Rotación mínima de las etiquetas
                 },
                 grid: {
                     display: false
@@ -57,7 +58,7 @@ const myChartClientes = new Chart(ctxClientes, {
                         size: 13,
                         family: 'poppins',
                         weight: 400
-                    }
+                    },
                 },
                 grid: {
                     color: '#eee'
@@ -72,6 +73,7 @@ const myChartClientes = new Chart(ctxClientes, {
 fetch('https://esenttiapp-production.up.railway.app/api/estadobyclientes')
     .then(response => response.json())
     .then(data => {
+        console.log('Fetched data:', data); // Log the fetched data
         if (data && Array.isArray(data)) {
             // Agrupar los datos por cliente
             const clienteConteo = {};
@@ -79,8 +81,10 @@ fetch('https://esenttiapp-production.up.railway.app/api/estadobyclientes')
                 if (!clienteConteo[item.cliente]) {
                     clienteConteo[item.cliente] = 0;
                 }
-                clienteConteo[item.cliente] += item.conteo;
+                clienteConteo[item.cliente] += item.cantidad_contenedor;
             });
+
+            console.log('Processed data:', clienteConteo); // Log the processed data
 
             // Actualizar el gráfico con los datos agrupados
             myChartClientes.data.labels = Object.keys(clienteConteo);

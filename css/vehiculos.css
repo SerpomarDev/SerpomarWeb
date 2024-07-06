@@ -1,24 +1,22 @@
-
-
 .vehicle-count h1 {
     font-size: 28px;
     margin-bottom: 20px;
-    color: #333;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .vehicle-icon {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
 }
 
 .icon-wrapper {
     text-align: center;
-    background: #fff;
+    background: #ffffff2d;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
     width: 100px;
 }
 
@@ -26,19 +24,169 @@
 .icon-wrapper .fa-bus,
 .icon-wrapper .fa-motorcycle {
     font-size: 48px;
-    margin-bottom: 5px;
+  
 }
 
 .icon-wrapper .count {
     font-size: 18px;
-    color: #000;
+    color: #ffffff;
     display: block;
     margin-top: 5px;
 }
 
 .icon-wrapper .state {
     font-size: 14px;
-    color: #666;
+    color: #ffffff;
     display: block;
     margin-top: 5px;
+}
+
+/* Añadir esto al final del archivo */
+.charts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.chart-item {
+    flex: 1 1 calc(50% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vehicle-count {
+    flex: 1 1 100%; /* Ocupar toda la fila */
+    text-align: center;
+    
+}
+
+.vehicle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.vehicle-icon i {
+    font-size: 50px;
+    color: #007BFF;
+    margin-right: 10px;
+}
+
+.vehicle-icon span {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#dateFilter {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+#filterButton {
+    background-color: #00aaff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#filterButton:hover {
+    background-color: #007acc;
+    transform: translateY(-2px);
+}
+
+.semaforo-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.notification {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.notification i {
+    margin-right: 10px;
+    font-size: 20px; /* Tamaño del ícono */
+}
+
+.notification .icon {
+    font-size: 24px; /* Tamaño del ícono de la campana */
+    margin-right: 10px;
+    display: flex;
+    align-items: center; /* Asegura que el icono y el texto estén alineados verticalmente */
+}
+
+.notification.basic {
+    background-color: #4CAF50; /* Verde más suave */
+}
+
+.notification.medium {
+    background-color: #FFC107; /* Amarillo */
+    color: black; /* Mayor contraste */
+}
+
+.notification.high {
+    background-color: #F44336; /* Rojo */
+}
+
+.notification:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al pasar el ratón */
+}
+
+/* Tooltips */
+.notification::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.notification:hover::after {
+    opacity: 1;
+}
+
+/* Asegurar que los gráficos se ajusten adecuadamente en pantallas más pequeñas */
+@media (max-width: 768px) {
+    .chart-item {
+        flex: 1 1 100%;
+    }
+    .vehicle-count {
+        flex: 1 1 100%;
+    }
 }
