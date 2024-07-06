@@ -2,6 +2,29 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
+
+    function actualizarEstadoBoton() {
+        
+        const cantidadFacturados = localStorage.getItem('cantidadFacturados');
+        const cantidadContenedor = localStorage.getItem('cantidadContenedor');
+        const btnLiquidar = document.getElementById('BtnSaveLiquidar');
+        
+        if (cantidadFacturados === cantidadContenedor) {
+            btnLiquidar.disabled = false;
+        } else {
+            btnLiquidar.disabled = true;
+        }
+    }
+
+    // Ejecutar la función cuando se cargue la página
+    document.addEventListener('DOMContentLoaded', () => {
+        // Llamar a la función inmediatamente para verificar el estado inicial
+        actualizarEstadoBoton();
+        
+        // Verificar cambios en los valores de localStorage cada segundo
+        setInterval(actualizarEstadoBoton, 1000);
+    });
+
     new gridjs.Grid({
         search: false,
         language:{
@@ -18,16 +41,6 @@ let id = urlParams.get("id");
         columns: ["SP","Cliente",{
             name:"Valor Total",
             formatter:(_,row)=> `$ ${(row.cells[2].data)}`
-        },{
-            name:"cerrar sp",
-            hidden:true,
-            formatter:(cell,row)=>{
-                return gridjs.h('button',{
-                type:'submit',
-                className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-                onClick: () => saveLiquidar()
-                },'ir')
-            }
         }],
         server: {
             url: `https://esenttiapp-production.up.railway.app/api/liquidarspt/${id}`,
@@ -75,14 +88,14 @@ let id = urlParams.get("id");
               icon: "success",
             });
             setTimeout(() => {
-                history.back();
+                window.location.href = `/view/solicitudes_servicios/seacrh_do_service.html`; 
               }, 1500);
         })
         .catch((error) => {
             Swal.fire({
-                title: "¡!",
-                text: "Liquidación cerrada",
-                icon: "success",
+                title: "¡Ha ocrrido un error!",
+                text: "La ejecución se detuvo",
+                icon: "error",
               });
             console.error('Error:', error);
           });

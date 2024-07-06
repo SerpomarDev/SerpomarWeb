@@ -39,6 +39,8 @@ document.getElementById('saveSolicitud').addEventListener('submit',function(even
     const formData = new FormData(this);
     const jsonData = JSON.stringify(Object.fromEntries(formData));
 
+    console.log(jsonData)
+
     fetch('https://esenttiapp-production.up.railway.app/api/solicitudservicios', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
@@ -79,5 +81,5 @@ document.getElementById('saveSolicitud').addEventListener('submit',function(even
     document.getElementById('saveSolicitud').reset();
     setTimeout(() => {
         window.location.href = `/view/solicitudes_servicios/create.html`; 
-    },3000);
+    },3500);
   }  

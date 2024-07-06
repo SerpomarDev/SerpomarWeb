@@ -45,6 +45,9 @@ body, html {
     animation: pulse 1s linear infinite;
 }
 
+#cantidadContenedor{
+  visibility: hidden;
+}
 @keyframes pulse {
     from {
         transform: translate(-50%, -50%) scale(0.9);

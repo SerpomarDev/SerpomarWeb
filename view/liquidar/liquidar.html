@@ -39,7 +39,6 @@
                             <div>
                                 <span class="text-white fs-18">Contenedores Facturados</span>
                                 <h3 class="text-white invoice-num"><p id="cantidadFacturados"></p></h3>
-                                <!-- <h2 class="text-white invoice-num">----</h2> -->
                             </div>
                         </div>
                     </div>
@@ -54,7 +53,6 @@
                             <div>
                                 <span class="text-white fs-18">Total Facturado</span>
                                 <h3 class="text-white invoice-num"><p id="totalContenedor"></p></h3>
-                                <!-- <h2 class="text-white invoice-num">----</h2> -->
                             </div>
                         </div>
                     </div>
@@ -67,6 +65,8 @@
     </div>
     <div class="container">
       <form  id="saveLiquidacion" method="POST" enctype="multipart/form-data">
+       
+        <p id="cantidadContenedor"></p>
           <div class="row">
               <div class="col-md-12">
                   <div class="form-group">
@@ -85,7 +85,7 @@
             <div class="col-12 d-flex justify-content-between">
                 <button  type="button" class="btn btn-primary" onclick="history.back()">Volver</button>
                 <button  type="button" class="btn btn-success" id="GeneReportExcelPreliq">Generar Liquidacion</button>
-                <button  type="submit" class="btn btn-primary" id="BtnSaveLiquidar">Liquidar</button>
+                <button  type="submit" class="btn btn-primary" id="BtnSaveLiquidar" disabled>Liquidar</button>
             </div>
         </div>
       </form>
@@ -99,6 +99,7 @@
   <script type="text/javascript" src="/js/report/PreliquidacionExcelReport.js"></script>
   <script type="text/javascript" src="/js/contenedor/pendienteLiquidar.js"></script>
   <script type="text/javascript" src="/js/contenedor/totalContedor.js"></script>
+  <script type="text/javascript" src="/js/contenedor/cantidadContenedores.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
 </body>
 </html>
