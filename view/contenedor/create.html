@@ -21,33 +21,15 @@
         }
 
         .form-container {
-            flex: 2;
+            flex: 4;
             margin-right: 20px;
         }
 
-        .status-container {
-            flex: 1;
-        }
-
         .cardsp {
-            padding: 20px;
+            padding: 40px;
             background: #fff;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-        }
-
-        .events .event {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .events .event .icon {
-            margin-right: 10px;
-        }
-
-        .btn {
-            margin-top: 20px;
         }
     </style>
 </head>
@@ -212,11 +194,19 @@
                         </form>
                         
                     </div>
+                    <div class="status-container">
+                        <div class="cardsp">
+                            <h1>Herramientas</h1>
+                            
+                            <button type="submit"  class="btn btn-primary" id="BtnLiquidar">Liquidar SP</button>
+                        </div>
+                        
+                       
+                    </div>
 
                 </div>
               
                 <div class="container">
-                    <button type="submit"  class="btn btn-primary" id="BtnLiquidar">Liquidar SP</button>
                     <div id="contenedor"></div>
                 </div>
 
