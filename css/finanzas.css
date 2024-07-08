@@ -24,12 +24,10 @@ body {
     
 }
 
-.header {
+.header-invoice {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #ccc;
 }
 
 .info-box {
