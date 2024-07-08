@@ -104,6 +104,13 @@ const myChart2 = new Chart(ctx2, {
                     display: false // Quitar las líneas de la cuadrícula para un estilo más limpio
                 }
             }
+        },
+        onClick: (e) => {
+            const activePoints = myChart2.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
+            if (activePoints.length) {
+                const index = activePoints[0].index;
+                displayDetails(index);
+            }
         }
     }
 });
@@ -113,19 +120,64 @@ fetch('https://esenttiapp-production.up.railway.app/api/estadoexpo')
     .then(data => {
         console.log('Fetched data:', data); // Log fetched data to the console
         
-        const pendienteLiquidar = data.find(item => item.estado === 'PENDIENTE LIQUIDAR');
-        const pendienteIngreso = data.find(item => item.estado === 'PENDIENTE INGRESO A PUERTO');
-        const pendienteRetiro = data.find(item => item.estado === 'PENDIENTE RETIRO VACIO');
+        const pendienteLiquidar = data.filter(item => item.estado === 'PENDIENTE LIQUIDAR');
+        const pendienteIngreso = data.filter(item => item.estado === 'PENDIENTE INGRESO A PUERTO');
+        const pendienteRetiro = data.filter(item => item.estado === 'PENDIENTE RETIRO VACIO');
 
-        const pendiente = pendienteLiquidar ? pendienteLiquidar.conteo : 0;
-        const pendienteIng = pendienteIngreso ? pendienteIngreso.conteo : 0;
-        const pendienteRet = pendienteRetiro ? pendienteRetiro.conteo : 0;
+        const pendiente = pendienteLiquidar.length;
+        const pendienteIng = pendienteIngreso.length;
+        const pendienteRet = pendienteRetiro.length;
 
         console.log('Mapped data:', pendiente, pendienteIng, pendienteRet); // Log mapped data
 
         myChart2.data.datasets[0].data = [pendiente, pendienteIng, pendienteRet];
         myChart2.update();
+
+        // Guardar los datos para su uso posterior
+        myChart2.data.datasets[0].meta = {
+            pendienteLiquidar,
+            pendienteIngreso,
+            pendienteRetiro
+        };
     })
     .catch(error => {
         console.error('Error fetching data:', error);
     });
+
+function displayDetails(index) {
+    const detailsContainer = document.getElementById('detailsContainer');
+    const detailsTitle = document.getElementById('detailsTitle');
+    const detailsContent = document.getElementById('detailsContent');
+    let dataToShow = [];
+
+    switch (index) {
+        case 0:
+            dataToShow = myChart2.data.datasets[0].meta.pendienteLiquidar;
+            detailsTitle.textContent = 'Detalles de Pendiente Liquidar';
+            break;
+        case 1:
+            dataToShow = myChart2.data.datasets[0].meta.pendienteIngreso;
+            detailsTitle.textContent = 'Detalles de Pendiente Ingreso a Puerto';
+            break;
+        case 2:
+            dataToShow = myChart2.data.datasets[0].meta.pendienteRetiro;
+            detailsTitle.textContent = 'Detalles de Pendiente Retiro Vacío';
+            break;
+    }
+
+    const detailsHtml = dataToShow.map(item => `<p>SP: ${item.do_sp}</p>`).join('');
+    detailsContent.innerHTML = detailsHtml;
+    detailsContainer.style.display = 'block';
+    document.getElementById('toggleDetails').textContent = 'Ocultar';
+}
+
+document.getElementById('toggleDetails').addEventListener('click', () => {
+    const detailsContainer = document.getElementById('detailsContainer');
+    if (detailsContainer.style.display === 'none' || detailsContainer.style.display === '') {
+        detailsContainer.style.display = 'block';
+        document.getElementById('toggleDetails').textContent = 'Ocultar';
+    } else {
+        detailsContainer.style.display = 'none';
+        document.getElementById('toggleDetails').textContent = 'Mostrar';
+    }
+});

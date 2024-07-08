@@ -27,6 +27,7 @@ header {
 }
 
 .logo {
+    padding-left: 15px;
     cursor: pointer;
     height: 60px; /* Ajustar el tamaño del logo según la nueva altura del header */
 }

@@ -104,6 +104,13 @@ const myChartImportacion = new Chart(ctxImportacion, {
                     display: false // Quitar las líneas de la cuadrícula para un estilo más limpio
                 }
             }
+        },
+        onClick: (e) => {
+            const activePoints = myChartImportacion.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
+            if (activePoints.length) {
+                const index = activePoints[0].index;
+                displayDetailsImportacion(index);
+            }
         }
     }
 });
@@ -111,17 +118,62 @@ const myChartImportacion = new Chart(ctxImportacion, {
 fetch('https://esenttiapp-production.up.railway.app/api/estadoimpo')
     .then(response => response.json())
     .then(data => {
-        const enCursoData = data.find(item => item.estado === 'EN CURSO');
-        const pendienteData = data.find(item => item.estado === 'PENDIENTE');
-        const liquidarData = data.find(item => item.estado === 'PENDENTE LIQUIDAR');
+        const enCursoData = data.filter(item => item.estado === 'EN CURSO');
+        const pendienteData = data.filter(item => item.estado === 'PENDIENTE');
+        const liquidarData = data.filter(item => item.estado === 'PENDIENTE LIQUIDAR');
 
-        const enCurso = enCursoData ? enCursoData.conteo : 0;
-        const pendiente = pendienteData ? pendienteData.conteo : 0;
-        const liquidar = liquidarData ? liquidarData.conteo : 0;
+        const enCurso = enCursoData.length;
+        const pendiente = pendienteData.length;
+        const liquidar = liquidarData.length;
 
         myChartImportacion.data.datasets[0].data = [pendiente, enCurso, liquidar];
         myChartImportacion.update();
+
+        // Guardar los datos para su uso posterior
+        myChartImportacion.data.datasets[0].meta = {
+            enCursoData,
+            pendienteData,
+            liquidarData
+        };
     })
     .catch(error => {
         console.error('Error fetching data:', error);
     });
+
+function displayDetailsImportacion(index) {
+    const detailsContainer = document.getElementById('detailsContainerImportacion');
+    const detailsTitle = document.getElementById('detailsTitleImportacion');
+    const detailsContent = document.getElementById('detailsContentImportacion');
+    let dataToShow = [];
+
+    switch (index) {
+        case 0:
+            dataToShow = myChartImportacion.data.datasets[0].meta.pendienteData;
+            detailsTitle.textContent = 'Detalles Pendiente Retiro';
+            break;
+        case 1:
+            dataToShow = myChartImportacion.data.datasets[0].meta.enCursoData;
+            detailsTitle.textContent = 'Detalles Devolución';
+            break;
+        case 2:
+            dataToShow = myChartImportacion.data.datasets[0].meta.liquidarData;
+            detailsTitle.textContent = 'Detalles Liquidar';
+            break;
+    }
+
+    const detailsHtml = dataToShow.map(item => `<p>SP: ${item.do_sp}</p>`).join('');
+    detailsContent.innerHTML = detailsHtml;
+    detailsContainer.style.display = 'block';
+    document.getElementById('toggleDetailsImportacion').textContent = 'Ocultar';
+}
+
+document.getElementById('toggleDetailsImportacion').addEventListener('click', () => {
+    const detailsContainer = document.getElementById('detailsContainerImportacion');
+    if (detailsContainer.style.display === 'none' || detailsContainer.style.display === '') {
+        detailsContainer.style.display = 'block';
+        document.getElementById('toggleDetailsImportacion').textContent = 'Ocultar';
+    } else {
+        detailsContainer.style.display = 'none';
+        document.getElementById('toggleDetailsImportacion').textContent = 'Mostrar';
+    }
+});

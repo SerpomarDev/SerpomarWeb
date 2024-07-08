@@ -9,11 +9,18 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/graficos.css" rel="stylesheet" />
     <link href="/css/finanzas.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+    <style>
+        .col-custom {
+        flex: 0 0 20%; /* Ajusta este valor según sea necesario */
+        max-width: 20%; /* Ajusta este valor según sea necesario */
+        }
+  </style>
 <body>
 
     <div id="layout-placeholder"></div>
@@ -21,79 +28,140 @@
 
 
     <div class="margenform">
-        <div class="container1">
-            <div class="facturacion-container">
-                <div class="facturacion-column">
-                    <div class="box1">
-                        <div class="title">Total de Facturación del 2023</div>
-                        <div id="facturacion-2023" class="value">$13,255,704,000</div>
-                    </div>
-                    <div class="box1">
-                        <div class="title">Meta flota propia 2024</div> <br>
-                        <div class="value">632,000,000</div>
-                    </div>
-                </div>
-                <div class="facturacion-column">
-                    <div class="box1">
-                        <div class="title">Total de Facturación del 2024</div>
-                        <div id="facturacion-2024" class="value">$6,661,430,000</div>
-                    </div>
-                    <div class="box1">
-                        <div class="title">Rentabilidad Flota propia</div><br>
-                        <div class="value">$1,656,000,000</div>
-                    </div>
-                </div>
-                <div class="facturacion-column">
-                    <div class="box1">
-                        <div class="title">% Variación Facturación 2024-2023</div>
-                        <div id="variacion-facturacion" class="value">12.18%</div>
-                    </div>
-                    <div class="facturacion-column">
-                        <div class="box1">
-                            <div class="title">Volumen de contenedores 2024</div>
-                            <div class="value">14,154</div>
+
+        <div class="container1"> 
+            <div class="row invoice-card-row">
+                <div class="col-custom col-sm-6">
+                    <div class="card bg-warning invoice-card">
+                        <div class="card-body d-flex">
+                            <div>
+                                <div id="facturacion-2023" class="value">$13,255,704,000</div>
+                                <span class="text-white fs-18">Total de Facturación del 2023</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="facturacion-column">
-                    <div class="green-box box1">
-                        <div class="title">Meta de Facturación 2024</div><br>
-                        <div id="meta-facturacion" class="value">$18,000,000,000</div>
-                    </div>
-                    <div class="facturacion-column">
-                        <div class="green-box box1">
-                            <div class="title">Meta de Movimientos 2024 </div>
-                            <div class="value">14,400</div>
+            
+                <div class="col-custom col-sm-6">
+                    <div class="card bg-warning invoice-card">
+                        <div class="card-body d-flex">
+                            <div>
+                                <div id="facturacion-2024" class="value">$6,661,430,000</div>
+                                <span class="text-white fs-18">Total de Facturación del 2024</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="facturacion-column">
-                    <div class="orange-box box1">
-                        <div class="title">% Cumplimiento</div><br>
-                        <div id="cumplimiento" class="value">91.87%</div>
+            
+                <div class="col-custom col-sm-6">
+                    <div class="card bg-success invoice-card">
+                        <div class="card-body d-flex">
+                            <div>
+                                <div id="variacion-facturacion" class="value">12.18%</div>
+                                <span class="text-white fs-18">Variación Facturación 2024-2023</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="orange-box box1">
-                        <div class="title">% Cumplimiento DOs</div><br>
-                        <div class="value">85.16%</div>
+                </div>
+            
+                <div class="col-custom col-sm-6">
+                    <div class="card invoice-card" style="background-color: #28a745;">
+                        <div class="card-body d-flex">
+                            <div>
+                                <div id="meta-facturacion" class="value">$18,000,000,000</div>
+                                <span class="text-white fs-18">Meta de Facturación 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-custom col-sm-6">
+                    <div class="card invoice-card" style="background-color: #dc3545;">
+                        <div class="card-body d-flex">
+                            <div>
+                                <div id="cumplimiento" class="value">37.01%</div>
+                                <span class="text-white fs-18">% Cumplimiento</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="row invoice-card-row">
+                <div class="col-custom col-sm-6">
+                    <div class="card bg-warning invoice-card">
+                        <div class="card-body d-flex">
+                            <div>
+                                <div class="value">632,000,000</div>
+                                <span class="text-white fs-18">Meta flota propia 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-custom col-sm-6">
+                    <div class="card bg-warning invoice-card">
+                        <div class="card-body d-flex">
+                            <div>
+                                <div class="value">$1,656,000,000</div>
+                                <span class="text-white fs-18">Rentabilidad Flota propia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-custom col-sm-6">
+                    <div class="card bg-success invoice-card">
+                        <div class="card-body d-flex">
+                            <div>
+                                <div class="value">14,154</div>
+                                <span class="text-white fs-18">Volumen de contenedores 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-custom col-sm-6">
+                    <div class="card invoice-card" style="background-color: #28a745;">
+                        <div class="card-body d-flex">
+                            <div>
+                                <div class="value">14,400</div>
+                                <span class="text-white fs-18">Meta de Movimientos 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-custom col-sm-6">
+                    <div class="card invoice-card" style="background-color: #dc3545;">
+                        <div class="card-body d-flex">
+                            <div>
+                                <div class="value">85.16%</div>
+                                <span class="text-white fs-18">% Cumplimiento DOs</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        
+        
 
-        <div class="container">
+        <div class="container1">
             <div class="header">
-                <div class="info-box" style="background-color: #28a745;">
-                    <img src="/img/comprobado.png" alt="Check Icon">
-                    <div>
-                        <span class="label">FACTURADO</span>
-                        <span class="amount">$ 962,136.082</span>
-                    </div>
-                </div>
                 <div class="info-box" style="background-color: #dc3545;">
                     <img src="/img/alerta.png" alt="Warning Icon">
                     <div>
                         <span class="label">PENDIENTE POR Factura</span>
                         <span class="amount">$ -</span>
+                    </div>
+                </div>
+                <div class="info-box" style="background-color: #28a745;">
+                    <img src="/img/comprobado.png" alt="Check Icon">
+                    <div>
+                        <span class="label">FACTURADO</span>
+                        <span class="amount">$ 962,136.082</span>
                     </div>
                 </div>
                 <div class="info-box" style="background-color: #007bff;">
