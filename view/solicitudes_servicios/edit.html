@@ -12,11 +12,21 @@
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 </head>
 <body>
+
+    <div id="layout-placeholder"></div>
+
+    <div class="header">
+        <div class="title-container">
+            <div class="circle"></div>
+            <h1 class="title">ACTUALIZAR SOLICITUDES</h1>
+        </div>
+    </div>
+
     <div class="margenform">
         <div id="content" class="p-4 p-md-0 pt-5">
             <div class="container-fluid main-container">
                 <form id="editSolicitud" method="PUT" enctype="multipart/form-data" class="form">
-                    <p class="message">Actualizar solicitud de servicio.</p>
+                    <p class="message">Actualiza la solicitud de servicio.</p>
                     <input type="hidden" id="id_solicitud_servicio" name="id_solicitud_servicio">
                     <div class="flex">
                         <label>

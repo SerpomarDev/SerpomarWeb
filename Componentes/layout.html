@@ -52,19 +52,60 @@
                             <li><a href="/dashboard.html"><i class="fas fa-file-signature"></i>Dashboard</a></li>
                         </ul>
                     </li>
-                           
+                    
+                    <li class="dropdown" id="menu-operaciones">
+                        <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                            <i class="fas fa-cogs"></i>
+                            <span class="nav-text">Operaciones ></span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="/view/operacion/table_general.html">
+                                    <i class="fas fa-chart-bar"></i> Tablero General de Operaciones
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/view/operacion/table_general.html">
+                                    <i class="fas fa-tachometer-alt"></i> Tablero Gerencial de Operaciones
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
                     <li class="dropdown" id="menu-transporte">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                        <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                             <i class="fas fa-shipping-fast"></i>
                             <span class="nav-text">Transporte ></span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="/view/solicitudes_servicios/create.html"><i class="fas fa-file-signature"></i> Solicitud de S.</a></li>
-                            <li><a href="/view/solicitudes_servicios/buscarEdit.html"><i class="fas fa-file-signature"></i> Actualizar Solicitud de S.</a></li>
-                            <li><a href="/view/solicitudes_servicios/hubemar_transport.html"><i class="fas fa-file-signature"></i> Hubemar-Transport</a></li>
-                            <li><a href="/view/solicitudes_servicios/seacrh_do_service.html"><i class="fas fa-clipboard-list"></i> Orden de S.</a></li>
+                            <li>
+                                <a href="/view/solicitudes_servicios/create.html">
+                                    <i class="fas fa-plus-circle"></i> Solicitud de S.
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/view/solicitudes_servicios/buscarEdit.html">
+                                    <i class="fas fa-edit"></i> Actualizar Solicitud de S.
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/view/solicitudes_servicios/hubemar_transport.html">
+                                    <i class="fas fa-truck"></i> Hubemar-Transport
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/view/solicitudes_servicios/seacrh_do_service.html">
+                                    <i class="fas fa-file-alt"></i> Orden de S.
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/view/solicitudes_servicios/seacrh_do_service.html">
+                                    <i class="fas fa-tasks"></i> Asignaciones
+                                </a>
+                            </li>
                         </ul>
                     </li>
+                    
                     <li class="dropdown" id="menu-patio">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fas fa-truck-loading"></i>
@@ -111,29 +152,6 @@
                             <li><a href="/view/cliente/view.html"><i class="fas fa-users"></i> Ver Clientes</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown" id="menu-operaciones">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fas fa-cogs"></i>
-                            <span class="nav-text">Operaciones ></span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="/view/operacion/table_general.html">Tablero General de Operaciones</a></li>
-                            <li><a href="/view/operacion/table_general.html">Tablero Gerencial de Operaciones</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" id="menu-cedi">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fas fa-tasks"></i>
-                            <span class="nav-text">CEDI (Servicios)</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="">ITR</a></li>
-                            <li><a href="">Facturación</a></li>
-                            <li><a href="">Indicadores</a></li>
-                            <li><a href="">Crossdoking</a></li>
-                            <li><a href="">Almacenamiento</a></li>
-                        </ul>
-                    </li>
                     <li class="dropdown" id="menu-equipos">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fas fa-tools"></i>
@@ -149,12 +167,30 @@
                         </ul>
                     </li>
                     <li class="dropdown" id="menu-operaciones">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fas fa-cogs"></i>
+                        <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                            <i class="fas fa-file-invoice-dollar"></i>
                             <span class="nav-text">Reporte ></span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="/view/report/asignacio_by_fecha.html"><i class="fa-solid fa-money-bills"></i>Liquidación afiliados</a></li>
+                            <li>
+                                <a href="/view/report/asignacio_by_fecha.html">
+                                    <i class="fas fa-file-invoice-dollar"></i> Liquidación afiliados
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li class="dropdown" id="menu-cedi">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fas fa-tasks"></i>
+                            <span class="nav-text">CEDI (Servicios)</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="">ITR</a></li>
+                            <li><a href="">Facturación</a></li>
+                            <li><a href="">Indicadores</a></li>
+                            <li><a href="">Crossdoking</a></li>
+                            <li><a href="">Almacenamiento</a></li>
                         </ul>
                     </li>
                     <li id="menu-gestion-humana"><a href="javascript:void()" aria-expanded="false">
