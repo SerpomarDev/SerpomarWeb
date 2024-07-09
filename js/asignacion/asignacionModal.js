@@ -1,10 +1,22 @@
+// function cargarIdRuta(idRuta){
+
+//   document.getElementById("tarifa").addEventListener("change", function () {
+//     const dynamicInput = document.getElementById("tarifa");
+
+//     if (idRuta == 84 || idRuta == 85) {
+//       document.getElementById('tarifa').style.display = "block";
+//     } else {
+//       document.getElementById('tarifa').style.display =  "none";
+//     }
+//   });
+// }
+
+
 document.getElementById("saveAsignacion").addEventListener("submit", function (event) {
   event.preventDefault();
 
   const formData = new FormData(this);
   const jsonData = JSON.stringify(Object.fromEntries(formData));
- 
-  console.log(jsonData)
 
   fetch("https://esenttiapp-production.up.railway.app/api/saveasignacion", {
     method: "POST",
@@ -24,8 +36,8 @@ document.getElementById("saveAsignacion").addEventListener("submit", function (e
         icon: "success"
       });
       setTimeout(() => {
-        history.back();
-      }, 1500);
+       // history.back();
+      },);
     })
     .catch((error) => {
       console.error("Error:", error);
