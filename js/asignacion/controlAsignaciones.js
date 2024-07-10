@@ -1,3 +1,5 @@
+
+
 new gridjs.Grid({
     search: true,
     language:{
@@ -6,12 +8,14 @@ new gridjs.Grid({
       }
     },
     pagination: {
-        limit:5,
+        limit:30,
         enabled: false,
         //summary: true
     },
     sort: false,
-    columns: [
+    columns: [{name:"id",
+        hidden:false
+    },
     "Fecha","SP","Contenedor","Placa","Aliado",{
         name:"Tarifa",
         formatter:(_,row)=> `$ ${(row.cells[5].data).toLocaleString()}`
@@ -20,7 +24,7 @@ new gridjs.Grid({
     hidden:false,
       formatter:(cell,row)=>{
         return gridjs.html(`
-            <input type="file" data-row-index="${row.index}" multiple onchange="handleFileUpload(event)"/>
+           
             `);
       }
   },{
@@ -39,6 +43,7 @@ new gridjs.Grid({
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((asigControl) => [
+                  asigControl.id,
                   asigControl.fecha,
                   asigControl.do_sp,
                   asigControl.numero_contenedor,
@@ -64,26 +69,23 @@ new gridjs.Grid({
 
 
 
-function handleFileUpload(event) {
-    
-    const files = event.target.files;
-    const rowIndex = event.target.getAttribute('data-row-index');
-    const formData = new FormData();
+    document.getElementById('SaveFile').addEventListener( "DOMContentLoaded", function() {
+       
+         myDropzone = new Dropzone("#SaveFile", {
+            url: `https://esenttiapp-production.up.railway.app/api/asignacionfile`, 
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
 
-    for (let i = 0; i < files.length; i++) {
-        formData.append('files[]', files[i]);
-    }
-
-    formData.append('rowIndex', rowIndex);
-
-    // Enviar los archivos al servidor
-    // fetch('/upload-endpoint', {
-    //     method: 'PUT',
-    //     body: formData
-    // }).then(response => response.json())
-    //   .then(data => {
-    //       console.log('Success:', data);
-    //   }).catch((error) => {
-    //       console.error('Error:', error);
-    //   });
-}
+            acceptedFiles: ".pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.png,.jpeg",
+            init: function() {
+                this.on("success", function(file, response) {
+                    console.log(response);
+                });
+                this.on("error", function(file, response) {
+                    console.error(response);
+                });
+            }
+        });
+    });

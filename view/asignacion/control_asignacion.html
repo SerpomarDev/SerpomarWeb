@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.css">
 </head>
 <body>
 
@@ -30,11 +31,19 @@
                         <div id="controlAsig"></div>
                     </div>
 
+                    <form action="/upload" class="dropzone" id="SaveFile" method="POST">
+                        <input type="text" name="id_asignacion" id="id_asignacion">
+                        <div class="dz-message">
+                            Arrastra y suelta archivos aquí o haz clic para subir.
+                        </div>
+                    </form>
+
     <script src="/componentes/loadSidebar.js"></script>
     <script src="/js/home/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
     <script type="text/javascript" src="/js/asignacion/controlAsignaciones.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
 </body>
 
 </html>
