@@ -78,7 +78,7 @@ function updateTotalAbiertas(data) {
 	},
 	resizable: true,
 	style: {
-		table: { width: "80%" }
+		table: { width: "100%" }
 	}
   }).render(document.getElementById('controlAsig'));
   
