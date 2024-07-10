@@ -192,12 +192,19 @@ function initializeMenu(loggedInUser) {
       console.log('Submenu hidden for:', $this);
     });
 
-    $('.has-arrow').click(function(e) {
+    $('.has-arrow').off('click').on('click', function(e) {
       e.preventDefault();
       var $this = $(this);
       var $subMenu = $this.next('ul');
-      $subMenu.slideToggle(300);
-      $this.attr('aria-expanded', $this.attr('aria-expanded') === 'false' ? 'true' : 'false');
+
+      if ($this.attr('aria-expanded') === 'true') {
+        $subMenu.slideUp(300);
+        $this.attr('aria-expanded', 'false');
+      } else {
+        $('.has-arrow[aria-expanded="true"]').attr('aria-expanded', 'false').next('ul').slideUp(300);
+        $subMenu.slideDown(300);
+        $this.attr('aria-expanded', 'true');
+      }
       console.log('Submenu toggled for:', $this);
     });
 
@@ -247,14 +254,14 @@ function initScripts() {
 
       if (parent.classList.contains('open')) {
         parent.classList.remove('open');
-        submenu.style.display = 'none';
+        $(submenu).slideUp(300);
       } else {
         document.querySelectorAll('#menu .dropdown').forEach((item) => {
           item.classList.remove('open');
-          item.querySelector('ul').style.display = 'none';
+          $(item.querySelector('ul')).slideUp(300);
         });
         parent.classList.add('open');
-        submenu.style.display = 'block';
+        $(submenu).slideDown(300);
       }
     });
   });
