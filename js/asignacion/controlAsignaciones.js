@@ -14,12 +14,13 @@ function updateTotalAbiertas(data) {
 		}
 	},
 	pagination: {
-		limit: 5,
+		limit: 20,
 		enabled: false,
 	},
 	sort: false,
-	columns: [
-		"Fecha", "SP", "Contenedor", "Placa", "Aliado", {
+	columns: [{name:"id",
+                hidden:false
+            },"Fecha", "SP", "Contenedor", "Placa", "Aliado", {
 			name: "Tarifa",
 			formatter: (_, row) => `$ ${(row.cells[5].data).toLocaleString()}`
 		}, "Ruta", "Nombre", "Estado", {
@@ -27,7 +28,7 @@ function updateTotalAbiertas(data) {
 			hidden: false,
 			formatter: (cell, row) => {
 				return gridjs.html(`
-					<button onclick="handleFileUpload(event)" data-row-index="${row.index}">Adjuntar Archivo</button>
+					<button onclick="uploadId(${row.cells[0].data})" >Adjuntar Archivo</button>
 				`);
 			}
 		}, {
@@ -45,9 +46,9 @@ function updateTotalAbiertas(data) {
 		url: `https://esenttiapp-production.up.railway.app/api/controlasignaciones`,
 		then: (data) => {
 			if (Array.isArray(data) && data.length > 0) {
-				console.log("Datos recibidos: ", data); // Añadir registro para verificar
 				updateTotalAbiertas(data.map(asigControl => [
-					asigControl.fecha,
+					asigControl.id,
+                    asigControl.fecha,
 					asigControl.do_sp,
 					asigControl.numero_contenedor,
 					asigControl.placa,
@@ -59,7 +60,8 @@ function updateTotalAbiertas(data) {
 					asigControl.adjunto
 				]));
 				return data.map((asigControl) => [
-					asigControl.fecha,
+					asigControl.id,
+                    asigControl.fecha,
 					asigControl.do_sp,
 					asigControl.numero_contenedor,
 					asigControl.placa,
@@ -117,6 +119,12 @@ function updateTotalAbiertas(data) {
 	  modal.style.display = 'none';
 	}
   });
+
+  function uploadId(id) {
+
+    document.getElementById('id_asignacion').value = id;
+    document.getElementById('SaveFile').style.display = 'block'; 
+    }
   
   document.getElementById('SaveFile').addEventListener( "DOMContentLoaded", function() {
        
