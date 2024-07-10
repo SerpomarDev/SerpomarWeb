@@ -85,64 +85,49 @@ function updateTotalAbiertas(data) {
   }).render(document.getElementById('controlAsig'));
   
   document.addEventListener('DOMContentLoaded', (event) => {
-	const modal = document.getElementById('fileUploadModal');
-	const span = document.getElementsByClassName('close')[0];
-	const uploadButton = document.getElementById('uploadButton');
-	let currentRowIndex;
-  
-	span.onclick = function() {
-	  modal.style.display = 'none';
-	}
-  
-	window.onclick = function(event) {
-	  if (event.target == modal) {
-		modal.style.display = 'none';
-	  }
-	}
-  
-	window.handleFileUpload = function(event) {
-	  currentRowIndex = event.target.getAttribute('data-row-index');
-	  modal.style.display = 'block';
-	}
-  
-	uploadButton.onclick = function() {
-	  const files = document.getElementById('fileInput').files;
-	  const formData = new FormData();
-  
-	  for (let i = 0; i < files.length; i++) {
-		formData.append('files[]', files[i]);
-	  }
-  
-	  formData.append('rowIndex', currentRowIndex);
-  
+    const modal = document.getElementById('fileUploadModal');
+    const span = document.getElementsByClassName('close')[0];
+    let currentRowIndex;
 
-	  modal.style.display = 'none';
-	}
-  });
-
-  function uploadId(id) {
-
-    document.getElementById('id_asignacion').value = id;
-    document.getElementById('SaveFile').style.display = 'block'; 
+    span.onclick = function() {
+        modal.style.display = 'none';
     }
-  
-  document.getElementById('SaveFile').addEventListener( "DOMContentLoaded", function() {
-       
-    myDropzone = new Dropzone("#SaveFile", {
-       url: `https://esenttiapp-production.up.railway.app/api/asignacionfile`, 
-       method: 'POST',
-       headers: {
-           'X-CSRF-TOKEN': '{{ csrf_token() }}'
-       },
 
-       acceptedFiles: ".pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.png,.jpeg",
-       init: function() {
-           this.on("success", function(file, response) {
-               console.log(response);
-           });
-           this.on("error", function(file, response) {
-               console.error(response);
-           });
-       }
-   });
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    window.handleFileUpload = function(event) {
+        currentRowIndex = event.target.getAttribute('data-row-index');
+        modal.style.display = 'block';
+    }
+
+    function uploadId(id) {
+        document.getElementById('id_asignacion').value = id;
+        modal.style.display = 'block'; 
+    }
+
+    window.uploadId = uploadId;
+
+    const form = document.getElementById('SaveFile');
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    const myDropzone = new Dropzone(form, {
+        url: 'https://esenttiapp-production.up.railway.app/api/asignacionfile',
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        },
+        acceptedFiles: '.pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.png,.jpeg',
+        init: function() {
+            this.on('success', function(file, response) {
+                console.log(response);
+            });
+            this.on('error', function(file, response) {
+                console.error(response);
+            });
+        }
+    });
 });
