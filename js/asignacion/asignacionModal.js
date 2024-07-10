@@ -1,15 +1,15 @@
-// function cargarIdRuta(idRuta){
+function cargarIdRuta(idRuta){
 
-//   document.getElementById("tarifa").addEventListener("change", function () {
-//     const dynamicInput = document.getElementById("tarifa");
+  document.getElementById("tarifa").addEventListener("change", function () {
+    const dynamicInput = document.getElementById("tarifa");
 
-//     if (idRuta == 84 || idRuta == 85) {
-//       document.getElementById('tarifa').style.display = "block";
-//     } else {
-//       document.getElementById('tarifa').style.display =  "none";
-//     }
-//   });
-// }
+    if (idRuta == 84 || idRuta == 85) {
+      document.getElementById('tarifa').style.display = "block";
+    } else {
+      document.getElementById('tarifa').style.display =  "none";
+    }
+  });
+}
 
 
 document.getElementById("saveAsignacion").addEventListener("submit", function (event) {
