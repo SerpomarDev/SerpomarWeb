@@ -22,7 +22,7 @@ function updateTotalAbiertas(data) {
                 hidden:false
             },"Fecha", "SP", "Contenedor", "Placa", "Aliado", {
 			name: "Tarifa",
-			formatter: (_, row) => `$ ${(row.cells[5].data).toLocaleString()}`
+			formatter: (_, row) => `$ ${(row.cells[6].data).toLocaleString()}`
 		}, "Ruta", "Nombre", "Estado", {
 			name: 'Soportes',
 			hidden: false,
