@@ -112,14 +112,11 @@ function updateTotalAbiertas(data) {
     window.uploadId = uploadId;
 
     const form = document.getElementById('SaveFile');
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    //const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     const myDropzone = new Dropzone(form, {
         url: 'https://esenttiapp-production.up.railway.app/api/asignacionfile',
         method: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': csrfToken
-        },
         acceptedFiles: '.pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.png,.jpeg',
         init: function() {
             this.on('success', function(file, response) {
