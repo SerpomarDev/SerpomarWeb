@@ -37,7 +37,7 @@ new gridjs.Grid({
             formatter: (cell, row) => {
                 return gridjs.h('button', {
                     className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-                    onClick: () => editAsignacion()
+                    onClick: () => updateState(row.cells[0].data)
                 }, 'enviar')
             }
         }
@@ -59,7 +59,6 @@ new gridjs.Grid({
                     asigControl.ruta,
                     asigControl.nombre,
                     asigControl.estado,
-                    asigControl.adjunto
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
@@ -119,3 +118,42 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 });
+
+
+function updateState (id){
+    
+    fetch(`https://esenttiapp-production.up.railway.app/api/updatestate/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: id
+        }),
+    })
+    .then(response => response.json().then(data => ({ status: response.status, body: data })))
+    .then(({ status, body }) => {
+        if (status === 400 && body.message === 'Esta asignación no tiene archivos adjuntos.') {
+            Swal.fire({
+                title: "Advertencia",
+                text: body.message,
+                icon: "warning"
+            });
+        } else {
+            Swal.fire({
+                title: "¡Buen trabajo!",
+                text: "Estado actualizado!",
+                icon: "success"
+            });
+            time();
+        }
+    })
+    .catch((error) => {
+        console.error('Error al actualizar el estado:', error);
+        Swal.fire({
+            title: "Error",
+            text: error.message,
+            icon: "error"
+        });
+    });
+}

@@ -18,7 +18,6 @@ function actualizarEstado(idOperacion, nuevoEstado) {
               icon: "warning"
           });
       } else if (status >= 200 && status < 300) {
-          console.log('Estado actualizado con éxito:', body);
           Swal.fire({
               title: "¡Buen trabajo!",
               text: "Estado actualizado!",
