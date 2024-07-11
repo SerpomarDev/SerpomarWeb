@@ -3,7 +3,7 @@ function updateTotalAbiertas(data) {
     document.getElementById('total-abiertas').textContent = abiertas.length;
 
     const totalTarifas = abiertas.reduce((sum, item) => sum + parseFloat(item.tarifa || 0), 0); // Verifica que 'tarifa' sea un número válido
-    document.getElementById('valor-total-abiertas').textContent = `$ ${totalTarifas.toLocaleString()}`;
+    document.getElementById('valor-total-abiertas').textContent = `${totalTarifas.toLocaleString()}`;
 }
 
 new gridjs.Grid({
