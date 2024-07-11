@@ -95,9 +95,45 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function uploadId(id) {
         document.getElementById('id_asignacion').value = id;
         modal.style.display = 'block';
-
-        // RESETEAR EL MODAL
+        
+        // Resetea el modal
         Dropzone.forElement("#SaveFile").removeAllFiles(true);
+
+        // Llama a la función para cargar los archivos adjuntos
+        loadUploadedFiles(id);
+    }
+
+    async function loadUploadedFiles(id) {
+        try {
+            const response = await fetch(`https://esenttiapp-production.up.railway.app/api/asignacionfile/${id}`);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log("Archivos adjuntos recibidos:", data); 
+            const fileList = document.getElementById('uploadedFilesList');
+            fileList.innerHTML = '';
+
+            if (data.length === 0) {
+                const noFilesMessage = document.createElement('li');
+                noFilesMessage.textContent = 'No hay archivos adjuntos.';
+                fileList.appendChild(noFilesMessage);
+            } else {
+                data.forEach(file => {
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = file.path;
+                    link.textContent = file.path.split('/').pop(); 
+                    listItem.appendChild(link);
+                    fileList.appendChild(listItem);
+                });
+            }
+        } catch (error) {
+            console.error('Error loading uploaded files:', error);
+            alert('Ocurrió un error al cargar los archivos adjuntos. Por favor, inténtelo de nuevo más tarde.');
+        }
     }
 
     window.uploadId = uploadId;
@@ -111,6 +147,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         init: function() {
             this.on('success', function(file, response) {
                 console.log(response);
+                // Actualizar la lista de archivos adjuntos después de una carga exitosa
+                const id = document.getElementById('id_asignacion').value;
+                loadUploadedFiles(id);
             });
             this.on('error', function(file, response) {
                 console.error(response);
