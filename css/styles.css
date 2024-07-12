@@ -32,6 +32,12 @@ header {
     height: 60px; /* Ajustar el tamaño del logo según la nueva altura del header */
 }
 
+.logo1 {
+    padding-left: 50px;
+    cursor: pointer;
+    height: 80px; /* Ajustar el tamaño del logo según la nueva altura del header */
+}
+
 nav {
     display: flex;
     align-items: center;
