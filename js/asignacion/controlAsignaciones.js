@@ -72,6 +72,7 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('controlAsig'));
 
+
 document.addEventListener('DOMContentLoaded', (event) => {
     const modal = document.getElementById('fileUploadModal');
     const span = document.getElementsByClassName('close')[0];
@@ -156,43 +157,35 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
         }
     });
+
 });
 
 
-function updateState (id){
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     const form = document.getElementById('SaveFile');
     
-    fetch(`https://esenttiapp-production.up.railway.app/api/updatestate/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            id: id
-        }),
-    })
-    .then(response => response.json().then(data => ({ status: response.status, body: data })))
-    .then(({ status, body }) => {
-        if (status === 400 && body.message === 'Esta asignación no tiene archivos adjuntos.') {
-            Swal.fire({
-                title: "Advertencia",
-                text: body.message,
-                icon: "warning"
-            });
-        } else {
-            Swal.fire({
-                title: "¡Buen trabajo!",
-                text: "Estado actualizado!",
-                icon: "success"
-            });
-            time();
-        }
-    })
-    .catch((error) => {
-        console.error('Error al actualizar el estado:', error);
-        Swal.fire({
-            title: "Error",
-            text: error.message,
-            icon: "error"
-        });
-    });
-}
+    //     const myDropzone = new Dropzone(form, {
+    //         url: 'https://esenttiapp-production.up.railway.app/api/asignacionfile',
+    //         method: 'post',
+    //         acceptedFiles: '.pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.png,.jpeg',
+    //         headers: {
+    //             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    //         },
+    //         init: function() {
+    //             this.on('sending', function(file, xhr, formData) {
+    //                 // Append additional data here
+    //                 const idAsignacion = document.getElementById('id_asignacion').value;
+    //                 formData.append('id_asignacion', idAsignacion);
+    //             });
+    //             this.on('success', function(file, response) {
+    //                 console.log(response);
+    //                 // Actualizar la lista de archivos adjuntos después de una carga exitosa
+    //                 const id = document.getElementById('id_asignacion').value;
+    //                 loadUploadedFiles(id);
+    //             });
+    //             this.on('error', function(file, response) {
+    //                 console.error(response);
+    //             });
+    //         }
+    //     });
+    // });
