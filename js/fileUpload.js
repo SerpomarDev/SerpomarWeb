@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    document.getElementById('btnAdjuntos').onclick = function () {
-        const id = document.getElementById('id_asignacion').value;
-        uploadId(id);
+    window.handleFileUpload = function (event) {
+        currentRowIndex = event.target.getAttribute('data-row-index');
+        modal.style.display = 'block';
     }
 
     async function uploadId(id) {
