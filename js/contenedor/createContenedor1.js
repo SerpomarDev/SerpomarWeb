@@ -40,6 +40,6 @@ document.getElementById('saveContenedor').addEventListener('submit',function(eve
   function time() {
     document.getElementById('saveContenedor').reset();
     setTimeout(() => {
-      window.location.href = ``;
+      location.reload();
     },  1200);
   }

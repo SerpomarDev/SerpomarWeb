@@ -19,7 +19,7 @@ new gridjs.Grid({
     },
     sort: false,
     columns: [
-        { name: "id", hidden: false },
+        { name: "id", hidden: true },
         "Fecha", "SP", "Contenedor", "Placa", "Aliado", {
             name: "Tarifa",
             formatter: (_, row) => `$ ${(row.cells[6].data).toLocaleString()}`
