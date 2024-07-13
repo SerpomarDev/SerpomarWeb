@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         modal.style.display = 'block';
     }
 
-    function uploadId(id) {
+    async function uploadId(id) {
         document.getElementById('id_asignacion').value = id;
         modal.style.display = 'block';
         if (Dropzone.instances.length > 0) {
@@ -48,10 +48,28 @@ document.addEventListener('DOMContentLoaded', (event) => {
             init: function () {
                 this.on('addedfile', async function (file) {
                     const id = document.getElementById('id_asignacion').value;
-                    const storageRef = ref(storage, `uploads/${id}/${file.name}`);
+                    let fileName = file.name;
+                    let filePath = `uploads/${id}/${fileName}`;
+                    const storageRef = ref(storage, filePath);
+
+                    // verifica que ya exista
+                    const existingFiles = await listAll(ref(storage, `uploads/${id}`));
+                    const fileNames = existingFiles.items.map(item => item.name);
+
+                    // para el archivo con nombre iual
+                    if (fileNames.includes(fileName)) {
+                        const timestamp = Date.now();
+                        const fileExtension = fileName.substring(fileName.lastIndexOf('.'));
+                        const fileNameWithoutExtension = fileName.substring(0, fileName.lastIndexOf('.'));
+                        fileName = `${fileNameWithoutExtension}_${timestamp}${fileExtension}`;
+                        filePath = `uploads/${id}/${fileName}`;
+                    }
+
+                    const newStorageRef = ref(storage, filePath);
+
                     try {
-                        await uploadBytes(storageRef, file);
-                        console.log(`File uploaded: ${file.name}`);
+                        await uploadBytes(newStorageRef, file);
+                        console.log(`File uploaded: ${fileName}`);
                         // Actualizar la lista de archivos adjuntos después de una carga exitosa
                         loadUploadedFiles(id);
                         this.removeFile(file);
