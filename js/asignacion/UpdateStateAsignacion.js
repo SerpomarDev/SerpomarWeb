@@ -1,52 +1,51 @@
 function updateState (id){
     
-    fetch(`https://esenttiapp-production.up.railway.app/api/updatestate/${id}`,{
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id: id }),
-    })
-    .then(response => {
-        // Si la respuesta tiene un cuerpo vacío, lanza un error
-        if (!response.ok) {
-            return response.text().then(text => {
-                throw new Error(text || 'Error al actualizar el estado');
-            });
-        }
-
-        // Si la respuesta tiene un cuerpo vacío, retorna un objeto vacío
-        return response.text().then(text => text ? JSON.parse(text) : {});
-    })
-    .then(data => {
-        if (data.message === 'No hay archivos adjuntos para esta asignacion.') {
-            Swal.fire({
-                title: "Advertencia",
-                text: data.message,
-                icon: "warning"
-            });
-        } else {
-            Swal.fire({
-                title: "¡Buen trabajo!",
-                text: "Estado actualizado!",
+    Swal.fire({
+        title: "¿Estás seguro?",
+        text: "¡No podrás revertir esto!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, actualizar"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(`https://esenttiapp-production.up.railway.app/api/updatestate/${id}`, {
+            method: 'put',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Error al actualizar el estado');
+              }
+              Swal.fire({
+                title: "¡Actualizado!",
+                text: "El estado ha sido actualizado.",
                 icon: "success"
+              });
+            })
+            .then((response) => {
+              time();
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              Swal.fire({
+                title: "¡Error!",
+                text: "Hubo un problema al intentar actualizar el estado.",
+                icon: "error"
+              });
             });
-            time();
         }
-    })
-    .catch((error) => {
-        console.error('Error al actualizar el estado:', error);
-        Swal.fire({
-            title: "Error",
-            text: error.message,
-            icon: "error"
-        });
-    });
+      });
+    
 }
 
+
+
 function time() {
-    document.getElementById('SaveFile').reset();
-    setTimeout(() => {
-       window.location.href = ``; 
-    },1200);
+  setTimeout(() => {
+      location.reload();
+  }, 1500);
 }

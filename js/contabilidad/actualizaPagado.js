@@ -1,4 +1,4 @@
-function cancelarAsignacion(id) {
+function actualizarPagado(id) {
     Swal.fire({
       title: "¿Estás seguro?",
       text: "¡No podrás revertir esto!",
@@ -9,7 +9,7 @@ function cancelarAsignacion(id) {
       confirmButtonText: "Sí, actualizar"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://esenttiapp-production.up.railway.app/api/statecancel/${id}`, {
+        fetch(`https://esenttiapp-production.up.railway.app/api/statepagado/${id}`, {
           method: 'put',
           headers: {
             'Content-Type': 'application/json',
