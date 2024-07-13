@@ -79,7 +79,7 @@ function attachLoginFormEvent() {
         if (username === "gyplac.etex@serpomar.com") {
           window.location.href = './gyplac.html';
         } else {
-          window.location.href = './dashboard.html';
+          window.location.href = './home.html';
         }
       } else {
         alert('Usuario o contraseña incorrectos');
