@@ -5,7 +5,7 @@ function updateTotalAbiertas(data) {
     const totalTarifas = abiertas.reduce((sum, item) => sum + parseFloat(item.tarifa || 0), 0); // Verifica que 'tarifa' sea un número válido
     document.getElementById('valor-total-abiertas').textContent = `${totalTarifas.toLocaleString()}`;
 }
-
+DropzoneSave()
 new gridjs.Grid({
     search: true,
     language: {
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
             
             const data = await response.json();
-            console.log("Archivos adjuntos recibidos:", data); 
+
             const fileList = document.getElementById('uploadedFilesList');
             fileList.innerHTML = '';
 
@@ -125,8 +125,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 data.forEach(file => {
                     const listItem = document.createElement('li');
                     const link = document.createElement('a');
-                    link.href = file.path;
-                    link.textContent = file.path.split('/').pop(); 
+                    link.href = file.url;
+                    link.textContent = file.file.split('/').pop(); 
                     listItem.appendChild(link);
                     fileList.appendChild(listItem);
                 });
@@ -139,53 +139,35 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     window.uploadId = uploadId;
 
-    const form = document.getElementById('SaveFile');
-
-    const myDropzone = new Dropzone(form, {
-        url: 'https://esenttiapp-production.up.railway.app/api/asignacionfile',
-        method: 'POST',
-        acceptedFiles: '.pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.png,.jpeg',
-        init: function() {
-            this.on('success', function(file, response) {
-                console.log(response);
-                // Actualizar la lista de archivos adjuntos después de una carga exitosa
-                const id = document.getElementById('id_asignacion').value;
-                loadUploadedFiles(id);
-            });
-            this.on('error', function(file, response) {
-                console.error(response);
-            });
-        }
-    });
-
 });
 
-
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     const form = document.getElementById('SaveFile');
+function DropzoneSave(){
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('SaveFile');
     
-    //     const myDropzone = new Dropzone(form, {
-    //         url: 'https://esenttiapp-production.up.railway.app/api/asignacionfile',
-    //         method: 'post',
-    //         acceptedFiles: '.pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.png,.jpeg',
-    //         headers: {
-    //             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    //         },
-    //         init: function() {
-    //             this.on('sending', function(file, xhr, formData) {
-    //                 // Append additional data here
-    //                 const idAsignacion = document.getElementById('id_asignacion').value;
-    //                 formData.append('id_asignacion', idAsignacion);
-    //             });
-    //             this.on('success', function(file, response) {
-    //                 console.log(response);
-    //                 // Actualizar la lista de archivos adjuntos después de una carga exitosa
-    //                 const id = document.getElementById('id_asignacion').value;
-    //                 loadUploadedFiles(id);
-    //             });
-    //             this.on('error', function(file, response) {
-    //                 console.error(response);
-    //             });
-    //         }
-    //     });
-    // });
+        const myDropzone = new Dropzone(form, {
+            url: 'https://esenttiapp-production.up.railway.app/api/asignacionfile',
+            method: 'POST',
+            acceptedFiles: '.pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.png,.jpeg',
+            uploadMultiple: true, // Permitir la carga de múltiples archivos
+            paramName: 'file', // Nombre del parámetro que Laravel espera
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            init: function() {
+                this.on('sending', function(file, xhr, formData) {
+                    const idAsignacion = document.getElementById('id_asignacion').value;
+                    formData.append('id_asignacion', idAsignacion);
+                });
+                this.on('success', function(file, response) {
+                    console.log(response);
+                    const id = document.getElementById('id_asignacion').value;
+                    loadUploadedFiles(id);
+                });
+                this.on('error', function(file, response) {
+                    console.error(response);
+                });
+            }
+        });
+    });
+}

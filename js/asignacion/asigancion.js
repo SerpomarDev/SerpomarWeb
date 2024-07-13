@@ -107,6 +107,16 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
                         onClick: () => editAsignacion()
                     }, 'Editar')
                 }
+            },
+            {
+                name: 'Acción',
+                hidden: false,
+                formatter: (cell, row) => {
+                    return gridjs.h('button', {
+                        className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
+                        onClick: () => cancelarAsignacion(row.cells[2].data)
+                    }, 'Cancelar')
+                }
             }
         ],
         fixedHeader: true,
@@ -159,7 +169,7 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
         sort: false,
         columns: [{
                 name: 'id_contenedor',
-                hidden: true
+                hidden: false
             },
             {
                 name: 'asignacion_contenedor',
@@ -167,7 +177,7 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
             },
             {
                 name: "id_asignacion",
-                hidden: true
+                hidden: false
             },
             "Cliente",
             "Placa",
@@ -201,6 +211,16 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
                         className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
                         onClick: () => editAsignacion()
                     }, 'Editar')
+                }
+            },
+            {
+                name: 'Acción',
+                hidden: false,
+                formatter: (cell, row) => {
+                    return gridjs.h('button', {
+                        className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
+                        onClick: () => cancelarAsignacion(row.cells[2].data)
+                    }, 'Cancelar')
                 }
             }
         ],
@@ -255,4 +275,8 @@ function editAsignacion(id) {
 
 function addordenSer(id) {
     window.location.href = `/view/orden_servicio/create.html?id=${id}`;
+}
+
+function cancelarAsignacion(id) {
+    cancelarAsignacion(id)
 }
