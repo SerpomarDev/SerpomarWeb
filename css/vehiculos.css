@@ -109,6 +109,9 @@
     transform: translateY(-2px);
 }
 
+
+
+/* NOTIFICACIONES */
 .semaforo-container {
     display: flex;
     justify-content: space-around;
@@ -120,13 +123,13 @@
     display: flex;
     align-items: center;
     flex-direction: row; /* Asegura que el ícono y el texto estén en la misma fila */
-    padding: 5px 25px;
-    border-radius: 10px;
+    padding: 15px 30px;
+    border-radius: 25px;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     transition: background-color 0.3s, transform 0.3s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
 }
 
 .notification-header {
@@ -136,12 +139,10 @@
 
 .notification i {
     margin-right: 10px;
-    font-size: 20px; /* Tamaño del ícono */
+    font-size: 24px; /* Tamaño del ícono */
 }
 
 .notification .icon {
-    font-size: 24px; /* Tamaño del ícono de la campana */
-    margin-right: 10px;
     display: flex;
     align-items: center; /* Asegura que el icono y el texto estén alineados verticalmente */
 }
@@ -173,18 +174,9 @@
     background-color: #FF0041;
 }
 
-/* Efecto de latencia (parpadeo) */
-@keyframes blink {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-}
-
+/* Animación de parpadeo desactivada para una apariencia más limpia */
 .notification {
-    animation: blink 2.5s infinite;
+    animation: none;
 }
 
 /* Desactivar efecto de latencia dentro del modal */
@@ -259,6 +251,8 @@
     border-bottom: 2px solid #cccccc91;
     margin: 5px 0;
 }
+
+/* NOTIFICACIONES */
 
 /* Asegurar que los gráficos se ajusten adecuadamente en pantallas más pequeñas */
 @media (max-width: 768px) {

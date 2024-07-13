@@ -103,7 +103,7 @@ function openModal(type) {
 
         const notificationDetails = categoryNotifications.map(notif => `
             <div class="notification-detail">
-                <p>SP: ${notif.do_sp}</p>
+                <p><a href="/view/contenedor/create.html?id=${notif.do_sp}" style="cursor: pointer; color: #6495ED; font-weight: bold;">SP: ${notif.do_sp}</a></p>
                 <p>${notif.displayType === 'libre_hasta' ? 'Libre hasta' : 
                     notif.displayType === 'bodegaje_hasta' ? 'Bodegaje hasta' : 
                     notif.displayType === 'fecha_documental' ? 'Fecha documental hasta' : 

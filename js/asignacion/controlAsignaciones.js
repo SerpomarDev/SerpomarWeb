@@ -72,7 +72,6 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('controlAsig'));
 
-
 document.addEventListener('DOMContentLoaded', (event) => {
     const modal = document.getElementById('fileUploadModal');
     const span = document.getElementsByClassName('close')[0];
@@ -98,7 +97,29 @@ document.addEventListener('DOMContentLoaded', (event) => {
         modal.style.display = 'block';
         
         // Resetea el modal
-        Dropzone.forElement("#SaveFile").removeAllFiles(true);
+        if (Dropzone.instances.length > 0) {
+            Dropzone.instances.forEach(dz => dz.destroy());
+        }
+
+        const myDropzone = new Dropzone('#SaveFile', {
+            autoProcessQueue: false,
+            acceptedFiles: '.pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.png,.jpeg',
+            init: function () {
+                this.on('addedfile', async function (file) {
+                    const id = document.getElementById('id_asignacion').value;
+                    const storageRef = ref(storage, `uploads/${id}/${file.name}`);
+                    try {
+                        await uploadBytes(storageRef, file);
+                        console.log(`File uploaded: ${file.name}`);
+                        // Actualizar la lista de archivos adjuntos después de una carga exitosa
+                        loadUploadedFiles(id);
+                        this.removeFile(file);
+                    } catch (error) {
+                        console.error('Error uploading file:', error);
+                    }
+                });
+            }
+        });
 
         // Llama a la función para cargar los archivos adjuntos
         loadUploadedFiles(id);
@@ -138,54 +159,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     window.uploadId = uploadId;
-
-    const form = document.getElementById('SaveFile');
-
-    const myDropzone = new Dropzone(form, {
-        url: 'https://esenttiapp-production.up.railway.app/api/asignacionfile',
-        method: 'POST',
-        acceptedFiles: '.pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.png,.jpeg',
-        init: function() {
-            this.on('success', function(file, response) {
-                console.log(response);
-                // Actualizar la lista de archivos adjuntos después de una carga exitosa
-                const id = document.getElementById('id_asignacion').value;
-                loadUploadedFiles(id);
-            });
-            this.on('error', function(file, response) {
-                console.error(response);
-            });
-        }
-    });
-
 });
-
-
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     const form = document.getElementById('SaveFile');
-    
-    //     const myDropzone = new Dropzone(form, {
-    //         url: 'https://esenttiapp-production.up.railway.app/api/asignacionfile',
-    //         method: 'post',
-    //         acceptedFiles: '.pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.png,.jpeg',
-    //         headers: {
-    //             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    //         },
-    //         init: function() {
-    //             this.on('sending', function(file, xhr, formData) {
-    //                 // Append additional data here
-    //                 const idAsignacion = document.getElementById('id_asignacion').value;
-    //                 formData.append('id_asignacion', idAsignacion);
-    //             });
-    //             this.on('success', function(file, response) {
-    //                 console.log(response);
-    //                 // Actualizar la lista de archivos adjuntos después de una carga exitosa
-    //                 const id = document.getElementById('id_asignacion').value;
-    //                 loadUploadedFiles(id);
-    //             });
-    //             this.on('error', function(file, response) {
-    //                 console.error(response);
-    //             });
-    //         }
-    //     });
-    // });
