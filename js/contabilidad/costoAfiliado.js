@@ -29,7 +29,7 @@ new gridjs.Grid({
             formatter: (cell, row) => {
                 return gridjs.h('button', {
                     className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-                    onClick: () => updateState(row.cells[0].data)
+                    onClick: () => actualizarPagado(row.cells[0].data)
                 }, 'enviar')
             }
         }
@@ -62,3 +62,7 @@ new gridjs.Grid({
         table: { width: "100%" }
     }
 }).render(document.getElementById('costoAfiliado'));
+
+function actualizarPagado(id){
+    actualizarPagado(id)
+}
