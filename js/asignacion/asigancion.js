@@ -169,7 +169,7 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
         sort: false,
         columns: [{
                 name: 'id_contenedor',
-                hidden: false
+                hidden: true
             },
             {
                 name: 'asignacion_contenedor',
@@ -177,7 +177,7 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
             },
             {
                 name: "id_asignacion",
-                hidden: false
+                hidden: true
             },
             "Cliente",
             "Placa",
