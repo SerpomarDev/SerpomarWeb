@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
     <style>
         .form-status-container {
             display: flex;
@@ -33,25 +32,25 @@
         }
 
         .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
             left: 0;
             top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.4);
-            padding-top: 60px;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+            padding-top: 60px; 
         }
 
         .modal-content {
             background-color: #fefefe;
-            margin: 5% auto;
+            margin: 5% auto; 
             padding: 20px;
             border: 1px solid #888;
-            width: 80%;
+            width: 80%; 
         }
 
         .close {
@@ -78,9 +77,10 @@
             <nav class="navbar navbar-expand">
                 <div class="collapse navbar-collapse justify-content-between">
                     <div class="header-left">
-                        <div class="header-left">SP
+                        <div class="circle"></div>
+                        <div class="header-left">SP 
                             <div style="color: #1e90ff;" class="dashboard_bar" id="dashboard_sp">
-                                SP:
+                            SP:
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
             </nav>
         </div>
     </div>
-
+    
     <div id="main-wrapper">
         <div class="margenform">
             <div id="content" class="p-4 p-md-5 pt-5">
@@ -179,7 +179,6 @@
                                 </div>
                             </div>
                             <hr>
-                            <!-- Formulario Contenedor -->
                             <h4>Crear contenedor</h4>
                             <input type="hidden" name="id_solicitud_servicio" id="id_solicitud_servicio">
                             <div class="row">
@@ -221,6 +220,7 @@
                                 </div>
                             </div>
                         </form>
+                        
                     </div>
                     <div class="status-container">
                         <div class="cardsp">
@@ -230,12 +230,16 @@
                             <a href="link3" class="btn btn-primary" role="button">Ver >
                                 <img src="/img/barco.png" alt="Barco" style="width: 45px; height: 25px;">
                             </a><br><br>
-                            <button type="submit" class="btn btn-primary" id="btnAdjuntos">
+                            <button type="button" class="btn btn-primary" id="openModalBtn">
                                 <i class="fas fa-upload"></i> Adjuntos
                             </button><br><br>
                             <button type="submit" class="btn btn-primary" id="BtnLiquidar">Liquidar SP</button><br><br>
                         </div>
                     </div>
+                </div>
+              
+                <div class="container">
+                    <div id="contenedor"></div>
                 </div>
 
                 <div id="fileUploadModal" class="modal">
@@ -257,22 +261,39 @@
                     </div>
                 </div>
 
-                <div class="container">
-                    <div id="contenedor"></div>
-                </div>
-
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script src="/js/home/scripts.js"></script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                 <script src="/js/custom.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-                <script type="text/javascript" src="/js/contenedor/createContenedor.js"></script>
-                <script type="text/javascript" src="/js/contenedor/createContenedor1.js"></script>
-                <script type="text/javascript" src="/js/cargar/CargarTipoContenedor.js"></script>
-                <script type="text/javascript" src="/js/contenedor/pendienteLiquidar.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                <script type="text/javascript" src="/js/estatussp/estatussp.js"></script>
-                <script type="module" src="/js/contenedor/uploadContenedores.js"></script>
-</body>
 
+                <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+                <script type="module" src="/js/contenedor/uploadContenedores.js"></script>
+                <script>
+                    $(document).ready(function(){
+                        var modal = document.getElementById("fileUploadModal");
+                        var btn = document.getElementById("openModalBtn");
+                        var span = document.getElementsByClassName("close")[0];
+
+                        btn.onclick = function() {
+                            modal.style.display = "block";
+                        }
+
+                        span.onclick = function() {
+                            modal.style.display = "none";
+                        }
+
+                        window.onclick = function(event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                            }
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
