@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getStorage, ref, uploadBytes, getDownloadURL, listAll } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
 
-// configuracion firebase
+// configuración firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBQh7eqWl_iu02oDPds3nQMigzSrHDOFn0",
     authDomain: "serpomar-driver-mysql-f8df6.firebaseapp.com",
@@ -52,11 +52,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     let filePath = `uploads/${id}/${fileName}`;
                     const storageRef = ref(storage, filePath);
 
-                    // Check if the file already exists
+                   
                     const existingFiles = await listAll(ref(storage, `uploads/${id}`));
                     const fileNames = existingFiles.items.map(item => item.name);
 
-                    // If the file name exists, append a timestamp
+            
                     if (fileNames.includes(fileName)) {
                         const timestamp = Date.now();
                         const fileExtension = fileName.substring(fileName.lastIndexOf('.'));
@@ -90,10 +90,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const listRef = ref(storage, `uploads/${id}`);
             const res = await listAll(listRef);
 
+            const button = document.getElementById(`btn-${id}`);
             if (res.items.length === 0) {
                 const noFilesMessage = document.createElement('li');
                 noFilesMessage.textContent = 'No hay archivos adjuntos.';
                 fileList.appendChild(noFilesMessage);
+               
+                if (button) {
+                    button.classList.remove('file-uploaded');
+                    button.classList.add('no-file');
+                }
             } else {
                 res.items.forEach((itemRef) => {
                     getDownloadURL(itemRef).then((url) => {
@@ -105,6 +111,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         fileList.appendChild(listItem);
                     });
                 });
+                
+                if (button) {
+                    button.classList.remove('no-file');
+                    button.classList.add('file-uploaded');
+                }
             }
         } catch (error) {
             console.error('Error loading uploaded files:', error);
