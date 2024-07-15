@@ -66,7 +66,7 @@ function tableByClt(id_primario){
     sort: false,
     columns: [{
       name:'id_co',
-      hidden: true,
+      hidden: false,
     },"SP",{
       name:"Numero contenedor",
       attributes: (cell,row)=>{
@@ -87,6 +87,14 @@ function tableByClt(id_primario){
           'data-bs-target': '#asignarModal',
         onClick: () => asignar(row.cells[0].data)
         },'asignar')
+      }
+    },{
+      name:"Detalles",
+      formatter:(cell,row)=>{
+        return gridjs.h('button',{
+          className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
+          onClick: () => ordenServicio(row.cells[0].data)
+        },'datos')
       }
     },{
       name:"Pre-liquidar",
@@ -161,4 +169,8 @@ function liquidarSp(id){
   liquidar.addEventListener('click', function(){
     window.location.href = `/view/liquidar/liquidar.html?id=${id}`
   })
+ }
+
+ function ordenServicio(id){
+  window.location.href = `/view/orden_servicio/create.html?id=${id}`
  }

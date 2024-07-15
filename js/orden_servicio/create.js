@@ -12,7 +12,6 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`)
 .then((data)=>{
     if(data.length > 0) {
       const contenedor = data[0];
-        document.getElementById('id_asignacion_contenedor').value = contenedor.id_asig_cont;
         document.getElementById('id_contenedor').value = contenedor.id_contenedor;
         document.getElementById('id_tipo_contenedor').value = contenedor.tipo;
         document.getElementById('nu_serie').value = contenedor.numero;

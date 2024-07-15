@@ -85,8 +85,8 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
                     if (cell) {
                         return {
                             'data-cell-content': cell,
-                            onclick: () => addordenSer(row.cells[1].data),
-                            'style': 'cursor: pointer; color: #6495ED;  font-weight: bold;',
+                            // onclick: () => addordenSer(row.cells[1].data),
+                            'style': 'color: #6495ED;  font-weight: bold;',
                         }
                     }
                 }
@@ -188,8 +188,8 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
                     if (cell) {
                         return {
                             'data-cell-content': cell,
-                            onclick: () => addordenSer(row.cells[1].data),
-                            'style': 'cursor: pointer; color: #6495ED;  font-weight: bold;',
+                            // onclick: () => addordenSer(row.cells[1].data),
+                            'style': 'color: #6495ED;  font-weight: bold;',
                         }
                     }
                 }
@@ -273,9 +273,9 @@ function editAsignacion(id) {
     window.location.href = `/view/asignacion/edit.html?id=${id}`
 }
 
-function addordenSer(id) {
-    window.location.href = `/view/orden_servicio/create.html?id=${id}`;
-}
+// function addordenSer(id) {
+//     window.location.href = `/view/orden_servicio/create.html?id=${id}`;
+// }
 
 function cancelarAsignacion(id) {
     cancelarAsignacion(id)
