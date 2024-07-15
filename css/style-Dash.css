@@ -29,6 +29,20 @@ form {
   margin-left: 20px; /* Espacio entre el formulario y el estatus */
 }
 
+.upload-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upload-btn.no-file {
+    background-color: grey;
+}
+
+.upload-btn.file-uploaded {
+    background-color: blue;
+}
 
 
 .containersp {
