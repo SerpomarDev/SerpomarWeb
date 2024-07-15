@@ -12,7 +12,6 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`)
 .then((data)=>{
     if(data.length > 0) {
       const contenedor = data[0];
-        document.getElementById('id_asignacion_contenedor').value = contenedor.id_asig_cont;
         document.getElementById('id_contenedor').value = contenedor.id_contenedor;
         document.getElementById('id_tipo_contenedor').value = contenedor.tipo;
         document.getElementById('nu_serie').value = contenedor.numero;
@@ -45,7 +44,7 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`)
     },{
       name:'id_asig_cont',
       hidden:true,
-    },"Numero contenedor","Fecha cargue", "Hora cargue", "Fecha descargue", "Hora descargue","Fecha devolucion", "Fecha inspeccion",{
+    },"Numero contenedor","Fecha cargue", "Hora cargue", "Fecha descargue", "Hora descargue","Fecha devolucion","Fecha llegada planta","Hora llegada planta","Fecha inspeccion",{
         name:'Acción',
         formatter:(cell,row)=>{
             return gridjs.h('button',{
@@ -77,6 +76,8 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`)
                     ordenSev.fecha_descargue,
                     ordenSev.hora_descargue,
                     ordenSev.fecha_devolucion,
+                    ordenSev.fecha_llegada_planta,
+                    ordenSev.hora_llegada_planta,
                     ordenSev.fecha_inspeccion,
                 ]);
             } else {
