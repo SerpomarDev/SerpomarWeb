@@ -143,3 +143,7 @@ window.onload = async () => {
         checkAllButtonStates(data);
     }
 };
+
+function updateState(id){
+    updateState(id)
+}

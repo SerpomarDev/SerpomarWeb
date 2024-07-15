@@ -24,7 +24,7 @@ function actualizarEstado(id) {
               text: "Registro procesado con exito.",
               icon: "success"
             });
-            window.location.href = `/view/solicitudes_servicios/hubemar_transport.html`;
+            location.reload()
           })
           .catch(error => {
             console.error('Error:', error);

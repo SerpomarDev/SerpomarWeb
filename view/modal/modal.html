@@ -37,7 +37,7 @@
                                 <input type="hidden" id="id_cliente"  class="form-control" readonly>
                                 <input type="hidden" id="imp_exp" class="form-control" readonly>
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="">Placa</label>
                                             <select name="id_preventa" id="id_preventa" class="form-control">
@@ -45,7 +45,8 @@
                                             </select>
                                         </div>
                                     </div>
-                    
+                                </div>
+                                <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="" class="form-label">Conductor</label>
@@ -61,12 +62,8 @@
                                 </div>
                     
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="" class="form-label">Telefono</label>
-                                            <input type="text" class="form-control" id="celular" readonly="readonly" required>
-                                        </div>
-                                    </div>
+                                   <!-- <label for="" class="form-label">Telefono</label> -->
+                                    <input type="hidden" class="form-control" id="celular" readonly="readonly" required>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="" class="form-label">Ruta</label>
@@ -81,12 +78,8 @@
                                             <input type="text" id="tarifa1" class="form-control" readonly="readonly" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="" class="form-label">valor</label>
-                                            <input type="text" name="tarifa" id="tarifa" class="form-control" readonly="readonly" required>
-                                        </div>
-                                    </div>
+                                    <!-- <label for="" class="form-label">valor</label> -->
+                                    <input type="hidden" name="tarifa" id="tarifa" class="form-control" readonly="readonly" required>
                                 </div>
                 
                                 <div class="row">
@@ -108,15 +101,16 @@
                                             </select>
                                         </div>
                                     </div>
+                                </div>
+                    
+                                <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="" class="form-label">Fecha cita</label>
                                             <input type="date" id="fecha_cita" name="fecha_cita" class="form-control">
                                         </div>
                                     </div>
-                                </div>
-                    
-                                <div class="row">
+
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="" class="form-label">Hora cita</label>
