@@ -36,7 +36,6 @@ document.getElementById("saveAsignacion").addEventListener("submit", function (e
         icon: "success"
       });
       setTimeout(() => {
-       history.back();
        location.reload();
       },);
     })

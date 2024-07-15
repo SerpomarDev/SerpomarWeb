@@ -42,8 +42,6 @@ function updateState (id){
     
 }
 
-
-
 function time() {
   setTimeout(() => {
       location.reload();
