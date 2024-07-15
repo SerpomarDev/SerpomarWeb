@@ -38,29 +38,44 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.6);
             padding-top: 60px;
         }
+
         .modal-content {
-            background-color: #fefefe;
+            background-color: #fff;
             margin: 5% auto;
             padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 60%;
+            max-width: 800px;
         }
+
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
+
         .close:hover,
         .close:focus {
             color: black;
             text-decoration: none;
             cursor: pointer;
         }
+
+        .title-container {
+            text-align: center;
+        }
+
+        .title-container .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
         .modal-details {
             display: flex;
             flex-wrap: wrap;
@@ -69,6 +84,47 @@
             flex: 1 1 50%;
             padding: 10px;
             box-sizing: border-box;
+        }
+
+    
+        .dropzone {
+            border: 2px dashed #007bff;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+
+        .dz-message {
+            color: #999;
+            font-size: 18px;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        #uploadedFilesContainer {
+            margin-top: 20px;
+        }
+
+        #uploadedFilesContainer h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        #uploadedFilesList {
+            list-style: none;
+            padding: 0;
+        }
+
+        #uploadedFilesList li {
+            background: #f1f1f1;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .upload-btn.file-uploaded {
+            background-color: #007bff;
+            color: white;
+            border: none;
         }
     </style>
 </head>
