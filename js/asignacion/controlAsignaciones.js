@@ -54,7 +54,7 @@ new gridjs.Grid({
             formatter: (cell, row) => {
                 return gridjs.h('button', {
                     className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-                    onClick: () => updateState(row.cells[0].data)
+                    onClick: () => updateState(row.cells[0].data) // Asegúrate de que updateState esté definido
                 }, 'enviar')
             }
         }
@@ -90,31 +90,38 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('controlAsig'));
 
+// Definir la función updateState
+async function updateState(id) {
+    // Aquí puedes añadir el código necesario para manejar la actualización del estado
+    // Esto podría involucrar una llamada a la API para actualizar el estado del servidor
+    console.log(`Updating state for ID: ${id}`);
+}
+
 function uploadId(id) {
-   
+    // Open the modal or handle file upload
     $('#fileUploadModal').show();
     $('#id_asignacion').val(id);
 
-    
+    // Initialize Dropzone for the form
     const myDropzone = new Dropzone("#SaveFile", {
-        url: "/upload", 
+        url: "/upload", // Replace with your upload URL
         init: function() {
             this.on("success", function(file, response) {
-               
+                // Change button state after successful file upload
                 const button = document.getElementById(`btn-${id}`);
                 if (button) {
                     button.classList.remove('no-file');
                     button.classList.add('file-uploaded');
                 }
 
-             
+                // Hide the modal after upload
                 $('#fileUploadModal').hide();
             });
         }
     });
 }
 
-
+// Handle modal close
 $('.close').on('click', function() {
     $('#fileUploadModal').hide();
 });
