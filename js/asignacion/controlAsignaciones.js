@@ -92,6 +92,7 @@ new gridjs.Grid({
 
 // Definir la función updateState
 async function updateState(id) {
+    updateState(id)
     // Aquí puedes añadir el código necesario para manejar la actualización del estado
     // Esto podría involucrar una llamada a la API para actualizar el estado del servidor
     console.log(`Updating state for ID: ${id}`);
