@@ -15,23 +15,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
     <style>
-        .form-status-container {
+          .form-status-container {
             display: flex;
             justify-content: space-between;
         }
-
         .form-container {
             flex: 4;
             margin-right: 20px;
         }
-
         .cardsp {
             padding: 25px;
             background: #fff;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
         }
-
         .modal {
             display: none;
             position: fixed;
@@ -41,17 +38,19 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.6);
             padding-top: 60px;
         }
 
         .modal-content {
-            background-color: #fefefe;
+            background-color: #fff;
             margin: 5% auto;
             padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 60%;
+            max-width: 800px;
         }
 
         .close {
@@ -67,6 +66,66 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        .title-container {
+            text-align: center;
+        }
+
+        .title-container .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .modal-details {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .modal-details div {
+            flex: 1 1 50%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+    
+        .dropzone {
+            border: 2px dashed #007bff;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+
+        .dz-message {
+            color: #999;
+            font-size: 18px;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        #uploadedFilesContainer {
+            margin-top: 20px;
+        }
+
+        #uploadedFilesContainer h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        #uploadedFilesList {
+            list-style: none;
+            padding: 0;
+        }
+
+        #uploadedFilesList li {
+            background: #f1f1f1;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .upload-btn.file-uploaded {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
     </style>
 </head>
 
@@ -79,9 +138,7 @@
                 <div class="collapse navbar-collapse justify-content-between">
                     <div class="header-left">
                         <div class="header-left">SP
-                            <div style="color: #1e90ff;" class="dashboard_bar" id="dashboard_sp">
-                                SP:
-                            </div>
+                            <div style="color: #1e90ff;" class="dashboard_bar" id="dashboard_sp">SP:</div>
                         </div>
                     </div>
                 </div>
@@ -198,7 +255,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -225,7 +281,7 @@
                     <div class="status-container">
                         <div class="cardsp">
                             <h1>Herramientas</h1>
-                            <a href="link1" class="btn btn-primary" role="button">Ver Detalle</a><br><br>
+                            <a href="#" id="btnVerDetalles" class="btn btn-primary" role="button">Ver Detalle</a><br><br>
                             <a href="link2" class="btn btn-primary" role="button">Crear Excel</a><br><br>
                             <a href="link3" class="btn btn-primary" role="button">Ver >
                                 <img src="/img/barco.png" alt="Barco" style="width: 45px; height: 25px;">
@@ -257,6 +313,15 @@
                     </div>
                 </div>
 
+                <div id="detailsModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" id="closeModal">&times;</span>
+                        <div class="modal-details" id="modalDetailsContent">
+                            <!-- Aquí se cargarán los detalles -->
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="container">
                     <div id="contenedor"></div>
                 </div>
@@ -273,6 +338,7 @@
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                 <script type="text/javascript" src="/js/estatussp/estatussp.js"></script>
                 <script type="module" src="/js/contenedor/uploadContenedores.js"></script>
+                <script type="module" src="/js/contenedor/detaller_contenedor.js"></script>
+              
 </body>
-
 </html>

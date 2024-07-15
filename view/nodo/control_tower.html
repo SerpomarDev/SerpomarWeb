@@ -1,57 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- PAGE TITLE HERE -->
-    <title>Nodhus</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <link href="/css/pages.css" rel="stylesheet" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <title>Solicita, Rastrea y Gestiona</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/control_tower.css">
 </head>
-<style>
-    /* Asegúrate de que el contenedor de la imagen ocupe todo el espacio disponible */
-.image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh; /* Altura completa de la ventana */
-}
-
-/* Hacer que la imagen sea responsiva */
-.image-container img {
-    max-width: 100%;
-    height: auto;
-    width: auto;
-    max-height: 100%;
-}
-
-</style>
 <body>
-
-    <div id="layout-placeholder"></div>
-
-    <div id="main-wrapper">
-        <div class="header">
-            <div class="title-container">
-                <div class="circle"></div>
-                <h1 class="title">Nodo de control</h1>
-            </div>
+    <div class="container">
+        <div class="search-wrapper">
+            <input type="text" class="search-bar" placeholder="Search...">
         </div>
-        <div class="margenform">
-            <div id="content" class="p-4 p-md-5 pt-5">
-                <div class="image-container">
-                    <img src="/img/control_tower.png" alt="Control Tower">
-                </div>
+        <div class="title">Solicita - Rastrea - Gestiona</div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-box"></i></div>
+                <div class="step-number">1</div>
+                <div class="step-title">Expedinting</div>
+                <div class="step-text">(Click aquí)</div>
+            </div>
+            <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-ship"></i></div>
+                <div class="step-number">2</div>
+                <div class="step-title">Tránsito internacional Marítimo</div>
+                <div class="step-text">(Click aquí)</div>
+            </div>
+            <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-clipboard-check"></i></div>
+                <div class="step-number">3</div>
+                <div class="step-title">Aduana y control portuario</div>
+                <div class="step-text">(Click aquí)</div>
+            </div>
+            <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-truck"></i></div>
+                <div class="step-number">4</div>
+                <div class="step-title">Transporte y centros de distribución</div>
+                <div class="step-text">(Click aquí)</div>
+            </div>
+            <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-hand-holding-box"></i></div>
+                <div class="step-number">5</div>
+                <div class="step-title">Tránsito nacional y entrega</div>
+                <div class="step-text">(Click aquí)</div>
             </div>
         </div>
     </div>
-
-    <script src="/js/home/scripts.js"></script>    
-    <script src="/js/custom.min.js"></script>
 </body>
 </html>
