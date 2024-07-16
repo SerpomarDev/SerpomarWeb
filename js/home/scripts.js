@@ -88,6 +88,7 @@ function initializeMenu(loggedInUser) {
       case 'henry.goethe@serpomar.com': 
       case 'operacion.nacional1@serpomar.com': 
       case 'carlos.carrasquilla@serpomar.com':
+      case 'stephanie.otero@serpomar.com':
         $('#menu > li:contains("Tu Rol: Coordinador")').show();
         $('#menu-transporte').show();
         $('#menu-transporte ul li').show();
