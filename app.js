@@ -20,6 +20,7 @@ const credentials = {
     "contabilidad@serpomar.com": "COserpomar202424",
     "miguel.martinez@serpomar.com": "MMserpomar202425",
     "stephanie.otero@serpomar.com": "Stserpomar202426",
+    "lina.young@serpomar.com": "Lyserpomar202427",
     // ROL GENERAL 
 
     // ROL COORDINADOR
