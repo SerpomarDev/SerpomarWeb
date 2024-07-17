@@ -36,7 +36,7 @@ function downloadPDF() {
             input.style.fontSize = '14px'; // Font size similar to the form control
             input.style.fontWeight = '400'; // Font weight similar to the form control
             input.style.lineHeight = '1.5'; // Line height similar to the form control
-            input.style.color = '#495057'; // Text color similar to the form control
+            input.style.color = '#000000'; // Text color similar to the form control
             input.style.backgroundColor = '#fff'; // Background color similar to the form control
             input.style.backgroundClip = 'padding-box'; // Background clip similar to the form control
             input.style.marginBottom = '0'; // Margin similar to the form control
@@ -50,6 +50,7 @@ function downloadPDF() {
         element.style.padding = '0px 4px'; // Reduce padding
         element.style.fontSize = '10px'; // Reduce font size
         element.style.height = '15px';
+        element.style.color = '#000000';
         element.parentElement.style.marginBottom = '0px'; // Reduce margin for PDF
     });
 
@@ -78,6 +79,7 @@ function downloadPDF() {
         // Add the header info
         var headerInfo = document.createElement('div');
         headerInfo.className = 'header-info';
+        headerInfo.style.color = '#000000';
         headerInfo.style.marginBottom = '0'; // Remove margin below the header info
         headerInfo.style.paddingBottom = '0'; // Remove padding below the header info
         headerInfo.innerHTML = `
