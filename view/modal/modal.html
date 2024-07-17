@@ -56,18 +56,15 @@
         <div class="margenform">
             <div id="content" class="p-4 p-md-5 pt-5">
                 <div class="container">
-                    <!-- Hidden logo -->
-                    <img id="logo" src="/img/logo.png" style="display:none;">
-                    
                     <form id="saveAsignacion" method="POST" enctype="multipart/form-data">
                         <div class="modal-body">
                             <input type="hidden" id="id_contenedor" name="id_contenedor" class="form-control" readonly>
                             <input type="hidden" id="id_cliente"  class="form-control" readonly>
                             <input type="hidden" id="imp_exp" class="form-control" readonly>
-                            <div class="row form-section">
+                            <div class="row">
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="" class="form-label">Placa</label>
+                                        <label for="">Placa</label>
                                         <select name="id_preventa" id="id_preventa" class="form-control">
                                             <option value="">Seleccione</option>
                                         </select>
@@ -86,7 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row form-section">
+                            <div class="row">
                                 <input type="hidden" class="form-control" id="celular" readonly="readonly" required>
                                 <div class="col-md-8">
                                     <div class="form-group">
@@ -102,45 +99,52 @@
                                         <input type="text" id="tarifa1" class="form-control" readonly="readonly" required>
                                     </div>
                                 </div>
+                                <input type="hidden" name="tarifa" id="tarifa" class="form-control" readonly="readonly" required>
+                                
                             </div>
-                            <div class="row form-section">
-                                <div class="col-md-3">
+                            <div class="row">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="" class="form-label">Tipo operacion</label>
                                         <select name="id_tipo_operacion" id="id_tipo_operacion" class="form-control" required>
-                                            <option value="">Seleccione operacion</option>
+                                            <option value="">seleccione operacion</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="" class="form-label">Destino</label>
                                         <select name="id_sitio_inspeccion" id="id_sitio_inspeccion" class="form-control" required>
-                                            <option value="">Seleccione destino</option>
+                                            <option value="">Seleccione Destino</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="" class="form-label">Fecha cita</label>
                                         <input type="date" id="fecha_cita" name="fecha_cita" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="" class="form-label">Hora cita</label>
                                         <input type="time" id="hora_cita" name="hora_cita" class="form-control">
                                     </div> <br><br>
                                 </div>
                             </div>
-                            <div class="row form-section">
-                                <br><br>
-                                <div class="col-md-8">
+                            <div class="row">
+                                 <br><br>
+                                 <div class="col-md-8">
                                     <div class="d-flex justify-content-between">
                                         <button class="btn btn-primary" onclick="history.back()">Volver</button>
                                         <button type="submit" class="btn btn-primary" id="BtnSavetAsignacion">Guardar</button>
                                         <button class="btn btn-primary" type="button" onclick="downloadPDF()">Descargar PDF</button>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
