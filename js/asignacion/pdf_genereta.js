@@ -4,23 +4,55 @@ function downloadPDF() {
     var buttons = document.querySelectorAll('.btn-primary');
     var logo = document.getElementById('logo');
 
-    // Hide elements
+    // Ocultar el campo y la etiqueta de tarifa en el formulario original
     tarifaField.style.display = 'none';
     tarifaLabel.style.display = 'none';
     buttons.forEach(button => button.style.display = 'none');
     logo.style.display = 'none';
 
-    // Clone the form content
+    // Clonar el contenido del formulario
     var formContent = document.querySelector('.modal-body').cloneNode(true);
-    formContent.querySelectorAll('input, select').forEach(element => {
+
+    // Remover el campo de tarifa y su etiqueta del contenido clonado
+    var clonedTarifaField = formContent.querySelector('#tarifa1');
+    var clonedTarifaLabel = clonedTarifaField ? clonedTarifaField.previousElementSibling : null;
+    if (clonedTarifaField) clonedTarifaField.parentElement.removeChild(clonedTarifaField);
+    if (clonedTarifaLabel) clonedTarifaLabel.parentElement.removeChild(clonedTarifaLabel);
+
+    // Actualizar valores seleccionados en los selects clonados
+    document.querySelectorAll('select').forEach(originalSelect => {
+        var clonedSelect = formContent.querySelector('#' + originalSelect.id);
+        if (clonedSelect) {
+            var selectedValue = originalSelect.options[originalSelect.selectedIndex].text;
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.value = selectedValue;
+            input.style.display = 'block';
+            input.style.border = '1px solid #ced4da'; // Border similar to the form control
+            input.style.borderRadius = '.25rem'; // Border radius similar to the form control
+            input.style.width = '100%';
+            input.style.height = '20px';
+            input.style.padding = '0.375rem 0.75rem'; // Padding similar to the form control
+            input.style.fontSize = '14px'; // Font size similar to the form control
+            input.style.fontWeight = '400'; // Font weight similar to the form control
+            input.style.lineHeight = '1.5'; // Line height similar to the form control
+            input.style.color = '#495057'; // Text color similar to the form control
+            input.style.backgroundColor = '#fff'; // Background color similar to the form control
+            input.style.backgroundClip = 'padding-box'; // Background clip similar to the form control
+            input.style.marginBottom = '0'; // Margin similar to the form control
+            clonedSelect.parentElement.appendChild(input);
+            clonedSelect.style.display = 'none';
+        }
+    });
+
+    formContent.querySelectorAll('input').forEach(element => {
         element.style.display = '';
-        element.style.padding = '0px 0px'; // Reduce padding
-        element.style.fontSize = '12px'; // Reduce font size
-        element.style.height = '12px';
+        element.style.padding = '0px 4px'; // Reduce padding
+        element.style.fontSize = '10px'; // Reduce font size
+        element.style.height = '15px';
         element.parentElement.style.marginBottom = '0px'; // Reduce margin for PDF
     });
 
-    // Create a container for the repeated content
     var container = document.createElement('div');
     container.style.textAlign = "center"; // Center the content
 

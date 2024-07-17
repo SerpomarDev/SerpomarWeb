@@ -20,27 +20,48 @@
             padding-bottom: 0;
             font-size: 12px;
         }
+
         .header-container {
             text-align: center;
             margin-bottom: 0px;
         }
-       
+
         .header-info {
             display: inline-block;
             vertical-align: middle;
             margin-left: 110px;
-            font-size: 10px; /* Ajusta el tamaño del texto según tus necesidades */
+            font-size: 10px;
+            /* Ajusta el tamaño del texto según tus necesidades */
         }
-        .form-control{
+
+        .form-control {
             margin-top: 0px;
             height: 30px;
             margin-bottom: 0px;
         }
-        .form-label{
+
+        .form-label {
             height: 0px;
+        }
+
+        .ruta-container {
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            align-items: baseline;
+        }
+
+        .ruta-container label {
+            margin-right: 10px;
+            /* Ajusta según sea necesario */
+        }
+
+        .ruta-container select {
+            flex-grow: 1;
         }
     </style>
 </head>
+
 <body>
 
     <div id="layout-placeholder"></div>
@@ -56,15 +77,18 @@
         <div class="margenform">
             <div id="content" class="p-4 p-md-5 pt-5">
                 <div class="container">
+                    <!-- Hidden logo -->
+                    <img id="logo" src="/img/logo.png" style="display:none;">
+
                     <form id="saveAsignacion" method="POST" enctype="multipart/form-data">
                         <div class="modal-body">
                             <input type="hidden" id="id_contenedor" name="id_contenedor" class="form-control" readonly>
-                            <input type="hidden" id="id_cliente"  class="form-control" readonly>
+                            <input type="hidden" id="id_cliente" class="form-control" readonly>
                             <input type="hidden" id="imp_exp" class="form-control" readonly>
-                            <div class="row">
+                            <div class="row form-section">
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="">Placa</label>
+                                        <label for="id_preventa" class="form-label">Placa</label>
                                         <select name="id_preventa" id="id_preventa" class="form-control">
                                             <option value="">Seleccione</option>
                                         </select>
@@ -72,79 +96,72 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label for="" class="form-label">Conductor</label>
+                                        <label for="conductor" class="form-label">Conductor</label>
                                         <input type="text" id="conductor" class="form-control" readonly="readonly" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="" class="form-label">Aliado</label>
+                                        <label for="aliado" class="form-label">Aliado</label>
                                         <input type="text" id="aliado" class="form-control" readonly="readonly" required>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row form-section">
                                 <input type="hidden" class="form-control" id="celular" readonly="readonly" required>
                                 <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Ruta</label>
+                                    <div class="ruta-container">
+                                        <label for="id_ruta" class="form-label">Ruta</label>
                                         <select name="id_ruta" id="id_ruta" class="form-control" required>
                                             <option value="">Seleccione la ruta</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <div class="form-group">
+                                    <div class="ruta-container">
                                         <label for="tarifa1" class="form-label">Tarifa</label>
                                         <input type="text" id="tarifa1" class="form-control" readonly="readonly" required>
                                     </div>
                                 </div>
-                                <input type="hidden" name="tarifa" id="tarifa" class="form-control" readonly="readonly" required>
-                                
                             </div>
-                            <div class="row">
-                            </div>
-                            <div class="row">
-                                <div class="col-md-5">
+                            <div class="row form-section">
+                                <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="" class="form-label">Tipo operacion</label>
+                                        <label for="id_tipo_operacion" class="form-label">Tipo operación</label>
                                         <select name="id_tipo_operacion" id="id_tipo_operacion" class="form-control" required>
-                                            <option value="">seleccione operacion</option>
+                                            <option value="">Seleccione operación</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="" class="form-label">Destino</label>
+                                        <label for="id_sitio_inspeccion" class="form-label">Destino</label>
                                         <select name="id_sitio_inspeccion" id="id_sitio_inspeccion" class="form-control" required>
-                                            <option value="">Seleccione Destino</option>
+                                            <option value="">Seleccione destino</option>
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="" class="form-label">Fecha cita</label>
+                                        <label for="fecha_cita" class="form-label">Fecha cita</label>
                                         <input type="date" id="fecha_cita" name="fecha_cita" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="" class="form-label">Hora cita</label>
+                                        <label for="hora_cita" class="form-label">Hora cita</label>
                                         <input type="time" id="hora_cita" name="hora_cita" class="form-control">
                                     </div> <br><br>
                                 </div>
                             </div>
-                            <div class="row">
-                                 <br><br>
-                                 <div class="col-md-8">
+                            <div class="row form-section">
+                                <br><br>
+                                <div class="col-md-8">
                                     <div class="d-flex justify-content-between">
                                         <button class="btn btn-primary" onclick="history.back()">Volver</button>
                                         <button type="submit" class="btn btn-primary" id="BtnSavetAsignacion">Guardar</button>
                                         <button class="btn btn-primary" type="button" onclick="downloadPDF()">Descargar PDF</button>
                                     </div>
-                                </div>
                                 </div>
                             </div>
                         </div>
@@ -158,8 +175,6 @@
     <script src="/componentes/loadSidebar.js"></script>
     <script src="/js/custom.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-    <script type="text/javascript" src="/js/asignacion/asigancion.js"></script>
-    <script type="text/javascript" src="/js/asignacion/asignacionModal.js"></script>
     <script type="text/javascript" src="/js/cargar/cargarDestino.js"></script>
     <script type="text/javascript" src="/js/cargar/cargarRutaClientesV.js"></script>
     <script type="text/javascript" src="/js/cargar/cargarPrevnetaClienteV.js"></script>
@@ -168,4 +183,5 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
+
 </html>
