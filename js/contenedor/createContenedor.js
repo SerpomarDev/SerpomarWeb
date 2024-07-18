@@ -152,7 +152,6 @@ function detalles(id){
 
 function asignar(id){
   window.location.href = `/view/modal/modal.html?id=${id}`
-  showContenedor(id)
 }
 
 function editContenedor(id){
