@@ -2,8 +2,6 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-console.log("ID from URL:", id); // Debugging line to check the ID
-
 if (id) {
     cargarValores(id);
 } else {

@@ -65,7 +65,7 @@ new gridjs.Grid({
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 updateTotalAbiertas(data);
-                checkAllButtonStates(data); // Revisar el estado de todos los botones al cargar los datos
+                // checkAllButtonStates(data); // Revisar el estado de todos los botones al cargar los datos
                 return data.map(asigControl => [
                     asigControl.id,
                     asigControl.fecha,
@@ -91,63 +91,61 @@ new gridjs.Grid({
 }).render(document.getElementById('controlAsig'));
 
 // Definir la función updateState
-async function updateState(id) {
-    updateState(id)
-    // Aquí puedes añadir el código necesario para manejar la actualización del estado
-    // Esto podría involucrar una llamada a la API para actualizar el estado del servidor
+function updateState(id) {
+    updateState(id);
     console.log(`Updating state for ID: ${id}`);
 }
 
-function uploadId(id) {
-    // Open the modal or handle file upload
-    $('#fileUploadModal').show();
-    $('#id_asignacion').val(id);
+// function uploadId(id) {
+//     // Open the modal or handle file upload
+//     $('#fileUploadModal').show();
+//     $('#id_asignacion').val(id);
 
-    // Initialize Dropzone for the form
-    const myDropzone = new Dropzone("#SaveFile", {
-        url: "/upload", // Replace with your upload URL
-        init: function() {
-            this.on("success", function(file, response) {
-                // Change button state after successful file upload
-                const button = document.getElementById(`btn-${id}`);
-                if (button) {
-                    button.classList.remove('no-file');
-                    button.classList.add('file-uploaded');
-                }
+//     // Initialize Dropzone for the form
+//     const myDropzone = new Dropzone("#SaveFile", {
+//         url: "/upload", // Replace with your upload URL
+//         init: function() {
+//             this.on("success", function(file, response) {
+//                 // Change button state after successful file upload
+//                 const button = document.getElementById(`btn-${id}`);
+//                 if (button) {
+//                     button.classList.remove('no-file');
+//                     button.classList.add('file-uploaded');
+//                 }
 
-                // Hide the modal after upload
-                $('#fileUploadModal').hide();
-            });
-        }
-    });
-}
+//                 // Hide the modal after upload
+//                 $('#fileUploadModal').hide();
+//             });
+//         }
+//     });
+// }
 
-// Handle modal close
-$('.close').on('click', function() {
-    $('#fileUploadModal').hide();
-});
+// // Handle modal close
+// $('.close').on('click', function() {
+//     $('#fileUploadModal').hide();
+// });
 
-async function checkAndSetButtonState(id) {
-    const listRef = ref(storage, `uploads/${id}`);
-    const res = await listAll(listRef);
-    const button = document.getElementById(`btn-${id}`);
+// async function checkAndSetButtonState(id) {
+//     const listRef = ref(storage, `uploads/${id}`);
+//     const res = await listAll(listRef);
+//     const button = document.getElementById(`btn-${id}`);
 
-    if (res.items.length > 0 && button) {
-        button.classList.remove('no-file');
-        button.classList.add('file-uploaded');
-    }
-}
+//     if (res.items.length > 0 && button) {
+//         button.classList.remove('no-file');
+//         button.classList.add('file-uploaded');
+//     }
+// }
 
-async function checkAllButtonStates(data) {
-    for (const item of data) {
-        await checkAndSetButtonState(item.id);
-    }
-}
+// async function checkAllButtonStates(data) {
+//     for (const item of data) {
+//         await checkAndSetButtonState(item.id);
+//     }
+// }
 
-window.onload = async () => {
-    const response = await fetch('https://esenttiapp-production.up.railway.app/api/controlasignaciones');
-    const data = await response.json();
-    if (Array.isArray(data) && data.length > 0) {
-        checkAllButtonStates(data);
-    }
-};
+// window.onload = async () => {
+//     const response = await fetch('https://esenttiapp-production.up.railway.app/api/controlasignaciones');
+//     const data = await response.json();
+//     if (Array.isArray(data) && data.length > 0) {
+//         checkAllButtonStates(data);
+//     }
+// };

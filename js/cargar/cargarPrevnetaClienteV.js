@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(){
     let selectPlaca = document.getElementById('id_preventa')
     let inputConductor = document.getElementById('conductor')
+    let inputIdentificacion = document.getElementById('identificacion')
     let inputAliado = document.getElementById('aliado')
     let inputTelefono = document.getElementById('celular')
 
@@ -30,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 const preventa = data[0]
                 if(preventa.nombre && preventa.aliado && preventa.celulara){
                     inputConductor.value = preventa.nombre
+                    inputIdentificacion.value = preventa.identificacion
                     inputAliado.value  = preventa.aliado
                     inputTelefono.value  = preventa.celulara
                 }else{

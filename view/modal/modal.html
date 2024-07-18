@@ -58,12 +58,36 @@
                 <div class="container">
                     <!-- Hidden logo -->
                     <img id="logo" src="/img/logo.png" style="display:none;">
-                    
+                    <div class="row">
                     <form id="saveAsignacion" method="POST" enctype="multipart/form-data">
                         <div class="modal-body">
                             <input type="hidden" id="id_contenedor" name="id_contenedor" class="form-control" readonly>
                             <input type="hidden" id="id_cliente"  class="form-control" readonly>
                             <input type="hidden" id="imp_exp" class="form-control" readonly>
+                            
+                        <div class="row">
+                            <input type="hidden" id="id_contenedor1">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                <label for="" class="form-label">Tipo Contenedor</label>
+                                    <input type="text" id="id_tipo_contenedor"  class="form-control" readonly>
+                                </div>
+                            </div>
+            
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Numero de serie</label>
+                                    <input type="text" id="nu_serie" class="form-control" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="" class="form-label">peso</label>
+                                    <input type="text" id="peso" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
                             <div class="row form-section">
                                 <div class="col-md-2">
                                     <div class="form-group">
@@ -77,6 +101,12 @@
                                     <div class="form-group">
                                         <label for="" class="form-label">Conductor</label>
                                         <input type="text" id="conductor" class="form-control" readonly="readonly" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Cedula</label>
+                                        <input type="text" id="identificacion" class="form-control" readonly="readonly" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -161,6 +191,7 @@
     <script type="text/javascript" src="/js/cargar/cargarPrevnetaClienteV.js"></script>
     <script type="text/javascript" src="/js/cargar/cargarTipoServicio.js"></script>
     <script type="text/javascript" src="/js/asignacion/pdf_genereta.js"></script>
+    <script type="text/javascript" src="/js/contenedor/showContenedor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>

@@ -66,7 +66,7 @@ function tableByClt(id_primario){
     sort: false,
     columns: [{
       name:'id_co',
-      hidden: true,
+      hidden: false,
     },"SP",{
       name:"Numero contenedor",
       attributes: (cell,row)=>{
@@ -152,6 +152,7 @@ function detalles(id){
 
 function asignar(id){
   window.location.href = `/view/modal/modal.html?id=${id}`
+  showContenedor(id)
 }
 
 function editContenedor(id){

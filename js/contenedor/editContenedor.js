@@ -33,6 +33,8 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editcontenedor/${id}`)
         const formData = new FormData(this);
         const jsonData = JSON.stringify(Object.fromEntries(formData));
 
+        console.log(jsonData)
+
         fetch(`https://esenttiapp-production.up.railway.app/api/contenedores/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
