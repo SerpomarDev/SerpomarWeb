@@ -33,6 +33,12 @@ const credentials = {
     "carlos.carrasquilla@serpomar.com": "Cserpomar20247",
     // ROL COORDINADOR
 
+    // ROL ADMIN COORDINADOR
+    "susana.negrette@serpomar.com": "Sserpomar20243",
+    "henry.goethe@serpomar.com": "Hserpomar20245",
+    "carlos.carrasquilla@serpomar.com": "Cserpomar20247",
+    // ROL ADMIN COORDINADOR     
+
     // ROL ANALISTA
     "nayelis.tordecilla@serpomar.com": "Nserpomar20248",
     "keyla.castro@serpomar.com": "Kserpomar20249",

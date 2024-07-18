@@ -1,8 +1,4 @@
-// SDKs necesario
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import { getStorage, ref, uploadBytes, getDownloadURL, listAll } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
-
-// configuración firebase
+// Configuración Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBQh7eqWl_iu02oDPds3nQMigzSrHDOFn0",
     authDomain: "serpomar-driver-mysql-f8df6.firebaseapp.com",
@@ -12,9 +8,9 @@ const firebaseConfig = {
     appId: "1:840427888757:web:b8250feec992a76510583c"
 };
 
-// inicio Firebase
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
+// Inicio Firebase
+firebase.initializeApp(firebaseConfig);
+const storage = firebase.storage();
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const modal = document.getElementById('fileUploadModal');
@@ -50,13 +46,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     const id = document.getElementById('id_asignacion').value;
                     let fileName = file.name;
                     let filePath = `uploads/${id}/${fileName}`;
-                    const storageRef = ref(storage, filePath);
+                    const storageRef = storage.ref(filePath);
 
-                   
-                    const existingFiles = await listAll(ref(storage, `uploads/${id}`));
+                    // Check if the file already exists
+                    const existingFiles = await storage.ref(`uploads/${id}`).listAll();
                     const fileNames = existingFiles.items.map(item => item.name);
 
-            
+                    // If the file name exists, append a timestamp
                     if (fileNames.includes(fileName)) {
                         const timestamp = Date.now();
                         const fileExtension = fileName.substring(fileName.lastIndexOf('.'));
@@ -65,10 +61,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         filePath = `uploads/${id}/${fileName}`;
                     }
 
-                    const newStorageRef = ref(storage, filePath);
+                    const newStorageRef = storage.ref(filePath);
 
                     try {
-                        await uploadBytes(newStorageRef, file);
+                        await newStorageRef.put(file);
                         console.log(`File uploaded: ${fileName}`);
                         // Actualizar la lista de archivos adjuntos después de una carga exitosa
                         loadUploadedFiles(id);
@@ -87,36 +83,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
         fileList.innerHTML = '';
 
         try {
-            const listRef = ref(storage, `uploads/${id}`);
-            const res = await listAll(listRef);
+            const listRef = storage.ref(`uploads/${id}`);
+            const res = await listRef.listAll();
 
-            const button = document.getElementById(`btn-${id}`);
             if (res.items.length === 0) {
                 const noFilesMessage = document.createElement('li');
                 noFilesMessage.textContent = 'No hay archivos adjuntos.';
                 fileList.appendChild(noFilesMessage);
-               
-                if (button) {
-                    button.classList.remove('file-uploaded');
-                    button.classList.add('no-file');
-                }
             } else {
                 res.items.forEach((itemRef) => {
-                    getDownloadURL(itemRef).then((url) => {
+                    itemRef.getDownloadURL().then((url) => {
                         const listItem = document.createElement('li');
                         const link = document.createElement('a');
                         link.href = url;
-                        link.target = '_blank';  // Abre en una nueva pestaña
                         link.textContent = itemRef.name;
                         listItem.appendChild(link);
                         fileList.appendChild(listItem);
                     });
                 });
-                
-                if (button) {
-                    button.classList.remove('no-file');
-                    button.classList.add('file-uploaded');
-                }
             }
         } catch (error) {
             console.error('Error loading uploaded files:', error);
