@@ -80,15 +80,10 @@ function initializeMenu(loggedInUser) {
       // ROL GENERAL **************************************************  
 
       // ROL COORDINADOR ***************************************************
-      case 'juan@serpomar.com':
       case 'edgar.florez@serpomar.com':
       case 'rafael.caicedo@serpomar.com':
-      case 'susana.negrette@serpomar.com':
       case 'brayan.balceiro@serpomar.com':
-      case 'henry.goethe@serpomar.com': 
       case 'operacion.nacional1@serpomar.com': 
-      case 'carlos.carrasquilla@serpomar.com':
-      case 'stephanie.otero@serpomar.com':
       case 'lina.young@serpomar.com':
         $('#menu > li:contains("Tu Rol: Coordinador")').show();
         $('#menu-transporte').show();
@@ -107,6 +102,33 @@ function initializeMenu(loggedInUser) {
         $('#menu-equipos ul li:contains("Flota")').show();
         break;
       // ROL COORDINADOR **************************************************
+
+
+      // ROL ADMIN COORDINADOR ***************************************************
+      case 'susana.negrette@serpomar.com':
+      case 'henry.goethe@serpomar.com': 
+      case 'carlos.carrasquilla@serpomar.com':
+      case 'stephanie.otero@serpomar.com':
+        $('#menu > li:contains("Tu Rol: Coordinador")').show();
+        $('#menu-transporte').show();
+        $('#menu-transporte ul li').show();
+        $('#menu-crear').show();
+        $('#menu-crear ul li').show();
+        $('#menu-reporte').show();
+        $('#menu-reporte ul li').show();
+        $('#menu-patio').show();
+        $('#menu-patio ul li').hide();
+        $('#menu-patio ul li:contains("Inventario")').show();
+        $('#menu-patio ul li:contains("Orden Cargue")').show();
+        $('#menu-operaciones').show();
+        $('#menu-operaciones ul li').hide();
+        $('#menu-operaciones ul li:contains("Tablero General de Operaciones")').show();
+        $('#menu-equipos').show();
+        $('#menu-equipos ul li').hide();
+        $('#menu-equipos ul li:contains("Flota")').show();
+        break;
+      // ROL ADMIN COORDINADOR **************************************************
+
 
       // ROL ANALISTA **************************************************
       case 'nayelis.tordecilla@serpomar.com':
