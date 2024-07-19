@@ -165,12 +165,11 @@ function displayDetails(index) {
             break;
     }
 
-    const detailsHtml = dataToShow.map(item => `<p>SP: ${item.do_sp}</p>`).join('');
+    const detailsHtml = dataToShow.map(item => `<p><a href="/view/contenedor/create.html?id=${item.id_primario}" style="cursor: pointer; color: #6495ED;  font-weight: bold;">SP: ${item.do_sp}</a></p>`).join('');
     detailsContent.innerHTML = detailsHtml;
     detailsContainer.style.display = 'block';
-    document.getElementById('toggleDetails').textContent = 'Ocultar';
+    document.getElementById('toggleDetailsImportacion').textContent = 'Ocultar';
 }
-
 document.getElementById('toggleDetails').addEventListener('click', () => {
     const detailsContainer = document.getElementById('detailsContainer');
     if (detailsContainer.style.display === 'none' || detailsContainer.style.display === '') {
