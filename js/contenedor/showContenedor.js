@@ -17,7 +17,6 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`)
         document.getElementById('id_contenedor').value = contenedor.id_contenedor;
         document.getElementById('id_tipo_contenedor').value = contenedor.tipo;
         document.getElementById('nu_serie').value = contenedor.numero;
-        document.getElementById('peso').value = contenedor.peso;
     }
     else {
       console.log('La propiedad array no existe en la respuesta');
