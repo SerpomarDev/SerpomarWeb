@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div><strong>Viaje:</strong> ${detalle.viaje}</div>
             <div><strong>UVI:</strong> ${detalle.uvi}</div>
             <div><strong>SAE:</strong> ${detalle.sae}</div>
+             <div><strong>BOOKING:</strong> ${detalle.booking}</div>
           `;
   
           document.getElementById('modalDetailsContent').innerHTML = modalContent;
