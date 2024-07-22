@@ -1,7 +1,6 @@
 let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
-console.log(id)
 
 fetch(`https://esenttiapp-production.up.railway.app/api/uploadordensevid/${id}`)
 .then((response)=>{

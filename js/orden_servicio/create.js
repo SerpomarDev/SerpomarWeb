@@ -1,3 +1,7 @@
+let queryString = window.location.search;
+let urlParams = new URLSearchParams(queryString);
+let id = urlParams.get("id");
+
   new gridjs.Grid({
     search: true,
     language:{
