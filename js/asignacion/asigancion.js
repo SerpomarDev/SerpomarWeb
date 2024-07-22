@@ -22,6 +22,9 @@ function cargarValores(id) {
                 document.getElementById("id_contenedor").value = asigcont.id_contenedor;
                 document.getElementById("id_cliente").value = asigcont.id_cliente;
                 document.getElementById("imp_exp").value = asigcont.imp_exp;
+                // document.getElementById("id_tipo_contenedor").value = asigcont.tipo;
+                // document.getElementById("nu_serie").value = asigcont.numero;
+                // document.getElementById("peso").value = asigcont.peso;
 
                 let impExpValor = asigcont.imp_exp;
                 let id_cliente = asigcont.id_cliente;
