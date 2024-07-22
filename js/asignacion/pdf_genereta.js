@@ -2,12 +2,16 @@ function downloadPDF() {
     var tarifaField = document.getElementById('tarifa1');
     var tarifaLabel = tarifaField.previousElementSibling;
     var buttons = document.querySelectorAll('.btn-primary');
+    var buttons1 = document.querySelectorAll('.btn-secondary');
+    var buttons2 = document.querySelectorAll('.btn-success');
     var logo = document.getElementById('logo');
 
     // Ocultar el campo y la etiqueta de tarifa en el formulario original
     tarifaField.style.display = 'none';
     tarifaLabel.style.display = 'none';
     buttons.forEach(button => button.style.display = 'none');
+    buttons1.forEach(button => button.style.display = 'none');
+    buttons2.forEach(button => button.style.display = 'none');
     logo.style.display = 'none';
 
     // Clonar el contenido del formulario

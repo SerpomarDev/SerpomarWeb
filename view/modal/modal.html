@@ -93,7 +93,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="conductor" class="form-label">Conductor</label>
                                         <input type="text" id="conductor" class="form-control" readonly="readonly" required>
@@ -115,7 +115,7 @@
                             </div>
                             <div class="row form-section">
                                 <input type="hidden" class="form-control" id="celular" readonly="readonly" required>
-                                <div class="col-md-8">
+                                <div class="col-md-10">
                                     <div class="ruta-container">
                                         <label for="id_ruta" class="form-label">Ruta</label>
                                         <select name="id_ruta" id="id_ruta" class="form-control" required>
@@ -131,7 +131,7 @@
                                 </div>
                             </div>
                             <div class="row form-section">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="id_tipo_operacion" class="form-label">Tipo operación</label>
                                         <select name="id_tipo_operacion" id="id_tipo_operacion" class="form-control" required>
@@ -139,7 +139,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="id_sitio_inspeccion" class="form-label">Destino</label>
                                         <select name="id_sitio_inspeccion" id="id_sitio_inspeccion" class="form-control" required>
@@ -164,9 +164,10 @@
                                 <br><br>
                                 <div class="col-md-8">
                                     <div class="d-flex justify-content-between">
-                                        <button type="submit" class="btn btn-primary" onclick="history.back()">Volver</button>
+                                        <button type="submit" class="btn btn-secondary" onclick="history.back()">Volver</button>
                                         <button type="submit" class="btn btn-primary" id="BtnSavetAsignacion">Guardar</button>
-                                        <button tclass="btn btn-primary" type="button" onclick="downloadPDF()">Descargar PDF</button>
+                                        <button class="btn btn-success" type="button" onclick="downloadPDF()">Generar PDF</button>
+                                       
                                     </div>
                                 </div>
                             </div>
