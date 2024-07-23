@@ -15,7 +15,7 @@ new gridjs.Grid({
     columns: [
         {
             name:"#",
-            hidden:false,
+            hidden:true,
         },{
             name:'SP',
             attributes: (cell,row)=>{
@@ -27,7 +27,7 @@ new gridjs.Grid({
                 }
             }
         }
-    }, "DO pedido","Contendores","Tipo Transporte","Cliente",{
+    }, "DO pedido","Pedido","Contendores","Tipo Transporte","Cliente",{
         name:'Acciones',
         hidden:true,
         columns:[{
@@ -72,13 +72,14 @@ new gridjs.Grid({
     }],
     // sort: true,
     server: {
-        url: "https://esenttiapp-production.up.railway.app/api/showsolicitudserv",
+        url: "http://esenttiapp.test/api/showsolicitudserv",
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((soliserv) => [
                     soliserv.id_primario,
                     soliserv.do_sp,
                     soliserv.do_pedido,
+                    soliserv.pedido,
                     soliserv.contenedor,
                     soliserv.impexp,
                     soliserv.cliente,

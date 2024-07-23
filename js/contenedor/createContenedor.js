@@ -6,7 +6,7 @@ liquidarSp(id)
 cargarValores(id)
 
 function cargarValores(id){
-  fetch(`https://esenttiapp-production.up.railway.app/api/uploadsolisev/${id}`)
+  fetch(`http://esenttiapp.test/api/uploadsolisev/${id}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Error al obtener los datos de la API");
@@ -116,7 +116,7 @@ function tableByClt(id_primario){
     fixedHeader: true,
     //height: '400px',
     server: {
-        url: `https://esenttiapp-production.up.railway.app/api/preasigcont/${id}`,
+        url: `http://esenttiapp.test/api/preasigcont/${id}`,
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((contenedorEx) => [
