@@ -31,6 +31,8 @@ const credentials = {
     "henry.goethe@serpomar.com": "Hserpomar20245",
     "operacion.nacional1@serpomar.com": "Oserpomar20246",
     "carlos.carrasquilla@serpomar.com": "Cserpomar20247",
+    "Vanesa.Cord.transportes.esenttia@serpomar.com": "Vserpomar20250",
+    "MariaC.Cord.transportes.esenttia@serpomar.com": "MCserpomar20251",
     // ROL COORDINADOR
 
     // ROL ADMIN COORDINADOR
@@ -45,6 +47,9 @@ const credentials = {
     "analistaimportaciones@serpomar.com": "Aserpomar202410",
     "yoleidys.alcazar@serpomar.com": "Yserpomar202411",
     "hector.fonseca@serpomar.com": "Hserpomar202412",
+    "DarlinesV.transporte.esenttia@serpomar.com": "DVserpomar20252",
+    "AmauryM.transporte.esenttia@serpomar.com": "AMserpomar20252",
+    "AlbertoT.analista.esenttia@serpomar.com": "ATserpomar20252",
     // ROL ANALISTA
 
     // ROL CONTABILIDAD
