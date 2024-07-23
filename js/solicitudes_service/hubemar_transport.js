@@ -70,7 +70,7 @@ new gridjs.Grid({
     }],
     // sort: true,
     server: {
-        url: "http://esenttiapp.test/api/showsolicitudservpro",
+        url: "https://esenttiapp-production.up.railway.app/api/showsolicitudservpro",
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((soliserv) => [
