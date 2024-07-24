@@ -87,6 +87,9 @@ function initializeMenu(loggedInUser) {
       case 'lina.young@serpomar.com':
       case 'vanesa.Cord.transportes.esenttia@serpomar.com':
       case 'mariaC.Cord.transportes.esenttia@serpomar.com':
+      case 'mario.salas@serpomar.com':
+      case 'joel.tovar@serpomar.com':
+      case 'albertoT.analista@serpomar.com':
         $('#menu > li:contains("Tu Rol: Coordinador")').show();
         $('#menu-transporte').show();
         $('#menu-transporte ul li').show();
@@ -140,7 +143,6 @@ function initializeMenu(loggedInUser) {
       case 'hector.fonseca@serpomar.com': 
       case 'darlinesV.transporte.esenttia@serpomar.com':
       case 'amauryM.transporte.esenttia@serpomar.com':
-      case 'albertoT.analista.esenttia@serpomar.com':
         $('#menu > li:contains("Tu Rol: Analista de T.")').show();
         $('#menu-transporte').show();
         $('#menu-transporte ul li').show();
