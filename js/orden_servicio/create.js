@@ -116,6 +116,7 @@ function editOrdenseV(id){
     })
     .then((response)=>{
       setTimeout(() => {
+        history.back();
         location.reload();
       }, 1500);
     })
