@@ -36,8 +36,8 @@ document.getElementById("saveAsignacion").addEventListener("submit", function (e
         icon: "success"
       });
       setTimeout(() => {
-       location.reload();
-      },);
+        location.reload();
+      }, 1500);
     })
     .catch((error) => {
       console.error("Error:", error);

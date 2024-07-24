@@ -124,10 +124,4 @@ function editOrdenseV(id){
         console.error("Error:", error);
     });
   });
-
-// function time() {
-//   document.getElementById('saveOrdenServicio').reset();
-//   setTimeout(() => {
-//     window.location.href = ``;
-//   },  1200);
-// }  
+ 
