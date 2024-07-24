@@ -116,7 +116,7 @@ function editOrdenseV(id){
     })
     .then((response)=>{
       setTimeout(() => {
-        history.back();
+        location.reload();
       }, 1500);
     })
     .catch((error) => {
@@ -124,9 +124,9 @@ function editOrdenseV(id){
     });
   });
 
-function time() {
-  document.getElementById('saveOrdenServicio').reset();
-  setTimeout(() => {
-    window.location.href = ``;
-  },  1200);
-}  
+// function time() {
+//   document.getElementById('saveOrdenServicio').reset();
+//   setTimeout(() => {
+//     window.location.href = ``;
+//   },  1200);
+// }  
