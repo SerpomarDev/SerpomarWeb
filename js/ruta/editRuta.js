@@ -57,7 +57,7 @@ fetch(`https://esenttiapp-production.up.railway.app/api/uploadrutaid/${id}`)
         }
     }).render(document.getElementById('editRutas'));
 
-    document.getElementById("editRutas").addEventListener("submit", function (event) {
+    document.getElementById("editRuta").addEventListener("submit", function (event) {
         event.preventDefault();
 
         const formData = new FormData(this);
@@ -83,7 +83,7 @@ fetch(`https://esenttiapp-production.up.railway.app/api/uploadrutaid/${id}`)
                 });
             })
             .then(response=>{
-              time();
+                time()
             })
             .catch((error) => {
                 console.error("Error:", error);
@@ -93,6 +93,6 @@ fetch(`https://esenttiapp-production.up.railway.app/api/uploadrutaid/${id}`)
     function time() {
         document.getElementById('editRuta').reset();
         setTimeout(() => {
-          window.location.href = `/view/rutas/edit.html`;  
+          window.location.href = `/view/rutas/create.html`;  
         },  1500);
       }
