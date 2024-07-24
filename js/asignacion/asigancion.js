@@ -2,6 +2,8 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
+contenedorByAsignacion(id)
+
 if (id) {
     cargarValores(id);
 } else {
@@ -22,9 +24,6 @@ function cargarValores(id) {
                 document.getElementById("id_contenedor").value = asigcont.id_contenedor;
                 document.getElementById("id_cliente").value = asigcont.id_cliente;
                 document.getElementById("imp_exp").value = asigcont.imp_exp;
-                // document.getElementById("id_tipo_contenedor").value = asigcont.tipo;
-                // document.getElementById("nu_serie").value = asigcont.numero;
-                // document.getElementById("peso").value = asigcont.peso;
 
                 let impExpValor = asigcont.imp_exp;
                 let id_cliente = asigcont.id_cliente;
@@ -274,10 +273,31 @@ function editAsignacion(id) {
     window.location.href = `/view/asignacion/edit.html?id=${id}`
 }
 
-// function addordenSer(id) {
-//     window.location.href = `/view/orden_servicio/create.html?id=${id}`;
-// }
 
 function cancelarAsignacion(id) {
     cancelarAsignacion(id)
+}
+
+function contenedorByAsignacion(id){
+
+    fetch(`http://esenttiapp.test/api/asignacioncont/${id}`)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error("Error al obtener los datos de la API");
+        }
+        return response.json();
+    })
+    .then((data) => {
+        if (data.length > 0) {
+            const contasig = data[0];
+            document.getElementById("id_tipo_contenedor").value = contasig.tipo;
+            document.getElementById("nu_serie").value = contasig.numero;
+            document.getElementById("peso").value = contasig.peso;
+        } else {
+            console.log("La propiedad array no existe en la respuesta");
+        }
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
 }
