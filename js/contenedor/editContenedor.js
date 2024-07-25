@@ -55,16 +55,12 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editcontenedor/${id}`)
                 });
             })
             .then(response=>{
-              time()
+              setTimeout(() => {
+                history.back();
+                location.reload();
+              }, 1500);
             })
             .catch((error) => {
                 console.error("Error:", error);
             });
     });
-
-    function time() {
-        document.getElementById('editContenedor').reset();
-        setTimeout(() => {
-          location.reload();
-        },  1500);
-      }
