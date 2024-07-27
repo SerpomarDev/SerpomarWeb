@@ -280,7 +280,7 @@ function cancelarAsignacion(id) {
 
 function contenedorByAsignacion(id){
 
-    fetch(`http://esenttiapp.test/api/asignacioncont/${id}`)
+    fetch(`https://esenttiapp-production.up.railway.app/api/asignacioncontenedors/${id}`)
     .then((response) => {
         if (!response.ok) {
             throw new Error("Error al obtener los datos de la API");
