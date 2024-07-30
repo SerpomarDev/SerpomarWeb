@@ -32,7 +32,7 @@ function downloadPDF() {
             input.type = 'text';
             input.value = selectedValue;
             input.style.display = 'block';
-            input.style.border = '1px solid #ced4da'; // Border similar to the form control
+            input.style.border = '1px solid #000000'; // Border similar to the form control
             input.style.borderRadius = '.25rem'; // Border radius similar to the form control
             input.style.width = '100%';
             input.style.height = '20px';
@@ -55,6 +55,7 @@ function downloadPDF() {
         element.style.fontSize = '10px'; // Reduce font size
         element.style.height = '15px';
         element.style.color = '#000000';
+        element.style.border = '1px solid #000000';
         element.parentElement.style.marginBottom = '0px'; // Reduce margin for PDF
     });
 

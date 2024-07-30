@@ -44,6 +44,7 @@
         }
 
         .ruta-container {
+            color: #000;
             margin-top: 4px;
             display: flex;
             align-items: center;
@@ -85,59 +86,74 @@
                             <input type="hidden" id="id_cliente" class="form-control" readonly>
                             <input type="hidden" id="imp_exp" class="form-control" readonly>
                             <div class="row form-section">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                        <label for="" class="form-label">Tipo Contenedor</label>
-                                            <input type="text" id="id_tipo_contenedor"  class="form-control" readonly>
-                                        </div>
-                                    </div>
-                    
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="" class="form-label">Numero Contenedor</label>
-                                            <input type="text" id="nu_serie" class="form-control" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="" class="form-label">Peso</label>
-                                            <input type="text" id="peso" class="form-control" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
+                                
                                 <div class="col-md-2">
-                                    <div class="form-group">
+                                    <div class="ruta-container">
                                         <label for="id_preventa" class="form-label">Placa</label>
                                         <select name="id_preventa" id="id_preventa" class="form-control">
-                                            <option value="">Seleccione</option>
+                                            <option value="">Elegir</option>
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="ruta-container">
                                         <label for="conductor" class="form-label">Conductor</label>
                                         <input type="text" id="conductor" class="form-control" readonly="readonly" required>
                                     </div>
                                 </div>
+
                                 <div class="col-md-3">
-                                    <div class="form-group">
+                                    <div class="ruta-container">
 
                                         <label for="" class="form-label">Cedula</label>
                                         <input type="text" id="identificacion" class="form-control" readonly="readonly" required>
                                     </div>
                                 </div>
+
                                 <div class="col-md-3">
-                                    <div class="form-group">
+                                    <div class="ruta-container">
                                         <label for="" class="form-label">Aliado</label>
                                         <input type="text" id="aliado" class="form-control" readonly="readonly" required>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row form-section">
+                                <div class="col-md-3">
+                                    <div class="ruta-container">
+                                    <label for="" class="form-label">T.Contenedor</label>
+                                        <input type="text" id="id_tipo_contenedor"  class="form-control" readonly>
+                                    </div>
+                                </div>
+                
+                                <div class="col-md-3">
+                                    <div class="ruta-container">
+                                        <label for="" class="form-label">Contenedor</label>
+                                        <input type="text" id="nu_serie" class="form-control" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="ruta-container">
+                                        <label for="" class="form-label">Peso</label>
+                                        <input type="text" id="peso" class="form-control" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="ruta-container">
+                                        <label for="id_tipo_operacion" class="form-label">T.Operación</label>
+                                        <select name="id_tipo_operacion" id="id_tipo_operacion" class="form-control" required>
+                                            <option value="">Seleccione operación</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row form-section">
                                 <input type="hidden" class="form-control" id="celular" readonly="readonly" required>
-                                <div class="col-md-10">
+                                <div class="col-md-8">
                                     <div class="ruta-container">
                                         <label for="id_ruta" class="form-label">Ruta</label>
                                         <select name="id_ruta" id="id_ruta" class="form-control" required>
@@ -145,41 +161,44 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+
+                                <div class="col-md-4">
                                     <div class="ruta-container">
-                                        <label for="tarifa1" class="form-label">Tarifa</label>
-                                        <input type="text" id="tarifa1" class="form-control" readonly="readonly" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row form-section">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="id_tipo_operacion" class="form-label">Tipo operación</label>
-                                        <select name="id_tipo_operacion" id="id_tipo_operacion" class="form-control" required>
-                                            <option value="">Seleccione operación</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
                                         <label for="id_sitio_inspeccion" class="form-label">Destino</label>
                                         <select name="id_sitio_inspeccion" id="id_sitio_inspeccion" class="form-control" required>
                                             <option value="">Seleccione destino</option>
                                         </select>
                                     </div>
                                 </div>
+                               
+                            </div>
+
+                            <div class="row form-section">
+
+                                <div class="col-md-1">
+                                </div>
+
                                 <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="fecha_cita" class="form-label">Fecha cita</label>
+                                    <div class="ruta-container">
+                                        <label for="tarifa1" class="form-label">Tarifa</label>
+                                        <input type="text" id="tarifa1" class="form-control" readonly="readonly" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="ruta-container">
+                                        <label for="fecha_cita" class="form-label">Fecha</label>
                                         <input type="date" id="fecha_cita" name="fecha_cita" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="hora_cita" class="form-label">Hora cita</label>
+
+                                <div class="col-md-3">
+                                    <div class="ruta-container">
+                                        <label for="hora_cita" class="form-label">Hora</label>
                                         <input type="time" id="hora_cita" name="hora_cita" class="form-control">
                                     </div> <br><br>
+                                </div>
+                                <div class="col-md-3">
                                 </div>
                             </div>
                             <div class="row form-section">
