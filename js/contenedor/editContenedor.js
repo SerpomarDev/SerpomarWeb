@@ -56,7 +56,6 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editcontenedor/${id}`)
             })
             .then(response=>{
               setTimeout(() => {
-                history.back();
                 location.reload();
               }, 1500);
             })
