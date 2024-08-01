@@ -21,7 +21,7 @@
 
            
                document.getElementById('total-abiertas').innerText = totalSP;
-               document.getElementById('valor-total-abiertas').innerText = totalTarifa.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+               document.getElementById('valor-total-abiertas').innerText = totalTarifa.toLocaleString('es-CO', { currency: 'COP' });
            } catch (error) {
                console.error('Error al obtener los datos:', error);
            }
