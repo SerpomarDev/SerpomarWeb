@@ -14,6 +14,7 @@ const credentials = {
     "hugo.contreras@serpomar.com": "HCserpomar202418",
     "daniel.tinoco@serpomar.com": "DTserpomar202419",
     "yamid.agudelo@serpomar.com": "YAserpomar202420",
+    "seguridadfisica@serpomar.com": "SFserpomar202452",
     "piedad.petro@serpomar.com": "PPserpomar202421",
     "michelle.echeverria@serpomar.com": "MEserpomar202422",
     "lvera@serpomar.com": "LVserpomar202423",
