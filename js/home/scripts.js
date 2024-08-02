@@ -61,6 +61,7 @@ function initializeMenu(loggedInUser) {
       case 'hugo.contreras@serpomar.com':
       case 'daniel.tinoco@serpomar.com':
       case 'yamid.agudelo@serpomar.com':
+      case 'seguridadfisica@serpomar.com':
       case 'piedad.petro@serpomar.com':
       case 'michelle.echeverria@serpomar.com':
       case 'lvera@serpomar.com':
