@@ -1,5 +1,5 @@
 
-       const apiUrl = 'https://esenttiapp-production.up.railway.app/api/asignacionespendientepago';
+       const apiUrl = 'https://esenttiapp-production.up.railway.app/api/asignacionespendienteordencompra';
 
 
        async function fetchData() {
@@ -13,7 +13,7 @@
 
              
                data.forEach(item => {
-                   if (item.estado === 'PENDIENTE PAGO') {
+                   if (item.estado === 'ORDEN COMPRA PENDIENTE') {
                        totalSP += 1;
                        totalTarifa += parseFloat(item.tarifa);
                    }

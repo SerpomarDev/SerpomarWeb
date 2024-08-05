@@ -1,5 +1,5 @@
 function excelCostoAfiliado(payload) {
-    fetch('http://esenttiapp.test/api/costoafiliado', {
+    fetch('https://esenttiapp-production.up.railway.app/api/costoafiliado', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

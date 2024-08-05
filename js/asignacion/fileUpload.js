@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         const listItem = document.createElement('li');
                         const link = document.createElement('a');
                         link.href = url;
+                        link.target = '_blank';
                         link.textContent = itemRef.name;
                         listItem.appendChild(link);
                         fileList.appendChild(listItem);

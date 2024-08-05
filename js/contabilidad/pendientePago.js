@@ -18,18 +18,7 @@ new gridjs.Grid({
             name: "Tarifa",
             formatter: (_, row) => `$ ${(row.cells[6].data).toLocaleString()}`
         },
-        "Ruta", "Conductor", "Estado","Observaciones",{
-            name:"#ordencompra",
-            hidden:true,
-        },{
-            name: 'Soportes',
-            hidden: false,
-            formatter: (cell, row) => {
-              return gridjs.html(
-                `<button id="btn-${row.cells[0].data}" class="upload-btn no-file" onclick="uploadId(${row.cells[0].data})">Ver Adjuntar</button>`
-              );
-            }
-        },
+        "Ruta", "Conductor", "Estado","#ordencompra","#factura",
         {
             name: "seleccione",
             formatter: (cell, row) => {
@@ -40,7 +29,7 @@ new gridjs.Grid({
               });
             }
         },{
-                name:"#ordencompra",
+                name:"#factura",
                 hidden:false,
                 formatter: (cell, row) => {
                     return gridjs.html(`<input type="text" id="factura-${row.cells[0].data}">`);
@@ -48,27 +37,28 @@ new gridjs.Grid({
         },
         {
             name: "enviar",
+            hidden:false,
             formatter: (cell, row) => {
               return gridjs.h('button', {
                   className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-                  onClick: () => actualizarFactura(row.cells[0].data)
+                  onClick: () => establecerFactura()
               }, 'Enviar');
           }
         },
         {
-            name: "Verificar",
+            name: "pagado",
             hidden: false,
             formatter: (cell, row) => {
               return gridjs.h('button', {
                   className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-                  onClick: () => verificarAdjuntos(row.cells[0].data),
-              }, 'Verificar');
+                  onClick: () => actualizarPagado(row.cells[0].data),
+              }, 'Limpiar');
           }
         }
     ],
     fixedHeader: true,
     server: {
-        url: `https://esenttiapp-production.up.railway.app/api/asignacionespendienteordencompra`,
+        url: `https://esenttiapp-production.up.railway.app/api/asignacionespendientepago`,
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map(asigControl => [
@@ -82,9 +72,8 @@ new gridjs.Grid({
                     asigControl.ruta,
                     asigControl.nombre,
                     asigControl.estado,
-                    asigControl.descripcion,
+                    asigControl.orden_compra,
                     asigControl.numero_factura,
-                    
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
@@ -96,30 +85,28 @@ new gridjs.Grid({
     style: {
         table: { width: "100%" }
     }
-}).render(document.getElementById('costoAfiliado'));
+}).render(document.getElementById('pendientePago'));
 
 
 
-function actualizarFactura() {
+function establecerFactura() {
   // Obtener los IDs seleccionados y sus números de factura
   const checkboxes = document.querySelectorAll('.row-checkbox:checked');
-   
   if (checkboxes.length === 0) {
-        Swal.fire({
-            title: "Advertencia",
-            text: "Debe seleccionar al menos un registro para actualizar.",
-            icon: "warning"
-        });
-        return;
-    }
-
+    Swal.fire({
+        title: "Advertencia",
+        text: "Debe seleccionar al menos un registro para actualizar.",
+        icon: "warning"
+    });
+    return;
+}
   const payload = Array.from(checkboxes).map(checkbox => {
     const id = checkbox.id.replace('checkbox-', '');
-    const ordenInput = document.getElementById(`factura-${id}`);
+    const facturaInput = document.getElementById(`factura-${id}`);
     const row = checkbox.closest('tr');
     return {
         id: id,
-        orden_compra: ordenInput ? ordenInput.value : '',
+        numero_factura: facturaInput ? facturaInput.value : '',
         fecha: row.cells[1].innerText,
         sp: row.cells[2].innerText,
         numero_contenedor: row.cells[3].innerText,
@@ -132,7 +119,7 @@ function actualizarFactura() {
     };
   });
 
-  fetch('https://esenttiapp-production.up.railway.app/api/actualizarfacturas', {
+  fetch('https://esenttiapp-production.up.railway.app/api/establecerfactura', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
@@ -147,8 +134,6 @@ function actualizarFactura() {
       icon: "success"
     });
 
-    excelCostoAfiliado(payload)
-    
     setTimeout(() => {
         location.reload();
     }, 1500);
@@ -158,6 +143,6 @@ function actualizarFactura() {
   });
 }
 
-function verificarAdjuntos(id){
-    verificarAdjuntos(id)
+function actualizarPagado(id){
+    actualizarPagado(id)
 }

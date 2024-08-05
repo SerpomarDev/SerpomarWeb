@@ -14,6 +14,97 @@
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+     <!-- Cargar Firebase App y Firebase Storage desde CDN -->
+     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+     <style>
+         .modal {
+             display: none;
+             position: fixed;
+             z-index: 1;
+             left: 0;
+             top: 0;
+             width: 100%;
+             height: 100%;
+             overflow: auto;
+             background-color: rgba(0, 0, 0, 0.6);
+             padding-top: 60px;
+         }
+ 
+         .modal-content {
+             background-color: #fff;
+             margin: 5% auto;
+             padding: 20px;
+             border: none;
+             border-radius: 10px;
+             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+             width: 60%;
+             max-width: 800px;
+         }
+ 
+         .close {
+             color: #aaa;
+             float: right;
+             font-size: 28px;
+             font-weight: bold;
+         }
+ 
+         .close:hover,
+         .close:focus {
+             color: black;
+             text-decoration: none;
+             cursor: pointer;
+         }
+ 
+         .title-container {
+             text-align: center;
+         }
+ 
+         .title-container .title {
+             font-size: 24px;
+             font-weight: bold;
+         }
+ 
+         .dropzone {
+             border: 2px dashed #007bff;
+             border-radius: 5px;
+             background: #f9f9f9;
+         }
+ 
+         .dz-message {
+             color: #999;
+             font-size: 18px;
+             text-align: center;
+             padding: 50px 0;
+         }
+ 
+         #uploadedFilesContainer {
+             margin-top: 20px;
+         }
+ 
+         #uploadedFilesContainer h2 {
+             font-size: 20px;
+             margin-bottom: 10px;
+         }
+ 
+         #uploadedFilesList {
+             list-style: none;
+             padding: 0;
+         }
+ 
+         #uploadedFilesList li {
+             background: #f1f1f1;
+             margin: 5px 0;
+             padding: 10px;
+             border-radius: 5px;
+         }
+ 
+         .upload-btn.file-uploaded {
+             background-color: #007bff;
+             color: white;
+             border: none;
+         }
+     </style>
 </head>
 
 <body>
@@ -60,13 +151,35 @@
         </div>
     </div>
 
+    <div id="fileUploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <!-- <div class="title-container">
+                <h1 class="title">Adjuntar Archivo</h1>
+            </div> -->
+            <form action="#" class="" id="SaveFile" method="POST">
+                <input type="hidden" name="id_asignacion" id="id_asignacion">
+                <!-- <div class="dz-message">
+                    Arrastra y suelta archivos aquí o haz clic para subir.
+                </div> -->
+            </form>
+            <div id="uploadedFilesContainer">
+                <h2>Archivos Adjuntos</h2>
+                <ul id="uploadedFilesList">
+                    <!-- Aquí se agregarán los archivos subidos -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
     <script src="/componentes/loadSidebar.js"></script>
     <script src="/js/home/scripts.js"></script>
     <script type="text/javascript" src="/js/contabilidad/costoAfiliado.js"></script>
     <script type="text/javascript" src="/js/contabilidad/tablero_total.js"></script>
-    <script type="text/javascript" src="/js/contabilidad/actualizaPagado.js"></script>
     <script type="text/javascript" src="/js/report/costoAfiliadoExcelReport.js"></script>
+    <script type="text/javascript" src="/js/contabilidad/verificarAdjuntos.js"></script>
+    <script src="/js/asignacion/fileUpload.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
