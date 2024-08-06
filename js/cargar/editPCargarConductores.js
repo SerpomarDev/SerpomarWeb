@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
       searchField: 'nombre',
       maxItems:1,
       load: function(query, callback) {
-          fetch(`http://esenttiapp.test/api/uploadconductor?search=${encodeURIComponent(query)}`)
+          fetch(`https://esenttiapp-production.up.railway.app/api/uploadconductor?search=${encodeURIComponent(query)}`)
               .then(response => response.json())
               .then(data => {
                   callback(data);

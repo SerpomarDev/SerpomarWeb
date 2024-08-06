@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function(){
         searchField: 'placa',
         maxItems:1,
         load: function(query, callback) {
-            fetch(`http://esenttiapp.test/api/loadplaca?search=${encodeURIComponent(query)}`)
+            fetch(`https://esenttiapp-production.up.railway.app/api/loadplaca?search=${encodeURIComponent(query)}`)
                 .then(response => response.json())
                 .then(data => {
                     callback(data);
