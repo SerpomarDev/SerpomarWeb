@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.2">
+    <!-- PAGE TITLE HERE -->
+    <title>Nodhus</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+</head>
+
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+</header>
+
+<div class="dlabnav">
+    <div id="layout">
+
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="profile-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<body>
+
+
+    <div class="header">
+        <div class="title-container">
+            <div class="circle"></div>
+            <h1 class="title">LEER QR</h1>
+        </div>
+    </div>
+    <div id="main-wrapper">
+
+        <div class="margenform">
+            <div id="content" class="p-4 p-md-0 pt-5">
+                <div class="container-fluid main-container">
+                    <form id="createOrdenCargue" method="post" enctype="multipart/form-data" class="form">
+                        <p class="message">Información del QR.</p>
+                        <div class="flex">
+                            <label>
+                                <h10>Fecha de Solicitud</h10>
+                                <input type="date" class="input" id="fecha_solicitud" name="fecha_solicitud" required disabled>
+                            </label>
+                            <label>
+                                <h10>Placa</h10>
+                                <input id="id_placa" name="id_placa" class="input" required disabled>
+                                </input>
+                            </label>
+                        </div>
+                        <div class="flex">
+                            <label>
+                                <h10>Cliente</h10>
+                                <input id="id_cliente" name="id_cliente" class="input" required disabled>
+                                </input>
+                            </label>
+                            <label>
+                                <h10>Conductor</h10>
+                                <input id="id_conductor" name="id_conductor" class="input" required disabled>
+                                </input>
+                            </label>
+                        </div>
+                        <div class="flex">
+                            <label>
+                                <h10>Modalidad</h10>
+                                <input id="modalidad" name="modalidad" class="input" required disabled>
+                                </input>
+                            </label>
+                            <label>
+                                <h10>Tipo de Servicio</h10>
+                                <input id="id_tipo_operacion" name="id_tipo_operacion" class="input" required disabled>
+                                </input>
+                            </label>
+                        </div>
+                        <div class="flex">
+                            <label>
+                                <h10>Destino 1</h10>
+                                <input type="text" class="input" id="id_sitio_inspeccion" name="id_sitio_inspeccion" required disabled>
+                            </label>
+                            <label>
+                                <h10>Destino 2</h10>
+                                <input type="text" class="input" id="id_sitio_inspeccion1" name="id_sitio_inspeccion1" required disabled>
+                            </label>
+                        </div>
+                        <div class="flex">
+                            <label>
+                                <h10>Destino 3</h10>
+                                <input type="text" class="input" id="id_sitio_inspeccion2" name="id_sitio_inspeccion2" required disabled>
+                            </label>
+                            <label>
+                                <h10>Naviera</h10>
+                                <input id="id_naviera" name="id_naviera" class="input" required disabled>
+                                </input>
+                            </label>
+                        </div>
+                        <div class="flex">
+                            <label>
+                                <h10>Contenedor</h10>
+                                <input type="text" class="input" id="contenedor" name="contenedor" required disabled>
+                            </label>
+                            <label>
+                                <h10>Tipo de Contenedor</h10>
+                                <input id="id_tipo_contenedor" name="id_tipo_contenedor" class="input" required disabled>
+                                </input>
+                            </label>
+                        </div>
+                        <div class="flex">
+                            <label>
+                                <h10>Peso</h10>
+                                <input  class="input" id="peso" name="peso" disabled>
+                            </label>
+                            <label>
+                                <h10>Funcionario de Transporte</h10>
+                                <input type="text" class="input" id="funcionario_transporte" name="funcionario_transporte" required disabled>
+                            </label>
+                        </div>
+                        <div class="flex">
+                            <label>
+                                <h10>Precinto</h10>
+                                <input type="text" class="input" id="precinto" name="precinto" disabled>
+                            </label>
+                            <label>
+                                <h10>Vencimiento Cut Off</h10>
+                                <input type="date" class="input" id="vencimiento_cutoff" name="vencimiento_cutoff" required disabled>
+                            </label>
+                        </div>
+                        <div class="flex">
+                            <label>
+                                <h10>Hora de Solicitud</h10>
+                                <input type="time" class="input" id="hora_soli" name="hora_soli" required disabled>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="full-width">
+                                <h10>Observaciones</h10>
+                                <textarea class="input" id="observaciones" name="observaciones" rows="3" disabled></textarea>
+                            </label>
+                        </div>
+                    </form><br>
+
+                    <div class="submit-container">
+                        <a id="rechazo"><button class="submit">Rechazar</button></a>
+                        <a id="siguienteLink"><button class="submit">siguiente</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="/js/patio/qr_acceso.js"></script>
+        <script src="/Componentes/loadSidebar.js"></script>
+        <script src="/Componentes/sidebar.js"></script>
+        <script src="/js/login/logout.js"></script>
+        <script src="/app.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="/js/custom.min.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Obtener el ID de la URL actual
+                const urlParams = new URLSearchParams(window.location.search);
+                const id = urlParams.get('id');
+
+                // Establecer el enlace del botón "siguiente"
+                const siguienteLink = document.getElementById('siguienteLink');
+                if (siguienteLink) {
+                    siguienteLink.href = `/view/patio/qr_fotos.html?id=${id}`;
+                } else {
+                    console.error("No se encontró el elemento #siguienteLink");
+                }
+            });
+        </script>
+</body>
+
+</html>
