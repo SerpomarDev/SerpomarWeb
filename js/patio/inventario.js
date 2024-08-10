@@ -66,6 +66,8 @@ new gridjs.Grid({
         url: `https://esenttiapp-production.up.railway.app/api/cargarinventario`,
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
+                data.sort((a, b) => b.id - a.id);
+
                 return data.map((ordenCargue) => [
                     ordenCargue.id,
                     ordenCargue.contenedor,
