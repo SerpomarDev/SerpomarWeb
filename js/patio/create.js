@@ -56,20 +56,32 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
 
 
 function generarQRCode(ordenCargueId) {
-    const currentOrigin = window.location.origin;
+    // Get the current origin (ensure it includes "https://")
+    const currentOrigin = window.location.origin.startsWith("https://") ?
+        window.location.origin :
+        "https://" + window.location.origin.replace("http://", "");
+
+
+    // Construct the full URL for the QR code
     const qrCodeText = `${currentOrigin}/view/patio/qr_acceso.html?id=${ordenCargueId}`;
+
+    // Get the QR code container element
     const qrCodeElement = document.getElementById('qrcode');
+    // Clear any previous QR code
     qrCodeElement.innerHTML = "";
 
+    // Generate the QR code
     new QRCode(qrCodeElement, {
         text: qrCodeText,
         width: 256,
         height: 256,
     });
 
+    // Show the QR code modal
     const qrModal = new bootstrap.Modal(document.getElementById('qrModal'));
     qrModal.show();
 
+    // Handle download button click
     const downloadButton = document.getElementById('downloadQR');
     downloadButton.addEventListener('click', function() {
         const qrCodeImage = qrCodeElement.querySelector('img');
