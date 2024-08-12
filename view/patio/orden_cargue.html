@@ -101,7 +101,7 @@
                         </div>
                         <div class="flex">
                             <label>
-                                    <input type="text" class="input" id="contenedor" name="contenedor" maxlength="11" required>
+                                    <input type="text" class="input" id="contenedor" name="contenedor" maxlength="11" placeholder="Solo un contendor por orden de servicio" required>
                                     <span>Contenedor</span>
                                 </label>
                             <label>
@@ -137,7 +137,11 @@
                                     <span>Hora de Solicitud</span>
                             </label>
                             <label>
-                                <input type="text" class="input" id="lleno_vacio" name="lleno_vacio" required>
+                                <select name="lleno_vacio" id="lleno_vacio"  class="input" required>
+                                    <option value="">Seleccione</option>
+                                    <option value="LLENO">LLENO</option>
+                                    <option value="VACIO">VACIO</option>
+                                </select>
                                 <span>Lleno o Vacio</span>
                         </label>
                         </div>
