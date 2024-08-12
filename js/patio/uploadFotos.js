@@ -25,7 +25,7 @@ function getQueryParam(param) {
 document.addEventListener('DOMContentLoaded', (event) => {
     const modal = document.getElementById('fileUploadModal');
     const span = document.getElementsByClassName('close')[0];
-    const idAsignacion = getQueryParam('id');
+    const id_placa = getQueryParam('id');
     const detailsModal = document.getElementById('detailsModal');
     const closeModal = document.getElementById('closeModal');
 
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     document.getElementById('btnAdjuntos').onclick = function() {
-        uploadId(idAsignacion);
+        uploadId(id_placa);
     }
 
     async function uploadId(id) {
