@@ -4,9 +4,9 @@
 <head>
 
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=0.2">
-	<!-- PAGE TITLE HERE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.2">
+    <!-- PAGE TITLE HERE -->
     <title>Nodhus</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet" />
@@ -14,20 +14,146 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+
+    <!-- Cargar Firebase App y Firebase Storage desde CDN -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding-top: 60px;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 60%;
+            max-width: 800px;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .title-container {
+            text-align: center;
+        }
+        
+        .title-container .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .modal-details {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .modal-details div {
+            flex: 1 1 50%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
+        .dropzone {
+            border: 2px dashed #007bff;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        
+        .dz-message {
+            color: #999;
+            font-size: 18px;
+            text-align: center;
+            padding: 50px 0;
+        }
+        
+        #uploadedFilesContainer {
+            margin-top: 20px;
+        }
+        
+        #uploadedFilesContainer h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        #uploadedFilesList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        #uploadedFilesList li {
+            width: 120px;
+            margin: 5px;
+        }
+        
+        #uploadedFilesList img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .upload-btn.file-uploaded {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        
+        #detailsModal img {
+            display: block;
+            margin: 0 auto;
+        }
+        
+        #impoexpoChart {
+            width: 100%;
+        }
+        
+        #impoexpoChart {
+            width: 100%;
+            height: 300px;
+            /* O un porcentaje, como height: 80%; */
+        }
+    </style>
+
 </head>
+
 <body>
 
     <div id="layout-placeholder"></div>
-    
+
     <div id="main-wrapper">
         <div class="header">
             <div class="title-container">
-                <div class="circle"></div>
                 <h1 class="title">CREAR CLIENTE</h1>
             </div>
         </div>
-        
- 
+
+
         <div class="margenform">
             <div id="content" class="p-4 p-md-0 pt-5">
                 <div class="container-fluid main-container">
@@ -58,7 +184,7 @@
                             <button class="btn btn-primary" id="BtnSaveCliente">Enviar</button>
                         </div>
                     </form>
-                </div> 
+                </div>
                 <div class="container">
                     <ul class="navbar-nav header-right">
                         <li class="nav-item">
@@ -72,13 +198,43 @@
                 </div>
             </div>
         </div>
+
+        <div class="container-fluid main-container">
+            <div style="display: flex; justify-content: center; width: 100%;">
+                <div id="fileUploadModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div class="title-container">
+                            <h1 class="title">Adjuntar Archivo</h1>
+                        </div>
+                        <form action="#" class="dropzone" id="SaveFile" method="POST">
+                            <input type="hidden" name="id" id="id">
+                            <div class="dz-message">
+                                Arrastra y suelta archivos aquí o haz clic para subir.
+                            </div>
+                        </form>
+                        <div id="uploadedFilesContainer">
+                            <h2>Archivos Adjuntos</h2>
+                            <ul id="uploadedFilesList">
+                                <!-- Aquí se agregarán los archivos subidos -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script src="/componentes/loadSidebar.js"></script>
-        <script src="/js/home/scripts.js"></script>    
+        <script src="/js/home/scripts.js"></script>
         <script src="/js/custom.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-        <script type="text/javascript" src="/js/cliente/createCliente.js"></script>
         <script type="text/javascript" src="/js/cliente/deleteCliente.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="/js/custom-search.js"></script> <!-- Añade este nuevo script -->
-    </body>
+        <script src="/js/custom-search.js"></script>
+
+        <script type="module" src="/js/cliente/createCliente.js"></script>
+        <script type="module" src="/js/cliente/cliente_uploadFotos.js"></script>
+        <!-- Añade este nuevo script -->
+</body>
+
 </html>
