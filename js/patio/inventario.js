@@ -41,6 +41,7 @@ new gridjs.Grid({
         "Naviera",
         "Operación",
         "estado",
+        "fecha",
         {
             name: 'Acción',
             hidden: 'true',
@@ -79,6 +80,7 @@ new gridjs.Grid({
                     ordenCargue.naviera,
                     ordenCargue.operacion,
                     ordenCargue.lleno_vacio,
+                    ordenCargue.fecha_entrada,
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
