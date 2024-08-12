@@ -48,7 +48,7 @@ const columnDefs = [
   ];
   
 
-  fetch("http://esenttiapp.test/api/showaliado")
+  fetch("https://esenttiapp-production.up.railway.app/api/showaliado")
     .then(response => response.json())
     .then(data => {
       const processedData = data.map(aliado => {

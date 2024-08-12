@@ -9,7 +9,7 @@ function DeleteData(id) {
       confirmButtonText: "Sí, eliminarlo"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://esenttiapp.test/api/costos/${id}`, {
+        fetch(`https://esenttiapp-production.up.railway.app/api/costos/${id}`, {
           method: 'delete',
           headers: {
             'Content-Type': 'application/json',

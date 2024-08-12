@@ -45,7 +45,7 @@ function updateTotalAbiertas(data) {
     }
 ];
 
-fetch("http://esenttiapp.test/api/controlasignaciones")
+fetch("https://esenttiapp-production.up.railway.app/api/controlasignaciones")
     .then(response => response.json())
     .then(data => {
       const processedData = data.map(asigControl => {
@@ -85,7 +85,7 @@ fetch("http://esenttiapp.test/api/controlasignaciones")
     .catch(error => {
       console.error("Error al cargar los datos:", error);
     });
-    
+
   
   function uploadId(id) {
     // Open the modal or handle file upload

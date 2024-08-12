@@ -54,7 +54,7 @@ new gridjs.Grid({
     ],
     }],
     server: {
-        url: "http://esenttiapp.test/api/showcostos",
+        url: "https://esenttiapp-production.up.railway.app/api/showcostos",
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((costo) => [
@@ -77,7 +77,7 @@ new gridjs.Grid({
   
     const jsonData = JSON.stringify(Object.fromEntries(formData));
     
-    fetch('http://esenttiapp.test/api/costos', {
+    fetch('https://esenttiapp-production.up.railway.app/api/costos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: jsonData

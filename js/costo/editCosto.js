@@ -2,7 +2,7 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-fetch(`http://esenttiapp.test/api/showcostobyid/${id}`)
+fetch(`https://esenttiapp-production.up.railway.app/api/showcostobyid/${id}`)
     .then((response) => {
       if (!response.ok) {
           throw new Error("Error al obtener los datos de la API");
@@ -36,7 +36,7 @@ fetch(`http://esenttiapp.test/api/showcostobyid/${id}`)
         sort: false,
         columns: ["#","Valor"],
         server: {
-            url: "http://esenttiapp.test/api/showcostos",
+            url: "https://esenttiapp-production.up.railway.app/api/showcostos",
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((costo) => [
@@ -57,7 +57,7 @@ fetch(`http://esenttiapp.test/api/showcostobyid/${id}`)
         const formData = new FormData(this);
         const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-        fetch(`http://esenttiapp.test/api/costos/${id}`, {
+        fetch(`https://esenttiapp-production.up.railway.app/api/costos/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: jsonData,

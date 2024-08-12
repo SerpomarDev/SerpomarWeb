@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let idConductorSeleccionado = this.value
 
-        fetch(`http://esenttiapp.test/api/uploadoptid/${idConductorSeleccionado}`)  
+        fetch(`https://esenttiapp-production.up.railway.app/api/uploadoptid/${idConductorSeleccionado}`)  
           .then(response => {
             if (!response.ok) {
               throw new Error('Error en la respuesta de la API: ' + response.statusText);

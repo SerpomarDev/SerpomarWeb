@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
         let selectPlaca = this.value;
     
-        fetch(`http://esenttiapp.test/api/uploadplacabyid/${selectPlaca}`)
+        fetch(`https://esenttiapp-production.up.railway.app/api/uploadplacabyid/${selectPlaca}`)
         .then(response =>{
             if(!response.ok){
                 throw new Error('Error en la respuesta de la API: ' + response.statusText)
