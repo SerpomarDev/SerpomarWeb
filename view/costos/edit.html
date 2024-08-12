@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=0.2">
+	<!-- PAGE TITLE HERE -->
+    <title>Nodhus</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="layout-placeholder"></div>
+
+    <div id="main-wrapper">
+        <div class="header">
+            <div class="title-container">
+                <div class="circle"></div>
+                <h1 class="title">COSTOS Y CONCEPTOS</h1>
+            </div>
+        </div>
+      
+
+        <div class="margenform">
+            <div id="content" class="p-4 p-md-0 pt-5">
+                <div class="container-fluid main-container">
+                    <form id="editCosto" method="PUT" enctype="multipart/form-data" class="form">
+                        <p class="message">Complete los campos para crear un nuevo costo.</p>
+                        <div class="flex">
+                            <label>
+                                <input type="text" class="input" id="valor" name="valor" required>
+                                <span>Valor</span>
+                            </label>
+                        <div class="">
+                            <button class="btn btn-primary" id="BtnSaveCosto">Enviar</button>
+                        </div>
+                    </form>
+                </div> 
+
+                <div class="container">
+                    <div id="costoEdit"></div>
+                </div>
+            </div>
+        </div>
+        <script src="/componentes/loadSidebar.js"></script>
+        <script src="/js/home/scripts.js"></script>    
+      <script src="/js/custom.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+       <script src="/js/costo/editCosto.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </body>
+</html>

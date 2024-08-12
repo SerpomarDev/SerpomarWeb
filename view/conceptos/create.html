@@ -13,8 +13,7 @@
     <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -32,32 +31,25 @@
         <div class="margenform">
             <div id="content" class="p-4 p-md-0 pt-5">
                 <div class="container-fluid main-container">
-                    <form id="createAliado" method="POST" enctype="multipart/form-data" class="form">
-                        <p class="message">Complete los campos para crear un nuevo aliado.</p>
+                    <form id="createconcepto" method="POST" enctype="multipart/form-data" class="form">
+                        <p class="message">Complete los campos para crear un nuevo concepto.</p>
                         <div class="flex">
                             <label>
-                                <input type="text" class="input" id="nombre" name="nombre" required>
-                                <span>Nombre</span>
+                                <input type="text" class="input" id="concepto" name="concepto" required>
+                                <span>Concepto</span>
                             </label>
                             <label>
-                                <input type="text" class="input" id="razon_social" name="razon_social" required>
-                                <span>Razón Social</span>
+                                <input type="text" class="input" id="descripcion" name="concepto">
+                                <span>Descripción</span>
                             </label>
                         </div>
-                        <div class="flex">
-                            <label>
-                                <input type="number" class="input" id="celular" name="celular" required>
-                                <span>Celular</span>
-                            </label>
-                        </div><br>
-                        <div class="flex">
-                            <button class="btn btn-primary" id="BtnSaveAliado">Enviar</button>
-                            <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
+                        <div class="">
+                            <button class="btn btn-primary" id="BtnSaveConcepto">Enviar</button>
                         </div>
                     </form>
                 </div> 
                 <div class="container">
-                    <div id="aliado" class="ag-theme-alpine" style="height: 400px; width: 100%;"></div>
+                    <div id="aliado"></div>
                 </div>
             </div>
         </div>
@@ -69,6 +61,5 @@
         <script type="text/javascript" src="/js/aliado/createAliado.js"></script>
         <script type="text/javascript" src="/js/aliado/deleteAliado.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
     </body>
 </html>

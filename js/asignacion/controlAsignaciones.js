@@ -7,71 +7,85 @@ function updateTotalAbiertas(data) {
     document.getElementById('valor-total-abiertas').textContent = totalTarifas.toLocaleString();
   }
   
-  new gridjs.Grid({
-    search: true,
-    language: {
-      search: {
-        placeholder: '🔍 Buscar...'
-      }
+  const columnDefs = [
+    { headerName: "ID", field: "id" },
+    { headerName: "Fecha", field: "fecha" },
+    { headerName: "SP", field: "do_sp" },
+    { headerName: "Contenedor", field: "numero_contenedor" },
+    { headerName: "Placa", field: "placa" },
+    { headerName: "Aliado", field: "aliado" },
+    { 
+        headerName: "Tarifa", 
+        field: "tarifa",
+        valueFormatter: params => `$ ${parseFloat(params.value).toLocaleString()}` 
     },
-    pagination: {
-      limit: 20,
-      enabled: false,
+    { headerName: "Ruta", field: "ruta" },
+    { headerName: "Nombre", field: "nombre" },
+    { headerName: "Estado", field: "estado" },
+    {
+        headerName: "Soportes",
+        cellRenderer: params => {
+            const button = document.createElement('button');
+            button.className = 'upload-btn no-file';
+            button.textContent = 'Adjuntar Archivo';
+            button.id = `btn-${params.data.id}`;
+            button.addEventListener('click', () => uploadId(params.data.id));
+            return button;
+        }
     },
-    sort: false,
-    columns: [
-      { name: "id", hidden: true },
-      "Fecha", "SP", "Contenedor", "Placa", "Aliado", {
-        name: "Tarifa",
-        formatter: (_, row) => `$ ${(row.cells[6].data).toLocaleString()}`
-      },
-      "Ruta", "Nombre", "Estado", {
-        name: 'Soportes',
-        hidden: false,
-        formatter: (cell, row) => {
-          return gridjs.html(
-            `<button id="btn-${row.cells[0].data}" class="upload-btn no-file" onclick="uploadId(${row.cells[0].data})">Adjuntar Archivo</button>`
-          );
+    {
+        headerName: "Enviar",
+        cellRenderer: params => {
+            const button = document.createElement('button');
+            button.className = 'py-2 mb-4 px-4 border rounded bg-blue-600';
+            button.textContent = 'Enviar';
+            button.addEventListener('click', () => updateState(params.data.id));
+            return button;
         }
-      }, {
-        name: "enviar",
-        formatter: (cell, row) => {
-          return gridjs.h('button', {
-            className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-            onClick: () => updateState(row.cells[0].data) // Aquí se llama a updateState
-          }, 'enviar')
-        }
-      }
-    ],
-    fixedHeader: true,
-    server: {
-      url: 'https://esenttiapp-production.up.railway.app/api/controlasignaciones',
-      then: (data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          updateTotalAbiertas(data);
-          return data.map(asigControl => [
-            asigControl.id,
-            asigControl.fecha,
-            asigControl.do_sp,
-            asigControl.numero_contenedor,
-            asigControl.placa,
-            asigControl.aliado,
-            asigControl.tarifa,
-            asigControl.ruta,
-            asigControl.nombre,
-            asigControl.estado,
-          ]);
-        } else {
-          console.error("La respuesta del servidor no contiene datos válidos.");
-          return [];
-        }
-      }
-    },
-    resizable: true,
-    style: {
-      table: { width: "100%" }
     }
-  }).render(document.getElementById('controlAsig'));
+];
+
+fetch("http://esenttiapp.test/api/controlasignaciones")
+    .then(response => response.json())
+    .then(data => {
+      const processedData = data.map(asigControl => {
+        return {
+          id: asigControl.id,
+          fecha: asigControl.fecha,
+          do_sp: asigControl.do_sp,
+          numero_contenedor: asigControl.numero_contenedor,
+          placa: asigControl.placa,
+          aliado: asigControl.aliado,
+          tarifa: asigControl.tarifa,
+          ruta: asigControl.ruta,
+          nombre: asigControl.nombre,
+          estado: asigControl.estado,
+        };
+      });
+
+
+      // Configurar la tabla con los datos procesados
+      const gridOptions = {
+        columnDefs: columnDefs,
+        defaultColDef: {
+          resizable: true,
+          sortable: false,
+          filter: "agTextColumnFilter",
+          floatingFilter: true,
+        },
+        pagination: true,
+        paginationPageSize: 7,
+        rowData: processedData // Asignar los datos procesados
+      };
+  
+      // Renderizar la tabla en el contenedor
+        const eGridDiv = document.getElementById('controlAsig');
+        new agGrid.Grid(eGridDiv, gridOptions);
+    })
+    .catch(error => {
+      console.error("Error al cargar los datos:", error);
+    });
+    
   
   function uploadId(id) {
     // Open the modal or handle file upload

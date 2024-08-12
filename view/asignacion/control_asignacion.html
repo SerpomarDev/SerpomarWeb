@@ -17,6 +17,9 @@
     <!-- Cargar Firebase App y Firebase Storage desde CDN -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
     <style>
         .modal {
             display: none;
@@ -147,8 +150,9 @@
                     </div>
                 </div>
             </div>
-            <div id="controlAsig"></div>
-            <br>
+            <div class="container">
+                <div id="controlAsig" class="ag-theme-alpine" style="height: 400px; width: 100%;"></div>
+            </div>
         </div>
     </div>
 
@@ -179,6 +183,7 @@
     <script src="/js/asignacion/controlAsignaciones.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/asignacion/fileUpload.js"></script>
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
 
     <script>
 
