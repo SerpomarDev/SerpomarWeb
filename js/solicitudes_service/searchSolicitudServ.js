@@ -6,10 +6,10 @@ new gridjs.Grid({
             placeholder: '🔍 Buscar...'
         }
     },
-    // pagination: {
-    //     limit:7,
-    //     enabled: true,
-    // },
+    pagination: {
+        limit:30,
+        enabled: true,
+    },
     resizable: true,
     sort: false,
     columns: [
@@ -27,7 +27,7 @@ new gridjs.Grid({
                 }
             }
         }
-    }, "DO pedido","Pedido","Contendores","Tipo Transporte","Cliente",{
+    }, "DO pedido","Pedido","Contendores","Tipo Transporte","Cliente","Fecha entrada",{
         name:'Acciones',
         hidden:true,
         columns:[{
@@ -83,6 +83,7 @@ new gridjs.Grid({
                     soliserv.contenedor,
                     soliserv.impexp,
                     soliserv.cliente,
+                    soliserv.fecha_actualizacion,
 
                 ]);
             } else {

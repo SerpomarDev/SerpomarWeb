@@ -13,6 +13,9 @@ new gridjs.Grid({
     sort: false,
     columns: [
         {
+            name:"fecha creacion"
+        },
+        {
             name:"#",
             hidden:true,
         },{
@@ -26,9 +29,7 @@ new gridjs.Grid({
             }
         }
     }, "DO pedido","Pedido","Contendores","Tipo Transporte","Cliente",{
-        name:'Acciones',
-        hidden:true,
-        columns:[{
+      
             name:'Recibir',
             hidden:false,
             formatter:(cell,row)=>{
@@ -36,7 +37,7 @@ new gridjs.Grid({
                     href: '',
                     onclick: (e) => {
                         e.preventDefault();
-                        actualizarEstado(row.cells[0].data);
+                        actualizarEstado(row.cells[1].data);
                     }
                 }, [
                     gridjs.h('img', {
@@ -47,33 +48,15 @@ new gridjs.Grid({
                 ]);
             }
         },
-        {
-            name:'Eliminar',
-            hidden:true,
-            formatter:(cell,row)=>{
-                return gridjs.h('a', {
-                    href: '/view/rutas/create.html',
-                    onclick: (e) => {
-                        e.preventDefault();
-                        deleteRuta(row.cells[0].data);
-                    }
-                }, [
-                    gridjs.h('img', {
-                        src: '/img/basura.png',
-                        alt: 'eliminar',
-                        style: 'width: 20px; height: 20px;' 
-                    })
-                ]);
-            }
-        },
+
     ],
-    }],
     // sort: true,
     server: {
         url: "https://esenttiapp-production.up.railway.app/api/showsolicitudservpro",
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((soliserv) => [
+                    soliserv.fecha_creacion,
                     soliserv.id_primario,
                     soliserv.do_sp,
                     soliserv.do_pedido,

@@ -40,6 +40,7 @@ new gridjs.Grid({
         "Cutoff",
         "Naviera",
         "Operación",
+        "estado",
         {
             name: 'Acción',
             hidden: 'true',
@@ -76,7 +77,8 @@ new gridjs.Grid({
                     ordenCargue.modalidad,
                     ordenCargue.cutoff,
                     ordenCargue.naviera,
-                    ordenCargue.operacion
+                    ordenCargue.operacion,
+                    ordenCargue.lleno_vacio,
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
