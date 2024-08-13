@@ -5,7 +5,9 @@ let id = urlParams.get("id");
 cargarValores(id)
 function cargarValores(id){
 
-  fetch(`https://esenttiapp-production.up.railway.app/api/asignacioncontenedors/${id}`)
+  fetch(`https://esenttiapp-production.up.railway.app/api/asignacioncontenedors/${id}`,{
+    
+  })
   .then((responde) => {
     if (!responde) {
       throw new Error("Error al obtener los datos de la API");

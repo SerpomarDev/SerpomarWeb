@@ -11,7 +11,12 @@ if (id) {
 }
 
 function cargarValores(id) {
-    fetch(`https://esenttiapp-production.up.railway.app/api/asignacioncontenedors/${id}`)
+        fetch(`https://esenttiapp-production.up.railway.app/api/asignacioncontenedors/${id}`,{
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+        })
         .then((response) => {
             if (!response.ok) {
                 throw new Error("Error al obtener los datos de la API");

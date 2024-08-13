@@ -2,7 +2,12 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-fetch(`https://esenttiapp-production.up.railway.app/api/uploadaliadoid/${id}`)
+    fetch(`https://esenttiapp-production.up.railway.app/api/uploadaliadoid/${id}`,{
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+        }
+    })
     .then((response) => {
       if (!response.ok) {
           throw new Error("Error al obtener los datos de la API");
@@ -41,6 +46,9 @@ fetch(`https://esenttiapp-production.up.railway.app/api/uploadaliadoid/${id}`)
         columns: ["#","Nombre", "Razon social", "Telefono"],
         server: {
             url: "https://esenttiapp-production.up.railway.app/api/showaliado",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            },
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((aliado) => [
@@ -56,6 +64,8 @@ fetch(`https://esenttiapp-production.up.railway.app/api/uploadaliadoid/${id}`)
             }
         }
     }).render(document.getElementById('aliadoEdit'));
+    
+    localStorage.setItem("authToken", data.token);
 
     document.getElementById("editAliado").addEventListener("submit", function (event) {
         event.preventDefault();
@@ -65,7 +75,10 @@ fetch(`https://esenttiapp-production.up.railway.app/api/uploadaliadoid/${id}`)
 
         fetch(`https://esenttiapp-production.up.railway.app/api/aliados/${id}`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}` 
+            },
             body: jsonData,
         })
             .then((response) => {
