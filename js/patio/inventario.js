@@ -31,7 +31,7 @@ new gridjs.Grid({
     sort: false,
     columns: [{
             name: "id",
-            hidden: true
+            hidden: false
         },
         "Contenedor",
         "Cliente",
