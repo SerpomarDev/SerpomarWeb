@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const usernameInput = document.getElementById("username");
     const passwordInput = document.getElementById("password");
 
-
     const storedToken = localStorage.getItem("authToken");
     if (storedToken) {
         window.location.href = "home.html";
@@ -17,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Envío del formulario 
-    loginForm.addEventListener("submit", async(event) => {
+    loginForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const email = usernameInput.value;
@@ -32,7 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (response.ok) {
                 const data = await response.json();
+
+                // Guardar tanto el token como el user_id en localStorage
                 localStorage.setItem("authToken", data.token);
+                localStorage.setItem("userId", data.user_id); 
+
                 window.location.href = "home.html";
             } else {
                 alert("Credenciales inválidas. Por favor, inténtalo de nuevo.");
@@ -42,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
             alert("Ocurrió un error durante el inicio de sesión. Por favor, inténtalo de nuevo más tarde.");
         }
     });
-
 
     $("#layoutv2-placeholder").load("/Componentes/layoutv2.html", function() {
         console.log('layoutv2 loaded');
