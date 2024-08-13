@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,33 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 </head>
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+
+</header>
+<div class="dlabnav">
+    <div id="layout">
+
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <body>
-    <div id="layout-placeholder"></div>
-    <div id="sidebar-container"></div>
-    
+
     <div class="header">
         <div class="title-container">
             <div class="circle"></div>
@@ -25,55 +49,55 @@
     <div class="margenform">
         <div id="content" class="p-4 p-md-5 pt-5">
             <div class="container-fluid main-container">
-            <div class="container">
-                <form id="editRuta" method="PUT" enctype="multipart/form-data">
-                    <div class="row">
-                        <input type="hidden" name="id" id="id">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="item" name="item">
+                <div class="container">
+                    <form id="editRuta" method="PUT" enctype="multipart/form-data">
+                        <div class="row">
+                            <input type="hidden" name="id" id="id">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="item" name="item">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Tarifa</label>
+                                    <input type="text" class="form-control" id="tarifas" name="tarifas">
+                                </div>
                             </div>
                         </div>
-            
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Tarifa</label>
-                                <input type="text" class="form-control" id="tarifas" name="tarifas">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Comentario</label>
+                                    <input type="text" class="form-control" id="notas" name="notas">
+                                </div>
                             </div>
                         </div>
-                    </div>
-            
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Comentario</label>
-                                <input type="text" class="form-control" id="notas" name="notas">
+                        <div class="row">
+                            <div class="col-10 d-flex justify-content-between">
+                                <a class="btn btn-primary" href="/view/rutas/create.html">Volver</a>
+                                <button class="btn btn-primary" id="BtnEditRuta">Enviar</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-10 d-flex justify-content-between">
-                            <a class="btn btn-primary" href="/view/rutas/create.html">Volver</a>
-                            <button  class="btn btn-primary" id="BtnEditRuta">Enviar</button>
-                        </div>
-                    </div>
-                </form>
-            </div> 
-            <div class="container">
-                <div id="editRutas"></div>
+                    </form>
+                </div>
+                <div class="container">
+                    <div id="editRutas"></div>
+                </div>
             </div>
         </div>
-	</div>
-    
 
 
-   
-    <script src="/componentes/loadSidebar.js"></script>
-    <script src="/js/home/scripts.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-    <script type="text/javascript" src="/js/ruta/editRuta.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/Componentes/sidebar.js"></script>
+        <script src="/js/login/logout.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+        <script type="text/javascript" src="/js/ruta/editRuta.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
