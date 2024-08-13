@@ -1,17 +1,22 @@
 const urlParams = new URLSearchParams(window.location.search);
-const id = urlParams.get('id');
-
-
-const apiUrl = fetch(`https://esenttiapp-production.up.railway.app/api/uploadordenbyqr/${id}`,{
-    method: 'GET',
-    headers: {
-        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-    }
-})
 
 async function llenarFormulario() {
+    const id = urlParams.get('id'); // Asegúrate de que id tenga un valor.
+
+    const apiUrl = `https://esenttiapp-production.up.railway.app/api/uploadordenbyqr/${id}`; 
+
     try {
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+        });
+
+        if (!response.ok) { 
+            throw new Error(`Error en la solicitud a la API: ${response.status} ${response.statusText}`);
+        }
+
         const data = await response.json();
 
         if (data.length > 0) {
@@ -38,10 +43,12 @@ async function llenarFormulario() {
             document.getElementById('id_tipo_contenedor').value = orden.tipo_contenedor;
         } else {
             console.error('No se encontraron datos para este ID');
+            // Puedes mostrar un mensaje de error al usuario aquí
         }
     } catch (error) {
         console.error('Error al obtener datos de la API:', error);
+        // Puedes mostrar un mensaje de error al usuario aquí
     }
 }
 
-llenarFormulario();
+llenarFormulario(); 
