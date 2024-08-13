@@ -71,6 +71,9 @@ new gridjs.Grid({
     }],
     server: {
         url: "https://esenttiapp-production.up.railway.app/api/showplaca",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((placa) => [
@@ -89,6 +92,7 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('Placa'));
 
+localStorage.setItem("authToken", data.token);
 
 document.getElementById('createPlaca').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -99,7 +103,10 @@ document.getElementById('createPlaca').addEventListener('submit', function(event
 
     fetch('https://esenttiapp-production.up.railway.app/api/placas', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+             },
             body: jsonData
         })
         .then(response => {

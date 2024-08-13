@@ -21,6 +21,9 @@ new gridjs.Grid({
     }],
     server: {
         url: `https://esenttiapp-production.up.railway.app/api/showpreliquidarbycontenedor/${id}`,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((preliq) => [
@@ -38,6 +41,8 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('pre_liquidar'));
 
+localStorage.setItem("authToken", data.token);
+
 document.getElementById('savePreLiquidacion').addEventListener('submit',function(event){
     event.preventDefault();
 
@@ -48,7 +53,10 @@ document.getElementById('savePreLiquidacion').addEventListener('submit',function
     
     fetch('https://esenttiapp-production.up.railway.app/api/costoclientecontenedor',{
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+             'Content-Type': 'application/json',
+             'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+             },
         body:jsonData
     })
     .then(response=>{

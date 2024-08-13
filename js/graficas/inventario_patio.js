@@ -1,7 +1,12 @@
 const domInventario = document.getElementById('impoExpoChart');
 const myChartInventario = echarts.init(domInventario);
 
-fetch('https://esenttiapp-production.up.railway.app/api/estadoinventario')
+    fetch('https://esenttiapp-production.up.railway.app/api/estadoinventario',{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then(response => response.json())
     .then(data => {
         if (data && Array.isArray(data)) {

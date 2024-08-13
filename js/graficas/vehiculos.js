@@ -4,7 +4,12 @@ const estadoColores = {
     "F/O": "red"    // Color para "Fuera de Operación"
 };
 
-fetch('https://esenttiapp-production.up.railway.app/api/resumenestados')
+    fetch('https://esenttiapp-production.up.railway.app/api/resumenestados',{
+        method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                }
+    })
     .then(response => response.json())
     .then(data => {
         if (data && Array.isArray(data)) {

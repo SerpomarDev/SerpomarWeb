@@ -2,7 +2,12 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-fetch(`https://esenttiapp-production.up.railway.app/api/editplaca/${id}`)
+    fetch(`https://esenttiapp-production.up.railway.app/api/editplaca/${id}`,{
+        method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                }
+    })
     .then((response) => {
       if (!response.ok) {
           throw new Error("Error al obtener los datos de la API");
@@ -44,6 +49,9 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editplaca/${id}`)
         }],
         server: {
             url: "https://esenttiapp-production.up.railway.app/api/showplaca",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            },
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((placa) => [
@@ -61,17 +69,22 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editplaca/${id}`)
         }
     }).render(document.getElementById('placaEdit'));
 
+    localStorage.setItem("authToken", data.token);
+
     document.getElementById("editPlaca").addEventListener("submit", function (event) {
         event.preventDefault();
 
         const formData = new FormData(this);
         const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-        fetch(`https://esenttiapp-production.up.railway.app/api/placas/${id}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: jsonData,
-        })
+            fetch(`https://esenttiapp-production.up.railway.app/api/placas/${id}`, {
+                method: "PUT",
+                headers: { 
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                },
+                body: jsonData,
+            })
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Error al enviar los datos del formulario");

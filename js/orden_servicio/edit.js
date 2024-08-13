@@ -2,7 +2,12 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-fetch(`https://esenttiapp-production.up.railway.app/api/uploadordensevid/${id}`)
+fetch(`https://esenttiapp-production.up.railway.app/api/uploadordensevid/${id}`,{
+    method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+        }
+})
 .then((response)=>{
     if(!response){
         throw new Error("Error al obtener los datos de la API");
@@ -55,6 +60,9 @@ function table(idContenedor){
         },"Numero serie","Fecha cargue", "Hora cargue", "Fecha descargue", "Hora descargue","Fecha devolucion", "Fecha inspeccion","Patio"],
         server: {
             url: `https://esenttiapp-production.up.railway.app/api/showordenerv/${idContenedor}`,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            },
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((ordenSev) => [
@@ -75,6 +83,8 @@ function table(idContenedor){
             }
         }
     }).render(document.getElementById('ordenSevEdt'));
+
+    localStorage.setItem("authToken", data.token);
 }
 
   document.getElementById('editOrdenServicio').addEventListener("submit",function(event){
@@ -87,7 +97,10 @@ function table(idContenedor){
 
     fetch(`https://esenttiapp-production.up.railway.app/api/ordenservicios/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+         },
         body: jsonData,
     })
     .then((response) => {

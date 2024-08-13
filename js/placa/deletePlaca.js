@@ -9,12 +9,13 @@ function DeleteData(id) {
       confirmButtonText: "Sí, eliminarlo"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://esenttiapp-production.up.railway.app/api/deletepby/${id}`, {
-          method: 'put',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
+          fetch(`https://esenttiapp-production.up.railway.app/api/deletepby/${id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            },
+          })
           .then(response => {
             if (!response.ok) {
               throw new Error('Error al eliminar el registro');

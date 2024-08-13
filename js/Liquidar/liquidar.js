@@ -44,6 +44,9 @@ let id = urlParams.get("id");
         }],
         server: {
             url: `https://esenttiapp-production.up.railway.app/api/liquidarspt/${id}`,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            },
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((preliq) => [
@@ -59,6 +62,7 @@ let id = urlParams.get("id");
         }
     }).render(document.getElementById('liquidar'));
 
+    localStorage.setItem("authToken", data.token);
 
     document.getElementById('saveLiquidacion').addEventListener('submit',function(event){
         event.preventDefault();
@@ -68,7 +72,10 @@ let id = urlParams.get("id");
     
         fetch('https://esenttiapp-production.up.railway.app/api/liquidacion',{
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+             },
             body:jsonData
         })
         .then(response=>{

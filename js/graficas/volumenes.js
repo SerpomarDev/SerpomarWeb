@@ -90,7 +90,12 @@ const myChart = new Chart(ctx, {
     }
 });
 
-fetch('https://esenttiapp-production.up.railway.app/api/volumenesimpexp')
+    fetch('https://esenttiapp-production.up.railway.app/api/volumenesimpexp',{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then(response => response.json())
     .then(data => {
         const importacion = data.find(item => item.imp_exp === 'importacion').conteo;

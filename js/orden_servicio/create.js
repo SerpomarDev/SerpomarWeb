@@ -2,7 +2,12 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`)
+fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`,{
+  method: 'GET',
+      headers: {
+      'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+    }
+})
 .then((response)=>{
     if(!response.ok){
       throw new Error("Error al obtener los datos de la API");
@@ -63,6 +68,9 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`)
     }],
     server: {
         url: `https://esenttiapp-production.up.railway.app/api/showordenerv/${id}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`
+      },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((
@@ -87,6 +95,8 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`)
     }
 }).render(document.getElementById('ordenSev'));
 
+localStorage.setItem("authToken", data.token);
+
 function editOrdenseV(id){
     window.location.href = `/view/orden_servicio/edit.html?id=${id}`
 }
@@ -99,7 +109,10 @@ function editOrdenseV(id){
   
     fetch('https://esenttiapp-production.up.railway.app/api/ordenservicios',{
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+         },
         body: jsonData
     })
     .then(response => {

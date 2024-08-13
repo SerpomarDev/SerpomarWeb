@@ -3,6 +3,7 @@ function actualizarEstado(idOperacion,nuevoEstado) {
       method: 'PUT',
       headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("authToken")}`
       },
       body: JSON.stringify({
         estado: nuevoEstado,
@@ -64,6 +65,9 @@ new gridjs.Grid({
     }],
     server: {
         url: "https://esenttiapp-production.up.railway.app/api/showoperacion",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`
+      },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((asignacion) => [
@@ -89,6 +93,7 @@ new gridjs.Grid({
     
 }).render(document.getElementById('operacion'))
 
+localStorage.setItem("authToken", data.token);
 
 function time() {
   setTimeout(() => {
