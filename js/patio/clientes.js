@@ -2,7 +2,12 @@ window.onload = function() {
     // Obtener los datos de la API
 
 
-    fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario")
+        fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
+            method: 'GET',
+                headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                }
+        })
         .then(response => response.json())
         .then(data => {
             // Contar importaciones, exportaciones y traslados
@@ -119,7 +124,12 @@ window.onload = function() {
 
 
 
-    fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario")
+        fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
+            method: 'GET',
+                headers: {
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+        })
         .then(response => response.json())
         .then(data => {
             // Agrupar datos por cliente y contar entradas

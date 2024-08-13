@@ -3,6 +3,7 @@ function actualizarEstado(idOperacion, nuevoEstado) {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
             },
             body: JSON.stringify({
                 estado: nuevoEstado,
@@ -43,6 +44,7 @@ function comentario(id, comentario) {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                 'Authorization': `Bearer ${localStorage.getItem("authToken")}`
             },
             body: JSON.stringify({
                 id: id,
@@ -117,6 +119,10 @@ new gridjs.Grid({
     fixedHeader: true,
     server: {
         url: 'https://esenttiapp-production.up.railway.app/api/uploadordencargue',
+        headers: {
+            // Aquí se incluye el token desde el localStorage
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
         then: (data) => {
             const urlParams = new URLSearchParams(window.location.search);
             const idFromUrl = urlParams.get('id');
@@ -152,6 +158,9 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('acceso'));
 
+// esto tambien lo tienes que pegar cada vez que implementes el token en una tabla
+localStorage.setItem("authToken", data.token);
+
 function time() {
     document.getElementById('craeateAccesoPatio').reset();
     setTimeout(() => {
@@ -164,6 +173,7 @@ function salidaContenedor($contenedor, $operacion) {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                 'Authorization': `Bearer ${localStorage.getItem("authToken")}`
             },
             body: JSON.stringify({
                 estado: nuevoEstado,
