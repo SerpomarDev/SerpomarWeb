@@ -1,7 +1,12 @@
 document.getElementById('GeneReportExcel').addEventListener('click', function(event){
     event.preventDefault();
 
-    fetch('https://esenttiapp-production.up.railway.app/api/excelasignacionclientesvarios')
+    fetch('https://esenttiapp-production.up.railway.app/api/excelasignacionclientesvarios',{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then(response=>{
         if(!response.ok){
             throw new Error('Error al obtener los datos de la API');

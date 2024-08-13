@@ -5,7 +5,12 @@ let id = urlParams.get("id");
 document.getElementById('GeneReportExcelPreliq').addEventListener('click', function(event){
     event.preventDefault();
 
-    fetch(`https://esenttiapp-production.up.railway.app/api/excelpreliquidacioncontenedores/${id}`)
+    fetch(`https://esenttiapp-production.up.railway.app/api/excelpreliquidacioncontenedores/${id}`,{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then(response=>{
         if(!response.ok){
             throw new Error('Error al obtener los datos de la API');

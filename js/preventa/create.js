@@ -7,7 +7,10 @@ document.getElementById('PreventaCreate').addEventListener('submit', function(ev
     
     fetch('https://esenttiapp-production.up.railway.app/api/preventas', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+         },
         body: jsonData
     })
     .then(response => {

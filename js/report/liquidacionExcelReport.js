@@ -1,7 +1,12 @@
 document.getElementById('GeneReportExcelLiq').addEventListener('click', function(event){
     event.preventDefault();
 
-    fetch('https://esenttiapp-production.up.railway.app/api/excelliquidacion')
+    fetch('https://esenttiapp-production.up.railway.app/api/excelliquidacion',{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then(response=>{
         if(!response.ok){
             throw new Error('Error al obtener los datos de la API');

@@ -5,7 +5,12 @@ document.getElementById('ReportByFecha').addEventListener('click', function(even
     let fechaFinal = document.getElementById('fecha_final').value
 
     if (fechaInicial && fechaFinal) {
-        fetch(`https://esenttiapp-production.up.railway.app/api/excelAsignacionbyfecha/${fechaInicial}/${fechaFinal}`)
+        fetch(`https://esenttiapp-production.up.railway.app/api/excelAsignacionbyfecha/${fechaInicial}/${fechaFinal}`,{
+            method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                }
+        })
         .then(response=>{
             if(!response.ok){
                 throw new Error('Error al obtener los datos de la API');

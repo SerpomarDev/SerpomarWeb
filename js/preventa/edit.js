@@ -6,7 +6,12 @@ let id = urlParams.get("id");
 
 let originalValues;
 // Cargamos los datos iniciales del formulario
-fetch(`https://esenttiapp-production.up.railway.app/api/cargaredit/${id}`)
+    fetch(`https://esenttiapp-production.up.railway.app/api/cargaredit/${id}`,{
+      method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+        }
+    })
     .then((response) => {
       if (!response.ok) {
           throw new Error("Error al obtener los datos de la API");
@@ -44,50 +49,17 @@ fetch(`https://esenttiapp-production.up.railway.app/api/cargaredit/${id}`)
   
 document.getElementById("PreventaEdit").addEventListener("submit", function (event) {
         event.preventDefault();
-    //     // Compara los valores actuales con los originales
-    //     let currentValues = {
-    //         id_placa: document.getElementById("id_placa").value,
-    //         // placa: document.getElementById("placa").value,
-    //         id_conductor: document.getElementById("id_conductor").value,
-    //         // conductor: document.getElementById("conductor").value,
-    //         identificacion: document.getElementById("identificacion").value,
-    //         telefono: document.getElementById("telefono").value,
-    //         eje: document.getElementById("eje").value,
-    //         tipologia: document.getElementById("tipologia").value,
-    //         //id_aliado: document.getElementById("id_aliado").value,
-    //         //aliado: document.getElementById("aliado").value,
-    //         //celular: document.getElementById("celular").value,
-    //         proyecto: document.getElementById("proyecto").value,
-    //         esenttia: document.getElementById("esenttia").value,
-    //         cabot: document.getElementById("cabot").value,
-    //         estado: document.getElementById("estado").value,
-    //         flota: document.getElementById("flota").value,   
-    //     };
-
-    //     // Verifica si hay cambios
-    //     let hasChanged = Object.keys(currentValues).some(
-    //         (key) => currentValues[key] !== originalValues[key]
-    //     );
-
-    //  /*    let hasChanged = JSON.stringify(originalValues) === JSON.stringify(currentValues)
-    //     console.log(hasChanged) */
-
-    //     if (!hasChanged) {
-    //         Swal.fire({
-    //             icon: "info",
-    //             title: "No hay cambios",
-    //             text: "No se han realizado cambios en el formulario.",
-    //         });
-    //         return; // Detiene la ejecución de la función
-    //     }
-
+  
         // Convertir formData a un objeto y luego a JSON
         const formData = new FormData(this);
         const jsonData = JSON.stringify(Object.fromEntries(formData));
 
         fetch(`https://esenttiapp-production.up.railway.app/api/preventas/${id}`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+              "Content-Type": "application/json",
+              'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+             },
             body: jsonData,
         })
             .then((response) => {

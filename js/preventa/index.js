@@ -55,6 +55,9 @@
       ],
         server: {
             url: "https://esenttiapp-production.up.railway.app/api/selectbyinac",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            },
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((preventa) => [
@@ -81,6 +84,7 @@
     }).render(document.getElementById('preventas'));
  }
  
+ localStorage.setItem("authToken", data.token);
 
 function editPreventa(id) {
     window.location.href = `/view/preventas/edit.html?id=${id}`

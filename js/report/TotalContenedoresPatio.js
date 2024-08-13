@@ -10,11 +10,21 @@ document.addEventListener('DOMContentLoaded',()=>{
         switch(selectedValue){
             
             case 'endpointone':
-                endpoint = 'https://esenttiapp-production.up.railway.app/api/exceltotalcontenedores';
+                endpoint = fetch('https://esenttiapp-production.up.railway.app/api/exceltotalcontenedores',{
+                    method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                        }
+                    })
                 break;
 
             case 'endpointtwo':
-                endpoint = 'https://esenttiapp-production.up.railway.app/api/excelinventariocontenedores';
+                endpoint = fetch ('https://esenttiapp-production.up.railway.app/api/excelinventariocontenedores',{
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                    }
+                })
                 break;
 
             default:

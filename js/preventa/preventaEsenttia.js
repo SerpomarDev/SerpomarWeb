@@ -33,6 +33,9 @@
   height: '400px', */
     server: {
         url: "https://esenttiapp-production.up.railway.app/api/showesenttia",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((preventa) => [
@@ -59,6 +62,8 @@
       table: {with:"80%"}
     }
 }).render(document.getElementById('esenttiaprev'));
+
+localStorage.setItem("authToken", data.token);
 
 function asignar(id){
     window.location.href = `/view/asignacion_esenttia/asignacion_esenttia.html?id=${id}`
