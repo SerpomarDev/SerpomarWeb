@@ -66,6 +66,10 @@ new gridjs.Grid({
     fixedHeader: true,
     server: {
         url: `https://esenttiapp-production.up.railway.app/api/cargarinventario`,
+        headers: {
+            // Aquí se incluye el token desde el localStorage
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 data.sort((a, b) => b.id - a.id);
@@ -93,6 +97,8 @@ new gridjs.Grid({
         table: { with: "100%" }
     }
 }).render(document.getElementById('inventario'));
+
+localStorage.setItem("authToken", data.token);
 
 function time() {
     setTimeout(() => {
