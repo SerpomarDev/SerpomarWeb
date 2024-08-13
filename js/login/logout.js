@@ -1,19 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let inactivityTimeout;
+    // Borrar cookies
+    document.cookie.split(";").forEach(function(c) {
+        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
 
-    function startInactivityTimer() {
-        inactivityTimeout = setTimeout(logoutUser, 10 * 60 * 1000); // 10 minutos
-    }
+    // Borrar localStorage
+    localStorage.clear();
 
-    function resetInactivityTimer() {
-        clearTimeout(inactivityTimeout);
-        startInactivityTimer();
-    }
+    // Opcional: Intenta realizar la solicitud de cierre de sesión al servidor
+    logoutUser(); 
 
     async function logoutUser() {
-        const authToken = localStorage.getItem("authToken");
+        const authToken = localStorage.getItem("authToken"); // Ya no es necesario, pero se puede mantener para intentar el cierre de sesión en el servidor
 
-        if (authToken) { // Verifica si hay un token antes de intentar cerrar sesión
+        if (authToken) { 
             try {
                 const response = await fetch("https://esenttiapp-production.up.railway.app/api/logout", {
                     method: "POST",
@@ -23,39 +23,27 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                 });
 
-                if (response.ok) {
-                    localStorage.removeItem("authToken");
-                    localStorage.removeItem("userData");
-                    document.cookie.split(";").forEach(function(c) {
-                        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-                    });
-                    window.location.replace("/"); 
-                } else {
-
-                    console.error("Error al cerrar sesión:", response.status);
+                if (!response.ok) {
+                    console.error("Error al cerrar sesión en el servidor:", response.status);
                 }
             } catch (error) {
-
-                console.error("Error de red:", error);
+                console.error("Error de red al intentar cerrar sesión en el servidor:", error);
             }
-        } else {
+        } 
 
-            window.location.replace("/"); 
-        }
+        // Redirige al usuario a la página de inicio, independientemente de la respuesta del servidor
+        window.location.replace("/"); 
     }
 
+    // Manejo del botón de cierre de sesión (si existe)
     function addLogoutEventListener() {
         const logoutButton = document.getElementById("logout-button");
         if (logoutButton) {
             logoutButton.addEventListener("click", logoutUser);
         } else {
-            setTimeout(addLogoutEventListener, 100);
+            setTimeout(addLogoutEventListener, 100); 
         }
     }
 
-    document.addEventListener("mousemove", resetInactivityTimer);
-    document.addEventListener("keypress", resetInactivityTimer);
-
-    startInactivityTimer();
-    addLogoutEventListener();
+    addLogoutEventListener(); 
 });
