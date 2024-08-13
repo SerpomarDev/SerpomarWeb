@@ -1,19 +1,12 @@
 function loadSidebar() {
     const menuItemsContainer = document.getElementById('menu-items-container');
-    const apiUrl = 'https://esenttiapp-production.up.railway.app/api/createmenu';
-
-    // Obtener el token del localStorage
-    const token = localStorage.getItem('authToken');
-
-    // Configurar las opciones de la solicitud con la cabecera de autorización
-    const requestOptions = {
-        headers: {
-            // Aquí se incluye el token desde el localStorage
-            Authorization: `Bearer ${localStorage.getItem("authToken")}`
-        },
-    };
-
-    fetch(apiUrl, requestOptions) 
+    const apiUrl = fetch('https://esenttiapp-production.up.railway.app/api/createmenu',{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
+    fetch(apiUrl) 
         .then(response => {
             if (!response.ok) { 
                 throw new Error('Network response was not ok');
