@@ -8,13 +8,14 @@ function loadSidebar() {
     // Configurar las opciones de la solicitud con la cabecera de autorización
     const requestOptions = {
         headers: {
-            'Authorization': `Bearer ${token}` 
-        }
+            // Aquí se incluye el token desde el localStorage
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
     };
 
-    fetch(apiUrl, requestOptions) // Incluir las opciones en la solicitud
+    fetch(apiUrl, requestOptions) 
         .then(response => {
-            if (!response.ok) { // Manejar respuestas de error
+            if (!response.ok) { 
                 throw new Error('Network response was not ok');
             }
             return response.json();
@@ -85,4 +86,5 @@ logo.addEventListener('click', () => {
     sidebar.classList.toggle('open');
 });
 
-loadSidebar();
+// Cargar el sidebar al inicio
+loadSidebar(); 
