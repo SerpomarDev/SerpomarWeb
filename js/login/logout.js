@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${authToken}`,
+                        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
                     },
                 });
 
