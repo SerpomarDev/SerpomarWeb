@@ -13,6 +13,7 @@ function DeleteData(id) {
           method: 'delete',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
           },
         })
           .then(response => {

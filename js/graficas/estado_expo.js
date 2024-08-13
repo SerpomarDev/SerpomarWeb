@@ -115,7 +115,12 @@ const myChart2 = new Chart(ctx2, {
     }
 });
 
-fetch('https://esenttiapp-production.up.railway.app/api/estadoexpo')
+    fetch('https://esenttiapp-production.up.railway.app/api/estadoexpo',{
+        method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                }
+    })
     .then(response => response.json())
     .then(data => {
         console.log('Fetched data:', data); // Log fetched data to the console

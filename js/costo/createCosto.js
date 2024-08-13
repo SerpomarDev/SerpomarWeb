@@ -55,6 +55,9 @@ new gridjs.Grid({
     }],
     server: {
         url: "https://esenttiapp-production.up.railway.app/api/showcostos",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((costo) => [
@@ -69,6 +72,7 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('costo'));
 
+localStorage.setItem("authToken", data.token);
 
   document.getElementById('createCosto').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -79,7 +83,10 @@ new gridjs.Grid({
     
     fetch('https://esenttiapp-production.up.railway.app/api/costos', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+         },
         body: jsonData
     })
     .then(response => {

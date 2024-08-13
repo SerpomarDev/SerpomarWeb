@@ -115,7 +115,12 @@ const myChartImportacion = new Chart(ctxImportacion, {
     }
 });
 
-fetch('https://esenttiapp-production.up.railway.app/api/estadoimpo')
+    fetch('https://esenttiapp-production.up.railway.app/api/estadoimpo',{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then(response => response.json())
     .then(data => {
         const enCursoData = data.filter(item => item.estado === 'EN CURSO');

@@ -118,8 +118,12 @@ let options = {
 let myChartse = new ApexCharts(ctse, options);
 myChartse.render();
 
-let urlse = "https://esenttiapp-production.up.railway.app/api/resumenestadooperacion";
-fetch(urlse)
+    fetch("https://esenttiapp-production.up.railway.app/api/resumenestadooperacion",{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }  
+    })
     .then(response => response.json())
     .then(itemsEs => viewEs(itemsEs))
     .catch(error => console.log(error));
