@@ -1,5 +1,12 @@
-
 /* styles.css */
+
+#menu-items-container {
+    overflow-y: auto;
+    /* Habilita el scroll vertical */
+    max-height: 550px;
+    /* Ajusta la altura máxima según tus necesidades */
+}
+
 #sidebar {
     height: 0;
     transition: height 0.5s ease-in-out;
@@ -10,32 +17,34 @@
     height: 100%;
 }
 
-
-
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-left: 25px;
-    background-color: rgba(0, 0, 0, 0.7); /* Color negro con transparencia */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Color negro con transparencia */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 80px; /* Aumentar la altura del header */
+    height: 80px;
+    /* Aumentar la altura del header */
     z-index: 1000;
 }
 
 .logo {
     padding-left: 15px;
     cursor: pointer;
-    height: 60px; /* Ajustar el tamaño del logo según la nueva altura del header */
+    height: 60px;
+    /* Ajustar el tamaño del logo según la nueva altura del header */
 }
 
 .logo1 {
     padding-left: 50px;
     cursor: pointer;
-    height: 80px; /* Ajustar el tamaño del logo según la nueva altura del header */
+    height: 80px;
+    /* Ajustar el tamaño del logo según la nueva altura del header */
 }
 
 nav {
@@ -59,19 +68,46 @@ nav ul li a {
     text-decoration: none;
     font-weight: bold;
     position: relative;
-    padding: 5px 0; /* Ajustar el relleno para el espaciado */
+    padding: 5px 0;
+    /* Ajustar el relleno para el espaciado */
 }
 
 nav ul li a.active::after {
     content: '';
     display: block;
-    width: 20px; /* Ajustar el ancho para una subraya más corta */
+    width: 20px;
+    /* Ajustar el ancho para una subraya más corta */
     height: 2px;
     background-color: red;
     position: absolute;
     bottom: -5px;
-    left: 50%; /* Centrar la subraya */
+    left: 50%;
+    /* Centrar la subraya */
     transform: translateX(-50%);
+}
+
+.logout-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #00aaff;
+    margin-top: 10%;
+    margin-left: 10%;
+    padding: 18px 22%;
+    /*Ajustarelrellenoparaelespaciado*/
+    border-radius: 6px;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.3s;
+    flex-shrink: 0;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+}
+
+.logout-link:hover {
+    background-color: #007acc;
+    transform: translateY(-2px);
 }
 
 .profile-link {
@@ -79,7 +115,8 @@ nav ul li a.active::after {
     text-decoration: none;
     font-weight: bold;
     background-color: #00aaff;
-    padding: 25px 30px; /* Ajustar el relleno para el espaciado */
+    padding: 25px 30px;
+    /* Ajustar el relleno para el espaciado */
     border-radius: 5px;
     font-size: 14px;
     transition: background-color 0.3s, transform 0.3s;
@@ -91,36 +128,48 @@ nav ul li a.active::after {
     transform: translateY(-2px);
 }
 
+
 /* Estilos para el sidebar */
+
 .dlabnav {
     position: fixed;
-    top: 80px; /* Debajo del header */
+    top: 80px;
+    /* Debajo del header */
     left: 0;
     width: 280px;
-    height: 0; /* Inicia cerrado */
+    height: 0;
+    /* Inicia cerrado */
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.7); /* Color negro con transparencia */
-    z-index: 900; /* Asegúrate de que el z-index sea menor que el del header */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Color negro con transparencia */
+    z-index: 900;
+    /* Asegúrate de que el z-index sea menor que el del header */
     transition: height 0.3s ease;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .dlabnav.open {
-    height: calc(100% - 80px); /* Abierto completamente */
+    height: calc(100% - 80px);
+    /* Abierto completamente */
 }
 
 .dlabnav-scroll {
     height: 100%;
     overflow-y: auto;
-    -ms-overflow-style: none;  /* IE y Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE y Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .dlabnav-scroll::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari y Opera */
+    display: none;
+    /* Chrome, Safari y Opera */
 }
 
+
 /* Estilos para el menú */
+
 #menu {
     list-style: none;
     padding: 0px 0;
@@ -140,7 +189,8 @@ nav ul li a.active::after {
     font-size: 16px;
     font-weight: 500;
     padding: 10px 5px;
-    border-radius: 8px; /* Bordes redondeados */
+    border-radius: 8px;
+    /* Bordes redondeados */
 }
 
 #menu li a .nav-text {
@@ -148,44 +198,52 @@ nav ul li a.active::after {
 }
 
 #menu li a i {
-    font-size: 20px; /* Tamaño de los iconos */
+    font-size: 20px;
+    /* Tamaño de los iconos */
     margin-right: 10px;
-    color: #00aaff; /* Color de los iconos */
+    color: #00aaff;
+    /* Color de los iconos */
 }
 
 #menu li a:hover {
-    background-color: rgba(52, 73, 94, 0.8); /* Fondo más oscuro al pasar el ratón */
-    transform: translateX(5px); /* Desplazamiento a la derecha al pasar el ratón */
+    background-color: rgba(52, 73, 94, 0.8);
+    /* Fondo más oscuro al pasar el ratón */
+    transform: translateX(5px);
+    /* Desplazamiento a la derecha al pasar el ratón */
 }
 
-#menu li.active > a {
+#menu li.active>a {
     background-color: #2980b9;
-    font-weight: bold; /* Texto en negrita para el elemento activo */
+    font-weight: bold;
+    /* Texto en negrita para el elemento activo */
     border-radius: 8px;
 }
 
-#menu .dropdown > ul {
+#menu .dropdown>ul {
     display: none;
     padding-left: 20px;
 }
 
-#menu .dropdown.open > ul {
+#menu .dropdown.open>ul {
     display: block;
 }
 
-.margenform{
+.margenform {
     padding-top: 90px;
 }
 
 
 /* Estilos generales */
-header{
+
+header {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 /* Estilos para la sección de características */
+
 .features {
     display: flex;
     flex-wrap: wrap;
@@ -234,9 +292,6 @@ header{
     font-size: 14px;
 }
 
-
-
-
 .footer-logo {
     display: block;
     margin: 20px auto;
@@ -246,6 +301,7 @@ header{
 
 
 /* Estilos para la tabla */
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -258,7 +314,8 @@ table {
     overflow: hidden;
 }
 
-table th, table td {
+table th,
+table td {
     padding: 12px 15px;
     border-bottom: 1px solid #ddd;
 }
@@ -284,7 +341,9 @@ table tbody tr:nth-of-type(even) {
     background-color: #f9f9f9;
 }
 
+
 /* Estilos para la búsqueda */
+
 input[type="search"] {
     width: 100%;
     padding: 12px 20px;
@@ -301,8 +360,12 @@ input[type="search"]:focus {
     outline: none;
 }
 
+
 /* Estilos para los campos de formulario */
-select, input[type="text"], button {
+
+select,
+input[type="text"],
+button {
     padding: 10px;
     margin: 0px 0;
     border-radius: 5px;
@@ -311,7 +374,8 @@ select, input[type="text"], button {
     transition: border-color 0.3s, background-color 0.3s;
 }
 
-select:focus, input[type="text"]:focus {
+select:focus,
+input[type="text"]:focus {
     border-color: #00aaff;
     outline: none;
 }
@@ -328,4 +392,3 @@ button:hover {
     background-color: #007acc;
     transform: translateY(-2px);
 }
-
