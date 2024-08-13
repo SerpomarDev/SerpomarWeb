@@ -185,33 +185,124 @@
                 <div class="container-fluid main-container">
                     <form id="createPlaca" method="post" enctype="multipart/form-data" class="form">
                         <p class="message">Complete los campos para crear una nueva placa.</p>
-                        <div class="flex">
-                            <label>
-                                <input type="text" class="input" id="placa" name="placa" required>
-                                <span>Placa</span>
-                            </label>
-                            <label>
-                                <input type="text" class="input" id="eje" name="eje" required>
-                                <span>Eje</span>
-                            </label>
-                            <label>
-                                <input type="text" class="input" id="tipologia" name="tipologia" required>
-                                <span>Tipología</span>
-                            </label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                    <input type="text" class="input" id="placa" name="placa" required>
+                                    <span>Placa</span>
+                                </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="eje" name="eje" required>
+                                        <span>Eje</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="tipologia" name="tipologia" required>
+                                        <span>Tipología</span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex">
-                            <label class="full-width">
-                                <select id="id_aliado" name="id_aliado" class="input" required>
-                                    <option value="">Seleccione una Opción</option>
-                                </select>
-                                <span>Propietario</span>
-                            </label>
-                        </div><br>
-                        <div class="flex">
-                            <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
-                            <button class="btn btn-primary" id="BtnSavePlaca">Enviar</button>
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="full-width">
+                                    <select id="id_aliado" name="id_aliado" class="input" required>
+                                        <option value="">Seleccione una Opción</option>
+                                    </select>
+                                    <span>Propietario</span>
+                                </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="Soat" name="Soat" required>
+                                        <span>Soat</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="fecha_vencimientos" name="fecha_vencimientos" required>
+                                        <span>fecha de vencimiento</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="numero_poliza" name="numero_poliza" required>
+                                        <span>numero de poliza</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="tecnomecanica" name="tecnomecanica" required>
+                                        <span>Tecnicomecanica</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="fecha_vencimientot" name="fecha_vencimientot" required>
+                                        <span>fecha de vencimiento</span>
+                                    </label>
+                                </div>
+                            </div>
 
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="numero_tecnomicanica" name="numero_tecnomicanica" required>
+                                        <span>Numero tecnicomecanica</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <button class="btn btn-primary" id="BtnSavePlaca">Enviar</button>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </form>
                 </div>
                 <div class="container">
