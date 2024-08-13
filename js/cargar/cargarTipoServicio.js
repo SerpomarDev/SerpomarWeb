@@ -1,7 +1,12 @@
 document.addEventListener('DOMContentLoaded',function(){
     let selectTipoServicio = document.getElementById('id_tipo_operacion');
 
-    fetch('https://esenttiapp-production.up.railway.app/api/tiposervicios')
+    fetch('https://esenttiapp-production.up.railway.app/api/tiposervicios',{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then(Response => Response.json())
     .then(data=>{
         data.forEach(tipoServ => {

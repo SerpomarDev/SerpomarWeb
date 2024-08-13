@@ -7,7 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
     let inputTelefono = document.getElementById('telefono');
   
     // Carga inicial de los nombres de los conductores en el select
-    fetch('https://esenttiapp-production.up.railway.app/api/uploadconductor')
+      fetch('https://esenttiapp-production.up.railway.app/api/uploadconductor',{
+        method: 'GET',
+          headers: {
+              'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+          }
+      })
       .then(response => response.json())
       .then(data => {
         data.forEach(conductor => {

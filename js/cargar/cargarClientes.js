@@ -1,7 +1,12 @@
 document.addEventListener('DOMContentLoaded',function(){
     let selectCliente = document.getElementById('id_cliente');
 
-    fetch('https://esenttiapp-production.up.railway.app/api/uploadclientes')
+    fetch('https://esenttiapp-production.up.railway.app/api/uploadclientes',{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then(Response => Response.json())
     .then(data=>{
         data.forEach(aliado => {

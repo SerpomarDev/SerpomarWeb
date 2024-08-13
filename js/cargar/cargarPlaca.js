@@ -6,7 +6,12 @@ document.addEventListener('DOMContentLoaded', function(){
     let inputid_aliado = document.getElementById('id_aliado');
     let inputtelefono = document.getElementById('telefonoa');
   
-    fetch('https://esenttiapp-production.up.railway.app/api/loadplaca')
+    fetch('https://esenttiapp-production.up.railway.app/api/loadplaca',{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then(response => response.json())
     .then(data => {
         data.forEach(placa => {
