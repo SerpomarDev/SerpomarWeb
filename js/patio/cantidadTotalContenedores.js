@@ -1,4 +1,9 @@
-fetch('https://esenttiapp-production.up.railway.app/api/cantidadtotalcontenedor')
+fetch('https://esenttiapp-production.up.railway.app/api/cantidadtotalcontenedor',{
+  method: 'GET',
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+    }
+})
   .then(response => {
     if (!response.ok) {
       throw new Error('Error al obtener los datos de la API');
