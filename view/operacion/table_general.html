@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nodhus</title>
+
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet">
     <link href="/css/vehiculos.css" rel="stylesheet">
@@ -12,9 +12,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+ 
+
 </head>
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+</header>
+<div class="dlabnav">
+    <div id="layout">
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="profile-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 <body>
-    <div id="layout-placeholder"></div>
+
     <div id="main-wrapper">
         <div class="header">
             <div class="title-container">
@@ -22,7 +47,7 @@
                 <h1 class="title">TABLERO GENERAL DE OPERACIONES</h1>
             </div>
         </div>
-    
+
         <div class="margenform">
             <div class="container-fluid">
                 <!-- <div class="filter-container">
@@ -30,7 +55,7 @@
                     <button id="filterButton">Filtrar</button>
                 </div> -->
 
-              
+
 
                 <div class="col-xl-12">
                     <div class="card coin-card">
@@ -44,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-                 
+
                 <div class="semaforo-container">
                     <div class="semaforo-container export">
                         <div class="notification basic" onclick="openModal('export')">
@@ -59,11 +84,11 @@
                         </div>
                     </div>
                 </div>
-                
-            
-               
-                
-            
+
+
+
+
+
                 <!-- Modal -->
                 <div id="notificationModal" class="modal">
                     <div class="modal-content">
@@ -72,10 +97,10 @@
                         <div class="semaforo-container" id="modalBody"></div>
                     </div>
                 </div>
-            
+
 
                 <div class="col-xl-12 col-xxl-12">
-                    <div class="row">  
+                    <div class="row">
 
 
                         <div class="col-md-6">
@@ -95,7 +120,7 @@
                             </div>
                         </div>
 
-                        
+
 
                         <div class="col-md-6">
                             <div class="card progress-card">
@@ -113,7 +138,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
 
                         <div class="col-md-6">
                             <div class="card progress-card">
@@ -145,7 +170,7 @@
                         </div>
                     </div>
                 </div>
-           
+
                 <div class="card">
                     <div class="card-header d-flex flex-wrap border-0 pb-0">
                         <div class="me-auto mb-sm-0 mb-3">
@@ -162,6 +187,7 @@
             </div>
         </div>
     </div>
+    
 
 
     <!-- JavaScript Libraries -->
@@ -171,14 +197,26 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <!-- Custom JavaScript -->
-    <script src="/js/home/scripts.js"></script>
+
+
+
+  
+    <script src="/Componentes/sidebar.js"></script>
+    <script src="/js/login/logout.js"></script>
+  
+
+
+
+
+
     <script src="/js/custom.min.js"></script>
     <script src="/js/graficas/volumenes.js"></script>
     <script src="/js/graficas/estado_expo.js"></script>
     <script src="/js/graficas/estado_impo.js"></script>
     <script src="/js/graficas/clientes.js"></script>
     <script src="/js/graficas/vehiculos.js"></script>
-    <script src="/js/graficas/inventario_patio.js"></script> 
+    <script src="/js/graficas/inventario_patio.js"></script>
     <script src="/js/graficas/notificaciones.js"></script>
 </body>
+
 </html>

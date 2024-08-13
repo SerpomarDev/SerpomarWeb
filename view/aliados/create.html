@@ -13,12 +13,29 @@
     <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 </head>
 <body>
 
-    <div id="layout-placeholder"></div>
+    <div class="dlabnav">
+        <div id="layout">
+            
+            <div class="dlabnav" id="sidebar">
+                <div class="dlabnav-scroll sidebar-scroll">
+                    <ul class="metismenu" id="menu">
+                        <li id="roles-container"></li> <li id="menu-items-container"></li> 
+                        <nav>
+                            <a href="javascript:void(0)" id="logout-button" class="profile-link" aria-expanded="false">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="nav-text">Cerrar Sesión</span>
+                            </a>
+                        </nav>
+                    </ul>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="main-wrapper">
         <div class="header">
@@ -57,7 +74,7 @@
                     </form>
                 </div> 
                 <div class="container">
-                    <div id="aliado" class="ag-theme-alpine" style="height: 400px; width: 100%;"></div>
+                    <div id="aliado"></div>
                 </div>
             </div>
         </div>
@@ -69,6 +86,5 @@
         <script type="text/javascript" src="/js/aliado/createAliado.js"></script>
         <script type="text/javascript" src="/js/aliado/deleteAliado.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
     </body>
 </html>
