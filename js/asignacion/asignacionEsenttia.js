@@ -6,7 +6,10 @@ cargarValores(id)
 function cargarValores(id){
 
   fetch(`https://esenttiapp-production.up.railway.app/api/asignacioncontenedors/${id}`,{
-    
+    method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
   })
   .then((responde) => {
     if (!responde) {
@@ -95,6 +98,9 @@ function cargarValores(id){
       //height: '400px',
       server: {
           url: `https://esenttiapp-production.up.railway.app/api/uploadexpo/${id_contenedor}/${id_cliente}`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+          },
           then: (data) => {
               if (Array.isArray(data) && data.length > 0) {
                   return data.map((asigContEx) => [
@@ -123,6 +129,8 @@ function cargarValores(id){
         table: {with:"80%"}
       }
   }).render(document.getElementById('cargarExpoEs'));
+
+    localStorage.setItem("authToken", data.token);
   
   // Tabala Importacion
     new gridjs.Grid({
@@ -167,6 +175,9 @@ function cargarValores(id){
     fixedHeader: true,
     server: {
         url: `https://esenttiapp-production.up.railway.app/api/uploadimpo/${id_contenedor}/${id_cliente}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((asigContImp) => [
@@ -199,6 +210,7 @@ function cargarValores(id){
     }).render(document.getElementById('cargarImpoEs'));
   }
 
+  localStorage.setItem("authToken", data.token);
 
 document.getElementById("saveAsignacionEsentt").addEventListener("submit", function (event) {
   event.preventDefault();
@@ -210,7 +222,10 @@ document.getElementById("saveAsignacionEsentt").addEventListener("submit", funct
 
   fetch("https://esenttiapp-production.up.railway.app/api/saveasignacion", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+    },
     body: jsonData,
   })
     .then((response) => {

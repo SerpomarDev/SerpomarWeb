@@ -127,6 +127,9 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
         fixedHeader: true,
         server: {
             url: `https://esenttiapp-production.up.railway.app/api/uploadexpo/${id_contenedor}/${id_cliente}`,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            },
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((asigContEx) => [
@@ -158,6 +161,8 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
             }
         }
     }).render(document.getElementById('cargarExpo'));
+
+    localStorage.setItem("authToken", data.token);
 
     // Tabla Importacion
     new gridjs.Grid({
@@ -232,6 +237,9 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
         fixedHeader: true,
         server: {
             url: `https://esenttiapp-production.up.railway.app/api/uploadimpo/${id_contenedor}/${id_cliente}`,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            },
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((asigContImp) => [
@@ -265,6 +273,8 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
             }
         }
     }).render(document.getElementById('cargarImpo'));
+
+    localStorage.setItem("authToken", data.token);
 }
 
 function time() {
@@ -285,7 +295,12 @@ function cancelarAsignacion(id) {
 
 function contenedorByAsignacion(id){
 
-    fetch(`https://esenttiapp-production.up.railway.app/api/asignacioncontenedors/${id}`)
+    fetch(`https://esenttiapp-production.up.railway.app/api/asignacioncontenedors/${id}`,{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then((response) => {
         if (!response.ok) {
             throw new Error("Error al obtener los datos de la API");

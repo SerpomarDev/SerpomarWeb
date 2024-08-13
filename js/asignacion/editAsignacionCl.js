@@ -6,7 +6,12 @@ cargarValores(id)
 
 function cargarValores(id){
 
-fetch(`https://esenttiapp-production.up.railway.app/api/editasignacion/${id}`)
+fetch(`https://esenttiapp-production.up.railway.app/api/editasignacion/${id}`,{
+  method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+})
 .then((responde) => {
   if (!responde) {
     throw new Error("Error al obtener los datos de la API");
@@ -42,7 +47,10 @@ document.getElementById("editAsignacion").addEventListener("submit", function (e
     console.log(jsonData)
     fetch(`https://esenttiapp-production.up.railway.app/api/asignaciones/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+           "Content-Type": "application/json" ,
+           'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+          },
         body: jsonData,
     })
     .then((response) => {

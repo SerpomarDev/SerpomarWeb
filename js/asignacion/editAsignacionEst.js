@@ -6,15 +6,19 @@ cargarValores(id)
 
 function cargarValores(id){
 
-    fetch(`https://esenttiapp-production.up.railway.app/api/editasignacion/${id}`)
-
-.then((responde) => {
-  if (!responde) {
-    throw new Error("Error al obtener los datos de la API");
-  }
-  return responde.json();
-})
-.then((data) => {
+    fetch(`https://esenttiapp-production.up.railway.app/api/editasignacion/${id}`,{
+      method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
+    .then((responde) => {
+    if (!responde) {
+      throw new Error("Error al obtener los datos de la API");
+    }
+    return responde.json();
+  })
+  .then((data) => {
   if (data.length > 0) {
     const preventa = data[0];
     document.getElementById("id_asignacion").value = preventa.id_asignacion;
@@ -56,6 +60,9 @@ function cargarValores(id){
         //height: '400px',
         server: {
             url: "https://esenttiapp-production.up.railway.app/api/showasignacionest",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("authToken")}`
+          },
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((asignacion) => [
@@ -80,7 +87,9 @@ function cargarValores(id){
           table: {with:"80%"}
         }
     }).render(document.getElementById('esenttiaasigEd'));
-    }
+
+    localStorage.setItem("authToken", data.token);
+}
 
 
 document.getElementById("editAsignacionEsnt").addEventListener("submit", function (event) {
@@ -91,7 +100,10 @@ document.getElementById("editAsignacionEsnt").addEventListener("submit", functio
 
     fetch(`https://esenttiapp-production.up.railway.app/api/asignaciones/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+        },
         body: jsonData,
     })
         .then((response) => {

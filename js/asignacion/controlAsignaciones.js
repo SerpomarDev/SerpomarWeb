@@ -45,7 +45,11 @@ function updateTotalAbiertas(data) {
     }
 ];
 
-fetch("https://esenttiapp-production.up.railway.app/api/controlasignaciones")
+    fetch("https://esenttiapp-production.up.railway.app/api/controlasignaciones",{
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+      }
+    })
     .then(response => response.json())
     .then(data => {
       const processedData = data.map(asigControl => {
