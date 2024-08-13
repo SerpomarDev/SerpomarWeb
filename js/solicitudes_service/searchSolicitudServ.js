@@ -73,6 +73,9 @@ new gridjs.Grid({
     // sort: true,
     server: {
         url: "https://esenttiapp-production.up.railway.app/api/showsolicitudserv",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((soliserv) => [
@@ -93,6 +96,8 @@ new gridjs.Grid({
         }
     }
 }).render(document.getElementById('ordenService'));
+
+localStorage.setItem("authToken", data.token);
 
 function showOrdenService(id){
     window.location.href = `/view/contenedor/create.html?id=${id}`

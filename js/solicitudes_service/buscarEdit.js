@@ -61,6 +61,9 @@ let id = urlParams.get("id");
             
         server: {
             url: "https://esenttiapp-production.up.railway.app/api/showeditsolicitud",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            },
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((solic) => [
@@ -84,6 +87,7 @@ let id = urlParams.get("id");
         }
     }).render(document.getElementById('editSoli'));
 
+    localStorage.setItem("authToken", data.token);
 
     function editSoliServi(id){
          window.location.href = `/view/solicitudes_servicios/edit.html?id=${id}`
