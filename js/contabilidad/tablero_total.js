@@ -1,6 +1,10 @@
 
-       const apiUrl = 'https://esenttiapp-production.up.railway.app/api/asignacionespendienteordencompra';
-
+       const apiUrl = fetch('https://esenttiapp-production.up.railway.app/api/asignacionespendienteordencompra',{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+       })
 
        async function fetchData() {
            try {

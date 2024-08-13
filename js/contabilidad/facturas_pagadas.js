@@ -23,6 +23,9 @@ new gridjs.Grid({
     fixedHeader: true,
     server: {
         url: `https://esenttiapp-production.up.railway.app/api/asignacionespagadas`,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map(asigControl => [
@@ -50,3 +53,5 @@ new gridjs.Grid({
         table: { width: "100%" }
     }
 }).render(document.getElementById('facturasPagadas'));
+
+localStorage.setItem("authToken", data.token);

@@ -69,6 +69,9 @@ new gridjs.Grid({
     fixedHeader: true,
     server: {
         url: `https://esenttiapp-production.up.railway.app/api/asignacionespendienteordencompra`,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map(asigControl => [
@@ -98,7 +101,7 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('costoAfiliado'));
 
-
+localStorage.setItem("authToken", data.token);
 
 function actualizarFactura() {
   // Obtener los IDs seleccionados y sus números de factura
@@ -136,6 +139,7 @@ function actualizarFactura() {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("authToken")}`
       },
       body: JSON.stringify(payload)
   })

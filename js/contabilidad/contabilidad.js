@@ -58,6 +58,9 @@ $(document).ready(function() {
       ],
       server: {
           url: `https://esenttiapp-production.up.railway.app/api/showliquidacion`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
           then: (data) => {
               if (Array.isArray(data) && data.length > 0) {
                   actualizarContadores(data);
@@ -75,11 +78,14 @@ $(document).ready(function() {
       }
   }).render(document.getElementById('contabilidad'));
 
+  localStorage.setItem("authToken", data.token);
+
   function numeroFactura(id, factura) {
       fetch(`https://esenttiapp-production.up.railway.app/api/ActualizarNfactura/${factura}/${id}`, {
           method: 'PUT',
           headers: {
               'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem("authToken")}`
           },
           body: JSON.stringify({
               id: id,

@@ -64,6 +64,9 @@ new gridjs.Grid({
     }],
     server: {
         url: "https://esenttiapp-production.up.railway.app/api/uploadconductor",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((conductor) => [
@@ -80,6 +83,7 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('conductores'));
 
+localStorage.setItem("authToken", data.token);
 
 document.getElementById('createConductor').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -90,7 +94,10 @@ document.getElementById('createConductor').addEventListener('submit', function(e
 
     fetch('https://esenttiapp-production.up.railway.app/api/conductores', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+             },
             body: jsonData
         })
         .then(response => {

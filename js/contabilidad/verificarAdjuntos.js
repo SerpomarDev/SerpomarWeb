@@ -10,9 +10,10 @@ function verificarAdjuntos(id) {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`https://esenttiapp-production.up.railway.app/api/verificaradjuntos/${id}`, {
-          method: 'put',
+          method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
           },
         })
           .then(response => {
