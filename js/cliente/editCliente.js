@@ -2,7 +2,12 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-fetch(`https://esenttiapp-production.up.railway.app/api/uploadclientesid/${id}`)
+    fetch(`https://esenttiapp-production.up.railway.app/api/uploadclientesid/${id}`,{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then((response) => {
       if (!response.ok) {
           throw new Error("Error al obtener los datos de la API");
@@ -42,6 +47,9 @@ fetch(`https://esenttiapp-production.up.railway.app/api/uploadclientesid/${id}`)
         columns: ["#","Nombre", "Nit","Dirección","Ciudad"],
         server: {
             url: "https://esenttiapp-production.up.railway.app/api/showclientes",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            },
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((cliente) => [
@@ -60,6 +68,8 @@ fetch(`https://esenttiapp-production.up.railway.app/api/uploadclientesid/${id}`)
         }
     }).render(document.getElementById('clienteEdit'));
 
+    localStorage.setItem("authToken", data.token);
+
     document.getElementById("editCliente").addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -68,7 +78,10 @@ fetch(`https://esenttiapp-production.up.railway.app/api/uploadclientesid/${id}`)
 
         fetch(`https://esenttiapp-production.up.railway.app/api/clientes/${id}`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                 "Content-Type": "application/json",
+                 'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                 },
             body: jsonData,
         })
             .then((response) => {

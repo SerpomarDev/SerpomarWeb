@@ -84,6 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }],
         server: {
             url: "https://esenttiapp-production.up.railway.app/api/showclientes",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            },
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((cliente) => [
@@ -100,6 +103,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }).render(document.getElementById('cliente'));
+
+    localStorage.setItem("authToken", data.token);
 });
 
 document.getElementById('createCliente').addEventListener('submit', function(event) {
@@ -111,7 +116,10 @@ document.getElementById('createCliente').addEventListener('submit', function(eve
 
     fetch('https://esenttiapp-production.up.railway.app/api/clientes', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            },
             body: jsonData
         })
         .then(response => {
