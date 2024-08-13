@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,9 +14,33 @@
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 </head>
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+
+</header>
+<div class="dlabnav">
+    <div id="layout">
+
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <body>
-    <div id="layout-placeholder"></div>
-    <div id="sidebar-container"></div>
+
 
 
     <div id="main-wrapper">
@@ -25,29 +50,29 @@
                 <div class="circle"></div>
                 <h1 class="title">ACTUALIZAR PREVENTA</h1>
             </div>
-        </div>                
+        </div>
 
 
 
 
         <div class="margenform">
-        <div id="content" class="p-4 p-md-5 pt-5">
-            <div class="container">
-              
+            <div id="content" class="p-4 p-md-5 pt-5">
+                <div class="container">
+
 
                     <form id="PreventaEdit" method="PUT" enctype="multipart/form-data">
                         <input type="hidden" name="" id="id">
                         <input type="hidden" name="id_aliado" id="id_aliado" disabled />
-            
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="">Placa</label>
-                                    <input type="text" name="id_placa" id="id_placa"> 
+                                    <input type="text" name="id_placa" id="id_placa">
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -55,7 +80,7 @@
                                     <input type="text" class="form-control" id="eje" readonly>
                                 </div>
                             </div>
-            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Tipologia</label>
@@ -63,22 +88,22 @@
                                 </div>
                             </div>
                         </div>
-            
-                        <div class="row"> 
+
+                        <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-label" for="">Conductor</label>
-                                    <input type="text" name="id_conductor" id="id_conductor" >
+                                    <input type="text" name="id_conductor" id="id_conductor">
                                 </div>
                             </div>
-            
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-label">Cédula</label>
                                     <input type="text" id="identificacion" class="form-control" readonly="readonly" />
                                 </div>
                             </div>
-            
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-label">Celular</label>
@@ -87,7 +112,7 @@
                             </div>
                         </div>
                         <div class="row">
-            
+
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="" class="form-label">Estado en Puerto</label>
@@ -99,7 +124,7 @@
                                     </select>
                                 </div>
                             </div>
-            
+
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="form-label" for="">Proyectos:</label>
@@ -110,7 +135,7 @@
                                     </select>
                                 </div>
                             </div>
-            
+
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="form-label" for="">Esenttia:</label>
@@ -121,7 +146,7 @@
                                     </select>
                                 </div>
                             </div>
-            
+
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="" class="form-label">Cabot</label>
@@ -133,9 +158,9 @@
                                 </div>
                             </div>
                         </div>
-            
+
                         <div class="row">
-            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">Estado</label>
@@ -148,7 +173,7 @@
                                     </select>
                                 </div>
                             </div>
-            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">Flota</label>
@@ -161,7 +186,7 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <br>
                         <div class="row">
@@ -171,37 +196,38 @@
                             </div>
                         </div>
                     </form>
-	    </div> 
-    
+                </div>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/componentes/loadSidebar.js"></script>
-    <script src="/componentes/loadPreloader.js"></script>
-    <script src="/componentes/loadNavHeader.js"></script>
-    <!-- Required vendors -->
-    <script src="/vendor/global/global.min.js"></script>
-	<script src="/vendor/chart.js/Chart.bundle.min.js"></script>
-	<script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="/Componentes/sidebar.js"></script>
+                <script src="/js/login/logout.js"></script>
 
-	<!-- Apex Chart -->
-	<script src="/vendor/apexchart/apexchart.js"></script>
-	<script src="/vendor/nouislider/nouislider.min.js"></script>
-	<script src="/vendor/wnumb/wNumb.js"></script>
-	
-	<!-- Dashboard 1 -->
-	<script src="/js/dashboard/dashboard-1.js"></script>
+                <!-- Required vendors -->
+                <script src="/vendor/global/global.min.js"></script>
+                <script src="/vendor/chart.js/Chart.bundle.min.js"></script>
+                <script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 
-    <script src="/js/custom.min.js"></script>
-	<script src="/js/dlabnav-init.js"></script>
-	<script src="/js/demo.js"></script>
-    
-    <script type="text/javascript" src="/js/preventa/edit.js"></script>
-    <script type="text/javascript" src="/js/cargar/editpCargarPlaca.js"></script>
-    <script type="text/javascript" src="/js/cargar/editPCargarConductores.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+                <!-- Apex Chart -->
+                <script src="/vendor/apexchart/apexchart.js"></script>
+                <script src="/vendor/nouislider/nouislider.min.js"></script>
+                <script src="/vendor/wnumb/wNumb.js"></script>
+
+                <!-- Dashboard 1 -->
+                <script src="/js/dashboard/dashboard-1.js"></script>
+
+                <script src="/js/custom.min.js"></script>
+                <script src="/js/dlabnav-init.js"></script>
+                <script src="/js/demo.js"></script>
+
+                <script type="text/javascript" src="/js/preventa/edit.js"></script>
+                <script type="text/javascript" src="/js/cargar/editpCargarPlaca.js"></script>
+                <script type="text/javascript" src="/js/cargar/editPCargarConductores.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

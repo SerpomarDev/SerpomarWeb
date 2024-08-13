@@ -15,20 +15,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
     <style>
-          .form-status-container {
+        .form-status-container {
             display: flex;
             justify-content: space-between;
         }
+        
         .form-container {
             flex: 4;
             margin-right: 20px;
         }
+        
         .cardsp {
             padding: 25px;
             background: #fff;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
         }
+        
         .modal {
             display: none;
             position: fixed;
@@ -41,7 +44,7 @@
             background-color: rgba(0, 0, 0, 0.6);
             padding-top: 60px;
         }
-
+        
         .modal-content {
             background-color: #fff;
             margin: 5% auto;
@@ -52,75 +55,75 @@
             width: 60%;
             max-width: 800px;
         }
-
+        
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
-
+        
         .close:hover,
         .close:focus {
             color: black;
             text-decoration: none;
             cursor: pointer;
         }
-
+        
         .title-container {
             text-align: center;
         }
-
+        
         .title-container .title {
             font-size: 24px;
             font-weight: bold;
         }
-
+        
         .modal-details {
             display: flex;
             flex-wrap: wrap;
         }
+        
         .modal-details div {
             flex: 1 1 50%;
             padding: 10px;
             box-sizing: border-box;
         }
-
-    
+        
         .dropzone {
             border: 2px dashed #007bff;
             border-radius: 5px;
             background: #f9f9f9;
         }
-
+        
         .dz-message {
             color: #999;
             font-size: 18px;
             text-align: center;
             padding: 50px 0;
         }
-
+        
         #uploadedFilesContainer {
             margin-top: 20px;
         }
-
+        
         #uploadedFilesContainer h2 {
             font-size: 20px;
             margin-bottom: 10px;
         }
-
+        
         #uploadedFilesList {
             list-style: none;
             padding: 0;
         }
-
+        
         #uploadedFilesList li {
             background: #f1f1f1;
             margin: 5px 0;
             padding: 10px;
             border-radius: 5px;
         }
-
+        
         .upload-btn.file-uploaded {
             background-color: #007bff;
             color: white;
@@ -128,9 +131,33 @@
         }
     </style>
 </head>
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+
+</header>
+<div class="dlabnav">
+    <div id="layout">
+
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <body>
-    <div id="layout-placeholder"></div>
+
 
     <div class="header">
         <div class="header-content">
@@ -327,13 +354,14 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="container">
                     <div id="contenedor"></div>
                 </div>
 
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                <script src="/js/home/scripts.js"></script>
+                <script src="/Componentes/sidebar.js"></script>
+                <script src="/js/login/logout.js"></script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                 <script src="/js/custom.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
@@ -346,6 +374,7 @@
                 <script type="module" src="/js/contenedor/uploadContenedores.js"></script>
                 <script type="module" src="/js/contenedor/detaller_contenedor.js"></script>
                 <script type="module" src="/js/report/contenedoresSpExcelReport.js"></script>
-              
+
 </body>
+
 </html>

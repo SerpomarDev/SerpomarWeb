@@ -6,25 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SerpomarWeb</title>
-    
+
     <link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
     <link href="/css/style-Dash.css" rel="stylesheet">
     <link href="/css/pages.css" rel="stylesheet" />
-    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet"/>
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 </head>
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+
+</header>
+<div class="dlabnav">
+    <div id="layout">
+
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <body>
-
-    <!-- Contenedor para el preloader -->
-    <div id="preloader-container"></div>
-    <!-- Contenedor para el preloader -->
-
-
-    <!-- Contenedor para el nav-header -->
-    <div id="navheader-container"></div>
-    <!-- Contenedor para el nav-header -->
 
 
     <div id="main-wrapper">
@@ -57,7 +72,7 @@
         <div class="content-body">
             <div id="content" class="p-4 p-md-5 pt-5">
                 <div class="container">
-                    <form  id="editOrdenServicio" method="PUT" enctype="multipart/form-data">
+                    <form id="editOrdenServicio" method="PUT" enctype="multipart/form-data">
                         <input type="hidden" id="id_contenedor" name="id_contenedor">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -66,54 +81,54 @@
                             </div>
                         </div>
                         <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Fecha cargue</label>
-                                        <input type="date" name="fecha_cargue" id="fecha_cargue" class="form-control">
-                                    </div>  
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Fecha cargue</label>
+                                    <input type="date" name="fecha_cargue" id="fecha_cargue" class="form-control">
                                 </div>
-                
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Hora cargue</label>
-                                        <input type="time" id="hora_cargue" name="hora_cargue" class="form-control">
-                                    </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Hora cargue</label>
+                                    <input type="time" id="hora_cargue" name="hora_cargue" class="form-control">
                                 </div>
-                
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Fecha descargue</label>
-                                        <input type="date" name="fecha_descargue" id="fecha_descargue" class="form-control">
-                                    </div>  
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Fecha descargue</label>
+                                    <input type="date" name="fecha_descargue" id="fecha_descargue" class="form-control">
                                 </div>
+                            </div>
                         </div>
                         <div class="row">
-            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">Hora descargue</label>
                                     <input type="time" id="hora_descargue" name="hora_descargue" class="form-control">
                                 </div>
                             </div>
-            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">Fecha devolucion</label>
                                     <input type="date" name="fecha_devolucion" id="fecha_devolucion" class="form-control">
-                                </div>  
+                                </div>
                             </div>
-        
+
                         </div>
-            
+
                         <div class="row">
-        
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">Fecha inspeccion</label>
                                     <input type="date" id="fecha_inspeccion" name="fecha_inspeccion" class="form-control">
                                 </div>
                             </div>
-        
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">Naviera</label>
@@ -127,40 +142,41 @@
                         <div class="row">
                             <div class="col-12 d-flex justify-content-between">
                                 <button type="button" class="btn btn-primary" onclick="history.back()">Volver</button>
-                                <button type="submit"  class="btn btn-primary" id="BtnEditOrdenServ">Guardar</button>
+                                <button type="submit" class="btn btn-primary" id="BtnEditOrdenServ">Guardar</button>
                             </div>
                         </div>
                     </form>
                 </div>
-        
+
                 <div class="container">
                     <div id="ordenSevEdt"></div>
                 </div>
-    </div>
+            </div>
 
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="/componentes/loadSidebar.js"></script>
-        <script src="/componentes/loadPreloader.js"></script>
-        <script src="/componentes/loadNavHeader.js"></script>
-  
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="/Componentes/sidebar.js"></script>
+            <script src="/js/login/logout.js"></script>
 
-    <script src="/vendor/global/global.min.js"></script>
-    <script src="/vendor/chart.js/Chart.bundle.min.js"></script>
-    <script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/vendor/apexchart/apexchart.js"></script>
-    <script src="/vendor/nouislider/nouislider.min.js"></script>
-    <script src="/vendor/wnumb/wNumb.js"></script>
-    <script src="/js/dashboard/dashboard-1.js"></script>
-    <script src="/js/custom.min.js"></script>
-    <script src="/js/dlabnav-init.js"></script>
-    <script src="/js/demo.js"></script>
-    <script src="/js/styleSwitcher.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-    <script type="text/javascript" src="/js/orden_servicio/edit.js"></script>
-    <script type="text/javascript" src="/js/cargar/cargarNaviera.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+            <script src="/vendor/global/global.min.js"></script>
+            <script src="/vendor/chart.js/Chart.bundle.min.js"></script>
+            <script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="/vendor/apexchart/apexchart.js"></script>
+            <script src="/vendor/nouislider/nouislider.min.js"></script>
+            <script src="/vendor/wnumb/wNumb.js"></script>
+            <script src="/js/dashboard/dashboard-1.js"></script>
+            <script src="/js/custom.min.js"></script>
+            <script src="/js/dlabnav-init.js"></script>
+            <script src="/js/demo.js"></script>
+            <script src="/js/styleSwitcher.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+            <script type="text/javascript" src="/js/orden_servicio/edit.js"></script>
+            <script type="text/javascript" src="/js/cargar/cargarNaviera.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

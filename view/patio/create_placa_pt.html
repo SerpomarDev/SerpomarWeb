@@ -4,9 +4,9 @@
 <head>
 
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=0.2">
-	<!-- PAGE TITLE HERE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.2">
+    <!-- PAGE TITLE HERE -->
     <title>Nodhus</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet" />
@@ -15,12 +15,36 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 </head>
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+
+</header>
+<div class="dlabnav">
+    <div id="layout">
+
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <body>
 
-    <div id="layout-placeholder"></div>
 
     <div id="main-wrapper">
-   
+
         <div class="header">
             <div class="title-container">
                 <div class="circle"></div>
@@ -28,7 +52,7 @@
             </div>
         </div>
 
-    
+
         <div class="margenform">
             <div id="content" class="p-4 p-md-0 pt-5">
                 <div class="container-fluid main-container">
@@ -61,19 +85,22 @@
                             <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
                         </div>
                     </form>
-                </div> 
+                </div>
                 <div class="container">
                     <div id="Placa"></div>
                 </div>
             </div>
         </div>
-        <script src="/componentes/loadSidebar.js"></script>
-        <script src="/js/home/scripts.js"></script>    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/Componentes/sidebar.js"></script>
+        <script src="/js/login/logout.js"></script>
+
         <script src="/js/custom.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
         <script type="text/javascript" src="/js/placa/createPlaca.js"></script>
         <script type="text/javascript" src="/js/cargar/cargarAliados.js"></script>
         <script type="text/javascript" src="/js/placa/deletePlaca.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    </body>
+</body>
+
 </html>

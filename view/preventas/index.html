@@ -13,9 +13,32 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 </head>
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+
+</header>
+<div class="dlabnav">
+    <div id="layout">
+
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <body>
-    <div id="layout-placeholder"></div>
 
     <div class="header">
         <div class="title-container">
@@ -24,38 +47,40 @@
         </div>
     </div><br><br>
 
-        <div class="container-fluid main-container">
-            <div id="content" class="p-4 p-md-5 pt-5">
-                <div class="container">
-                    <div class="row">
-                        <div id="pro1" class="col-md-6 canvas-container">
-                            <h3 class="chart-title">Estado de la Flota</h3>
-                            <div id="estados"></div>
-                        </div>
-                        <div id="pro" class="col-md-6 canvas-container">
-                            <h3 class="chart-title">Cantidad por Proyecto</h3>
-                            <div id="proyectos"></div>
-                        </div>
+    <div class="container-fluid main-container">
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <div class="container">
+                <div class="row">
+                    <div id="pro1" class="col-md-6 canvas-container">
+                        <h3 class="chart-title">Estado de la Flota</h3>
+                        <div id="estados"></div>
                     </div>
-                    
-                    <div class="row">
-                        <div class="col-lg-12 margin-tb">
-                            <div class="pull-right mb-2">
-                                <a class="btn btn-success btn-crear" href="/view/preventas/create.html">Crear</a>
-                            </div>
-                        </div>
-                        
+                    <div id="pro" class="col-md-6 canvas-container">
+                        <h3 class="chart-title">Cantidad por Proyecto</h3>
+                        <div id="proyectos"></div>
                     </div>
                 </div>
-                <div class="container-a">
-                    <div class="table" id="preventas"></div>
+
+                <div class="row">
+                    <div class="col-lg-12 margin-tb">
+                        <div class="pull-right mb-2">
+                            <a class="btn btn-success btn-crear" href="/view/preventas/create.html">Crear</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+            <div class="container-a">
+                <div class="table" id="preventas"></div>
+            </div>
         </div>
-  
-        <script src="/componentes/loadSidebar.js"></script>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/Componentes/sidebar.js"></script>
+    <script src="/js/login/logout.js"></script>
+
     <script src="/vendor/apexchart/apexchart.js"></script>
-    <script src="/js/home/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
     <script type="text/javascript" src="/js/preventa/index.js"></script>
     <script type="text/javascript" src="/js/preventa/delete.js"></script>

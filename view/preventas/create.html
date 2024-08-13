@@ -12,9 +12,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
 </head>
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+
+</header>
+<div class="dlabnav">
+    <div id="layout">
+
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <body>
-    <div id="layout-placeholder"></div>
+
 
     <div id="main-wrapper">
         <div class="header">
@@ -27,180 +51,182 @@
 
         <div class="margenform">
             <div id="content" class="p-4 p-md-5 pt-5">
-            <div class="container">
-                <form id="PreventaCreate" method="POST" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="form-label" for="">Placa</label>
-                                <select name="id_placa" id="id_placa" class="form-control" required>
+                <div class="container">
+                    <form id="PreventaCreate" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="">Placa</label>
+                                    <select name="id_placa" id="id_placa" class="form-control" required>
                                     <option value="">Seleccione Placa</option>
                                 </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
-        
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label" for="">Ejes</label>
-                                <input type="text" class="form-control" id="eje" readonly>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="">Ejes</label>
+                                    <input type="text" class="form-control" id="eje" readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="">Tipologia</label>
+                                    <input type="text" id="tipologia" class="form-control" readonly>
+                                </div>
                             </div>
                         </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label" for="">Tipologia</label>
-                                <input type="text" id="tipologia" class="form-control" readonly>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="">Aliado</label>
+                                    <input type="text" class="form-control" id="id_aliado" readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Telefono</label>
+                                    <input type="text" class="form-control" id="telefonoa" readonly>
+                                </div>
                             </div>
                         </div>
-                    </div>
-        
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label" for="">Aliado</label>
-                                <input type="text" class="form-control" id="id_aliado" readonly>
-                            </div>
-                        </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Telefono</label>
-                                <input type="text" class="form-control" id="telefonoa" readonly>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="row"> 
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="form-label" for="">Conductor</label>
-                                <select name="id_conductor" id="id_conductor" class="form-control" required>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label" for="">Conductor</label>
+                                    <select name="id_conductor" id="id_conductor" class="form-control" required>
                                     <option value="">Seleccione Conductor</option>
                                 </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label" for="">Cédula</label>
+                                    <input type="text" id="identificacion" class="form-control" readonly="readonly" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label" for="">Celular</label>
+                                    <input type="text" id="telefono" class="form-control" readonly="readonly" />
+                                </div>
                             </div>
                         </div>
-        
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="form-label" for="">Cédula</label>
-                                <input type="text" id="identificacion" class="form-control" readonly="readonly" />
-                            </div>
-                        </div>
-        
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="form-label" for="">Celular</label>
-                                <input type="text" id="telefono" class="form-control" readonly="readonly" />
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="row">
-        
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="" class="form-label">Estado en Puerto</label>
-                                <select id="estado_puerto" name="estado_puerto" class="form-control" required>
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Estado en Puerto</label>
+                                    <select id="estado_puerto" name="estado_puerto" class="form-control" required>
                                     <option value="">Seleccione estado</option>
                                     <option value="BLOQUEADO">BLOQUEADO</option>
                                     <option value="INGRESO A PUERTO">INGRESO A PUERTO</option>
                                     <option value="SOLO VACIO">SOLO VACIO</option>
                                 </select>
+                                </div>
                             </div>
-                        </div>
-        
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label class="form-label" for="">Proyectos:</label>
-                                <select name="proyecto" id="proyecto" class="form-control" required>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label" for="">Proyectos:</label>
+                                    <select name="proyecto" id="proyecto" class="form-control" required>
                                     <option value="">Seleccione cliente</option>
                                     <option value="ESENTTIA SA">ESENTTIA S A</option>
                                     <option value="CLIENTES VARIOS">CLIENTES VARIOS</option>
                                 </select>
+                                </div>
                             </div>
-                        </div>
-        
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label class="form-label" for="">Esenttia:</label>
-                                <select name="esenttia" id="esenttia" class="form-control" required>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label" for="">Esenttia:</label>
+                                    <select name="esenttia" id="esenttia" class="form-control" required>
                                     <option value="">Seleccione</option>
                                     <option value="HABILITADO">HABILITADO</option>
                                     <option value="NO">NO</option>
                                 </select>
+                                </div>
                             </div>
-                        </div>
-        
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="" class="form-label">Cabot</label>
-                                <select name="cabot" id="cabot" class="form-control" required>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Cabot</label>
+                                    <select name="cabot" id="cabot" class="form-control" required>
                                     <option value="">Seleccione</option>
                                     <option value="HABILITADO">HABILITADO</option>
                                     <option value="NO">NO</option>
                                 </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
-        
-                    <div class="row">
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Estado</label>
-                                <select id="estado" name="estado" class="form-control" required>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Estado</label>
+                                    <select id="estado" name="estado" class="form-control" required>
                                     <option value="">Seleccione una Opción</option>
                                     <option value="F/O">F/O</option>
                                     <option value="F/S">F/S</option>
                                     <option value="OK">OK</option>
                                     <option value="S/C">S/C</option>
                                 </select>
+                                </div>
                             </div>
-                        </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Flota</label>
-                                <select id="flota" name="flota" class="form-control" required>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Flota</label>
+                                    <select id="flota" name="flota" class="form-control" required>
                                     <option value="">Seleccione una Opción</option>
                                     <option value="RENTING">RENTING</option>
                                     <option value="EXTERNA">EXTERNA</option>
                                     <option value="APOYO">APOYO</option>
                                     <option value="BLOQUEADO">BLOQUEADO</option>
                                 </select>
+                                </div>
                             </div>
+
                         </div>
-                        
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-between">
-                            <button id="btnPreventaCreate" class="btn btn-primary">
+                        <br>
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-between">
+                                <button id="btnPreventaCreate" class="btn btn-primary">
                                 Enviar
                             </button>
-                            <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
+                                <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-	</div>
-    
-    <script src="/componentes/loadSidebar.js"></script>
-   
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/js/custom.min.js"></script>
-	
-	
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/Componentes/sidebar.js"></script>
+        <script src="/js/login/logout.js"></script>
 
-    <script type="text/javascript" src="/js/preventa/create.js"></script>
-    <script type="text/javascript" src="/js/cargar/cargarConductores.js"></script>
-    <script type="text/javascript" src="/js/cargar/cargarAliados.js"></script>
-    <script type="text/javascript" src="/js/cargar/cargarPlaca.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="/js/custom.min.js"></script>
+
+
+
+        <script type="text/javascript" src="/js/preventa/create.js"></script>
+        <script type="text/javascript" src="/js/cargar/cargarConductores.js"></script>
+        <script type="text/javascript" src="/js/cargar/cargarAliados.js"></script>
+        <script type="text/javascript" src="/js/cargar/cargarPlaca.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
