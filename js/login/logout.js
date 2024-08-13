@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.cookie.split(";").forEach(function(c) {
                         document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
                     });
-                    window.location.href = "index.html";
+                    window.location.replace("/"); 
                 } else {
 
                     console.error("Error al cerrar sesión:", response.status);
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } else {
 
-            window.location.href = "/index.html";
+            window.location.replace("/"); 
         }
     }
 
