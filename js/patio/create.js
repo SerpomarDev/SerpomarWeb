@@ -5,7 +5,10 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
 
     fetch('https://esenttiapp-production.up.railway.app/api/ordencargue', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            },
             body: jsonData
         })
         .then(response => {
@@ -16,7 +19,11 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
         })
         .then(response => {
             if (response.ok) {
-                return fetch('https://esenttiapp-production.up.railway.app/api/ultimoresgistrood');
+                return fetch('https://esenttiapp-production.up.railway.app/api/ultimoresgistrood', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                    }
+                });
             } else {
                 throw new Error('Form submission failed');
             }
@@ -53,6 +60,7 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
             });
         });
 });
+
 
 
 function generarQRCode(ordenCargueId) {

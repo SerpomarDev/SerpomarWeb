@@ -23,6 +23,10 @@ new gridjs.Grid({
     fixedHeader: true,
     server: {
       url: `https://esenttiapp-production.up.railway.app/api/cargarhistorico`,
+      headers: {
+
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`
+      },
       then: (data) => {
         if (Array.isArray(data) && data.length > 0) {
           return data.map((ordenCargue) => [
@@ -46,6 +50,8 @@ new gridjs.Grid({
       table: {with:"80%"}
     }
   }).render(document.getElementById('historico'));
+  
+  localStorage.setItem("authToken", data.token);
 
   function time() {
     setTimeout(() => {

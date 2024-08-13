@@ -2,8 +2,12 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 
 
-const apiUrl = `https://esenttiapp-production.up.railway.app/api/uploadordenbyqr/${id}`;
-
+const apiUrl = fetch(`https://esenttiapp-production.up.railway.app/api/uploadordenbyqr/${id}`,{
+    method: 'GET',
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+    }
+})
 
 async function llenarFormulario() {
     try {
