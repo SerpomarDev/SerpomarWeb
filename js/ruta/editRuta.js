@@ -2,7 +2,12 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-fetch(`https://esenttiapp-production.up.railway.app/api/uploadrutaid/${id}`)
+    fetch(`https://esenttiapp-production.up.railway.app/api/uploadrutaid/${id}`,{
+        method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                }
+    })
     .then((response) => {
       if (!response.ok) {
           throw new Error("Error al obtener los datos de la API");
@@ -41,6 +46,9 @@ fetch(`https://esenttiapp-production.up.railway.app/api/uploadrutaid/${id}`)
         columns: ["#","Nombre", "Tarifas", "Comentario"],
         server: {
             url: "https://esenttiapp-production.up.railway.app/api/uploadrutas",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            },
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((ruta) => [
@@ -57,17 +65,22 @@ fetch(`https://esenttiapp-production.up.railway.app/api/uploadrutaid/${id}`)
         }
     }).render(document.getElementById('editRutas'));
 
+    localStorage.setItem("authToken", data.token);
+
     document.getElementById("editRuta").addEventListener("submit", function (event) {
         event.preventDefault();
 
         const formData = new FormData(this);
         const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-        fetch(`https://esenttiapp-production.up.railway.app/api/rutas/${id}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: jsonData,
-        })
+            fetch(`https://esenttiapp-production.up.railway.app/api/rutas/${id}`, {
+                method: "PUT",
+                headers:{ 
+                            "Content-Type": "application/json",
+                            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                        },
+                body: jsonData,
+            })
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Error al enviar los datos del formulario");

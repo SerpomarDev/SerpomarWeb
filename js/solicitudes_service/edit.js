@@ -2,7 +2,12 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-fetch(`https://esenttiapp-production.up.railway.app/api/editsolicitud/${id}`)
+    fetch(`https://esenttiapp-production.up.railway.app/api/editsolicitud/${id}`,{
+      method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then((response) => {
       if (!response.ok) {
           throw new Error("Error al obtener los datos de la API");
@@ -39,7 +44,10 @@ document.getElementById("editSolicitud").addEventListener("submit", function (ev
 
     fetch(`https://esenttiapp-production.up.railway.app/api/solicitudservicios/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+               },
         body: jsonData,
     })
         .then((response) => {

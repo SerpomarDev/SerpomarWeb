@@ -55,6 +55,9 @@ new gridjs.Grid({
     }],
     server: {
         url: "https://esenttiapp-production.up.railway.app/api/uploadrutas",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((ruta) => [
@@ -71,6 +74,7 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('rutas'));
 
+localStorage.setItem("authToken", data.token);
 
   document.getElementById('createRuta').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -81,7 +85,10 @@ new gridjs.Grid({
     
     fetch('https://esenttiapp-production.up.railway.app/api/rutas', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+         },
         body: jsonData
     })
     .then(response => {

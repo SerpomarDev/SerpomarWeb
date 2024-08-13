@@ -43,7 +43,10 @@ document.getElementById('saveSolicitud').addEventListener('submit',function(even
 
     fetch('https://esenttiapp-production.up.railway.app/api/solicitudservicios', {
         method: 'POST',
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}` 
+                },
         body: jsonData
     })
     .then(response => {
@@ -52,7 +55,12 @@ document.getElementById('saveSolicitud').addEventListener('submit',function(even
         }
     })
     .then(data => {
-        return fetch('https://esenttiapp-production.up.railway.app/api/ultimoresgistro');
+        return fetch('https://esenttiapp-production.up.railway.app/api/ultimoresgistro',{
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+        });
     })
     .then(response => {
         if (!response.ok) {
