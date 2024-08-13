@@ -10,12 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function loadSidebar() {
-  var loggedInUser = localStorage.getItem('loggedInUser');
-  if (!loggedInUser) {
-    // Redirige a logout.html si no hay usuario autenticado
-    window.location.href = '/logout.html';
-    return;
-  }
+  // var loggedInUser = localStorage.getItem('loggedInUser');
+  // if (!loggedInUser) {
+  //   // Redirige a logout.html si no hay usuario autenticado
+  //   window.location.href = '/logout.html';
+  //   return;
+  // }
 
   fetch('/Componentes/layout.html')
     .then(response => {
@@ -61,7 +61,6 @@ function initializeMenu(loggedInUser) {
       case 'hugo.contreras@serpomar.com':
       case 'daniel.tinoco@serpomar.com':
       case 'yamid.agudelo@serpomar.com':
-      case 'seguridadfisica@serpomar.com':
       case 'piedad.petro@serpomar.com':
       case 'michelle.echeverria@serpomar.com':
       case 'lvera@serpomar.com':
@@ -88,9 +87,6 @@ function initializeMenu(loggedInUser) {
       case 'lina.young@serpomar.com':
       case 'vanesa.Cord.transportes.esenttia@serpomar.com':
       case 'mariaC.Cord.transportes.esenttia@serpomar.com':
-      case 'mario.salas@serpomar.com':
-      case 'joel.tovar@serpomar.com':
-      case 'albertoT.analista@serpomar.com':
         $('#menu > li:contains("Tu Rol: Coordinador")').show();
         $('#menu-transporte').show();
         $('#menu-transporte ul li').show();
@@ -144,6 +140,7 @@ function initializeMenu(loggedInUser) {
       case 'hector.fonseca@serpomar.com': 
       case 'darlinesV.transporte.esenttia@serpomar.com':
       case 'amauryM.transporte.esenttia@serpomar.com':
+      case 'albertoT.analista.esenttia@serpomar.com':
         $('#menu > li:contains("Tu Rol: Analista de T.")').show();
         $('#menu-transporte').show();
         $('#menu-transporte ul li').show();

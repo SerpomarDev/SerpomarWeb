@@ -11,13 +11,53 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/fonts.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/hero.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/stylesv2.css">
   </head>
   <body>
 
-    <div id="layoutv2-placeholder"></div>
+  
+      <header>
+          <img src="/img/logow.png" alt="Nodhus Logo" class="logo1" id="nodhus-logo">
+          <nav>
+              <button class="profile-link" aria-expanded="false" id="login-button">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span class="nav-text">INICIAR SESIÓN</span>
+              </button>
+          </nav>
+      </header>
+ 
+  
+  <!-- Formulario de inicio de sesión -->
+  <div class="sesionok">
+      <div class="overlay" id="overlay">
+          <div class="container1">
+              <div class="right-side">
+                  <div class="login-container" id="login-container">
+                      <span class="close-btn" id="close-btn">&times;</span>
+                      <h2>Inicia Sesión en:</h2>
+                      <div class="logo-container">
+                          <img src="./img/nodhus.png" alt="NODHUS" class="nodhus-logo">
+                      </div>
+                      <form id="login-form">
+                          <div class="form-group">
+                              <input type="email" placeholder="Email..." name="email" id="username" required class="input-field">
+                          </div>
+                          <div class="form-group">
+                              <input type="password" id="password" placeholder="Password..." required class="input-field">
+                          </div>
+                          <div class="form-group">
+                              <button type="submit" class="login-button">ACCEDER</button>
+                          </div>
+                          <div class="forgot-password">
+                              ¿Olvidaste la contraseña? <a href="#">Clic aquí</a>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
  
     <section class="section swiper-container swiper-slider swiper-slider-modern" data-loop="true" data-autoplay="5000" data-simulate-touch="true" data-nav="true" data-slide-effect="fade">
@@ -374,7 +414,8 @@
     <script src="js/core.min.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/home/loginok.js"></script>
-    <script src="/app.js"></script>
+    <script src="/js/login/login.js"></script>
+
  
   </body>
 </html>
