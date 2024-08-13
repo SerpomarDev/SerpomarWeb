@@ -1,17 +1,18 @@
+
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Borrar cookies
-    document.cookie.split(";").forEach(function(c) {
-        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-    });
-
-    // Borrar localStorage
-    localStorage.clear();
-
-    // Opcional: Intenta realizar la solicitud de cierre de sesión al servidor
-    logoutUser(); 
+    // Manejo del botón de cierre de sesión (si existe)
+    function addLogoutEventListener() {
+        const logoutButton = document.getElementById("logout-button");
+        if (logoutButton) {
+            logoutButton.addEventListener("click", logoutUser);
+        } else {
+            setTimeout(addLogoutEventListener, 100); 
+        }
+    }
 
     async function logoutUser() {
-        const authToken = localStorage.getItem("authToken"); // Ya no es necesario, pero se puede mantener para intentar el cierre de sesión en el servidor
+        const authToken = localStorage.getItem("authToken");
 
         if (authToken) { 
             try {
@@ -23,26 +24,39 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                 });
 
-                if (!response.ok) {
+                if (response.ok) {
+                    // Cierre de sesión exitoso en el servidor, borrar datos locales y redirigir
+                    localStorage.clear();
+                    document.cookie.split(";").forEach(function(c) {
+                        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+                    });
+                    window.location.replace("/"); 
+                } else {
+                    // Error al cerrar sesión en el servidor, forzar cierre de sesión en el navegador
                     console.error("Error al cerrar sesión en el servidor:", response.status);
+                    forceLogout();
                 }
             } catch (error) {
+                // Error de red, forzar cierre de sesión en el navegador
                 console.error("Error de red al intentar cerrar sesión en el servidor:", error);
+                forceLogout();
             }
-        } 
-
-        // Redirige al usuario a la página de inicio, independientemente de la respuesta del servidor
-        window.location.replace("/"); 
+        } else {
+            window.location.replace("/"); 
+        }
     }
 
-    // Manejo del botón de cierre de sesión (si existe)
-    function addLogoutEventListener() {
-        const logoutButton = document.getElementById("logout-button");
-        if (logoutButton) {
-            logoutButton.addEventListener("click", logoutUser);
-        } else {
-            setTimeout(addLogoutEventListener, 100); 
-        }
+    function forceLogout() {
+        // Borrar cookies
+        document.cookie.split(";").forEach(function(c) {
+            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+        });
+
+        // Borrar localStorage
+        localStorage.clear();
+
+        // Redirigir a la página de inicio
+        window.location.replace("/"); 
     }
 
     addLogoutEventListener(); 
