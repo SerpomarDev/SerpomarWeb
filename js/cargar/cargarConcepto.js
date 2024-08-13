@@ -3,7 +3,12 @@
       
         let selectConcepto = document.getElementById('id_tarifa');
   
-        fetch(`https://esenttiapp-production.up.railway.app/api/uploadconceptosbyidcl/${id}`)
+        fetch(`https://esenttiapp-production.up.railway.app/api/uploadconceptosbyidcl/${id}`,{
+          method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+        })
         .then(response => response.json())
         .then(data => {
           data.forEach(concepto => {
@@ -19,7 +24,12 @@
   
          let idselectConcepto = this.value
   
-          fetch(`https://esenttiapp-production.up.railway.app/api/uploadconceptosbyid/${idselectConcepto}`)  
+            fetch(`https://esenttiapp-production.up.railway.app/api/uploadconceptosbyid/${idselectConcepto}`,{
+              method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                }
+            })  
             .then(response => {
               if (!response.ok) {
                 throw new Error('Error en la respuesta de la API: ' + response.statusText);

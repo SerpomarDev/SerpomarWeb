@@ -1,7 +1,12 @@
 document.addEventListener('DOMContentLoaded',function(){
     let selectSoliServi = document.getElementById('id_solicitud_servicio');
 
-    fetch('https://esenttiapp-production.up.railway.app/api/solicitudservicios')
+    fetch('https://esenttiapp-production.up.railway.app/api/solicitudservicios',{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then(Response => Response.json())
     .then(data=>{
         data.forEach(soliServi => {

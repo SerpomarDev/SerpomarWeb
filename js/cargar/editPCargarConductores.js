@@ -12,14 +12,19 @@ document.addEventListener('DOMContentLoaded', function() {
       searchField: 'nombre',
       maxItems:1,
       load: function(query, callback) {
-          fetch(`https://esenttiapp-production.up.railway.app/api/uploadconductor?search=${encodeURIComponent(query)}`)
-              .then(response => response.json())
-              .then(data => {
-                  callback(data);
-              })
-              .catch(() => {
+          fetch(`https://esenttiapp-production.up.railway.app/api/uploadconductor?search=${encodeURIComponent(query)}`,{
+            method: 'GET',
+              headers: {
+                  'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+              }
+          })
+          .then(response => response.json())
+          .then(data => {
+                callback(data);
+            })
+            .catch(() => {
                   callback();
-              });
+            });
       },
       render: {
           option: function(item, escape) {
@@ -40,9 +45,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let idConductorSeleccionado = this.value
 
-        fetch(`https://esenttiapp-production.up.railway.app/api/uploadoptid/${idConductorSeleccionado}`)  
-          .then(response => {
-            if (!response.ok) {
+        fetch(`https://esenttiapp-production.up.railway.app/api/uploadoptid/${idConductorSeleccionado}`,{
+          method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+        })  
+        .then(response => {
+          if (!response.ok) {
               throw new Error('Error en la respuesta de la API: ' + response.statusText);
             }
             return response.json();

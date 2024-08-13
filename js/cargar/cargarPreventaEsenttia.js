@@ -4,7 +4,12 @@ document.addEventListener('DOMContentLoaded', function(){
     let inputAliado = document.getElementById('aliado')
     let inputTelefono = document.getElementById('celular')
 
-    fetch('https://esenttiapp-production.up.railway.app/api/showesenttia')
+    fetch('https://esenttiapp-production.up.railway.app/api/showesenttia',{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then(Response => Response.json())
     .then(data=>{
         data.forEach(preventaEs => {
@@ -19,7 +24,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
         let idPlacaSelecionada = this.value
 
-        fetch(`https://esenttiapp-production.up.railway.app/api/uploadesenttiaid/${idPlacaSelecionada}`)
+            fetch(`https://esenttiapp-production.up.railway.app/api/uploadesenttiaid/${idPlacaSelecionada}`,{
+                method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                    }
+            })
             .then(response=>{
                 if(!response.ok){
                     throw new Error('Error en la respuesta de la API: ' + response.statusText);

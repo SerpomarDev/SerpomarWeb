@@ -11,7 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
   let inputCantidadContenedor = document.getElementById('cantidad_contenedor');
   let inputValor = document.getElementById('valor');
 
-  fetch(`https://esenttiapp-production.up.railway.app/api/cargarcontenedorbypre/${id}`)
+  fetch(`https://esenttiapp-production.up.railway.app/api/cargarcontenedorbypre/${id}`,{
+    method: 'GET',
+       headers: {
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+        }
+  })
 .then((responde) => {
   if (!responde) {
     throw new Error("Error al obtener los datos de la API");
@@ -42,7 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
       function uploadConceptos(idcliente){ 
   
-        fetch(`https://esenttiapp-production.up.railway.app/api/uploadconceptosbyidcl/${idcliente}`)
+        fetch(`https://esenttiapp-production.up.railway.app/api/uploadconceptosbyidcl/${idcliente}`,{
+          method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+        })
         .then(response => response.json())
         .then(data => {
           data.forEach(concepto => {
@@ -59,7 +69,12 @@ document.addEventListener('DOMContentLoaded', function() {
          let idselectConcepto = this.value
          console.log(idselectConcepto)
   
-          fetch(`https://esenttiapp-production.up.railway.app/api/uploadconceptosbyid/${idselectConcepto}`)  
+            fetch(`https://esenttiapp-production.up.railway.app/api/uploadconceptosbyid/${idselectConcepto}`,{
+              method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                }
+            })  
             .then(response => {
               if (!response.ok) {
                 throw new Error('Error en la respuesta de la API: ' + response.statusText);

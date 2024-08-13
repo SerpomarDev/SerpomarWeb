@@ -28,7 +28,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
         let selectPlaca = this.value;
     
-        fetch(`https://esenttiapp-production.up.railway.app/api/uploadplacabyid/${selectPlaca}`)
+        fetch(`https://esenttiapp-production.up.railway.app/api/uploadplacabyid/${selectPlaca}`,{
+            method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                }
+        })
         .then(response =>{
             if(!response.ok){
                 throw new Error('Error en la respuesta de la API: ' + response.statusText)

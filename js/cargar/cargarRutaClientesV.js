@@ -3,7 +3,12 @@ document.addEventListener('DOMContentLoaded',function(){
     let selectRuta = document.getElementById('id_ruta')
     let inputTarifa = document.getElementById('tarifa1')
 
-    fetch('https://esenttiapp-production.up.railway.app/api/uploadRutaclientesv')
+    fetch('https://esenttiapp-production.up.railway.app/api/uploadRutaclientesv',{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then(Response => Response.json())
     .then(data=>{
         data.forEach(ruta => {
@@ -20,7 +25,12 @@ document.addEventListener('DOMContentLoaded',function(){
 
         let idRutaSeleccionada = this.value
 
-        fetch(`https://esenttiapp-production.up.railway.app/api/uploadrutaid/${idRutaSeleccionada}`)
+        fetch(`https://esenttiapp-production.up.railway.app/api/uploadrutaid/${idRutaSeleccionada}`,{
+            method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                }
+        })
         .then(response=>{
             if(!response.ok){
                 throw new Error('Error en la respuesta de la API: ' + response.statusText);
