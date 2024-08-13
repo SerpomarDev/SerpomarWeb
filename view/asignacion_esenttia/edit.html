@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title>
+    <link rel="icon" href="faviconN.png" type="image/x-icon">
 
-    <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- PAGE TITLE HERE -->
-	<title>SerpomarWeb</title>
-	
-	<link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-	<link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
-	<!-- Style css -->
+    <link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+    <link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
+    <!-- Style css -->
     <link href="/css/style-Dash.css" rel="stylesheet">
-	
-  
+
+
     <link href="/css/pages.css" rel="stylesheet" />
-    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 
 </head>
+
 <body>
 
     <!-- Contenedor para el preloader -->
@@ -38,179 +37,179 @@
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
-							<div class="dashboard_bar">
+                            <div class="dashboard_bar">
                                 Actualizar Asignaciones Esenttia
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
-							<li class="nav-item">
-								<div class="input-group search-area">
-									<input type="text" class="form-control" placeholder="Buscar...">
-									<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
-								</div>
-							</li>
                             <li class="nav-item">
-								<a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a>
-							</li>
+                                <div class="input-group search-area">
+                                    <input type="text" class="form-control" placeholder="Buscar...">
+                                    <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generar Reporte<i class="las la-signal ms-3 scale5"></i></a>
+                            </li>
                         </ul>
                     </div>
-				</nav>
-			</div>
-		</div>
+                </nav>
+            </div>
+        </div>
 
 
         <div id="sidebar-container"></div>
 
-        
+
         <div class="content-body">
-        <div id="content" class="p-4 p-md-5 pt-5">
-            <div class="container">
-                <form id="editAsignacionEsnt" method="PUT" enctype="multipart/form-data">
-                    <input type="hidden" id="id_asignacion" name="id_asignacion">
-                    <input type="hidden" id="id_preventa" name="id_preventa">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Placa</label>
-                                <input type="text" id="placa" class="form-control" readonly="readonly" required />
+            <div id="content" class="p-4 p-md-5 pt-5">
+                <div class="container">
+                    <form id="editAsignacionEsnt" method="PUT" enctype="multipart/form-data">
+                        <input type="hidden" id="id_asignacion" name="id_asignacion">
+                        <input type="hidden" id="id_preventa" name="id_preventa">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Placa</label>
+                                    <input type="text" id="placa" class="form-control" readonly="readonly" required />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Conductor</label>
+                                    <input type="text" id="conductor" class="form-control" readonly="readonly" required>
+                                </div>
                             </div>
                         </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Conductor</label>
-                                <input type="text" id="conductor" class="form-control" readonly="readonly" required>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Aliado</label>
+                                    <input type="text" id="aliado" class="form-control" readonly="readonly" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Telefono</label>
+                                    <input type="text" class="form-control" id="celular" readonly="readonly" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
-        
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Aliado</label>
-                                <input type="text" id="aliado" class="form-control" readonly="readonly" required>
-                            </div>
-                        </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Telefono</label>
-                                <input type="text" class="form-control" id="celular" readonly="readonly" required>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="row">
-                        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Ruta</label>
-                                <select name="id_ruta" id="id_ruta" required>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Ruta</label>
+                                    <select name="id_ruta" id="id_ruta" required>
                                     <option value="">Seleccione la ruta</option>
                                 </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">tarifa</label>
+                                    <input type="text" id="tarifa" class="form-control" readonly="readonly" required>
+                                </div>
                             </div>
                         </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">tarifa</label>
-                                <input type="text" id="tarifa" class="form-control" readonly="readonly" required>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="row">
-                      
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Tipo operacion:</label>
-                                <select id="id_tipo_operacion" name="id_tipo_operacion" class="form-control" required>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Tipo operacion:</label>
+                                    <select id="id_tipo_operacion" name="id_tipo_operacion" class="form-control" required>
                                     <option value="">Seleccione una Opción</option>
                                 </select>
+                                </div>
                             </div>
-                        </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Terminal</label>
-                                <select name="id_sitio_inspeccion" id="id_sitio_inspeccion" class="form-control" required>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Terminal</label>
+                                    <select name="id_sitio_inspeccion" id="id_sitio_inspeccion" class="form-control" required>
                                     <option value="">Seleccione Destino</option>
                                 </select>
+                                </div>
                             </div>
+
                         </div>
-        
-                    </div>
-        
-                    <div class="row">
+
                         <div class="row">
-                        
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">fecha cita</label>
-                                    <input type="date" id="fecha_cita" name="fecha_cita" class="form-control">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">fecha cita</label>
+                                        <input type="date" id="fecha_cita" name="fecha_cita" class="form-control">
+                                    </div>
                                 </div>
-                            </div>
-            
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Hora cita</label>
-                                    <input type="time" id="hora_cita" name="hora_cita" class="form-control">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Hora cita</label>
+                                        <input type="time" id="hora_cita" name="hora_cita" class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-between">
-                            <a class="btn btn-primary"onclick="history.back()">Volver</a>
-                            <button  class="btn btn-primary" id="BtnEditesenasig">Actualizar</button>
-                            <!-- <button  class="btn btn-danger" id="GeneReport">Generar Pdf</button>
+                        <br>
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-between">
+                                <a class="btn btn-primary" onclick="history.back()">Volver</a>
+                                <button class="btn btn-primary" id="BtnEditesenasig">Actualizar</button>
+                                <!-- <button  class="btn btn-danger" id="GeneReport">Generar Pdf</button>
                             <button  class="btn btn-success" id="GeneReportExcel">Generar Excel</button> -->
+                            </div>
                         </div>
-                    </div> 
-        
-                </form>
+
+                    </form>
+                </div>
+
+                <div class="container">
+                    <div id="esenttiaasigEd" style="display: none;"></div>
+                </div>
             </div>
-        
-            <div class="container">
-                <div id="esenttiaasigEd"  style="display: none;"></div>
-            </div>
-      </div>
 
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="/componentes/loadSidebar.js"></script>
-      <script src="/componentes/loadPreloader.js"></script>
-      <script src="/componentes/loadNavHeader.js"></script>
-    <!-- Required vendors -->
-    <script src="/vendor/global/global.min.js"></script>
-	<script src="/vendor/chart.js/Chart.bundle.min.js"></script>
-	<script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="/componentes/loadSidebar.js"></script>
+            <script src="/componentes/loadPreloader.js"></script>
+            <script src="/componentes/loadNavHeader.js"></script>
+            <!-- Required vendors -->
+            <script src="/vendor/global/global.min.js"></script>
+            <script src="/vendor/chart.js/Chart.bundle.min.js"></script>
+            <script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-	<!-- Apex Chart -->
-	<script src="/vendor/apexchart/apexchart.js"></script>
-	<script src="/vendor/nouislider/nouislider.min.js"></script>
-	<script src="/vendor/wnumb/wNumb.js"></script>
-	
-	<!-- Dashboard 1 -->
-	<script src="/js/dashboard/dashboard-1.js"></script>
+            <!-- Apex Chart -->
+            <script src="/vendor/apexchart/apexchart.js"></script>
+            <script src="/vendor/nouislider/nouislider.min.js"></script>
+            <script src="/vendor/wnumb/wNumb.js"></script>
 
-    <script src="/js/custom.min.js"></script>
-	<script src="/js/dlabnav-init.js"></script>
-	<script src="/js/demo.js"></script>
-    <script src="/js/styleSwitcher.js"></script>
-	
+            <!-- Dashboard 1 -->
+            <script src="/js/dashboard/dashboard-1.js"></script>
+
+            <script src="/js/custom.min.js"></script>
+            <script src="/js/dlabnav-init.js"></script>
+            <script src="/js/demo.js"></script>
+            <script src="/js/styleSwitcher.js"></script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-    <script type="text/javascript" src="/js/asignacion/editAsignacionEst.js"></script>
-    <script type="text/javascript" src="/js/cargar/cargarRutaEsenttia.js"></script>
-    <script type="text/javascript" src="/js/cargar/cargarDestino.js"></script>
-    <script type="text/javascript" src="/js/cargar/cargarTipoServicio.js"></script>
-    <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+            <script type="text/javascript" src="/js/asignacion/editAsignacionEst.js"></script>
+            <script type="text/javascript" src="/js/cargar/cargarRutaEsenttia.js"></script>
+            <script type="text/javascript" src="/js/cargar/cargarDestino.js"></script>
+            <script type="text/javascript" src="/js/cargar/cargarTipoServicio.js"></script>
+            <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

@@ -1,36 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title>
+    <link rel="icon" href="faviconN.png" type="image/x-icon">
 
-    <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- PAGE TITLE HERE -->
-	<title>SerpomarWeb</title>
-	
-	<link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-	<link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
-	<!-- Style css -->
+    <link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+    <link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
+    <!-- Style css -->
     <link href="/css/style-Dash.css" rel="stylesheet">
-	
-  
+
+
     <link href="/css/pages.css" rel="stylesheet" />
-    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"rel="stylesheet"/>
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 
 </head>
 <header>
     <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
-  
- </header>
- <div class="dlabnav">
+
+</header>
+<div class="dlabnav">
     <div id="layout">
-        
+
         <div class="dlabnav" id="sidebar">
             <div class="dlabnav-scroll sidebar-scroll">
                 <ul class="metismenu" id="menu">
-                    <li id="roles-container"></li> <li id="menu-items-container"></li> 
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
                     <nav>
                         <a href="javascript:void(0)" id="logout-button" class="profile-link" aria-expanded="false">
                             <i class="fas fa-sign-out-alt"></i>
@@ -38,165 +37,166 @@
                         </a>
                     </nav>
                 </ul>
-                   
+
             </div>
         </div>
     </div>
 </div>
+
 <body>
 
 
-   <div id="main-wrapper">
+    <div id="main-wrapper">
 
 
-    
-    <div class="header">
-        <div class="title-container">
-            <h1 class="title"> Actualizar Asignaciones clientes varios</h1>
+
+        <div class="header">
+            <div class="title-container">
+                <h1 class="title"> Actualizar Asignaciones clientes varios</h1>
+            </div>
         </div>
-    </div>
 
 
         <div class="content-body">
-        <div id="content" class="p-4 p-md-5 pt-5">
-            <div class="container">
-                <form id="editAsignacion" method="PUT" enctype="multipart/form-data">
-                    <input type="hidden" id="id_asignacion" name="id_asignacion">
-                    <input type="hidden" id="id_preventa" name="id_preventa">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Placa</label>
-                                <input type="text" id="id_placa" class="form-control" required />
-                                <!-- <select name="id_placa" id="id_placa" class="form-control" required>
+            <div id="content" class="p-4 p-md-5 pt-5">
+                <div class="container">
+                    <form id="editAsignacion" method="PUT" enctype="multipart/form-data">
+                        <input type="hidden" id="id_asignacion" name="id_asignacion">
+                        <input type="hidden" id="id_preventa" name="id_preventa">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Placa</label>
+                                    <input type="text" id="id_placa" class="form-control" required />
+                                    <!-- <select name="id_placa" id="id_placa" class="form-control" required>
                                     <option value="">Seleccione la ruta</option>
                                 </select> -->
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Conductor</label>
+                                    <input type="text" id="conductor" class="form-control" readonly="readonly" required>
+                                </div>
                             </div>
                         </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Conductor</label>
-                                <input type="text" id="conductor" class="form-control" readonly="readonly" required>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Aliado</label>
+                                    <input type="text" id="aliado" class="form-control" readonly="readonly" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Telefono</label>
+                                    <input type="text" class="form-control" id="celular" readonly="readonly" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
-        
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Aliado</label>
-                                <input type="text" id="aliado" class="form-control" readonly="readonly" required>
-                            </div>
-                        </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Telefono</label>
-                                <input type="text" class="form-control" id="celular" readonly="readonly" required>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="row">
-                        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Ruta</label>
-                                <select name="id_ruta" id="id_ruta" class="form-control" required>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Ruta</label>
+                                    <select name="id_ruta" id="id_ruta" class="form-control" required>
                                     <option value="">Seleccione la ruta</option>
                                 </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">tarifa</label>
+                                    <input type="text" id="tarifa" class="form-control" readonly="readonly" required>
+                                </div>
                             </div>
                         </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">tarifa</label>
-                                <input type="text" id="tarifa" class="form-control" readonly="readonly" required>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="row">
-                      
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Tipo operacion:</label>
-                                <select id="id_tipo_operacion" name="id_tipo_operacion" class="form-control" required>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Tipo operacion:</label>
+                                    <select id="id_tipo_operacion" name="id_tipo_operacion" class="form-control" required>
                                     <option value="">Seleccione una Opción</option>
                                 </select>
+                                </div>
                             </div>
-                        </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Terminal</label>
-                                <select name="id_sitio_inspeccion" id="id_sitio_inspeccion" class="form-control" required>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Terminal</label>
+                                    <select name="id_sitio_inspeccion" id="id_sitio_inspeccion" class="form-control" required>
                                     <option value="">Seleccione Destino</option>
                                 </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">fecha cita</label>
+                                    <input type="date" id="fecha_cita" name="fecha_cita" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Hora cita</label>
+                                    <input type="time" id="hora_cita" name="hora_cita" class="form-control">
+                                </div>
                             </div>
                         </div>
-        
-                    </div>
-        
-                    <div class="row">
-                        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">fecha cita</label>
-                                <input type="date" id="fecha_cita" name="fecha_cita" class="form-control">
-                            </div>
-                        </div>
-        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Hora cita</label>
-                                <input type="time" id="hora_cita" name="hora_cita" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-between">
-                            <button  class="btn btn-primary" onclick="history.back()">Volver</button>
-                            <button  class="btn btn-primary" id="BtnEdittAsignacion">Actualizar</button>
-                            <!-- <button  class="btn btn-danger" id="GeneReport">Generar pdf</button>
+                        <br>
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-between">
+                                <button class="btn btn-primary" onclick="history.back()">Volver</button>
+                                <button class="btn btn-primary" id="BtnEdittAsignacion">Actualizar</button>
+                                <!-- <button  class="btn btn-danger" id="GeneReport">Generar pdf</button>
                             <button  class="btn btn-success" id="GeneReportExcel">Generar excel</button> -->
+                            </div>
                         </div>
-                    </div>
-                </form>
-        </div>
-	</div>
-   
-   
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
- 
-  
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-	<!-- Apex Chart -->
-	<script src="/vendor/apexchart/apexchart.js"></script>
-	<script src="/vendor/nouislider/nouislider.min.js"></script>
-	<script src="/vendor/wnumb/wNumb.js"></script>
-	
+                    </form>
+                </div>
+            </div>
 
 
-    <script src="/js/custom.min.js"></script>
-	<script src="/js/dlabnav-init.js"></script>
 
-	
-    <script src="/Componentes/sidebar.js"></script>
-    <script src="/js/login/logout.js"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-    <script type="text/javascript" src="/js/asignacion/editAsignacionCl.js"></script>
-    <script type="text/javascript" src="/js/cargar/cargarRutaClientesV.js"></script>
-    <script type="text/javascript" src="/js/cargar/cargarPlaca.js"></script>
-    <script type="text/javascript" src="/js/cargar/cargarDestino.js"></script>
-    <script type="text/javascript" src="/js/cargar/cargarTipoServicio.js"></script>
-    <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+            <!-- Apex Chart -->
+            <script src="/vendor/apexchart/apexchart.js"></script>
+            <script src="/vendor/nouislider/nouislider.min.js"></script>
+            <script src="/vendor/wnumb/wNumb.js"></script>
+
+
+
+            <script src="/js/custom.min.js"></script>
+            <script src="/js/dlabnav-init.js"></script>
+
+
+            <script src="/Componentes/sidebar.js"></script>
+            <script src="/js/login/logout.js"></script>
+
+            <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+            <script type="text/javascript" src="/js/asignacion/editAsignacionCl.js"></script>
+            <script type="text/javascript" src="/js/cargar/cargarRutaClientesV.js"></script>
+            <script type="text/javascript" src="/js/cargar/cargarPlaca.js"></script>
+            <script type="text/javascript" src="/js/cargar/cargarDestino.js"></script>
+            <script type="text/javascript" src="/js/cargar/cargarTipoServicio.js"></script>
+            <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

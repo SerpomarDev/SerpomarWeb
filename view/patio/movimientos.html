@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-
-    <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=0.2">
-	<!-- PAGE TITLE HERE -->
-	<title>Nodhus</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title>
+    <link rel="icon" href="faviconN.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet" />
     <link href="/css/style-Dash.css" rel="stylesheet" />
@@ -36,6 +34,7 @@
         </div>
     </div>
 </div>
+
 <body>
 
     <div class="header">
@@ -44,83 +43,87 @@
             <h1 class="title">MOVIMIENTOS</h1>
         </div>
     </div>
-  
-  <div class="margenform">
-    
-            <div id="content" class="p-4 p-md-5 pt-5">
-                <div class="row invoice-card-row">
-                    <div class="col-xl-3 col-xxl-3 col-sm-6">
-                        <div class="card bg-warning invoice-card">
-                            <div class="card-body d-flex">
-                                <div class="icon me-3">
-                                    <i class="fas fa-boxes text-white" style="font-size: 28px;"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-white invoice-num"><p id="historicoTotal"></p></h3>
-                                    <span class="text-white fs-18">Historico Total Contenedores</span>
-                                </div>
+
+    <div class="margenform">
+
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <div class="row invoice-card-row">
+                <div class="col-xl-3 col-xxl-3 col-sm-6">
+                    <div class="card bg-warning invoice-card">
+                        <div class="card-body d-flex">
+                            <div class="icon me-3">
+                                <i class="fas fa-boxes text-white" style="font-size: 28px;"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white invoice-num">
+                                    <p id="historicoTotal"></p>
+                                </h3>
+                                <span class="text-white fs-18">Historico Total Contenedores</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-xxl-3 col-sm-6">
-                        <div class="card bg-success invoice-card">
-                            <div class="card-body d-flex">
-                                <div class="icon me-3">
-                                     <i class="fas fa-pallet text-white" style="font-size: 28px;"></i>
-                                </div>
-                                <div>
-                                   <h3 class="text-white invoice-num"><p id="totalContenedores"></p></h3>
-                                    <span class="text-white fs-18">Total de Contenedores en Patio</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <div class="row  mt-xl-0 mt-4">
-                            <div class="col-md-6">
-                                <h4 class="card-title">Solicitudes por categoria</h4>
-                                <ul class="card-list mt-4">
-                                    <li><span class="bg-blue circle"></span>Exportación<span>20%</span></li>
-                                    <li><span class="bg-success circle"></span>Importación<span>40%</span></li>
-                                    <li><span class="bg-warning circle"></span>Traslado<span>15%</span></li>
-                                    <li><span class="bg-warning circle"></span>Vacio<span>25%</span></li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <canvas id="polarChart"></canvas>
-                            </div>
-                        </div>
-                    </div>           
                 </div>
-                <div id="historico"></div>
-                <div class="container"></div>
+                <div class="col-xl-3 col-xxl-3 col-sm-6">
+                    <div class="card bg-success invoice-card">
+                        <div class="card-body d-flex">
+                            <div class="icon me-3">
+                                <i class="fas fa-pallet text-white" style="font-size: 28px;"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white invoice-num">
+                                    <p id="totalContenedores"></p>
+                                </h3>
+                                <span class="text-white fs-18">Total de Contenedores en Patio</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="row  mt-xl-0 mt-4">
+                        <div class="col-md-6">
+                            <h4 class="card-title">Solicitudes por categoria</h4>
+                            <ul class="card-list mt-4">
+                                <li><span class="bg-blue circle"></span>Exportación<span>20%</span></li>
+                                <li><span class="bg-success circle"></span>Importación<span>40%</span></li>
+                                <li><span class="bg-warning circle"></span>Traslado<span>15%</span></li>
+                                <li><span class="bg-warning circle"></span>Vacio<span>25%</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <canvas id="polarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
-        
-        
-
-    <script src="/Componentes/sidebar.js"></script>
-    <script src="/js/login/logout.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
- 
-
-    <!-- Required vendors -->
-    <script src="/vendor/global/global.min.js"></script>
-	<script src="/vendor/chart.js/Chart.bundle.min.js"></script>
-	<script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+            <div id="historico"></div>
+            <div class="container"></div>
+        </div>
 
 
-	<!-- Apex Chart -->
-	<script src="/vendor/apexchart/apexchart.js"></script>
-	<script src="/vendor/nouislider/nouislider.min.js"></script>
-	<script src="/vendor/wnumb/wNumb.js"></script>
 
-  
-	<script src="/js/dlabnav-init.js"></script>
-	<script src="/js/demo.js"></script>
+        <script src="/Componentes/sidebar.js"></script>
+        <script src="/js/login/logout.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-    <script type="text/javascript" src="/js/patio/movimientos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Required vendors -->
+        <script src="/vendor/global/global.min.js"></script>
+        <script src="/vendor/chart.js/Chart.bundle.min.js"></script>
+        <script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+
+
+        <!-- Apex Chart -->
+        <script src="/vendor/apexchart/apexchart.js"></script>
+        <script src="/vendor/nouislider/nouislider.min.js"></script>
+        <script src="/vendor/wnumb/wNumb.js"></script>
+
+
+        <script src="/js/dlabnav-init.js"></script>
+        <script src="/js/demo.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+        <script type="text/javascript" src="/js/patio/movimientos.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

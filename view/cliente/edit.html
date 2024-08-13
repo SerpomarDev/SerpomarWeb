@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=0.2">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nodhus</title>
+    <link rel="icon" href="faviconN.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet" />
     <link href="/css/style-Dash.css" rel="stylesheet" />
@@ -17,15 +17,16 @@
 
 <header>
     <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
-  
- </header>
- <div class="dlabnav">
+
+</header>
+<div class="dlabnav">
     <div id="layout">
-        
+
         <div class="dlabnav" id="sidebar">
             <div class="dlabnav-scroll sidebar-scroll">
                 <ul class="metismenu" id="menu">
-                    <li id="roles-container"></li> <li id="menu-items-container"></li> 
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
                     <nav>
                         <a href="javascript:void(0)" id="logout-button" class="profile-link" aria-expanded="false">
                             <i class="fas fa-sign-out-alt"></i>
@@ -33,7 +34,7 @@
                         </a>
                     </nav>
                 </ul>
-                   
+
             </div>
         </div>
     </div>
@@ -51,74 +52,74 @@
         </div>
 
         <div class="margenform">
-        <div id="content" class="p-4 p-md-5 pt-5">
-            <div class="container">
-                <form id="editCliente" method="PUT" enctype="multipart/form-data">
-                    <div class="row">
-                        <input type="hidden" id="id" name="id">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre">
+            <div id="content" class="p-4 p-md-5 pt-5">
+                <div class="container">
+                    <form id="editCliente" method="PUT" enctype="multipart/form-data">
+                        <div class="row">
+                            <input type="hidden" id="id" name="id">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Identificación</label>
+                                    <input type="text" class="form-control" id="identificacion" name="identificacion">
+                                </div>
                             </div>
                         </div>
-            
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Identificación</label>
-                                <input type="text" class="form-control" id="identificacion" name="identificacion">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Dirección</label>
+                                    <input type="text" class="form-control" id="direccion" name="direccion">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Ciudad</label>
+                                    <input type="text" class="form-control" id="ciudad" name="ciudad">
+                                </div>
+                            </div>
+
+                        </div>
+                        <br><br>
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-between">
+                                <a class="btn btn-primary" href="/view/cliente/create.html">Volver</a>
+                                <button class="btn btn-primary" id="BtnEditCliente">Enviar</button>
                             </div>
                         </div>
-                    </div>
-            
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Dirección</label>
-                                <input type="text" class="form-control" id="direccion" name="direccion">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Ciudad</label>
-                                <input type="text" class="form-control" id="ciudad" name="ciudad">
-                            </div>
-                        </div>
-                      
-                    </div>
-                    <br><br>
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-between">
-                            <a class="btn btn-primary" href="/view/cliente/create.html">Volver</a>
-                            <button  class="btn btn-primary" id="BtnEditCliente">Enviar</button>
-                        </div>
-                    </div>
-                </form>
-            </div> 
-            <div class="container">
-                <div id="clienteEdit"></div>
+                    </form>
+                </div>
+                <div class="container">
+                    <div id="clienteEdit"></div>
+                </div>
             </div>
         </div>
-	</div>
-    
-
-    <script src="/Componentes/sidebar.js"></script>
-    <script src="/js/login/logout.js"></script>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-	<script src="/vendor/wnumb/wNumb.js"></script>
-	
-	
+        <script src="/Componentes/sidebar.js"></script>
+        <script src="/js/login/logout.js"></script>
 
-    <script src="/js/custom.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-	
 
-    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-    <script type="text/javascript" src="/js/cliente/editCliente.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="/vendor/wnumb/wNumb.js"></script>
+
+
+
+        <script src="/js/custom.min.js"></script>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+        <script type="text/javascript" src="/js/cliente/editCliente.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
