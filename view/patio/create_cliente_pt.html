@@ -4,9 +4,9 @@
 <head>
 
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=0.2">
-	<!-- PAGE TITLE HERE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.2">
+    <!-- PAGE TITLE HERE -->
     <title>Nodhus</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet" />
@@ -14,27 +14,52 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 </head>
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+
+</header>
+<div class="dlabnav">
+    <div id="layout">
+
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <body>
 
-    <div id="layout-placeholder"></div>
+
 
 
     <div id="main-wrapper">
-        
-    <div class="header">
-        <div class="title-container">
-            <div class="circle"></div>
-            <h1 class="title">CREAR CLIENTE PATIO</h1>
-        </div>
-    </div>
 
-        
-      <div class="margenform">
+        <div class="header">
+            <div class="title-container">
+                <div class="circle"></div>
+                <h1 class="title">CREAR CLIENTE PATIO</h1>
+            </div>
+        </div>
+
+
+        <div class="margenform">
             <div id="content" class="p-4 p-md-0 pt-5">
                 <div class="container-fluid main-container">
-                    
+
                     <form id="createCliente" method="POST" enctype="multipart/form-data" class="form">
-                     
+
                         <p class="message">Complete los campos para crear un nuevo cliente.</p>
                         <div class="flex">
                             <label>
@@ -61,7 +86,7 @@
                             <button class="btn btn-primary" id="BtnSaveCliente">Enviar</button>
                         </div>
                     </form>
-                </div> 
+                </div>
                 <div class="container">
                     <ul class="navbar-nav header-right">
                         <li class="nav-item">
@@ -76,15 +101,18 @@
             </div>
         </div>
 
-           
-        <script src="/componentes/loadSidebar.js"></script>
-            <script src="/js/home/scripts.js"></script>    
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/Componentes/sidebar.js"></script>
+        <script src="/js/login/logout.js"></script>
+
+
         <script src="/js/custom.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
         <script type="text/javascript" src="/js/cliente/createCliente.js"></script>
         <script type="text/javascript" src="/js/cliente/deleteCliente.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     
-    </body>
+
+</body>
+
 </html>

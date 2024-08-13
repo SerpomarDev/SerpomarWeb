@@ -4,18 +4,42 @@
 <head>
 
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=0.2">
-	<!-- PAGE TITLE HERE -->
-	<title>Nodhus</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.2">
+    <!-- PAGE TITLE HERE -->
+    <title>Nodhus</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet" />
     <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 </head>
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+
+</header>
+<div class="dlabnav">
+    <div id="layout">
+
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <body>
-    <div id="layout-placeholder"></div>
 
 
     <div id="main-wrapper">
@@ -29,16 +53,16 @@
         <div class="margenform">
             <div id="content" class="p-4 p-md-5 pt-5">
                 <div class="container">
-                    <form  id="saveOrdenServicio" method="POST" enctype="multipart/form-data">
+                    <form id="saveOrdenServicio" method="POST" enctype="multipart/form-data">
                         <input type="hidden" id="id_contenedor" name="id_contenedor">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                <label for="" class="form-label">Tipo Contenedor</label>
-                                    <input type="text" id="id_tipo_contenedor"  class="form-control" readonly>
+                                    <label for="" class="form-label">Tipo Contenedor</label>
+                                    <input type="text" id="id_tipo_contenedor" class="form-control" readonly>
                                 </div>
                             </div>
-            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">Numero de serie</label>
@@ -48,59 +72,59 @@
                         </div>
                         <hr>
                         <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Fecha cargue</label>
-                                        <input type="date" name="fecha_cargue" id="fecha_cargue" class="form-control">
-                                    </div>  
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Fecha cargue</label>
+                                    <input type="date" name="fecha_cargue" id="fecha_cargue" class="form-control">
                                 </div>
-                
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Hora cargue</label>
-                                        <input type="time" id="hora_cargue" name="hora_cargue" class="form-control">
-                                    </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Hora cargue</label>
+                                    <input type="time" id="hora_cargue" name="hora_cargue" class="form-control">
                                 </div>
-                
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Fecha descargue</label>
-                                        <input type="date" name="fecha_descargue" id="fecha_descargue" class="form-control">
-                                    </div>  
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Fecha descargue</label>
+                                    <input type="date" name="fecha_descargue" id="fecha_descargue" class="form-control">
                                 </div>
+                            </div>
                         </div>
                         <div class="row">
-            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">Hora descargue</label>
                                     <input type="time" id="hora_descargue" name="hora_descargue" class="form-control">
                                 </div>
                             </div>
-            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">Fecha devolucion</label>
                                     <input type="date" name="fecha_devolucion" id="fecha_devolucion" class="form-control">
-                                </div>  
+                                </div>
                             </div>
-        
+
                         </div>
 
                         <div class="row">
-            
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="" class="form-label">Fecha llega a planta</label>
                                     <input type="date" id="fecha_llegadap" name="fecha_llegadap" class="form-control">
                                 </div>
                             </div>
-            
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="" class="form-label">Hora llegada a planta</label>
                                     <input type="time" name="hora_llegadap" id="hora_llegadap" class="form-control">
-                                </div>  
+                                </div>
                             </div>
 
                             <div class="col-md-4">
@@ -109,38 +133,40 @@
                                     <input type="date" id="fecha_inspeccion" name="fecha_inspeccion" class="form-control">
                                 </div>
                             </div>
-        
+
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-12 d-flex justify-content-between">
-                                <button type="button"  class="btn btn-primary" onclick="history.back()">Volver</button>
-                                <button type="submit"  class="btn btn-primary" id="BtnSaveOrdenServ">Guardar</button>
+                                <button type="button" class="btn btn-primary" onclick="history.back()">Volver</button>
+                                <button type="submit" class="btn btn-primary" id="BtnSaveOrdenServ">Guardar</button>
                             </div>
                         </div>
                     </form>
                 </div>
-        
+
                 <div class="container">
                     <div id="ordenSev"></div>
                 </div>
-    </div>
+            </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/js/home/scripts.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <!-- <script src="/componentes/loadSidebar.js"></script> -->
-        
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="/Componentes/sidebar.js"></script>
+            <script src="/js/login/logout.js"></script>
 
-    <script src="/js/custom.min.js"></script>
-    <script src="/js/dlabnav-init.js"></script>
-    <script src="/js/demo.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <!-- <script src="/componentes/loadSidebar.js"></script> -->
 
 
-    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-    <script type="text/javascript" src="/js/orden_servicio/create.js"></script>
-    <!-- <script type="text/javascript" src="/js/contenedor/showContenedor.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="/js/custom.min.js"></script>
+            <script src="/js/dlabnav-init.js"></script>
+            <script src="/js/demo.js"></script>
+
+
+            <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+            <script type="text/javascript" src="/js/orden_servicio/create.js"></script>
+            <!-- <script type="text/javascript" src="/js/contenedor/showContenedor.js"></script> -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

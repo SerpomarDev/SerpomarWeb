@@ -4,21 +4,46 @@
 <head>
 
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=0.2">
-	<!-- PAGE TITLE HERE -->
-	<title>Nodhus</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.2">
+    <!-- PAGE TITLE HERE -->
+    <title>Nodhus</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet" />
     <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 </head>
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+
+</header>
+<div class="dlabnav">
+    <div id="layout">
+
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <body>
-    <div id="layout-placeholder"></div>
-  
-  
-      <div id="main-wrapper">
+
+
+
+    <div id="main-wrapper">
         <div class="header">
             <div class="title-container">
                 <div class="circle"></div>
@@ -29,70 +54,71 @@
         <div class="margenform">
             <div id="content" class="p-4 p-md-5 pt-5">
                 <div class="container">
-                <form id="editContenedor" method="PUT" enctype="multipart/form-data">
-                    <div class="row">
-                        <input type="hidden" id="id_contenedor">
-                        <input type="hidden" id="id_solicitud_servicio" name="id_solicitud_servicio">
-                        <input type="hidden"  id="estado_operacion" name="estado_operacion">
-                        <div class="col-md-6">
-                            <label for="" class="form-label">Tipo Contenedor</label>
-                            <input type="text" id="tipo_contenedor" class="form-control">
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Numero Contenedor</label>
-                                <input type="text" class="form-control" id="nu_serie" name="nu_serie" required>
-                            </div>
-                        </div>
+                    <form id="editContenedor" method="PUT" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col-md-4">
+                            <input type="hidden" id="id_contenedor">
+                            <input type="hidden" id="id_solicitud_servicio" name="id_solicitud_servicio">
+                            <input type="hidden" id="estado_operacion" name="estado_operacion">
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Tipo Contenedor</label>
+                                <input type="text" id="tipo_contenedor" class="form-control">
+                            </div>
+
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="" class="form-label">Tara</label>
-                                    <input type="text" id="tara" name="tara" class="form-control">
+                                    <label for="" class="form-label">Numero Contenedor</label>
+                                    <input type="text" class="form-control" id="nu_serie" name="nu_serie" required>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Payload</label>
-                                    <input type="text" id="payload" name="payload" class="form-control">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Tara</label>
+                                        <input type="text" id="tara" name="tara" class="form-control">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Peso</label>
-                                    <input type="text" id="peso" name="peso" class="form-control">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Payload</label>
+                                        <input type="text" id="payload" name="payload" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Peso</label>
+                                        <input type="text" id="peso" name="peso" class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <br><br>
-                    <div class="row">
-                        <div class="col-10 d-flex justify-content-between">
-                            <button type="button" class="btn btn-primary" onclick="history.back()">Volver</button>
-                            <button type="submit" class="btn btn-primary" id="BtnEditContenedor">Enviar</button>
+                        <br><br>
+                        <div class="row">
+                            <div class="col-10 d-flex justify-content-between">
+                                <button type="button" class="btn btn-primary" onclick="history.back()">Volver</button>
+                                <button type="submit" class="btn btn-primary" id="BtnEditContenedor">Enviar</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-               </div> 
-            </div> 
-	</div>
-    
+                    </form>
+                </div>
+            </div>
+        </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/componentes/loadSidebar.js"></script>
-    <!-- Required vendors -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-	
-	
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="/Componentes/sidebar.js"></script>
+        <script src="/js/login/logout.js"></script>
+        <!-- Required vendors -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script src="/js/custom.min.js"></script>
-	
-    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-    <script type="text/javascript" src="/js/contenedor/editContenedor.js"></script>
-    <script type="text/javascript" src="/js/cargar/CargarTipoContenedor.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+        <script src="/js/custom.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+        <script type="text/javascript" src="/js/contenedor/editContenedor.js"></script>
+        <script type="text/javascript" src="/js/cargar/CargarTipoContenedor.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
