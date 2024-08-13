@@ -1,5 +1,12 @@
 /* styles.css */
 
+#menu-items-container {
+    overflow-y: auto;
+    /* Habilita el scroll vertical */
+    max-height: 550px;
+    /* Ajusta la altura máxima según tus necesidades */
+}
+
 #sidebar {
     height: 0;
     transition: height 0.5s ease-in-out;
