@@ -2,7 +2,12 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-fetch(`https://esenttiapp-production.up.railway.app/api/showcostobyid/${id}`)
+    fetch(`https://esenttiapp-production.up.railway.app/api/showcostobyid/${id}`,{
+        method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+    })
     .then((response) => {
       if (!response.ok) {
           throw new Error("Error al obtener los datos de la API");
@@ -37,6 +42,9 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcostobyid/${id}`)
         columns: ["#","Valor"],
         server: {
             url: "https://esenttiapp-production.up.railway.app/api/showcostos",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            },
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((costo) => [
@@ -51,6 +59,8 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcostobyid/${id}`)
         }
     }).render(document.getElementById('costoEdit'));
 
+    localStorage.setItem("authToken", data.token);
+
     document.getElementById("editCosto").addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -59,7 +69,10 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcostobyid/${id}`)
 
         fetch(`https://esenttiapp-production.up.railway.app/api/costos/${id}`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+             },
             body: jsonData,
         })
             .then((response) => {

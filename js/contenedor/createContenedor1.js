@@ -6,7 +6,10 @@ document.getElementById('saveContenedor').addEventListener('submit',function(eve
   
     fetch('https://esenttiapp-production.up.railway.app/api/contenedores',{
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+       },
       body: jsonData
     })
     .then(response => response.json().then(data => ({ status: response.status, body: data })))
