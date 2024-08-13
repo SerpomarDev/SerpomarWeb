@@ -48,11 +48,11 @@ const columnDefs = [
   ];
   
 
-  fetch("https://esenttiapp-production.up.railway.app/api/showaliado",{
-    headers: {
-      'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-    }
-  })
+    fetch("https://esenttiapp-production.up.railway.app/api/showaliado",{
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+      }
+    })
     .then(response => response.json())
     .then(data => {
       const processedData = data.map(aliado => {
