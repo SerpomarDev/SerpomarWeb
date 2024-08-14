@@ -12,63 +12,59 @@ new gridjs.Grid({
     resizable: true,
     sort: false,
     columns: [{
-        name: 'id',
-        hidden: true,
-    }, "Placa", "Eje", "Tipologia", "Propietario", "soat", "soat vencimientos", "num. poliza", "tecnomecanica", "tecnomecanica vencimiento", "gps", "web gps", {
-        name: 'Telefono',
-        hidden: true,
-    }, {
-        name: 'Accion',
-        columns: [{
-                name: 'Documentos',
-                hidden: false,
-                formatter: (cell, row) => {
-                    return gridjs.html(
-                        `<button id="btn-${row.cells[0].data}" class="upload-btn no-file" onclick="uploadId(${row.cells[0].data})">Adjuntos</button>`
-                    );
-                }
-            }, {
+            name: 'id',
+            hidden: true,
+        }, "Placa", "Eje", "Tipologia", "Propietario", "soat", "soat vencimientos", "num. poliza", "tecnomecanica", "tec. vencimiento", "gps", "web gps", {
 
-                name: 'Actualizar',
-                formatter: (cell, row) => {
-                    return gridjs.h('a', {
-                        href: '/view/Placa/edit.html',
-                        onclick: (e) => {
-                            e.preventDefault();
-                            editPlaca(row.cells[0].data);
-                        }
-                    }, [
-                        // Imagen dentro del enlace
-                        gridjs.h('img', {
-                            src: '/img/editar-texto.png',
-                            alt: 'Actualizar',
-                            style: 'width: 20px; height: 20px;'
-                        })
-                    ]);
-                },
-            },
-            {
-                name: 'Eliminar',
-                formatter: (cell, row) => {
-                    return gridjs.h('a', {
-                        href: '/view/Placa/create.html',
-                        onclick: (e) => {
-                            e.preventDefault();
-                            deletePlaca(row.cells[0].data);
-                        }
-                    }, [
-                        // Imagen dentro del enlace
-                        gridjs.h('img', {
-                            src: '/img/basura.png',
-                            alt: 'eliminar',
-                            style: 'width: 20px; height: 20px;'
-                        })
-                    ]);
-                },
+            name: 'Documentos',
+            hidden: false,
+            formatter: (cell, row) => {
+                return gridjs.html(
+                    `<button id="btn-${row.cells[0].data}" class="upload-btn no-file" onclick="uploadId(${row.cells[0].data})">Adjuntos</button>`
+                );
             }
-        ],
+        }, {
 
-    }],
+            name: 'Actualizar',
+            formatter: (cell, row) => {
+                return gridjs.h('a', {
+                    href: '/view/Placa/edit.html',
+                    onclick: (e) => {
+                        e.preventDefault();
+                        editPlaca(row.cells[0].data);
+                    }
+                }, [
+                    // Imagen dentro del enlace
+                    gridjs.h('img', {
+                        src: '/img/editar-texto.png',
+                        alt: 'Actualizar',
+                        style: 'width: 20px; height: 20px;'
+                    })
+                ]);
+            },
+        },
+        {
+            name: 'Eliminar',
+            hidden: true,
+            formatter: (cell, row) => {
+                return gridjs.h('a', {
+                    href: '/view/Placa/create.html',
+                    onclick: (e) => {
+                        e.preventDefault();
+                        deletePlaca(row.cells[0].data);
+                    }
+                }, [
+                    // Imagen dentro del enlace
+                    gridjs.h('img', {
+                        src: '/img/basura.png',
+                        alt: 'eliminar',
+                        style: 'width: 20px; height: 20px;'
+                    })
+                ]);
+            },
+
+        }
+    ],
     server: {
         url: "https://esenttiapp-production.up.railway.app/api/showplaca",
         headers: {
