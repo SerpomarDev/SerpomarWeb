@@ -6,7 +6,7 @@ new gridjs.Grid({
         }
     },
     pagination: {
-        limit: 10,
+        limit: 20,
         enabled: true,
     },
     resizable: true,
@@ -76,6 +76,9 @@ new gridjs.Grid({
         },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
+                // Ordenar los datos por id_placa en orden descendente
+                data.sort((a, b) => b.id_placa - a.id_placa);
+
                 return data.map((placa) => [
                     placa.id_placa,
                     placa.placa,
