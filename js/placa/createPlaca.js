@@ -14,7 +14,7 @@ new gridjs.Grid({
     columns: [{
         name: 'id',
         hidden: true,
-    }, "Placa", "Eje", "Tipologia", "Propietario", {
+    }, "Placa", "Eje", "Tipologia", "Propietario", "soat", "fecha_vencimientos", "numero_poliza", "tecnomecanica", "fecha_vencimientot", "gps", "webgps", {
         name: 'Telefono',
         hidden: true,
     }, {
@@ -82,7 +82,14 @@ new gridjs.Grid({
                     placa.eje,
                     placa.tipologia,
                     placa.nombre,
-                    placa.telefono
+                    placa.telefono,
+                    placa.soat,
+                    placa.fecha_vencimientos,
+                    placa.numero_poliza,
+                    placa.tecnomecanica,
+                    placa.fecha_vencimientot,
+                    placa.gps,
+                    placa.webgps
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
@@ -92,38 +99,65 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('Placa'));
 
-localStorage.setItem("authToken", data.token);
-
+// Manejo del evento 'submit' del formulario
 document.getElementById('createPlaca').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const formData = new FormData(this);
 
-    const jsonData = JSON.stringify(Object.fromEntries(formData));
+    // Convertir los datos del formulario a JSON, escapando caracteres especiales si es necesario
+    const jsonData = JSON.stringify(Object.fromEntries(formData), (key, value) => {
+        if (typeof value === 'string') {
+            return value.replace(/\n/g, ' ').replace(/\t/g, ' ');
+        }
+        return value;
+    });
 
     fetch('https://esenttiapp-production.up.railway.app/api/placas', {
             method: 'POST',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-             },
+            },
             body: jsonData
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Error al enviar los datos del formulario');
+                // Manejo de errores del servidor con más detalle
+                if (response.status === 400) { // Ejemplo: Bad Request
+                    return response.json().then(data => {
+                        throw new Error("Solicitud incorrecta: " + data.message || "Verifique los datos del formulario.");
+                    });
+                }
+            } else {
+                return response.text().then(text => {
+                    console.log("Respuesta del servidor:", text);
+                    if (text.includes("Placa creada exitosamente") || text.includes("mensaje de éxito similar del servidor")) {
+                        Swal.fire({
+                            title: "¡Buen trabajo!",
+                            text: "Has Creado una Placa.",
+                            icon: "success",
+                        });
+                        time();
+                    } else {
+                        Swal.fire({ // Cambiado a SweetAlert de éxito
+                            title: "¡Bien hecho!",
+                            text: "Placa creada correctamente",
+                            icon: "success",
+                        });
+                        time();
+                    }
+                });
             }
         })
-        .then(data => {
+        .catch(error => {
+            console.error('Error al crear la placa:', error);
             Swal.fire({
-                title: "¡Buen trabajo!",
-                text: "Has Creado una Placa.",
-                icon: "success",
+                title: "Error",
+                text: error.message || "Hubo un problema al crear la placa. Por favor, inténtalo de nuevo.",
+                icon: "error",
             });
-        })
-        .then((response) => {
-            time();
-        })
+        });
 });
 
 function time() {
@@ -134,40 +168,32 @@ function time() {
 }
 
 function editPlaca(id) {
-
     window.location.href = `/view/placa/edit.html?id=${id}`
 }
-
 
 function deletePlaca(id) {
     DeleteData(id)
 }
 
 function uploadId(id) {
-    // Open the modal or handle file upload
     $('#fileUploadModal').show();
     $('#id_asignacion').val(id);
 
-    // Initialize Dropzone for the form
     const myDropzone = new Dropzone("#SaveFile", {
-        url: "/upload", // Replace with your upload URL
+        url: "/upload",
         init: function() {
             this.on("success", function(file, response) {
-                // Change button state after successful file upload
                 const button = document.getElementById(`btn-${id}`);
                 if (button) {
                     button.classList.remove('no-file');
                     button.classList.add('file-uploaded');
                 }
-
-                // Hide the modal after upload
                 $('#fileUploadModal').hide();
             });
         }
     });
 }
 
-// Handle modal close
 $('.close').on('click', function() {
     $('#fileUploadModal').hide();
 });
