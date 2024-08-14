@@ -14,7 +14,7 @@ new gridjs.Grid({
     columns: [{
         name: 'id',
         hidden: true,
-    }, "Placa", "Eje", "Tipologia", "Propietario", "soat", "fecha_vencimientos", "numero_poliza", "tecnomecanica", "fecha_vencimientot", "gps", "webgps", {
+    }, "Placa", "Eje", "Tipologia", "Propietario", "soat", "soat vencimientos", "num. poliza", "tecnomecanica", "tecnomecanica vencimiento", "gps", "web gps", {
         name: 'Telefono',
         hidden: true,
     }, {
