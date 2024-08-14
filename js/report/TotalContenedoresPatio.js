@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         selector.disabled = true;
 
-    fetch(endpoint)
+    endpoint
     .then(response=>{
         if(!response.ok){
             throw new Error('Error al obtener los datos de la API');
