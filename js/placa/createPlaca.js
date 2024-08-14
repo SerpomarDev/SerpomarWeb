@@ -82,7 +82,6 @@ new gridjs.Grid({
                     placa.eje,
                     placa.tipologia,
                     placa.nombre,
-                    placa.telefono,
                     placa.soat,
                     placa.fecha_vencimientos,
                     placa.numero_poliza,
