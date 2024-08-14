@@ -16,8 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Envío del formulario 
-    loginForm.addEventListener("submit", async (event) => {
+    loginForm.addEventListener("submit", async(event) => {
         event.preventDefault();
+
+        // Deshabilitar el botón de envío
+        const submitButton = event.target.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
 
         const email = usernameInput.value;
         const password = passwordInput.value;
@@ -34,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Guardar tanto el token como el user_id en localStorage
                 localStorage.setItem("authToken", data.token);
-                localStorage.setItem("userId", data.user_id); 
+                localStorage.setItem("userId", data.user_id);
 
                 window.location.href = "home.html";
             } else {
@@ -43,6 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error("Error durante el inicio de sesión:", error);
             alert("Ocurrió un error durante el inicio de sesión. Por favor, inténtalo de nuevo más tarde.");
+        } finally {
+            // Volver a habilitar el botón al finalizar
+            submitButton.disabled = false;
         }
     });
 
