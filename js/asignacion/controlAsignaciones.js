@@ -10,6 +10,7 @@ function updateTotalAbiertas(data) {
   const columnDefs = [
     { headerName: "ID", field: "id" },
     { headerName: "Fecha", field: "fecha" },
+    { headerName: "Cliente", field: "cliente" },
     { headerName: "SP", field: "do_sp" },
     { headerName: "Contenedor", field: "numero_contenedor" },
     { headerName: "Placa", field: "placa" },
@@ -56,6 +57,7 @@ function updateTotalAbiertas(data) {
         return {
           id: asigControl.id,
           fecha: asigControl.fecha,
+          cliente: asigControl.cliente,
           do_sp: asigControl.do_sp,
           numero_contenedor: asigControl.numero_contenedor,
           placa: asigControl.placa,
