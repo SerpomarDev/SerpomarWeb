@@ -22,7 +22,6 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editplaca/${id}`, {
             document.getElementById("eje").value = placa.eje
             document.getElementById("tipologia").value = placa.tipologia
             document.getElementById("id_aliado").value = placa.id_aliado
-            document.getElementById("aliado").value = placa.aliado
             document.getElementById("soat").value = placa.soat
             document.getElementById("fecha_vencimientos").value = placa.fecha_vencimientos
             document.getElementById("numero_poliza").value = placa.numero_poliza
@@ -30,6 +29,8 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editplaca/${id}`, {
             document.getElementById("fecha_vencimientot").value = placa.fecha_vencimientot
             document.getElementById("gps").value = placa.gps
             document.getElementById("webgps").value = placa.webgps
+            document.getElementById("usuariogps").value = placa.usuariogps
+            document.getElementById("contrasenagps").value = placa.contrasenagps
 
         } else {
             console.log('La propiedad array no existe en la respuesta');
@@ -65,8 +66,14 @@ new gridjs.Grid({
                     placa.placa,
                     placa.eje,
                     placa.tipologia,
-                    placa.nombre,
-                    placa.telefono
+                    placa.id_aliado,
+                    placa.soat,
+                    placa.fecha_vencimientos,
+                    placa.numero_poliza,
+                    placa.tecnomecanica,
+                    placa.fecha_vencimientot,
+                    placa.gps,
+                    placa.webgps
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
@@ -76,7 +83,6 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('placaEdit'));
 
-localStorage.setItem("authToken", data.token);
 
 document.getElementById("editPlaca").addEventListener("submit", function(event) {
     event.preventDefault();
@@ -115,8 +121,8 @@ document.getElementById("editPlaca").addEventListener("submit", function(event) 
 });
 
 function time() {
-    document.getElementById('editPlaca').reset();
+    document.getElementById('createPlaca').reset();
     setTimeout(() => {
         window.location.href = `/view/placas/edit.html`;
-    }, 1500);
+    }, 1200);
 }
