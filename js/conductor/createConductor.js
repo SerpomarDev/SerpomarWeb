@@ -11,7 +11,7 @@ new gridjs.Grid({
     },
     resizable: true,
     sort: false,
-    columns: ["#", "Nombre", "Identificacicón", "Telefono", {
+    columns: ["#", "Nombre", "Identificacicón", "Telefono", "licencia", "lic. Vencemiento", {
         name: 'Acciones',
         columns: [{
                 name: 'Documentos',
@@ -74,6 +74,9 @@ new gridjs.Grid({
                     conductor.nombre,
                     conductor.identificacion,
                     conductor.telefono,
+                    conductor.email,
+                    conductor.numero_licencia,
+                    conductor.fecha_vencimiento
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
@@ -83,39 +86,70 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('conductores'));
 
-localStorage.setItem("authToken", data.token);
-
+// Manejo del evento 'submit' del formulario
 document.getElementById('createConductor').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const formData = new FormData(this);
 
-    const jsonData = JSON.stringify(Object.fromEntries(formData));
+    // Convertir los datos del formulario a JSON, escapando caracteres especiales si es necesario
+    const jsonData = JSON.stringify(Object.fromEntries(formData), (key, value) => {
+        if (typeof value === 'string') {
+            return value.replace(/\n/g, ' ').replace(/\t/g, ' ');
+        }
+        return value;
+    });
+
 
     fetch('https://esenttiapp-production.up.railway.app/api/conductores', {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-             },
-            body: jsonData
-        })
-        .then(response => {
+        method: 'POST', // O PUT/PATCH si es lo que espera tu API
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+        },
+        body: jsonData
+    })
+
+    .then(response => {
             if (!response.ok) {
-                throw new Error('Error al enviar los datos del formulario');
+                // Manejo de errores del servidor con más detalle
+                if (response.status === 400) { // Ejemplo: Bad Request
+                    return response.json().then(data => {
+                        throw new Error("Solicitud incorrecta: " + data.message || "Verifique los datos del formulario.");
+                    });
+                }
+            } else {
+                return response.text().then(text => {
+                    console.log("Respuesta del servidor:", text);
+                    if (text.includes("Conductor creado exitosamente") || text.includes("mensaje de éxito similar del servidor")) {
+                        Swal.fire({
+                            title: "¡Buen trabajo!",
+                            text: "Has Creado un conductor.",
+                            icon: "success",
+                        });
+                        time();
+                    } else {
+                        Swal.fire({ // Cambiado a SweetAlert de éxito
+                            title: "¡Bien hecho!",
+                            text: "Conductor creado correctamente",
+                            icon: "success",
+                        });
+                        time();
+                    }
+                });
             }
         })
-        .then(data => {
+        .catch(error => {
+            console.error('Error al crear el conductor:', error);
             Swal.fire({
-                title: "¡Buen trabajo!",
-                text: "Has Creado un conductor.",
-                icon: "success",
+                title: "Error",
+                text: error.message || "Hubo un problema al crear la placa. Por favor, inténtalo de nuevo.",
+                icon: "error",
             });
-        })
-        .then((response) => {
-            time();
-        })
+        });
 });
+
+
 
 function time() {
     document.getElementById('createConductor').reset();
