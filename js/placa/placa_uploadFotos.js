@@ -78,6 +78,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
         loadUploadedFiles(id);
     }
 
+    async function deleteFile(id, fileName) {
+        try {
+            const fileRef = storage.ref(`adjuntos_placa/${id}/${fileName}`);
+            await fileRef.delete();
+            console.log(`File deleted: ${fileName}`);
+            // Actualizar la lista de archivos adjuntos después de eliminar un archivo
+            loadUploadedFiles(id);
+        } catch (error) {
+            console.error('Error deleting file:', error);
+            alert('Ocurrió un error al eliminar el archivo adjunto. Por favor, inténtelo de nuevo más tarde.');
+        }
+    }
+
     async function loadUploadedFiles(id) {
         const fileList = document.getElementById('uploadedFilesList');
         fileList.innerHTML = '';
@@ -99,6 +112,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         link.target = '_blank';
                         link.textContent = itemRef.name;
                         listItem.appendChild(link);
+
+                        // Add delete button
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Eliminar';
+                        deleteButton.addEventListener('click', () => {
+                            if (confirm('¿Estás seguro de que quieres eliminar este archivo?')) {
+                                deleteFile(id, itemRef.name);
+                            }
+                        });
+                        listItem.appendChild(deleteButton);
+
                         fileList.appendChild(listItem);
                     });
                 });
@@ -110,4 +134,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     window.uploadId = uploadId;
+    window.deleteFile = deleteFile; // Make the deleteFile function globally accessible
 });
