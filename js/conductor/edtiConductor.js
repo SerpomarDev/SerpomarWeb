@@ -64,7 +64,7 @@ document.getElementById("editConductor").addEventListener("submit", function(eve
             console.log("Respuesta del servidor:", data);
             Swal.fire({
                 title: "¡Buen trabajo!",
-                text: "Has actualizado una Placa.",
+                text: "Has actualizado un conductor.",
                 icon: "success",
             });
         })
