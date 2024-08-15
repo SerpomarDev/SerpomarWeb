@@ -1,14 +1,15 @@
 
-       const apiUrl = fetch('https://esenttiapp-production.up.railway.app/api/asignacionespendienteordencompra',{
-        method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-            }
-       })
+       const apiUrl = 'https://esenttiapp-production.up.railway.app/api/asignacionespendienteordencompra';
 
        async function fetchData() {
            try {
-               const response = await fetch(apiUrl);
+               const response = await fetch(apiUrl,{
+                method: 'GET',
+                    headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                }   
+               });
+               
                const data = await response.json();
 
               

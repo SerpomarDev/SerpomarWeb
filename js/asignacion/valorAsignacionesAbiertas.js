@@ -1,0 +1,29 @@
+fetch('https://esenttiapp-production.up.railway.app/api/valorasignacionesabiertas',{
+    method: 'GET',
+      headers: {
+          'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+      }
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Error al obtener los datos de la API');
+    }
+    return response.json();
+  })
+  .then(data => {
+    const totalByConElement = document.getElementById('valor-total-abiertas');
+    
+    const amount = isNaN(data) ? 0 : data;
+  
+    const formattedAmount = new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(amount);
+  
+    totalByConElement.textContent = `${formattedAmount}`;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });

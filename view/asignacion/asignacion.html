@@ -49,6 +49,11 @@
 
         <div class="margenform">
             <div id="content" class="p-4 p-md-5 pt-5">
+                 <!-- Hidden inputs to store fetched values -->
+                <input type="hidden" id="id_contenedor">
+                <input type="hidden" id="id_cliente">
+                <input type="hidden" id="imp_exp">
+                
                 <a href="javascript:history.back()" class="btn btn-primary" role="button">Volver</a>
                 <div class="container-a">
                     <div id="cargarExpo" style="display: none;"></div>
@@ -58,13 +63,9 @@
                 </div>
             </div>
         </div>
-
-        <!-- Hidden inputs to store fetched values -->
-        <input type="hidden" id="id_contenedor">
-        <input type="hidden" id="id_cliente">
-        <input type="hidden" id="imp_exp">
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/Componentes/sidebar.js"></script>
     <script src="/js/login/logout.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

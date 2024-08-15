@@ -90,7 +90,6 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
                     if (cell) {
                         return {
                             'data-cell-content': cell,
-                            // onclick: () => addordenSer(row.cells[1].data),
                             'style': 'color: #6495ED;  font-weight: bold;',
                         }
                     }
@@ -161,8 +160,6 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
             }
         }
     }).render(document.getElementById('cargarExpo'));
-
-    localStorage.setItem("authToken", data.token);
 
     // Tabla Importacion
     new gridjs.Grid({
@@ -274,8 +271,10 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
         }
     }).render(document.getElementById('cargarImpo'));
 
-    localStorage.setItem("authToken", data.token);
+    
 }
+
+localStorage.setItem("authToken", data.token);
 
 function time() {
     document.getElementById("saveAsignacion").reset();
