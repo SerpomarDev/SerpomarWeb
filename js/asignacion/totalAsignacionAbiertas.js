@@ -1,4 +1,4 @@
-  fetch('https://esenttiapp-production.up.railway.app/api/cantidadtotalcontenedor',{
+fetch('https://esenttiapp-production.up.railway.app/api/totalasignacionabiertas',{
     method: 'GET',
       headers: {
           'Authorization': `Bearer ${localStorage.getItem("authToken")}`
@@ -11,7 +11,7 @@
     return response.json();
   })
   .then(data => {
-    const totalRegistrosElement = document.getElementById('totalContenedores');
+    const totalRegistrosElement = document.getElementById('total-abiertas');
     totalRegistrosElement.textContent = `${data}`;
   })
   .catch(error => {
