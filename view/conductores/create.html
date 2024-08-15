@@ -183,26 +183,60 @@
                 <div class="container-fluid main-container">
                     <form id="createConductor" method="POST" enctype="multipart/form-data" class="form">
                         <p class="message">Complete los campos para crear un nuevo conductor.</p>
-                        <div class="flex">
-                            <label>
-                                <input type="text" class="input" id="nombre" name="nombre" required>
-                                <span>Nombre</span>
-                            </label>
-                            <label>
-                                <input type="number" class="input" id="identificacion" name="identificacion" required>
-                                <span>Identificación</span>
-                            </label>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="nombre" name="nombre" required>
+                                        <span>Nombre</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="number" class="input" id="identificacion" name="identificacion" required>
+                                        <span>Identificación</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="number" class="input" id="telefono" name="telefono" required>
+                                        <span>Teléfono</span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex">
-                            <label>
-                                <input type="number" class="input" id="telefono" name="telefono" required>
-                                <span>Teléfono</span>
-                            </label>
-                            <label>
-                                <input type="email" class="input" id="email" name="email">
-                                <span>Email</span>
-                            </label>
-                        </div><br>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="email" class="input" id="email" name="email">
+                                        <span>Email</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="number" class="input" id="fecha_vencimientot" name="fecha_vencimientot" required>
+                                        <span>No. licencia</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="fecha_vencimientot" name="fecha_vencimientot" required>
+                                        <span>Vencemiento licencia</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="flex">
                             <button class="btn btn-primary" id="BtnSaveConductor">Enviar</button>
                             <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
