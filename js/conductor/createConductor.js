@@ -11,7 +11,7 @@ new gridjs.Grid({
     },
     resizable: true,
     sort: false,
-    columns: ["#", "Nombre", "Identificacicón", "Telefono", {
+    columns: ["#", "Nombre", "Identificacicón", "Telefono", "licencia", "lic. Vencemiento", {
         name: 'Acciones',
         columns: [{
                 name: 'Documentos',
@@ -74,6 +74,9 @@ new gridjs.Grid({
                     conductor.nombre,
                     conductor.identificacion,
                     conductor.telefono,
+                    conductor.email,
+                    conductor.numero_licencia,
+                    conductor.fecha_vencimiento
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
