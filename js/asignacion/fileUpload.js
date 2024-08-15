@@ -17,17 +17,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const span = document.getElementsByClassName('close')[0];
     let currentRowIndex;
 
-    span.onclick = function () {
+    span.onclick = function() {
         modal.style.display = 'none';
     }
 
-    window.onclick = function (event) {
+    window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = 'none';
         }
     }
 
-    window.handleFileUpload = function (event) {
+    window.handleFileUpload = function(event) {
         currentRowIndex = event.target.getAttribute('data-row-index');
         modal.style.display = 'block';
     }
@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const myDropzone = new Dropzone('#SaveFile', {
             autoProcessQueue: false,
             acceptedFiles: '.pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.png,.jpeg',
-            init: function () {
-                this.on('addedfile', async function (file) {
+            init: function() {
+                this.on('addedfile', async function(file) {
                     const id = document.getElementById('id_asignacion').value;
                     let fileName = file.name;
                     let filePath = `uploads/${id}/${fileName}`;
@@ -78,12 +78,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
         loadUploadedFiles(id);
     }
 
+    async function deleteFile(id, fileName) {
+        try {
+            const fileRef = storage.ref(`uploads/${id}/${fileName}`); // Updated storage path
+            await fileRef.delete();
+            console.log(`File deleted: ${fileName}`);
+            // Actualizar la lista de archivos adjuntos después de eliminar un archivo
+            loadUploadedFiles(id);
+        } catch (error) {
+            console.error('Error deleting file:', error);
+            alert('Ocurrió un error al eliminar el archivo adjunto. Por favor, inténtelo de nuevo más tarde.');
+        }
+    }
+
     async function loadUploadedFiles(id) {
         const fileList = document.getElementById('uploadedFilesList');
         fileList.innerHTML = '';
 
         try {
-            const listRef = storage.ref(`uploads/${id}`);
+            const listRef = storage.ref(`uploads/${id}`); // Updated storage path
             const res = await listRef.listAll();
 
             if (res.items.length === 0) {
@@ -99,6 +112,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         link.target = '_blank';
                         link.textContent = itemRef.name;
                         listItem.appendChild(link);
+
+                        // Add delete button
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Eliminar';
+                        deleteButton.addEventListener('click', () => {
+                            if (confirm('¿Estás seguro de que quieres eliminar este archivo?')) {
+                                deleteFile(id, itemRef.name);
+                            }
+                        });
+                        listItem.appendChild(deleteButton);
+
                         fileList.appendChild(listItem);
                     });
                 });
@@ -110,4 +134,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     window.uploadId = uploadId;
+    window.deleteFile = deleteFile;
 });
