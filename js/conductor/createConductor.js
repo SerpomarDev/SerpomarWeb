@@ -11,7 +11,7 @@ new gridjs.Grid({
     },
     resizable: true,
     sort: false,
-    columns: ["#", "Nombre", "Identificacicón", "Telefono", "licencia", "lic. Vencemiento", {
+    columns: ["#", "Nombre", "Identificacicón", "Telefono", "email", "licencia", "lic. Vencemiento", {
 
             name: 'Documentos',
             hidden: false,
