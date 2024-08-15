@@ -74,8 +74,6 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('rutas'));
 
-localStorage.setItem("authToken", data.token);
-
   document.getElementById('createRuta').addEventListener('submit', function(event) {
     event.preventDefault();
   
@@ -102,6 +100,7 @@ localStorage.setItem("authToken", data.token);
           text: "¡Has creado una ruta",
           icon: "success",
         });
+        location.reload();
     })
     .then((response)=>{
      time();
