@@ -312,6 +312,7 @@ function contenedorByAsignacion(id){
             document.getElementById("id_tipo_contenedor").value = contasig.tipo;
             document.getElementById("nu_serie").value = contasig.numero;
             document.getElementById("peso").value = contasig.peso;
+            document.getElementById("cliente").value = contasig.cliente;
         } else {
             console.log("La propiedad array no existe en la respuesta");
         }
