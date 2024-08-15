@@ -92,60 +92,60 @@ new gridjs.Grid({
 
 localStorage.setItem("authToken", data.token);
 
-function establecerFactura() {
-  // Obtener los IDs seleccionados y sus números de factura
-  const checkboxes = document.querySelectorAll('.row-checkbox:checked');
-  if (checkboxes.length === 0) {
-    Swal.fire({
-        title: "Advertencia",
-        text: "Debe seleccionar al menos un registro para actualizar.",
-        icon: "warning"
-    });
-    return;
-}
-  const payload = Array.from(checkboxes).map(checkbox => {
-    const id = checkbox.id.replace('checkbox-', '');
-    const facturaInput = document.getElementById(`factura-${id}`);
-    const row = checkbox.closest('tr');
-    return {
-        id: id,
-        numero_factura: facturaInput ? facturaInput.value : '',
-        fecha: row.cells[1].innerText,
-        sp: row.cells[2].innerText,
-        numero_contenedor: row.cells[3].innerText,
-        placa: row.cells[4].innerText,
-        aliado: row.cells[5].innerText,
-        tarifa: row.cells[6].innerText,
-        ruta: row.cells[7].innerText,
-        nombre: row.cells[8].innerText,
-        estado: row.cells[9].innerText
-    };
-  });
+// function establecerFactura() {
+//   // Obtener los IDs seleccionados y sus números de factura
+//   const checkboxes = document.querySelectorAll('.row-checkbox:checked');
+//   if (checkboxes.length === 0) {
+//     Swal.fire({
+//         title: "Advertencia",
+//         text: "Debe seleccionar al menos un registro para actualizar.",
+//         icon: "warning"
+//     });
+//     return;
+// }
+//   const payload = Array.from(checkboxes).map(checkbox => {
+//     const id = checkbox.id.replace('checkbox-', '');
+//     const facturaInput = document.getElementById(`factura-${id}`);
+//     const row = checkbox.closest('tr');
+//     return {
+//         id: id,
+//         numero_factura: facturaInput ? facturaInput.value : '',
+//         fecha: row.cells[1].innerText,
+//         sp: row.cells[2].innerText,
+//         numero_contenedor: row.cells[3].innerText,
+//         placa: row.cells[4].innerText,
+//         aliado: row.cells[5].innerText,
+//         tarifa: row.cells[6].innerText,
+//         ruta: row.cells[7].innerText,
+//         nombre: row.cells[8].innerText,
+//         estado: row.cells[9].innerText
+//     };
+//   });
 
-  fetch('https://esenttiapp-production.up.railway.app/api/establecerfactura', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-      },
-      body: JSON.stringify(payload)
-  })
-  .then(response => response.json())
-  .then(data => {
-    Swal.fire({
-      title: "¡Actualizado!",
-      text: "El estado ha sido actualizado.",
-      icon: "success"
-    });
+//   fetch('https://esenttiapp-production.up.railway.app/api/establecerfactura', {
+//       method: 'POST',
+//       headers: {
+//           'Content-Type': 'application/json',
+//           'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+//         },
+//       body: JSON.stringify(payload)
+//   })
+//   .then(response => response.json())
+//   .then(data => {
+//     Swal.fire({
+//       title: "¡Actualizado!",
+//       text: "El estado ha sido actualizado.",
+//       icon: "success"
+//     });
 
-    setTimeout(() => {
-        location.reload();
-    }, 1500);
-  })
-  .catch(error => {
-      console.error('Error:', error);
-  });
-}
+//     setTimeout(() => {
+//         location.reload();
+//     }, 1500);
+//   })
+//   .catch(error => {
+//       console.error('Error:', error);
+//   });
+// }
 
 function actualizarPagado(id){
     actualizarPagado(id)
