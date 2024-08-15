@@ -2,112 +2,114 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-    fetch(`https://esenttiapp-production.up.railway.app/api/editconductor/${id}`,{
+fetch(`https://esenttiapp-production.up.railway.app/api/editconductor/${id}`, {
         method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-            }
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+        }
     })
     .then((response) => {
-      if (!response.ok) {
-          throw new Error("Error al obtener los datos de la API");
-      }
-      return response.json();
+        if (!response.ok) {
+            throw new Error("Error al obtener los datos de la API");
+        }
+        return response.json();
     })
     .then((data) => {
-      if (data.length > 0) {
-        const conductor = data[0];
-          document.getElementById("id").value = conductor.id
-          document.getElementById("nombre").value = conductor.nombre
-          document.getElementById("identificacion").value = conductor.identificacion
-          document.getElementById("telefono").value = conductor.telefono
-          document.getElementById("email").value = conductor.email
+        if (data.length > 0) {
+            const conductor = data[0];
+            document.getElementById("id").value = conductor.id
+            document.getElementById("nombre").value = conductor.nombre
+            document.getElementById("identificacion").value = conductor.identificacion
+            document.getElementById("telefono").value = conductor.telefono
+            document.getElementById("email").value = conductor.email
+            document.getElementById("numero_licencia").value = conductor.numero_licencia
+            document.getElementById("fecha_vencimiento").value = conductor.fecha_vencimiento
 
-      } else {
-        console.log('La propiedad array no existe en la respuesta');
-      }
+        } else {
+            console.log('La propiedad array no existe en la respuesta');
+        }
     })
     .catch((error) => {
-      console.error('Error:', error);
+        console.error('Error:', error);
     });
 
-    new gridjs.Grid({
-        search: true,
-        language:{
-            search:{
-                placeholder: '🔍 Buscar...'
-            }
+new gridjs.Grid({
+    search: true,
+    language: {
+        search: {
+            placeholder: '🔍 Buscar...'
+        }
+    },
+    pagination: {
+        limit: 10,
+        enabled: true,
+    },
+    resizable: true,
+    sort: false,
+    columns: ["#", "Nombre", "Identificacicón", "Telefono", "Email"],
+    server: {
+        url: "https://esenttiapp-production.up.railway.app/api/uploadconductor",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
         },
-        pagination: {
-            limit:10,
-            enabled: true,
-        },
-        resizable: true,
-        sort: false,
-        columns: ["#","Nombre", "Identificacicón", "Telefono", "Email"],
-        server: {
-            url: "https://esenttiapp-production.up.railway.app/api/uploadconductor",
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("authToken")}`
-            },
-            then: (data) => {
-                if (Array.isArray(data) && data.length > 0) {
-                    return data.map((conductor) => [
-                        conductor.id,
-                        conductor.nombre,
-                        conductor.identificacion,
-                        conductor.telefono,
-                        conductor.email
-                    ]);
-                } else {
-                    console.error("La respuesta del servidor no contiene datos válidos.");
-                    return [];
-                }
+        then: (data) => {
+            if (Array.isArray(data) && data.length > 0) {
+                return data.map((conductor) => [
+                    conductor.id,
+                    conductor.nombre,
+                    conductor.identificacion,
+                    conductor.telefono,
+                    conductor.email
+                ]);
+            } else {
+                console.error("La respuesta del servidor no contiene datos válidos.");
+                return [];
             }
         }
-    }).render(document.getElementById('conductoresedit'));
+    }
+}).render(document.getElementById('conductoresedit'));
 
-    localStorage.setItem("authToken", data.token);
+localStorage.setItem("authToken", data.token);
 
-    document.getElementById("editConductor").addEventListener("submit", function (event) {
-        event.preventDefault();
+document.getElementById("editConductor").addEventListener("submit", function(event) {
+    event.preventDefault();
 
-        const formData = new FormData(this);
-        const jsonData = JSON.stringify(Object.fromEntries(formData));
+    const formData = new FormData(this);
+    const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-        fetch(`https://esenttiapp-production.up.railway.app/api/conductores/${id}`, {
+    fetch(`https://esenttiapp-production.up.railway.app/api/conductores/${id}`, {
             method: "PUT",
-            headers: { 
+            headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-             },
+            },
             body: jsonData,
         })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Error al enviar los datos del formulario");
-                }
-                return response.json();
-            })
-            .then((data) => {
-                console.log("Respuesta del servidor:", data);
-                Swal.fire({
-                    title: "¡Buen trabajo!",
-                    text: "Has actualizado un conductor.",
-                    icon: "success",
-                });
-            })
-            .then(response=>{
-              time();
-            })
-            .catch((error) => {
-                console.error("Error:", error);
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Error al enviar los datos del formulario");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log("Respuesta del servidor:", data);
+            Swal.fire({
+                title: "¡Buen trabajo!",
+                text: "Has actualizado un conductor.",
+                icon: "success",
             });
-    });
+        })
+        .then(response => {
+            time();
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+});
 
-    function time() {
-        document.getElementById('editConductor').reset();
-        setTimeout(() => {
-          window.location.href = `/view/conductores/edit.html`;  
-        },  1500);
-      }
+function time() {
+    document.getElementById('editConductor').reset();
+    setTimeout(() => {
+        window.location.href = `/view/conductores/edit.html`;
+    }, 1500);
+}

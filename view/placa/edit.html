@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nodhus</title>
-    <link rel="icon" href="/faviconN.png" type="image/x-icon">
+    <link rel="icon" href="/0faviconN.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet" />
     <link href="/css/style-Dash.css" rel="stylesheet" />
@@ -54,41 +54,130 @@
         <div class="margenform">
             <div id="content" class="p-4 p-md-5 pt-5">
                 <div class="container">
-                    <form id="editPlaca" method="put" enctype="multipart/form-data">
+                    <form id="editPlaca" method="PUT" enctype="multipart/form-data" class="form">
+                        <input type="hidden" id="id_placa" name="id_placa">
                         <div class="row">
-                            <input type="hidden" name="id_placa" id="id_placa">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="" class="form-label">Placa</label>
-                                    <input type="text" class="form-control" id="placa" name="placa" required>
+                                    <label>
+                                    <input type="text" class="input" id="placa" name="placa" required>
+                                    <span>Placa</span>
+                                </label>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="" class="form-label">Eje</label>
-                                    <input type="text" class="form-control" id="eje" name="eje" required>
+                                    <label>
+                                        <input type="text" class="input" id="eje" name="eje" required>
+                                        <span>Eje</span>
+                                    </label>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="" class="form-label">Tipologia</label>
-                                    <input type="text" class="form-control" id="tipologia" name="tipologia" required>
+                                    <label>
+                                        <input type="text" class="input" id="tipologia" name="tipologia" required>
+                                        <span>Tipología</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="full-width">
+                                    <select id="id_aliado" name="id_aliado" class="input" required>
+                                        <option value="">Seleccione una Opción</option>
+                                    </select>
+                                    <span>Propietario</span>
+                                </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="soat" name="soat" required>
+                                        <span>Soat</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="fecha_vencimientos" name="fecha_vencimientos" required>
+                                        <span>Soat fecha vencimiento</span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="" class="form-label">Propietario</label>
-                                    <select id="id_aliado" name="id_aliado" class="form-control" required>
-                                    <option value="">Seleccione una Opción</option>
-                                </select>
+                                    <label>
+                                        <input type="text" class="input" id="numero_poliza" name="numero_poliza" required>
+                                        <span>numero de poliza</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="tecnomecanica" name="tecnomecanica" required>
+                                        <span>Tecnicomecanica</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="fecha_vencimientot" name="fecha_vencimientot" required>
+                                        <span>tecnicomecanica vencimiento</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="gps" name="gps" required>
+                                        <span>GPS</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="webgps" name="webgps" required>
+                                        <span>Web GPS</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="usuariogps" name="usuariogps" required>
+                                        <span>Usuario GPS</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="contrasenagps" name="contrasenagps" required>
+                                        <span>Contraseña GPS</span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
+
                         <br>
                         <div class="row">
                             <div class="col-10 d-flex justify-content-between">
