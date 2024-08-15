@@ -1,0 +1,99 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.container12 {
+    display: flex;
+    /* Habilita Flexbox para un mejor control de posicionamiento */
+    justify-content: center;
+    /* Centra el contenedor horizontalmente */
+    align-items: flex-start;
+    /* Alinea el contenedor arriba en caso de contenido adicional */
+}
+
+.login-container {
+    width: 95%;
+    /* Ajusta según tu diseño */
+    padding: 30px;
+    /* Espacio interno más equilibrado */
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    /* Borde redondeado más suave */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* Sombra más sutil */
+    text-align: center;
+    color: #fff;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.login-container h2 {
+    margin-top: 0;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.nodhus-logo {
+    max-width: 250px;
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-field {
+    width: 100%;
+    padding: 15px;
+    /* Ajustado el padding */
+    font-size: 16px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    /* Añadido un borde redondeado */
+    background-color: #1a1a1a;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.input-field::placeholder {
+    color: #ffffff;
+}
+
+.login-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    /* Añadido un borde redondeado */
+    cursor: pointer;
+    margin-top: 10px;
+    /* Ajustado el margen */
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
