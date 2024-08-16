@@ -1,5 +1,66 @@
 /* styles.css */
 
+.modalauditor {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Centrado del modal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalauditor-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Ajusta el ancho según tus necesidades */
+    max-width: 500px;
+    /* Limita el ancho máximo para pantallas grandes */
+    text-align: center;
+    /* Centra el texto dentro del modal */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    /* Sombra sutil */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#btnIniciarSesion {
+    background-color: #007bff;
+    /* Color de fondo azul */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#btnIniciarSesion:hover {
+    background-color: #0056b3;
+    /* Color de fondo azul más oscuro al pasar el mouse */
+}
+
 #menu-items-container {
     overflow-y: auto;
     /* Habilita el scroll vertical */
