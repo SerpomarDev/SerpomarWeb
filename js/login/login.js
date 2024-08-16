@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Guardar tanto el token como el user_id en localStorage
                 localStorage.setItem("authToken", data.token);
                 localStorage.setItem("userId", data.user_id);
-                // localStorage.setItem("rol_Id", data.rol_id);
+                localStorage.setItem("rol_Id", data.rol_id);
 
                 window.location.href = "home.html";
             } else {
