@@ -65,8 +65,6 @@ let id = urlParams.get("id");
         }
     }).render(document.getElementById('editRutas'));
 
-    localStorage.setItem("authToken", data.token);
-
     document.getElementById("editRuta").addEventListener("submit", function (event) {
         event.preventDefault();
 
