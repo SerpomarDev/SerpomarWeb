@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=0.2">
+	<!-- PAGE TITLE HERE -->
+    <title>Nodhus</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="layout-placeholder"></div>
+
+    <div id="main-wrapper">
+        <div class="header">
+            <div class="title-container">
+                <div class="circle"></div>
+                <h1 class="title">ACTUALIZAR CONCEPTOS</h1>
+            </div>
+        </div>
+      
+
+        <div class="margenform">
+            <div id="content" class="p-4 p-md-0 pt-5">
+                <div class="container-fluid main-container">
+                    <form id="editConcepto" method="PUT" enctype="multipart/form-data" class="form">
+                        <p class="message">Complete los campos para actualizar el concepto.</p>
+                        <input type="hidden" id="id" name="id">
+                        <div class="flex">
+                            <label>
+                                <input type="text" class="input" id="concepto" name="concepto" required>
+                                <span>Concepto</span>
+                            </label>
+                            <label>
+                                <input type="text" class="input" id="descripcion" name="descripcion">
+                                <span>Descripción</span>
+                            </label>
+                        </div>
+                        <div class="flex">
+                            <a class="btn btn-primary" href="/view/conceptos/create.html">Volver</a>
+                            <button class="btn btn-primary" id="BtnEditConcepto">Enviar</button>
+                        </div>
+                    </form>
+                </div> 
+                <div class="container">
+                    <div id="conceptosedit"></div>
+                </div>
+            </div>
+        </div>
+        <script src="/componentes/loadSidebar.js"></script>
+        <script src="/js/home/scripts.js"></script>    
+      <script src="/js/custom.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+        <script type="text/javascript" src="/js/concepto/editConcepto.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </body>
+</html>

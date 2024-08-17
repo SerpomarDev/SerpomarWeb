@@ -320,7 +320,6 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('acceso'));
 
-localStorage.setItem("authToken", data.token);
 
 function time() {
     document.getElementById('craeateAccesoPatio').reset();

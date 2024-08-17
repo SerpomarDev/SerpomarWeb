@@ -48,7 +48,8 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`,{
     },{
       name:'id_asig_cont',
       hidden:true,
-    },"Numero contenedor","Fecha cargue", "Hora cargue", "Fecha descargue", "Hora descargue","Fecha devolucion","Fecha llegada planta","Hora llegada planta","Fecha inspeccion",{
+    },"Numero contenedor","Fecha cargue", "Hora cargue", "Fecha descargue", "Hora descargue","Fecha devolucion","Fecha llegada planta",
+    "Hora llegada planta","Fecha inspeccion","Hora llegda puerto","Fecha llegada puerto",{
         name:'Acción',
         formatter:(cell,row)=>{
             return gridjs.h('button',{
@@ -86,6 +87,8 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`,{
                     ordenSev.fecha_llegada_planta,
                     ordenSev.hora_llegada_planta,
                     ordenSev.fecha_inspeccion,
+                    ordenSev.hora_puerto,
+                    ordenSev.fecha_puerto,
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
@@ -107,6 +110,7 @@ function editOrdenseV(id){
     const formData = new FormData(this);
     const jsonData = JSON.stringify(Object.fromEntries(formData));
   
+    console.log(jsonData);
     fetch('https://esenttiapp-production.up.railway.app/api/ordenservicios',{
         method: 'POST',
         headers: { 
