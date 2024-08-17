@@ -95,7 +95,7 @@ fetch(`https://esenttiapp-production.up.railway.app/api/showcontenedor/${id}`,{
     }
 }).render(document.getElementById('ordenSev'));
 
-localStorage.setItem("authToken", data.token);
+
 
 function editOrdenseV(id){
     window.location.href = `/view/orden_servicio/edit.html?id=${id}`
