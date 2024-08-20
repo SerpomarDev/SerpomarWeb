@@ -20,6 +20,9 @@
 
     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <header>
     <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
@@ -60,7 +63,7 @@
         <div class="margenform">
             <div id="content" class="p-4 p-md-0 pt-5">
                 <div class="container-fluid main-container">
-                    <form id="createConcepto" method="POST" enctype="multipart/form-data" class="form">
+                    <form id="editCostoClientes" method="POST" enctype="multipart/form-data" class="form">
                         <!-- <p class="message">Complete los campos para crear una nueva tarifa.</p> -->
                         <div class="flex">
                             <label>
@@ -85,14 +88,14 @@
                         </div>
                        <div class="row">
                         <div class="col-12 d-flex justify-content-between">
-                            <button class="btn btn-primary" id="BtnSaveConcepto">Enviar</button>
+                            <button class="btn btn-primary" id="BtnEditCostoCliente">Enviar</button>
                             <button type="button" class="btn btn-primary" onclick="history.back()">Volver</button>
                         </div>
                        </div>
                     </form>
                 </div> 
                 <div class="container">
-                    <div id="tarifas_clientes" class="ag-theme-alpine" style="height: 400px; width: 100%;"></div>
+                    <div id="tarifas_clientes_edit" class="ag-theme-alpine" style="height: 400px; width: 100%;"></div>
                 </div>
             </div>
         </div>
@@ -103,6 +106,8 @@
         <script type="text/javascript" src="/js/cargar/cargarClientes.js"></script>
         <script type="text/javascript" src="/js/tarifas_cliente/cargarConceptoBycliente.js"></script>
         <script type="text/javascript" src="/js/cargar/cargarCostos.js"></script>
+        <script type="text/javascript" src="/js/tarifas_cliente/editTarifasByClientes.js"></script>
+        <script type="text/javascript" src="/js/tarifas_cliente/editTarifasClientes.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
 </body>

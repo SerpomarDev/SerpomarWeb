@@ -4,28 +4,6 @@ const columnDefs = [
     { headerName: "Concepto", field: "concepto" },
     { headerName: "Valor", field: "valor" },
 
-
-    {
-        headerName: "Actualizar",
-        cellRenderer: params => {
-            const button = document.createElement('button');
-            button.className = 'btn btn-primary';
-            button.innerHTML = '<i class="fas fa-edit"></i>';
-            button.id = `btn-${params.data.id}`;
-            button.addEventListener('click', () => uploadId(params.data.id));
-            return button;
-        }
-    },
-    {
-        headerName: "Eliminar",
-        cellRenderer: params => {
-            const button = document.createElement('button');
-            button.className = 'btn btn-primary';
-            button.innerHTML = '<i class="fas fa-trash-alt"></i>';
-            button.addEventListener('click', () => updateState(params.data.id));
-            return button;
-        }
-    }
 ];
 
     fetch("https://esenttiapp-production.up.railway.app/api/uploadcostoclientes",{
@@ -72,7 +50,7 @@ const columnDefs = [
       };
   
       // Renderizar la tabla en el contenedor
-        const eGridDiv = document.getElementById('tarifas_clientes');
+        const eGridDiv = document.getElementById('tarifas_clientes_edit');
         new agGrid.Grid(eGridDiv, gridOptions);
     })
     .catch(error => {

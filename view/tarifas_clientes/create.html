@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=0.2">
+	<!-- PAGE TITLE HERE -->
+    <title>Nodhus</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+
+</header>
+<div class="dlabnav">
+    <div id="layout">
+
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+<body>
+    <div id="layout-placeholder"></div>
+
+    <div id="main-wrapper">
+        <div class="header">
+            <div class="title-container">
+                <div class="circle"></div>
+                <h1 class="title">CREAR TARIFAS CLIENTES</h1>
+            </div>
+        </div>
+      
+
+        <div class="margenform">
+            <div id="content" class="p-4 p-md-0 pt-5">
+                <div class="container-fluid main-container">
+                    <form id="createCostoClientes" method="POST" enctype="multipart/form-data" class="form">
+                        <!-- <p class="message">Complete los campos para crear una nueva tarifa.</p> -->
+                        <div class="flex">
+                            <label>
+                                <input type="text" id="id_cliente" name="id_cliente" placeholder="Digite el cliente" required>
+                                <span>Cliente</span>
+                                </select>
+                            </label>
+                            <label>
+                                <input type="text" id="id_concepto" name="id_concepto" placeholder="Digite el concepto" required>
+                                <span>Concepto</span>
+                            </label>
+                        </div>
+                        <div class="flex">
+                            <label>
+                                <input type="text" id="id_costo" name="id_costo" placeholder="Digite el costo" required>
+                                <span>Concepto</span>
+                            </label>
+                            <label>
+                                <input type="text" class="input" id="descripcion" name="descripcion">
+                                <span>Descripción</span>
+                            </label>
+                        </div>
+                       <div class="row">
+                        <div class="col-12 d-flex justify-content-between">
+                            <button class="btn btn-primary" id="BtnSaveConcepto">Enviar</button>
+                            <button type="button" class="btn btn-primary" onclick="history.back()">Volver</button>
+                        </div>
+                       </div>
+                    </form>
+                </div> 
+                <div class="container">
+                    <div id="tarifas_clientes" class="ag-theme-alpine" style="height: 400px; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+        <script src="/js/custom.min.js"></script>
+        <script src="/Componentes/sidebar.js"></script>
+        <script src="/js/login/logout.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+        <script type="text/javascript" src="/js/cargar/cargarClientes.js"></script>
+        <script type="text/javascript" src="/js/tarifas_cliente/cargarConceptoBycliente.js"></script>
+        <script type="text/javascript" src="/js/cargar/cargarCostos.js"></script>
+        <script type="text/javascript" src="/js/tarifas_cliente/tarifasByClientes.js"></script>
+        <script type="text/javascript" src="/js/tarifas_cliente/createTarifaClientes.js"></script>
+        <script type="text/javascript" src="/js/tarifas_cliente/editTarifasClientes.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
+</body>
+</html>
