@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function verificarToken() {
     const token = localStorage.getItem('authToken');
 
-    fetch('https://esenttiapp-production.up.railway.app/api/gettokens', {
+    fetch('https://esenttiapp-production.up.railway.app/api/navieras', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
