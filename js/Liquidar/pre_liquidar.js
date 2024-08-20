@@ -41,8 +41,6 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('pre_liquidar'));
 
-localStorage.setItem("authToken", data.token);
-
 document.getElementById('savePreLiquidacion').addEventListener('submit',function(event){
     event.preventDefault();
 
