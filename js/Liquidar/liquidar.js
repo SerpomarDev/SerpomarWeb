@@ -62,7 +62,6 @@ let id = urlParams.get("id");
         }
     }).render(document.getElementById('liquidar'));
 
-    localStorage.setItem("authToken", data.token);
 
     document.getElementById('saveLiquidacion').addEventListener('submit',function(event){
         event.preventDefault();

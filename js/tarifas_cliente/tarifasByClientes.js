@@ -12,7 +12,7 @@ const columnDefs = [
             button.className = 'btn btn-primary';
             button.innerHTML = '<i class="fas fa-edit"></i>';
             button.id = `btn-${params.data.id}`;
-            button.addEventListener('click', () => uploadId(params.data.id));
+            button.addEventListener('click', () => editTarifaCliente(params.data.id));
             return button;
         }
     },
@@ -22,7 +22,7 @@ const columnDefs = [
             const button = document.createElement('button');
             button.className = 'btn btn-primary';
             button.innerHTML = '<i class="fas fa-trash-alt"></i>';
-            button.addEventListener('click', () => updateState(params.data.id));
+            button.addEventListener('click', () => deleteTarifaCliente(params.data.id));
             return button;
         }
     }
@@ -62,7 +62,7 @@ const columnDefs = [
         },
         pagination: true,
         paginationPageSize: 7,
-        rowData: processedData, // Asignar los datos procesados
+        rowData: processedData,
         getRowStyle: params => {
             if (params.node.rowIndex % 2 === 0) {
               return { background: '#f9f9f9' }; // Color para filas pares
@@ -78,3 +78,11 @@ const columnDefs = [
     .catch(error => {
       console.error("Error al cargar los datos:", error);
     });
+
+    function editTarifaCliente(id) {
+      window.location.href = `/view/tarifas_clientes/edit.html?id=${id}`
+    }
+  
+    function deleteTarifaCliente(id){
+      DeleteData(id)
+    }

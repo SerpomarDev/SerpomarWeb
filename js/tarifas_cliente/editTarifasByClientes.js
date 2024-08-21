@@ -23,7 +23,6 @@ const columnDefs = [
         };
       });
 
-
       // Configurar la tabla con los datos procesados
       const gridOptions = {
         columnDefs: columnDefs,
@@ -40,16 +39,9 @@ const columnDefs = [
         },
         pagination: true,
         paginationPageSize: 7,
-        rowData: processedData, // Asignar los datos procesados
-        getRowStyle: params => {
-            if (params.node.rowIndex % 2 === 0) {
-              return { background: '#f9f9f9' }; // Color para filas pares
-            }
-            return { background: '#ffffff' }; // Color para filas impares
-          } 
+        rowData: processedData,
       };
   
-      // Renderizar la tabla en el contenedor
         const eGridDiv = document.getElementById('tarifas_clientes_edit');
         new agGrid.Grid(eGridDiv, gridOptions);
     })

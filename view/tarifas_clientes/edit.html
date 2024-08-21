@@ -63,33 +63,37 @@
         <div class="margenform">
             <div id="content" class="p-4 p-md-0 pt-5">
                 <div class="container-fluid main-container">
-                    <form id="editCostoClientes" method="POST" enctype="multipart/form-data" class="form">
+                    <form id="editCostoClientes" method="PUT" enctype="multipart/form-data" class="form">
                         <!-- <p class="message">Complete los campos para crear una nueva tarifa.</p> -->
                         <div class="flex">
+                            <input type="hidden" id="id" name="id">
                             <label>
                                 <input type="text" id="id_cliente" name="id_cliente" placeholder="Digite el cliente" required>
+                                <input type="text" id="cliente" class="form-control">
                                 <span>Cliente</span>
                                 </select>
                             </label>
                             <label>
                                 <input type="text" id="id_concepto" name="id_concepto" placeholder="Digite el concepto" required>
+                                <input type="text" id="concepto" class="form-control">
                                 <span>Concepto</span>
                             </label>
                         </div>
                         <div class="flex">
                             <label>
                                 <input type="text" id="id_costo" name="id_costo" placeholder="Digite el costo" required>
+                                <input type="text" id="costo" class="form-control">
                                 <span>Concepto</span>
                             </label>
                             <label>
-                                <input type="text" class="input" id="descripcion" name="descripcion">
+                                <input type="text" class="input" id="codigo" name="codigo">
                                 <span>Descripción</span>
                             </label>
                         </div>
                        <div class="row">
                         <div class="col-12 d-flex justify-content-between">
                             <button class="btn btn-primary" id="BtnEditCostoCliente">Enviar</button>
-                            <button type="button" class="btn btn-primary" onclick="history.back()">Volver</button>
+                            <a class="btn btn-primary" href="/view/tarifas_clientes/create.html">Volver</a>
                         </div>
                        </div>
                     </form>
@@ -106,7 +110,6 @@
         <script type="text/javascript" src="/js/cargar/cargarClientes.js"></script>
         <script type="text/javascript" src="/js/tarifas_cliente/cargarConceptoBycliente.js"></script>
         <script type="text/javascript" src="/js/cargar/cargarCostos.js"></script>
-        <script type="text/javascript" src="/js/tarifas_cliente/editTarifasByClientes.js"></script>
         <script type="text/javascript" src="/js/tarifas_cliente/editTarifasClientes.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>

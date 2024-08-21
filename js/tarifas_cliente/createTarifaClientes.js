@@ -33,16 +33,10 @@ document.getElementById('createCostoClientes').addEventListener('submit', functi
   });
 
   function time() {
-    document.getElementById('createRuta').reset();
+    document.getElementById('createCostoClientes').reset();
     setTimeout(() => {
         window.location.href = `/view/tarifas_clientes/tarifas_clientes.html`; 
     },  1500);
   }   
 
-  function editRuta(id) {
-    window.location.href = `/view/tarifas_clientes/edit.html?id=${id}`
-}
-
-function deleteRuta(id){
-    DeleteData(id)
-}
+ 
