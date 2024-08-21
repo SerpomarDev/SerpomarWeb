@@ -125,6 +125,7 @@ function mostrarModalInicioSesion() {
             if (event.target == modalauditor) {
                 modalauditor.style.display = "none";
             }
+
         }
     }
 
@@ -141,8 +142,8 @@ window.onload = function() {
     resetInactivityTimer(); // Iniciar el temporizador de inactividad
 }
 
-// Verificar el token cada 30 segundos
-setInterval(verificarToken, 30000);
+// Verificar el token cada 10 minuto
+setInterval(verificarToken, 600000);
 
 // Verificar el token al ingresar a la página
 window.onfocus = verificarToken;
