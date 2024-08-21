@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title>
+    <link rel="icon" href="/faviconN.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+</head>
+
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+
+</header>
+<div class="dlabnav">
+    <div id="layout">
+
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<body>
+
+
+    <div class="header">
+        <div class="title-container">
+            <div class="circle"></div>
+            <h1 class="title">DECLARACIÓN DE NOVEDAD</h1>
+        </div>
+    </div>
+    <div id="main-wrapper">
+
+        <div class="margenform">
+            <div id="content" class="p-4 p-md-0 pt-5">
+                <div class="container-fluid main-container">
+                    <form id="createOrdenCargue" method="post" enctype="multipart/form-data" class="form">
+                        <p class="message">Complete los campos para crear una novedad, accidente o incidente.</p>
+                        <div class="flex">
+                            <label>
+                                <input type="text" class="input" id="id_sitio_inspeccion" name="id_sitio_inspeccion" required>
+                                <span>Nombre del involucrado</span>
+                            </label>
+                            <label>
+                                <input type="date" class="input" id="fecha_solicitud" name="fecha_solicitud" required>
+                                <span>Fecha del suceso</span>
+                            </label>
+                        </div>
+
+                        <div class="flex">
+                            <label>
+                                <input type="time" class="input" id="hora_soli" name="hora_soli" required>
+                                <span>Hora del suceso</span>
+                            </label>
+                            <label>
+                                <input type="text" class="input" id="id_sitio_inspeccion" name="id_sitio_inspeccion" required>
+                                <span>Área del suceso</span>
+                            </label>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="full-width">
+                                <textarea class="input" id="observaciones" name="observaciones" rows="3"></textarea>
+                                <span>Descripción del evento</span>
+                            </label>
+                        </div>
+                        <label>
+                            <input type="text" class="input" id="id_sitio_inspeccion" name="id_sitio_inspeccion" required>
+                            <span>Nombre del empleado (Testigo)</span>
+                        </label>
+                        <div class="submit-container">
+                            <button class="submit" id="BtnSavePlaca">Enviar</button>
+                        </div>
+                        <p class="signin"><a href="/view/preventas/index.html">Volver</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- QR Code Modal -->
+        <div class="modal" id="qrModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">QR - Orden de Cargue</h5>
+                    </div>
+                    <div class="modal-body" id="qrcode" style="text-align: center;"></div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-secondary" id="downloadQR">Descargar QR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/Componentes/sidebar.js"></script>
+    <script src="/js/login/logout.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+
+
+    <script src="/js/custom.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <script type="text/javascript" src="/js/patio/create.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarPlaca.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarClientes.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarConductores.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarTipoServicio.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarDestino.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarDestino1.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarDestino2.js"></script>
+    <script type="text/javascript" src="/js/cargar/cargarNaviera.js"></script>
+    <script type="text/javascript" src="/js/cargar/CargarTipoContenedor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
