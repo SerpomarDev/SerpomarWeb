@@ -76,74 +76,74 @@ document.addEventListener('DOMContentLoaded', function() {
     addLogoutEventListener();
 });
 
-//CREAR MODAL PARA VERIFICAR EL USUARIO---------------------------------------
+// //CREAR MODAL PARA VERIFICAR EL USUARIO---------------------------------------
 
-function verificarToken() {
-    const token = localStorage.getItem('authToken');
+// function verificarToken() {
+//     const token = localStorage.getItem('authToken');
 
-    fetch('https://esenttiapp-production.up.railway.app/api/navieras', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        .then(response => {
-            if (response.status === 401) {
-                console.log('Error 401 detectado. Mostrando modal');
-                mostrarModalInicioSesion();
-            }
-        })
-        .catch(error => {
-            console.error('Error al verificar el token:', error);
-        });
-}
+//     fetch('https://esenttiapp-production.up.railway.app/api/navieras', {
+//             headers: {
+//                 'Authorization': `Bearer ${token}`
+//             }
+//         })
+//         .then(response => {
+//             if (response.status === 401) {
+//                 console.log('Error 401 detectado. Mostrando modal');
+//                 mostrarModalInicioSesion();
+//             }
+//         })
+//         .catch(error => {
+//             console.error('Error al verificar el token:', error);
+//         });
+// }
 
-function mostrarModalInicioSesion() {
-    // Crear el modal si no existe
-    let modalauditor = document.getElementById('modalInicioSesion');
-    if (!modalauditor) {
-        modalauditor = document.createElement('div');
-        modalauditor.id = 'modalInicioSesion';
-        modalauditor.classList.add('modalauditor');
-        modalauditor.innerHTML = `
-            <div class="modalauditor-content">
-                <span class="close">&times;</span>
-                <h2>Tu sesión ha expirado</h2>
-                <p>Por favor, inicia sesión nuevamente.</p>
-                <button id="btnIniciarSesion">Iniciar sesión</button>
-            </div>
-        `;
-        document.body.appendChild(modalauditor);
+// function mostrarModalInicioSesion() {
+//     // Crear el modal si no existe
+//     let modalauditor = document.getElementById('modalInicioSesion');
+//     if (!modalauditor) {
+//         modalauditor = document.createElement('div');
+//         modalauditor.id = 'modalInicioSesion';
+//         modalauditor.classList.add('modalauditor');
+//         modalauditor.innerHTML = `
+//             <div class="modalauditor-content">
+//                 <span class="close">&times;</span>
+//                 <h2>Tu sesión ha expirado</h2>
+//                 <p>Por favor, inicia sesión nuevamente.</p>
+//                 <button id="btnIniciarSesion">Iniciar sesión</button>
+//             </div>
+//         `;
+//         document.body.appendChild(modalauditor);
 
-        // Cerrar el modal al hacer clic en la "x"
-        const spanClose = modalauditor.querySelector('.close');
-        spanClose.onclick = function() {
-            modalauditor.style.display = "none";
-        }
+//         // Cerrar el modal al hacer clic en la "x"
+//         const spanClose = modalauditor.querySelector('.close');
+//         spanClose.onclick = function() {
+//             modalauditor.style.display = "none";
+//         }
 
-        // Cerrar el modal al hacer clic fuera del contenido
-        window.onclick = function(event) {
-            if (event.target == modalauditor) {
-                modalauditor.style.display = "none";
-            }
+//         // Cerrar el modal al hacer clic fuera del contenido
+//         window.onclick = function(event) {
+//             if (event.target == modalauditor) {
+//                 modalauditor.style.display = "none";
+//             }
 
-        }
-    }
+//         }
+//     }
 
-    // Lógica para el botón de inicio de sesión (ejecutar cierre de sesión)
-    const btnIniciarSesion = modalauditor.querySelector('#btnIniciarSesion');
-    btnIniciarSesion.onclick = function() {
-        logoutUser();
-    }
-}
+//     // Lógica para el botón de inicio de sesión (ejecutar cierre de sesión)
+//     const btnIniciarSesion = modalauditor.querySelector('#btnIniciarSesion');
+//     btnIniciarSesion.onclick = function() {
+//         logoutUser();
+//     }
+// }
 
-// Verificar el token al cargar la página
-window.onload = function() {
-    verificarToken();
-    resetInactivityTimer(); // Iniciar el temporizador de inactividad
-}
+// // Verificar el token al cargar la página
+// window.onload = function() {
+//     verificarToken();
+//     resetInactivityTimer(); // Iniciar el temporizador de inactividad
+// }
 
-// Verificar el token cada 10 minuto
-setInterval(verificarToken, 600000);
+// // Verificar el token cada 10 minuto
+// setInterval(verificarToken, 600000);
 
-// Verificar el token al ingresar a la página
-window.onfocus = verificarToken;
+// // Verificar el token al ingresar a la página
+// window.onfocus = verificarToken;
