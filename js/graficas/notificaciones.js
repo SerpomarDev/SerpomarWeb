@@ -3,14 +3,23 @@ const apiBodegajeHasta = "https://esenttiapp-production.up.railway.app/api/notib
 const apiFechaDocumental = "https://esenttiapp-production.up.railway.app/api/notifechadocuexp";
 const apiCutoffFisico = "https://esenttiapp-production.up.railway.app/api/noticutofffisexp";
 
-let importNotifications = { basic: [], medium: [], high: [] };
-let exportNotifications = { basic: [], medium: [], high: [] };
+const token = localStorage.getItem('authToken');
+
 
 async function fetchNotificaciones(api, dateKey, type, displayType) {
     const notifications = { basic: [], medium: [], high: [] };
 
     try {
-        const response = await fetch(api);
+        const response = await fetch(api, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error en la respuesta de la red. Código de estado: ${response.status}`);
+        }
+
         const data = await response.json();
 
         data.forEach(item => {
@@ -37,7 +46,14 @@ async function fetchNotificaciones(api, dateKey, type, displayType) {
         });
 
     } catch (error) {
-        console.error(`Error fetching data from ${api}:`, error);
+        // Manejar posibles errores 401 No autorizado aquí, tal vez redirigiendo al inicio de sesión
+        if (error.response && error.response.status === 401) {
+            console.error('No autorizado. Redirigiendo al inicio de sesión...');
+            window.location.href = '/login.html'; // O tu URL de página de inicio de sesión
+        } else {
+            console.error(`Error al obtener datos de ${api}:`, error);
+            // Puedes mostrar un mensaje de error al usuario o tomar otras acciones apropiadas
+        }
     }
 
     return notifications;
@@ -53,7 +69,7 @@ function displayNotifications(notifications, containerPrefix) {
 
 function mergeNotifications(notificationSet1, notificationSet2) {
     const merged = { basic: [], medium: [], high: [] };
-    for (const level of ['basic', 'medium', 'high']) {
+    for (const level of['basic', 'medium', 'high']) {
         merged[level] = [...notificationSet1[level], ...notificationSet2[level]];
     }
     return merged;
@@ -120,7 +136,7 @@ function openModal(type) {
         categoryDiv.appendChild(detailsDiv);
         modalBody.appendChild(categoryDiv);
     });
-    
+
     modal.style.display = "block";
 }
 
