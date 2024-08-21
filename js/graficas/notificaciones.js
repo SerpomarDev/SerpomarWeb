@@ -5,7 +5,6 @@ const apiCutoffFisico = "https://esenttiapp-production.up.railway.app/api/noticu
 
 const token = localStorage.getItem('authToken');
 
-
 async function fetchNotificaciones(api, dateKey, type, displayType) {
     const notifications = { basic: [], medium: [], high: [] };
 
@@ -39,20 +38,18 @@ async function fetchNotificaciones(api, dateKey, type, displayType) {
                     notifications.basic.push(notification);
                 } else if (diferenciaDias >= 3) {
                     notifications.medium.push(notification);
-                } else if (diferenciaDias < 0 || diferenciaDias < 3) {
+                } else if (diferenciaDias < 0 && diferenciaDias >= -3) {
                     notifications.high.push(notification);
                 }
             }
         });
 
     } catch (error) {
-        // Manejar posibles errores 401 No autorizado aquí, tal vez redirigiendo al inicio de sesión
         if (error.response && error.response.status === 401) {
             console.error('No autorizado. Redirigiendo al inicio de sesión...');
-            window.location.href = '/login.html'; // O tu URL de página de inicio de sesión
+            window.location.href = '/login.html';
         } else {
             console.error(`Error al obtener datos de ${api}:`, error);
-            // Puedes mostrar un mensaje de error al usuario o tomar otras acciones apropiadas
         }
     }
 
@@ -81,7 +78,7 @@ async function loadImportNotifications() {
 
     importNotifications = mergeNotifications(libreHastaNotifications, bodegajeHastaNotifications);
 
-    console.log('Import Notifications:', importNotifications); // Para depuración
+    console.log('Import Notifications:', importNotifications);
     displayNotifications(importNotifications, 'import');
 }
 
@@ -91,7 +88,7 @@ async function loadExportNotifications() {
 
     exportNotifications = mergeNotifications(fechaDocumentalNotifications, cutoffFisicoNotifications);
 
-    console.log('Export Notifications:', exportNotifications); // Para depuración
+    console.log('Export Notifications:', exportNotifications);
     displayNotifications(exportNotifications, 'export');
 }
 
@@ -148,7 +145,6 @@ function closeModal() {
 loadImportNotifications();
 loadExportNotifications();
 
-// Close the modal when clicking outside of it
 window.onclick = function(event) {
     const modal = document.getElementById("notificationModal");
     if (event.target == modal) {
