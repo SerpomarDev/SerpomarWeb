@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
 </head>
 <header>
     <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
@@ -40,7 +43,6 @@
 
 <body>
 
-
     <div class="header">
         <div class="title-container">
             <div class="circle"></div>
@@ -48,14 +50,21 @@
         </div>
     </div>
 
-    <div class="container-fluid main-container">
+    
 
-        <div id="content" class="p-4 p-md-5 pt-5">
-            <div class="container">
-                <div id="ordenService"></div>
-            </div>
+    <div class="margenform">
+        <div class="container-fluid">
+            <div id="ordenService" class="ag-theme-alpine" style="height:800px; width: 100%; "></div>
         </div>
+    </div>
 
+    <div>
+        <span class="text-white fs-18">Contenedores Facturados</span>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+            <h3 class="text-white invoice-num" style="margin: 0;">Total:
+                <span id="cantidadFacturados"></span>/<span id="cantidadContenedor"></span>
+            </h3>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -64,7 +73,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
     <script type="text/javascript" src="/js/solicitudes_service/searchSolicitudServ.js"></script>
+    <script type="text/javascript" src="/js/solicitudes_service/cantidadContenedor.js"></script>
+    <script type="text/javascript" src="/js/solicitudes_service/pendienteLiquidar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
 </body>
 
 </html>

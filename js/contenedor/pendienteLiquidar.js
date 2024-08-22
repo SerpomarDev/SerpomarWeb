@@ -1,4 +1,6 @@
-   fetch(`https://esenttiapp-production.up.railway.app/api/pendienteliquidar/${id}`,{
+function pendienteLiquidar(id){
+
+  fetch(`https://esenttiapp-production.up.railway.app/api/pendienteliquidar/${id}`,{
     method: 'GET',
       headers: {
           'Authorization': `Bearer ${localStorage.getItem("authToken")}`
@@ -19,4 +21,4 @@
     .catch(error => {
       console.error('Error:', error);
     });
-
+}  
