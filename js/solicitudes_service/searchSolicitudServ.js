@@ -29,6 +29,7 @@ new gridjs.Grid({
         }
     }, "DO pedido","Pedido","Contendores","Tipo Transporte","Cliente","Fecha entrada",{
         name: "Pendiente Liquidar",
+        hidden:true,
     },{
         name:'Acciones',
         hidden:true,
