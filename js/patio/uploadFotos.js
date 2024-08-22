@@ -75,7 +75,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
                     const newStorageRef = ref(storage, filePath);
                     try {
-                        await uploadBytes(newStorageRef, file);
+                        // Resize the image to 480p before uploading
+                        const resizedImage = await resizeImage(file, 480);
+
+                        // Upload the resized image
+                        await uploadBytes(newStorageRef, resizedImage);
+
                         console.log(`File uploaded: ${fileName}`);
                         loadUploadedFiles(id);
                         this.removeFile(file);
@@ -148,27 +153,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
         modalContent.appendChild(figcaption);
         detailsModal.style.display = 'block';
     }
+
+    // Function to resize the image (ahora dentro del ámbito correcto)
+    async function resizeImage(file, targetHeight) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.src = URL.createObjectURL(file);
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const aspectRatio = img.width / img.height;
+                const targetWidth = targetHeight * aspectRatio;
+                canvas.width = targetWidth;
+                canvas.height = targetHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+                canvas.toBlob(blob => resolve(blob), 'image/jpeg', 0.7); // Adjust quality as needed
+            };
+            img.onerror = reject;
+        });
+    }
 });
-
-
-
-
-// <script type="module">
-//   // Import the functions you need from the SDKs you need
-//   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-//   // TODO: Add SDKs for Firebase products that you want to use
-//   // https://firebase.google.com/docs/web/setup#available-libraries
-
-//   // Your web app's Firebase configuration
-//   const firebaseConfig = {
-//     apiKey: "AIzaSyDVWnfrqxpiNOGZXnygqoxZ9S1Y788OpAU",
-//     authDomain: "nodhus-291a0.firebaseapp.com",
-//     projectId: "nodhus-291a0",
-//     storageBucket: "nodhus-291a0.appspot.com",
-//     messagingSenderId: "624574443026",
-//     appId: "1:624574443026:web:2a433fa1627ca5c5ae72cb"
-//   };
-
-//   // Initialize Firebase
-//   const app = initializeApp(firebaseConfig);
-// </script>
