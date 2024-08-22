@@ -27,10 +27,7 @@ new gridjs.Grid({
                 }
             }
         }
-    }, "DO pedido","Pedido","Contendores","Tipo Transporte","Cliente","Fecha entrada",{
-        name: "Pendiente Liquidar",
-        hidden:true,
-    },{
+    }, "DO pedido","Pedido","Tipo Transporte","Cliente","Contendores","Liquidados","Fecha entrada",{
         name:'Acciones',
         hidden:true,
         columns:[{
@@ -75,7 +72,7 @@ new gridjs.Grid({
     }],
     // sort: true,
     server: {
-        url: "https://esenttiapp-production.up.railway.app/api/showsolicitudserv",
+        url: "http://esenttiapp.test/api/showsolicitudserv",
         headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`
         },
@@ -86,9 +83,10 @@ new gridjs.Grid({
                     soliserv.do_sp,
                     soliserv.do_pedido,
                     soliserv.pedido,
-                    soliserv.contenedor,
                     soliserv.impexp,
                     soliserv.cliente,
+                    soliserv.contenedor,
+                    soliserv.pendiente_liquidar,
                     soliserv.fecha_actualizacion,
 
                 ]);
