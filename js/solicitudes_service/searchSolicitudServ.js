@@ -27,7 +27,7 @@ new gridjs.Grid({
                 }
             }
         }
-    }, "DO pedido","Pedido","Tipo Transporte","Cliente","Contendores","Liquidados","Fecha entrada",{
+    }, "DO pedido","Pedido","Tipo Transporte","Cliente","Contendores","Contenedores liquidados","Fecha entrada",{
         name:'Acciones',
         hidden:true,
         columns:[{
