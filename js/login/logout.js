@@ -47,23 +47,64 @@ function forceLogout() {
     window.location.replace("/");
 }
 
+// Función para manejar la respuesta de la API al refrescar el token
+async function handleRefreshTokenResponse(response) {
+    if (!response.ok) {
+        const data = await response.json();
+        if (data.error === 'session_expired') {
+            mostrarModalInicioSesion(); // Muestra tu modal aquí
+            logoutUser(); // Cierra la sesión del usuario
+        } else {
+            console.error('Error al refrescar el token:', data.error);
+            // Maneja otros errores si es necesario
+        }
+    }
+    // Si la respuesta es OK, el token se refrescó correctamente, no necesitas hacer nada más aquí.
+}
+
+// Refrescar el token periódicamente
+function refreshAuthTokenPeriodically() {
+    setInterval(async() => {
+        const authToken = localStorage.getItem("authToken");
+        if (authToken) {
+            try {
+                const response = await fetch("https://esenttiapp-production.up.railway.app/api/refresh", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${authToken}`,
+                    },
+                });
+                handleRefreshTokenResponse(response);
+            } catch (error) {
+                console.error("Error de red al intentar refrescar el token:", error);
+                // Maneja el error de red si es necesario
+            }
+        }
+    }, 14 * 60 * 1000); // Refresca el token 1 minuto antes de que expire (asumiendo que expira en 15 minutos)
+}
+
 // Temporizador de inactividad
 let inactivityTimer;
 
 function resetInactivityTimer() {
     clearTimeout(inactivityTimer);
     inactivityTimer = setTimeout(() => {
-        console.log('Temporizador activado. Cerrando sesión.'); // Verificar si el temporizador se activa
+        console.log('Temporizador activado. Cerrando sesión.');
         mostrarModalInicioSesion();
         logoutUser();
     }, 15 * 60 * 1000);
+
+    // Reinicia el intervalo de actualización del token
+    refreshAuthTokenPeriodically();
 }
+
 // Reiniciar el temporizador en cada evento de usuario
 document.addEventListener('mousemove', resetInactivityTimer);
 document.addEventListener('keydown', resetInactivityTimer);
 
+// Manejo del botón de cierre de sesión y la carga de la página
 document.addEventListener('DOMContentLoaded', function() {
-    // Manejo del botón de cierre de sesión (si existe)
     function addLogoutEventListener() {
         const logoutButton = document.getElementById("logout-button");
         if (logoutButton) {
@@ -74,8 +115,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     addLogoutEventListener();
-});
 
+    // Inicia el refresco periódico del token al cargar la página
+    refreshAuthTokenPeriodically();
+});
 // //CREAR MODAL PARA VERIFICAR EL USUARIO---------------------------------------
 
 // function verificarToken() {

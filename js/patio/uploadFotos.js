@@ -149,3 +149,26 @@ document.addEventListener('DOMContentLoaded', (event) => {
         detailsModal.style.display = 'block';
     }
 });
+
+
+
+
+// <script type="module">
+//   // Import the functions you need from the SDKs you need
+//   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+//   // TODO: Add SDKs for Firebase products that you want to use
+//   // https://firebase.google.com/docs/web/setup#available-libraries
+
+//   // Your web app's Firebase configuration
+//   const firebaseConfig = {
+//     apiKey: "AIzaSyDVWnfrqxpiNOGZXnygqoxZ9S1Y788OpAU",
+//     authDomain: "nodhus-291a0.firebaseapp.com",
+//     projectId: "nodhus-291a0",
+//     storageBucket: "nodhus-291a0.appspot.com",
+//     messagingSenderId: "624574443026",
+//     appId: "1:624574443026:web:2a433fa1627ca5c5ae72cb"
+//   };
+
+//   // Initialize Firebase
+//   const app = initializeApp(firebaseConfig);
+// </script>
