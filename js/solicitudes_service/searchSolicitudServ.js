@@ -72,7 +72,7 @@ new gridjs.Grid({
     }],
     // sort: true,
     server: {
-        url: "http://esenttiapp.test/api/showsolicitudserv",
+        url: "https://esenttiapp-production.up.railway.app/api/showsolicitudserv",
         headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`
         },
