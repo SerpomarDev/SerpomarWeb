@@ -1,4 +1,38 @@
-/* styles.css */
+/* CSS PARA EL PERFIL DEL SIDEBAR */
+
+
+/* Estilos básicos para la sección del perfil */
+
+.profile-section {
+    display: flex;
+    /* Alinea los elementos horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
+    padding: 10px;
+    /* Espacio interno */
+    border-left: 1px solid #ccc;
+    /* Línea divisoria opcional */
+}
+
+.profile-icon,
+.settings-icon {
+    color: #ccc;
+    font-size: 24px;
+    /* Tamaño de los iconos */
+    margin-right: 10px;
+    /* Espacio entre el icono y el texto */
+    cursor: pointer;
+    /* Cambia el cursor al pasar el ratón */
+}
+
+.profile-info {
+    color: #ccc;
+    flex-grow: 1;
+    /* Permite que el texto ocupe el espacio disponible */
+}
+
+
+/* CSS PARA EL PERFIL DEL SIDEBAR */
 
 .modalauditor {
     display: none;
