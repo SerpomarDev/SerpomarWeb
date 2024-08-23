@@ -27,9 +27,7 @@ new gridjs.Grid({
                 }
             }
         }
-    }, "DO pedido","Pedido","Contendores","Tipo Transporte","Cliente","Fecha entrada",{
-        name: "Pendiente Liquidar",
-    },{
+    }, "DO pedido","Pedido","Tipo Transporte","Cliente","Contendores","Contenedores liquidados","Fecha entrada",{
         name:'Acciones',
         hidden:true,
         columns:[{
@@ -85,9 +83,10 @@ new gridjs.Grid({
                     soliserv.do_sp,
                     soliserv.do_pedido,
                     soliserv.pedido,
-                    soliserv.contenedor,
                     soliserv.impexp,
                     soliserv.cliente,
+                    soliserv.contenedor,
+                    soliserv.pendiente_liquidar,
                     soliserv.fecha_actualizacion,
 
                 ]);
