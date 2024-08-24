@@ -28,7 +28,7 @@ new gridjs.Grid({
         enabled: false,
     },
     sort: false,
-    columns: ["id", "Contenedor", "Cliente", "Tipo de contenedor", "Tipo transporte", "Cutoff", "Naviera", "Operación", "estado",
+    columns: ["id", "Contenedor", "Tipo", "Cliente", "Tipo transporte", "Cutoff", "Naviera", "Operación", "estado", "Hora Entrada",
         {
             name: 'Fotos',
             formatter: (cell, row) => {
@@ -62,13 +62,14 @@ new gridjs.Grid({
                 return data.map((ordenCargue) => [
                     ordenCargue.id,
                     ordenCargue.contenedor,
-                    ordenCargue.cliente,
                     ordenCargue.tipo_contenedor,
+                    ordenCargue.cliente,
                     ordenCargue.modalidad,
                     ordenCargue.cutoff,
                     ordenCargue.naviera,
                     ordenCargue.operacion,
-                    ordenCargue.lleno_vacio
+                    ordenCargue.lleno_vacio,
+                    ordenCargue.fecha_entrada
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");

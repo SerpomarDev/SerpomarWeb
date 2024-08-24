@@ -25,6 +25,14 @@ function loadSidebar() {
                 return;
             }
 
+            // Obtener el nombre del rol y mostrarlo en el perfil
+            const profileInfo = document.querySelector('.profile-info p');
+            if (userRole && profileInfo) {
+                profileInfo.textContent = `Tu Rol: ${userRole.nombre}`;
+            } else {
+                console.error('Rol de usuario no encontrado o elemento del perfil no encontrado.');
+            }
+
             const allowedMenuItems = userRole.menu_item.split(',').map(Number);
             const allowedMenuSubitems = userRole.menu_subitem.split(',').map(Number);
 
@@ -50,16 +58,16 @@ function loadSidebar() {
 
                 if (filteredSubMenuItems.length > 0) {
                     menuHtml += `
-                    <li class="dropdown" id="menu-${groupId}">
-                        <a class="has-arrow" href="#" aria-expanded="false">
-                            ${groupIcon} <span class="nav-text">${groupName} ></span>
-                        </a>
-                        <ul aria-expanded="false" id="submenu-${groupId}">`;
+                <li class="dropdown" id="menu-${groupId}">
+                    <a class="has-arrow" href="#" aria-expanded="false">
+                        ${groupIcon} <span class="nav-text">${groupName} ></span>
+                    </a>
+                    <ul aria-expanded="false" id="submenu-${groupId}">`;
 
                     filteredSubMenuItems.forEach(item => {
                         const iconHtml = item.icono_msi || item.icono_mi;
                         menuHtml += `
-                        <li><a href="${item.ruta}">${iconHtml} ${item.descripcion}</a></li>`;
+                    <li><a href="${item.ruta}">${iconHtml} ${item.descripcion}</a></li>`;
                     });
 
                     menuHtml += `</ul></li>`;

@@ -11,6 +11,7 @@ window.onload = function() {
             // Procesar y crear los diferentes gráficos utilizando los datos obtenidos
             crearGraficoentradasalida(data);
             modalidadesimpoexpo(data);
+            crearGraficoClientes(data);
 
             // Contar el número total de movimientos y actualizar el elemento HTML
             const totalMovimientos = data.length;
@@ -204,6 +205,85 @@ function modalidadesimpoexpo(data) {
                     text: '',
                     font: {
                         size: 18,
+                        family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+                    },
+                    padding: {
+                        top: 0,
+                        bottom: 20
+                    }
+                }
+            }
+        }
+    });
+}
+
+
+// Función para crear el gráfico de clientes
+function crearGraficoClientes(data) {
+    let clientes = {};
+    data.forEach(item => {
+        if (clientes[item.cliente]) {
+            clientes[item.cliente]++;
+        } else {
+            clientes[item.cliente] = 1;
+        }
+    });
+
+    const ctx = document.getElementById('clientesChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: Object.keys(clientes),
+            datasets: [{
+                label: '',
+                data: Object.values(clientes),
+                backgroundColor: [
+                    '#00bfff',
+                    '#87cefa',
+                    '#4682b4',
+                    '#1e90ff'
+                ],
+                borderColor: '#fff',
+                borderWidth: 2,
+                hoverOffset: 10,
+            }]
+        },
+        options: {
+            cutout: '30%',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false,
+                    position: 'top',
+                    align: 'center',
+                    labels: {
+                        font: {
+                            size: 14,
+                            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                    callbacks: {
+                        label: function(context) {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const porcentaje = ((context.parsed / total) * 100).toFixed(2);
+                            return ` (cantidad: ${ porcentaje }%)`;
+                        }
+                    }
+                },
+                title: {
+                    display: true,
+                    color: '#fff',
+                    text: 'Total por Cliente',
+                    align: 'center',
+                    font: {
+
+                        size: 18,
+                        weight: 'bold',
                         family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
                     },
                     padding: {
