@@ -64,6 +64,16 @@ new gridjs.Grid({
                   onClick: () => verificarAdjuntos(row.cells[0].data),
               }, 'Verificar');
           }
+        },
+        {
+            name: "rechazar",
+            hidden: false,
+            formatter: (cell, row) => {
+              return gridjs.h('button', {
+                  className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
+                  onClick: () => rechazarAdjuntos(row.cells[0].data),
+              }, 'Rechazar');
+          }
         }
     ],
     fixedHeader: true,
@@ -164,4 +174,8 @@ function actualizarFactura() {
 
 function verificarAdjuntos(id){
     verificarAdjuntos(id)
+}
+
+function rechazarAdjuntos(id){
+    rechazarAdjuntos(id)
 }
