@@ -1,6 +1,6 @@
 window.onload = function() {
     // Realizar la llamada a la API una sola vez
-    fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario", {
+    fetch("https://esenttiapp-production.up.railway.app/api/cargarhistorico", {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("authToken")}`
@@ -9,19 +9,26 @@ window.onload = function() {
         .then(response => response.json())
         .then(data => {
             // Procesar y crear los diferentes gráficos utilizando los datos obtenidos
-            crearGraficoImpoExpo(data);
-            crearGraficoLlenoVacio(data);
+            crearGraficoentradasalida(data);
+            modalidadesimpoexpo(data);
             crearGraficoClientes(data);
+
+            // Contar el número total de movimientos y actualizar el elemento HTML
+            const totalMovimientos = data.length;
+            const totalMovimientosElement = document.getElementById('totalMovimientos');
+            totalMovimientosElement.textContent = totalMovimientos;
         })
         .catch(error => console.error('Error al obtener datos de la API:', error));
 };
 
-// Función para crear el gráfico de importaciones y exportaciones
-function crearGraficoImpoExpo(data) {
-    let importaciones = data.filter(item => item.modalidad === "IMPORTACION").length;
-    let exportaciones = data.filter(item => item.modalidad === "EXPORTACION").length;
 
-    const ctx = document.getElementById('impoexpoChart').getContext('2d');
+
+// Función para crear el gráfico de importaciones y exportaciones
+function crearGraficoentradasalida(data) {
+    let entrada = data.filter(item => item.operacion === "ENTRADA").length;
+    let salida = data.filter(item => item.operacion === "SALIDA").length;
+
+    const ctx = document.getElementById('countentradasalida').getContext('2d');
 
     const gradient1 = ctx.createLinearGradient(0, 0, 0, 400);
     gradient1.addColorStop(0, '#87cefa');
@@ -34,10 +41,10 @@ function crearGraficoImpoExpo(data) {
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Impo', 'Expo'],
+            labels: ['Entrada', 'Salida'],
             datasets: [{
                 label: '',
-                data: [importaciones, exportaciones],
+                data: [entrada, salida],
                 backgroundColor: [gradient1, gradient2],
                 borderColor: 'transparent',
                 borderWidth: 0,
@@ -114,11 +121,11 @@ function crearGraficoImpoExpo(data) {
 }
 
 // Función para crear el gráfico de lleno y vacío
-function crearGraficoLlenoVacio(data) {
-    let vacio = data.filter(item => item.lleno_vacio === "VACIO").length;
-    let lleno = data.filter(item => item.lleno_vacio === "LLENO").length;
+function modalidadesimpoexpo(data) {
+    let importacion = data.filter(item => item.modalidad === "IMPORTACION").length;
+    let exportacion = data.filter(item => item.modalidad === "EXPORTACION").length;
 
-    const ctx = document.getElementById('llenovacio').getContext('2d');
+    const ctx = document.getElementById('countimpoexpo').getContext('2d');
 
     const gradient1 = ctx.createLinearGradient(0, 0, 0, 400);
     gradient1.addColorStop(0, '#87cefa');
@@ -131,10 +138,10 @@ function crearGraficoLlenoVacio(data) {
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['vacio', 'lleno'],
+            labels: ['Importacion', 'Exportacion'],
             datasets: [{
                 label: '',
-                data: [vacio, lleno],
+                data: [importacion, exportacion],
                 backgroundColor: [gradient1, gradient2],
                 borderColor: 'transparent',
                 borderWidth: 0,

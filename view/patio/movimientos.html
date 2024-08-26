@@ -7,11 +7,131 @@
     <title>Nodhus</title>
     <link rel="icon" href="/faviconN.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/styles.css">
-    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/pages.css" rel="stylesheet">
+    <link href="/css/vehiculos.css" rel="stylesheet">
     <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding-top: 60px;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 60%;
+            max-width: 800px;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .title-container {
+            text-align: center;
+        }
+        
+        .title-container .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .modal-details {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .modal-details div {
+            flex: 1 1 50%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
+        .dropzone {
+            border: 2px dashed #007bff;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        
+        .dz-message {
+            color: #999;
+            font-size: 18px;
+            text-align: center;
+            padding: 50px 0;
+        }
+        
+        #uploadedFilesContainer {
+            margin-top: 20px;
+        }
+        
+        #uploadedFilesContainer h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        #uploadedFilesList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        #uploadedFilesList li {
+            width: 120px;
+            margin: 5px;
+        }
+        
+        #uploadedFilesList img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .upload-btn.file-uploaded {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        
+        #detailsModal img {
+            display: block;
+            margin: 0 auto;
+        }
+        
+        #impoexpoChart {
+            width: 100%;
+        }
+        
+        #impoexpoChart {
+            width: 100%;
+            height: 300px;
+            /* O un porcentaje, como height: 80%; */
+        }
+    </style>
 </head>
 <header>
     <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
@@ -48,21 +168,8 @@
 
         <div id="content" class="p-4 p-md-5 pt-5">
             <div class="row invoice-card-row">
-                <div class="col-xl-3 col-xxl-3 col-sm-6">
-                    <div class="card bg-warning invoice-card">
-                        <div class="card-body d-flex">
-                            <div class="icon me-3">
-                                <i class="fas fa-boxes text-white" style="font-size: 28px;"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-white invoice-num">
-                                    <p id="historicoTotal"></p>
-                                </h3>
-                                <span class="text-white fs-18">Historico Total Contenedores</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+
                 <div class="col-xl-3 col-xxl-3 col-sm-6">
                     <div class="card bg-success invoice-card">
                         <div class="card-body d-flex">
@@ -71,59 +178,99 @@
                             </div>
                             <div>
                                 <h3 class="text-white invoice-num">
-                                    <p id="totalContenedores"></p>
+                                    <p id="totalMovimientos"></p>
                                 </h3>
-                                <span class="text-white fs-18">Total de Contenedores en Patio</span>
+                                <span class="text-white fs-18">Total de movimientos</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6">
-                    <div class="row  mt-xl-0 mt-4">
-                        <div class="col-md-6">
-                            <h4 class="card-title">Solicitudes por categoria</h4>
-                            <ul class="card-list mt-4">
-                                <li><span class="bg-blue circle"></span>Exportación<span>20%</span></li>
-                                <li><span class="bg-success circle"></span>Importación<span>40%</span></li>
-                                <li><span class="bg-warning circle"></span>Traslado<span>15%</span></li>
-                                <li><span class="bg-warning circle"></span>Vacio<span>25%</span></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <canvas id="polarChart"></canvas>
+
+
+                <div class="col-xl-3 col-xxl-3 col-sm-6">
+                    <div class="card bg-success invoice-card">
+                        <div class="card-body d-flex">
+
+                            <div>
+                                <span class="text-white fs-18">OPERACIONES</span>
+                                <canvas id="countentradasalida"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
+                <div class="col-xl-3 col-xxl-3 col-sm-6">
+                    <div class="card bg-success invoice-card">
+                        <div class="card-body d-flex">
+
+                            <div>
+                                <span class="text-white fs-18">TIPO DE TRANSPORTE</span>
+                                <canvas id="countimpoexpo"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-xxl-3 col-sm-6">
+                    <div class="card bg-success invoice-card">
+                        <div class="card-body d-flex">
+                            <canvas id="clientesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
             <div id="historico"></div>
             <div class="container"></div>
         </div>
 
+        <div class="container-fluid main-container">
+            <div style="display: flex; justify-content: center; width: 100%;">
+                <div id="fileUploadModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div id="uploadedFilesContainer">
+                            <h2>Fotos Adjuntas</h2>
+                            <div id="uploadedFilesList" class="image-gallery"> </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="detailsModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" id="closeModal">&times;</span>
+                        <div class="modal-details" id="modalDetailsContent">
+                            <!-- Aquí se cargarán los detalles -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="/Componentes/sidebar.js"></script>
         <script src="/js/login/logout.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
-        <!-- Required vendors -->
-        <script src="/vendor/global/global.min.js"></script>
-        <script src="/vendor/chart.js/Chart.bundle.min.js"></script>
-        <script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-
-
-        <!-- Apex Chart -->
-        <script src="/vendor/apexchart/apexchart.js"></script>
-        <script src="/vendor/nouislider/nouislider.min.js"></script>
-        <script src="/vendor/wnumb/wNumb.js"></script>
-
-
-        <script src="/js/dlabnav-init.js"></script>
-        <script src="/js/demo.js"></script>
-
+        <!-- JavaScript Libraries -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-        <script type="text/javascript" src="/js/patio/movimientos.js"></script>
+
+
+
+        <script src="/js/patio/tablero_movimientos.js"></script>
+        <script type="module" src="/js/patio/movimientos.js"></script>
+        <script type="module" src="/js/patio/uploadFotos.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
+
+
 </body>
 
 </html>

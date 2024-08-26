@@ -1,4 +1,56 @@
-/* styles.css */
+/* CSS PARA EL PERFIL DEL SIDEBAR */
+
+
+/* Estilos básicos para la sección del perfil */
+
+.profile-section {
+    display: flex;
+    /* Alinea los elementos horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
+    padding-right: 20px;
+    padding-left: 20px;
+    /* Espacio interno */
+    border-left: 1px solid #ccc;
+    /* Línea divisoria opcional */
+}
+
+.profile-icon,
+.settings-icon {
+    color: #ffffff;
+    font-size: 45px;
+    /* Tamaño de los iconos */
+    /* Espacio entre el icono y el texto */
+    cursor: pointer;
+    /* Cambia el cursor al pasar el ratón */
+}
+
+.profile-info {
+    margin-right: 20px;
+    color: #ccc;
+    flex-grow: 1;
+    /* Permite que el texto ocupe el espacio disponible */
+}
+
+.profile-dropdown {
+    margin-top: 8px;
+    margin-left: 100px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    z-index: 10;
+    /* Asegurar que el desplegable esté por encima de otros elementos */
+}
+
+.profile-dropdown p {
+    margin: 5px 0;
+    color: #ccc;
+}
+
+
+/* CSS PARA EL PERFIL DEL SIDEBAR */
 
 .modalauditor {
     display: none;

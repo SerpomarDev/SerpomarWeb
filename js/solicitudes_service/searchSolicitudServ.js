@@ -1,74 +1,72 @@
-
 new gridjs.Grid({
     search: true,
-    language:{
-        search:{
+    language: {
+        search: {
             placeholder: '🔍 Buscar...'
         }
     },
     pagination: {
-        limit:30,
+        limit: 30,
         enabled: true,
     },
     resizable: true,
     sort: false,
-    columns: [
-        {
-            name:"#",
-            hidden:true,
-        },{
-            name:'SP',
-            attributes: (cell,row)=>{
-            if(cell){
-                return{
-                  'data-cell-content': cell,
-                  onclick:()=>showOrdenService(row.cells[0].data),
-                  'style': 'cursor: pointer; color: #6495ED;  font-weight: bold;',
+    columns: [{
+        name: "#",
+        hidden: true,
+    }, {
+        name: 'SP',
+        attributes: (cell, row) => {
+            if (cell) {
+                return {
+                    'data-cell-content': cell,
+                    onclick: () => showOrdenService(row.cells[0].data),
+                    'style': 'cursor: pointer; color: #6495ED;  font-weight: bold;',
                 }
             }
         }
-    }, "DO pedido","Pedido","Tipo Transporte","Cliente","Contendores","Contenedores liquidados","Fecha entrada",{
-        name:'Acciones',
-        hidden:true,
-        columns:[{
-            name:'Actualizar',
-            hidden:true,
-            formatter:(cell,row)=>{
-                return gridjs.h('a', {
-                    href: '',
-                    onclick: (e) => {
-                        e.preventDefault();
-                        edit(row.cells[0].data);
-                    }
-                }, [
-                    gridjs.h('img', {
-                        src: '/img/editar-texto.png',
-                        alt: 'Actualizar',
-                        style: 'width: 20px; height: 20px;' 
-                    })
-                ]);
-            }
-        },
-        {
-            name:'Eliminar',
-            hidden:true,
-            formatter:(cell,row)=>{
-                return gridjs.h('a', {
-                    href: '',
-                    onclick: (e) => {
-                        e.preventDefault();
-                        delete(row.cells[0].data);
-                    }
-                }, [
-                    gridjs.h('img', {
-                        src: '/img/basura.png',
-                        alt: 'eliminar',
-                        style: 'width: 20px; height: 20px;' 
-                    })
-                ]);
-            }
-        },
-    ],
+    }, "DO pedido", "Pedido", "Tipo Transporte", "Cliente", "Contendores", "Contenedores liquidados", "Fecha entrada", {
+        name: 'Acciones',
+        hidden: true,
+        columns: [{
+                name: 'Actualizar',
+                hidden: true,
+                formatter: (cell, row) => {
+                    return gridjs.h('a', {
+                        href: '',
+                        onclick: (e) => {
+                            e.preventDefault();
+                            edit(row.cells[0].data);
+                        }
+                    }, [
+                        gridjs.h('img', {
+                            src: '/img/editar-texto.png',
+                            alt: 'Actualizar',
+                            style: 'width: 20px; height: 20px;'
+                        })
+                    ]);
+                }
+            },
+            {
+                name: 'Eliminar',
+                hidden: true,
+                formatter: (cell, row) => {
+                    return gridjs.h('a', {
+                        href: '',
+                        onclick: (e) => {
+                            e.preventDefault();
+                            delete(row.cells[0].data);
+                        }
+                    }, [
+                        gridjs.h('img', {
+                            src: '/img/basura.png',
+                            alt: 'eliminar',
+                            style: 'width: 20px; height: 20px;'
+                        })
+                    ]);
+                }
+            },
+        ],
     }],
     // sort: true,
     server: {
@@ -241,6 +239,6 @@ new gridjs.Grid({
 //   });
 
 
-function showOrdenService(id){
+function showOrdenService(id) {
     window.location.href = `/view/contenedor/create.html?id=${id}`
 }
