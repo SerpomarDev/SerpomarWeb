@@ -9,7 +9,7 @@ function rechazarAdjuntos(id) {
       confirmButtonText: "Sí, actualizar"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://esenttiapp.test/api/rechazaradjuntos/${id}`, {
+        fetch(`https://esenttiapp-production.up.railway.app/api/rechazaradjuntos/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
