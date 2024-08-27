@@ -2,6 +2,9 @@
 async function logoutUser() {
     const authToken = localStorage.getItem("authToken");
 
+    // Mostrar la pantalla de carga
+    document.getElementById("loading-spinner").style.display = "block";
+
     if (authToken) {
         try {
             const response = await fetch("https://esenttiapp-production.up.railway.app/api/logout", {
@@ -28,6 +31,9 @@ async function logoutUser() {
             // Error de red, forzar cierre de sesión en el navegador
             console.error("Error de red al intentar cerrar sesión en el servidor:", error);
             forceLogout();
+        } finally {
+            // Ocultar la pantalla de carga en cualquier caso (éxito o error)
+            document.getElementById("loading-spinner").style.display = "none";
         }
     } else {
         window.location.replace("/");
@@ -54,7 +60,7 @@ function resetInactivityTimer() {
     clearTimeout(inactivityTimer);
     inactivityTimer = setTimeout(() => {
         console.log('Temporizador activado. Cerrando sesión.'); // Verificar si el temporizador se activa
-        mostrarModalInicioSesion();
+        mostrarModalInicioSesion(); // Asegúrate de que esta función exista
         logoutUser();
     }, 15 * 60 * 1000);
 }

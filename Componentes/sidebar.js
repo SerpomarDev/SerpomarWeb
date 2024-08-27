@@ -13,9 +13,19 @@ function loadSidebar() {
     };
 
     Promise.all([
-            fetch(apiUrlRoles, requestOptions).then(response => response.json()),
-            fetch(apiUrlMenu, requestOptions).then(response => response.json())
+            fetch(apiUrlRoles, requestOptions),
+            fetch(apiUrlMenu, requestOptions)
         ])
+        .then(([rolesResponse, menuItemsResponse]) => {
+            // Check for 401 status in either response
+            if (rolesResponse.status === 401 || menuItemsResponse.status === 401) {
+                console.log('Error 401 detectado. Mostrando modal');
+                mostrarModalInicioSesion(); // Asegúrate de que esta función esté definida
+                return; // Detener el procesamiento adicional
+            }
+
+            return Promise.all([rolesResponse.json(), menuItemsResponse.json()]);
+        })
         .then(([roles, menuItems]) => {
             const userRole = roles.find(role => role.id == rolId);
 
@@ -101,3 +111,63 @@ logo.addEventListener('click', () => {
 
 // Cargar el sidebar al inicio
 loadSidebar();
+
+
+function mostrarModalInicioSesion() {
+    // Crear el modal si no existe
+    let modalauditor = document.getElementById('modalInicioSesion');
+    if (!modalauditor) {
+        modalauditor = document.createElement('div');
+        modalauditor.id = 'modalInicioSesion';
+        modalauditor.classList.add('modalauditor');
+        modalauditor.innerHTML = `
+            <div class="modalauditor-content">
+                <span class="close">&times;</span>
+                <h2>Tu sesión ha expirado</h2>
+                <p>Por favor, inicia sesión nuevamente.</p>
+                <button id="btnIniciarSesion">Iniciar sesión</button>
+            </div>
+        `;
+        document.body.appendChild(modalauditor);
+
+        // Cerrar el modal al hacer clic en la "x"
+        const spanClose = modalauditor.querySelector('.close');
+        spanClose.onclick = function() {
+            modalauditor.style.display = "none";
+        }
+
+        // Cerrar el modal al hacer clic fuera del contenido
+        window.onclick = function(event) {
+            if (event.target == modalauditor) {
+                modalauditor.style.display = "none";
+            }
+
+        }
+    }
+
+    function forceLogout() {
+        // Borrar cookies
+        document.cookie.split(";").forEach(function(c) {
+            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+        });
+
+        // Borrar localStorage
+        localStorage.clear();
+
+        // Redirigir a la página de inicio
+        window.location.replace("/");
+    }
+
+
+    // Lógica para el botón de inicio de sesión (ejecutar cierre de sesión)
+    const btnIniciarSesion = modalauditor.querySelector('#btnIniciarSesion');
+    btnIniciarSesion.onclick = function() {
+        logoutUser();
+        forceLogout()
+    }
+}
+
+// Verificar el token al cargar la página
+window.onload = function() {
+    resetInactivityTimer(); // Iniciar el temporizador de inactividad
+}
