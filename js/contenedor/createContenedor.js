@@ -28,6 +28,7 @@ function cargarValores(id){
         document.getElementById("id_cliente").value = ordneSev.id_cliente;
         document.getElementById("cliente").value = ordneSev.cliente;
         document.getElementById("imp_exp").value = ordneSev.imp_exp;
+        impExp(ordneSev.imp_exp);
         document.getElementById("eta").value = ordneSev.eta;
         document.getElementById("levante").value = ordneSev.levante;
         document.getElementById("documental").value = ordneSev.documental;
@@ -52,6 +53,17 @@ function cargarValores(id){
     .catch((error) => {
       console.error('Error:', error);
     });
+}
+
+function impExp(impExp){
+
+  if (impExp === "exportacion") {
+    document.getElementById('Retirovacio').style.display = 'block';
+    document.getElementById('ingresoPuerto').style.display = 'block';
+  } else if(impExp === "importacion") {
+    document.getElementById('Tencurso').style.display = 'block';
+    document.getElementById('Tpendiente').style.display = 'block';
+  }
 }
 
 function tableByClt(id_primario){
