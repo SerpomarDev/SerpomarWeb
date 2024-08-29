@@ -1,20 +1,19 @@
-window.onload = function() {
-    // Realizar la llamada a la API una sola vez
-    fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario", {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Procesar y crear los diferentes gráficos utilizando los datos obtenidos
-            crearGraficoImpoExpo(data);
-            crearGraficoLlenoVacio(data);
-            crearGraficoClientes(data);
-        })
-        .catch(error => console.error('Error al obtener datos de la API:', error));
-};
+// Realizar la llamada a la API una sola vez
+fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario", {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Procesar y crear los diferentes gráficos utilizando los datos obtenidos
+        crearGraficoImpoExpo(data);
+        crearGraficoLlenoVacio(data);
+        crearGraficoClientes(data);
+    })
+    .catch(error => console.error('Error al obtener datos de la API:', error));
+
 
 // Función para crear el gráfico de importaciones y exportaciones
 function crearGraficoImpoExpo(data) {

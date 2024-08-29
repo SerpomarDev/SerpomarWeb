@@ -81,8 +81,8 @@ new gridjs.Grid({
                     placa.nombre,
                     placa.gps,
                     placa.webgps,
-                    placa.usuariogps,
-                    placa.contrasenagps
+                    placa.usuario,
+                    placa.contrasenia
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");

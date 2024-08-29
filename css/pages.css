@@ -284,6 +284,7 @@ html {
 }
 
 .btn-crear {
+    z-index: 10001;
     background-color: #28a745;
     /* Color de fondo verde */
     color: white;

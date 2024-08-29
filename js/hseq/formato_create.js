@@ -1,9 +1,18 @@
-document.getElementById('createOrdenCargue').addEventListener('submit', function(event) {
+// Manejo del evento 'submit' del formulario
+document.getElementById('fnovedad').addEventListener('submit', function(event) {
     event.preventDefault();
-    const formData = new FormData(this);
-    const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-    fetch('https://esenttiapp-production.up.railway.app/api/ordencargue', {
+    const formData = new FormData(this);
+
+    // Convertir los datos del formulario a JSON, escapando caracteres especiales si es necesario
+    const jsonData = JSON.stringify(Object.fromEntries(formData), (key, value) => {
+        if (typeof value === 'string') {
+            return value.replace(/\n/g, ' ').replace(/\t/g, ' ');
+        }
+        return value;
+    });
+
+    fetch('https://esenttiapp-production.up.railway.app/api/placas', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -13,50 +22,77 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Error al enviar los datos del formulario');
-            }
-            return response;
-        })
-        .then(response => {
-            if (response.ok) {
-                return fetch('https://esenttiapp-production.up.railway.app/api/ultimoresgistrood', {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                // Manejo de errores del servidor con más detalle
+                if (response.status === 400) { // Ejemplo: Bad Request
+                    return response.json().then(data => {
+                        throw new Error("Solicitud incorrecta: " + data.message || "Verifique los datos del formulario.");
+                    });
+                }
+            } else {
+                return response.text().then(text => {
+                    console.log("Respuesta del servidor:", text);
+                    if (text.includes("Placa creada exitosamente") || text.includes("mensaje de éxito similar del servidor")) {
+                        Swal.fire({
+                            title: "¡Buen trabajo!",
+                            text: "Has Creado una Placa.",
+                            icon: "success",
+                        });
+                        time();
+                    } else {
+                        Swal.fire({ // Cambiado a SweetAlert de éxito
+                            title: "¡Bien hecho!",
+                            text: "Placa creada correctamente",
+                            icon: "success",
+                        });
+                        time();
                     }
                 });
-            } else {
-                throw new Error('Form submission failed');
             }
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al obtener el último ID de la orden de cargue');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const ordenCargueId = data;
-
-            Swal.fire({
-                icon: 'success',
-                title: 'Formulario enviado',
-                text: 'El formulario ha sido enviado con éxito.',
-                confirmButtonText: 'OK'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    console.log('ID del QR code:', ordenCargueId);
-                    generarQRCode(ordenCargueId);
-                    time();
-                }
-            });
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Error al crear la placa:', error);
             Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-                footer: '<a href="">Why do I have this issue?</a>'
+                title: "Error",
+                text: error.message || "Hubo un problema al crear la placa. Por favor, inténtalo de nuevo.",
+                icon: "error",
             });
         });
+});
+
+function time() {
+    document.getElementById('fnovedad').reset();
+    setTimeout(() => {
+        window.location.href = `/view/seguridad/placa_crear.html`;
+    }, 1200);
+}
+
+function editPlaca(id) {
+    window.location.href = `/view/seguridad/placa_edit.html?id=${id}`
+}
+
+function deletePlaca(id) {
+    DeleteData(id)
+}
+
+function uploadId(id) {
+    $('#fileUploadModal').show();
+    $('#id_asignacion').val(id);
+
+    const myDropzone = new Dropzone("#SaveFile", {
+        url: "/upload",
+        init: function() {
+            this.on("success", function(file, response) {
+                const button = document.getElementById(`btn-${id}`);
+                if (button) {
+                    button.classList.remove('no-file');
+                    button.classList.add('file-uploaded');
+                }
+                $('#fileUploadModal').hide();
+            });
+        }
+    });
+}
+
+$('.close').on('click', function() {
+    $('#fileUploadModal').hide();
 });

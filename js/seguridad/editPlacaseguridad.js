@@ -32,43 +32,38 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editplaca/${id}`, {
         console.error('Error:', error);
     });
 
-new gridjs.Grid({
-    search: true,
-    language: {
-        search: {
-            placeholder: '🔍 Buscar...'
-        }
-    },
-    pagination: {
-        limit: 10,
-        enabled: true,
-    },
-    columns: ["Placa", "Eje", "Tipologia", "Propietario", {
-        name: 'Telefono',
-        hidden: true,
-    }],
-    server: {
-        url: "https://esenttiapp-production.up.railway.app/api/showplaca",
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("authToken")}`
-        },
-        then: (data) => {
-            if (Array.isArray(data) && data.length > 0) {
-                return data.map((placa) => [
-                    placa.placa,
-                    placa.soat,
-                    placa.fecha_vencimientos,
-                    placa.numero_poliza,
-                    placa.tecnomecanica,
-                    placa.fecha_vencimientot
-                ]);
-            } else {
-                console.error("La respuesta del servidor no contiene datos válidos.");
-                return [];
-            }
-        }
-    }
-}).render(document.getElementById('placaEdit'));
+// new gridjs.Grid({
+//     search: true,
+//     language: {
+//         search: {
+//             placeholder: '🔍 Buscar...'
+//         }
+//     },
+//     pagination: {
+//         limit: 10,
+//         enabled: true,
+//     },
+//     columns: [{
+//         name: 'Telefono',
+//         hidden: true,
+//     }],
+//     server: {
+//         url: "https://esenttiapp-production.up.railway.app/api/showplaca",
+//         headers: {
+//             Authorization: `Bearer ${localStorage.getItem("authToken")}`
+//         },
+//         then: (data) => {
+//             if (Array.isArray(data) && data.length > 0) {
+//                 return data.map((placa) => [
+
+//                 ]);
+//             } else {
+//                 console.error("La respuesta del servidor no contiene datos válidos.");
+//                 return [];
+//             }
+//         }
+//     }
+// }).render(document.getElementById('placaEdit'));
 
 
 document.getElementById("editPlaca").addEventListener("submit", function(event) {
@@ -110,6 +105,6 @@ document.getElementById("editPlaca").addEventListener("submit", function(event) 
 function time() {
     document.getElementById('editPlaca').reset();
     setTimeout(() => {
-        window.location.href = `/view/placa/create.html`;
+        window.location.href = `/view/seguridad/placa_crear.html`;
     }, 1200);
 }

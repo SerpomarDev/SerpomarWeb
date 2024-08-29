@@ -1,27 +1,26 @@
-window.onload = function() {
-    // Realizar la llamada a la API una sola vez
-    fetch("https://esenttiapp-production.up.railway.app/api/showsolicitudserv", {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Procesar y crear los diferentes gráficos utilizando los datos obtenidos
-            modalidadesimpoexpo(data);
-            crearGraficoClientes(data);
+// Realizar la llamada a la API una sola vez
+fetch("https://esenttiapp-production.up.railway.app/api/showsolicitudserv", {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Procesar y crear los diferentes gráficos utilizando los datos obtenidos
+        modalidadesimpoexpo(data);
+        crearGraficoClientes(data);
 
-            // Contar el número total de movimientos y actualizar el elemento HTML
-            const totalMovimientos = data.length;
-            const totalMovimientosElement = document.getElementById('totalMovimientos');
-            totalMovimientosElement.textContent = totalMovimientos;
+        // Contar el número total de movimientos y actualizar el elemento HTML
+        const totalMovimientos = data.length;
+        const totalMovimientosElement = document.getElementById('totalMovimientos');
+        totalMovimientosElement.textContent = totalMovimientos;
 
 
-        })
+    })
 
-    .catch(error => console.error('Error al obtener datos de la API:', error));
-};
+.catch(error => console.error('Error al obtener datos de la API:', error));
+
 
 
 
