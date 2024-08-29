@@ -21,7 +21,6 @@ body {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    
 }
 
 .header-invoice {
@@ -90,7 +89,6 @@ canvas {
 }
 
 .title {
-    font-size: 14px;
     color: #333;
 }
 
@@ -128,7 +126,9 @@ canvas {
     background-color: #0073FF;
 }
 
+
 /* New red background color class */
+
 .bg-red {
     background-color: #dc3545 !important;
 }
