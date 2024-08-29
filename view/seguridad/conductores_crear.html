@@ -160,77 +160,6 @@
         <div class="margenform">
             <div id="content" class="p-4 p-md-0 pt-5">
                 <div class="container-fluid main-container">
-                    <form id="createConductor" method="POST" enctype="multipart/form-data" class="form">
-                        <p class="message">Complete los campos para crear un nuevo conductor.</p>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        <input type="text" class="input" id="nombre" name="nombre" required>
-                                        <span>Nombre</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        <input type="number" class="input" id="identificacion" name="identificacion" required>
-                                        <span>Identificación</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        <input type="number" class="input" id="telefono" name="telefono" required>
-                                        <span>Teléfono</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        <input type="email" class="input" id="email" name="email">
-                                        <span>Email</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        <input type="number" class="input" id="numero_licencia" name="numero_licencia" required>
-                                        <span>No. licencia</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        <input type="date" class="input" id="fecha_vencimiento" name="fecha_vencimiento" required>
-                                        <span>Vencemiento licencia</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
-
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-
-                                    <button class="btn btn-primary" id="BtnSaveConductor">Enviar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                     <div class="">
                         <div id="conductores"></div>
                     </div>
@@ -269,7 +198,7 @@
         <script src="/js/login/logout.js"></script>
         <script src="/js/custom.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-        <script type="text/javascript" src="/js/conductor/createConductor.js"></script>
+        <script type="text/javascript" src="/js/seguridad/createConductorseguridad.js"></script>
         <script type="text/javascript" src="/js/conductor/deleteConductor.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script type="module" src="/js/conductor/conductores_uploadFotos.js"></script>

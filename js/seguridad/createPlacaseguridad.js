@@ -14,9 +14,9 @@ new gridjs.Grid({
     columns: [{
             name: 'id',
             hidden: true,
-        }, "Placa", "Eje", "Tipologia", "Propietario", "soat", "soat vence", "num. poliza", "tecnomecanica", "tec. vencimiento", {
+        }, "Placa", "Propietario", "gps", "web gps", "usuariogps", "contrasenagps", {
 
-            name: 'Documentos',
+            name: 'Adjuntos',
             hidden: false,
             formatter: (cell, row) => {
                 return gridjs.html(
@@ -25,10 +25,10 @@ new gridjs.Grid({
             }
         }, {
 
-            name: 'Actualizar',
+            name: 'EDIT',
             formatter: (cell, row) => {
                 return gridjs.h('a', {
-                    href: '/view/Placa/edit.html',
+                    href: '/view/seguridad/placa_edit.html',
                     onclick: (e) => {
                         e.preventDefault();
                         editPlaca(row.cells[0].data);
@@ -44,11 +44,11 @@ new gridjs.Grid({
             },
         },
         {
-            name: 'Eliminar',
+            name: '',
             hidden: true,
             formatter: (cell, row) => {
                 return gridjs.h('a', {
-                    href: '/view/Placa/create.html',
+                    href: '/view/seguridad/crear.html',
                     onclick: (e) => {
                         e.preventDefault();
                         deletePlaca(row.cells[0].data);
@@ -78,14 +78,11 @@ new gridjs.Grid({
                 return data.map((placa) => [
                     placa.id_placa,
                     placa.placa,
-                    placa.eje,
-                    placa.tipologia,
                     placa.nombre,
-                    placa.soat,
-                    placa.fecha_vencimientos,
-                    placa.numero_poliza,
-                    placa.tecnomecanica,
-                    placa.fecha_vencimientot
+                    placa.gps,
+                    placa.webgps,
+                    placa.usuariogps,
+                    placa.contrasenagps
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
@@ -159,12 +156,12 @@ document.getElementById('createPlaca').addEventListener('submit', function(event
 function time() {
     document.getElementById('createPlaca').reset();
     setTimeout(() => {
-        window.location.href = `/view/placa/create.html`;
+        window.location.href = `/view/seguridad/placa_crear.html`;
     }, 1200);
 }
 
 function editPlaca(id) {
-    window.location.href = `/view/placa/edit.html?id=${id}`
+    window.location.href = `/view/seguridad/placa_edit.html?id=${id}`
 }
 
 function deletePlaca(id) {

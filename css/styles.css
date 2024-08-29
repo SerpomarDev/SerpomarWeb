@@ -1,3 +1,10 @@
+/* Style for buttons with uploaded files */
+
+#controlAsig .file-uploaded {
+    background-color: #e0f2f1;
+    /* Example: Light green background */
+}
+
 #loading-spinner {
     display: none;
     position: fixed;
@@ -24,24 +31,35 @@
 .modalauditor {
     display: none;
     position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Centrado del modal */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    /*Nuevo:;
+    Tamañoycolor*/
+    font-size: 24px;
+    padding: 100%;
+    /*Ajustaeltamañodefuentesegúntusnecesidades*/
+    color: #313131;
+    /*Otrosestilosquedesees,comocolordefondo,padding,etc.*/
+    background-color: rgba(0, 0, 0, 0.644);
+    /*Fondosemi-transparente*/
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
 }
 
 .modalauditor-content {
     background-color: #fefefe;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 720px;
     /* Ajusta el ancho según tus necesidades */
     max-width: 500px;
     /* Limita el ancho máximo para pantallas grandes */

@@ -19,11 +19,12 @@
 
 <body>
 
+
     <div id="main-wrapper">
         <div class="header">
             <div class="title-container">
                 <div class="circle"></div>
-                <h1 class="title">EDITAR ALIADO</h1>
+                <h1 class="title">EDITAR CONDUCTOR</h1>
             </div>
         </div>
 
@@ -32,53 +33,81 @@
         <div class="margenform">
             <div id="content" class="p-4 p-md-5 pt-5">
                 <div class="container">
-                    <form id="editAliado" method="PUT" enctype="multipart/form-data">
+                    <form id="editConductor" method="PUT" enctype="multipart/form-data" class="form">
                         <input type="hidden" id="id" name="id">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre">
+                                    <label>
+                                        <input type="text" class="input" id="nombre" name="nombre" required>
+                                        <span>Nombre</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="number" class="input" id="identificacion" name="identificacion" required>
+                                        <span>Identificación</span>
+                                    </label>
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Razon Social</label>
-                                    <input type="text" class="form-control" id="razon_social" name="razon_social">
-                                </div>
-                            </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="" class="form-label">Celular</label>
-                                    <input type="text" class="form-control" id="celular" name="celular">
+                                    <label>
+                                        <input type="date" class="input" id="estudio_Seg" name="estudio_Seg">
+                                        <span>Estudios SEG</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="poligrafia" name="poligrafia">
+                                        <span>Poligrafia</span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
+                        <br>
+
                         <div class="row">
-                            <div class="col-10 d-flex justify-content-between">
-                                <button class="btn btn-primary" id="BtnEditAliado">Enviar</button>
-                                <a class="btn btn-primary" href="/view/aliados/create.html">Volver</a>
+                            <div class="col-md-2"> </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <a class="btn btn-primary" href="/view/seguridad/conductores_crear.html">Volver</a>
+                                </div>
+                            </div>
+                            <div class="col-md-2"> </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <button class="btn btn-primary" id="editBtn">Enviar</button>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="container">
-                    <div id="aliadoEdit"></div>
+                    <div id="conductoresedit"></div>
                 </div>
             </div>
 
 
-
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script src="/Componentes/sidebar.js"></script>
             <script src="/js/login/logout.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+
             <script src="/js/custom.min.js"></script>
+            <script type="text/javascript" src="/js/conductor/edtiConductor.js"></script>
+            <script type="text/javascript" src="/js/conductor/createConductor.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-            <script type="text/javascript" src="/js/aliado/editAliado.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 

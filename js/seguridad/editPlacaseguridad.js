@@ -19,14 +19,10 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editplaca/${id}`, {
             const placa = data[0];
             document.getElementById("id_placa").value = placa.id_placa
             document.getElementById("placa").value = placa.placa
-            document.getElementById("eje").value = placa.eje
-            document.getElementById("tipologia").value = placa.tipologia
-            document.getElementById("id_aliado").value = placa.id_aliado
-            document.getElementById("soat").value = placa.soat
-            document.getElementById("fecha_vencimientos").value = placa.fecha_vencimientos
-            document.getElementById("numero_poliza").value = placa.numero_poliza
-            document.getElementById("tecnomecanica").value = placa.tecnomecanica
-            document.getElementById("fecha_vencimientot").value = placa.fecha_vencimientot
+            document.getElementById("gps").value = placa.gps
+            document.getElementById("webgps").value = placa.webgps
+            document.getElementById("usuariogps").value = placa.usuariogps
+            document.getElementById("contrasenagps").value = placa.contrasenagps
 
         } else {
             console.log('La propiedad array no existe en la respuesta');
@@ -60,9 +56,6 @@ new gridjs.Grid({
             if (Array.isArray(data) && data.length > 0) {
                 return data.map((placa) => [
                     placa.placa,
-                    placa.eje,
-                    placa.tipologia,
-                    placa.id_aliado,
                     placa.soat,
                     placa.fecha_vencimientos,
                     placa.numero_poliza,
