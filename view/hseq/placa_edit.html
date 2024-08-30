@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title>
+    <link rel="icon" href="/faviconN.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+</head>
+<div id="header-container"></div>
+<script src="/Componentes/header.js"></script>
+<script src="/Componentes/perfil.js"></script>
+
+<body>
+
+
+    <div id="main-wrapper">
+        <div class="header">
+            <div class="title-container">
+                <div class="circle"></div>
+                <h1 class="title">EDITAR PLACA</h1>
+            </div>
+        </div>
+
+
+
+        <div class="margenform">
+            <div id="content" class="p-4 p-md-5 pt-5">
+                <div class="container">
+                    <form id="editPlaca" method="PUT" enctype="multipart/form-data" class="form">
+                        <input type="hidden" id="id_placa" name="id_placa">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                    <input type="text" class="input" id="placa" name="placa" required>
+                                    <span>Placa</span>
+                                </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="gps" name="gps" required>
+                                        <span>Kit Seguridad</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+                        <br>
+                        <div class="row">
+                            <div class="col-10 d-flex justify-content-between">
+                                <a class="btn btn-primary" href="/view/hseq/placa_crear.html">Volver</a>
+                                <button class="btn btn-primary" id="BtnEditPlaca">Enviar</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="placaEdit"></div>
+            </div>
+
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="/Componentes/sidebar.js"></script>
+            <script src="/js/login/logout.js"></script>
+
+
+            <script src="/js/custom.min.js"></script>
+
+            <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+            <script type="text/javascript" src="/js/seguridad/editPlacaseguridad.js"></script>
+            <script type="text/javascript" src="/js/cargar/cargarAliados.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

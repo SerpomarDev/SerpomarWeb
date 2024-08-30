@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title>
+    <link rel="icon" href="/faviconN.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+</head>
+<div id="header-container"></div>
+<script src="/Componentes/header.js"></script>
+<script src="/Componentes/perfil.js"></script>
+
+<body>
+
+
+    <div id="main-wrapper">
+        <div class="header">
+            <div class="title-container">
+                <div class="circle"></div>
+                <h1 class="title">AGREGAR DATOS</h1>
+            </div>
+        </div>
+
+
+
+        <div class="">
+            <div id="content" class="p-4 p-md-5 pt-5">
+                <div class="container">
+                    <form id="editConductor" method="PUT" enctype="multipart/form-data" class="form">
+                        <input type="hidden" id="id" name="id">
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="nombre" name="nombre" required>
+                                        <span>Nombre</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="identificacion" name="identificacion" required>
+                                        <span>Identificación</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <p class="message">Examenes medicos:</p>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        <input class="input" hidden>
+                                        <select class="input" id="examen_medico" name="examen_medico" required>
+                                            <option value="" disabled selected>Examen medicos</option>
+                                            <option value="si">Sí</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                        <span>Examenes medicos</span>
+                                    <label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="fecha_realizacion" name="fecha_realizacion" required>
+                                        <span>Fecha Realización</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="fecha_seguimiento" name="fecha_seguimiento" required>
+                                        <span>Fecha Seguimiento</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        <input class="input" hidden>
+                                        <select class="input" id="tipo_examen" name="tipo_examen" required>
+                                            <option value="" disabled selected>Selecciona una opcion</option>
+                                            <option value="ingreso">Ingreso</option>
+                                            <option value="periodico">Periodico</option>
+                                        </select>
+                                        <span>Tipo de examen</span>
+                                    <label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="full-width">
+                                        <textarea class="input" id="recomendaciones" name="recomendaciones" rows="3"></textarea>
+                                        <span>Recomendaciones</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <p class="message">Otro:</p>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        <input class="input" hidden>
+                                        <select class="input" id="curso_sustancias" name="curso_sustancias" required>
+                                            <option value="" disabled selected>Selecciona una opcion</option>
+                                            <option value="si">Sí</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                        <span>Curso sustancias peligrosas</span>
+                                    <label>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        <input class="input" hidden>
+                                        <select class="input" id="simit" name="simit" required>
+                                            <option value="" disabled selected>Selecciona una opcion</option>
+                                            <option value="si">Sí</option>
+                                            <option value="no">No</option>
+                                            <option value="acuerdo">Acuerdo de pago</option>
+                                        </select>
+                                        <span>Verificación Simit</span>
+                                    <label>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-2"> </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <a class="btn btn-primary" href="/view/seguridad/conductores_crear.html">Volver</a>
+                                </div>
+                            </div>
+                            <div class="col-md-2"> </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <button class="btn btn-primary" id="editBtn">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="container">
+                    <div id="conductoresedit"></div>
+                </div>
+            </div>
+
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="/Componentes/sidebar.js"></script>
+            <script src="/js/login/logout.js"></script>
+
+
+
+
+            <script src="/js/custom.min.js"></script>
+            <script type="text/javascript" src="/js/hseq/edtiConductor.js"></script>
+            <script type="text/javascript" src="/js/conductor/createConductor.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
