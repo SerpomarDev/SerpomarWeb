@@ -165,7 +165,7 @@ const columnDefs = [
     }
 ];
 
-fetch("https:esenttiapp-production.up.railway.app/api/showsolicitudserv",{
+fetch("https://esenttiapp-production.up.railway.app/api/showsolicitudserv",{
     headers: {
       'Authorization': `Bearer ${localStorage.getItem("authToken")}`
     }
