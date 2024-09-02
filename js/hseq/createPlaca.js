@@ -14,21 +14,23 @@ new gridjs.Grid({
     columns: [{
             name: 'id',
             hidden: true,
-        }, "Placa", "Propietario", "gps", "web gps", "usuariogps", "contrasenagps", {
+        }, "Placa", "Propietario", "Kit Emergencia",
+        // {
 
-            name: 'Adjuntos',
-            hidden: false,
-            formatter: (cell, row) => {
-                return gridjs.html(
-                    `<button id="btn-${row.cells[0].data}" class="upload-btn no-file" onclick="uploadId(${row.cells[0].data})">Adjuntos</button>`
-                );
-            }
-        }, {
+        //     name: 'Adjuntos',
+        //     hidden: false,
+        //     formatter: (cell, row) => {
+        //         return gridjs.html(
+        //             `<button id="btn-${row.cells[0].data}" class="upload-btn no-file" onclick="uploadId(${row.cells[0].data})">Adjuntos</button>`
+        //         );
+        //     }
+        // }, 
+        {
 
             name: 'EDIT',
             formatter: (cell, row) => {
                 return gridjs.h('a', {
-                    href: '/view/seguridad/placa_edit.html',
+                    href: '/view/hseq/placa_edit.html',
                     onclick: (e) => {
                         e.preventDefault();
                         editPlaca(row.cells[0].data);
@@ -79,10 +81,7 @@ new gridjs.Grid({
                     placa.id_placa,
                     placa.placa,
                     placa.nombre,
-                    placa.gps,
-                    placa.webgps,
-                    placa.usuario,
-                    placa.contrasenia
+                    placa.kit_emerg
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
@@ -156,12 +155,12 @@ document.getElementById('createPlaca').addEventListener('submit', function(event
 function time() {
     document.getElementById('createPlaca').reset();
     setTimeout(() => {
-        window.location.href = `/view/seguridad/placa_crear.html`;
+        window.location.href = `/view/hseq/placa_crear.html`;
     }, 1200);
 }
 
 function editPlaca(id) {
-    window.location.href = `/view/seguridad/placa_edit.html?id=${id}`
+    window.location.href = `/view/hseq/placa_edit.html?id=${id}`
 }
 
 function deletePlaca(id) {

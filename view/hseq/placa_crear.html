@@ -7,13 +7,19 @@
     <title>Nodhus</title>
     <link rel="icon" href="/faviconN.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/styles.css">
-    <link href="/css/pages.css" rel="stylesheet">
-    <link href="/css/vehiculos.css" rel="stylesheet">
+    <link href="/css/pages.css" rel="stylesheet" />
     <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+
+    <!-- Cargar Firebase App y Firebase Storage desde CDN -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
     <style>
         .modal {
             display: none;
@@ -139,120 +145,68 @@
 
 <body>
 
-    <div class="header">
-        <div class="title-container">
-            <div class="circle"></div>
-            <h1 class="title">MOVIMIENTOS</h1>
-        </div>
-    </div>
-
-    <div class="">
-
-        <div id="content" class="p-4 p-md-5 pt-5">
-            <div class="row invoice-card-row">
 
 
-                <div class="col-xl-3 col-xxl-3 col-sm-6">
-                    <div class="card bg-success invoice-card">
-                        <div class="card-body d-flex">
-                            <div class="icon me-3">
-                                <i class="fas fa-pallet text-white" style="font-size: 28px;"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-white invoice-num">
-                                    <p id="totalMovimientos"></p>
-                                </h3>
-                                <span class="text-white fs-18">Total de movimientos</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-
-                <div class="col-xl-3 col-xxl-3 col-sm-6">
-                    <div class="card bg-success invoice-card">
-                        <div class="card-body d-flex">
-
-                            <div>
-                                <span class="text-white fs-18">OPERACIONES</span>
-                                <canvas id="countentradasalida"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-xl-3 col-xxl-3 col-sm-6">
-                    <div class="card bg-success invoice-card">
-                        <div class="card-body d-flex">
-
-                            <div>
-                                <span class="text-white fs-18">TIPO DE TRANSPORTE</span>
-                                <canvas id="countimpoexpo"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-xxl-3 col-sm-6">
-                    <div class="card bg-success invoice-card">
-                        <div class="card-body d-flex">
-                            <canvas id="clientesChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-
+    <div id="main-wrapper">
+        <div class="header">
+            <div class="title-container">
+                <h1 class="title">DATOS SEGEGURIDAD</h1>
             </div>
-            <div id="historico"></div>
-            <div class="container"></div>
         </div>
+
+
+
+        <div class="margenform">
+            <div id="content" class="p-4 p-md-5 pt-5">
+                <div class="">
+                    <div id="Placa"></div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="container-fluid main-container">
             <div style="display: flex; justify-content: center; width: 100%;">
                 <div id="fileUploadModal" class="modal">
                     <div class="modal-content">
                         <span class="close">&times;</span>
-                        <div id="uploadedFilesContainer">
-                            <h2>Fotos Adjuntas</h2>
-                            <div id="uploadedFilesList" class="image-gallery"> </div>
+                        <div class="title-container">
+                            <h1 class="title">Adjuntar Archivo</h1>
                         </div>
-                    </div>
-                </div>
-
-                <div id="detailsModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" id="closeModal">&times;</span>
-                        <div class="modal-details" id="modalDetailsContent">
-                            <!-- Aquí se cargarán los detalles -->
+                        <form action="#" class="dropzone" id="SaveFile" method="POST">
+                            <input type="hidden" name="id_placa" id="id_placa">
+                            <div class="dz-message">
+                                Arrastra y suelta archivos aquí o haz clic para subir.
+                            </div>
+                        </form>
+                        <div id="uploadedFilesContainer">
+                            <h2>Archivos Adjuntos</h2>
+                            <ul id="uploadedFilesList">
+                                <!-- Aquí se agregarán los archivos subidos -->
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="/Componentes/sidebar.js"></script>
-        <script src="/js/login/logout.js"></script>
-
-        <!-- JavaScript Libraries -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-
-
-
-        <script src="/js/patio/tablero_movimientos.js"></script>
-        <script type="module" src="/js/patio/movimientos.js"></script>
-        <script type="module" src="/js/patio/uploadFotos.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="/js/login/logout.js"></script>
+        <script src="/Componentes/sidebar.js"></script>
+
+
+        <script src="/js/custom.min.js"></script>
 
 
 
 
+        <script type="text/javascript" src="/js/cargar/cargarAliados.js"></script>
+        <script type="text/javascript" src="/js/placa/deletePlaca.js"></script>
 
-
+        <script type="text/javascript" src="/js/hseq/createPlaca.js"></script>
+        <script type="module" src="/js/placa/placa_uploadFotos.js"></script>
 </body>
 
 </html>

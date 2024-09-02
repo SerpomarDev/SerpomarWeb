@@ -140,9 +140,9 @@
 
     <div class="header">
         <div class="header-content">
-            <nav class="navbar navbar-expand">
-                <div class="collapse navbar-collapse justify-content-between">
-                    <div class="header-left">
+            <nav class="title-container">
+                <div class="title">
+                    <div class="">
                         <div class="header-left">SP
                             <div style="color: #1e90ff;" class="dashboard_bar" id="dashboard_sp">SP:</div>
                         </div>
@@ -152,56 +152,55 @@
         </div>
     </div>
 
-                <div id="main-wrapper">
-                        <div class="margenform">
-                            <div id="content" class="p-4 p-md-5 pt-5">
-                        <div class="row invoice-card-row">
-                            <div class="col-xl-3 col-xxl-3 col-sm-6">
-                                <div class="card bg-warning invoice-card">
-                                    <div class="card-body d-flex">
-                                        <div class="icon me-3">
-                                            <i class="fas fa-boxes text-white" style="font-size: 28px;"></i>
-                                        </div>
-                                        <div>
-                                            <span class="text-white fs-18"><p id="totalRegistros"></p></span>
-                                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
-                                                </h3>
-                                            </div>
+
+    <div id="main-wrapper">
+        <div class="">
+            <div id="content" class="p-4 p-md-5 pt-5">
+                <div class="row invoice-card-row">
+                    <div class="col-xl-3 col-xxl-3 col-sm-6">
+                        <div class="card bg-warning invoice-card">
+                            <div class="card-body d-flex">
+                                <div class="icon me-3">
+                                    <i class="fas fa-boxes text-white" style="font-size: 28px;"></i>
+                                </div>
+                                <div>
+                                    <span class="text-white fs-18"><p id="totalRegistros"></p></span>
+                                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-xxl-3 col-sm-6">
+                        <div class="card bg-warning invoice-card">
+                            <div class="card-body d-flex">
+                                <div class="icon me-3">
+                                    <i class="fas fa-boxes text-white" style="font-size: 28px;"></i>
+                                </div>
+                                <div>
+                                    <div>
+                                        <span class="text-white fs-18"><p id="Tencurso" style="display: none;"></p></span>
+                                        <span class="text-white fs-18"><p id="Retirovacio" style="display: none;"></p></span>
+                                        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-            
-                            <div class="col-xl-3 col-xxl-3 col-sm-6">
-                                <div class="card bg-warning invoice-card">
-                                    <div class="card-body d-flex">
-                                        <div class="icon me-3">
-                                            <i class="fas fa-boxes text-white" style="font-size: 28px;"></i>
-                                        </div>
-                                        <div>
-                                            <div>
-                                                <span class="text-white fs-18"><p id="Tencurso" style="display: none;"></p></span>
-                                                <span class="text-white fs-18"><p id="Retirovacio" style="display: none;"></p></span>
-                                                <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-xxl-3 col-sm-6">
+                        <div class="card bg-warning invoice-card">
+                            <div class="card-body d-flex">
+                                <div class="icon me-3">
+                                    <i class="fas fa-boxes text-white" style="font-size: 28px;"></i>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-xxl-3 col-sm-6">
-                                <div class="card bg-warning invoice-card">
-                                    <div class="card-body d-flex">
-                                        <div class="icon me-3">
-                                            <i class="fas fa-boxes text-white" style="font-size: 28px;"></i>
-                                        </div>
-                                        <div>
-                                            <div>
-                                                <span class="text-white fs-18"><p id="Tpendiente" style="display: none;"></p></span>
-                                                    <span class="text-white fs-18"><p id="ingresoPuerto" style="display: none;"></p></span>
-                                                <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
-                                                </div>
-                                            </div>
+                                <div>
+                                    <div>
+                                        <span class="text-white fs-18"><p id="Tpendiente" style="display: none;"></p></span>
+                                        <span class="text-white fs-18"><p id="ingresoPuerto" style="display: none;"></p></span>
+                                        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
                                         </div>
                                     </div>
                                 </div>
@@ -209,206 +208,208 @@
                         </div>
                     </div>
                 </div>
-                <div class="container form-status-container">
-                    <div class="form-container">
-                        <form id="saveContenedor" method="POST" enctype="multipart/form-data">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">SP</label>
-                                        <input type="text" id="do_sp" class="form-control" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">DO PEDIDO</label>
-                                        <input type="text" id="do_pedido" class="form-control" readonly>
-                                    </div>
-                                </div>
+            </div>
+        </div>
+        <div class="container form-status-container">
+            <div class="form-container">
+                <form id="saveContenedor" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-label">SP</label>
+                                <input type="text" id="do_sp" class="form-control" readonly>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Contenedores</label>
-                                        <input type="text" id="contendedor" class="form-control" readonly>
-                                    </div>
-                                </div>
-                                <input type="hidden" id="id_cliente">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Cliente</label>
-                                        <input type="text" id="cliente" class="form-control" readonly>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-label">DO PEDIDO</label>
+                                <input type="text" id="do_pedido" class="form-control" readonly>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Modalidad</label>
-                                        <input type="text" id="imp_exp" class="form-control" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Fecha Eta</label>
-                                        <input type="text" id="eta" class="form-control" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Fecha Levante</label>
-                                        <input type="text" id="levante" class="form-control" readonly>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-label">Contenedores</label>
+                                <input type="text" id="contendedor" class="form-control" readonly>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Fecha documental</label>
-                                        <input type="text" id="documental" class="form-control" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Fecha Cutoff Fisico</label>
-                                        <input type="text" id="fisico" class="form-control" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Libre Hasta</label>
-                                        <input type="text" id="libre_hasta" class="form-control" readonly>
-                                    </div>
-                                </div>
+                        </div>
+                        <input type="hidden" id="id_cliente">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-label">Cliente</label>
+                                <input type="text" id="cliente" class="form-control" readonly>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Bodegaje Hasta</label>
-                                        <input type="text" id="bodega_hasta" class="form-control" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Fecha Propuesta</label>
-                                        <input type="text" id="propuesta" class="form-control" readonly>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="form-label">Modalidad</label>
+                                <input type="text" id="imp_exp" class="form-control" readonly>
                             </div>
-                            <hr>
-                            <!-- Formulario Contenedor -->
-                            <h4>Crear contenedor</h4>
-                            <input type="hidden" name="id_solicitud_servicio" id="id_solicitud_servicio">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Tipo Contenedor</label>
-                                        <select name="id_tipo_contenedor" id="id_tipo_contenedor" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="form-label">Fecha Eta</label>
+                                <input type="text" id="eta" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="form-label">Fecha Levante</label>
+                                <input type="text" id="levante" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="form-label">Fecha documental</label>
+                                <input type="text" id="documental" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="form-label">Fecha Cutoff Fisico</label>
+                                <input type="text" id="fisico" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="form-label">Libre Hasta</label>
+                                <input type="text" id="libre_hasta" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-label">Bodegaje Hasta</label>
+                                <input type="text" id="bodega_hasta" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-label">Fecha Propuesta</label>
+                                <input type="text" id="propuesta" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- Formulario Contenedor -->
+                    <h4>Crear contenedor</h4>
+                    <input type="hidden" name="id_solicitud_servicio" id="id_solicitud_servicio">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-label">Tipo Contenedor</label>
+                                <select name="id_tipo_contenedor" id="id_tipo_contenedor" class="form-control">
                                             <option value="">Seleccione</option>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Numero Contenedor</label>
-                                        <input type="text" id="nu_serie" name="nu_serie" class="form-control">
-                                    </div>
-                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Tara</label>
-                                        <input type="text" id="tara" name="tara" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Payload</label>
-                                        <input type="text" id="payload" name="payload" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Peso</label>
-                                        <input type="text" id="peso" name="peso" class="form-control">
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-label">Numero Contenedor</label>
+                                <input type="text" id="nu_serie" name="nu_serie" class="form-control">
                             </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-12 d-flex justify-content-between">
-                                    <button class="btn btn-primary" onclick="history.back()">Volver</button>
-                                    <button type="submit" class="btn btn-primary" id="BtnSave">Guardar</button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
-                    <div class="status-container">
-                        <div class="cardsp">
-                            <h1>Herramientas</h1>
-                            <a href="#" id="btnVerDetalles" class="btn btn-primary" role="button">Ver Detalle</a><br><br>
-                            <a class="btn btn-primary" id=GeneReportExcelContenedor type="button">Crear Excel</a><br><br>
-                            <a href="link3" class="btn btn-primary" role="button">Ver >
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="form-label">Tara</label>
+                                <input type="text" id="tara" name="tara" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="form-label">Payload</label>
+                                <input type="text" id="payload" name="payload" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="form-label">Peso</label>
+                                <input type="text" id="peso" name="peso" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-between">
+                            <button class="btn btn-primary" onclick="history.back()">Volver</button>
+                            <button type="submit" class="btn btn-primary" id="BtnSave">Guardar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="status-container">
+                <div class="cardsp">
+                    <h1>Herramientas</h1>
+                    <a href="#" id="btnVerDetalles" class="btn btn-primary" role="button">Ver Detalle</a><br><br>
+                    <a class="btn btn-primary" id=GeneReportExcelContenedor type="button">Crear Excel</a><br><br>
+                    <a href="link3" class="btn btn-primary" role="button">Ver >
                                 <img src="/img/barco.png" alt="Barco" style="width: 45px; height: 25px;">
                             </a><br><br>
-                            <button type="submit" class="btn btn-primary" id="btnAdjuntos">
+                    <button type="submit" class="btn btn-primary" id="btnAdjuntos">
                                 <i class="fas fa-upload"></i> Adjuntos
                             </button><br><br>
-                            <button type="submit" class="btn btn-primary" id="BtnLiquidar">Liquidar SP</button><br><br>
-                        </div>
+                    <button type="submit" class="btn btn-primary" id="BtnLiquidar">Liquidar SP</button><br><br>
+                </div>
+            </div>
+        </div>
+
+        <div id="fileUploadModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="title-container">
+                    <h1 class="title">Adjuntar Archivo</h1>
+                </div>
+                <form action="#" class="dropzone" id="SaveFile" method="POST">
+                    <input type="hidden" name="id_asignacion" id="id_asignacion">
+                    <div class="dz-message">
+                        Arrastra y suelta archivos aquí o haz clic para subir.
                     </div>
+                </form>
+                <div id="uploadedFilesContainer">
+                    <h2>Archivos Adjuntos</h2>
+                    <ul id="uploadedFilesList"></ul>
                 </div>
+            </div>
+        </div>
 
-                <div id="fileUploadModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <div class="title-container">
-                            <h1 class="title">Adjuntar Archivo</h1>
-                        </div>
-                        <form action="#" class="dropzone" id="SaveFile" method="POST">
-                            <input type="hidden" name="id_asignacion" id="id_asignacion">
-                            <div class="dz-message">
-                                Arrastra y suelta archivos aquí o haz clic para subir.
-                            </div>
-                        </form>
-                        <div id="uploadedFilesContainer">
-                            <h2>Archivos Adjuntos</h2>
-                            <ul id="uploadedFilesList"></ul>
-                        </div>
-                    </div>
+        <div id="detailsModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <div class="modal-details" id="modalDetailsContent">
+                    <!-- Aquí se cargarán los detalles -->
                 </div>
+            </div>
+        </div>
 
-                <div id="detailsModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" id="closeModal">&times;</span>
-                        <div class="modal-details" id="modalDetailsContent">
-                            <!-- Aquí se cargarán los detalles -->
-                        </div>
-                    </div>
-                </div>
+        <div class="container">
+            <div id="contenedor"></div>
+        </div>
 
-                <div class="container">
-                    <div id="contenedor"></div>
-                </div>
-
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                <script src="/Componentes/sidebar.js"></script>
-                <script src="/js/login/logout.js"></script>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                <script src="/js/custom.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-                <script type="text/javascript" src="/js/contenedor/createContenedor.js"></script>
-                <script type="text/javascript" src="/js/contenedor/createContenedor1.js"></script>
-                <script type="text/javascript" src="/js/cargar/CargarTipoContenedor.js"></script>
-                <script type="text/javascript" src="/js/contenedor/pendienteLiquidar.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                <script type="text/javascript" src="/js/estatussp/estatussp.js"></script>
-                <script type="module" src="/js/contenedor/uploadContenedores.js"></script>
-                <script type="module" src="/js/contenedor/detaller_contenedor.js"></script>
-                <script type="module" src="/js/report/contenedoresSpExcelReport.js"></script>
-                <script type="module" src="/js/solicitudes_service/estadosImpo.js"></script>
-                <script type="module" src="/js/solicitudes_service/estadosExpo.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/Componentes/sidebar.js"></script>
+        <script src="/js/login/logout.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="/js/custom.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+        <script type="text/javascript" src="/js/contenedor/createContenedor.js"></script>
+        <script type="text/javascript" src="/js/contenedor/createContenedor1.js"></script>
+        <script type="text/javascript" src="/js/cargar/CargarTipoContenedor.js"></script>
+        <script type="text/javascript" src="/js/contenedor/pendienteLiquidar.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script type="text/javascript" src="/js/estatussp/estatussp.js"></script>
+        <script type="module" src="/js/contenedor/uploadContenedores.js"></script>
+        <script type="module" src="/js/contenedor/detaller_contenedor.js"></script>
+        <script type="module" src="/js/report/contenedoresSpExcelReport.js"></script>
+        <script type="module" src="/js/solicitudes_service/estadosImpo.js"></script>
+        <script type="module" src="/js/solicitudes_service/estadosExpo.js"></script>
 
 </body>
 

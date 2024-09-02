@@ -37,26 +37,26 @@
         <div class="margenform">
             <div id="content" class="p-4 p-md-0 pt-5">
                 <div class="container-fluid main-container">
-                    <form id="createOrdenCargue" method="post" enctype="multipart/form-data" class="form">
+                    <form id="fnovedad" method="post" enctype="multipart/form-data" class="form">
                         <p class="message">Complete los campos para crear una novedad, accidente o incidente.</p>
                         <div class="flex">
                             <label>
-                                <input type="text" class="input" id="id_sitio_inspeccion" name="id_sitio_inspeccion" required>
+                                <input type="text" class="input" id="involucrado" name="involucrado" required>
                                 <span>Nombre del involucrado</span>
                             </label>
                             <label>
-                                <input type="date" class="input" id="fecha_solicitud" name="fecha_solicitud" required>
+                                <input type="date" class="input" id="fecha_suceso" name="fecha_suceso" required>
                                 <span>Fecha del suceso</span>
                             </label>
                         </div>
 
                         <div class="flex">
                             <label>
-                                <input type="time" class="input" id="hora_soli" name="hora_soli" required>
+                                <input type="time" class="input" id="hora_suceso" name="hora_suceso" required>
                                 <span>Hora del suceso</span>
                             </label>
                             <label>
-                                <input type="text" class="input" id="id_sitio_inspeccion" name="id_sitio_inspeccion" required>
+                                <input type="text" class="input" id="area_suceso" name="area_suceso" required>
                                 <span>Área del suceso</span>
                             </label>
                         </div>
@@ -64,23 +64,30 @@
 
                         <div class="form-group">
                             <label class="full-width">
-                                <textarea class="input" id="observaciones" name="observaciones" rows="3"></textarea>
+                                <textarea class="input" id="descripcion" name="descripcion" rows="3"></textarea>
                                 <span>Descripción del evento</span>
                             </label>
                         </div>
                         <label>
-                            <input type="text" class="input" id="id_sitio_inspeccion" name="id_sitio_inspeccion" required>
+                            <input type="text" class="input" id="testigo" name="testigo" required>
                             <span>Nombre del empleado (Testigo)</span>
                         </label>
                         <div class="submit-container">
-                            <button class="submit" id="BtnSavePlaca">Enviar</button>
+                            <button type="submit" class="submit">Enviar</button>
                         </div>
-                        <p class="signin"><a href="/view/preventas/index.html">Volver</a></p>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <div class="">
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <div class="">
+                <div id="formatos"></div>
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -90,15 +97,14 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 
 
     <script src="/js/custom.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
     <script type="text/javascript" src="/js/hseq/formato_create.js"></script>
+    <script type="text/javascript" src="/js/hseq/formatos_view.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 

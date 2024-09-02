@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 body {
     font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 .hero {
     position: relative;
-    height: 750px;
+    height: 100vh;
+    /* Cambiado a 100vh para cubrir toda la altura de la pantalla */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,9 +18,8 @@ body {
     padding: 0 20px;
     overflow: hidden;
     z-index: 0;
-    /* Asegurar que el z-index sea menor que el del header */
     background-size: cover;
-    /* Ajustar el tamaño de la imagen de fondo */
+    background-position: center;
 }
 
 .hero .slides {
@@ -35,6 +38,8 @@ body {
     height: 100%;
     background-size: cover;
     background-position: center;
+    object-fit: cover;
+    /* Asegura que la imagen cubra toda el área de la slide */
 }
 
 .hero::before {
@@ -45,7 +50,6 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
-    /* Ajustar opacidad según sea necesario */
     z-index: 1;
 }
 

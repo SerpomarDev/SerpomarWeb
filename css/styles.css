@@ -100,23 +100,6 @@
     /* Color de fondo azul más oscuro al pasar el mouse */
 }
 
-#menu-items-container {
-    overflow-y: auto;
-    /* Habilita el scroll vertical */
-    max-height: 400px;
-    /* Ajusta la altura máxima según tus necesidades */
-}
-
-#sidebar {
-    height: 0;
-    transition: height 0.5s ease-in-out;
-    overflow: hidden;
-}
-
-#sidebar.open {
-    height: 100%;
-}
-
 header {
     display: flex;
     justify-content: space-between;
@@ -236,7 +219,10 @@ nav ul li a.active::after {
     top: 80px;
     /* Debajo del header */
     left: 0;
-    width: 280px;
+    width: 100%;
+    /* Abarca todo el ancho */
+    max-width: 280px;
+    /* Ancho máximo para pantallas grandes */
     height: 0;
     /* Inicia cerrado */
     overflow: hidden;
@@ -244,7 +230,8 @@ nav ul li a.active::after {
     /* Color negro con transparencia */
     z-index: 900;
     /* Asegúrate de que el z-index sea menor que el del header */
-    transition: height 0.3s ease;
+    transition: height 0.4s ease, max-width 0.4s ease;
+    /* Transición más suave para el ancho */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -270,15 +257,33 @@ nav ul li a.active::after {
 
 /* Estilos para el menú */
 
+#menu-items-container {
+    overflow-y: auto;
+    /* Habilita el scroll vertical */
+    max-height: 400px;
+    /* Ajusta la altura máxima según tus necesidades */
+}
+
+#sidebar {
+    height: 0;
+    transition: height 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+#sidebar.open {
+    height: 100%;
+}
+
 #menu {
     list-style: none;
-    padding: 0px 0;
+    padding: 0;
     margin: 0;
 }
 
 #menu li {
-    padding: 5px 20px;
-    transition: background-color 0.3s, transform 0.3s;
+    padding: 10px 20px;
+    /* Ajusta el padding */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.2s ease;
 }
 
 #menu li a {
@@ -288,7 +293,7 @@ nav ul li a.active::after {
     align-items: center;
     font-size: 16px;
     font-weight: 500;
-    padding: 10px 5px;
+    padding: 6px 10px;
     border-radius: 8px;
     /* Bordes redondeados */
 }
@@ -312,6 +317,14 @@ nav ul li a.active::after {
     /* Desplazamiento a la derecha al pasar el ratón */
 }
 
+#menu li a:focus {
+    background-color: rgba(52, 73, 94, 1);
+    /* Fondo más oscuro al enfocar */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 150, 255, 0.5);
+    /* Sombra azul para el foco */
+}
+
 #menu li.active>a {
     background-color: #2980b9;
     font-weight: bold;
@@ -328,8 +341,69 @@ nav ul li a.active::after {
     display: block;
 }
 
-.margenform {
-    padding-top: 90px;
+
+/* Media Queries para tablets y móviles */
+
+@media (max-width: 1024px) {
+    .dlabnav {
+        max-width: 90%;
+        /* Ocupa 90% de la pantalla en tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .dlabnav {
+        max-width: 80%;
+        /* Ocupa 80% de la pantalla en móviles */
+    }
+    #menu li {
+        padding: 10px 15px;
+        /* Ajusta el padding */
+    }
+    #menu li a {
+        font-size: 14px;
+        /* Reduce el tamaño de la fuente */
+    }
+    #menu li a i {
+        font-size: 18px;
+        /* Reduce el tamaño de los íconos */
+    }
+}
+
+@media (max-width: 480px) {
+    .dlabnav {
+        max-width: 100%;
+        /* Ocupa todo el ancho de la pantalla en móviles pequeños */
+    }
+    #menu li a {
+        font-size: 12px;
+        /* Reduce aún más el tamaño de la fuente */
+    }
+    #menu li a i {
+        font-size: 16px;
+        /* Reduce aún más el tamaño de los íconos */
+    }
+}
+
+
+/* Botón para abrir/cerrar el menú en dispositivos móviles */
+
+.dlabnav-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .dlabnav-toggle {
+        display: block;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+    .dlabnav-toggle.open .dlabnav {
+        max-width: 80%;
+        /* Abre el menú al 80% en móviles */
+    }
 }
 
 
