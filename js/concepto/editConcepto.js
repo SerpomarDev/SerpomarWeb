@@ -2,7 +2,7 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get("id");
 
-fetch(`http://esenttiapp.test/api/uploadconceptosid/${id}`)
+fetch(`https://esenttiapp-production.up.railway.app/api/uploadconceptosid/${id}`)
     .then((response) => {
       if (!response.ok) {
           throw new Error("Error al obtener los datos de la API");
@@ -39,7 +39,7 @@ fetch(`http://esenttiapp.test/api/uploadconceptosid/${id}`)
         sort: false,
         columns: ["#","Concepto", "Descripción",],
         server: {
-            url: "http://esenttiapp.test/api/uploadconceptos",
+            url: "https://esenttiapp-production.up.railway.app/api/uploadconceptos",
             then: (data) => {
                 if (Array.isArray(data) && data.length > 0) {
                     return data.map((concepto) => [
@@ -62,7 +62,7 @@ fetch(`http://esenttiapp.test/api/uploadconceptosid/${id}`)
         const formData = new FormData(this);
         const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-        fetch(`http://esenttiapp.test/api/concepto/${id}`, {
+        fetch(`https://esenttiapp-production.up.railway.app/api/concepto/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: jsonData,
