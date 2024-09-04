@@ -5,21 +5,55 @@ document.addEventListener('DOMContentLoaded', function(){
     let inputAliado = document.getElementById('aliado')
     let inputTelefono = document.getElementById('celular')
 
-    fetch('https://esenttiapp-production.up.railway.app/api/showclivarios',{
-        method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+    // fetch('https://esenttiapp-production.up.railway.app/api/showclivarios',{
+    //     method: 'GET',
+    //         headers: {
+    //             'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+    //         }
+    // })
+    // .then(Response => Response.json())
+    // .then(data=>{
+    //     data.forEach(preventaCl => {
+    //         let option = document.createElement('option') 
+    //         option.value  =   preventaCl.id
+    //         option.text  = preventaCl.placa
+    //         selectPlaca.appendChild(option)
+    //     });
+    // })
+
+    new TomSelect(selectPlaca, {
+        valueField: 'id',
+        labelField: 'placa',
+        searchField: 'placa',
+        maxItems:1,
+        load: function(query, callback) {
+            fetch(`https://esenttiapp-production.up.railway.app/api/showclivarios?search=${encodeURIComponent(query)}`,{
+              method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                  callback(data);
+              })
+              .catch(() => {
+                    callback();
+              });
+        },
+        render: {
+            option: function(item, escape) {
+                return `<div class="">
+                            ${escape(item.placa)}
+                        </div>`;
+            },
+            item: function(item, escape) {
+                return `<div class="">
+                            ${escape(item.placa)}
+                        </div>`;
             }
-    })
-    .then(Response => Response.json())
-    .then(data=>{
-        data.forEach(preventaCl => {
-            let option = document.createElement('option') 
-            option.value  =   preventaCl.id
-            option.text  = preventaCl.placa
-            selectPlaca.appendChild(option)
-        });
-    })
+        }
+    });
 
     selectPlaca.addEventListener('change',function(){
 

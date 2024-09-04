@@ -13,6 +13,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
     <style>
         .form-section {
             page-break-inside: avoid;
@@ -93,8 +97,7 @@
                                     <div class="col-md-3">
                                         <div class="ruta-container">
                                             <label for="id_preventa" class="form-label">Placa</label>
-                                            <select name="id_preventa" id="id_preventa" class="form-control">
-                                            <option value="">Elegir</option>
+                                            <input type="text" name="id_preventa" id="id_preventa" placeholder="Digite la placa">
                                         </select>
                                         </div>
                                     </div>
