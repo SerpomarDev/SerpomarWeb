@@ -68,121 +68,119 @@ function impExp(impExp){
 
 function tableByClt(id_primario){
 
-  new gridjs.Grid({
-    search: true,
-    language:{
-      search:{
-          placeholder: '🔍 Buscar...'
-      }
-    },
-    // pagination: {
-    //     limit:5,
-    //     enabled: false,
-    //     //summary: true
-    // },
-    sort: false,
-    columns: [{
-      name:'id_co',
-      hidden: true,
-    },"SP",{
-      name:"Numero contenedor",
-      attributes: (cell,row)=>{
-        if(cell){
-            return{
-              'data-cell-content': cell,
-              onclick:()=>detalles(row.cells[0].data),
-              'style': 'cursor: pointer; color: #6495ED;  font-weight: bold;',
-            }
+    new gridjs.Grid({
+      search: true,
+      language:{
+        search:{
+            placeholder: '🔍 Buscar...'
         }
-      }
-    },"Estado operación",{
-    name:'Acción',
-      formatter:(cell,row)=>{
-        return gridjs.h('button',{
-          className: 'py-2 mb-4 px-4 border rounded bg-blue-600 ',
-          'data-bs-toggle': 'modal',
-          'data-bs-target': '#asignarModal',
-        onClick: () => asignar(row.cells[0].data)
-        },'asignar')
-      }
-    },{
-      name:"Detalles",
-      formatter:(cell,row)=>{
-        return gridjs.h('button',{
-          className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-          onClick: () => ordenServicio(row.cells[0].data)
-        },'datos')
-      }
-    },{
-      name:"Pre-liquidar",
-      formatter:(cell,row)=>{
-        return gridjs.h('button',{
-          className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-          onClick: () => preLiquidar(row.cells[0].data)
-        },'ir')
-      }
-    },{
-      name:"Acción",
-      formatter:(cell,row)=>{
-        return gridjs.h('button',{
-          className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-          onClick: () => editContenedor(row.cells[0].data)
-        },'editar')
-      }
-    }],
-    fixedHeader: true,
-    //height: '400px',
-    server: {
-        url: `https://esenttiapp-production.up.railway.app/api/preasigcont/${id}`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`
       },
-        then: (data) => {
-            if (Array.isArray(data) && data.length > 0) {
-                return data.map((contenedorEx) => [
-                  contenedorEx.id,
-                  contenedorEx.do_sp,
-                  contenedorEx.numero_co,
-                  contenedorEx.estado_operacion,
-                  contenedorEx.id_cliente,
-                ]);
-            } else {
-                console.error("La respuesta del servidor no contiene datos válidos.");
-                return [];
-            }
+      // pagination: {
+      //     limit:5,
+      //     enabled: false,
+      //     //summary: true
+      // },
+      sort: false,
+      columns: [{
+        name:'id_co',
+        hidden: true,
+      },"SP",{
+        name:"Numero contenedor",
+        attributes: (cell,row)=>{
+          if(cell){
+              return{
+                'data-cell-content': cell,
+                onclick:()=>detalles(row.cells[0].data),
+                'style': 'cursor: pointer; color: #6495ED;  font-weight: bold;',
+              }
+          }
         }
-    },
-    resizable: true,
-    style: {
-      table: {with:"80%"}
+      },"Estado operación",{
+      name:'Acción',
+        formatter:(cell,row)=>{
+          return gridjs.h('button',{
+            className: 'py-2 mb-4 px-4 border rounded bg-blue-600 ',
+            'data-bs-toggle': 'modal',
+            'data-bs-target': '#asignarModal',
+          onClick: () => asignar(row.cells[0].data)
+          },'asignar')
+        }
+      },{
+        name:"Detalles",
+        formatter:(cell,row)=>{
+          return gridjs.h('button',{
+            className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
+            onClick: () => ordenServicio(row.cells[0].data)
+          },'datos')
+        }
+      },{
+        name:"Pre-liquidar",
+        formatter:(cell,row)=>{
+          return gridjs.h('button',{
+            className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
+            onClick: () => preLiquidar(row.cells[0].data)
+          },'ir')
+        }
+      },{
+        name:"Acción",
+        formatter:(cell,row)=>{
+          return gridjs.h('button',{
+            className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
+            onClick: () => editContenedor(row.cells[0].data)
+          },'editar')
+        }
+      }],
+      fixedHeader: true,
+      //height: '400px',
+      server: {
+          url: `https://esenttiapp-production.up.railway.app/api/preasigcont/${id}`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        },
+          then: (data) => {
+              if (Array.isArray(data) && data.length > 0) {
+                  return data.map((contenedorEx) => [
+                    contenedorEx.id,
+                    contenedorEx.do_sp,
+                    contenedorEx.numero_co,
+                    contenedorEx.estado_operacion,
+                    contenedorEx.id_cliente,
+                  ]);
+              } else {
+                  console.error("La respuesta del servidor no contiene datos válidos.");
+                  return [];
+              }
+          }
+      },
+      resizable: true,
+      style: {
+        table: {with:"80%"}
+      }
+  }).render(document.getElementById('contenedor'));
+
+  function detalles(id){
+    
+    let cliente  = id_cliente
+
+    if(cliente === 6){
+      window.location.href = `/view/asignacion_esenttia/asignacion_esenttia.html?id=${id}`
+    }else{
+      window.location.href = `/view/asignacion/asignacion.html?id=${id}`
     }
-}).render(document.getElementById('contenedor'));
-
-localStorage.setItem("authToken", data.token);
-
-function detalles(id){
   
-  let cliente  = id_cliente
-
-  if(cliente === 6){
-    window.location.href = `/view/asignacion_esenttia/asignacion_esenttia.html?id=${id}`
-  }else{
-    window.location.href = `/view/asignacion/asignacion.html?id=${id}`
   }
- 
-}
 
-function asignar(id){
-  window.location.href = `/view/modal/modal.html?id=${id}`
-}
+  function asignar(id){
+    window.location.href = `/view/modal/modal.html?id=${id}`
+  }
 
-function editContenedor(id){
-  window.location.href = `/view/contenedor/edit.html?id=${id}`
-}
+  function editContenedor(id){
+    window.location.href = `/view/contenedor/edit.html?id=${id}`
+  }
 
-function preLiquidar(id){
-  window.location.href = `/view/liquidar/pre_liquidar.html?id=${id}`
-}
+  function preLiquidar(id){
+    window.location.href = `/view/liquidar/pre_liquidar.html?id=${id}`
+  }
 }
 
 function liquidarSp(id){
