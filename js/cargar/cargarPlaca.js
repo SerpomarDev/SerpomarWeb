@@ -6,23 +6,40 @@ document.addEventListener('DOMContentLoaded', function(){
     let inputid_aliado = document.getElementById('id_aliado');
     let inputtelefono = document.getElementById('telefonoa');
   
-    fetch('https://esenttiapp-production.up.railway.app/api/loadplaca',{
-        method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+    
+    new TomSelect(selectPlaca, {
+        valueField: 'id',
+        labelField: 'placa',
+        searchField: 'placa',
+        maxItems:1,
+        load: function(query, callback) {
+            fetch(`https://esenttiapp-production.up.railway.app/api/loadplaca?search=${encodeURIComponent(query)}`,{
+              method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                  callback(data);
+              })
+              .catch(() => {
+                    callback();
+              });
+        },
+        render: {
+            option: function(item, escape) {
+                return `<div class="">
+                            ${escape(item.placa)}
+                        </div>`;
+            },
+            item: function(item, escape) {
+                return `<div class="">
+                            ${escape(item.placa)}
+                        </div>`;
             }
-    })
-    .then(response => response.json())
-    .then(data => {
-        data.forEach(placa => {
-            let option = document.createElement('option');
-            option.value = placa.id;
-            option.text = placa.placa;
-            selectPlaca.appendChild(option);
-        });
-    })
-    .catch(error => console.error('Error:', error));
-
+        }
+    });
 
     selectPlaca.addEventListener('change', function(){
 

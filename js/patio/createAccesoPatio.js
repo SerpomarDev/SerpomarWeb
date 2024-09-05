@@ -80,7 +80,7 @@ new gridjs.Grid({
   sort: false,
   columns: [{
     name:"id",
-    hidden:true,
+    hidden:false,
   },"Fecha solicitud","contenedor","cliente","Tipo de contenedor","Tipo transporte","Cutoff","operacion",{
     name:"Comentarios",
     hidden:true,
