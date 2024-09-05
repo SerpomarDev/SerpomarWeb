@@ -17,88 +17,157 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 // Grid.js configuración
-new gridjs.Grid({
-    search: true,
-    language: {
-        search: {
-            placeholder: '🔍 Buscar...'
-        }
-    },
-    pagination: {
-        limit: 50,
-        enabled: false,
-    },
-    sort: false,
-    columns: [{
-            name: "id",
-            hidden: false
-        },
-        "Contenedor",
-        "Cliente",
-        "Tipo de contenedor",
-        "Tipo transporte",
-        "Cutoff",
-        "Naviera",
-        "Operación",
-        "estado",
-        "fecha",
-        {
-            name: 'Acción',
-            hidden: 'true',
-            formatter: (cell, row) => {
-                return gridjs.h('button', {
-                    className: 'border rounded bg-blue-600',
-                    onClick: () => asignar(row.cells[0].data)
-                }, 'Entrada');
-            },
-        },
-        {
-            name: 'Fotos',
-            formatter: (cell, row) => {
-                const id = row.cells[0].data;
-                return gridjs.h('button', {
-                    className: '}border rounded bg-green-600',
-                    onClick: () => abrirModalFotos(id)
-                }, 'Fotos');
-            }
-        }
-    ],
-    fixedHeader: true,
-    server: {
-        url: `https://esenttiapp-production.up.railway.app/api/cargarinventario`,
-        headers: {
+// new gridjs.Grid({
+//     search: true,
+//     language: {
+//         search: {
+//             placeholder: '🔍 Buscar...'
+//         }
+//     },
+//     pagination: {
+//         limit: 50,
+//         enabled: false,
+//     },
+//     sort: false,
+//     columns: [{
+//             name: "id",
+//             hidden: false
+//         },
+//         "Contenedor",
+//         "Cliente",
+//         "Tipo de contenedor",
+//         "Tipo transporte",
+//         "Cutoff",
+//         "Naviera",
+//         "Operación",
+//         "estado",
+//         "fecha",
+//         {
+//             name: 'Acción',
+//             hidden: 'true',
+//             formatter: (cell, row) => {
+//                 return gridjs.h('button', {
+//                     className: 'border rounded bg-blue-600',
+//                     onClick: () => asignar(row.cells[0].data)
+//                 }, 'Entrada');
+//             },
+//         },
+//         {
+//             name: 'Fotos',
+//             formatter: (cell, row) => {
+//                 const id = row.cells[0].data;
+//                 return gridjs.h('button', {
+//                     className: '}border rounded bg-green-600',
+//                     onClick: () => abrirModalFotos(id)
+//                 }, 'Fotos');
+//             }
+//         }
+//     ],
+//     fixedHeader: true,
+//     server: {
+//         url: `https://esenttiapp-production.up.railway.app/api/cargarinventario`,
+//         headers: {
 
-            Authorization: `Bearer ${localStorage.getItem("authToken")}`
-        },
-        then: (data) => {
-            if (Array.isArray(data) && data.length > 0) {
-                data.sort((a, b) => b.id - a.id);
+//             Authorization: `Bearer ${localStorage.getItem("authToken")}`
+//         },
+//         then: (data) => {
+//             if (Array.isArray(data) && data.length > 0) {
+//                 data.sort((a, b) => b.id - a.id);
 
-                return data.map((ordenCargue) => [
-                    ordenCargue.id,
-                    ordenCargue.contenedor,
-                    ordenCargue.cliente,
-                    ordenCargue.tipo_contenedor,
-                    ordenCargue.modalidad,
-                    ordenCargue.cutoff,
-                    ordenCargue.naviera,
-                    ordenCargue.operacion,
-                    ordenCargue.lleno_vacio,
-                    ordenCargue.fecha_entrada,
-                ]);
-            } else {
-                console.error("La respuesta del servidor no contiene datos válidos.");
-                return [];
-            }
+//                 return data.map((ordenCargue) => [
+//                     ordenCargue.id,
+//                     ordenCargue.contenedor,
+//                     ordenCargue.cliente,
+//                     ordenCargue.tipo_contenedor,
+//                     ordenCargue.modalidad,
+//                     ordenCargue.cutoff,
+//                     ordenCargue.naviera,
+//                     ordenCargue.operacion,
+//                     ordenCargue.lleno_vacio,
+//                     ordenCargue.fecha_entrada,
+//                 ]);
+//             } else {
+//                 console.error("La respuesta del servidor no contiene datos válidos.");
+//                 return [];
+//             }
+//         }
+//     },
+//     resizable: true,
+//     style: {
+//         table: { with: "100%" }
+//     }
+// }).render(document.getElementById('inventario'));
+
+const columnDefs = [
+    { headerName: "id", field: "id", hide: false },
+    { headerName: "Contenedor", field: "contenedor" },
+    { headerName: "Cliente", field: "cliente" },
+    { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
+    { headerName: "Tipo transporte", field: "modalidad" },
+    { headerName: "Cutoff", field: "cutoff" },
+    { headerName: "Naviera", field: "naviera" },
+    { headerName: "Operación", field: "operacion" },
+    { headerName: "Estado", field: "lleno_vacio" },
+    { headerName: "Fecha Entrada", field: "fecha_entrada" },
+    { 
+        headerName: "Fotos", 
+        cellRenderer: params => {
+            const button = document.createElement('button');
+            button.className = 'border rounded bg-green-600';
+            button.innerText = 'Fotos';
+            button.onclick = () => abrirModalFotos(params.data.id);
+            return button;
         }
-    },
-    resizable: true,
-    style: {
-        table: { with: "100%" }
     }
-}).render(document.getElementById('inventario'));
+];
 
-localStorage.setItem("authToken", data.token);
+fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    const processedData = data.map(ordenCargue => {
+      return {
+        id: ordenCargue.id,
+        contenedor: ordenCargue.contenedor,
+        cliente: ordenCargue.cliente,
+        tipo_contenedor: ordenCargue.tipo_contenedor,
+        modalidad: ordenCargue.modalidad,
+        cutoff: ordenCargue.cutoff,
+        naviera: ordenCargue.naviera,
+        operacion: ordenCargue.operacion,
+        lleno_vacio: ordenCargue.lleno_vacio,
+        fecha_entrada: ordenCargue.fecha_entrada,
+      };
+    });
+
+    const gridOptions = {
+        columnDefs: columnDefs,
+        defaultColDef: {
+          resizable: true,
+          sortable: false,
+          filter: "agTextColumnFilter",
+          floatingFilter: true,
+          flex: 1,
+          minWidth: 100,
+        },
+        enableRangeSelection: true,
+        suppressMultiRangeSelection:true,
+        pagination: true,
+        paginationPageSize: 20,
+        rowData: processedData // Asignar los datos procesados
+        
+      };
+      
+      // Renderizar la tabla en el contenedor
+        const eGridDiv = document.getElementById('inventario');
+        new agGrid.Grid(eGridDiv, gridOptions);
+    })
+    .catch(error => {
+        console.error("Error al cargar los datos:", error);
+    });
 
 function time() {
     setTimeout(() => {
