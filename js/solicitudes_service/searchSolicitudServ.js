@@ -1,110 +1,11 @@
-// new gridjs.Grid({
-//     search: true,
-//     language: {
-//         search: {
-//             placeholder: '🔍 Buscar...'
-//         }
-//     },
-//     pagination: {
-//         limit: 30,
-//         enabled: true,
-//     },
-//     resizable: true,
-//     sort: false,
-//     columns: [{
-//         name: "#",
-//         hidden: true,
-//     }, {
-//         name: 'SP',
-//         attributes: (cell, row) => {
-//             if (cell) {
-//                 return {
-//                     'data-cell-content': cell,
-//                     onclick: () => showOrdenService(row.cells[0].data),
-//                     'style': 'cursor: pointer; color: #6495ED;  font-weight: bold;',
-//                 }
-//             }
-//         }
-//     }, "DO pedido", "Pedido", "Tipo Transporte", "Cliente", "Contendores", "Contenedores liquidados", "Fecha entrada", {
-//         name: 'Acciones',
-//         hidden: true,
-//         columns: [{
-//                 name: 'Actualizar',
-//                 hidden: true,
-//                 formatter: (cell, row) => {
-//                     return gridjs.h('a', {
-//                         href: '',
-//                         onclick: (e) => {
-//                             e.preventDefault();
-//                             edit(row.cells[0].data);
-//                         }
-//                     }, [
-//                         gridjs.h('img', {
-//                             src: '/img/editar-texto.png',
-//                             alt: 'Actualizar',
-//                             style: 'width: 20px; height: 20px;'
-//                         })
-//                     ]);
-//                 }
-//             },
-//             {
-//                 name: 'Eliminar',
-//                 hidden: true,
-//                 formatter: (cell, row) => {
-//                     return gridjs.h('a', {
-//                         href: '',
-//                         onclick: (e) => {
-//                             e.preventDefault();
-//                             delete(row.cells[0].data);
-//                         }
-//                     }, [
-//                         gridjs.h('img', {
-//                             src: '/img/basura.png',
-//                             alt: 'eliminar',
-//                             style: 'width: 20px; height: 20px;'
-//                         })
-//                     ]);
-//                 }
-//             },
-//         ],
-//     }],
-//     // sort: true,
-//     server: {
-//         url: "https://esenttiapp-production.up.railway.app/api/showsolicitudserv",
-//         headers: {
-//             Authorization: `Bearer ${localStorage.getItem("authToken")}`
-//         },
-//         then: (data) => {
-//             if (Array.isArray(data) && data.length > 0) {
-//                 return data.map((soliserv) => [
-//                     soliserv.id_primario,
-//                     soliserv.do_sp,
-//                     soliserv.do_pedido,
-//                     soliserv.pedido,
-//                     soliserv.impexp,
-//                     soliserv.cliente,
-//                     soliserv.contenedor,
-//                     soliserv.pendiente_liquidar,
-//                     soliserv.fecha_actualizacion,
-
-//                 ]);
-//             } else {
-//                 console.error("La respuesta del servidor no contiene datos válidos.");
-//                 return [];
-//             }
-//         }
-//     }
-// }).render(document.getElementById('ordenService'));
-
-
 const cantidadFacturados = localStorage.getItem('cantidadFacturados');
 const cantidadContenedor = localStorage.getItem('cantidadContenedor');
 
 const columnDefs = [
     { headerName: "#", field: "id_primario", hide: true },
-    { 
-        headerName: "SP", 
-        field: "do_sp", 
+    {
+        headerName: "SP",
+        field: "do_sp",
         cellRenderer: params => {
             const cellValue = params.value;
             const button = document.createElement('a');
@@ -114,7 +15,7 @@ const columnDefs = [
             button.style.fontWeight = 'bold';
             button.onclick = () => showOrdenService(params.data.id_primario);
             return button;
-        } 
+        }
     },
     { headerName: "DO Pedido", field: "do_pedido" },
     { headerName: "Pedido", field: "pedido" },
@@ -122,9 +23,10 @@ const columnDefs = [
     { headerName: "Tipo Transporte", field: "impexp" },
     { headerName: "Cliente", field: "cliente" },
     { headerName: "Fecha Entrada", field: "fecha_actualizacion" },
-    { headerName: "Pendiente Liquidar", field: "pendiente_liquidar"},
+    { headerName: "Pendiente Liquidar", field: "pendiente_liquidar" },
     {
-        headerName: "Acciones", hide:true,
+        headerName: "Acciones",
+        hide: true,
         cellRenderer: params => {
             const container = document.createElement('div');
 
@@ -165,50 +67,50 @@ const columnDefs = [
     }
 ];
 
-fetch("https://esenttiapp-production.up.railway.app/api/showsolicitudserv",{
-    headers: {
-      'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-    }
-  })
-  .then(response => response.json())
-  .then(data => {
-    const processedData = data.map(asigControl => {
-      return {
-        id_primario: asigControl.id_primario,
-        do_sp: asigControl.do_sp,
-        do_pedido: asigControl.do_pedido,
-        pedido: asigControl.pedido,
-        contenedor: asigControl.contenedor,
-        impexp: asigControl.impexp,
-        cliente: asigControl.cliente,
-        fecha_actualizacion: asigControl.fecha_actualizacion,
-        pendiente_liquidar: asigControl.pendiente_liquidar
-      };
+fetch("https://esenttiapp-production.up.railway.app/api/showsolicitudserv", {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        const processedData = data.map(asigControl => {
+            return {
+                id_primario: asigControl.id_primario,
+                do_sp: asigControl.do_sp,
+                do_pedido: asigControl.do_pedido,
+                pedido: asigControl.pedido,
+                contenedor: asigControl.contenedor,
+                impexp: asigControl.impexp,
+                cliente: asigControl.cliente,
+                fecha_actualizacion: asigControl.fecha_actualizacion,
+                pendiente_liquidar: asigControl.pendiente_liquidar
+            };
+        });
+
+
+        // Configurar la tabla con los datos procesados
+        const gridOptions = {
+            columnDefs: columnDefs,
+            defaultColDef: {
+                resizable: true,
+                sortable: false,
+                filter: "agTextColumnFilter",
+                floatingFilter: true,
+            },
+            pagination: true,
+            paginationPageSize: 30,
+            rowData: processedData,
+        };
+
+        const eGridDiv = document.getElementById('ordenService');
+        new agGrid.Grid(eGridDiv, gridOptions);
+    })
+    .catch(error => {
+        console.error("Error al cargar los datos:", error);
     });
 
 
-    // Configurar la tabla con los datos procesados
-    const gridOptions = {
-        columnDefs: columnDefs,
-        defaultColDef: {
-            resizable: true,
-            sortable: false,
-            filter: "agTextColumnFilter",
-            floatingFilter: true,
-      },
-      pagination: true,
-      paginationPageSize: 30,
-      rowData: processedData,
-    };
-
-      const eGridDiv = document.getElementById('ordenService');
-      new agGrid.Grid(eGridDiv, gridOptions);
-  })
-  .catch(error => {
-    console.error("Error al cargar los datos:", error);
-  });
-
-
 function showOrdenService(id) {
-    window.location.href = `/view/contenedor/create.html?id=${id}`
+    window.location.href = `/view/programacion/sp_select.html?id=${id}`
 }
