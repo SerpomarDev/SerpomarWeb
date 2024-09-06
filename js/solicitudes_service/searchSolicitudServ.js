@@ -112,5 +112,5 @@ fetch("https://esenttiapp-production.up.railway.app/api/showsolicitudserv", {
 
 
 function showOrdenService(id) {
-    window.location.href = `/view/programacion/sp_select.html?id=${id}`
+    window.location.href = `/view/contenedor/create.html?id=${id}`
 }
