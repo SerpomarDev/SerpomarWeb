@@ -69,7 +69,6 @@ fetch("https://esenttiapp-production.up.railway.app/api/controlasignaciones", {
             };
         });
 
-
         // Configurar la tabla con los datos procesados
         const gridOptions = {
             columnDefs: columnDefs,
@@ -78,7 +77,11 @@ fetch("https://esenttiapp-production.up.railway.app/api/controlasignaciones", {
                 sortable: false,
                 filter: "agTextColumnFilter",
                 floatingFilter: true,
+                flex: 1,
+                minWidth: 100,
             },
+            enableRangeSelection: true,
+            suppressMultiRangeSelection:true,
             pagination: true,
             paginationPageSize: 20,
             rowData: processedData, // Asignar los datos procesados

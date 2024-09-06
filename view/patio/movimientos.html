@@ -14,6 +14,10 @@
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
+     <!-- ag-grid -->
+     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+
     <style>
         .modal {
             display: none;
@@ -203,10 +207,12 @@
                 </div>
 
 
+
+   
+            <div class="container">
+                <div id="historico" class="ag-theme-alpine" style="height: 650px; width: 100%;"></div>
             </div>
-            <div id="historico"></div>
-            <div class="container"></div>
-        </div>
+
 
         <div class="container-fluid main-container">
             <div style="display: flex; justify-content: center; width: 100%;">
@@ -231,25 +237,22 @@
             </div>
         </div>
 
-
-
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="/Componentes/sidebar.js"></script>
         <script src="/js/login/logout.js"></script>
 
         <!-- JavaScript Libraries -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-
-
+        <!-- <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script> -->
 
         <script src="/js/patio/tablero_movimientos.js"></script>
         <script type="module" src="/js/patio/movimientos.js"></script>
         <script type="module" src="/js/patio/uploadFotos.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
-
+        <!-- AG:grid -->
+        <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ag-grid-charts-enterprise@32.1.0/dist/ag-grid-charts-enterprise.js?t=1724946077050"></script>
 
 
 
