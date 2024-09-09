@@ -14,16 +14,7 @@ new gridjs.Grid({
     columns: [{
             name: 'id',
             hidden: true,
-        }, "Placa", "Propietario", "gps", "web gps", "usuariogps", "contrasenagps", {
-
-            name: 'Adjuntos',
-            hidden: false,
-            formatter: (cell, row) => {
-                return gridjs.html(
-                    `<button id="btn-${row.cells[0].data}" class="upload-btn no-file" onclick="uploadId(${row.cells[0].data})">Adjuntos</button>`
-                );
-            }
-        }, {
+        }, "Placa", "Tipologia", "Propietario", "Plataforma", "Web gps", "Usuario", "Clave",  {
 
             name: 'EDIT',
             formatter: (cell, row) => {
@@ -78,6 +69,7 @@ new gridjs.Grid({
                 return data.map((placa) => [
                     placa.id_placa,
                     placa.placa,
+                    placa.tipologia,
                     placa.nombre,
                     placa.gps,
                     placa.webgps,

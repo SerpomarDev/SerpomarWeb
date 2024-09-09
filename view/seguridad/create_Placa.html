@@ -12,13 +12,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
 
     <!-- Cargar Firebase App y Firebase Storage desde CDN -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-
     <style>
         .modal {
             display: none;
@@ -137,7 +138,6 @@
             /* O un porcentaje, como height: 80%; */
         }
     </style>
-
 </head>
 <div id="header-container"></div>
 <script src="/Componentes/header.js"></script>
@@ -151,112 +151,133 @@
     <div id="main-wrapper">
         <div class="header">
             <div class="title-container">
-                <h1 class="title">CREAR CONDUCTOR</h1>
+                <h1 class="title">CREAR PLACAS</h1>
             </div>
         </div>
 
 
 
         <div class="margenform">
-            <div id="content" class="p-4 p-md-0 pt-5">
+            <div id="content" class="p-4 p-md-5 pt-5">
                 <div class="container-fluid main-container">
-                    <form id="createConductor" method="POST" enctype="multipart/form-data" class="form">
-                        <p class="message">Complete los campos para crear un nuevo conductor.</p>
-
+                    <form id="createPlaca" method="POST" enctype="multipart/form-data" class="form">
+                        <p class="message">Complete los campos para crear una nueva placa.</p>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
-                                        <input type="text" class="input" id="nombre" name="nombre" required>
-                                        <span>Nombre</span>
-                                    </label>
+                                    <input type="text" class="input" id="placa" name="placa" required>
+                                    <span>Placa</span>
+                                </label>
                                 </div>
                             </div>
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
-                                        <input type="number" class="input" id="identificacion" name="identificacion" required>
-                                        <span>Identificación</span>
+                                        <input type="text" class="input" id="eje" name="eje" required>
+                                        <span>Eje</span>
                                     </label>
                                 </div>
                             </div>
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
-                                        <input type="number" class="input" id="telefono" name="telefono" required>
-                                        <span>Teléfono</span>
+                                        <input type="text" class="input" id="tipologia" name="tipologia" required>
+                                        <span>Tipología</span>
                                     </label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        <input type="number" class="input" id="numero_licencia" name="numero_licencia" required>
-                                        <span>No. licencia</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        <input type="date" class="input" id="fecha_vencimiento" name="fecha_vencimiento" required>
-                                        <span>Vencemiento licencia</span>
-                                    </label>
-                                </div>
-                            </div>
-                         
-                        </div>
 
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
+                                    <label class="full-width">
+                                    <select id="id_aliado" name="id_aliado" class="input" required>
+                                        <option value="">Seleccione una Opción</option>
+                                    </select>
+                                    <span>Propietario</span>
+                                </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
                                     <label>
-                                        <input type="date" class="input" id="estudio_seg" name="estudio_seg">
-                                        <span>Estudios SEG</span>
+                                        <input type="text" class="input" id="gps" name="gps" required>
+                                        <span>Plataforma</span>
                                     </label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
-                                        <input type="date" class="input" id="poligrafia" name="poligrafia">
-                                        <span>Poligrafia</span>
+                                        <input type="text" class="input" id="webgps" name="webgps" required>
+                                        <span>Web GPS</span>
                                     </label>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="usuariogps" name="usuariogps" required>
+                                        <span>Usuario GPS</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="contrasenagps" name="contrasenagps" required>
+                                        <span>Clave GPS</span>
+                                    </label>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="flex">
-                            <div class="col-md-8"></div>
+
+
+                        <div class="row">
+                            <div class="col-md-8">
+                            </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-
-                                    <button class="btn btn-primary" id="BtnSaveConductor">Enviar</button>
+                                    <button class="btn btn-primary">Enviar</button>
                                 </div>
                             </div>
-                            
-                        </div>
-                    </form>
-                    <div class="">
-                        <div id="conductores"></div>
-                    </div>
-                </div>
 
+                        </div>
+
+                    </form>
+                </div>
+           
+                    <div id="Placa"></div>
+               
             </div>
         </div>
 
-       
 
-        <script src="/Componentes/sidebar.js"></script>
-        <script src="/js/login/logout.js"></script>
-        <script src="/js/custom.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-        <script type="text/javascript" src="/js/seguridad/createConductorseguridad.js"></script>
-        <script type="text/javascript" src="/js/conductor/deleteConductor.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script type="module" src="/js/conductor/conductores_uploadFotos.js"></script>
+       
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="/Componentes/sidebar.js"></script>
+    <script src="/js/login/logout.js"></script>
+
+    <script src="/js/custom.min.js"></script>
+
+
+
+
+    <script type="text/javascript" src="/js/cargar/cargarAliados.js"></script>
+    <script type="text/javascript" src="/js/placa/deletePlaca.js"></script>
+
+    <script type="text/javascript" src="/js/seguridad/createPlaca.js"></script>
+    <script type="module" src="/js/placa/placa_uploadFotos.js"></script>
 </body>
 
 </html>
