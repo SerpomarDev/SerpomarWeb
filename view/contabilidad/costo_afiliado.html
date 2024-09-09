@@ -14,9 +14,15 @@
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+
     <!-- Cargar Firebase App y Firebase Storage desde CDN -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    
+    <!-- ag-grid -->
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+    
     <style>
         .modal {
             display: none;
@@ -150,9 +156,11 @@
                         </div>
                     </div>
                 </div>
-                <div id="costoAfiliado"></div>
+                <!-- <div id="costoAfiliado"></div> -->
             </div>
         </div>
+
+        <div id="costoAfiliado" class="ag-theme-alpine" style="height: 600px; width: 100%;"></div>
 
         <div id="fileUploadModal" class="modal">
             <div class="modal-content">
@@ -185,6 +193,10 @@
         <script type="text/javascript" src="/js/contabilidad/rechazarAdjunto.js"></script>
         <script src="/js/asignacion/fileUpload.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- AG:grid -->
+        <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ag-grid-charts-enterprise@32.1.0/dist/ag-grid-charts-enterprise.js?t=1724946077050"></script>
 </body>
 
 </html>
