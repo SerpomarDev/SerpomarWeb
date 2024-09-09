@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title>
+    <link rel="icon" href="/faviconN.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+</head>
+<div id="header-container"></div>
+<script src="/Componentes/header.js"></script>
+<script src="/Componentes/perfil.js"></script>
+
+<body>
+
+    <div class="header">
+        <div class="title-container">
+            <h1 class="title">FLOTA ACTUAL</h1>
+        </div>
+    </div><br><br>
+
+    <div class="container-fluid main-container">
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <div class="container">
+                <div class="row">
+                    <div id="pro1" class="col-md-6 canvas-container">
+                        <h3 class="chart-title">Estado de la Flota</h3>
+                        <div id="estados"></div>
+                    </div>
+                    <div id="pro" class="col-md-6 canvas-container">
+                        <h3 class="chart-title">Cantidad por Proyecto</h3>
+                        <div id="proyectos"></div>
+                    </div>
+                </div>
+
+               
+            </div>
+            <div class="container-a">
+                <div class="table" id="preventas"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/Componentes/sidebar.js"></script>
+    <script src="/js/login/logout.js"></script>
+
+    <script src="/vendor/apexchart/apexchart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <script type="text/javascript" src="/js/seguridad/flota_actual.js"></script>
+    <script type="text/javascript" src="/js/preventa/delete.js"></script>
+    <script type="text/javascript" src="/js/seguridad/estadoResumen.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

@@ -6,23 +6,26 @@ new gridjs.Grid({
         }
     },
     pagination: {
-        limit: 10,
+        limit: 20,
         enabled: true,
     },
     resizable: true,
     sort: false,
-    columns: ["#", "Nombre", "Cedula", "Telefono", "lic. Vence", "Estudio SEG", "Poligrafia", 
-        {
+    columns: [{
+            name: 'id',
+            hidden: true,
+        }, "Placa","Tipologia", "Propietario", "Plataforma", "web gps", "usuario", "Clave",  {
+
             name: 'EDIT',
             formatter: (cell, row) => {
                 return gridjs.h('a', {
-                    href: '/view/seguridad/conductores_edit.html',
+                    href: '/view/seguridad/placa_edit.html',
                     onclick: (e) => {
                         e.preventDefault();
-                        editConductor(row.cells[0].data);
+                        editPlaca(row.cells[0].data);
                     }
                 }, [
-
+                    // Imagen dentro del enlace
                     gridjs.h('img', {
                         src: '/img/editar-texto.png',
                         alt: 'Actualizar',
@@ -30,14 +33,16 @@ new gridjs.Grid({
                     })
                 ]);
             },
-        }, {
+        },
+        {
             name: 'Del',
+            hidden: false,
             formatter: (cell, row) => {
                 return gridjs.h('a', {
-                    href: '/view/seguridad/conductores_crear.html',
+                    href: '/view/seguridad/crear.html',
                     onclick: (e) => {
-                        e.preventDefault(); // Evita que el enlace se recargue la página
-                        deleteCondcutor(row.cells[0].data);
+                        e.preventDefault();
+                        deletePlaca(row.cells[0].data);
                     }
                 }, [
                     // Imagen dentro del enlace
@@ -49,24 +54,27 @@ new gridjs.Grid({
                 ]);
             },
 
-
         }
     ],
     server: {
-        url: "https://esenttiapp-production.up.railway.app/api/uploadconductor",
+        url: "https://esenttiapp-production.up.railway.app/api/showplaca",
         headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`
         },
         then: (data) => {
             if (Array.isArray(data) && data.length > 0) {
-                return data.map((conductor) => [
-                    conductor.id,
-                    conductor.nombre,
-                    conductor.identificacion,
-                    conductor.telefono,
-                    conductor.fecha_vencimiento,
-                    conductor.estudio_seg,
-                    conductor.poligrafia
+                // Ordenar los datos por id_placa en orden descendente
+                data.sort((a, b) => b.id_placa - a.id_placa);
+
+                return data.map((placa) => [
+                    placa.id_placa,
+                    placa.placa,
+                    placa.tipologia,
+                    placa.nombre,
+                    placa.gps,
+                    placa.webgps,
+                    placa.usuario,
+                    placa.contrasenia
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
@@ -74,10 +82,10 @@ new gridjs.Grid({
             }
         }
     }
-}).render(document.getElementById('conductores'));
+}).render(document.getElementById('Placa'));
 
 // Manejo del evento 'submit' del formulario
-document.getElementById('createConductor').addEventListener('submit', function(event) {
+document.getElementById('createPlaca').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const formData = new FormData(this);
@@ -90,17 +98,15 @@ document.getElementById('createConductor').addEventListener('submit', function(e
         return value;
     });
 
-
-    fetch('https://esenttiapp-production.up.railway.app/api/conductores', {
-        method: 'POST', // O PUT/PATCH si es lo que espera tu API
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-        },
-        body: jsonData
-    })
-
-    .then(response => {
+    fetch('https://esenttiapp-production.up.railway.app/api/placas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            },
+            body: jsonData
+        })
+        .then(response => {
             if (!response.ok) {
                 // Manejo de errores del servidor con más detalle
                 if (response.status === 400) { // Ejemplo: Bad Request
@@ -111,17 +117,17 @@ document.getElementById('createConductor').addEventListener('submit', function(e
             } else {
                 return response.text().then(text => {
                     console.log("Respuesta del servidor:", text);
-                    if (text.includes("Conductor creado exitosamente") || text.includes("mensaje de éxito similar del servidor")) {
+                    if (text.includes("Placa creada exitosamente") || text.includes("mensaje de éxito similar del servidor")) {
                         Swal.fire({
                             title: "¡Buen trabajo!",
-                            text: "Has Creado un conductor.",
+                            text: "Has Creado una Placa.",
                             icon: "success",
                         });
                         time();
                     } else {
                         Swal.fire({ // Cambiado a SweetAlert de éxito
                             title: "¡Bien hecho!",
-                            text: "Conductor creado correctamente",
+                            text: "Placa creada correctamente",
                             icon: "success",
                         });
                         time();
@@ -130,7 +136,7 @@ document.getElementById('createConductor').addEventListener('submit', function(e
             }
         })
         .catch(error => {
-            console.error('Error al crear el conductor:', error);
+            console.error('Error al crear la placa:', error);
             Swal.fire({
                 title: "Error",
                 text: error.message || "Hubo un problema al crear la placa. Por favor, inténtalo de nuevo.",
@@ -139,50 +145,40 @@ document.getElementById('createConductor').addEventListener('submit', function(e
         });
 });
 
-
-
 function time() {
-    document.getElementById('createConductor').reset();
+    document.getElementById('createPlaca').reset();
     setTimeout(() => {
-        window.location.href = `/view/seguridad/conductores_crear.html`;
+        window.location.href = `/view/seguridad/create_Placa.html`;
     }, 1200);
 }
 
-
-function editConductor(id) {
-
-    window.location.href = `/view/seguridad/conductores_edit.html?id=${id}`
+function editPlaca(id) {
+    window.location.href = `/view/seguridad/placa_edit.html?id=${id}`
 }
 
-function deleteCondcutor(id) {
+function deletePlaca(id) {
     DeleteData(id)
 }
 
 function uploadId(id) {
-    // Open the modal or handle file upload
     $('#fileUploadModal').show();
     $('#id_asignacion').val(id);
 
-    // Initialize Dropzone for the form
     const myDropzone = new Dropzone("#SaveFile", {
-        url: "/upload", // Replace with your upload URL
+        url: "/upload",
         init: function() {
             this.on("success", function(file, response) {
-                // Change button state after successful file upload
                 const button = document.getElementById(`btn-${id}`);
                 if (button) {
                     button.classList.remove('no-file');
                     button.classList.add('file-uploaded');
                 }
-
-                // Hide the modal after upload
                 $('#fileUploadModal').hide();
             });
         }
     });
 }
 
-// Handle modal close
 $('.close').on('click', function() {
     $('#fileUploadModal').hide();
 });
