@@ -18,37 +18,125 @@
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 
     <style>
-           table {
+        /* Estilos generales */
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+        }
+        
+        .container-fluid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+        }
+        
+        .message {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .flex {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            margin-right: 10px;
+        }
+        
+        label span {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .input,
+        textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        
+        table {
             width: 100%;
             border-collapse: collapse;
-            table-layout: fixed;
-            }
-
-            th, td {
-            word-wrap: break-word;
-            white-space: normal;
+            margin-bottom: 20px;
+        }
+        
+        th,
+        td {
             padding: 10px;
-            border: 1px solid #ddd;
             text-align: left;
+            border: 1px solid #ccc;
+        }
+        
+        th {
+            background-color: #f4f4f4;
+        }
+        
+        .notas {
+            margin-bottom: 20px;
+        }
+        
+        .submit-container {
+            text-align: center;
+        }
+        
+        .submit {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        
+        .submit:hover {
+            background-color: #45a049;
+        }
+        
+        .firma label {
+            flex: 1;
+            margin-top: 20px;
+        }
+        /* Media Queries para Responsividad */
+        
+        @media (max-width: 768px) {
+            .flex {
+                flex-direction: column;
             }
-
-            @media (max-width: 768px) {
-            th, td {
-                font-size: 14px;
-                padding: 8px;
+            label {
+                margin-right: 0;
+                margin-bottom: 15px;
             }
-            
+        }
+        
+        @media (max-width: 480px) {
+            .container-fluid {
+                padding: 10px;
+            }
             table {
-                display: block;
-                overflow-x: auto;
-                white-space: nowrap;
+                font-size: 0.9em;
             }
-            
-            thead {
-                display: table-header-group;
+            .submit {
+                font-size: 1em;
             }
-            }
-
+        }
     </style>
 
 </head>
@@ -73,7 +161,7 @@
                 <div class="container-fluid main-container">
                     <form id="inspeccionForm" method="post" enctype="multipart/form-data" class="form">
                         <p class="message">FORMATO DE INSPECCIÓN FÍSICA DE LAS INSTALACIONES</p>
-                        
+
                         <!-- Información general de la inspección -->
                         <div class="flex">
                             <label>
@@ -86,10 +174,10 @@
                             </label>
                         </div>
                         <!-- Notas y firma -->
-                <div class="notas">
-                    <p><strong>C:</strong> Cumple</p>
-                    <p><strong>NC:</strong> No cumple</p>
-                </div>
+                        <div class="notas">
+                            <p><strong>C:</strong> Cumple</p>
+                            <p><strong>NC:</strong> No cumple</p>
+                        </div>
                         <!-- Tabla de aspectos a evaluar -->
                         <table>
                             <thead>
@@ -153,112 +241,112 @@
                                 </tr>
                             </tbody>
                         </table>
-                <!-- Tabla de aspectos a evaluar para bodegas -->
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ITEM</th>
-                            <th>ASPECTOS A EVALUAR BODEGAS</th>
-                            <th>C</th>
-                            <th>NC</th>
-                            <th>OBSERVACIONES</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>8</td>
-                            <td>¿El sistema para asegurar internamente las puertas enrollables de las bodegas se encuentran en buen estado?</td>
-                            <td><input type="radio" name="puertas_enrollables" value="C" required></td>
-                            <td><input type="radio" name="puertas_enrollables" value="NC"></td>
-                            <td><input type="text" class="input" name="observaciones_puertas_enrollables"></td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>¿El circuito cerrado de televisión (CCTV) ubicado en los muelles de la bodega se encuentra grabando a conformidad en cuanto a resolución y enfoque?</td>
-                            <td><input type="radio" name="cctv_muelles" value="C" required></td>
-                            <td><input type="radio" name="cctv_muelles" value="NC"></td>
-                            <td><input type="text" class="input" name="observaciones_cctv_muelles"></td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>¿El circuito cerrado de televisión (CCTV) ubicado en el interior de la bodega se encuentra grabando a conformidad en cuanto a resolución y enfoque?</td>
-                            <td><input type="radio" name="cctv_interior" value="C" required></td>
-                            <td><input type="radio" name="cctv_interior" value="NC"></td>
-                            <td><input type="text" class="input" name="observaciones_cctv_interior"></td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>¿Las paredes y techos de las bodegas están asegurados?</td>
-                            <td><input type="radio" name="paredes_aseguradas" value="C" required></td>
-                            <td><input type="radio" name="paredes_aseguradas" value="NC"></td>
-                            <td><input type="text" class="input" name="observaciones_paredes"></td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td>¿Los desagües cuentan con sus rejillas y éstas se encuentran en buen estado?</td>
-                            <td><input type="radio" name="desagues_rejillas" value="C" required></td>
-                            <td><input type="radio" name="desagues_rejillas" value="NC"></td>
-                            <td><input type="text" class="input" name="observaciones_desagues"></td>
-                        </tr>
-                        <tr>
-                            <td>13</td>
-                            <td>¿Los baños se encuentran en condiciones de higiene y sanidad?</td>
-                            <td><input type="radio" name="banos_higiene" value="C" required></td>
-                            <td><input type="radio" name="banos_higiene" value="NC"></td>
-                            <td><input type="text" class="input" name="observaciones_banos"></td>
-                        </tr>
-                        <tr>
-                            <td>14</td>
-                            <td>¿Las puertas de acceso a las oficinas operativas cuentan con cerrojos acordes para asegurar debidamente las oficinas?</td>
-                            <td><input type="radio" name="puertas_operativas" value="C" required></td>
-                            <td><input type="radio" name="puertas_operativas" value="NC"></td>
-                            <td><input type="text" class="input" name="observaciones_puertas_operativas"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ITEM</th>
-                            <th>ASPECTOS A EVALUAR PATIO</th>
-                            <th>C</th>
-                            <th>NC</th>
-                            <th>OBSERVACIONES</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>15</td>
-                            <td>¿Las mallas perimetrales están en buenas condiciones de seguridad, es decir, NO están rotas?</td>
-                            <td><input type="radio" name="mallas_perimetrales" value="C" required></td>
-                            <td><input type="radio" name="mallas_perimetrales" value="NC"></td>
-                            <td><input type="text" class="input" name="observaciones_mallas_perimetrales"></td>
-                        </tr>
-                        <tr>
-                            <td>16</td>
-                            <td>¿El patio cuenta con iluminación y estas iluminan totalmente el área?</td>
-                            <td><input type="radio" name="patio_iluminacion" value="C" required></td>
-                            <td><input type="radio" name="patio_iluminacion" value="NC"></td>
-                            <td><input type="text" class="input" name="observaciones_patio_iluminacion"></td>
-                        </tr>
-                        <tr>
-                            <td>17</td>
-                            <td>¿El patio cuenta con cámaras (CCTV)?</td>
-                            <td><input type="radio" name="patio_cctv" value="C" required></td>
-                            <td><input type="radio" name="patio_cctv" value="NC"></td>
-                            <td><input type="text" class="input" name="observaciones_patio_cctv"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <!-- Tabla de aspectos a evaluar para bodegas -->
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ITEM</th>
+                                    <th>ASPECTOS A EVALUAR BODEGAS</th>
+                                    <th>C</th>
+                                    <th>NC</th>
+                                    <th>OBSERVACIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>8</td>
+                                    <td>¿El sistema para asegurar internamente las puertas enrollables de las bodegas se encuentran en buen estado?</td>
+                                    <td><input type="radio" name="puertas_enrollables" value="C" required></td>
+                                    <td><input type="radio" name="puertas_enrollables" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_puertas_enrollables"></td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>¿El circuito cerrado de televisión (CCTV) ubicado en los muelles de la bodega se encuentra grabando a conformidad en cuanto a resolución y enfoque?</td>
+                                    <td><input type="radio" name="cctv_muelles" value="C" required></td>
+                                    <td><input type="radio" name="cctv_muelles" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_cctv_muelles"></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>¿El circuito cerrado de televisión (CCTV) ubicado en el interior de la bodega se encuentra grabando a conformidad en cuanto a resolución y enfoque?</td>
+                                    <td><input type="radio" name="cctv_interior" value="C" required></td>
+                                    <td><input type="radio" name="cctv_interior" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_cctv_interior"></td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>¿Las paredes y techos de las bodegas están asegurados?</td>
+                                    <td><input type="radio" name="paredes_aseguradas" value="C" required></td>
+                                    <td><input type="radio" name="paredes_aseguradas" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_paredes"></td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td>¿Los desagües cuentan con sus rejillas y éstas se encuentran en buen estado?</td>
+                                    <td><input type="radio" name="desagues_rejillas" value="C" required></td>
+                                    <td><input type="radio" name="desagues_rejillas" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_desagues"></td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td>¿Los baños se encuentran en condiciones de higiene y sanidad?</td>
+                                    <td><input type="radio" name="banos_higiene" value="C" required></td>
+                                    <td><input type="radio" name="banos_higiene" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_banos"></td>
+                                </tr>
+                                <tr>
+                                    <td>14</td>
+                                    <td>¿Las puertas de acceso a las oficinas operativas cuentan con cerrojos acordes para asegurar debidamente las oficinas?</td>
+                                    <td><input type="radio" name="puertas_operativas" value="C" required></td>
+                                    <td><input type="radio" name="puertas_operativas" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_puertas_operativas"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ITEM</th>
+                                    <th>ASPECTOS A EVALUAR PATIO</th>
+                                    <th>C</th>
+                                    <th>NC</th>
+                                    <th>OBSERVACIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>15</td>
+                                    <td>¿Las mallas perimetrales están en buenas condiciones de seguridad, es decir, NO están rotas?</td>
+                                    <td><input type="radio" name="mallas_perimetrales" value="C" required></td>
+                                    <td><input type="radio" name="mallas_perimetrales" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_mallas_perimetrales"></td>
+                                </tr>
+                                <tr>
+                                    <td>16</td>
+                                    <td>¿El patio cuenta con iluminación y estas iluminan totalmente el área?</td>
+                                    <td><input type="radio" name="patio_iluminacion" value="C" required></td>
+                                    <td><input type="radio" name="patio_iluminacion" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_patio_iluminacion"></td>
+                                </tr>
+                                <tr>
+                                    <td>17</td>
+                                    <td>¿El patio cuenta con cámaras (CCTV)?</td>
+                                    <td><input type="radio" name="patio_cctv" value="C" required></td>
+                                    <td><input type="radio" name="patio_cctv" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_patio_cctv"></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                <!-- Firma del responsable -->
-                <div class="firma">
-                    <label>
+                        <!-- Firma del responsable -->
+                        <div class="firma">
+                            <label>
                         <input type="text" class="input" id="firma_responsable" name="firma_responsable" required>
                         <span>Firma del responsable</span>
                     </label>
-                </div>
-                        
+                        </div>
+
                         <!-- Botón de envío -->
                         <div class="submit-container">
                             <button type="submit" class="submit">Enviar</button>
@@ -267,9 +355,9 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
-   
+
 
 
 

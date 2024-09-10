@@ -1,3 +1,4 @@
+// Escuchar el evento del formulario para enviarlo
 document.getElementById('createOrdenCargue').addEventListener('submit', function(event) {
     event.preventDefault();
     const formData = new FormData(this);
@@ -5,7 +6,7 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
 
     fetch('https://esenttiapp-production.up.railway.app/api/ordencargue', {
             method: 'POST',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem("authToken")}`
             },
@@ -45,8 +46,7 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
             }).then((result) => {
                 if (result.isConfirmed) {
                     console.log('ID del QR code:', ordenCargueId);
-                    generarQRCode(ordenCargueId);
-                    time();
+                    generarQRCode(ordenCargueId); // Generar el QR
                 }
             });
         })
@@ -61,41 +61,77 @@ document.getElementById('createOrdenCargue').addEventListener('submit', function
         });
 });
 
-
-
 function generarQRCode(ordenCargueId) {
-    // Get the current origin (ensure it includes "https://")
-    const currentOrigin = window.location.origin.startsWith("https://") ?
-        window.location.origin :
-        "https://" + window.location.origin.replace("http://", "");
-
-
-    // Construct the full URL for the QR code
-    const qrCodeText = `${currentOrigin}/view/patio/qr_acceso.html?id=${ordenCargueId}`;
-
-    // Get the QR code container element
+    const contenedorText = document.getElementById('contenedor').value; // Obtener el texto del contenedor
     const qrCodeElement = document.getElementById('qrcode');
-    // Clear any previous QR code
-    qrCodeElement.innerHTML = "";
 
-    // Generate the QR code
-    new QRCode(qrCodeElement, {
-        text: qrCodeText,
-        width: 256,
-        height: 256,
+    // Crear una nueva instancia de QRCodeStyling usando canvas
+    const qrCode = new QRCodeStyling({
+        width: 300,
+        height: 300,
+        type: "canvas", // Cambiado a canvas para manipular la imagen
+        data: `${window.location.origin}/view/patio/qr_acceso.html?id=${ordenCargueId}`,
+        image: '/img/logopeque.png', // Ruta al logo
+        dotsOptions: {
+            color: "#4267b2", // Color de los puntos
+            type: "rounded" // Forma de los puntos
+        },
+        backgroundOptions: {
+            color: "#ffffff" // Fondo del QR
+        },
+        imageOptions: {
+            crossOrigin: "anonymous",
+            margin: 20 // Espacio alrededor del logo
+        }
     });
 
-    // Show the QR code modal
+    // Vaciar el contenedor de QR
+    qrCodeElement.innerHTML = "";
+
+    // Renderizar el QR en el DOM
+    qrCode.append(qrCodeElement);
+
+    // Mostrar el modal del QR
     const qrModal = new bootstrap.Modal(document.getElementById('qrModal'));
     qrModal.show();
 
-    // Handle download button click
+    // Asignar evento de descarga una vez renderizado
     const downloadButton = document.getElementById('downloadQR');
+    downloadButton.removeEventListener('click', downloadQRCode); // Para evitar múltiples asignaciones
     downloadButton.addEventListener('click', function() {
-        const qrCodeImage = qrCodeElement.querySelector('img');
-        const link = document.createElement('a');
-        link.href = qrCodeImage.src;
-        link.download = `OrdenCargue-${ordenCargueId}.png`;
-        link.click();
+        downloadQRCode(qrCode, contenedorText, ordenCargueId);
     });
+}
+
+function downloadQRCode(qrCode, contenedorText, ordenCargueId) {
+    // Obtener el elemento canvas directamente del DOM
+    const qrCanvas = qrCode._canvas.getContext ? qrCode._canvas : document.querySelector('#qrcode canvas');
+
+    if (!qrCanvas) {
+        console.error("No se pudo obtener el canvas del QR.");
+        return;
+    }
+
+    // Crear un nuevo canvas para combinar QR y texto
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+
+    // Configurar el tamaño del nuevo canvas
+    canvas.width = qrCanvas.width;
+    canvas.height = qrCanvas.height + 50; // Añadir espacio para el texto
+
+    // Dibujar el QR en el nuevo canvas
+    context.drawImage(qrCanvas, 0, 0);
+
+    // Añadir el texto del contenedor debajo del QR
+    context.font = '16px Arial';
+    context.fillStyle = '#000'; // Color del texto
+    context.textAlign = 'center';
+    context.fillText(`Contenedor: ${contenedorText}`, canvas.width / 2, qrCanvas.height + 30);
+
+    // Descargar la imagen combinada (QR + texto)
+    const link = document.createElement('a');
+    link.download = `OrdenCargue-${ordenCargueId}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
 }
