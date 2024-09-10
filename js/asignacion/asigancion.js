@@ -78,8 +78,8 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
                 hidden: true,
             },
             {
-                name: "id_asignacion",
-                hidden: true,
+                name: "id",
+                hidden: false,
             },
             "Cliente",
             "Placa",
@@ -184,7 +184,7 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
             },
             {
                 name: "id_asignacion",
-                hidden: true
+                hidden: false
             },
             "Cliente",
             "Placa",

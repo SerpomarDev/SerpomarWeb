@@ -158,11 +158,11 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarhistorico",{
         console.error("Error al cargar los datos:", error);
     });
 
-function time() {
-    setTimeout(() => {
-        window.location.href = `/view/patio/inventario.html`;
-    }, 1500);
-}
+    function time() {
+        setTimeout(() => {
+            window.location.href = `/view/patio/inventario.html`;
+        }, 1500);
+    }
 
 
 // Función para abrir el modal de fotos
