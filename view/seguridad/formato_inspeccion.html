@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title>
+    <link rel="icon" href="/faviconN.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
+    <style>
+           table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            }
+
+            th, td {
+            word-wrap: break-word;
+            white-space: normal;
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+            }
+
+            @media (max-width: 768px) {
+            th, td {
+                font-size: 14px;
+                padding: 8px;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            thead {
+                display: table-header-group;
+            }
+            }
+
+    </style>
+
+</head>
+
+<div id="header-container"></div>
+<script src="/Componentes/header.js"></script>
+<script src="/Componentes/perfil.js"></script>
+
+
+<body>
+
+
+    <div class="header">
+        <div class="title-container">
+            <h1 class="title">DECLARACIÓN DE NOVEDAD</h1>
+        </div>
+    </div>
+    <div id="main-wrapper">
+
+        <div class="margenform">
+            <div id="content" class="p-4 p-md-0 pt-5">
+                <div class="container-fluid main-container">
+                    <form id="inspeccionForm" method="post" enctype="multipart/form-data" class="form">
+                        <p class="message">FORMATO DE INSPECCIÓN FÍSICA DE LAS INSTALACIONES</p>
+                        
+                        <!-- Información general de la inspección -->
+                        <div class="flex">
+                            <label>
+                                <input type="date" class="input" id="fecha_inspeccion" name="fecha_inspeccion" required>
+                                <span>Fecha de la inspección</span>
+                            </label>
+                            <label>
+                                <input type="text" class="input" id="responsable" name="responsable" required>
+                                <span>Responsable de la inspección</span>
+                            </label>
+                        </div>
+                        <!-- Notas y firma -->
+                <div class="notas">
+                    <p><strong>C:</strong> Cumple</p>
+                    <p><strong>NC:</strong> No cumple</p>
+                </div>
+                        <!-- Tabla de aspectos a evaluar -->
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ITEM</th>
+                                    <th>ASPECTOS A EVALUAR OFICINAS ADMINISTRATIVAS</th>
+                                    <th>C</th>
+                                    <th>NC</th>
+                                    <th>OBSERVACIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Las puertas de acceso a las oficinas administrativas se les puede dar llave, candado o cerrojo.</td>
+                                    <td><input type="radio" name="puertas_seguras" value="C" required></td>
+                                    <td><input type="radio" name="puertas_seguras" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_puertas"></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Todas las ventanas de la oficina administrativa tienen dispositivos de seguro interno.</td>
+                                    <td><input type="radio" name="ventanas_seguras" value="C" required></td>
+                                    <td><input type="radio" name="ventanas_seguras" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_ventanas"></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>La puerta interna asegura al pasar llave impidiendo el ingreso desde la Recepción hacia las áreas administrativas.</td>
+                                    <td><input type="radio" name="puerta_interna" value="C" required></td>
+                                    <td><input type="radio" name="puerta_interna" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_puerta_interna"></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Existe señalización de prohibido el acceso a personal no autorizado.</td>
+                                    <td><input type="radio" name="senalizacion" value="C" required></td>
+                                    <td><input type="radio" name="senalizacion" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_senalizacion"></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Cuenta con cámara del circuito cerrado de televisión (CCTV).</td>
+                                    <td><input type="radio" name="cctv" value="C" required></td>
+                                    <td><input type="radio" name="cctv" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_cctv"></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Los DVR se encuentran aislados con una barrera que impida su manipulación de personas no autorizadas.</td>
+                                    <td><input type="radio" name="dvr_seguro" value="C" required></td>
+                                    <td><input type="radio" name="dvr_seguro" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_dvr"></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Cuenta con minuta para el control de acceso del personal visitante.</td>
+                                    <td><input type="radio" name="minuta_control" value="C" required></td>
+                                    <td><input type="radio" name="minuta_control" value="NC"></td>
+                                    <td><input type="text" class="input" name="observaciones_minuta"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                <!-- Tabla de aspectos a evaluar para bodegas -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ITEM</th>
+                            <th>ASPECTOS A EVALUAR BODEGAS</th>
+                            <th>C</th>
+                            <th>NC</th>
+                            <th>OBSERVACIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>8</td>
+                            <td>¿El sistema para asegurar internamente las puertas enrollables de las bodegas se encuentran en buen estado?</td>
+                            <td><input type="radio" name="puertas_enrollables" value="C" required></td>
+                            <td><input type="radio" name="puertas_enrollables" value="NC"></td>
+                            <td><input type="text" class="input" name="observaciones_puertas_enrollables"></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>¿El circuito cerrado de televisión (CCTV) ubicado en los muelles de la bodega se encuentra grabando a conformidad en cuanto a resolución y enfoque?</td>
+                            <td><input type="radio" name="cctv_muelles" value="C" required></td>
+                            <td><input type="radio" name="cctv_muelles" value="NC"></td>
+                            <td><input type="text" class="input" name="observaciones_cctv_muelles"></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>¿El circuito cerrado de televisión (CCTV) ubicado en el interior de la bodega se encuentra grabando a conformidad en cuanto a resolución y enfoque?</td>
+                            <td><input type="radio" name="cctv_interior" value="C" required></td>
+                            <td><input type="radio" name="cctv_interior" value="NC"></td>
+                            <td><input type="text" class="input" name="observaciones_cctv_interior"></td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>¿Las paredes y techos de las bodegas están asegurados?</td>
+                            <td><input type="radio" name="paredes_aseguradas" value="C" required></td>
+                            <td><input type="radio" name="paredes_aseguradas" value="NC"></td>
+                            <td><input type="text" class="input" name="observaciones_paredes"></td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>¿Los desagües cuentan con sus rejillas y éstas se encuentran en buen estado?</td>
+                            <td><input type="radio" name="desagues_rejillas" value="C" required></td>
+                            <td><input type="radio" name="desagues_rejillas" value="NC"></td>
+                            <td><input type="text" class="input" name="observaciones_desagues"></td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>¿Los baños se encuentran en condiciones de higiene y sanidad?</td>
+                            <td><input type="radio" name="banos_higiene" value="C" required></td>
+                            <td><input type="radio" name="banos_higiene" value="NC"></td>
+                            <td><input type="text" class="input" name="observaciones_banos"></td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>¿Las puertas de acceso a las oficinas operativas cuentan con cerrojos acordes para asegurar debidamente las oficinas?</td>
+                            <td><input type="radio" name="puertas_operativas" value="C" required></td>
+                            <td><input type="radio" name="puertas_operativas" value="NC"></td>
+                            <td><input type="text" class="input" name="observaciones_puertas_operativas"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ITEM</th>
+                            <th>ASPECTOS A EVALUAR PATIO</th>
+                            <th>C</th>
+                            <th>NC</th>
+                            <th>OBSERVACIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>15</td>
+                            <td>¿Las mallas perimetrales están en buenas condiciones de seguridad, es decir, NO están rotas?</td>
+                            <td><input type="radio" name="mallas_perimetrales" value="C" required></td>
+                            <td><input type="radio" name="mallas_perimetrales" value="NC"></td>
+                            <td><input type="text" class="input" name="observaciones_mallas_perimetrales"></td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>¿El patio cuenta con iluminación y estas iluminan totalmente el área?</td>
+                            <td><input type="radio" name="patio_iluminacion" value="C" required></td>
+                            <td><input type="radio" name="patio_iluminacion" value="NC"></td>
+                            <td><input type="text" class="input" name="observaciones_patio_iluminacion"></td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>¿El patio cuenta con cámaras (CCTV)?</td>
+                            <td><input type="radio" name="patio_cctv" value="C" required></td>
+                            <td><input type="radio" name="patio_cctv" value="NC"></td>
+                            <td><input type="text" class="input" name="observaciones_patio_cctv"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Firma del responsable -->
+                <div class="firma">
+                    <label>
+                        <input type="text" class="input" id="firma_responsable" name="firma_responsable" required>
+                        <span>Firma del responsable</span>
+                    </label>
+                </div>
+                        
+                        <!-- Botón de envío -->
+                        <div class="submit-container">
+                            <button type="submit" class="submit">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+   
+
+
+
+    <script src="/Componentes/sidebar.js"></script>
+    <script src="/js/login/logout.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+    <script src="/js/custom.min.js"></script>
+    <script src="/js/seguridad/forma_inspeccion.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
