@@ -78,7 +78,7 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
                 hidden: true,
             },
             {
-                name: "id_asignacion",
+                name: "Orden de compra",
                 hidden: false,
             },
             "Cliente",
