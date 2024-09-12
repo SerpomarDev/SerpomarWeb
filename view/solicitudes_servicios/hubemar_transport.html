@@ -11,7 +11,12 @@
     <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" /> -->
+
+    <!-- ag-grid -->
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+
 </head>
 <div id="header-container"></div>
 <script src="/Componentes/header.js"></script>
@@ -30,18 +35,24 @@
     </div>
 
 
-    <div class="container-fluid main-container">
+    <!-- <div class="container-fluid main-container">
         <div id="content" class="p-4 p-md-5 pt-5">
             <div class="container">
                 <div id="ordenService"></div>
             </div>
         </div>
+    </div> -->
+
+
+    <div class="margenform">
+        <div class="container-fluid">
+            <div id="ordenService" class="ag-theme-alpine" style="height:600px; width: 100%; "></div>
+        </div>
     </div>
 
 
-
-
-
+    <!-- ag-grid -->
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/Componentes/sidebar.js"></script>
@@ -49,8 +60,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
     <script type="text/javascript" src="/js/solicitudes_service/hubemar_transport.js"></script>
-    <script type="text/javascript" src="/js/solicitudes_service/editEstadoSolicitud.js"></script>
+    <!-- <script type="text/javascript" src="/js/solicitudes_service/editEstadoSolicitud.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- ag-grid -->
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
 </body>
 
 </html>
