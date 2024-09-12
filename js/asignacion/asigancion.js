@@ -274,7 +274,6 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
     
 }
 
-localStorage.setItem("authToken", data.token);
 
 function time() {
     document.getElementById("saveAsignacion").reset();

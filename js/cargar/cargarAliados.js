@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded',function(){
         data.forEach(aliado => {
             let option = document.createElement('option')
             option.value = aliado.id
-            option.text = aliado.nombre
+            option.text = aliado.razon_social
             selectAliado.appendChild(option)       
         });
 
