@@ -13,7 +13,7 @@ const columnDefs = [
     }
 ];
 
-fetch("http://esenttiapp.test/api/uploadpreprogramar", {
+fetch("https://esenttiapp-production.up.railway.app/api/uploadpreprogramar", {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem("authToken")}`
         }

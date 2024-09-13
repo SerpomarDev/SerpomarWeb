@@ -5,7 +5,7 @@ document.getElementById('savePreProgramar').addEventListener('submit', function(
   
     const jsonData = JSON.stringify(Object.fromEntries(formData));
     
-    fetch('http://esenttiapp.test/api/programacion', {
+    fetch('https://esenttiapp-production.up.railway.app/api/programacion', {
         method: 'POST',
         headers: { 
             'Content-Type': 'application/json',
