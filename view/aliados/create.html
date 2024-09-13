@@ -47,15 +47,29 @@
                                 <input type="text" class="input" id="razon_social" name="razon_social" required>
                                 <span>Razón Social</span>
                             </label>
-                        </div>
-                        <div class="flex">
                             <label>
                                 <input type="number" class="input" id="celular" name="celular" required>
                                 <span>Celular</span>
                             </label>
+                            <label>
+                                <input type="date" class="input" id="estudio_seg" name="estudio_seg" required>
+                                <span>Vence estudio de seguridad</span>
+                            </label>
+
+                            <label>
+                                <select name="tipo_documento" id="tipo_documento" class="input" required>
+                                    <option value="">Seleccione Opción</option>
+                                    <option value="CEDULA">CEDULA</option>
+                                    <option value="NIT">NIT</option>
+                                </select>
+                                <span>Tipo documento</span>
+                            </label>
+                            <label>
+                                <input type="number" class="input" id="identificacion" name="identificacion" required>
+                                <span>Num. Identificacion</span>
+                            </label>
                         </div><br>
                         <div class="flex">
-                            <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
                             <button class="btn btn-primary" id="BtnSaveAliado">Enviar</button>
                         </div>
                     </form>

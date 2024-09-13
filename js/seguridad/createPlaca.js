@@ -14,7 +14,7 @@ new gridjs.Grid({
     columns: [{
             name: 'id',
             hidden: true,
-        }, "Placa","Tipologia", "Propietario", "Plataforma", "web gps", "usuario", "Clave",  {
+        }, "Placa", "Propietario", "Plataforma", "web gps", "usuario", "Clave", {
 
             name: 'EDIT',
             formatter: (cell, row) => {
@@ -69,7 +69,6 @@ new gridjs.Grid({
                 return data.map((placa) => [
                     placa.id_placa,
                     placa.placa,
-                    placa.tipologia,
                     placa.nombre,
                     placa.gps,
                     placa.webgps,
