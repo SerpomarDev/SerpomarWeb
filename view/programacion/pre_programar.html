@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title>
+    <link rel="icon" href="/faviconN.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+
+    <!-- ag-grid -->
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+
+    <style>
+        .hidden {
+            display: none;
+        }
+        
+        .modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+        }
+        
+        .modal-close {
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: #888;
+        }
+        
+        .modal-close:hover {
+            color: #ffffff;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
+        .modal-footer button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .modal-footer .btn-save {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .modal-footer .btn-save:hover {
+            background-color: #0056b3;
+        }
+        
+        .modal-footer .btn-close {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .modal-footer .btn-close:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<header>
+    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
+
+</header>
+<div class="dlabnav">
+    <div id="layout">
+
+        <div class="dlabnav" id="sidebar">
+            <div class="dlabnav-scroll sidebar-scroll">
+                <ul class="metismenu" id="menu">
+                    <li id="roles-container"></li>
+                    <li id="menu-items-container"></li>
+                    <nav>
+                        <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Cerrar Sesión</span>
+                        </a>
+                    </nav>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<body>
+
+    <div class="header">
+        <div class="title-container">
+            <div class="circle"></div>
+            <h1 class="title">PRE PROGRAMAR</h1>
+        </div>
+    </div>
+
+
+
+    <div class="margenform">
+        <div class="container-fluid">
+            <div id="preprogramar" class="ag-theme-alpine" style="height:600px; width: 100%; "></div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>PROGRAMAR OPERACIÓN</h2>
+                <button type="button" class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="savePreProgramar" method="POST" enctype="multipart/form-data">
+                <input type="text" name="id_contenedor" id="id_contenedor">
+                <div class="mb-4">
+                    <label for="fechaProgramacion" class="block text-sm font-medium">Dia y Hora a Programar</label>
+                    <input type="date" id="fecha" name="fecha" class="w-full px-3 py-2 border rounded">
+                </div>
+                <div class="mb-4">
+                    <label for="tipoOperacion" class="block text-sm font-medium">Tipo de Operación</label>
+                    <select id="tipo_servicio" name="tipo_servicio" class="w-full px-3 py-2 border rounded">
+                        <option value="IMPORTACION">Importación</option>
+                        <option value="EXPORTACION">Exportación</option>
+                        <option value="RETIRO VACIO">Retiro de Vacio</option>
+                        <option value="TRASLADO">Traslado</option>
+                        <option value="DEVOLUCION">Devolución</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn-save" onclick="submitForm()">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/Componentes/sidebar.js"></script>
+    <script src="/js/login/logout.js"></script>
+
+
+    <script type="text/javascript" src="/js/programacion/pre_porgramar.js"></script>
+    <script type="text/javascript" src="/js/programacion/create_preProgramar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- ag-grid -->
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-charts-enterprise@32.1.0/dist/ag-grid-charts-enterprise.js?t=1724946077050"></script>
+
+</body>
+
+</html>
