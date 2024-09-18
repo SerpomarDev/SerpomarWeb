@@ -10,7 +10,7 @@ document.getElementById("craeateComentario").addEventListener("submit", function
   const jsonData = JSON.stringify(Object.fromEntries(formData));
    
     
-    fetch(`http://esenttiapp.test/api/actualizarcomentario/${id}`, {
+    fetch(`https://esenttiapp-production.up.railway.app/api/actualizarcomentario/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
