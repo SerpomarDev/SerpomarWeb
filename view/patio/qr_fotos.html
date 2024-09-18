@@ -192,7 +192,7 @@
         </div>
     </div>
 
-    <div class="">
+
         <br><br>
         <div id="content" class="p-4 p-md-0 pt-5">
             <div class="container-fluid main-container">
@@ -200,20 +200,22 @@
                     <div class="col-md-4">
                         <div id="acceso"></div>
                         <div class="container">
-                            <form id="craeateAccesoPatio" method="" enctype="multipart/form-data">
+                            <form id="craeateComentario" method="PUT" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label"><h5>Observaciones</h5></label>
+                                            <textarea class="form-control" rows="3" id="comentario" name="comentario"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="col-12 d-flex justify-content-center">>
+                                    <button type="submit" class="btn btn-primary" id="BtnSaveComentario">Enviar</button>
+                                </div>
                             </form>
                         </div>
 
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <h10>Observaciones</h10>
-                            <label class="form-label"> </label>
-                            <textarea class="form-control" id="observaciones" name="observaciones"></textarea>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -222,7 +224,7 @@
 
 
         <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-        <!-- <script type="text/javascript" src="/js/patio/control_patio.js"></script> -->
+
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/Componentes/loadSidebar.js"></script>
@@ -234,6 +236,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+        <script type="text/javascript" src="/js/patio/agregarComentario.js"></script>
         <script src="/js/custom.min.js"></script>
         <script type="module" src="/js/patio/fotos_inventario_patio.js"></script>
 

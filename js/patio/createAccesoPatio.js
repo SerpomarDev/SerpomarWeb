@@ -39,32 +39,6 @@ function actualizarEstado(idOperacion, nuevoEstado) {
   });
 }
 
-function comentario(id, comentario) {
-  fetch(`https://esenttiapp-production.up.railway.app/api/actualizarcomentario/${comentario}/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-    },
-    body: JSON.stringify({
-      id: id,
-      comentario: comentario
-    }),
-  })
-  .then(response => response.json())
-  .then(data => {
-      console.log('Comentario guardado con éxito:', data);
-      Swal.fire({
-        title: "¡Buen trabajo!",
-        text: "Comentario guardado!",
-        icon: "success"
-      });
-      time()
-  })
-  .catch((error) => {
-      console.error('Error al guardar el comentario:', error);
-  });
-}
     
 new gridjs.Grid({
   search: true,
