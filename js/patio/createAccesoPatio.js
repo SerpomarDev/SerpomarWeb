@@ -159,7 +159,6 @@ function salidaContenedor($contenedor,$operacion){
         text: "Estado actualizado!",
         icon: "success"
     });
-    time()
   })
   .catch((error) => {
       console.error('Error al actualizar el estado:', error);
