@@ -217,33 +217,6 @@ function actualizarEstado(idOperacion, nuevoEstado) {
         });
 }
 
-function comentario(id, comentario) {
-    fetch(`https://esenttiapp-production.up.railway.app/api/actualizarcomentario/${comentario}/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-            },
-            body: JSON.stringify({
-                id: id,
-                comentario: comentario
-            }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Comentario guardado con éxito:', data);
-            Swal.fire({
-                title: "¡Buen trabajo!",
-                text: "Comentario guardado!",
-                icon: "success"
-            });
-            time()
-        })
-        .catch((error) => {
-            console.error('Error al guardar el comentario:', error);
-        });
-}
-
 new gridjs.Grid({
     sort: false,
     columns: [
@@ -347,13 +320,6 @@ new gridjs.Grid({
 }).render(document.getElementById('acceso'));
 
 
-function time() {
-    document.getElementById('craeateAccesoPatio').reset();
-    setTimeout(() => {
-        window.location.href = `/view/patio/inventario.html`;
-    }, 1200);
-}
-
 function salidaContenedor($contenedor, $operacion) {
     fetch(`https://esenttiapp-production.up.railway.app/api/actualizaroperacionp/${contenedor}/${operacion}`, {
             method: 'PUT',
@@ -379,4 +345,11 @@ function salidaContenedor($contenedor, $operacion) {
         .catch((error) => {
             console.error('Error al actualizar el estado:', error);
         });
+}
+
+
+function time() {
+    setTimeout(() => {
+        window.location.href = `/view/patio/inventario.html`;
+    }, 1200);
 }
