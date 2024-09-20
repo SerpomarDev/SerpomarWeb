@@ -49,7 +49,7 @@ new gridjs.Grid({
                         deleteCondcutor(row.cells[0].data);
                     }
                 }, [
-                    // Imagen dentro del enlace
+
                     gridjs.h('img', {
                         src: '/img/basura.png',
                         alt: 'eliminar',
@@ -85,30 +85,23 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('conductores'));
 
-// Manejo del evento 'submit' del formulario
+
 document.getElementById('createConductor').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const formData = new FormData(this);
+    const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-    // Convertir los datos del formulario a JSON, escapando caracteres especiales si es necesario
-    const jsonData = JSON.stringify(Object.fromEntries(formData), (key, value) => {
-        if (typeof value === 'string') {
-            return value.replace(/\n/g, ' ').replace(/\t/g, ' ');
-        }
-        return value;
-    });
-
+    console.log(jsonData);
 
     fetch('https://esenttiapp-production.up.railway.app/api/conductores', {
-        method: 'POST', // O PUT/PATCH si es lo que espera tu API
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem("authToken")}`
         },
         body: jsonData
     })
-
     .then(response => {
             if (!response.ok) {
                 // Manejo de errores del servidor con más detalle
