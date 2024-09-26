@@ -70,8 +70,19 @@ function filtrarContenedoresPorFecha() {
     limpiarSeccionesContenedores();
 
     mostrarContenedores(contenedoresFiltrados);
+    reconstruirRelacionesDesdeLocalStorage();
 
-    reconstruirRelacionesDesdeLocalStorage(); 
+    // Actualizar el contador después de mostrar los contenedores
+    actualizarContadorProgramaciones(contenedoresFiltrados.length); 
+}
+
+function actualizarContadorProgramaciones(total) {
+    const contadorElemento = document.querySelector('.contador-programa');
+    if (contadorElemento) {
+        contadorElemento.textContent = `Total de programaciones: ${total}`;
+    } else {
+        console.error("No se encontró el elemento .contador-programa");
+    }
 }
 
 function limpiarSeccionesContenedores() {
