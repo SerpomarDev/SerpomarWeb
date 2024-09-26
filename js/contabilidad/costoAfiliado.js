@@ -180,7 +180,7 @@ const columnDefs = [
     { headerName: "SP", field: "do_sp" },
     { headerName: "Contenedor", field: "numero_contenedor" },
     { headerName: "Placa", field: "placa" },
-    { headerName: "Aliado", field: "aliado" },
+    { headerName: "Razon social", field: "razon_social" },
     { 
         headerName: "Tarifa", 
         field: "tarifa",
@@ -233,7 +233,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/asignacionespendienteord
         do_sp: asigControl.do_sp,
         numero_contenedor: asigControl.numero_contenedor,
         placa: asigControl.placa,
-        aliado: asigControl.aliado,
+        razon_social: asigControl.razon_social,
         tarifa: asigControl.tarifa,
         ruta: asigControl.ruta,
         nombre: asigControl.nombre,
