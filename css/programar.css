@@ -46,7 +46,7 @@ body {
 .calendar {
     display: block; 
     margin: 0 auto; 
-    width: 180px; 
+    width: 200px; 
     padding: 8px; 
     margin-bottom: 15px; 
     border: none;
@@ -54,7 +54,7 @@ body {
     font-size: 16px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); 
     transition: all 0.3s ease; 
-    background: linear-gradient(135deg, #f5f7fa, #ece8f6); /* Degradado sutil */
+    background: linear-gradient(105deg, #3fa2ff, #ededed); /* Degradado sutil */
     overflow: hidden; 
 }
 
@@ -91,7 +91,7 @@ body {
     padding-top: 10px; 
     padding-bottom: 20px; 
     margin-top: 80px; 
-    width: 100%; 
+    width: 99%; 
 }
 
 .container1 {
@@ -207,5 +207,36 @@ h6 {
     flex-direction: column;
     height: 650px;
     overflow-y: auto; /* Agrega scroll vertical si el contenido desborda */
+}
+
+.save {
+    background-color: #007bff; /* Color base, puedes cambiarlo */
+    color: #fff;
+    margin-top: 10px;
+    margin-right: 15px;
+    padding: 10px 30px; /* Aumenta el padding para mayor área de clic */
+    border: none;
+    border-radius: 10px; /* Bordes más redondeados */
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transiciones suaves */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    text-decoration: none; /* Elimina subrayado si es un enlace */
+}
+
+.save:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+    transform: translateY(-2px); /* Efecto de elevación */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+}
+
+.save:active {
+    transform: translateY(1px); /* Efecto de presionado */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra reducida al presionar */
+}
+
+.save:focus {
+    outline: none; /* Elimina el contorno de enfoque por defecto */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Añade un contorno de enfoque personalizado */
 }
 

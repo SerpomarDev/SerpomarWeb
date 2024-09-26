@@ -14,34 +14,12 @@
 </head>
 
 <body>
-    <header>
-        <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
-    </header>
-
-    <div class="dlabnav">
-        <div id="layout">
-            <div class="dlabnav" id="sidebar">
-                <div class="dlabnav-scroll sidebar-scroll">
-                    <ul class="metismenu" id="menu">
-                        <li id="roles-container"></li>
-                        <li id="menu-items-container"></li>
-                        <nav>
-                            <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <span class="nav-text">Cerrar Sesión</span>
-                            </a>
-                        </nav>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="header-container"></div>
+    <script src="/Componentes/header.js"></script>
+    <script src="/Componentes/perfil.js"></script>
 
     <div class="container mt-5"> 
         <div class="calendar-container">
-            <input class="save" type="submit">
-            <input class="calendar" type="date">
-          
             <div class="color-group">
                 <h6><span class="azul"></span> 1er. Asig</h6>
                 <h6><span class="verde"></span> 2do. Asig</h6>
@@ -55,6 +33,10 @@
                 <h6><span class="morado"></span> 5to. Asig</h6>
                 <h6><span class="negro"></span> 6to. Asig</h6>
             </div>
+           
+            <input class="calendar" type="date">
+            <input class="save" type="submit">
+           
         </div>
         <div class="row">
             <div class="container1"> 
@@ -110,8 +92,8 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/Componentes/sidebar.js"></script>
     <script src="/js/login/logout.js"></script>
+    <script src="/Componentes/sidebar.js"></script>
     <script src="/js/programacion/programacion.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
