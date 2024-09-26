@@ -1,0 +1,211 @@
+body {
+    font-family: sans-serif;
+    background-color: #f0f2f5; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.azul { background-color: #007bff; }
+.verde { background-color: green; }
+.naranja { background-color: orange; }
+.rojo { background-color: red; }
+.morado { background-color: purple; }
+.negro { background-color: black; }
+
+.color-group {
+    display: flex;
+    flex-direction: column; /* Colocar colores en columna */
+    align-items: flex-end;  /* Alinear a la derecha */
+}
+
+.calendar-container h6 span {
+    display: inline-block;
+    margin-top: 5px;   /* Permitir aplicar ancho y alto */
+    width: 20px;             /* Ancho del color */
+    height: 12px;            /* Alto del color */
+    margin-right: 2px;        /* Espacio entre color y texto */
+    border-radius: 20%;      /* Hacer el color redondo */
+}
+
+.calendar-container {
+    display: flex;
+    flex-direction: row;  /* Colocar elementos en fila */
+    align-items: flex-start; /* Alinear al inicio verticalmente */
+    justify-content: space-between; /* Distribuir espacio entre elementos */
+    margin-bottom: 0px;
+    
+}
+
+.calendar-container h6 {
+    text-align: right;      /* Alinear texto a la derecha */
+    width: 75px;           /* Ancho fijo para alinear */
+}
+
+.calendar {
+    display: block; 
+    margin: 0 auto; 
+    width: 180px; 
+    padding: 8px; 
+    margin-bottom: 15px; 
+    border: none;
+    border-radius: 12px; 
+    font-size: 16px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease; 
+    background: linear-gradient(135deg, #f5f7fa, #ece8f6); /* Degradado sutil */
+    overflow: hidden; 
+}
+
+.calendar:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
+}
+
+.calendar:focus-within { 
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.143);
+}
+
+.calendar::-webkit-calendar-picker-indicator {
+    background-color: #fff; 
+    color: #555;
+    padding: 10px 14px;
+    border-radius: 10px; 
+    cursor: pointer;
+    transition: all 0.2s ease; 
+    position: relative; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil en el botón */
+}
+
+.calendar::-webkit-calendar-picker-indicator:hover {
+    background-color: #f0f0f0; 
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); 
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    padding-left: 20px; 
+    padding-right: 20px; 
+    padding-top: 10px; 
+    padding-bottom: 20px; 
+    margin-top: 80px; 
+    width: 100%; 
+}
+
+.container1 {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    padding: 0px;  
+    width: 100%; 
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.row {
+    display: flex;
+}
+
+.col-md-8 {
+    flex-grow: 1;
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* Sección para cada categoría */
+.section {
+    margin-bottom: 20px; /* Espacio entre secciones */
+}
+
+.col-md-4 {
+    flex: 0 0 auto; 
+    width: 300px; 
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+h3 { 
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #555;
+}
+
+h5 {
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+h6 {
+    text-align: center;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-weight: bold;
+    color: #333;
+}
+
+.contenedor { 
+    background-color: #f5f5f5ef; 
+    color: #333; 
+    border: 1px solid #ced4da8e; 
+    padding: 10px; 
+    text-align: center;
+    border-radius: 8px; 
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; 
+    font-size: 8px;
+    margin-right: 20px; 
+    margin-bottom: 5px; /* Espacio entre contenedores */
+}
+
+
+
+.contenedor span:first-child { 
+    font-weight: bold;
+    display: block;
+}
+
+.placa { 
+    background-color: #007bff; 
+    color: #fff;
+    padding: 5px 6px; 
+    margin-bottom: 2px;
+    cursor: grab; 
+    list-style: none;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-size: 12px; 
+    display: inline-block; 
+    white-space: nowrap; 
+}
+
+.placa:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+#placas {
+    display: flex;
+    flex-direction: column;
+    height: 650px; /* Alto fijo para el contenedor de placas */
+    overflow-y: auto; /* Agrega scroll vertical si el contenido desborda */
+}
+
+.row-cols-auto {
+    display: flex;
+    flex-direction: column;
+    height: 650px;
+    overflow-y: auto; /* Agrega scroll vertical si el contenido desborda */
+}
+
