@@ -189,7 +189,9 @@ const columnDefs = [
     { headerName: "Ruta", field: "ruta" },
     { headerName: "Conductor", field: "nombre" },
     { headerName: "Estado", field: "estado" },
+    { headerName: "Cliente", field: "cliente" },
     { headerName: "Observaciones", field: "descripcion" },
+    
     {
         headerName: "Soportes",
         cellRenderer: params => {
@@ -236,6 +238,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/asignacionespendienteord
         ruta: asigControl.ruta,
         nombre: asigControl.nombre,
         estado: asigControl.estado,
+        cliente: asigControl.cliente,
         descripcion: asigControl.descripcion,
         numero_factura: asigControl.numero_factura,
       };
