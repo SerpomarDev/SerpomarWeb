@@ -292,12 +292,12 @@ async function guardarRelacionesEnLocalStorage() {
 
     } catch (error) {
 
-        Swal.fire({
-            icon: 'error',
-            title: '¡Error!',
-            text: 'La Pre-programación ya esta creada para esta fecha.'
-        });
-        console.error('Error al guardar la programación:', error);
+        // Swal.fire({
+        //     icon: 'error',
+        //     title: '¡Error!',
+        //     text: 'La Pre-programación ya esta creada para esta fecha.'
+        // });
+        // console.error('Error al guardar la programación:', error);
     }
 }
 
