@@ -70,8 +70,19 @@ function filtrarContenedoresPorFecha() {
     limpiarSeccionesContenedores();
 
     mostrarContenedores(contenedoresFiltrados);
+    reconstruirRelacionesDesdeLocalStorage();
 
-    reconstruirRelacionesDesdeLocalStorage(); 
+    // Actualizar el contador después de mostrar los contenedores
+    actualizarContadorProgramaciones(contenedoresFiltrados.length); 
+}
+
+function actualizarContadorProgramaciones(total) {
+    const contadorElemento = document.querySelector('.contador-programa');
+    if (contadorElemento) {
+        contadorElemento.textContent = `Total de programaciones: ${total}`;
+    } else {
+        console.error("No se encontró el elemento .contador-programa");
+    }
 }
 
 function limpiarSeccionesContenedores() {
@@ -262,7 +273,7 @@ async function guardarRelacionesEnLocalStorage() {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem("authToken")}`
             },
-            body: JSON.stringify({   
+            body: JSON.stringify({  
  
                 programacion: relaciones, 
                 fecha: fechaSeleccionada
@@ -326,7 +337,7 @@ async function reconstruirRelacionesDesdeLocalStorage() {
     const fechaSeleccionada = calendarInput.value;
   
     try {
-      const response = await fetch(`https://esenttiapp-production.up.railway.app/api/programacion?fecha=${fechaSeleccionada}`, {
+      const response = await fetch(`http://127.0.0.1:8000/api/programacion?fecha=${fechaSeleccionada}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("authToken")}`
         }

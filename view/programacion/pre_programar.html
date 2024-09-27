@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -112,13 +113,11 @@
         }
     </style>
 </head>
-
+<div id="header-container"></div>
+<script src="/Componentes/header.js"></script>
+<script src="/Componentes/perfil.js"></script>
 
 <body>
-
-    <div id="header-container"></div>
-    <script src="/Componentes/header.js"></script>
-    <script src="/Componentes/perfil.js"></script>
 
     <div class="header">
         <div class="title-container">
@@ -130,13 +129,11 @@
 
 
     <div class="margenform">
-        <br>
         <div class="container-fluid">
             <div id="preprogramar" class="ag-theme-alpine" style="height:600px; width: 100%; "></div>
         </div>
     </div>
 
-    <!-- Modal -->
     <div id="myModal" class="modal hidden">
         <div class="modal-content">
             <div class="modal-header">
@@ -146,7 +143,7 @@
                 </button>
             </div>
             <form id="savePreProgramar" method="POST" enctype="multipart/form-data">
-                <input type="text" name="id_contenedor" id="id_contenedor">
+                <input type="text" name="id_contenedor" id="id_contenedor" hidden>
                 <div class="mb-4">
                     <label for="fechaProgramacion" class="block text-sm font-medium">Dia y Hora a Programar</label>
                     <input type="date" id="fecha" name="fecha" class="w-full px-3 py-2 border rounded">
@@ -154,6 +151,7 @@
                 <div class="mb-4">
                     <label for="tipoOperacion" class="block text-sm font-medium">Tipo de Operación</label>
                     <select id="tipo_servicio" name="tipo_servicio" class="w-full px-3 py-2 border rounded">
+                        <option>Seleccione Operación</option>
                         <option value="IMPORTACION">Importación</option>
                         <option value="EXPORTACION">Exportación</option>
                         <option value="RETIRO VACIO">Retiro de Vacio</option>
@@ -161,9 +159,25 @@
                         <option value="DEVOLUCION">Devolución</option>
                     </select>
                 </div>
+                <div class="mb-4">
+                    <label for="origen" class="block text-sm font-medium">Lugar de Origen</label>
+                    <input type="text" id="origen" name="origen" class="w-full px-3 py-2 border rounded">
+                </div>
+
+                <div class="mb-4">
+                    <label for="origen" class="block text-sm font-medium">Lugar de Destino</label>
+                    <input type="text" id="destino" name="destino" class="w-full px-3 py-2 border rounded">
+                </div>
+
+                <div class="mb-4">
+                    <label for="origen" class="block text-sm font-medium">Lugar de Cargue</label>
+                    <input type="text" id="cargue" name="cargue" class="w-full px-3 py-2 border rounded">
+                </div>
+
                 <div class="modal-footer">
                     <button type="submit" class="btn-save" onclick="submitForm()">Guardar</button>
                 </div>
+            </div>
             </form>
         </div>
     </div>
@@ -172,8 +186,9 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/js/login/logout.js"></script>
     <script src="/Componentes/sidebar.js"></script>
+    <script src="/js/login/logout.js"></script>
+
 
     <script type="text/javascript" src="/js/programacion/pre_porgramar.js"></script>
     <script type="text/javascript" src="/js/programacion/create_preProgramar.js"></script>
