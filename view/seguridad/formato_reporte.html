@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title>
+    <link rel="icon" href="/faviconN.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+</head>
+
+<div id="header-container"></div>
+<script src="/Componentes/header.js"></script>
+<script src="/Componentes/perfil.js"></script>
+
+
+<body>
+
+
+    <div class="header">
+        <div class="title-container">
+            <div class="circle"></div>
+            <h1 class="title">FORMATO NOVEDAD</h1>
+        </div>
+    </div>
+    <div id="main-wrapper">
+
+        <div class="margenform">
+            <div id="content" class="p-4 p-md-0 pt-5">
+                <div class="container-fluid main-container">
+                    <form id="fnovedad" method="post" enctype="multipart/form-data" class="form">
+                        <p class="message">Complete los campos para crear un reporte de acto o condición subestándar.</p>
+                       
+                       
+                        <div class="flex">
+                            <label>
+                                <input type="date" class="input" id="hora_reporte" name="hora_reporte" required>
+                                <span>Fecha del Reporte</span>
+                            </label>
+                            <label>
+                                <input type="time" class="input" id="hora_reporte" name="hora_reporte" required>
+                                <span>Hora del Reporte</span>
+                            </label>
+                            <label>
+                                <input type="text" class="input" id="nombre_infractor" name="nombre_infractor" required>
+                                <span>Nombre del Infractor</span> 
+                            </label>
+                            <label>
+                                <input type="text" class="input" id="nombre_infractor" name="nombre_infractor" required>
+                                <span>Instalación donde se presento la novedad</span> 
+                            </label>
+                            <label>
+                                <input type="text" class="input" id="nombre_infractor" name="nombre_infractor" required>
+                                <span>Area o equipo donde ocurrio la novedad</span> 
+                            </label>
+                        
+                        </div>
+                    
+                        <div class="flex">
+                          
+                    <h4>Informacion de la persona que realiza el reporte</h4><br>
+                            <label>
+                                <input type="text" class="input" id="area_equipo" name="area_equipo" required>
+                                <span>Nombre y apellido</span> 
+                            </label>
+                            <label>
+                                <input type="text" class="input" id="area_equipo" name="area_equipo" required>
+                                <span>Numero de cedula</span> 
+                            </label>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label class="full-width">
+                                <textarea class="input" id="descripcion_acto" name="descripcion_acto" rows="3"></textarea>
+                                <span>Descripción del Acto Subestándar que se presento</span> 
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="full-width">
+                                <textarea class="input" id="descripcion_acto" name="descripcion_acto" rows="3"></textarea>
+                                <span>Descripción de la condición que se presento</span> 
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="full-width">
+                                <textarea class="input" id="descripcion_acto" name="descripcion_acto" rows="3"></textarea>
+                                <span>Recomendaciones</span> 
+                            </label>
+                        </div>
+                           
+                    
+                        <div class="submit-container">
+                            <button type="submit" class="submit">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="">
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <div class="">
+                <div id="formatos"></div>
+            </div>
+        </div>
+    </div> -->
+
+
+
+
+    <script src="/Componentes/sidebar.js"></script>
+    <script src="/js/login/logout.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+    <script src="/js/custom.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <script type="text/javascript" src="/js/hseq/formato_create.js"></script>
+    <script type="text/javascript" src="/js/hseq/formatos_view.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
