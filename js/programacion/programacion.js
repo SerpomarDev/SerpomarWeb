@@ -337,7 +337,7 @@ async function reconstruirRelacionesDesdeLocalStorage() {
     const fechaSeleccionada = calendarInput.value;
   
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/programacion?fecha=${fechaSeleccionada}`, {
+      const response = await fetch(`https://esenttiapp-production.up.railway.app/api/programacion?fecha=${fechaSeleccionada}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("authToken")}`
         }
