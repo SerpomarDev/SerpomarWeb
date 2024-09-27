@@ -16,7 +16,7 @@
         },"Placa",
       ],
         server: {
-            url: "http://127.0.0.1:8000/api/selectbyinac",
+            url: "https://esenttiapp-production.up.railway.app/api/selectbyinac",
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
             },
