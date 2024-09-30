@@ -11,27 +11,55 @@ const seccionesContenedores = {
     'DEVOLUCION': document.getElementById('devolucion')
 };
 
-calendarInput.addEventListener('change', filtrarContenedoresPorFecha);
-saveButton.addEventListener('click', guardarRelacionesEnLocalStorage);
+calendarInput.addEventListener('change', () => {
+    const fechaSeleccionada = calendarInput.value;
+    localStorage.setItem('fechaSeleccionada', fechaSeleccionada); 
+    filtrarContenedoresPorFecha(); 
 
+    // Disparar el evento personalizado
+    window.dispatchEvent(new Event('fechaCambiada')); 
+});
+
+
+// Obtener la fecha de hoy en formato YYYY-MM-DD
+const fechaHoy = new Date().toISOString().slice(0, 10);
+
+const fechaGuardada = localStorage.getItem('fechaSeleccionada');
+if (!fechaGuardada) { // Si no hay fecha guardada, usar la de hoy
+    localStorage.setItem('fechaSeleccionada', fechaHoy);
+    console.log("Fecha de hoy establecida por defecto:", fechaHoy);
+} else {
+    console.log("Fecha seleccionada previamente:", fechaGuardada);
+}
+
+// Cacheamos el elemento del contador para evitar buscarlo cada vez
+const contadorElemento = document.querySelector('.contador-programa');
+
+// Función para actualizar el contador de programaciones
+function actualizarContadorProgramaciones(total) {
+    if (contadorElemento) {
+        contadorElemento.textContent = `Total programaciones: ${total}`;
+    } else {
+        console.error("No se encontró el elemento .contador-programa");
+    }
+}
+
+// Función principal que obtiene los datos de la API y crea la interfaz de usuario
 async function obtenerDatosYCrearInterfaz() {
     try {
         const authToken = localStorage.getItem('authToken');
-
         if (!authToken) {
             throw new Error('No se encontró el token de autenticación en localStorage');
         }
 
-        const responseContenedores = await fetch("https://esenttiapp-production.up.railway.app/api/uploadprogramacion", {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-            }
-        });
-        const responsePlacas = await fetch("https://esenttiapp-production.up.railway.app/api/uploadplacapreventa", {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-            }
-        });
+        const [responseContenedores, responsePlacas] = await Promise.all([
+            fetch("https://esenttiapp-production.up.railway.app/api/uploadprogramacion", {
+                headers: { 'Authorization': `Bearer ${authToken}` }
+            }),
+            fetch("https://esenttiapp-production.up.railway.app/api/uploadplacapreventa", {
+                headers: { 'Authorization': `Bearer ${authToken}` }
+            })
+        ]);
 
         if (!responseContenedores.ok || !responsePlacas.ok) {
             throw new Error('Error al obtener datos de los endpoints');
@@ -41,48 +69,29 @@ async function obtenerDatosYCrearInterfaz() {
         const dataPlacas = await responsePlacas.json();
 
         const fechaHoy = new Date().toISOString().slice(0, 10);
-
         calendarInput.value = fechaHoy;
 
         filtrarContenedoresPorFecha();
-
         mostrarPlacas(dataPlacas);
         hacerPlacasArrastrables();
+        reconstruirRelacionesDesdeLocalStorage();
 
-        reconstruirRelacionesDesdeLocalStorage(authToken); 
-
-        const saveButton = document.querySelector('.save'); 
-        if (saveButton) { 
-            saveButton.addEventListener('click', () => guardarRelacionesEnLocalStorage(authToken));
-        } else {
-            console.error("No se encontró el botón 'save'. Asegúrate de que el HTML esté cargado correctamente.");
-        }
+        saveButton.addEventListener('click', () => guardarRelacionesEnLocalStorage(authToken));
 
     } catch (error) {
         console.error("Error al obtener o procesar los datos:", error);
     }
 }
 
+
 function filtrarContenedoresPorFecha() {
     const fechaSeleccionada = calendarInput.value;
     const contenedoresFiltrados = dataContenedores.filter(contenedor => contenedor.fecha === fechaSeleccionada);
 
     limpiarSeccionesContenedores();
-
     mostrarContenedores(contenedoresFiltrados);
     reconstruirRelacionesDesdeLocalStorage();
-
-    // Actualizar el contador después de mostrar los contenedores
-    actualizarContadorProgramaciones(contenedoresFiltrados.length); 
-}
-
-function actualizarContadorProgramaciones(total) {
-    const contadorElemento = document.querySelector('.contador-programa');
-    if (contadorElemento) {
-        contadorElemento.textContent = `Total de programaciones: ${total}`;
-    } else {
-        console.error("No se encontró el elemento .contador-programa");
-    }
+    actualizarContadorProgramaciones(contenedoresFiltrados.length);
 }
 
 function limpiarSeccionesContenedores() {
@@ -111,6 +120,11 @@ function mostrarContenedores(programacion) {
         numeroContenedorSpan.style.paddingRight = '5px';
         numeroContenedorSpan.style.paddingLeft = '5px';
 
+        const horaSpan = document.createElement('span');
+        horaSpan.textContent = `Hora: ${item.hora}`;
+        horaSpan.style.fontSize = '10px';
+        horaSpan.style.paddingRight = '5px';
+
         const origenSpan = document.createElement('span');
         origenSpan.textContent = `Origen: ${item.origen}`;
         origenSpan.style.fontSize = '10px';
@@ -120,10 +134,6 @@ function mostrarContenedores(programacion) {
         destinoSpan.textContent = `Destino: ${item.destino}`;
         destinoSpan.style.fontSize = '10px';
         destinoSpan.style.paddingRight = '5px';
-
-        const cargueSpan = document.createElement('span');
-        cargueSpan.textContent = `Cargue: ${item.cargue}`;
-        cargueSpan.style.fontSize = '10px';
 
         const dropZone = document.createElement('div');
         dropZone.classList.add('placa-drop-zone');
@@ -136,18 +146,18 @@ function mostrarContenedores(programacion) {
         contenedorDiv.appendChild(servicioSpan);
         contenedorDiv.appendChild(numeroContenedorSpan);
         contenedorDiv.appendChild(dropZone); 
+        contenedorDiv.appendChild(horaSpan);
         contenedorDiv.appendChild(origenSpan);
         contenedorDiv.appendChild(destinoSpan);
-        contenedorDiv.appendChild(cargueSpan);
+    
 
         const seccion = seccionesContenedores[item.servicio];
         if (seccion) {
             seccion.appendChild(contenedorDiv);
-
             new Sortable(dropZone, {
                 group: 'shared',
                 animation: 150,
-                onAdd: function(evt) {
+                onAdd: function (evt) {
                     console.log("Placa soltada en el contenedor:", item.numero_contenedor);
                 }
             });
@@ -216,7 +226,7 @@ function duplicarPlaca(placaOriginal) {
     const nuevaPlaca = placaOriginal.cloneNode(true);
 
     const numDuplicaciones = parseInt(placaOriginal.dataset.duplicaciones || 0);
-    const colorOriginal = placaOriginal.style.backgroundColor || ""; // Obtener el color original o dejarlo vacío si no tiene
+    const colorOriginal = placaOriginal.style.backgroundColor || ""; 
 
     switch (numDuplicaciones) {
         case 0:
@@ -236,17 +246,25 @@ function duplicarPlaca(placaOriginal) {
             break;
         default:
             alert("Se ha alcanzado el límite de duplicaciones para esta placa.");
-            return;
+            return; 
     }
 
     placaOriginal.dataset.duplicaciones = numDuplicaciones + 1;
     nuevaPlaca.dataset.duplicaciones = numDuplicaciones + 1;
     nuevaPlaca.dataset.colorOriginal = colorOriginal;
+
+    // Insertamos la nueva placa
     placaOriginal.parentNode.insertBefore(nuevaPlaca, placaOriginal.nextSibling);
 
-    nuevaPlaca.addEventListener('click', () => {
-        duplicarPlaca(nuevaPlaca);
-    });
+    // Eliminamos todos los event listeners de la nueva placa
+    // nuevaPlaca.replaceWith(nuevaPlaca.cloneNode(true)); 
+
+    // Solo agregamos el event listener si es la placa madre original
+    if (!placaOriginal.dataset.colorOriginal) { 
+        nuevaPlaca.addEventListener('click', () => {
+            duplicarPlaca(nuevaPlaca);
+        });
+    }
 }
 
 function eliminarPlaca(placa) {
@@ -262,9 +280,11 @@ function hacerContenedoresSoltables(programacion) {
     });
 }
 
-async function guardarRelacionesEnLocalStorage() { 
+async function guardarRelacionesEnLocalStorage() {
+    saveButton.disabled = true;
+
     const fechaSeleccionada = calendarInput.value;
-    const relaciones = obtenerRelacionesContenedoresPlacas(fechaSeleccionada); 
+    const relaciones = obtenerRelacionesContenedoresPlacas(fechaSeleccionada);
 
     try {
         const response = await fetch('https://esenttiapp-production.up.railway.app/api/programacion', {
@@ -273,9 +293,9 @@ async function guardarRelacionesEnLocalStorage() {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem("authToken")}`
             },
-            body: JSON.stringify({  
- 
-                programacion: relaciones, 
+            body: JSON.stringify({   
+
+                programacion: relaciones,
                 fecha: fechaSeleccionada
             })
         });
@@ -288,18 +308,27 @@ async function guardarRelacionesEnLocalStorage() {
                 title: '¡Éxito!',
                 text: data.message || 'La Pre-programación se guardó correctamente.'
             });
+        } else {
+            // Manejar errores de validación o conflictos en la API
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: data.message || 'Ocurrió un error al guardar la programación. Por favor, revisa los datos e inténtalo de nuevo.'
+            });
         }
 
     } catch (error) {
-
-        // Swal.fire({
-        //     icon: 'error',
-        //     title: '¡Error!',
-        //     text: 'La Pre-programación ya esta creada para esta fecha.'
-        // });
-        // console.error('Error al guardar la programación:', error);
+        Swal.fire({
+            icon: 'error',
+            title: '¡Error!',
+            text: 'Ocurrió un error inesperado al guardar la programación. Por favor, inténtalo de nuevo más tarde.'
+        });
+        console.error('Error al guardar la programación:', error);
+    } finally {
+        saveButton.disabled = false;
     }
 }
+
 
 function obtenerRelacionesContenedoresPlacas() {
     const relaciones = [];
@@ -313,14 +342,15 @@ function obtenerRelacionesContenedoresPlacas() {
             const dropZone = contenedor.querySelector('.placa-drop-zone');
             if (!dropZone) {
                 console.warn(`No se encontró la zona de colocación de placas para el contenedor ${numeroContenedor}`);
-                return;
+                return; 
             }
 
             const placas = dropZone.querySelectorAll('.placa');
             const placasAsociadas = Array.from(placas).map(placa => ({
                 texto: placa.textContent.trim(),
-                colorOriginal: placa.dataset.colorOriginal || "", // Obtener el color original si existe
-                colorActual: placa.style.backgroundColor || ""     // Obtener el color actual de la placa
+                colorOriginal: placa.dataset.colorOriginal || "", 
+                colorActual: placa.style.backgroundColor || "",  
+                numDuplicaciones: placa.dataset.duplicaciones || 0 
             }));
 
             relaciones.push({
@@ -335,100 +365,78 @@ function obtenerRelacionesContenedoresPlacas() {
 
 async function reconstruirRelacionesDesdeLocalStorage() {
     const fechaSeleccionada = calendarInput.value;
-  
+
     try {
-      const response = await fetch(`https://esenttiapp-production.up.railway.app/api/programacion?fecha=${fechaSeleccionada}`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-        }
-      });
-  
-      if (!response.ok) {
-        throw new Error('Error al obtener la pre-programación del servidor');
-      }
-  
-      const data = await response.json();
-
-      const relacionesGuardadas = data.length > 0 ? data[0].programacion : []; 
-  
-      if (relacionesGuardadas && relacionesGuardadas.length > 0) {
-        await new Promise(resolve => setTimeout(resolve, 100)); 
-
-        const placasOriginales = {};
-        document.querySelectorAll('#placas .placa').forEach(placa => {
-          placasOriginales[placa.textContent.trim()] = placa;
-        });
-  
-        relacionesGuardadas.forEach(relacion => {
-          const contenedor = document.getElementById(relacion.contenedor);
-          if (!contenedor) {
-            console.warn(`No se encontró el contenedor con ID ${relacion.contenedor}`);
-            return; 
-          }
-  
-          const dropZone = contenedor.querySelector('.placa-drop-zone');
-          if (!dropZone) {
-            console.warn(`No se encontró la zona de colocación de placas para el contenedor ${relacion.contenedor}`);
-            return; 
-          }
-  
-          relacion.placas.forEach(placaObj => { // placaObj ahora es un objeto
-            const textoPlaca = placaObj.texto; // Extraer el texto de placa del objeto
-    
-            const placaOriginal = placasOriginales[textoPlaca];
-    
-            if (placaOriginal) {
-        
-              const placaExistente = Array.from(dropZone.querySelectorAll('.placa'))
-                .find(placa => placa.textContent.trim() === textoPlaca);
-  
-              if (!placaExistente) { 
-                const nuevaPlaca = placaOriginal.cloneNode(true);
-                dropZone.appendChild(nuevaPlaca);
-  
-                let numDuplicaciones = parseInt(nuevaPlaca.dataset.duplicaciones || 0); 
-                nuevaPlaca.dataset.duplicaciones = numDuplicaciones + 1;
-  
-                switch (numDuplicaciones) {
-                  case 0:
-                    break; 
-                  case 1:
-                    nuevaPlaca.style.backgroundColor = 'green';
-                    break;
-                  case 2:
-                    nuevaPlaca.style.backgroundColor = 'orange';
-                    break;
-                  case 3:
-                    nuevaPlaca.style.backgroundColor = 'red';
-                    break;
-                  case 4:
-                    nuevaPlaca.style.backgroundColor = 'purple';
-                    break;
-                  case 5:
-                    nuevaPlaca.style.backgroundColor = 'black';
-                    break;
-                  default:
-                
-                    console.error("Se ha alcanzado el límite de duplicaciones para esta placa.");
-                    return; 
-                }
-  
-                nuevaPlaca.addEventListener('click', () => {
-                  duplicarPlaca(nuevaPlaca);
-                });
-  
-              } 
-            } else {
-                console.warn(`No se encontró la placa original con texto ${textoPlaca}`);
+        const response = await fetch(`https://esenttiapp-production.up.railway.app/api/programacion?fecha=${fechaSeleccionada}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
             }
         });
-    });
-      }
-  
+
+        if (!response.ok) {
+            throw new Error('Error al obtener la pre-programación del servidor');
+        }
+
+        const data = await response.json();
+        const relacionesGuardadas = data.length > 0 ? data[0].programacion : []; 
+
+        if (relacionesGuardadas && relacionesGuardadas.length > 0) {
+            await new Promise(resolve => setTimeout(resolve, 100)); 
+
+            const placasOriginales = {};
+            document.querySelectorAll('#placas .placa').forEach(placa => {
+                placasOriginales[placa.textContent.trim()] = placa;
+            });
+
+            relacionesGuardadas.forEach(relacion => {
+                const contenedor = document.getElementById(relacion.contenedor);
+                if (!contenedor) {
+                    console.warn(`No se encontró el contenedor con ID ${relacion.contenedor}`);
+                    return; 
+                }
+
+                const dropZone = contenedor.querySelector('.placa-drop-zone');
+                if (!dropZone) {
+                    console.warn(`No se encontró la zona de colocación de placas para el contenedor ${relacion.contenedor}`);
+                    return; 
+                }
+
+                relacion.placas.forEach(placaObj => { 
+                    const textoPlaca = placaObj.texto; 
+                    const colorOriginal = placaObj.colorOriginal;
+                    const colorActual = placaObj.colorActual;
+                    const numDuplicaciones = placaObj.numDuplicaciones; 
+
+                    const placaOriginal = placasOriginales[textoPlaca];
+
+                    if (placaOriginal) {
+                        const placaExistente = Array.from(dropZone.querySelectorAll('.placa'))
+                            .find(placa => placa.textContent.trim() === textoPlaca);
+
+                        if (!placaExistente) { 
+                            const nuevaPlaca = placaOriginal.cloneNode(true);
+                            nuevaPlaca.style.backgroundColor = colorActual; 
+                            nuevaPlaca.dataset.duplicaciones = numDuplicaciones; 
+                            nuevaPlaca.dataset.colorOriginal = colorOriginal; 
+                            dropZone.appendChild(nuevaPlaca);
+
+                            nuevaPlaca.addEventListener('click', () => {
+                                duplicarPlaca(nuevaPlaca);
+                            });
+                        } 
+                    } else {
+                        console.warn(`No se encontró la placa original con texto ${textoPlaca}`);
+                    }
+                });
+            });
+        }
+
     } catch (error) {
-      console.error('Error al obtener o procesar la pre-programación:', error);
+        console.error('Error al obtener o procesar la pre-programación:', error);
     }
-  }
+}
 
-obtenerDatosYCrearInterfaz();
 
+
+
+obtenerDatosYCrearInterfaz(); 
