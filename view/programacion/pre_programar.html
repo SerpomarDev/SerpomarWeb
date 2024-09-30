@@ -145,8 +145,12 @@
             <form id="savePreProgramar" method="POST" enctype="multipart/form-data">
                 <input type="text" name="id_contenedor" id="id_contenedor" hidden>
                 <div class="mb-4">
-                    <label for="fechaProgramacion" class="block text-sm font-medium">Dia y Hora a Programar</label>
+                    <label for="fechaProgramacion" class="block text-sm font-medium">Fecha a Programar</label>
                     <input type="date" id="fecha" name="fecha" class="w-full px-3 py-2 border rounded">
+                </div>
+                <div class="mb-4">
+                    <label for="fechaProgramacion" class="block text-sm font-medium">Hora</label>
+                    <input type="time" id="hora" name="hora" class="w-full px-3 py-2 border rounded">
                 </div>
                 <div class="mb-4">
                     <label for="tipoOperacion" class="block text-sm font-medium">Tipo de Operación</label>
