@@ -287,18 +287,63 @@ async function guardarRelacionesEnLocalStorage() {
     const relaciones = obtenerRelacionesContenedoresPlacas(fechaSeleccionada);
 
     try {
-        const response = await fetch('https://esenttiapp-production.up.railway.app/api/programacion', {
-            method: 'POST',
+        const responseCheck = await fetch(`https://esenttiapp-production.up.railway.app/api/programacion?fecha=${fechaSeleccionada}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            }
+        });
+
+        if (!responseCheck.ok) {
+            throw new Error('Error al verificar la programación en el servidor');
+        }
+
+        const dataCheck = await responseCheck.json();
+        const existeProgramacion = dataCheck.length > 0;
+        let programacionId = null;
+        if (existeProgramacion) {
+            programacionId = dataCheck[0].id; 
+        }
+
+        if (existeProgramacion) {
+            const result = await Swal.fire({
+                icon: 'warning',
+                title: '¿Desea actualizar la Programación existente?',
+                text: 'Si continúa, se sobrescribirán los datos actuales.',
+                showCancelButton: true,
+                confirmButtonText: 'Actualizar',
+                cancelButtonText: 'Cancelar'
+            });
+
+            if (!result.isConfirmed) {
+                saveButton.disabled = false; 
+                return; 
+            }
+        }
+        const method = existeProgramacion ? 'PUT' : 'POST';
+        const endpoint = existeProgramacion
+            ? `https://esenttiapp-production.up.railway.app/api/programacion/${programacionId}`
+            : 'https://esenttiapp-production.up.railway.app/api/programacion';
+
+        const response = await fetch(endpoint, {
+            method: method,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+
             },
-            body: JSON.stringify({   
+            body: JSON.stringify({
 
                 programacion: relaciones,
                 fecha: fechaSeleccionada
             })
         });
+
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            const text = await response.text(); 
+            console.error('La respuesta del servidor no es JSON:', text);
+            throw new Error('La respuesta del servidor no es válida.');
+        }
 
         const data = await response.json();
 
@@ -306,29 +351,33 @@ async function guardarRelacionesEnLocalStorage() {
             Swal.fire({
                 icon: 'success',
                 title: '¡Éxito!',
-                text: data.message || 'La Pre-programación se guardó correctamente.'
+                text: data.message || (existeProgramacion ? 'La Programación se actualizó correctamente.' : 'La Programación se guardó correctamente.')
             });
         } else {
-            // Manejar errores de validación o conflictos en la API
+
+            let errorMessage = 'Ocurrió un error al guardar/actualizar la programación.';
+            if (data && data.message) {
+                errorMessage += ' ' + data.message;
+            }
             Swal.fire({
                 icon: 'error',
                 title: '¡Error!',
-                text: data.message || 'Ocurrió un error al guardar la programación. Por favor, revisa los datos e inténtalo de nuevo.'
+                text: errorMessage
             });
         }
 
     } catch (error) {
+
+        console.error('Error al guardar la programación:', error);
         Swal.fire({
             icon: 'error',
             title: '¡Error!',
-            text: 'Ocurrió un error inesperado al guardar la programación. Por favor, inténtalo de nuevo más tarde.'
+            text: 'Ocurrió un error al comunicarse con el servidor. Por favor, inténtalo de nuevo más tarde.'
         });
-        console.error('Error al guardar la programación:', error);
     } finally {
         saveButton.disabled = false;
     }
 }
-
 
 function obtenerRelacionesContenedoresPlacas() {
     const relaciones = [];
