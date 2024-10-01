@@ -1,0 +1,115 @@
+.hidden {
+    display: none;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.modal-header h2 {
+    margin: 0;
+}
+
+.modal-close {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: #888;
+}
+
+.modal-close:hover {
+    color: #ffffff;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal-footer button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.modal-footer .btn-save {
+    background-color: #007bff;
+    color: white;
+}
+
+.modal-footer .btn-save:hover {
+    background-color: #0056b3;
+}
+
+.modal-footer .btn-close {
+    background-color: #6c757d;
+    color: white;
+}
+
+.modal-footer .btn-close:hover {
+    background-color: #5a6268;
+}
+
+.chat-container {
+    margin-top: 20px;
+    max-height: 300px; /* Ajusta la altura máxima según necesites */
+    overflow-y: auto;
+    border: 1px solid #eaeaea;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.chat-message {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    max-width: 80%;
+}
+
+.chat-message p {
+    margin: 0;
+}
