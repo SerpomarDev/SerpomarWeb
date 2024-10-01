@@ -8,12 +8,14 @@
     <link rel="icon" href="/faviconN.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/modal_comentarios.css" rel="stylesheet" />
     <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style>
         .form-status-container {
             display: flex;
@@ -357,6 +359,7 @@
                                 <i class="fas fa-upload"></i> Adjuntos
                             </button><br><br>
                     <button type="submit" class="btn btn-primary" id="BtnLiquidar">Liquidar SP</button><br><br>
+                    <button type="submit" class="btn btn-primary" id="BtnComentar">Comentarios</button><br><br>
                 </div>
             </div>
         </div>
@@ -389,6 +392,33 @@
             </div>
         </div>
 
+        <!-- Modal Comentarios-->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>NOVEDADES</h2>
+                    <button type="button" class="modal-close" id="close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="saveComentario" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id_solicitud" id="id_solicitud">
+                    <div class="mb-4">
+                        <label for="comentario">Observación</label>
+                        <input type="textare" id="comentario" name="comentario" class="form-control">
+                    </div>
+
+                      <!-- Contenedor de comentarios -->
+                    <div id="chat-container" class="chat-container">
+                        <!-- Aquí se agregarán los comentarios en forma de chat -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn-save">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <div class="container">
             <div id="contenedor"></div>
         </div>
@@ -410,6 +440,7 @@
         <script type="module" src="/js/report/contenedoresSpExcelReport.js"></script>
         <script type="module" src="/js/solicitudes_service/estadosImpo.js"></script>
         <script type="module" src="/js/solicitudes_service/estadosExpo.js"></script>
+        <script type="module" src="/js/contenedor/comentarios.js"></script>
 
 </body>
 
