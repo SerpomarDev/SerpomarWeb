@@ -9,18 +9,16 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="/css/programar.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/tabulator-tables@5.5.1/dist/css/tabulator.min.css" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
 
-     <!-- ag-grid -->
-     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
-     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
 </head>
 
 <body>
     <div id="header-container"></div>
-    <script src="/Componentes/header.js"></script>
-    <script src="/Componentes/perfil.js"></script>
 
     <div class="container mt-5"> 
         <div class="calendar-container">
@@ -31,16 +29,14 @@
             <div class="color-group">
                 <h6><span class="naranja"></span> 3er. Asig</h6>
                 <h6><span class="rojo"></span> 4to. Asig</h6>
-              
             </div>
             <div class="color-group">
                 <h6><span class="morado"></span> 5to. Asig</h6>
                 <h6><span class="negro"></span> 6to. Asig</h6>
             </div>
-            <div class="contador-programa">Total de programaciones: 0</div>
+            <div class="contador-programa">Total programaciones: 0</div>
             <input class="calendar" type="date">
             <input class="save" type="submit">
-           
         </div>
         <div class="row">
             <div class="container1"> 
@@ -83,7 +79,6 @@
                 </div>
             </div>
 
-
             <div class="container1"> 
                 <div class="col-md-2"> 
                     <h5>PLACAS</h5>
@@ -95,23 +90,21 @@
         <br>
         <div class="margenform">
             <div class="container-fluid">
-                <div id="programar" class="ag-theme-alpine" style="height:600px; width: 100%; "></div>
+                <div id="programar"></div> <div id="example-table"></div> 
             </div>
         </div>
     </div>
 
-    
+    <script src="https://cdn.jsdelivr.net/npm/tabulator-tables@5.5.1/dist/js/tabulator.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/Componentes/header.js"></script>
+    <script src="/Componentes/perfil.js"></script>
     <script src="/js/login/logout.js"></script>
     <script src="/Componentes/sidebar.js"></script>
     <script src="/js/programacion/programacion.js"></script>
     <script src="/js/programacion/ver_programacion.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-     <!-- ag-grid -->
-     <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/ag-grid-charts-enterprise@32.1.0/dist/ag-grid-charts-enterprise.js?t=1724946077050"></script>
 
 </body>
 </html>

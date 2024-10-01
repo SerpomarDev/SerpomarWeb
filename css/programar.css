@@ -30,6 +30,7 @@ body {
 }
 
 .calendar-container {
+    margin-right: 50px;
     display: flex;
     flex-direction: row;  /* Colocar elementos en fila */
     align-items: flex-start; /* Alinear al inicio verticalmente */
@@ -39,9 +40,22 @@ body {
 }
 
 .calendar-container h6 {
+
     text-align: right;      /* Alinear texto a la derecha */
     width: 75px;           /* Ancho fijo para alinear */
 }
+
+
+.contador-programa {
+   margin-left: 8%;
+   background: linear-gradient(105deg, #007bff, #ededed81); /* Degradado sutil */
+    color: #000000; /* Texto oscuro para contraste */
+    padding: 15px; /* Espacio interno */
+    border-radius: 10px; /* Bordes ligeramente redondeados */
+    text-align: center; /* Centra el texto */
+    font-size: 16px; /* Tamaño de fuente legible */
+}
+
 
 .calendar {
     display: block; 
@@ -54,7 +68,7 @@ body {
     font-size: 16px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); 
     transition: all 0.3s ease; 
-    background: linear-gradient(105deg, #3fa2ff, #ededed); /* Degradado sutil */
+    background: linear-gradient(105deg, #007bff, #ededed); /* Degradado sutil */
     overflow: hidden; 
 }
 
