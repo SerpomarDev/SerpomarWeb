@@ -110,7 +110,6 @@ function editOrdenseV(id){
     const formData = new FormData(this);
     const jsonData = JSON.stringify(Object.fromEntries(formData));
   
-    console.log(jsonData);
     fetch('https://esenttiapp-production.up.railway.app/api/ordenservicios',{
         method: 'POST',
         headers: { 
