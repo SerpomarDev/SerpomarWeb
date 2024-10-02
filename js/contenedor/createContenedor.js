@@ -5,6 +5,24 @@ let id = urlParams.get("id");
 liquidarSp(id)
 cargarValores(id)
 
+document.addEventListener('DOMContentLoaded', function() {
+  const botonesParaDeshabilitar = JSON.parse(localStorage.getItem('botonesDeshabilitar'));
+
+  if (botonesParaDeshabilitar) {
+      // Iterar sobre la lista de selectores y deshabilitar los botones
+      botonesParaDeshabilitar.forEach(selector => {
+          const button = document.getElementById(selector);
+          if (button) {
+              button.disabled = true;
+              button.style.pointerEvents = 'none';  // Desactivar interacción
+              button.style.opacity = '0.5';
+          }
+      });
+
+     // localStorage.removeItem('botonesDeshabilitar');
+  }
+});
+
 function cargarValores(id){
     fetch(`https://esenttiapp-production.up.railway.app/api/uploadsolisev/${id}`,{
       method: 'GET',

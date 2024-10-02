@@ -21,14 +21,15 @@ $(document).ready(function() {
       resizable: true,
       sort: false,
       columns: [
-          "id", "SP", {
+          "id","SP", {
               name: "Valor Total",
               formatter: (_, row) => `$ ${(row.cells[2].data).toLocaleString()}`
-          }, "Fecha notificación", {
+          }, "Fecha notificación",
+          {
               name: "Numero factura",
               hidden: false,
               formatter: (cell, row) => {
-                  return gridjs.html(`<textarea id="observacion-${row.cells[0].data}"></textarea>`);
+                return gridjs.html(`<input type="text" id="factura-${row.cells[1].data}">`);
               }
           }, {
               name: "Acción",
@@ -36,10 +37,10 @@ $(document).ready(function() {
               formatter: (cell, row) => {
                   return gridjs.h('button', {
                       className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-                      onClick: () => {
-                          const facturaTexto = document.getElementById(`observacion-${row.cells[0].data}`).value;
-                          comentario(row.cells[0].data, facturaTexto);
-                      }
+                      onclick: () => {
+                        const facturaTexto = document.getElementById(`factura-${row.cells[1].data}`).value;
+                        numeroFactura(row.cells[0].data, facturaTexto);
+                    }
                   }, 'Enviar');
               }
           }, {
@@ -81,7 +82,7 @@ $(document).ready(function() {
   localStorage.setItem("authToken", data.token);
 
   function numeroFactura(id, factura) {
-      fetch(`https://esenttiapp-production.up.railway.app/api/ActualizarNfactura/${factura}/${id}`, {
+      fetch(`https://esenttiapp-production.up.railway.app/api/actualizarnfactura/${factura}/${id}`, {
           method: 'PUT',
           headers: {
               'Content-Type': 'application/json',
@@ -100,7 +101,9 @@ $(document).ready(function() {
               text: "Comentario guardado!",
               icon: "success"
           });
-          time()
+          setTimeout(() => {
+            location.reload();
+        }, 1500);
       })
       .catch((error) => {
           console.error('Error al guardar el comentario:', error);
