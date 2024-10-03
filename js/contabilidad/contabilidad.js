@@ -23,7 +23,7 @@ $(document).ready(function() {
       columns: [
           "id","SP", "DO","Cliente",{
               name: "Valor Total",
-              formatter: (_, row) => `$ ${(row.cells[2].data).toLocaleString()}`
+              formatter: (_, row) => `$ ${(row.cells[4].data).toLocaleString()}`
           }, "Fecha notificación",
           {
               name: "Numero factura",
