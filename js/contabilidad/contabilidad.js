@@ -84,6 +84,7 @@ $(document).ready(function() {
   localStorage.setItem("authToken", data.token);
 
   function numeroFactura(id, factura) {
+    
       fetch(`https://esenttiapp-production.up.railway.app/api/actualizarnfactura/${factura}/${id}`, {
           method: 'PUT',
           headers: {

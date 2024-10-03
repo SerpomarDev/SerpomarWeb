@@ -124,7 +124,12 @@ const columnDefs = [
           button.style.cursor = 'pointer';
           button.style.color = '#6495ED';
           button.style.fontWeight = 'bold';
-          button.onclick = () => showOrdenService(params.data.id_primario);
+          button.onclick = () => {
+        
+                const botonesParaDeshabilitar = ['btnVerDetalles', 'BtnLiquidar','BtnSave','contenedor'];
+                localStorage.setItem('botonesDeshabilitar', JSON.stringify(botonesParaDeshabilitar));
+                showOrdenService(params.data.id_primario);
+            }
           return button;
       }
   },
