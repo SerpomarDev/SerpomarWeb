@@ -21,7 +21,7 @@ $(document).ready(function() {
       resizable: true,
       sort: false,
       columns: [
-          "id","SP", {
+          "id","SP", "DO","Cliente",{
               name: "Valor Total",
               formatter: (_, row) => `$ ${(row.cells[2].data).toLocaleString()}`
           }, "Fecha notificación",
@@ -68,6 +68,8 @@ $(document).ready(function() {
                   return data.map((liquidacion) => [
                       liquidacion.id,
                       liquidacion.do_sp,
+                      liquidacion.do_pedido,
+                      liquidacion.cliente,
                       liquidacion.valor_total,
                       liquidacion.fecha_creacion,
                   ]);

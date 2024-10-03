@@ -13,66 +13,95 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 
-     <!-- ag-grid -->
-     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
-     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
-
+    <!-- ag-grid -->
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
 </head>
-<header>
-    <img src="/img/nodhus.png" alt="Nodhus Logo" class="logo" id="nodhus-logo">
 
-</header>
-<div class="dlabnav">
-    <div id="layout">
-
-        <div class="dlabnav" id="sidebar">
-            <div class="dlabnav-scroll sidebar-scroll">
-                <ul class="metismenu" id="menu">
-                    <li id="roles-container"></li>
-                    <li id="menu-items-container"></li>
-                    <nav>
-                        <a href="javascript:void(0)" id="logout-button" class="logout-link" aria-expanded="false">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span class="nav-text">Cerrar Sesión</span>
-                        </a>
-                    </nav>
-                </ul>
-
-            </div>
-        </div>
-    </div>
-</div>
+<div id="header-container"></div>
+<script src="/Componentes/header.js"></script>
+<script src="/Componentes/perfil.js"></script>
 
 <body>
-
-
 
     <div class="header">
         <div class="title-container">
             <div class="circle"></div>
             <h1 class="title">SOLICITUDES CERRADAS</h1>
         </div>
-
     </div>
 
 
     <div class="margenform">
+
+
+        <!-- <div id="content" class="p-4 p-md-5 pt-5">
+            <div class="row invoice-card-row">
+                <div class="col-xl-3 col-xxl-3 col-sm-6">
+                    <div class="card bg-success invoice-card">
+                        <div class="card-body d-flex">
+                            <div class="icon me-3">
+                                <i class="fas fa-pallet text-white" style="font-size: 28px;"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white invoice-num">
+                                    <p id="totalMovimientos"></p>
+                                </h3>
+                                <span class="text-white fs-18">Total de SP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-xl-3 col-xxl-3 col-sm-6">
+                    <div class="card bg-success invoice-card">
+                        <div class="card-body d-flex">
+
+                            <div>
+                                <span class="text-white fs-18">Total Impo y Expo</span>
+                                <canvas id="countimpoexpo"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xl-3 col-xxl-3 col-sm-6">
+                    <div class="card bg-success invoice-card">
+                        <div class="card-body d-flex">
+                            <canvas id="clientesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+        <!-- <div class="container-fluid">
+            <div id="ordenServiceCerradas" class="ag-theme-alpine" style="height:600px; width: 100%; "></div>
+        </div>
+    </div> -->
+
+    <div class="margenform"></div>
         <div class="container-fluid">
             <div id="ordenServiceCerradas" class="ag-theme-alpine" style="height:600px; width: 100%; "></div>
         </div>
     </div>
 
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/Componentes/sidebar.js"></script>
     <script src="/js/login/logout.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-    <script type="text/javascript" src="/js/solicitudes_service/solicitudes_cerradas.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- ag-grid -->
-    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
+    <script type="text/javascript" src="/js/solicitudes_service/solicitudes_cerradas.js"></script>
+     <!-- AG:grid -->
+     <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/ag-grid-charts-enterprise@32.1.0/dist/ag-grid-charts-enterprise.js?t=1724946077050"></script>
 </body>
 
 </html>
