@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title>
+    <link rel="icon" href="/faviconN.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
+    <!-- ag-grid -->
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+
+    <!-- Cargar Firebase App y Firebase Storage desde CDN -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+</head>
+
+<div id="header-container"></div>
+<script src="/Componentes/header.js"></script>
+<script src="/Componentes/perfil.js"></script>
+
+<style>
+    .edit {
+    background: linear-gradient(105deg, #007bff, #ff000081); /* Degradado sutil */
+    color: #fff;
+    margin-top: 0px;
+    margin-right: 50px;
+    padding: 15px 30px; /* Aumenta el padding para mayor área de clic */
+    /* height: 45px;
+    width: 45px; */
+    border: none;
+    border-radius: 10px; /* Bordes más redondeados */
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transiciones suaves */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    text-decoration: none; /* Elimina subrayado si es un enlace */
+    display: flex; /* Para alinear el ícono y el texto */
+  align-items: center; /* Centra verticalmente */
+  text-decoration: none; /* Elimina el subrayado */
+}
+
+.edit:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+    transform: translateY(-2px); /* Efecto de elevación */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+}
+
+.edit:active {
+    transform: translateY(1px); /* Efecto de presionado */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra reducida al presionar */
+}
+
+.edit:focus {
+    outline: none; /* Elimina el contorno de enfoque por defecto */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Añade un contorno de enfoque personalizado */
+}
+
+.edit i {
+    margin-right: 0px; /* Espacio entre el ícono y el texto */
+    color: #ffffff;
+  }
+
+</style>
+<body>
+
+
+    <div class="header">
+        <div class="title-container">
+            <div class="circle"></div>
+            <h1 class="title">ORDEN DE COMPRA</h1>
+        </div>
+    </div>
+    <div id="main-wrapper">
+
+        <div class="margenform">
+            <div id="content" class="p-4 p-md-0 pt-5">
+                <div class="container-fluid main-container">
+                    <div class="edit">
+                        <a href="/view/proveedores/create.html">
+                          <i class="fas fa-edit"></i> 
+                        </a>
+                      </div>
+                      <br>
+                    <form id="createOrdenCompra" method="POST" enctype="multipart/form-data" class="form">
+                        <p class="message">Complete los campos para crear una nueva orden de compra.</p>
+                        <div class="row">
+                        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="full-width">
+                                    <select id="id_proveedor" name="id_proveedor" class="input" required>
+                                        <option value="">Seleccione un Provedor</option>
+                                    </select>
+                                    <span>Provedor</span>
+                                </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                    <input type="text" class="input" id="valor" name="valor" required>
+                                    <span>Valor</span>
+                                </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="full-width">
+                                        <textarea class="input" id="condicion" name="condicion" rows="1"></textarea>
+                                        <span>Condición</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                           
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="full-width">
+                                    <select id="centro_costo" name="centro_costo" class="input" required>
+                                        <option value="">Seleccione un Centro</option>
+                                        <option value="TRANSPORTE">TRANSPORTE</option>
+                                        <option value="SEGURIDAD">SEGURIDAD</option>
+                                        <option value="HSQE">HSQE</option>
+                                        <option value="PROYECTOS">PROYECTOS</option>
+                                        <option value="MANTIMIENTO">MANTIMIENTO</option>
+                                        <option value="GESTION HUMANA">GESTION HUMANA</option>
+                                        <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                    </select>
+                                    <span>Centro de costos</span>
+                                </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="equipo" name="equipo">
+                                        <span>Equipo</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="id_solicitud_servi" name="id_solicitud_servi">
+                                        <span>SP</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="full-width">
+                                    <textarea class="input" id="Observacion" name="Observacion" rows="2"></textarea>
+                                    <span>Observacion</span>
+                                </label>
+                            </div>
+                            <label>
+                                <input type="file" class="input" id="" name="">
+                                <span> ADJUNTA ARCHIVO </span>
+                            </label>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-8">
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <button class="btn btn-primary">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="margenform">
+        <div class="container-fluid">
+            <div id="control_gastos" class="ag-theme-alpine" style="height:500px; width: 100%; "></div>
+        </div>
+    </div>
+
+    <div class="container-fluid main-container">
+        <div style="display: flex; justify-content: center; width: 100%;">
+            <div id="fileUploadModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="title-container">
+                        <h1 class="title">Adjuntar Archivo</h1>
+                    </div>
+                    <form action="#" class="dropzone" id="SaveFile" method="POST">
+                        <input type="hidden" name="id" id="id">
+                        <div class="dz-message">
+                            Arrastra y suelta archivos aquí o haz clic para subir.
+                        </div>
+                    </form>
+                    <div id="uploadedFilesContainer">
+                        <h2>Archivos Adjuntos</h2>
+                        <ul id="uploadedFilesList">
+                            <!-- Aquí se agregarán los archivos subidos -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/Componentes/sidebar.js"></script>
+    <script src="/js/login/logout.js"></script>
+
+
+    <script type="text/javascript" src="/js/cargar/cargarProveedor.js"></script>
+    <script type="text/javascript" src="/js/cargar/uploadSp.js"></script>
+    <script type="text/javascript" src="/js/orden_compra/createOrdenCompra.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="/js/custom.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- ag-grid -->
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
+</body>
+
+</html>
