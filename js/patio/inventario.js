@@ -109,6 +109,7 @@ const columnDefs = [
     { headerName: "Operación", field: "operacion" },
     { headerName: "Estado", field: "lleno_vacio" },
     { headerName: "Fecha Entrada", field: "fecha_entrada" },
+    { headerName: "Dias en patio", field: "cantidad_dias" },
     { 
         headerName: "Fotos", 
         cellRenderer: params => {
@@ -140,6 +141,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
         operacion: ordenCargue.operacion,
         lleno_vacio: ordenCargue.lleno_vacio,
         fecha_entrada: ordenCargue.fecha_entrada,
+        cantidad_dias: ordenCargue.cantidad_dias,
       };
     });
 
@@ -169,11 +171,11 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
         console.error("Error al cargar los datos:", error);
     });
 
-function time() {
-    setTimeout(() => {
-        window.location.href = `/view/patio/inventario.html`;
-    }, 1500);
-}
+// function time() {
+//     setTimeout(() => {
+//         window.location.href = `/view/patio/inventario.html`;
+//     }, 1500);
+// }
 
 // Función para abrir el modal de fotos
 async function abrirModalFotos(id) {
