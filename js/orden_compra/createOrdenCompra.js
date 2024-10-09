@@ -1,5 +1,5 @@
 const columnDefs = [
-    { headerName: "#", field: "id" },
+    { headerName: "OC", field: "id" },
     { headerName: "Nit", field: "nit" },
     { headerName: "Razón Social", field: "razon_social" },
     { headerName: "Valor", field: "valor" },
@@ -7,47 +7,26 @@ const columnDefs = [
     { headerName: "Centro de Costo", field: "centro_costo" },
     { headerName: "Equipo", field: "equipo" },
     { headerName: "SP", field: "sp" },
-    // {
-    //   headerName: "Acciones",
-    //   cellRenderer: params => {
-    //     const div = document.createElement('div');
-  
-    //     // Botón de Actualizar
-    //     const updateButton = document.createElement('a');
-    //     updateButton.href = '/view/proveedores/edit.html';
-    //     updateButton.onclick = function(e) {
-    //       e.preventDefault();
-    //       editProveedor(params.data.id);
-    //     };
-    //     const updateImg = document.createElement('img');
-    //     updateImg.src = '/img/editar-texto.png';
-    //     updateImg.alt = 'Actualizar';
-    //     updateImg.style.width = '20px';
-    //     updateImg.style.height = '20px';
-    //     updateButton.appendChild(updateImg);
-  
-    //     // Botón de Eliminar
-    //     const deleteButton = document.createElement('a');
-    //     deleteButton.href = '/view/proveedores/create.html';
-    //     deleteButton.onclick = function(e) {
-    //       e.preventDefault();
-    //       deleteProveedor(params.data.id);
-    //     };
-    //     const deleteImg = document.createElement('img');
-    //     deleteImg.src = '/img/basura.png';
-    //     deleteImg.alt = 'Eliminar';
-    //     deleteImg.style.width = '20px';
-    //     deleteImg.style.height = '20px';
-    //     deleteButton.appendChild(deleteImg);
-  
-    //     // Agregar botones al contenedor
-    //     div.appendChild(updateButton);
-    //     div.appendChild(deleteButton);
-  
-    //     return div;
-    //   },
-
-    // }
+    { headerName: "Dias pendiente", field: "cantidad_dias" },
+    {
+      headerName: "Soportes",
+      cellRenderer: params => {
+          const button = document.createElement('button');
+          button.className = 'upload-btn no-file';
+          button.innerText = 'Ver Adjuntar';
+          button.onclick = () => uploadId(params.data.id);
+          return button;
+      }
+    },
+    {
+      headerName: "Acciones",
+      cellRenderer: params => {
+          return `
+              <button class="py-2 mb-4 px-4 border rounded bg-blue-600" onclick="aprovarOrdenCompra(${params.data.id})">Aprobar</button>
+              <button class="py-2 mb-4 px-4 border rounded bg-blue-600" onclick="rechazarOrdenCompra(${params.data.id})">Rechazar</button>
+          `;
+      }
+  }
   ];
 
   fetch("https://esenttiapp-production.up.railway.app/api/uploadordencompra",{
@@ -67,6 +46,7 @@ const columnDefs = [
         centro_costo: ordenCompra.centro_costo,
         equipo: ordenCompra.equipo,
         sp: ordenCompra.sp,
+        cantidad_dias: ordenCompra.cantidad_dias,
       };
     });
 
@@ -158,3 +138,11 @@ const columnDefs = [
     $('.close').on('click', function() {
         $('#fileUploadModal').hide();
     });
+
+    function aprovarOrdenCompra(id){
+      aprovarOrdenCompra(id)
+    }
+
+    function rechazarOrdenCompra(id){
+      rechazarOrdenCompra(id)
+    }
