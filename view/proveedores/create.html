@@ -31,8 +31,7 @@
     background: linear-gradient(105deg, #007bff, #ff000081); /* Degradado sutil */
     color: #fff;
     margin-top: 0px;
-    margin-right: 50px;
-    padding: 15px 30px; /* Aumenta el padding para mayor área de clic */
+    padding: 10px 20px; /* Aumenta el padding para mayor área de clic */
     /* height: 45px;
     width: 45px; */
     border: none;
@@ -124,9 +123,15 @@
 
 
                         <div class="row">
-                            <div class="col-md-8">
-                            </div>
                             <div class="col-md-2">
+                                <a href="/view/orden_compra/tablero_costo.html">
+                                    <div class="edit">                      
+                                       Volver
+                                      </div>
+                                    </a>
+                            </div>
+                            <div class="col-md-8"></div>
+                            <div class="col-md-2">   
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Enviar</button>
                                 </div>
@@ -134,10 +139,9 @@
                         </div>
                     </form>
                 </div>
-                <div class="margenform" style="margin-left:15%;">
-                    <div class="container-fluid" >
-                        <div id="proveedores" class="ag-theme-alpine" style="height:400px; width:85%;"></div>
-                    </div>
+                <br>
+                <div class="container">
+                    <div id="proveedores" class="ag-theme-alpine" style="height: 400px; width: 100%;"></div>
                 </div>
             </div>
         </div>
