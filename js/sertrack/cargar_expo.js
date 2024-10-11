@@ -1,5 +1,5 @@
 const columnDefs = [
-    { headerName: "id", field: "id_contenedor", hide: true },
+    { headerName: "id", field: "id", hide: false },
     { headerName: "Pedido", field: "pedido" },
     { headerName: "Orden Servicio", field: "orden_servicio" },
     { headerName: "Fecha Global", field: "fecha_global" },
@@ -52,7 +52,7 @@ const columnDefs = [
     { headerName: "Horas Planta", field: "horas_planta" },
   ];
   
-  fetch("https://esenttiapp-production.up.railway.app/api/uploadpreprogramar", {
+  fetch("http://127.0.0.1:8000/api/planeacion", {
     headers: {
       'Authorization': `Bearer ${localStorage.getItem("authToken")}`
     }
@@ -61,7 +61,7 @@ const columnDefs = [
   .then(data => {
     const processedData = data.map(Preprogramar => {
       return {
-        id_contenedor: Preprogramar.id_contenedor,
+        id: Preprogramar.id,
         pedido: Preprogramar.pedido, 
         orden_servicio: Preprogramar.orden_servicio,
         fecha_global: Preprogramar.fecha_global,
@@ -148,7 +148,7 @@ const columnDefs = [
           cancelButtonText: 'Cancelar'
         }).then((result) => {
           if (result.isConfirmed) {
-            fetch(`https://esenttiapp-production.up.railway.app/api/actualizar-preprogramar/${idContenedor}`, {
+            fetch(`http://127.0.0.1:8000/api/planeacion/${id}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
