@@ -1,21 +1,21 @@
 const columnDefs = [
-    { headerName: "id", field: "id", hide: false },
+    { headerName: "id", field: "id", hide: false}, 
     { headerName: "Pedido", field: "pedido" },
-    { headerName: "Orden Servicio", field: "orden_servicio" },
+
     { headerName: "Fecha Global", field: "fecha_global" },
-    { headerName: "Fecha Programa", field: "fecha_programa" },
-    { headerName: "Confirmacion Traida", field: "confirmacion_traida" },
+    { headerName: "Fecha Programa", field: "fecha_programa",  sort: 'desc' },
+    
     { headerName: "Ingreso Planta", field: "ingreso_planta" },
     { headerName: "Documentos Lleno", field: "documentos_lleno" },
     { headerName: "Cita Puerto", field: "cita_puerto" },
     { headerName: "Observacion OP", field: "observacion_op" },
     { headerName: "Validacion Piso", field: "validacion_piso" },
-    { headerName: "Alerta Repetidos", field: "alerta_repetidos" },
+   
     { headerName: "Remisionado", field: "remisionado" },
-    { headerName: "Modalidad", field: "modalidad" },
+   
     { headerName: "Vehiculo", field: "vehiculo" },
     { headerName: "Conductor", field: "conductor" },
-    { headerName: "Hora Cita KTN", field: "hora_cita_ktn" },
+ 
     { headerName: "Cantidad Cont", field: "cantidad_cont" },
     { headerName: "Incoterms", field: "incoterms" },
     { headerName: "Cliente", field: "cliente" },
@@ -35,24 +35,22 @@ const columnDefs = [
     { headerName: "Corte Documental", field: "corte_documental" },
     { headerName: "Fecha Fisico", field: "fecha_fisico" },
     { headerName: "ETA MN", field: "eta_mn" },
-    { headerName: "Puede Bajar Piso", field: "puede_bajar_piso" },
-    { headerName: "Tipo Modalidad", field: "tipo_modalidad" },
+   
+    { headerName: "Tipo Modalidad", field: "tipo_modalidad"},
     { headerName: "Sitio Cargue", field: "sitio_cargue" },
     { headerName: "Remision", field: "remision" },
     { headerName: "Manifiesto", field: "manifiesto" },
     { headerName: "Dias Libres Piso", field: "dias_libres_piso" },
-    { headerName: "Status", field: "status" },
-    { headerName: "Obs Viaje Fallido", field: "obs_viaje_fallido" },
-    { headerName: "Cumplimiento", field: "cumplimiento" },
+
+   
     { headerName: "Cedula Conductor", field: "cedula_conductor" },
-    { headerName: "Destino2", field: "destino2" },
-    { headerName: "Generador", field: "generador" },
+   
     { headerName: "Estado Operación", field: "estado_operación" },
     { headerName: "On Time", field: "on_time" },
     { headerName: "Horas Planta", field: "horas_planta" },
   ];
   
-  fetch("http://127.0.0.1:8000/api/planeacion", {
+  fetch("https://sertrack-production.up.railway.app/api/planeacion", {
     headers: {
       'Authorization': `Bearer ${localStorage.getItem("authToken")}`
     }
@@ -63,21 +61,20 @@ const columnDefs = [
       return {
         id: Preprogramar.id,
         pedido: Preprogramar.pedido, 
-        orden_servicio: Preprogramar.orden_servicio,
+
         fecha_global: Preprogramar.fecha_global,
         fecha_programa: Preprogramar.fecha_programa,
-        confirmacion_traida: Preprogramar.confirmacion_traida,
         ingreso_planta: Preprogramar.ingreso_planta,
         documentos_lleno: Preprogramar.documentos_lleno,
         cita_puerto: Preprogramar.cita_puerto,
         observacion_op: Preprogramar.observacion_op,
         validacion_piso: Preprogramar.validacion_piso,
-        alerta_repetidos: Preprogramar.alerta_repetidos,
+      
         remisionado: Preprogramar.remisionado,
-        modalidad: Preprogramar.modalidad,
+        
         vehiculo: Preprogramar.vehiculo,
         conductor: Preprogramar.conductor,
-        hora_cita_ktn: Preprogramar.hora_cita_ktn,
+      
         cantidad_cont: Preprogramar.cantidad_cont,
         incoterms: Preprogramar.incoterms,
         cliente: Preprogramar.cliente,
@@ -97,18 +94,16 @@ const columnDefs = [
         corte_documental: Preprogramar.corte_documental,
         fecha_fisico: Preprogramar.fecha_fisico,
         eta_mn: Preprogramar.eta_mn,
-        puede_bajar_piso: Preprogramar.puede_bajar_piso,
-        tipo_modalidad: Preprogramar.tipo_modalidad,
+       
         sitio_cargue: Preprogramar.sitio_cargue,
         remision: Preprogramar.remision,
         manifiesto: Preprogramar.manifiesto,
         dias_libres_piso: Preprogramar.dias_libres_piso,
-        status: Preprogramar.status,
-        obs_viaje_fallido: Preprogramar.obs_viaje_fallido,
-        cumplimiento: Preprogramar.cumplimiento,
+        
+       
+        
         cedula_conductor: Preprogramar.cedula_conductor,
-        destino2: Preprogramar.destino2,
-        generador: Preprogramar.generador,
+      
         estado_operación: Preprogramar.estado_operación,
         on_time: Preprogramar.on_time,
         horas_planta: Preprogramar.horas_planta,
@@ -135,7 +130,7 @@ const columnDefs = [
   
       onCellValueChanged: (event) => {
         const updatedRowData = event.data;
-        const idContenedor = updatedRowData.id_contenedor;
+        const id = updatedRowData.id;
   
         Swal.fire({
           title: '¿Confirmar cambio?',
@@ -148,7 +143,7 @@ const columnDefs = [
           cancelButtonText: 'Cancelar'
         }).then((result) => {
           if (result.isConfirmed) {
-            fetch(`http://127.0.0.1:8000/api/planeacion/${id}`, {
+            fetch(`https://sertrack-production.up.railway.app/api/planeacion/${id}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
