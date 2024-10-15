@@ -140,14 +140,32 @@ function generarGraficoEstadoPrograma(data) {
     // Preparar datos para el gráfico
     const labels = Object.keys(conteo);
     const valores = Object.values(conteo);
-    const colores = {
-        'ASIGNADO-ON TIME': 'rgba(54, 162, 235, 0.2)',
-        'FINALIZADO-ON TIME': 'rgba(75, 192, 192, 0.2)',
-        'FALSE-ON TIME': 'rgba(255, 206, 86, 0.2)',
-    };
+
+    // Crear gradientes para las barras
+    const ctx = document.getElementById('estado-programa').getContext('2d');
+    const gradient1 = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient1.addColorStop(0, '#00bfff');
+    gradient1.addColorStop(1, '#87cefa');
+
+    const gradient2 = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient2.addColorStop(0, '#87cefa');
+    gradient2.addColorStop(1, '#4682b4');
+
+    const gradient3 = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient3.addColorStop(0, '#4682b4');
+    gradient3.addColorStop(1, '#1e90ff');
+
+    // Asignar los gradientes a las barras
+    const backgroundColor = [];
+    for (let i = 0; i < valores.length; i++) {
+        switch (i % 3) {
+            case 0: backgroundColor.push(gradient1); break;
+            case 1: backgroundColor.push(gradient2); break;
+            case 2: backgroundColor.push(gradient3); break;
+        }
+    }
 
     // Crear gráfico con Chart.js
-    const ctx = document.getElementById('estado-programa').getContext('2d');
     new Chart(ctx, {
         type: 'bar',
         data: {
@@ -155,63 +173,37 @@ function generarGraficoEstadoPrograma(data) {
             datasets: [{
                 label: 'Estado del programa',
                 data: valores,
-                backgroundColor: labels.map(label => colores[label] || 'rgba(0, 0, 0, 0.2)'),
-                borderColor: labels.map(label => colores[label] ? colores[label].replace(/0\.2$/, '1') : 'rgba(0, 0, 0, 1)'),
-                borderWidth: 1
+                backgroundColor: backgroundColor,
+                borderColor: 'transparent', // Sin borde para que se vea el gradiente
+                borderWidth: 0,
+                borderRadius: 15,
+                barPercentage: 0.7,
+                categoryPercentage: 0.6
             }]
         },
         options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    precision: 0
-                }
-            },
+            indexAxis: 'y',
+            responsive: true,
             plugins: {
                 legend: {
                     display: false
                 }
-            }
-        }
-    });
-}
-
-function generarGraficoEstadoOperacion(data) {
-    // Filtrar datos por fecha actual (si es necesario)
-    const fechaActual = new Date().toISOString().slice(0, 10);
-    const datosFiltrados = data.filter(item => item.fecha_global.slice(0, 10) === fechaActual);
-
-    // Contar las ocurrencias de cada estado_operacion
-    const estadoOperacionCounts = {};
-    datosFiltrados.forEach(item => {
-        const estado = item.estado_operacion;
-        estadoOperacionCounts[estado] = (estadoOperacionCounts[estado] || 0) + 1;
-    });
-
-    // Preparar los datos para el gráfico
-    const labels = Object.keys(estadoOperacionCounts);
-    const values = Object.values(estadoOperacionCounts);
-
-    // Crear el gráfico de barras
-    const ctx = document.getElementById('estado-operacion').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Total por estado_operacion',
-                data: values,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
+            },
             scales: {
+                x: {
+                    beginAtZero: true,
+                    precision: 0,
+                    grid: {
+                        display: false
+                    }
+                },
                 y: {
                     beginAtZero: true,
-
-                    precision: 0
+                    precision: 0,
+                    grid: {
+                        color: '#e0e0e0',
+                        borderDash: [3, 3]
+                    }
                 }
             }
         }
@@ -222,117 +214,248 @@ function generarGraficoEstadoOperacion(data) {
     // Filtrar datos por fecha actual (si es necesario)
     const fechaActual = new Date().toISOString().slice(0, 10);
     const datosFiltrados = data.filter(item => item.fecha_global.slice(0, 10) === fechaActual);
-
+  
     // Contar las ocurrencias de cada estado_operacion
     const estadoOperacionCounts = {};
     datosFiltrados.forEach(item => {
-        const estado = item.estado_operacion;
-        estadoOperacionCounts[estado] = (estadoOperacionCounts[estado] || 0) + 1;
+      const estado = item.estado_operacion;
+      estadoOperacionCounts[estado] = (estadoOperacionCounts[estado] || 0) + 1;
     });
-
+  
     // Preparar los datos para el gráfico
     const labels = Object.keys(estadoOperacionCounts);
     const values = Object.values(estadoOperacionCounts);
-
-    // Crear el gráfico de barras
+  
+    // Crear gradientes para las barras
     const ctx = document.getElementById('estado-operacion').getContext('2d');
+    const gradient1 = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient1.addColorStop(0, '#00bfff');
+    gradient1.addColorStop(1, '#87cefa');
+  
+    const gradient2 = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient2.addColorStop(0, '#87cefa');
+    gradient2.addColorStop(1, '#4682b4');
+  
+    const gradient3 = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient3.addColorStop(0, '#4682b4');
+    gradient3.addColorStop(1, '#1e90ff');
+  
+    // Asignar los gradientes a las barras
+    const backgroundColor = [];
+    for (let i = 0; i < values.length; i++) {
+      switch (i % 3) {
+        case 0: backgroundColor.push(gradient1); break;
+        case 1: backgroundColor.push(gradient2); break;
+        case 2: backgroundColor.push(gradient3); break;
+      }
+    }
+  
+    // Crear el gráfico de barras
     new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Total por estado_operacion',
-                data: values,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Total por estado_operacion',
+          data: values,
+          backgroundColor: backgroundColor,
+          borderColor: 'transparent', // Sin borde para que se vea el gradiente
+          borderWidth: 0,
+          borderRadius: 15, 
+          barPercentage: 0.7,
+          categoryPercentage: 0.6
+        }]
+      },
+      options: {
+        indexAxis: 'y', // Mostrar el gráfico horizontalmente
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false // Ocultar la leyenda
+          }
         },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-
-                    precision: 0
-                }
+        scales: {
+          x: {
+            beginAtZero: true,
+            precision: 0,
+            grid: {
+              display: false // Ocultar las líneas de la grilla en el eje x
             }
+          },
+          y: {
+            beginAtZero: true,
+            precision: 0,
+            grid: {
+              color: '#e0e0e0', // Color de las líneas de la grilla en el eje y
+              borderDash: [3, 3] // Estilo de línea punteada
+            }
+          }
         }
+      }
     });
-}
+  }
 
-function generarGraficoPuertoIngreso(data) {
+  function generarGraficoPuertoIngreso(data) {
     // Contar las ocurrencias de cada puerto_ingreso
     const puertoIngresoCounts = {};
     data.forEach(item => {
-        const puerto = item.puerto_ingreso;
-        puertoIngresoCounts[puerto] = (puertoIngresoCounts[puerto] || 0) + 1;
+      const puerto = item.puerto_ingreso;
+      puertoIngresoCounts[puerto] = (puertoIngresoCounts[puerto] || 0) + 1;
     });
-
+  
     // Preparar los datos para el gráfico
     const labels = Object.keys(puertoIngresoCounts);
     const values = Object.values(puertoIngresoCounts);
-
+  
+    // Crear gradientes para las barras
+    const ctx = document.getElementById('grafico-puerto-ingreso').getContext('2d');
+    const gradient1 = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient1.addColorStop(0, '#00bfff');
+    gradient1.addColorStop(1, '#87cefa');
+  
+    const gradient2 = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient2.addColorStop(0, '#87cefa');
+    gradient2.addColorStop(1, '#4682b4');
+  
+    const gradient3 = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient3.addColorStop(0, '#4682b4');
+    gradient3.addColorStop(1, '#1e90ff');
+  
+    // Asignar los gradientes a las barras
+    const backgroundColor = [];
+    for (let i = 0; i < values.length; i++) {
+      switch (i % 3) {
+        case 0: backgroundColor.push(gradient1); break;
+        case 1: backgroundColor.push(gradient2); break;
+        case 2: backgroundColor.push(gradient3); break;
+      }
+    }
+  
     // Crear el gráfico de barras vertical
-    const ctx = document.getElementById('grafico-puerto-ingreso').getContext('2d'); 
     new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Cantidad por puerto_ingreso',
-                data: values,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)', 
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Cantidad por puerto_ingreso',
+          data: values,
+          backgroundColor: backgroundColor,
+          borderColor: 'transparent', // Sin borde para que se vea el gradiente
+          borderWidth: 0,
+          borderRadius: 15,
+          barPercentage: 0.7,
+          categoryPercentage: 0.6
+        }]
+      },
+      options: {
+        indexAxis: 'y', // Mostrar el gráfico horizontalmente
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false // Ocultar la leyenda
+          }
         },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    precision: 0 
-                }
+        scales: {
+          x: {
+            beginAtZero: true,
+            precision: 0,
+            grid: {
+              display: false // Ocultar las líneas de la grilla en el eje x
             }
+          },
+          y: {
+            beginAtZero: true,
+            precision: 0,
+            grid: {
+              color: '#e0e0e0', // Color de las líneas de la grilla en el eje y
+              borderDash: [3, 3] // Estilo de línea punteada
+            }
+          }
         }
+      }
     });
-}
+  }
 
-function generarGraficoPatioRetiro(data) {
+  function generarGraficoPatioRetiro(data) {
     // Contar las ocurrencias de cada patio_retiro
     const patioRetiroCounts = {};
     data.forEach(item => {
-        const patio = item.patio_retiro;
-        patioRetiroCounts[patio] = (patioRetiroCounts[patio] || 0) + 1;
+      const patio = item.patio_retiro;
+      patioRetiroCounts[patio] = (patioRetiroCounts[patio] || 0) + 1;
     });
-
+  
     // Preparar los datos para el gráfico
     const labels = Object.keys(patioRetiroCounts);
     const values = Object.values(patioRetiroCounts);
-    const colores = generarColoresAleatorios(labels.length); // Función para generar colores aleatorios
-
-    // Crear el gráfico de pastel
-    const ctx = document.getElementById('grafico-patio-retiro').getContext('2d'); 
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Cantidad por patio_retiro',
-                data: values,
-                backgroundColor: colores, 
-                borderColor: colores.map(color => color.replace(/0\.2$/, '1')), // Ajustar opacidad del borde
-                borderWidth: 1
-            }]
+  
+    // Usar la paleta de colores del ejemplo
+    const colores = [
+      '#00bfff', 
+      '#87cefa', 
+      '#4682b4', 
+      '#1e90ff' 
+    ];
+  
+    // Crear el gráfico de pastel con ECharts
+    const domPatioRetiro = document.getElementById('grafico-patio-retiro');
+    const myChartPatioRetiro = echarts.init(domPatioRetiro);
+  
+    const chartData = labels.map((label, index) => ({
+      value: values[index],
+      name: label,
+      itemStyle: {
+        color: colores[index % colores.length]
+      }
+    }));
+  
+    const option = {
+      title: {
+        text: 'CANTIDAD POR PATIO DE RETIRO',
+        left: 'center',
+        textStyle: {
+          fontSize: 18,
+          fontWeight: 'bold',
+          fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
         },
-        options: {
-            plugins: {
-                legend: {
-                    position: 'right' // Colocar la leyenda a la derecha
-                }
-            }
-        }
-    });
-}
+        padding: [0, 0, 20, 0]
+      },
+      tooltip: {
+        trigger: 'item'
+      },
+      legend: {
+        top: '5%',
+        left: 'center'
+      },
+      series: [{
+        name: 'Cantidad por patio_retiro',
+        type: 'pie',
+        radius: ['40%', '70%'],
+        avoidLabelOverlap: false,
+        itemStyle: {
+          borderRadius: 10,
+          borderColor: '#fff',
+          borderWidth: 5
+        },
+        label: {
+          show: false,
+          position: 'center'
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: 20,
+            fontWeight: 'bold'
+          }
+        },
+        labelLine: {
+          show: false
+        },
+        data: chartData
+      }]
+    };
+  
+    myChartPatioRetiro.setOption(option);
+  }
 
 // Función auxiliar para generar colores aleatorios
 function generarColoresAleatorios(numColores) {
@@ -348,112 +471,249 @@ function generarGraficoOnTime(data) {
     // Contar las ocurrencias de cada on_time
     const onTimeCounts = {};
     data.forEach(item => {
-        const onTime = item.on_time;
-        onTimeCounts[onTime] = (onTimeCounts[onTime] || 0) + 1;
+      const onTime = item.on_time;
+      onTimeCounts[onTime] = (onTimeCounts[onTime] || 0) + 1;
     });
-
+  
     // Preparar los datos para el gráfico
     const labels = Object.keys(onTimeCounts);
     const values = Object.values(onTimeCounts);
-    const colores = generarColoresAleatorios(labels.length); // Función para generar colores aleatorios
-
-    // Crear el gráfico de pastel
-    const ctx = document.getElementById('grafico-on-time').getContext('2d'); 
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Cantidad por on_time',
-                data: values,
-                backgroundColor: colores, 
-                borderColor: colores.map(color => color.replace(/0\.2$/, '1')), // Ajustar opacidad del borde
-                borderWidth: 1
-            }]
+  
+    // Usar la paleta de colores del ejemplo
+    const colores = [
+      '#00bfff', 
+      '#87cefa', 
+      '#4682b4', 
+      '#1e90ff' 
+    ];
+  
+    // Crear el gráfico de pastel con ECharts
+    const domOnTime = document.getElementById('grafico-on-time');
+    const myChartOnTime = echarts.init(domOnTime);
+  
+    const chartData = labels.map((label, index) => ({
+      value: values[index],
+      name: label,
+      itemStyle: {
+        color: colores[index % colores.length]
+      }
+    }));
+  
+    const option = {
+      title: {
+        text: 'CANTIDAD POR ON TIME', // Cambiar el título
+        left: 'center',
+        textStyle: {
+          fontSize: 18,
+          fontWeight: 'bold',
+          fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
         },
-        options: {
-            plugins: {
-                legend: {
-                    position: 'right' // Colocar la leyenda a la derecha
-                }
-            }
-        }
-    });
-}
+        padding: [0, 0, 20, 0]
+      },
+      tooltip: {
+        trigger: 'item'
+      },
+      legend: {
+        top: '5%',
+        left: 'center'
+      },
+      series: [{
+        name: 'Cantidad por on_time',
+        type: 'pie',
+        radius: ['40%', '70%'],
+        avoidLabelOverlap: false,
+        itemStyle: {
+          borderRadius: 10,
+          borderColor: '#fff',
+          borderWidth: 5
+        },
+        label: {
+          show: false,
+          position: 'center'
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: 20,
+            fontWeight: 'bold'
+          }
+        },
+        labelLine: {
+          show: false
+        },
+        data: chartData
+      }]
+    };
+  
+    myChartOnTime.setOption(option);
+  }
 
-function generarGraficoLineaNaviera(data) {
-    // Contar las ocurrencias de cada linea_naviera
+  function generarGraficoLineaNaviera(data) {
+    // Obtener la fecha actual en el formato adecuado
+    const fechaActual = new Date().toISOString().slice(0, 10); // Formato YYYY-MM-DD
+  
+    // Filtrar los datos por la fecha actual
+    const datosFiltrados = data.filter(item => item.fecha_global === fechaActual);
+  
+    // Contar las ocurrencias de cada linea_naviera en los datos filtrados
     const lineaNavieraCounts = {};
-    data.forEach(item => {
-        const linea = item.linea_naviera;
-        lineaNavieraCounts[linea] = (lineaNavieraCounts[linea] || 0) + 1;
+    datosFiltrados.forEach(item => {
+      const linea = item.linea_naviera;
+      lineaNavieraCounts[linea] = (lineaNavieraCounts[linea] || 0) + 1;
     });
-
     // Preparar los datos para el gráfico
     const labels = Object.keys(lineaNavieraCounts);
     const values = Object.values(lineaNavieraCounts);
-    const colores = generarColoresAleatorios(labels.length); // Función para generar colores aleatorios
-
-    // Crear el gráfico de barras
-    const ctx = document.getElementById('grafico-linea-naviera').getContext('2d'); 
-    new Chart(ctx, {
-        type: 'pie', // Tipo de gráfico de barras
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Cantidad por linea_naviera',
-                data: values,
-                backgroundColor: colores, 
-                borderColor: colores.map(color => color.replace(/0\.2$/, '1')), // Ajustar opacidad del borde
-                borderWidth: 1
-            }]
+  
+    // Usar la paleta de colores del ejemplo
+    const colores = [
+      '#00bfff', 
+      '#87cefa', 
+      '#4682b4', 
+      '#1e90ff' 
+    ];
+  
+    // Crear el gráfico de pastel con ECharts
+    const domLineaNaviera = document.getElementById('grafico-linea-naviera');
+    const myChartLineaNaviera = echarts.init(domLineaNaviera);
+  
+    const chartData = labels.map((label, index) => ({
+      value: values[index],
+      name: label,
+      itemStyle: {
+        color: colores[index % colores.length]
+      }
+    }));
+  
+    const option = {
+      title: {
+        text: 'CANTIDAD POR LINEA NAVIERA', // Cambiar el título
+        left: 'center',
+        textStyle: {
+          fontSize: 18,
+          fontWeight: 'bold',
+          fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
         },
-        options: {
-            plugins: {
-                legend: {
-                    position: 'right' // Colocar la leyenda a la derecha
-                }
-            }
-        }
-    });
-}
+        padding: [0, 0, 20, 0]
+      },
+      tooltip: {
+        trigger: 'item'
+      },
+      legend: {
+        top: '5%',
+        left: 'center'
+      },
+      series: [{
+        name: 'Cantidad por linea_naviera',
+        type: 'pie',
+        radius: ['40%', '70%'],
+        avoidLabelOverlap: false,
+        itemStyle: {
+          borderRadius: 10,
+          borderColor: '#fff',
+          borderWidth: 5
+        },
+        label: {
+          show: false,
+          position: 'center'
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: 20,
+            fontWeight: 'bold'
+          }
+        },
+        labelLine: {
+          show: false
+        },
+        data: chartData
+      }]
+    };
+  
+    myChartLineaNaviera.setOption(option);
+  }
 
-function generarGraficoSitioCargue(data) {
+  function generarGraficoSitioCargue(data) {
     // Contar las ocurrencias de cada sitio_cargue
     const sitioCargueCounts = {};
     data.forEach(item => {
-        const sitio = item.sitio_cargue;
-        sitioCargueCounts[sitio] = (sitioCargueCounts[sitio] || 0) + 1;
+      const sitio = item.sitio_cargue;
+      sitioCargueCounts[sitio] = (sitioCargueCounts[sitio] || 0) + 1;
     });
-
+  
     // Preparar los datos para el gráfico
     const labels = Object.keys(sitioCargueCounts);
     const values = Object.values(sitioCargueCounts);
-    const colores = generarColoresAleatorios(labels.length); // Función para generar colores aleatorios
-
-    // Crear el gráfico de barras
-    const ctx = document.getElementById('grafico-sitio-cargue').getContext('2d'); // Asegúrate de que el ID del canvas sea el correcto
-    new Chart(ctx, {
-        type: 'pie', // Tipo de gráfico de barras
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Cantidad por sitio_cargue',
-                data: values,
-                backgroundColor: colores, 
-                borderColor: colores.map(color => color.replace(/0\.2$/, '1')), // Ajustar opacidad del borde
-                borderWidth: 1
-            }]
+  
+    // Usar la paleta de colores del ejemplo
+    const colores = [
+      '#00bfff', 
+      '#87cefa', 
+      '#4682b4', 
+      '#1e90ff' 
+    ];
+  
+    // Crear el gráfico de pastel con ECharts
+    const domSitioCargue = document.getElementById('grafico-sitio-cargue');
+    const myChartSitioCargue = echarts.init(domSitioCargue);
+  
+    const chartData = labels.map((label, index) => ({
+      value: values[index],
+      name: label,
+      itemStyle: {
+        color: colores[index % colores.length]
+      }
+    }));
+  
+    const option = {
+      title: {
+        text: 'CANTIDAD POR SITIO DE CARGUE', // Cambiar el título
+        left: 'center',
+        textStyle: {
+          fontSize: 18,
+          fontWeight: 'bold',
+          fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
         },
-        options: {
-            plugins: {
-                legend: {
-                    position: 'right' // Colocar la leyenda a la derecha
-                }
-            }
-        }
-    });
-}
+        padding: [0, 0, 20, 0]
+      },
+      tooltip: {
+        trigger: 'item'
+      },
+      legend: {
+        top: '5%',
+        left: 'center'
+      },
+      series: [{
+        name: 'Cantidad por sitio_cargue',
+        type: 'pie',
+        radius: ['40%', '70%'],
+        avoidLabelOverlap: false,
+        itemStyle: {
+          borderRadius: 10,
+          borderColor: '#fff',
+          borderWidth: 5
+        },
+        label: {
+          show: false,
+          position: 'center'
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: 20,
+            fontWeight: 'bold'
+          }
+        },
+        labelLine: {
+          show: false
+        },
+        data: chartData
+      }]
+    };
+  
+    myChartSitioCargue.setOption(option);
+  }
 
 function generarTablaDatos(data) {
     // Obtener la fecha actual en formato YYYY-MM-DD
@@ -482,60 +742,94 @@ function generarTablaDatos(data) {
   }
 
 function generarGraficoTotalPorFecha(data) {
-    // Obtener la fecha actual
-    const fechaActual = new Date();
-  
-    // Filtrar los datos de los últimos 30 días
-    const datosUltimos30Dias = data.filter(item => {
-      const fechaItem = new Date(item.fecha_global);
-      const diferenciaDias = (fechaActual - fechaItem) / (1000 * 60 * 60 * 24);
-      return diferenciaDias <= 30;
-    });
-  
-    // Agrupar por fecha y contar las ocurrencias
-    const totalesPorFecha = {};
-    datosUltimos30Dias.forEach(item => {
-      const fecha = item.fecha_global;
-      totalesPorFecha[fecha] = (totalesPorFecha[fecha] || 0) + 1;
-    });
-  
-    // Preparar los datos para el gráfico
-    const labels = Object.keys(totalesPorFecha);
-    const values = Object.values(totalesPorFecha);
-  
-    // Crear el gráfico de barras
-    const ctx = document.getElementById('dias-total-programa').getContext('2d'); // Reemplaza 'miGrafico' con el ID de tu canvas
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Total por fecha',
-          data: values,
-          backgroundColor: 'rgba(54, 162, 235, 0.2)',
-          borderColor: 'rgba(54, 162, 235, 1)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          x: {
-            title: {
-              display: true,
-              text: 'Fecha'
+  const fechaActual = new Date();
+  const datosUltimos30Dias = data.filter(item => {
+    const fechaItem = new Date(item.fecha_global);
+    const diferenciaDias = (fechaActual - fechaItem) / (1000 * 60 * 60 * 24);
+    return diferenciaDias <= 30;
+  });
+
+  const totalesPorFecha = {};
+  datosUltimos30Dias.forEach(item => {
+    const fecha = item.fecha_global;
+    totalesPorFecha[fecha] = (totalesPorFecha[fecha] || 0) + 1;
+  });
+
+  const labels = Object.keys(totalesPorFecha);
+  const values = Object.values(totalesPorFecha);
+
+  const ctx = document.getElementById('dias-total-programa').getContext('2d');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Conteo',
+        data: values,
+        backgroundColor: ['#1e90ff', '#00bfff'],
+        borderColor: ['#00bfff', '#1e90ff'],
+        borderWidth: 1,
+        borderRadius: 10,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false,
+          position: 'top',
+          labels: {
+            color: '#496ecc',
+            font: {
+              size: 12
             }
-          },
-          y: {
-            beginAtZero: true,
-            precision: 0,
-            title: {
-              display: true,
-              text: 'Total'
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(tooltipItem) {
+              return "Solicitudes: " + tooltipItem.raw;
             }
           }
         }
-      }
-    });
-  }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: '#3e4954',
+            font: {
+              size: 10,
+              family: 'poppins',
+              weight: 500
+            },
+            autoSkip: false,
+            maxRotation: 20,
+            minRotation: 20
+          },
+          grid: {
+            display: false
+          }
+        },
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: '#496ecc',
+            font: {
+              size: 13,
+              family: 'poppins',
+              weight: 400
+            }
+          },
+          grid: {
+            color: '#eee'
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+}
 
 fetchData();
