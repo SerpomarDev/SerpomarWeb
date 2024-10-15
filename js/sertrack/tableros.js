@@ -50,34 +50,37 @@ async function fetchData() {
     }
 }
 
-
 function contarRegistrosFechaActual(data) {
-  const fechaActual = new Date().toISOString().slice(0, 10);
-  let contador = 0;
-
-  for (let i = 0; i < data.length; i++) {
-    const fechaIngreso = data[i].fecha_global.slice(0, 10);
-    if (fechaIngreso === fechaActual) {
-      contador++;
+    const fechaActual = new Date().toISOString().slice(0, 10);
+    let contador = 0;
+  
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].fecha_global) { // Verificar si la propiedad existe
+        const fechaIngreso = data[i].fecha_global.slice(0, 10);
+        if (fechaIngreso === fechaActual) {
+          contador++;
+        }
+      }
     }
+  
+    return contador;
   }
-
-  return contador;
-}
-
-function contarRegistrosColocadosFechaActual(data) { 
-  const fechaActual = new Date().toISOString().slice(0, 10);
-  let contador = 0;
-
-  for (let i = 0; i < data.length; i++) {
-    const fechaIngresoPlanta = data[i].ingreso_planta.slice(0, 10);
-    if (fechaIngresoPlanta === fechaActual) { 
-      contador++;
+  
+  function contarRegistrosColocadosFechaActual(data) { 
+    const fechaActual = new Date().toISOString().slice(0, 10);
+    let contador = 0;
+  
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].ingreso_planta) { // Verificar si la propiedad existe
+        const fechaIngresoPlanta = data[i].ingreso_planta.slice(0, 10);
+        if (fechaIngresoPlanta === fechaActual) { 
+          contador++;
+        }
+      }
     }
+  
+    return contador;
   }
-
-  return contador;
-}
 
 function contarDocumentosLlenoFechaActual(data) {
   const fechaActual = new Date().toISOString().slice(0, 10);
