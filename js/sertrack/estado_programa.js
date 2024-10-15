@@ -29,11 +29,9 @@ async function fetchData() {
 
         const data = await response.json();
 
-        // Mostrar resultados numéricos
         const totalPrograma = contarRegistrosFechaActual(data);
-        const totalCargados = contarDocumentosLlenoFechaActual(data);
-       
-        mostrarResultado(totalPrograma, totalCargados);
+        const totalDocumentoLleno = contarDocumentoCargadoFechaActual(data)
+        mostrarResultado(totalPrograma, totalDocumentoLleno); // Actualizar la función mostrarResultado
 
     } catch (error) {
         console.error("Error al obtener los datos:", error);
@@ -47,40 +45,42 @@ function contarRegistrosFechaActual(data) {
   let contador = 0;
 
   for (let i = 0; i < data.length; i++) {
-    const fechaIngreso = data[i].fecha_global.slice(0, 10);
-    if (fechaIngreso === fechaActual) {
-      contador++;
+    if (data[i].fecha_global) { // Verificar si la propiedad existe
+      const fechaIngreso = data[i].fecha_global.slice(0, 10);
+      if (fechaIngreso === fechaActual) {
+        contador++;
+      }
     }
   }
 
   return contador;
 }
 
-function contarDocumentosLlenoFechaActual(data) {
-    const fechaActual = new Date().toISOString().slice(0, 10);
-    let contador = 0;
-  
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].documentos_lleno) { 
-        const fechaDocumentoLleno = data[i].documentos_lleno.slice(0, 10);
-        if (fechaDocumentoLleno === fechaActual) {
-          contador++;
-        }
+function contarDocumentoCargadoFechaActual(data) {
+  const fechaActual = new Date().toISOString().slice(0, 10);
+  let contador = 0;
+
+  for (let i = 0; i < data.length; i++) {
+      if (data[i].fecha_global && data[i].documentos_lleno) {
+          const documentos_lleno = data[i].fecha_global.slice(0, 10);
+          if (documentos_lleno === fechaActual) {
+              contador++;
+          }
       }
-    }
-  
-    return contador;
   }
 
-  function mostrarResultado(totalPrograma, totalCargados) { 
-    document.getElementById("total-programa").textContent = totalPrograma;
-    document.getElementById("total-cargados").textContent = totalCargados;
-  }
-  
-  function mostrarError(mensaje) {
-    document.getElementById("total-programa").textContent = mensaje; 
-    document.getElementById("total-cargados").textContent = mensaje; 
-  }
+  return contador;
+}
+
+function mostrarResultado(totalPrograma, totalDocumentoLleno) { 
+  document.getElementById("total-programa").textContent = totalPrograma;
+  document.getElementById("total-documento-lleno").textContent = totalDocumentoLleno; 
+}
+
+function mostrarError(mensaje) {
+  document.getElementById("total-programa").textContent = mensaje; 
+  document.getElementById("total-documento-lleno").textContent = mensaje; 
+}
 
   fetchData(); 
 

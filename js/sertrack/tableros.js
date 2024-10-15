@@ -28,11 +28,11 @@ async function fetchData() {
 
         // Mostrar resultados numéricos
         const totalPrograma = contarRegistrosFechaActual(data);
-        const totalColocados = contarRegistrosColocadosFechaActual(data);
-        const totalCargados = contarDocumentosLlenoFechaActual(data);
         const totalVehiculos = contarVehiculosFechaActual(data);
-        mostrarResultado(totalPrograma, totalColocados, totalCargados, totalVehiculos);
-
+        const totalIngresoPlanta = contarIngresoPlantaFechaActual(data);
+        const totalDocumentoLleno = contarDocumentoCargadoFechaActual(data)
+        mostrarResultado(totalPrograma, totalVehiculos, totalIngresoPlanta, totalDocumentoLleno); // Actualizar la función mostrarResultado
+    
         // Generar gráficos
         generarGraficoEstadoPrograma(data);
         generarGraficoEstadoOperacion(data);
@@ -65,38 +65,6 @@ function contarRegistrosFechaActual(data) {
   
     return contador;
   }
-  
-  function contarRegistrosColocadosFechaActual(data) { 
-    const fechaActual = new Date().toISOString().slice(0, 10);
-    let contador = 0;
-  
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].ingreso_planta) { // Verificar si la propiedad existe
-        const fechaIngresoPlanta = data[i].ingreso_planta.slice(0, 10);
-        if (fechaIngresoPlanta === fechaActual) { 
-          contador++;
-        }
-      }
-    }
-  
-    return contador;
-  }
-
-function contarDocumentosLlenoFechaActual(data) {
-  const fechaActual = new Date().toISOString().slice(0, 10);
-  let contador = 0;
-
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].documentos_lleno) { 
-      const fechaDocumentoLleno = data[i].documentos_lleno.slice(0, 10);
-      if (fechaDocumentoLleno === fechaActual) {
-        contador++;
-      }
-    }
-  }
-
-  return contador;
-}
 
 function contarVehiculosFechaActual(data) {
   const fechaActual = new Date().toISOString().slice(0, 10);
@@ -112,19 +80,52 @@ function contarVehiculosFechaActual(data) {
   return contador;
 }
 
-function mostrarResultado(totalPrograma, totalColocados, totalCargados, totalVehiculos) { 
+function contarIngresoPlantaFechaActual(data) {
+  const fechaActual = new Date().toISOString().slice(0, 10);
+  let contador = 0;
+
+  for (let i = 0; i < data.length; i++) {
+      if (data[i].fecha_global && data[i].ingreso_planta) {
+          const fechaIngreso = data[i].fecha_global.slice(0, 10);
+          if (fechaIngreso === fechaActual) {
+              contador++;
+          }
+      }
+  }
+
+  return contador;
+}
+
+function contarDocumentoCargadoFechaActual(data) {
+  const fechaActual = new Date().toISOString().slice(0, 10);
+  let contador = 0;
+
+  for (let i = 0; i < data.length; i++) {
+      if (data[i].fecha_global && data[i].documentos_lleno) {
+          const documentos_lleno = data[i].fecha_global.slice(0, 10);
+          if (documentos_lleno === fechaActual) {
+              contador++;
+          }
+      }
+  }
+
+  return contador;
+}
+
+function mostrarResultado(totalPrograma, totalVehiculos, totalIngresoPlanta, totalDocumentoLleno) { 
   document.getElementById("total-programa").textContent = totalPrograma;
-  document.getElementById("total-colocados").textContent = totalColocados;
-  document.getElementById("total-cargados").textContent = totalCargados;
   document.getElementById("total-vehiculos").textContent = totalVehiculos; 
+  document.getElementById("total-ingreso-planta").textContent = totalIngresoPlanta; 
+  document.getElementById("total-documento-lleno").textContent = totalDocumentoLleno; 
 }
 
 function mostrarError(mensaje) {
   document.getElementById("total-programa").textContent = mensaje; 
-  document.getElementById("total-colocados").textContent = mensaje; 
-  document.getElementById("total-cargados").textContent = mensaje; 
   document.getElementById("total-vehiculos").textContent = mensaje; 
+  document.getElementById("total-ingreso-planta").textContent = mensaje;
+  document.getElementById("total-documento-lleno").textContent = mensaje; 
 }
+
 
 
 
