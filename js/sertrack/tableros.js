@@ -1,4 +1,4 @@
-const endpoint = "https://sertrack-production.up.railway.app/api/planeacion";
+const endpoint = "https://sertrack-production.up.railway.app/api/intervalfifteenday";
 
 async function fetchData() {
     const authToken = localStorage.getItem("authToken");
