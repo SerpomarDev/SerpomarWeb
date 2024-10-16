@@ -50,7 +50,7 @@ const columnDefs = [
     { headerName: "Horas Planta", field: "horas_planta" },
   ];
   
-  fetch("https://sertrack-production.up.railway.app/api/planeacion", {
+  fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
     headers: {
       'Authorization': `Bearer ${localStorage.getItem("authToken")}`
     }
