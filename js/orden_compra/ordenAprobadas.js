@@ -17,15 +17,6 @@ const columnDefs = [
           return button;
       }
     },
-//     {
-//       headerName: "Acciones",
-//       cellRenderer: params => {
-//           return `
-//               <button class="py-2 mb-4 px-4 border rounded bg-blue-600" onclick="aprovarOrdenCompra(${params.data.id})">Aprobado</button>
-//               <button class="py-2 mb-4 px-4 border rounded bg-blue-600" onclick="rechazarOrdenCompra(${params.data.id})">Rechazado</button>
-//           `;
-//       }
-//   }
   ];
 
   fetch("https://esenttiapp-production.up.railway.app/api/uploadordenaprobadas",{
