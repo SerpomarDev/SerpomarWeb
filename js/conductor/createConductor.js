@@ -92,8 +92,6 @@ document.getElementById('createConductor').addEventListener('submit', function(e
     const formData = new FormData(this);
     const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-    console.log(jsonData);
-
     fetch('https://esenttiapp-production.up.railway.app/api/conductores', {
         method: 'POST',
         headers: {
@@ -104,15 +102,15 @@ document.getElementById('createConductor').addEventListener('submit', function(e
     })
     .then(response => {
             if (!response.ok) {
-                // Manejo de errores del servidor con más detalle
-                if (response.status === 400) { // Ejemplo: Bad Request
+               
+                if (response.status === 400) { 
                     return response.json().then(data => {
                         throw new Error("Solicitud incorrecta: " + data.message || "Verifique los datos del formulario.");
                     });
                 }
             } else {
                 return response.text().then(text => {
-                    console.log("Respuesta del servidor:", text);
+                   
                     if (text.includes("Conductor creado exitosamente") || text.includes("mensaje de éxito similar del servidor")) {
                         Swal.fire({
                             title: "¡Buen trabajo!",
@@ -121,7 +119,7 @@ document.getElementById('createConductor').addEventListener('submit', function(e
                         });
                         time();
                     } else {
-                        Swal.fire({ // Cambiado a SweetAlert de éxito
+                        Swal.fire({ 
                             title: "¡Bien hecho!",
                             text: "Conductor creado correctamente",
                             icon: "success",
@@ -132,7 +130,7 @@ document.getElementById('createConductor').addEventListener('submit', function(e
             }
         })
         .catch(error => {
-            console.error('Error al crear el conductor:', error);
+           
             Swal.fire({
                 title: "Error",
                 text: error.message || "Hubo un problema al crear la placa. Por favor, inténtalo de nuevo.",
