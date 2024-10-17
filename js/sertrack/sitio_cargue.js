@@ -5,6 +5,8 @@ fetch('https://sertrack-production.up.railway.app/api/sitiocargue')
   })
   .catch(error => {
     console.error('Error al obtener los datos:', error);
+    // En caso de error, generar el gráfico con un array vacío
+    generarGraficoSitioCargue([]); 
   });
 
 function generarGraficoSitioCargue(data) {
@@ -21,8 +23,36 @@ function generarGraficoSitioCargue(data) {
   ];
 
   // Crear el gráfico de pastel con ECharts
-  const domSitioCargue = document.getElementById('grafico-sitio-cargue'); // Asegúrate de tener un elemento con este ID
+  const domSitioCargue = document.getElementById('grafico-sitio-cargue'); 
   const myChartSitioCargue = echarts.init(domSitioCargue);
+
+  // Si no hay datos, mostrar un gráfico vacío con un mensaje
+  if (labels.length === 0) {
+    myChartSitioCargue.setOption({
+      title: {
+        text: 'CANTIDAD POR SITIO DE CARGUE',
+        left: 'center',
+        textStyle: {
+          fontSize: 18,
+          fontWeight: 'bold',
+          fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+        },
+        padding: [0, 0, 20, 0]
+      },
+      series: [{
+        type: 'pie',
+        radius: ['40%', '70%'],
+        label: {
+          show: true,
+          position: 'center',
+          formatter: 'No hay datos disponibles',
+          fontSize: 16
+        },
+        data: [] 
+      }]
+    });
+    return; 
+  }
 
   const chartData = labels.map((label, index) => ({
     value: values[index],
@@ -34,7 +64,7 @@ function generarGraficoSitioCargue(data) {
 
   const option = {
     title: {
-      text: 'CANTIDAD POR SITIO DE CARGUE', // Título del gráfico
+      text: 'CANTIDAD POR SITIO DE CARGUE', 
       left: 'center',
       textStyle: {
         fontSize: 18,

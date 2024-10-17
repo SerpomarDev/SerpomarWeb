@@ -2,12 +2,12 @@ document.addEventListener('DOMContentLoaded', function() {
   generarGraficoEstadoPrograma(); 
 
   function generarGraficoEstadoPrograma() {
-    fetch('https://sertrack-production.up.railway.app/api/lineanaviera')
+    fetch('https://sertrack-production.up.railway.app/api/puertoingreso')
       .then(response => response.json())
       .then(data => {
         // Preparar datos para el gráfico
-        const labels = data.map(item => item.linea_naviera);
-        const valores = data.map(item => item.total_patio_retiro);
+        const labels = data.map(item => item.puerto_ingreso);
+        const valores = data.map(item => item.total_puerto_ingreso);
 
         // Crear gradientes para las barras
         const ctx = document.getElementById('grafico-puerto-ingreso').getContext('2d');

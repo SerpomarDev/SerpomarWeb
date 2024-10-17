@@ -5,6 +5,8 @@ fetch('https://sertrack-production.up.railway.app/api/ontime')
   })
   .catch(error => {
     console.error('Error al obtener los datos:', error);
+    // En caso de error, generar el gráfico con un array vacío
+    generarGraficoOnTime([]); 
   });
 
 function generarGraficoOnTime(data) {
@@ -28,8 +30,36 @@ function generarGraficoOnTime(data) {
   ];
 
   // Crear el gráfico de pastel con ECharts
-  const domOnTime = document.getElementById('grafico-on-time'); // Asegúrate de tener un elemento con este ID
+  const domOnTime = document.getElementById('grafico-on-time'); 
   const myChartOnTime = echarts.init(domOnTime);
+
+  // Si no hay datos, mostrar un gráfico vacío con un mensaje
+  if (labels.length === 0) {
+    myChartOnTime.setOption({
+      title: {
+        text: 'CANTIDAD POR ESTADO DE "ON TIME"',
+        left: 'center',
+        textStyle: {
+          fontSize: 18,
+          fontWeight: 'bold',
+          fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+        },
+        padding: [0, 0, 20, 0]
+      },
+      series: [{
+        type: 'pie',
+        radius: ['40%', '70%'],
+        label: {
+          show: true,
+          position: 'center',
+          formatter: 'No hay datos disponibles',
+          fontSize: 16
+        },
+        data: [] // Datos vacíos
+      }]
+    });
+    return; 
+  }
 
   const chartData = labels.map((label, index) => ({
     value: values[index],
@@ -41,7 +71,7 @@ function generarGraficoOnTime(data) {
 
   const option = {
     title: {
-      text: 'CANTIDAD POR ESTADO DE "ON TIME"', // Título del gráfico
+      text: 'CANTIDAD POR ESTADO DE "ON TIME"', 
       left: 'center',
       textStyle: {
         fontSize: 18,

@@ -5,6 +5,8 @@ fetch('https://sertrack-production.up.railway.app/api/totalpatioretiro')
   })
   .catch(error => {
     console.error('Error al obtener los datos:', error);
+    // En caso de error, generar el gráfico con un array vacío
+    generarGraficoPatioRetiro([]); 
   });
 
 function generarGraficoPatioRetiro(data) {
@@ -23,6 +25,34 @@ function generarGraficoPatioRetiro(data) {
   // Crear el gráfico de pastel con ECharts
   const domPatioRetiro = document.getElementById('grafico-patio-retiro');
   const myChartPatioRetiro = echarts.init(domPatioRetiro);
+
+  // Si no hay datos, mostrar un gráfico vacío con un mensaje
+  if (labels.length === 0) {
+    myChartPatioRetiro.setOption({
+      title: {
+        text: 'CANTIDAD POR PATIO DE RETIRO',
+        left: 'center',
+        textStyle: {
+          fontSize: 18,
+          fontWeight: 'bold',
+          fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+        },
+        padding: [0, 0, 20, 0]
+      },
+      series: [{
+        type: 'pie',
+        radius: ['40%', '70%'],
+        label: {
+          show: true,
+          position: 'center',
+          formatter: 'No hay datos disponibles',
+          fontSize: 16
+        },
+        data: [] 
+      }]
+    });
+    return; 
+  }
 
   const chartData = labels.map((label, index) => ({
     value: values[index],
