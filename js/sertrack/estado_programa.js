@@ -1,12 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
   generarGraficoEstadoPrograma(); 
-function generarGraficoEstadoPrograma() {
-  fetch('https://sertrack-production.up.railway.app/api/estadooperacion')
-    .then(response => response.json())
-    .then(data => {
-      // Preparar datos para el gráfico
-      const labels = data.map(item => item.estado_operacion);
-      const valores = data.map(item => item.total);
+  
+  function generarGraficoEstadoPrograma() {
+    fetch('https://sertrack-production.up.railway.app/api/estadooperacion')
+      .then(response => response.json())
+      .then(data => {
+
+        // Si no hay datos, usar valores por defecto
+        const labels = data.length > 0 ? data.map(item => item.estado_operacion) : ['']; 
+        const valores = data.length > 0 ? data.map(item => item.total) : [0]; 
 
       // Crear gradientes para las barras
       const ctx = document.getElementById('estado-programa').getContext('2d');

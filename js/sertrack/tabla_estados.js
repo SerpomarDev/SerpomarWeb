@@ -20,10 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
     return tableData;
   }
 
-  // Función para crear la tabla dinámica
+  // Función para crear la tabla dinámica (modificada)
   function createTable(tableData) {
-    const tableContainer = document.getElementById('table-container'); // Asegúrate de tener un div con este ID en tu HTML
+    const tableContainer = document.getElementById('table-container');
     const table = document.createElement('table');
+
+    // Crear la estructura de la tabla siempre
     table.innerHTML = `
       <thead>
         <tr>
@@ -35,37 +37,61 @@ document.addEventListener('DOMContentLoaded', () => {
       <tbody>
       </tbody>
     `;
-    const tbody = table.querySelector('tbody');
+    tableContainer.appendChild(table); 
 
-    let total = 0; // Variable para acumular el total
-    for (const key in tableData) {
-      const [estado, onTime] = key.split('-');
+    // Verificar si hay datos
+    if (!tableData || Object.keys(tableData).length === 0) {
+      // Si no hay datos, agregar una fila con el mensaje
+      const tbody = table.querySelector('tbody');
       const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${estado}</td>
-        <td>${onTime}</td>
-        <td>${tableData[key]}</td>
-      `;
+      const cell = document.createElement('td');
+      cell.colSpan = 3; // Para que la celda ocupe las 3 columnas
+      cell.textContent = "Sin datos aún";
+      cell.style.textAlign = "center"; // Centrar el texto
+      row.appendChild(cell);
       tbody.appendChild(row);
-      total += tableData[key]; // Sumar la cantidad al total
+    } else {
+      // Si hay datos, agregar las filas con datos
+      const tbody = table.querySelector('tbody');
+      let total = 0; 
+      for (const key in tableData) {
+        const [estado, onTime] = key.split('-');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${estado}</td>
+          <td>${onTime}</td>
+          <td>${tableData[key]}</td>
+        `;
+        tbody.appendChild(row);
+        total += tableData[key]; 
+      }
+
+      const totalRow = document.createElement('tr');
+      totalRow.innerHTML = `
+        <td>Total</td>
+        <td></td>
+        <td>${total}</td>
+      `;
+      tbody.appendChild(totalRow);
     }
-
-    // Agregar fila con el total
-    const totalRow = document.createElement('tr');
-    totalRow.innerHTML = `
-      <td>Total</td>
-      <td></td>
-      <td>${total}</td>
-    `;
-    tbody.appendChild(totalRow);
-
-    tableContainer.appendChild(table);
   }
 
-  // Obtener los datos y crear la tabla
+  // Obtener los datos y crear la tabla (con manejo de errores)
   fetchData('https://sertrack-production.up.railway.app/api/ontime')
-    .then(data => prepareTableData(data))
+    .then(data => {
+      // Verificar si la respuesta de la API indica un error
+      if (data.message === "No hay datos disponibles.") {
+        // Si hay un mensaje de error, pasar un objeto vacío a createTable
+        return {}; 
+      } else {
+        // Si no hay error, procesar los datos normalmente
+        return prepareTableData(data); 
+      }
+    })
     .then(tableData => createTable(tableData))
-    .catch(error => console.error('Error:', error));
+    .catch(error => {
+      console.error('Error:', error);
+      // En caso de cualquier error, mostrar la tabla sin datos
+      createTable({}); 
+    });
 });
-
