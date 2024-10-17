@@ -75,7 +75,7 @@
         <div class="header">
             <div class="title-container">
                 <div class="circle"></div>
-                <h1 class="title">EXPORTACION</h1>
+                <h1 class="title">LLENOS</h1>
             </div>
         </div>
 
@@ -149,7 +149,7 @@
                             <div class="card progress-card">
                                 <div class="card-body d-flex">
                                     <div class="card-body pb-0 pt-3">
-                                        <div id="table-container"></div> 
+                                        <canvas id="estado-programa"></canvas> 
                                     </div>
                                 </div>
                             </div>
@@ -158,14 +158,9 @@
 
                         <div class="col-md-6">
                             <div class="card progress-card">
-                                <div class="card-header d-flex flex-wrap border-0 pb-0">
-                                    <div class="me-auto mb-sm-0 mb-3">
-                                      <h4 class="card-title mb-2">Estados del Programa</h4>
-                                    </div>
-                                </div>
                                 <div class="card-body d-flex">
                                     <div class="card-body pb-0 pt-3">
-                                        <canvas id="estado-programa"></canvas>
+                                        <canvas id="estado-operacion"></canvas> 
                                      </div>
                                 </div>
                             </div>
@@ -173,11 +168,6 @@
 
                         <div class="col-md-6">
                             <div class="card progress-card">
-                                <div class="card-header d-flex flex-wrap border-0 pb-0">
-                                    <div class="me-auto mb-sm-0 mb-3">
-                                      <h4 class="card-title mb-2">Terminal Portuario</h4>
-                                    </div>
-                                </div>
                                 <div class="card-body d-flex">
                                     <div class="card-body pb-0 pt-3">
                                         <canvas id="grafico-puerto-ingreso"></canvas> 
@@ -188,7 +178,7 @@
 
                         <div class="col-md-6">
                             <div class="card progress-card">
-                               <br>
+                                <br>
                                 <div class="card-body d-flex">
                                     <br>
                                     <div class="card-body pb-0 pt-3">
@@ -274,7 +264,7 @@
                 <div class="card">
                     <div class="card-header d-flex flex-wrap border-0 pb-0">
                         <div class="me-auto mb-sm-0 mb-3">
-                            <h4 class="card-title mb-2">Historico de cargues</h4>
+                            <h4 class="card-title mb-2">Historico de cargues (últimos 30 días)</h4>
                         </div>
                     </div>
 
@@ -290,7 +280,7 @@
     </div>
 
 
-    
+    <script src="/js/sertrack/tableros.js"></script>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -304,16 +294,7 @@
     <script src="/Componentes/sidebar.js"></script>
 
     <script src="/js/custom.min.js"></script>
-    <script src="/js/sertrack/contadores.js"></script>
-    <script src="/js/sertrack/tabla_estados.js"></script>
-    <script src="/js/sertrack/estado_programa.js"></script>
-    <script src="/js/sertrack/terminal_portuario.js"></script>
-    <script src="/js/sertrack/patio_vacio.js"></script>
-    <script src="/js/sertrack/ontime.js"></script>
-    <script src="/js/sertrack/linea_naviera.js"></script>
-    <script src="/js/sertrack/sitio_cargue.js"></script>
-    <script src="/js/sertrack/rango_fecha.js"></script>
-    <script src="/js/sertrack/tabla_programa.js"></script>
+  
 </body>
 
 </html>

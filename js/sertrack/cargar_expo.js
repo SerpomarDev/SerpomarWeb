@@ -43,7 +43,7 @@ const columnDefs = [
     { headerName: "Dias Libres Piso", field: "dias_libres_piso" },
 
    
-    { headerName: "Cedula Conductor", field: "cedula_conductor" },
+    // { headerName: "Cedula Conductor", field: "cedula_conductor" },
    
     { headerName: "Estado Operación", field: "estado_operación" },
     { headerName: "On Time", field: "on_time" },
@@ -102,7 +102,7 @@ const columnDefs = [
         
        
         
-        cedula_conductor: Preprogramar.cedula_conductor,
+        // cedula_conductor: Preprogramar.cedula_conductor,
       
         estado_operación: Preprogramar.estado_operación,
         on_time: Preprogramar.on_time,
