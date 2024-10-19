@@ -45,7 +45,7 @@ const columnDefs = [
    
     // { headerName: "Cedula Conductor", field: "cedula_conductor" },
    
-    { headerName: "Estado Operación", field: "estado_operación" },
+    { headerName: "Estado Operación", field: "estado_operacion" },
     { headerName: "On Time", field: "on_time" },
     { headerName: "Horas Planta", field: "horas_planta" },
   ];
@@ -104,7 +104,7 @@ const columnDefs = [
         
         // cedula_conductor: Preprogramar.cedula_conductor,
       
-        estado_operación: Preprogramar.estado_operación,
+        estado_operacion: Preprogramar.estado_operacion,
         on_time: Preprogramar.on_time,
         horas_planta: Preprogramar.horas_planta,
       };
@@ -113,13 +113,13 @@ const columnDefs = [
     const gridOptions = {
       columnDefs: columnDefs,
       defaultColDef: {
-        resizable: true,
-        sortable: false,
-        filter: "agTextColumnFilter",
-        floatingFilter: true,
-        flex: 1,
-        minWidth: 100,
-        editable: true
+          resizable: true,
+          sortable: false,
+          filter: "agTextColumnFilter",
+          floatingFilter: true,
+          flex: 1,
+          minWidth: 100,
+          editable: true
       },
       rowSelection: 'multiple',
       enableRangeSelection: true,
@@ -129,51 +129,59 @@ const columnDefs = [
       rowData: processedData,
   
       onCellValueChanged: (event) => {
-        const updatedRowData = event.data;
-        const id = updatedRowData.id;
+          const updatedRowData = event.data;
+          const id = updatedRowData.id;
   
-        Swal.fire({
-          title: '¿Confirmar cambio?',
-          text: "Se actualizará la información en la base de datos",
-          icon: 'question',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Sí, confirmar',
-          cancelButtonText: 'Cancelar'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            fetch(`https://sertrack-production.up.railway.app/api/planeacion/${id}`, {
-              method: 'PUT',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-              },
-              body: JSON.stringify(updatedRowData)
+          // Mostrar una notificación toast informando del cambio
+          Swal.fire({
+              title: 'Actualizando...',
+              text: "Se actualizará la información en la base de datos",
+              icon: 'info',
+              timer: 1000, // La alerta se cerrará después de 2 segundos
+              timerProgressBar: true, 
+              toast: true, 
+              position: 'top-end', 
+              showConfirmButton: false // Ocultar el botón de confirmación
+          });
+  
+          // Retrasar la actualización 2 segundos
+          setTimeout(() => {
+              fetch(`https://sertrack-production.up.railway.app/api/planeacion/${id}`, {
+                  method: 'PUT',
+                  headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                  },
+                  body: JSON.stringify(updatedRowData)
+              })
+              .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al actualizar datos');
+                }
+                console.log('Datos actualizados correctamente');
+                // Mostrar notificación de éxito más rápida
+                Swal.fire({
+                    title: '¡Actualizado!',
+                    text: 'El registro ha sido actualizado.',
+                    icon: 'success',
+                    timer: 1000, // 1 segundo (o el tiempo que prefieras)
+                    timerProgressBar: true,
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false
+                }); 
             })
-            .then(response => {
-              if (!response.ok) {
-                throw new Error('Error al actualizar datos');
-              }
-              console.log('Datos actualizados correctamente');
-              Swal.fire(
-                '¡Actualizado!',
-                'El registro ha sido actualizado.',
-                'success'
-              )
-            })
-            .catch(error => {
-              console.error('Error al actualizar datos:', error);
-              Swal.fire(
-                'Error',
-                'No se pudo actualizar el registro.',
-                'error'
-              )
-            });
-          }
-        })
+              .catch(error => {
+                  console.error('Error al actualizar datos:', error);
+                  Swal.fire(
+                      'Error',
+                      'No se pudo actualizar el registro.',
+                      'error'
+                  )
+              });
+          }, 2000); 
       }
-    };
+  };
   
     const eGridDiv = document.getElementById('preprogramar');
     new agGrid.Grid(eGridDiv, gridOptions);

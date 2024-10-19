@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Llamadas a la función fetchData para cada API
-  fetchData('https://sertrack-production.up.railway.app/api/totalcolocados', 'total-ingreso-planta');
+  fetchData('https://sertrack-production.up.railway.app/api/totalcolocados', 'total-documento-lleno');
   fetchData('https://sertrack-production.up.railway.app/api/totalprograma', 'total-programa');
-  fetchData('https://sertrack-production.up.railway.app/api/totalcargados', 'total-documento-lleno');
+  fetchData('https://sertrack-production.up.railway.app/api/totalcargados', 'total-ingreso-planta');
   fetchData('https://sertrack-production.up.railway.app/api/vehiculosoperacion', 'total-vehiculos');
 });
