@@ -84,7 +84,7 @@ document.getElementById("editConductor").addEventListener("submit", function(eve
         if (editConductorForm) { // Check if the element exists
             editConductorForm.reset();
             setTimeout(() => {
-                window.location.href = `/view/seguridad/conductores_crear.html`;
+                window.location.href = `/view/conductores/create.html`;
             }, 1200);
         } else {
             console.error("Error: 'editConductor' element not found.");
