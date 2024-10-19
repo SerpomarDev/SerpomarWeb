@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
                                         <input type="email" class="input" id="email" name="email">
@@ -71,7 +71,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
                                         <input type="number" class="input" id="numero_licencia" name="numero_licencia" >
@@ -87,12 +87,29 @@
                                     </label>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="estudio_seg" name="estudio_seg">
+                                        <span>Estudios SEG</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="poligrafia" name="poligrafia">
+                                        <span>Poligrafia</span>
+                                    </label>
+                                </div>
+                            </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <select id="externo" name="externo" class="form-control">
-                                        <option value="">Seleccione Externo</option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
+                                        <option value="">Seleccione Tipo</option>
+                                        <option value="SI">EXTERNO</option>
+                                        <option value="NO">FIDELIZADO</option>
+                                        <option value="AP">APOYO</option>
                                     </select>
                                 </div>
                             </div>
@@ -100,20 +117,16 @@
                         <br>
 
                         <div class="row">
+                            <div class="col-md-2"> </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-
-                                    <a class="btn btn-primary" href="/view/conductores/create.html">Volver</a>
-
-
+                                    <a class="btn btn-primary" href="/view/seguridad/conductores_crear.html">Volver</a>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-2"> </div>
+                            <div class="col-md-4">
                                 <div class="form-group">
-
-
                                     <button class="btn btn-primary" id="editBtn">Enviar</button>
-
                                 </div>
                             </div>
                         </div>
@@ -133,7 +146,7 @@
 
 
             <script src="/js/custom.min.js"></script>
-            <script type="text/javascript" src="/js/conductor/edtiConductor.js"></script>
+            <script type="text/javascript" src="/js/seguridad/edtiConductorseguridad.js"></script>
             <script type="text/javascript" src="/js/conductor/createConductor.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -183,15 +183,16 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
-                                        <input type="number" class="input" id="telefono" name="telefono">
+                                        <input type="number" class="input" id="telefono" name="telefono" required>
                                         <span>Teléfono</span>
                                     </label>
                                 </div>
                             </div>
+                            
                         </div>
 
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
                                         <input type="email" class="input" id="email" name="email">
@@ -199,7 +200,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
                                         <input type="number" class="input" id="numero_licencia" name="numero_licencia" required>
@@ -207,11 +208,31 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
                                         <input type="date" class="input" id="fecha_vencimiento" name="fecha_vencimiento" required>
                                         <span>Vencemiento licencia</span>
+                                    </label>
+                                </div>
+                            </div>
+                         
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="estudio_seg" name="estudio_seg">
+                                        <span>Estudios SEG</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="poligrafia" name="poligrafia">
+                                        <span>Poligrafia</span>
                                     </label>
                                 </div>
                             </div>
@@ -227,18 +248,14 @@
                             </div>
                         </div>
                         <div class="flex">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <a class="btn btn-primary" href="/view/preventas/index.html">Volver</a>
-
-                                </div>
-                            </div>
-                            <div class="col-md-4">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-2">
                                 <div class="form-group">
 
                                     <button class="btn btn-primary" id="BtnSaveConductor">Enviar</button>
                                 </div>
                             </div>
+                            
                         </div>
                     </form>
                     <div class="">
@@ -249,37 +266,13 @@
             </div>
         </div>
 
-
-        <div class="container-fluid main-container">
-            <div style="display: flex; justify-content: center; width: 100%;">
-                <div id="fileUploadModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <div class="title-container">
-                            <h1 class="title">Adjuntar Archivo</h1>
-                        </div>
-                        <form action="#" class="dropzone" id="SaveFile" method="POST">
-                            <input type="hidden" name="id" id="id">
-                            <div class="dz-message">
-                                Arrastra y suelta archivos aquí o haz clic para subir.
-                            </div>
-                        </form>
-                        <div id="uploadedFilesContainer">
-                            <h2>Archivos Adjuntos</h2>
-                            <ul id="uploadedFilesList">
-                                <!-- Aquí se agregarán los archivos subidos -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
         <script src="/Componentes/sidebar.js"></script>
         <script src="/js/login/logout.js"></script>
         <script src="/js/custom.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-        <script type="text/javascript" src="/js/conductor/createConductor.js"></script>
+        <script type="text/javascript" src="/js/seguridad/createConductorseguridad.js"></script>
         <script type="text/javascript" src="/js/conductor/deleteConductor.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script type="module" src="/js/conductor/conductores_uploadFotos.js"></script>
