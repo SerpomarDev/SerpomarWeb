@@ -266,7 +266,30 @@
             </div>
         </div>
 
-       
+        <div class="container-fluid main-container">
+            <div style="display: flex; justify-content: center; width: 100%;">
+                <div id="fileUploadModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div class="title-container">
+                            <h1 class="title">Adjuntar Archivo</h1>
+                        </div>
+                        <form action="#" class="dropzone" id="SaveFile" method="POST">
+                            <input type="hidden" name="id" id="id">
+                            <div class="dz-message">
+                                Arrastra y suelta archivos aquí o haz clic para subir.
+                            </div>
+                        </form>
+                        <div id="uploadedFilesContainer">
+                            <h2>Archivos Adjuntos</h2>
+                            <ul id="uploadedFilesList">
+                                <!-- Aquí se agregarán los archivos subidos -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <script src="/Componentes/sidebar.js"></script>
         <script src="/js/login/logout.js"></script>
