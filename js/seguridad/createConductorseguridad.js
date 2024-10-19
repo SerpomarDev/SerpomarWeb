@@ -11,7 +11,7 @@ new gridjs.Grid({
     },
     resizable: true,
     sort: false,
-    columns: ["#", "Nombre", "Cedula", "Telefono", "lic. Vence", "Estudio SEG", "Poligrafia", 
+    columns: ["#", "Nombre", "Cedula", "Telefono", "email", "lic. Vence", "lic. Vencemiento", "Estudio SEG", "Poligrafia", 
         {
             name: 'EDIT',
             formatter: (cell, row) => {
@@ -64,6 +64,8 @@ new gridjs.Grid({
                     conductor.nombre,
                     conductor.identificacion,
                     conductor.telefono,
+                    conductor.email,
+                    conductor.numero_licencia,
                     conductor.fecha_vencimiento,
                     conductor.estudio_seg,
                     conductor.poligrafia
