@@ -11,12 +11,22 @@ new gridjs.Grid({
     },
     resizable: true,
     sort: false,
-    columns: ["#", "Nombre", "Cedula", "Telefono", "lic. Vence", "Estudio SEG", "Poligrafia", 
+    columns: ["#", "Nombre", "Cedula", "Telefono", "email", "lic. Vence", "lic. Vencemiento", "Estudio SEG", "Poligrafia", 
         {
-            name: 'EDIT',
+
+            name: 'Documentos',
+            hidden: false,
+            formatter: (cell, row) => {
+                return gridjs.html(
+                    `<button id="btn-${row.cells[0].data}" class="upload-btn no-file" onclick="uploadId(${row.cells[0].data})">Adjuntos</button>`
+                );
+            }
+        },
+        {
+            name: 'Editar',
             formatter: (cell, row) => {
                 return gridjs.h('a', {
-                    href: '/view/seguridad/conductores_edit.html',
+                    href: '/view/conductores/edit.html',
                     onclick: (e) => {
                         e.preventDefault();
                         editConductor(row.cells[0].data);
@@ -31,16 +41,17 @@ new gridjs.Grid({
                 ]);
             },
         }, {
-            name: 'Del',
+            name: 'Eliminar',
+            hidden: true,
             formatter: (cell, row) => {
                 return gridjs.h('a', {
-                    href: '/view/seguridad/conductores_crear.html',
+                    href: '/view/conductores/create.html',
                     onclick: (e) => {
                         e.preventDefault(); // Evita que el enlace se recargue la página
                         deleteCondcutor(row.cells[0].data);
                     }
                 }, [
-                    // Imagen dentro del enlace
+
                     gridjs.h('img', {
                         src: '/img/basura.png',
                         alt: 'eliminar',
@@ -64,6 +75,8 @@ new gridjs.Grid({
                     conductor.nombre,
                     conductor.identificacion,
                     conductor.telefono,
+                    conductor.email,
+                    conductor.numero_licencia,
                     conductor.fecha_vencimiento,
                     conductor.estudio_seg,
                     conductor.poligrafia

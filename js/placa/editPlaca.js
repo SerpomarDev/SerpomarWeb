@@ -27,6 +27,10 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editplaca/${id}`, {
             document.getElementById("numero_poliza").value = placa.numero_poliza
             document.getElementById("tecnomecanica").value = placa.tecnomecanica
             document.getElementById("fecha_vencimientot").value = placa.fecha_vencimientot
+            document.getElementById("gps").value = placa.gps
+            document.getElementById("webgps").value = placa.webgps
+            document.getElementById("usuariogps").value = placa.usuariogps
+            document.getElementById("contrasenagps").value = placa.contrasenagps
 
         } else {
             console.log('La propiedad array no existe en la respuesta');
@@ -35,47 +39,6 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editplaca/${id}`, {
     .catch((error) => {
         console.error('Error:', error);
     });
-
-new gridjs.Grid({
-    search: true,
-    language: {
-        search: {
-            placeholder: '🔍 Buscar...'
-        }
-    },
-    pagination: {
-        limit: 10,
-        enabled: true,
-    },
-    columns: ["Placa", "Eje", "Tipologia", "Propietario", {
-        name: 'Telefono',
-        hidden: true,
-    }],
-    server: {
-        url: "https://esenttiapp-production.up.railway.app/api/showplaca",
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("authToken")}`
-        },
-        then: (data) => {
-            if (Array.isArray(data) && data.length > 0) {
-                return data.map((placa) => [
-                    placa.placa,
-                    placa.eje,
-                    placa.tipologia,
-                    placa.id_aliado,
-                    placa.soat,
-                    placa.fecha_vencimientos,
-                    placa.numero_poliza,
-                    placa.tecnomecanica,
-                    placa.fecha_vencimientot
-                ]);
-            } else {
-                console.error("La respuesta del servidor no contiene datos válidos.");
-                return [];
-            }
-        }
-    }
-}).render(document.getElementById('placaEdit'));
 
 
 document.getElementById("editPlaca").addEventListener("submit", function(event) {

@@ -66,8 +66,24 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
+                                        <input type="email" class="input" id="email" name="email">
+                                        <span>Email</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
                                         <input type="number" class="input" id="numero_licencia" name="numero_licencia" >
                                         <span>No. licencia</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="fecha_vencimiento" name="fecha_vencimiento">
+                                        <span>Vencemiento licencia</span>
                                     </label>
                                 </div>
                             </div>
@@ -87,6 +103,16 @@
                                     </label>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select id="externo" name="externo" class="form-control">
+                                        <option value="">Seleccione Tipo</option>
+                                        <option value="SI">EXTERNO</option>
+                                        <option value="NO">FIDELIZADO</option>
+                                        <option value="AP">APOYO</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <br>
 
@@ -94,7 +120,7 @@
                             <div class="col-md-2"> </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <a class="btn btn-primary" href="/view/seguridad/conductores_crear.html">Volver</a>
+                                    <a class="btn btn-primary" href="/view/conductores/create.html">Volver</a>
                                 </div>
                             </div>
                             <div class="col-md-2"> </div>

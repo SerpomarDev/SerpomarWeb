@@ -14,7 +14,7 @@ new gridjs.Grid({
     columns: [{
             name: 'id',
             hidden: true,
-        }, "Placa", "Eje", "Tipologia", "Propietario","Razon social", "soat", "soat vence", "num. poliza", "tecnomecanica", "tec. vencimiento", {
+        }, "Placa", "Eje", "Tipologia", "Propietario","Razon social", "soat", "soat vence", "num. poliza", "tecnomecanica", "tec. vencimiento", "Plataforma", "Web gps", "Usuario", "Clave", {
 
             name: 'Documentos',
             hidden: false,
@@ -25,7 +25,7 @@ new gridjs.Grid({
             }
         }, {
 
-            name: 'Actualizar',
+            name: 'EDIT',
             formatter: (cell, row) => {
                 return gridjs.h('a', {
                     href: '/view/Placa/edit.html',
@@ -86,7 +86,11 @@ new gridjs.Grid({
                     placa.fecha_vencimientos,
                     placa.numero_poliza,
                     placa.tecnomecanica,
-                    placa.fecha_vencimientot
+                    placa.fecha_vencimientot,
+                    placa.gps,
+                    placa.webgps,
+                    placa.usuario,
+                    placa.contrasenia
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");
