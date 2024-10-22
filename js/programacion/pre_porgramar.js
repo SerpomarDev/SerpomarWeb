@@ -50,7 +50,9 @@ fetch("https://esenttiapp-production.up.railway.app/api/uploadpreprogramar", {
         };
 
         const eGridDiv = document.getElementById('preprogramar');
-        new agGrid.Grid(eGridDiv, gridOptions);
+        // new agGrid.Grid(eGridDiv, gridOptions);
+        new agGrid.createGrid(eGridDiv, gridOptions);
+
     })
     .catch(error => {
         console.error("Error al cargar los datos:", error);

@@ -166,6 +166,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
       // Renderizar la tabla en el contenedor
         const eGridDiv = document.getElementById('inventario');
         new agGrid.Grid(eGridDiv, gridOptions);
+
     })
     .catch(error => {
         console.error("Error al cargar los datos:", error);
