@@ -9,7 +9,7 @@ function DeleteData(id) {
       confirmButtonText: "Sí, eliminarlo"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://esenttiapp-production.up.railway.app/api/deleteby/${id}`, {
+        fetch(`https://esenttiapp-production.up.railway.app/api/delete/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -25,15 +25,15 @@ function DeleteData(id) {
               text: "Tu archivo ha sido eliminado.",
               icon: "success"
             });
-            window.location.href = `/view/preventas/index.html`;
+            // window.location.href = `/view/preventas/index.html`;
           })
           .catch(error => {
             console.error('Error:', error);
-            Swal.fire({
-              title: "¡Error!",
-              text: "Hubo un problema al intentar eliminar el archivo.",
-              icon: "error"
-            });
+            // Swal.fire({
+            //   title: "¡Error!",
+            //   text: "Hubo un problema al intentar eliminar el archivo.",
+            //   icon: "error"
+            // });
           });
       }
     });

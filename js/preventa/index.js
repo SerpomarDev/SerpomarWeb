@@ -11,10 +11,10 @@
                 placeholder: '🔍 Buscar...'
             }
         },
-        // pagination: {
-        //     limit:5,
-        //     enabled: true,
-        // },
+        pagination: {
+            limit:30,
+            enabled: true,
+        },
         sort: false,
         //resizable: true,
         columns: [{
@@ -84,7 +84,6 @@
     }).render(document.getElementById('preventas'));
  }
  
- localStorage.setItem("authToken", data.token);
 
 function editPreventa(id) {
     window.location.href = `/view/preventas/edit.html?id=${id}`
