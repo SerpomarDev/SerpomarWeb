@@ -20,7 +20,7 @@
         columns: [{
             name: "#",
             hidden: true
-        },"Placa","Nombre","Telefono","Ejes","Puerto","Estado","Flota","Esenttia","Cabot",{
+        },"Placa","Nombre","Identificación","Telefono","Ejes","Puerto","Estado","Flota","Esenttia","Cabot",{
           name :'Asignar',
           hidden: true,
           formatter:(cell, row)=>{
@@ -64,6 +64,7 @@
                       preventa.id,
                       preventa.placa,
                       preventa.nombre,
+                      preventa.identificacion,
                       preventa.telefono,
                       preventa.ejes,
                       preventa.puerto,
