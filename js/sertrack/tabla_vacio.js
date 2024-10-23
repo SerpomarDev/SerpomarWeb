@@ -27,6 +27,7 @@ async function generarTablaDatos() {
       fila.insertCell().textContent = item.cliente;
       fila.insertCell().textContent = item.contenedor;
       fila.insertCell().textContent = item.tipo_contenedor;
+      fila.insertCell().textContent = item.naviera;
       fila.insertCell().textContent = item.cutoff;
       fila.insertCell().textContent = item.cantidad_dias;
     });
