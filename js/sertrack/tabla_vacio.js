@@ -14,9 +14,9 @@ async function generarTablaDatos() {
 
     const data = await response.json(); 
 
-// Obtener la tabla HTML y el cuerpo de la tabla (<tbody>)
-const tabla = document.getElementById('tabla-vacio'); // Id corregido
-const tbody = tabla.querySelector('tbody'); 
+  // Obtener la tabla HTML y el cuerpo de la tabla (<tbody>)
+  const tabla = document.getElementById('tabla-vacio'); // Id corregido
+  const tbody = tabla.querySelector('tbody'); 
 
     // Limpiar solo el cuerpo de la tabla (<tbody>)
     tbody.innerHTML = ""; 

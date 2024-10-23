@@ -14,8 +14,8 @@
     <link href="/css/style-Dash.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" 
- href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 
 
 </head>
@@ -123,6 +123,7 @@
                                 <th>Tipo de contenedor</th>
                                 <th>Fecha cutoff</th>
                                 <th>Cantidad de días</th>
+                                <th>fotos</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -137,6 +138,30 @@
         </div>
     </div>
 
+    <div class="container-fluid main-container">
+        <div style="display: flex; justify-content: center; width: 100%;">
+            <div id="fileUploadModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div id="uploadedFilesContainer">
+                        <h2>Fotos Adjuntas</h2>
+                        <div id="uploadedFilesList" class="image-gallery"> </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="detailsModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="closeModal">&times;</span>
+                    <div class="modal-details" id="modalDetailsContent">
+                        <!-- Aquí se cargarán los detalles -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -145,17 +170,15 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <!-- Custom JavaScript -->
-
-
     <script src="/js/login/logout.js"></script>
     <script src="/Componentes/sidebar.js"></script>
     <script src="/js/custom.min.js"></script>
     
-
    
     <script src="/js/sertrack/lleno_total.js"></script>
     <script src="/js/sertrack/tabla_lleno.js"></script>
     <script src="/js/sertrack/naviera_lleno.js"></script>
+    <script type="module" src="/js/patio/uploadFotos.js"></script>
    
 </body>
 
