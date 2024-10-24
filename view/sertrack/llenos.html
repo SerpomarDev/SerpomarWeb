@@ -12,7 +12,7 @@
     <link href="/css/pages.css" rel="stylesheet">
     <link href="/css/vehiculos.css" rel="stylesheet">
     <link href="/css/style-Dash.css" rel="stylesheet" />
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
@@ -37,40 +37,15 @@
         </div>
 
         <div class="margenform">
+
+            <div class="semaforo-container" onclick="openModal()">
+                <div class="notification basic">
+                    <i class="fas fa-bell icon"></i>
+                    <span1>Notificaciones Llenos</span1>
+                </div>
+            </div>
+
             <div class="container-fluid">
-               
-
-                <br>
-                <!-- <div class="calendario-container">
-                    <div class="semaforo-container export">
-                        <input class="calendar" type="date" id="selectorFecha"> 
-                      </div>
-                </div> -->
-
-                <div class="semaforo-container">
-                    <div class="semaforo-container export">
-                        <div class="notification basic" onclick="openModal('export')">
-                            <i class="fas fa-bell icon"></i>
-                            <span1>Notificaciones Llenos</span1>
-                        </div>
-                    </div>
-                   
-                </div>
-
-
-
-
-
-                <!-- Modal -->
-                <div id="notificationModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeModal()">&times;</span>
-                        <h2 id="modalTitle" class="modal-title"></h2>
-                        <div class="semaforo-container" id="modalBody"></div>
-                    </div>
-                </div>
-
-
                 <div class="col-xl-12 col-xxl-12">
                     <div class="row">
 
@@ -178,6 +153,8 @@
     <script src="/js/sertrack/lleno_total.js"></script>
     <script src="/js/sertrack/tabla_lleno.js"></script>
     <script src="/js/sertrack/naviera_lleno.js"></script>
+
+    <script src="/js/sertrack/notificaciones_lleno.js"></script>
     <script type="module" src="/js/patio/uploadFotos.js"></script>
    
 </body>

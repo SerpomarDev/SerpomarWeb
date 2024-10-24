@@ -20,7 +20,10 @@ fetch(`https://esenttiapp-production.up.railway.app/api/uploadaliadoid/${id}`, {
             document.getElementById("id").value = aliado.id;
             document.getElementById("nombre").value = aliado.nombre;
             document.getElementById("razon_social").value = aliado.razon_social;
-            document.getElementById("celular").value = aliado.celular
+            document.getElementById("celular").value = aliado.celular;
+            document.getElementById("tipo_documento").value = tipo_documento.tipo_documento;
+            document.getElementById("identificacion").value = identificacion.identificacion;
+            document.getElementById("estudio_seg").value = aliado.estudio_seg
 
         } else {
             console.log('La propiedad array no existe en la respuesta');
@@ -56,6 +59,9 @@ new gridjs.Grid({
                     aliado.nombre,
                     aliado.rozan_social,
                     aliado.celular,
+                    aliado.tipo_documento,
+                    aliado.identificacion,
+                    aliado.estudio_seg,
                 ]);
             } else {
                 console.error("La respuesta del servidor no contiene datos válidos.");

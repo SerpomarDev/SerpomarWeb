@@ -116,7 +116,15 @@
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
+    cursor: pointer;
 }
+
+.contenedor-alerta {
+    border: 1px solid #ccc; /* Agrega un borde */
+    padding: 10px; /* Agrega un espacio interno */
+    margin-bottom: 5px; /* Agrega un margen inferior */
+    border-radius: 5px; /* Agrega bordes redondeados */
+  }
 
 .notification {
     position: relative;

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" 
  href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <div id="header-container"></div>
@@ -37,39 +37,15 @@
         </div>
 
         <div class="margenform">
+
+            <div class="semaforo-container" onclick="openModal()">
+                <div class="notification basic">
+                    <i class="fas fa-bell icon"></i>
+                    <span1>Notificaciones Vacios</span1>
+                </div>
+            </div>
+
             <div class="container-fluid">
-               
-
-                <br>
-                <!-- <div class="calendario-container">
-                    <div class="semaforo-container export">
-                        <input class="calendar" type="date" id="selectorFecha"> 
-                      </div>
-                </div> -->
-
-                <div class="semaforo-container">
-                    <div class="semaforo-container export">
-                        <div class="notification basic" onclick="openModal('export')">
-                            <i class="fas fa-bell icon"></i>
-                            <span1>Notificaciones Vacio</span1>
-                        </div>
-                    </div>
-                   
-                </div>
-
-
-
-
-
-                <!-- Modal -->
-                <div id="notificationModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeModal()">&times;</span>
-                        <h2 id="modalTitle" class="modal-title"></h2>
-                        <div class="semaforo-container" id="modalBody"></div>
-                    </div>
-                </div>
-
 
                 <div class="col-xl-12 col-xxl-12">
                     <div class="row">
@@ -180,6 +156,7 @@
     <script src="/js/sertrack/vacio_total.js"></script>
     <script src="/js/sertrack/tabla_vacio.js"></script>
     <script src="/js/sertrack/naviera_vacio.js"></script>
+    <script src="/js/sertrack/notificaciones_vacio.js"></script>
    
 </body>
 
