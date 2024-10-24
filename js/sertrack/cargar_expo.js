@@ -45,8 +45,9 @@ const columnDefs = [
    
     // { headerName: "Cedula Conductor", field: "cedula_conductor" },
    
-    { headerName: "Estado Operación", field: "estado_operacion" },
+    //{ headerName: "Estado Operación", field: "estado_operacion" },
     { headerName: "On Time", field: "on_timec" },
+    { headerName: "Estado Operación", field: "estado_operacion" },
     { headerName: "Horas Planta", field: "horas_planta" },
   ];
   
@@ -100,12 +101,11 @@ const columnDefs = [
         manifiesto: Preprogramar.manifiesto,
         dias_libres_piso: Preprogramar.dias_libres_piso,
         
-       
-        
         // cedula_conductor: Preprogramar.cedula_conductor,
       
-        estado_operacion: Preprogramar.estado_operacion,
+        //estado_operacion: Preprogramar.estado_operacion,
         on_timec: Preprogramar.on_timec,
+        estado_operacion: Preprogramar.estado_operacion,
         horas_planta: Preprogramar.horas_planta,
       };
     });
