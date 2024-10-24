@@ -49,6 +49,7 @@ const columnDefs = [
     { headerName: "On Time", field: "on_timec" },
     { headerName: "Estado Operación", field: "estado_operacion" },
     { headerName: "Horas Planta", field: "horas_planta" },
+    { headerName: "Fecha Retiro Vacio", field: "fecha_retiro_vacio" },
   ];
   
   fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
@@ -107,6 +108,7 @@ const columnDefs = [
         on_timec: Preprogramar.on_timec,
         estado_operacion: Preprogramar.estado_operacion,
         horas_planta: Preprogramar.horas_planta,
+        fecha_retiro_vacio: Preprogramar.fecha_retiro_vacio,
       };
     });
   
