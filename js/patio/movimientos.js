@@ -97,6 +97,7 @@ const columnDefs = [
     { headerName: "Estado", field: "lleno_vacio" },
     { headerName: "Fecha Entrada", field: "fecha_entrada" },
     { headerName: "Fecha Salida", field: "fecha_salida" },
+    { headerName: "Observaciones", field: "observaciones" },
     { 
         headerName: "Fotos", 
         cellRenderer: params => {
@@ -129,6 +130,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarhistorico",{
         lleno_vacio: ordenCargue.lleno_vacio,
         fecha_entrada: ordenCargue.fecha_entrada,
         fecha_salida: ordenCargue.fecha_salida,
+        observaciones: ordenCargue.observaciones,
       };
     });
 

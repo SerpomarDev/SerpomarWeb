@@ -110,6 +110,7 @@ const columnDefs = [
     { headerName: "Estado", field: "lleno_vacio" },
     { headerName: "Fecha Entrada", field: "fecha_entrada" },
     { headerName: "Dias en patio", field: "cantidad_dias" },
+    { headerName: "Observaciones", field: "observaciones" },
     { 
         headerName: "Fotos", 
         cellRenderer: params => {
@@ -142,6 +143,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
         lleno_vacio: ordenCargue.lleno_vacio,
         fecha_entrada: ordenCargue.fecha_entrada,
         cantidad_dias: ordenCargue.cantidad_dias,
+        observaciones: ordenCargue.observaciones,
       };
     });
 

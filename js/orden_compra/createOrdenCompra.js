@@ -135,9 +135,9 @@ const columnDefs = [
     }
     
     // Handle modal close
-    $('.close').on('click', function() {
-        $('#fileUploadModal').hide();
-    });
+    // $('.close').on('click', function() {
+    //     $('#fileUploadModal').hide();
+    // });
 
     function aprovarOrdenCompra(id){
       aprovarOrdenCompra(id)
