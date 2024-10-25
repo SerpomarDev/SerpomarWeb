@@ -61,13 +61,13 @@ function generarGraficoTotalPorFecha(data) {
           ticks: {
             color: '#3e4954',
             font: {
-              size: 10,
+              size: 8,
               family: 'poppins',
-              weight: 500
+              weight: 400
             },
             autoSkip: false,
-            maxRotation: 20,
-            minRotation: 20
+            maxRotation: 40,
+            minRotation: 40
           },
           grid: {
             display: false
