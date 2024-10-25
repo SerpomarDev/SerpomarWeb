@@ -13,6 +13,11 @@
     <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <!-- ag-grid -->
+      <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+      <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+    
 
     <style>
         .calendar {
@@ -54,12 +59,6 @@
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); 
     }
 
-    /* .span1{
-        font-size: 25px;
-        font-weight: 700;
-        padding-left: 20px;
-        color: #007bff;
-    } */
     </style>
 
 </head>
@@ -80,44 +79,16 @@
         </div>
 
         <div class="margenform">
+            <div class="semaforo-container" onclick="openModal()">
+                <div class="notification basic">
+                    <i class="fas fa-bell icon"></i>
+                    <span1>Notificaciones Exportación</span1>
+                </div>
+            </div>
+
             <div class="container-fluid">
-               
-
-                <br>
-                <!-- <div class="calendario-container">
-                    <div class="semaforo-container export">
-                        <input class="calendar" type="date" id="selectorFecha"> 
-                      </div>
-                </div> -->
-
-                <div class="semaforo-container">
-                    <div class="semaforo-container export">
-                        <div class="notification basic" onclick="openModal('export')">
-                            <i class="fas fa-bell icon"></i>
-                            <span1>Notificaciones Exportación</span1>
-                        </div>
-                    </div>
-                   
-                </div>
-
-
-
-
-
-                <!-- Modal -->
-                <div id="notificationModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeModal()">&times;</span>
-                        <h2 id="modalTitle" class="modal-title"></h2>
-                        <div class="semaforo-container" id="modalBody"></div>
-                    </div>
-                </div>
-
-
                 <div class="col-xl-12 col-xxl-12">
                     <div class="row">
-
-
                         <div class="col-md-6">
                             <div class="card progress-card">
                               <div class="card-body d-flex">
@@ -145,15 +116,17 @@
                             </div>
                           </div>
 
-                        <div class="col-md-6">
-                            <div class="card progress-card">
-                                <div class="card-body d-flex">
-                                    <div class="card-body pb-0 pt-3">
-                                        <div id="table-container"></div> 
-                                    </div>
-                                </div>
+                      
+                            <div class="col-md-6">
+                                <div class="card">
+                            <div class="card-header d-flex flex-wrap border-0 pb-0">
+                              <div class="me-auto mb-sm-0 mb-3">
+                                <h4 class="card-title mb-2">Estado del Programa</h4>
+                              </div>
                             </div>
+                            <div id="preprogramar" class="ag-theme-alpine" style="height:600px; width: 100%; "></div>
                         </div>
+                          </div>
 
 
                         <div class="col-md-6">
@@ -165,7 +138,7 @@
                                 </div>
                                 <div class="card-body d-flex">
                                     <div class="card-body pb-0 pt-3">
-                                        <canvas id="estado-programa"></canvas>
+                                        <canvas id="estado-operacion"></canvas>
                                      </div>
                                 </div>
                             </div>
@@ -190,10 +163,8 @@
                             <div class="card progress-card">
                                <br>
                                 <div class="card-body d-flex">
-                                    <br>
-                                    <div class="card-body pb-0 pt-3">
-                                        <br>
-                                        <div id="grafico-patio-retiro" style="width: 500px; height: 600px;"></div>
+                                    <div class="card-body pb-0 pt-3" style="height: 600px;">
+                                        <div id="grafico-patio-retiro" class="w-100 h-100"></div>
                                      </div>
                                 </div>
                             </div>
@@ -203,10 +174,8 @@
                             <div class="card progress-card">
                                 <br>
                                 <div class="card-body d-flex">
-                                    <br>
-                                    <div class="card-body pb-0 pt-3">
-                                        <br>
-                                        <div id="grafico-on-time" style="width: 500px; height: 600px;"></div>
+                                    <div class="card-body pb-0 pt-3" style="height: 600px;">
+                                        <div id="grafico-on-time" class="w-100 h-100"></div>
                                     </div>
                                 </div>
                             </div>
@@ -216,10 +185,8 @@
                             <div class="card progress-card">
                                 <br>
                                 <div class="card-body d-flex">
-                                    <br>
-                                    <div class="card-body pb-0 pt-3">
-                                        <br>
-                                        <div id="grafico-linea-naviera" style="width: 500px; height: 600px;"></div>
+                                    <div class="card-body pb-0 pt-3" style="height: 600px;">
+                                        <div id="grafico-linea-naviera" class="w-100 h-100"></div>
                                     </div>
                                 </div>
                             </div>
@@ -229,10 +196,8 @@
                             <div class="card progress-card">
                                 <br>
                                 <div class="card-body d-flex">
-                                    <br>
-                                    <div class="card-body pb-0 pt-3">
-                                        <br>
-                                        <div id="grafico-sitio-cargue" style="width: 500px; height: 600px;"></div>
+                                    <div class="card-body pb-0 pt-3" style="height: 600px;">
+                                        <div id="grafico-sitio-cargue" class="w-100 h-100"></div>
                                      </div>
                                 </div>
                             </div>
@@ -243,31 +208,11 @@
                 <div class="card">
                     <div class="card-header d-flex flex-wrap border-0 pb-0">
                       <div class="me-auto mb-sm-0 mb-3">
-                        <h4 class="card-title mb-2">Detalle del programa</h4>
+                        <h4 class="card-title mb-2">Detalle 
+                 del programa</h4>
                       </div>
                     </div>
-                  
-                    <div class="card-body pb-2">
-                      <table id="detalle-programa"> 
-                        <thead>
-                          <tr>
-                            <th>ID</th>
-                            <th>Pedido</th>
-                            <th>Contenedor</th>
-                            <th>Horas Planta</th>
-                            <th>Fecha Programa</th>
-                            <th>Línea Naviera</th>
-                            <th>Patio Retiro</th>
-                            <th>Puerto Ingreso</th>
-                            <th>Estado Operación</th>
-                            <th>Motonave</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                      </table>
-                    </div>
-                    <br>
+                    <div id="miTabla" class="ag-theme-alpine" style="height:600px; width: 100%; "></div>
                   </div>
 
 
@@ -305,7 +250,7 @@
     <script src="/js/custom.min.js"></script>
     
     <script src="/js/sertrack/contadores.js"></script>
-    <script src="/js/sertrack/tabla_estados.js"></script>
+    <script src="/js/sertrack/cargar_estado.js"></script>
     <script src="/js/sertrack/estado_programa.js"></script>
     <script src="/js/sertrack/terminal_portuario.js"></script>
     <script src="/js/sertrack/patio_vacio.js"></script>
@@ -314,6 +259,10 @@
     <script src="/js/sertrack/sitio_cargue.js"></script>
     <script src="/js/sertrack/rango_fecha.js"></script>
     <script src="/js/sertrack/tabla_programa.js"></script>
+    <script src="/js/sertrack/notificaciones_expo.js"></script>
+
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-charts-enterprise@32.1.0/dist/ag-grid-charts-enterprise.js?t=1724946077050"></script>
 </body>
 
 </html>

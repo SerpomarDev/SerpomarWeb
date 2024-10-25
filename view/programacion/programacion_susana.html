@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title>
+
+    <link rel="icon" href="/faviconN.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/programar.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/tabulator-tables@5.5.1/dist/css/tabulator.min.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+
+</head>
+
+<body>
+    <div id="header-container"></div>
+
+    <div class="container mt-5"> 
+        <div class="calendar-container">
+            <div class="color-group">
+                <h6><span class="azul"></span> 1er. Asig</h6>
+                <h6><span class="verde"></span> 2do. Asig</h6>
+            </div>
+            <div class="color-group">
+                <h6><span class="naranja"></span> 3er. Asig</h6>
+                <h6><span class="rojo"></span> 4to. Asig</h6>
+            </div>
+            <div class="color-group">
+                <h6><span class="morado"></span> 5to. Asig</h6>
+                <h6><span class="negro"></span> 6to. Asig</h6>
+            </div>
+            <div class="contador-programa">Total programaciones: 0</div>
+           
+            <input class="calendar" type="date">
+           
+        </div>
+        <div class="row">
+            <div class="container1"> 
+                <div class="col-md-4"> 
+                    <h5>IMPORTACIÓN</h5>
+                    <ul id="importacion" class="row row-cols-auto">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container1"> 
+                <div class="col-md-4"> 
+                    <h5>EXPORTACION</h5>
+                    <ul id="exportacion" class="row row-cols-auto">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container1"> 
+                <div class="col-md-4"> 
+                    <h5>RETIRO VACIO</h5>
+                    <ul id="retiro-vacio" class="row row-cols-auto">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container1"> 
+                <div class="col-md-4"> 
+                    <h5>TRASLADO</h5>
+                    <ul id="traslado" class="row row-cols-auto">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container1"> 
+                <div class="col-md-4"> 
+                    <h5>DEVOLUCIÓN</h5>
+                    <ul id="devolucion" class="row row-cols-auto">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container1"> 
+                <div class="col-md-2"> 
+                    <h5>PLACAS</h5>
+                    <ul id="placas">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/Componentes/header.js"></script>
+    <script src="/Componentes/perfil.js"></script>
+    <script src="/js/login/logout.js"></script>
+    <script src="/Componentes/sidebar.js"></script>
+
+    <script src="/js/programacion/programacion_susana.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>

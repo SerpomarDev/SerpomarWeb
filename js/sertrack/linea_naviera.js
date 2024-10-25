@@ -5,6 +5,7 @@ fetch('https://sertrack-production.up.railway.app/api/lineanaviera')
   })
   .catch(error => {
     console.error('Error al obtener los datos:', error);
+    generarGraficoLineaNaviera([]); 
   });
 
 function generarGraficoLineaNaviera(data) {

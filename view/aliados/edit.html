@@ -31,7 +31,7 @@
 
         <div class="margenform">
             <div id="content" class="p-4 p-md-5 pt-5">
-                <div class="container">
+                <div class="container-fluid main-container">
                     <form id="editAliado" method="PUT" enctype="multipart/form-data">
                         <input type="hidden" id="id" name="id">
                         <div class="row">
@@ -57,7 +57,50 @@
                                     <input type="text" class="form-control" id="celular" name="celular">
                                 </div>
                             </div>
+                
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Num. Identificacion</label>
+                                        <input type="text" class="form-control" id="identificacion" name="identificacion" required>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Vence estudio de seguridad</label>
+                                        <input type="date" class="form-control" id="estudio_seg" name="estudio_seg" required>
+                                    </label>
+                                </div>
+                            </div>
+                
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Vence estudio de seguridad</label>
+                                        <input type="date" class="form-control" id="estudio_seg" name="estudio_seg" required>
+                                    </label>
+                                </div>
+                            </div>
+                     
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Tipo documento</label>
+                                        <select name="tipo_documento" id="tipo_documento" class="input" required>
+                                            <option value="">Tipo documento</option>
+                                            <option value="CEDULA">CEDULA</option>
+                                            <option value="NIT">NIT</option>
+                                        </select>
+                                      
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
                         <div class="row">
                             <div class="col-10 d-flex justify-content-between">
                                 <button class="btn btn-primary" id="BtnEditAliado">Enviar</button>

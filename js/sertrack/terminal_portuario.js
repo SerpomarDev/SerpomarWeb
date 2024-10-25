@@ -5,9 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('https://sertrack-production.up.railway.app/api/puertoingreso')
       .then(response => response.json())
       .then(data => {
+
+
+         // Si no hay datos, usar valores por defecto
         // Preparar datos para el gráfico
-        const labels = data.map(item => item.puerto_ingreso);
-        const valores = data.map(item => item.total_puerto_ingreso);
+        const labels = data.length > 0 ? data.map(item => item.puerto_ingreso) : [''];
+        const valores = data.length > 0 ? data.map(item => item.total_puerto_ingreso) : [0];
 
         // Crear gradientes para las barras
         const ctx = document.getElementById('grafico-puerto-ingreso').getContext('2d');
