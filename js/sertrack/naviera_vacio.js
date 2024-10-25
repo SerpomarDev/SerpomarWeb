@@ -44,7 +44,7 @@ function generarGraficoLineaNaviera(data) {
 
   const option = {
     title: {
-      text: 'CANTIDAD DE CONTENEDORES POR LINEA NAVIERA', 
+      text: '# CONTENEDORES NAVIERA', 
       left: 'center',
       textStyle: {
         fontSize: 18,

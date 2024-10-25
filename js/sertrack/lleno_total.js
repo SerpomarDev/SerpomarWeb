@@ -95,6 +95,9 @@ function generarGraficoOnTime(data) {
   }));
 
   const option = {
+    responsive: true, // Activa la responsividad
+    maintainAspectRatio: false, // Permite que el gráfico se ajuste al contenedor
+
     title: {
       text: `TOTAL LLENOS EN PATIO: ${totalObjetos}`, 
       left: 'center',

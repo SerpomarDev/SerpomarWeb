@@ -1,4 +1,4 @@
-fetch('https://sertrack-production.up.railway.app/api/ontime')
+fetch('https://sertrack-production.up.railway.app/api/intervalfifteenday')
   .then(response => response.json())
   .then(data => {
     generarGraficoOnTime(data);
@@ -13,7 +13,7 @@ function generarGraficoOnTime(data) {
   // Contar las ocurrencias de cada valor de "on_time"
   const onTimeCounts = {};
   data.forEach(item => {
-    const onTime = item.on_time;
+    const onTime = item.on_timec;
     onTimeCounts[onTime] = (onTimeCounts[onTime] || 0) + 1;
   });
 
