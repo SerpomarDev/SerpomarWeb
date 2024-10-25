@@ -27,7 +27,14 @@ const columnDefs = [
             suppressSorting: true 
         }
     },
-    { headerName: "Cliente", field: "cliente" },
+    { headerName: "Cliente", field: "cliente",
+        filter: 'agSetColumnFilter',
+        hide: true,
+        filterParams: {
+            value: ['ESENTTIA S A'],
+            suppressSorting: true 
+        }
+    },
     { headerName: "Contenedor", field: "contenedor" },
     { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
     { headerName: "Naviera", field: "naviera" },
@@ -85,9 +92,13 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
                 'lleno_vacio': {
                     filterType: 'set',
                     values: ['LLENO'] 
+                },
+                'cliente': {
+                    filterType: 'set',
+                    values: ['ESENTTIA S A'] 
                 }
             });
-        }
+        },
     };
     
     // Renderizar la tabla en el contenedor

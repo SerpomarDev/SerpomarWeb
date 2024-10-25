@@ -11,8 +11,10 @@ const estadosOperacion = [
 const columnDefs = [
   { headerName: "id", field: "id", hide: true },
   { headerName: "Fecha Global", field: "fecha_global", hide: true },
+  { headerName: "PEDIDO", field: "pedido", hide: false },
+  { headerName: "CONTENEDOR", field: "contenedor", hide: false },
   { headerName: "ESTADO OPERACIÓN", field: "estado_operacion", rowGroup: true }, // Agrupar por "Estado Operación"
-  { headerName: "ESTADO", field: "on_timec", hide: true }, // Cambiar el nombre de la columna a "ESTADO"
+  { headerName: "ESTADO", field: "on_timec", hide: false }, // Cambiar el nombre de la columna a "ESTADO"
   {
       headerName: "CANTIDAD",
       aggFunc: "count", hide: true // Usar la función de agregación "count" para contar las filas
@@ -35,6 +37,8 @@ fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
       return {
           id: Preprogramar.id,
           fecha_global: Preprogramar.fecha_global,
+          pedido: Preprogramar.pedido,
+          contenedor: Preprogramar.contenedor,
           estado_operacion: Preprogramar.estado_operacion,
           on_timec: Preprogramar.on_timec,
       };
