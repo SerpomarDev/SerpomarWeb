@@ -30,17 +30,16 @@ function mostrarAlertasCutoff() {
             }
 
             const fechaCutoff = new Date(item.cutoff);
-            fechaCutoff.setDate(fechaCutoff.getDate() - 6); // Restar 6 días a la fecha de cutoff
             const hoy = new Date();
             const diffDias = Math.ceil(Math.abs(hoy - fechaCutoff) / (1000 * 60 * 60 * 24));
             let nivelAlerta;
 
-            if (diffDias === 3) {
-                nivelAlerta = 'Baja';
+            if (diffDias <= 1) {
+                nivelAlerta = 'Crítico';
             } else if (diffDias === 2) {
-                nivelAlerta = 'Alta';
-            } else if (diffDias <= 1) {
-                nivelAlerta = 'Critica';
+                nivelAlerta = 'Medio';
+            } else if (diffDias === 3) {
+                nivelAlerta = 'Bajo';
             } else {
                 return null; // Ignorar si no cumple con las condiciones de alerta
             }
@@ -54,13 +53,13 @@ function mostrarAlertasCutoff() {
 
         console.log("Alertas calculadas:", alertas); 
 
-        const alertasBaja = alertas.filter(item => item.nivelAlerta === 'Baja');
-        const alertasAlta = alertas.filter(item => item.nivelAlerta === 'Alta');
-        const alertasCritica = alertas.filter(item => item.nivelAlerta === 'Critica');
+        const alertasBaja = alertas.filter(item => item.nivelAlerta === 'Bajo');
+        const alertasMedia = alertas.filter(item => item.nivelAlerta === 'Medio'); // Nueva variable para alertas 'Media'
+        const alertasCritica = alertas.filter(item => item.nivelAlerta === 'Crítico');
 
         const htmlAlertasBaja = generarHTMLAlertas(alertasBaja, 'Baja');
-        const htmlAlertasAlta = generarHTMLAlertas(alertasAlta, 'Alta');
-        const htmlAlertasCritica = generarHTMLAlertas(alertasCritica, 'Critica');
+        const htmlAlertasMedia = generarHTMLAlertas(alertasMedia, 'Media'); // Generar HTML para alertas 'Media'
+        const htmlAlertasCritica = generarHTMLAlertas(alertasCritica, 'Crítico');
 
         Swal.fire({
             title: `Alertas de Cutoff`,
@@ -71,8 +70,8 @@ function mostrarAlertasCutoff() {
                         ${htmlAlertasBaja}
                     </div>
                     <div class="contenedor-alerta">
-                        <h3 style="color: orange;">Alta</h3>
-                        ${htmlAlertasAlta}
+                        <h3 style="color: orange;">Media</h3> 
+                        ${htmlAlertasMedia} 
                     </div>
                     <div class="contenedor-alerta">
                         <h3 style="color: red;">Crítica</h3>
@@ -99,11 +98,11 @@ function generarHTMLAlertas(alertas, nivelAlerta) {
         let color = "";
         switch(nivelAlerta) {
             case 'Baja': color = "green"; break;
-            case 'Alta': color = "orange"; break;
-            case 'Critica': color = "red"; break;
+            case 'Media': color = "orange"; break; // Color para alertas 'Media'
+            case 'Crítico': color = "red"; break;
         }
         html += `<li style="color: ${color};">`;
-        html += `Faltan ${item.diasRestantes} días para ingresar de ${item.naviera} - Contenedor: ${item.contenedor}`; 
+        html += `Faltan ${item.diasRestantes} días para el cutoff de ${item.naviera} - Contenedor: ${item.contenedor}`; 
         html += `</li><hr>`;
     });
     html += '</ul>';

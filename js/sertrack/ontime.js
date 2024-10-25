@@ -71,7 +71,7 @@ function generarGraficoOnTime(data) {
 
   const option = {
     title: {
-      text: 'CANTIDAD POR ESTADO DE "ON TIME"', 
+      text: 'CANTIDAD POR ESTADO', 
       left: 'center',
       textStyle: {
         fontSize: 18,

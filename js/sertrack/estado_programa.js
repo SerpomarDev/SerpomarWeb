@@ -1,84 +1,94 @@
 document.addEventListener('DOMContentLoaded', function() {
-  generarGraficoEstadoPrograma(); 
-  
-  function generarGraficoEstadoPrograma() {
-    fetch('https://sertrack-production.up.railway.app/api/estadooperacion')
+  generarGraficoEstadoOperacion();
+
+  function generarGraficoEstadoOperacion() {
+    fetch('https://sertrack-production.up.railway.app/api/intervalfifteenday')
       .then(response => response.json())
       .then(data => {
 
-        // Si no hay datos, usar valores por defecto
-        const labels = data.length > 0 ? data.map(item => item.estado_operacion) : ['']; 
-        const valores = data.length > 0 ? data.map(item => item.total) : [0]; 
+        // Filtrar datos por la fecha actual
+        const fechaActual = new Date().toISOString().slice(0, 10); // Obtener fecha en formato YYYY-MM-DD
+        const datosFiltrados = data.filter(item => item.fecha_global === fechaActual);
 
-      // Crear gradientes para las barras
-      const ctx = document.getElementById('estado-programa').getContext('2d');
-      const gradient1 = ctx.createLinearGradient(0, 0, 0, 400);
-      gradient1.addColorStop(0, '#00bfff');
-      gradient1.addColorStop(1, '#87cefa');
+        // Contar la cantidad de estados de operación
+        const conteoEstados = {};
+        datosFiltrados.forEach(item => {
+          conteoEstados[item.estado_operacion] = (conteoEstados[item.estado_operacion] || 0) + 1;
+        });
 
-      const gradient2 = ctx.createLinearGradient(0, 0, 0, 400);
-      gradient2.addColorStop(0, '#87cefa');
-      gradient2.addColorStop(1, '#4682b4');
+        // Obtener las etiquetas y valores para el gráfico
+        const labels = Object.keys(conteoEstados);
+        const valores = Object.values(conteoEstados);
 
-      const gradient3 = ctx.createLinearGradient(0, 0, 0, 400);
-      gradient3.addColorStop(0, '#4682b4');
-      gradient3.addColorStop(1, '#1e90ff');
+        // Crear gradientes para las barras
+        const ctx = document.getElementById('estado-operacion').getContext('2d');
+        const gradient1 = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient1.addColorStop(0, '#00bfff');
+        gradient1.addColorStop(1, '#87cefa');
 
-      // Asignar los gradientes a las barras
-      const backgroundColor = [];
-      for (let i = 0; i < valores.length; i++) {
-        switch (i % 3) {
-          case 0: backgroundColor.push(gradient1); break;
-          case 1: backgroundColor.push(gradient2); break;
-          case 2: backgroundColor.push(gradient3); break;
+        const gradient2 = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient2.addColorStop(0, '#87cefa');
+        gradient2.addColorStop(1, '#4682b4');
+
+        const gradient3 = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient3.addColorStop(0, '#4682b4');
+        gradient3.addColorStop(1, '#1e90ff');
+
+        // Asignar los gradientes a las barras
+        const backgroundColor = [];
+        for (let i = 0; i < valores.length; i++) {
+          switch (i % 3) {
+            case 0: backgroundColor.push(gradient1); break;
+            case 1: backgroundColor.push(gradient2); break;
+            case 2: backgroundColor.push(gradient3); break;
+          }
         }
-      }
 
-      // Crear gráfico con Chart.js
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: 'Estado del programa',
-            data: valores,
-            backgroundColor: backgroundColor,
-            borderColor: 'transparent', // Sin borde para que se vea el gradiente
-            borderWidth: 0,
-            borderRadius: 15,
-            barPercentage: 0.7,
-            categoryPercentage: 0.6
-          }]
-        },
-        options: {
-          indexAxis: 'y',
-          responsive: true,
-          plugins: {
-            legend: {
-              display: false
-            }
+        // Crear gráfico con Chart.js
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Cantidad de estados',
+              data: valores,
+              backgroundColor: backgroundColor,
+              borderColor: 'transparent', 
+              borderWidth: 0,
+              borderRadius: 15,
+              barPercentage: 0.7,
+              categoryPercentage: 0.6
+            }]
           },
-          scales: {
-            x: {
-              beginAtZero: true,
-              grid: {
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            plugins: {
+              legend: {
                 display: false
-              },
-              ticks: {
-                stepSize: 1  // <-- Aquí se configura el incremento en 1
               }
             },
-            y: {
-              beginAtZero: true,
-              precision: 0,
-              grid: {
-                color: '#e0e0e0',
-                borderDash: [3, 3]
+            scales: {
+              x: {
+                beginAtZero: true,
+                grid: {
+                  display: false
+                },
+                ticks: {
+                  stepSize: 1 
+                }
+              },
+              y: {
+                beginAtZero: true,
+                precision: 0,
+                grid: {
+                  color: '#e0e0e0',
+                  borderDash: [3, 3]
+                }
               }
             }
           }
-        }
+        });
       });
-    });
-}
+  }
 });
