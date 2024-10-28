@@ -1,11 +1,16 @@
 fetch('https://sertrack-production.up.railway.app/api/intervalfifteenday')
   .then(response => response.json())
   .then(data => {
-    generarGraficoOnTime(data);
+    // Obtener la fecha actual en el formato YYYY-MM-DD
+    const fechaActual = new Date().toISOString().slice(0, 10); 
+
+    // Filtrar los datos para incluir solo los de la fecha actual
+    const datosFiltrados = data.filter(item => item.fecha_global === fechaActual);
+
+    generarGraficoOnTime(datosFiltrados); 
   })
   .catch(error => {
     console.error('Error al obtener los datos:', error);
-    // En caso de error, generar el gráfico con un array vacío
     generarGraficoOnTime([]); 
   });
 

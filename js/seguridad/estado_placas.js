@@ -1,103 +1,120 @@
-new gridjs.Grid({
-    search: true,
-    language: {
-      search: {
-        placeholder: '🔍 Buscar...'
-      }
-    },
-    pagination: {
-      limit: 10,
-      enabled: true,
-    },
-    resizable: true,
-    sort: false,
-    columns: [
-      "#",
-      "Placa",
-      "Vence Soat",
-      "Vence Tecnicomecanica",
-      {
-        name: 'ON / OFF',
-        formatter: (cell, row) => {
-          const inactivo = row.cells[4].data; // ¡Corregido! Índice 4 en lugar de 5 (0-indexado)
-  
-          let inputElement;
-  
-          const switchElement = gridjs.h('label', { class: 'switch' }, [
-            gridjs.h('input', {
-              type: 'checkbox',
-              checked: !inactivo,
-              ref: (el) => { inputElement = el },
-              onchange: () => {
+
+  const columnDefs = [
+    { headerName: "#", field: "id_placa", hide: true }, 
+    { headerName: "Placa", field: "placa" },
+    { headerName: "Vence Soat", field: "fecha_vencimientos" },
+    { headerName: "Vence Tecno", field: "fecha_vencimientot" },
+    { 
+        headerName: "Acciones", 
+        cellRenderer: params => {
+            const container = document.createElement('div');
+            container.style.display = 'flex';
+            container.style.alignItems = 'center';
+
+            // Switch para activar/desactivar conductor
+            const switchLabel = document.createElement('label');
+            switchLabel.classList.add('switch');
+            const inputElement = document.createElement('input');
+            inputElement.type = 'checkbox';
+            inputElement.checked = !params.data.inactivo; 
+            inputElement.addEventListener('change', () => {
                 Swal.fire({
-                  title: 'Actualizando...',
-                  didOpen: () => {
-                    Swal.showLoading()
-                  },
-                  allowOutsideClick: false,
-                  allowEscapeKey: false,
-                  showConfirmButton: false
+                    title: 'Actualizando...',
+                    didOpen: () => {
+                        Swal.showLoading()
+                    },
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showConfirmButton: false
                 });
-  
-                fetch(`https://esenttiapp-production.up.railway.app/api/placas/${row.cells[0].data}`, { // Endpoint para actualizar placas
-                  method: 'PUT',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-                  },
-                  body: JSON.stringify({ inactivo: !inputElement.checked })
+
+                fetch(`https://esenttiapp-production.up.railway.app/api/placas/${params.data.id_placa}`, { 
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                    },
+                    body: JSON.stringify({ inactivo: !inputElement.checked }) 
                 })
-                  .then(response => {
+                .then(response => {
                     if (!response.ok) {
-                      throw new Error('Error al actualizar el estado de la placa');
+                        throw new Error('Error al actualizar el estado del conductor');
                     }
-                    // Mostrar un mensaje de éxito con SweetAlert
                     Swal.fire({
-                      icon: 'success',
-                      title: 'Estado actualizado',
-                      showConfirmButton: false,
-                      timer: 1500
+                        icon: 'success',
+                        title: 'Estado actualizado',
+                        showConfirmButton: false,
+                        timer: 1500
                     });
-                  })
-                  .catch(error => {
-                    // Mostrar un mensaje de error con SweetAlert
+                    gridOptions.api.refreshCells(); 
+                })
+                .catch(error => {
                     Swal.fire({
-                      icon: 'error',
-                      title: 'Oops...',
-                      text: 'Error al actualizar el estado de la placa'
+                        icon: 'success',
+                        title: 'Estado actualizado',
+                        text: 'Placa Actualizada'
                     });
-  
                     console.error(error);
-                  });
-              }
-            }),
-            gridjs.h('span', { class: 'slider round' })
-          ]);
-  
-          return switchElement;
-        },
-      },
-    ],
-  
-    server: {
-      url: "https://esenttiapp-production.up.railway.app/api/cargarplaca",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("authToken")}`
-      },
-      then: (data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          return data.map((placas) => [
-            placas.id_placa,
-            placas.placa,
-            placas.fecha_vencimientos,
-            placas.fecha_vencimientot,
-            placas.inactivo // Asegúrate de que "inactivo" esté en la posición correcta
-          ]); 
-        } else {
-          console.error("La respuesta del servidor no contiene datos válidos.");
-          return [];
+                });
+            });
+
+            switchLabel.appendChild(inputElement);
+
+            // Agregar la clase "slider" al span
+            const spanElement = document.createElement('span');
+            spanElement.classList.add('slider'); 
+            spanElement.classList.add('round'); // Opcional: para que el switch sea redondo
+            switchLabel.appendChild(spanElement); 
+
+            container.appendChild(switchLabel);
+
+            return container;
         }
-      }
     }
-  
-  }).render(document.getElementById('placas'));
+];
+
+const eGridDiv = document.getElementById('placas');
+
+const gridContainer = document.createElement('div');
+gridContainer.style.width = '80%';
+gridContainer.style.height = '500px';
+gridContainer.style.margin = '20px auto';
+eGridDiv.appendChild(gridContainer); 
+
+fetch("https://esenttiapp-production.up.railway.app/api/cargarplaca", {
+    headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`
+    }
+})
+.then(response => response.json())
+.then(data => {
+    if (Array.isArray(data) && data.length > 0) {
+        const gridOptions = {
+            columnDefs: columnDefs,
+            defaultColDef: {
+                resizable: true,
+                sortable: false, 
+                filter: "agTextColumnFilter",
+                floatingFilter: true,
+                flex: 1,
+                minWidth: 100,
+            },
+            pagination: true,
+            paginationPageSize: 10,
+            rowData: data 
+        };
+
+        new agGrid.Grid(gridContainer, gridOptions); 
+    } else {
+        console.error("La respuesta del servidor no contiene datos válidos.");
+        const gridOptions = {
+            columnDefs: columnDefs,
+            rowData: [] 
+        };
+
+        new agGrid.Grid(gridContainer, gridOptions);
+    }
+})
+.catch(error => {
+    console.error("Error al cargar los datos:", error);
+});
