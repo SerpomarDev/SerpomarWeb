@@ -1,117 +1,133 @@
-new gridjs.Grid({
-    search: true,
-    language: {
-        search: {
-            placeholder: '🔍 Buscar...'
-        }
-    },
-    pagination: {
-        limit: 10,
-        enabled: true,
-    },
-    resizable: true,
-    sort: false,
-    columns: ["#", 
-              {
-                name: "Tipo",
-                formatter: (cell) => {
-                    switch (cell) {
-                        case "NO":
-                            return "Afiliado";
-                        case "SI":
-                            return "Externo";
-                        case "AP":
-                            return "Apoyo";
-                        default:
-                            return cell; // Mostrar el valor original si no coincide
-                    }
-                }
-              }, 
-              "Nombre", "Cedula", "Telefono", 
-              {
-                name: 'ON / OFF',
-                formatter: (cell, row) => {
-
-                    const inactivo = row.cells[5].data; // ¡Corregido! Índice 5 en lugar de 4
-
-                    let inputElement; 
-
-                    const switchElement = gridjs.h('label', { class: 'switch' }, [
-                        gridjs.h('input', { 
-                            type: 'checkbox', 
-                            checked: !inactivo, 
-                            ref: (el) => { inputElement = el }, 
-                            onchange: () => {
-                                Swal.fire({
-                                    title: 'Actualizando...',
-                                    didOpen: () => {
-                                        Swal.showLoading()
-                                    },
-                                    allowOutsideClick: false,
-                                    allowEscapeKey: false,
-                                    showConfirmButton: false
-                                });
-
-                                fetch(`https://esenttiapp-production.up.railway.app/api/conductores/${row.cells[0].data}`, { 
-                                    method: 'PUT',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-                                    },
-                                    body: JSON.stringify({ inactivo: !inputElement.checked }) 
-                                })
-                                .then(response => {
-                                    if (!response.ok) {
-                                        throw new Error('Error al actualizar el estado del conductor');
-                                    }
-                                    // Mostrar un mensaje de éxito con SweetAlert
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'Estado actualizado',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                })
-                                .catch(error => {
-                                    // Mostrar un mensaje de error con SweetAlert
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Oops...',
-                                        text: 'Error al actualizar el estado del conductor'
-                                    });
-
-                                    console.error(error);
-                                });
-                            }
-                        }),
-                        gridjs.h('span', { class: 'slider round' })
-                    ]);
-
-                    return switchElement;
-                },
-              },
-    ],
-
-    server: {
-        url: "https://esenttiapp-production.up.railway.app/api/cargarcondutores",
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("authToken")}`
-        },
-        then: (data) => {
-            if (Array.isArray(data) && data.length > 0) {
-                return data.map((conductor) => [
-                    conductor.id,
-                    conductor.externo, // Incluido en el mapeo
-                    conductor.nombre,
-                    conductor.identificacion,
-                    conductor.telefono,
-                    conductor.inactivo 
-                ]); // ¡Corregido! Orden del mapeo actualizado
-            } else {
-                console.error("La respuesta del servidor no contiene datos válidos.");
-                return [];
+const columnDefs = [
+    { headerName: "#", field: "id", hide: true }, 
+    { headerName: "Tipo", field: "externo", 
+        cellRenderer: params => {
+            switch (params.value) {
+                case "NO":
+                    return "Afiliado";
+                case "SI":
+                    return "Externo";
+                case "AP":
+                    return "Apoyo";
+                default:
+                    return params.value; 
             }
         }
-    }
+    },
+    { headerName: "Nombre", field: "nombre" },
+    { headerName: "Cedula", field: "identificacion" },
+    { headerName: "Telefono", field: "telefono" },
+    { 
+        headerName: "Acciones", 
+        cellRenderer: params => {
+            const container = document.createElement('div');
+            container.style.display = 'flex';
+            container.style.alignItems = 'center';
 
-}).render(document.getElementById('conductores'));
+            // Switch para activar/desactivar conductor
+            const switchLabel = document.createElement('label');
+            switchLabel.classList.add('switch');
+            const inputElement = document.createElement('input');
+            inputElement.type = 'checkbox';
+            inputElement.checked = !params.data.inactivo; 
+            inputElement.addEventListener('change', () => {
+                Swal.fire({
+                    title: 'Actualizando...',
+                    didOpen: () => {
+                        Swal.showLoading()
+                    },
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showConfirmButton: false
+                });
+
+                fetch(`https://esenttiapp-production.up.railway.app/api/conductores/${params.data.id}`, { 
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                    },
+                    body: JSON.stringify({ inactivo: !inputElement.checked }) 
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al actualizar el estado del conductor');
+                    }
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Estado actualizado',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    gridOptions.api.refreshCells(); 
+                })
+                .catch(error => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Estado actualizado',
+                        text: 'Conductor Actualizado'
+                    });
+                    console.error(error);
+                });
+            });
+
+            switchLabel.appendChild(inputElement);
+
+            // Agregar la clase "slider" al span
+            const spanElement = document.createElement('span');
+            spanElement.classList.add('slider'); 
+            spanElement.classList.add('round'); // Opcional: para que el switch sea redondo
+            switchLabel.appendChild(spanElement); 
+
+            container.appendChild(switchLabel);
+
+            return container;
+        }
+    }
+];
+
+const eGridDiv = document.getElementById('conductores');
+
+const gridContainer = document.createElement('div');
+gridContainer.style.width = '80%';
+gridContainer.style.height = '500px';
+gridContainer.style.margin = '20px auto';
+eGridDiv.appendChild(gridContainer); 
+
+fetch("https://esenttiapp-production.up.railway.app/api/cargarcondutores", {
+    headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`
+    }
+})
+.then(response => response.json())
+.then(data => {
+    if (Array.isArray(data) && data.length > 0) {
+        const gridOptions = {
+            columnDefs: columnDefs,
+            defaultColDef: {
+                resizable: true,
+                sortable: false, 
+                filter: "agTextColumnFilter",
+                floatingFilter: true,
+                flex: 1,
+                minWidth: 100,
+            },
+            pagination: true,
+            paginationPageSize: 10,
+            rowData: data 
+        };
+
+        new agGrid.Grid(gridContainer, gridOptions); 
+    } else {
+        console.error("La respuesta del servidor no contiene datos válidos.");
+        const gridOptions = {
+            columnDefs: columnDefs,
+            rowData: [] 
+        };
+
+        new agGrid.Grid(gridContainer, gridOptions);
+    }
+})
+.catch(error => {
+    console.error("Error al cargar los datos:", error);
+});

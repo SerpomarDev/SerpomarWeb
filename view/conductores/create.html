@@ -15,11 +15,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
 
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+
     <!-- Cargar Firebase App y Firebase Storage desde CDN -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 
     <style>
+        
         .modal {
             display: none;
             position: fixed;
@@ -259,7 +263,7 @@
                         </div>
                     </form>
                     <div class="">
-                        <div id="conductores"></div>
+                        <div id="conductores" class="ag-theme-alpine" style="height:600px; width: 100%;"></div>
                     </div>
                 </div>
 
@@ -294,11 +298,13 @@
         <script src="/Componentes/sidebar.js"></script>
         <script src="/js/login/logout.js"></script>
         <script src="/js/custom.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
         <script type="text/javascript" src="/js/seguridad/createConductorseguridad.js"></script>
+        <script type="text/javascript" src="/js/seguridad/tabla_conductores.js"></script>
         <script type="text/javascript" src="/js/conductor/deleteConductor.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script type="module" src="/js/conductor/conductores_uploadFotos.js"></script>
+        <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ag-grid-charts-enterprise@32.1.0/dist/ag-grid-charts-enterprise.js?t=1724946077050"></script>
 </body>
 
 </html>
