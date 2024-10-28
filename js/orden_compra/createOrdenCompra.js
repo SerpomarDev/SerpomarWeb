@@ -1,13 +1,14 @@
 const columnDefs = [
-    { headerName: "OC", field: "id" },
-    { headerName: "Nit", field: "nit" },
-    { headerName: "Razón Social", field: "razon_social" },
-    { headerName: "Valor", field: "valor" },
-    { headerName: "Condición", field: "condicion" },
-    { headerName: "Centro de Costo", field: "centro_costo" },
-    { headerName: "Equipo", field: "equipo" },
-    { headerName: "SP", field: "sp" },
-    { headerName: "Dias pendiente", field: "cantidad_dias" },
+  { headerName: "OC", field: "id" },
+  { headerName: "Nit", field: "nit" },
+  { headerName: "Razón Social", field: "razon_social" },
+  { headerName: "Valor", field: "valor" },
+  { headerName: "Condición", field: "condicion" },
+  { headerName: "Centro de Costo", field: "centro_costo" },
+  { headerName: "Equipo", field: "equipo" },
+  { headerName: "SP", field: "sp" },
+  { headerName: "Dias pendiente", field: "cantidad_dias" },
+  { headerName: "Observación", field: "observacion" },
     {
       headerName: "Soportes",
       cellRenderer: params => {
@@ -47,6 +48,7 @@ const columnDefs = [
         equipo: ordenCompra.equipo,
         sp: ordenCompra.sp,
         cantidad_dias: ordenCompra.cantidad_dias,
+        observacion: ordenCompra.observacion,
       };
     });
 
@@ -58,10 +60,66 @@ const columnDefs = [
         sortable: false,
         filter: "agTextColumnFilter",
         floatingFilter: true,
+        editable: true
       },
       pagination: true,
       paginationPageSize: 7,
-      rowData: processedData // Asignar los datos procesados
+      rowData: processedData,
+
+      onCellValueChanged: (event) => {
+        const updatedRowData = event.data;
+        const id = updatedRowData.id;
+
+        // Mostrar una notificación toast informando del cambio
+        Swal.fire({
+            title: 'Actualizando...',
+            text: "Se actualizará la información en la base de datos",
+            icon: 'info',
+            timer: 1000, // La alerta se cerrará después de 2 segundos
+            timerProgressBar: true, 
+            toast: true, 
+            position: 'top-end', 
+            showConfirmButton: false // Ocultar el botón de confirmación
+        });
+
+        // Retrasar la actualización 2 segundos
+        setTimeout(() => {
+            fetch(`https://esenttiapp-production.up.railway.app/api/ordencompra/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                },
+                body: JSON.stringify(updatedRowData)
+            })
+            .then(response => {
+              if (!response.ok) {
+                  throw new Error('Error al actualizar datos');
+              }
+              console.log('Datos actualizados correctamente');
+              // Mostrar notificación de éxito más rápida
+              Swal.fire({
+                  title: '¡Actualizado!',
+                  text: 'El registro ha sido actualizado.',
+                  icon: 'success',
+                  timer: 1000, // 1 segundo (o el tiempo que prefieras)
+                  timerProgressBar: true,
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false
+              }); 
+          })
+            .catch(error => {
+                console.error('Error al actualizar datos:', error);
+                Swal.fire(
+                    'Error',
+                    'No se pudo actualizar el registro.',
+                    'error'
+                )
+            });
+        }, 2000); 
+    }
+      
     };
 
     // Renderizar la tabla en el contenedor
@@ -79,8 +137,6 @@ const columnDefs = [
 
     const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-    console.log(jsonData)
-
     fetch('https://esenttiapp-production.up.railway.app/api/ordencompra', {
             method: 'POST',
             headers: { 
@@ -89,23 +145,40 @@ const columnDefs = [
             },
             body: jsonData
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al enviar los datos del formulario');
+        .then(async (response) => {
+          const data = await response.json();
+          if (!response.ok) {
+            if (response.status === 500) {
+              Swal.fire({
+                title: "Ocurrió un error",
+                text:
+                  data.message || "Ocurrió un error inesperado.",
+                icon: "error",
+              });
+            } else {
+              Swal.fire({
+                title: "Error",
+                text: "Error al enviar los datos del formulario.",
+                icon: "error",
+              });
             }
-        })
-        .then(data => {
-            Swal.fire({
-                title: "¡Buen trabajo!",
-                text: "¡Has creado un Cliente",
-                icon: "success",
-            });
-            setTimeout(() => {
-                location.reload();
-              }, 1500);
+            throw new Error(
+              data.message || "Error al enviar los datos del formulario."
+            );
+          }
+  
+          Swal.fire({
+            title: "¡Buen trabajo!",
+            text: data.message || "¡Has creado un Cliente!",
+            icon: "success",
+          });
+  
+          setTimeout(() => {
+            location.reload();
+          }, 1500);
         })
         .catch((error) => {
-            console.error("Error:", error);
+          console.error("Error:", error);
         });
     });
 
