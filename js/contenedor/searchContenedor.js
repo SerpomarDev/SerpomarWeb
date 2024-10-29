@@ -18,7 +18,14 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         { headerName: "Pedido", field: "pedido", },
         { headerName: "Contenedores", field: "numero_contenedor", },
-        { headerName: "Cliente", field: "cliente",},
+        { headerName: "Cliente", field: "cliente",
+            filter: 'agSetColumnFilter',
+            hide: true,
+            filterParams: {
+                value: ['PRODUCTOS AUTOADHESIVOS ARCLAD S.A'],
+                suppressSorting: true 
+            }
+        },
         { headerName: "Modalidad", field: "modalidad", },
         { headerName: "Estado", field: "estado",},
     ];
@@ -69,8 +76,15 @@ document.addEventListener('DOMContentLoaded', function () {
             pagination: true,
             paginationPageSize: 30,
             rowData: processedData,
+            onGridReady: params => { // Aplicar filtro al iniciar la grilla
+                params.api.setFilterModel({
+                    'cliente': {
+                        filterType: 'set',
+                        values: ['PRODUCTOS AUTOADHESIVOS ARCLAD S.A'] 
+                    }
+                });
+            },
         };
-
         const eGridDiv = document.getElementById('searchContenedor');
         new agGrid.Grid(eGridDiv, gridOptions);
 
