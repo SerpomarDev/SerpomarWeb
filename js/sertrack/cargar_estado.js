@@ -13,24 +13,35 @@ const columnDefs = [
   { headerName: "Fecha Global", field: "fecha_global", hide: true },
   { headerName: "PEDIDO", field: "pedido", hide: false },
   { headerName: "CONTENEDOR", field: "contenedor", hide: false },
-  { headerName: "ESTADO OPERACIÓN", field: "estado_operacion", rowGroup: true }, // Agrupar por "Estado Operación"
-  { headerName: "ESTADO", field: "on_timec", hide: false }, // Cambiar el nombre de la columna a "ESTADO"
+  { headerName: "ESTADO OPERACIÓN", field: "estado_operacion", rowGroup: true }, 
+  { headerName: "ESTADO", field: "on_timec", hide: false }, 
   {
       headerName: "CANTIDAD",
-      aggFunc: "count", hide: true // Usar la función de agregación "count" para contar las filas
+      aggFunc: "count", hide: true 
   },
 ];
 
 fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
   headers: {
-      'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
   }
 })
 .then(response => response.json())
 .then(data => {
-  const fechaActual = new Date().toISOString().slice(0, 10);
+  const hoyColombia = new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' });
+  const fechaActual = new Date(hoyColombia).toISOString().slice(0, 10);
+
   const filteredData = data.filter(Preprogramar => {
-      return Preprogramar.fecha_global === fechaActual;
+    try {
+      // Intenta convertir la fecha, si falla, se salta el elemento
+      const fechaItem = new Date(Preprogramar.fecha_global); 
+      const fechaColombia = new Date(fechaItem.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
+      const fechaGlobal = fechaColombia.toISOString().slice(0, 10);
+      return fechaGlobal === fechaActual;
+    } catch (error) {
+      console.error("Error al convertir la fecha:", Preprogramar.fecha_global, error);
+      return false; // Salta este elemento si la fecha es inválida
+    }
   });
 
   const processedData = filteredData.map(Preprogramar => {
@@ -48,13 +59,13 @@ fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
       columnDefs: columnDefs,
       paginationPageSize: 20,
       rowData: processedData,
-      groupDisplayType: 'groupRows', // Mostrar los grupos como filas
-      suppressRowClickSelection: true, // Evitar que se seleccionen las filas de grupo
+      groupDisplayType: 'groupRows',
+      suppressRowClickSelection: true, 
       autoGroupColumnDef: { 
           headerName: "ESTADO DE LA OPERACIÓN", 
           field: 'estado_operacion',
           cellRendererParams: {
-              suppressCount: true  // Ocultar el conteo predeterminado de ag-Grid
+              suppressCount: true
           }
       }
   };

@@ -1,18 +1,34 @@
 fetch('https://sertrack-production.up.railway.app/api/intervalfifteenday')
-  .then(response => response.json())
-  .then(data => {
-    // Obtener la fecha actual en el formato YYYY-MM-DD
-    const fechaActual = new Date().toISOString().slice(0, 10); 
+    .then(response => response.json())
+    .then(data => {
+        const hoyColombia = new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' });
+        const fechaActual = new Date(hoyColombia).toISOString().slice(0, 10);
 
-    // Filtrar los datos para incluir solo los de la fecha actual
-    const datosFiltrados = data.filter(item => item.fecha_global === fechaActual);
+        const datosFiltrados = data.filter(item => {
+          try {
+              if (item.fecha_global !== null) { 
+                  // Assuming item.fecha_global is in 'YYYY-MM-DD' format when it's not null
+                  const [year, month, day] = item.fecha_global.split('-');
+                  const fechaItem = new Date(year, month - 1, day);
+                  const fechaColombia = new Date(fechaItem.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
+                  const fechaGlobal = fechaColombia.toISOString().slice(0, 10);
+      
+                  return fechaGlobal === fechaActual; 
+              } else { 
+                  return false; // Or handle null values differently as needed
+              }
+          } catch (error) {
+              console.error("Invalid date:", item.fecha_global, error);
+              return false;
+          }
+      });
 
-    generarGraficoOnTime(datosFiltrados); 
-  })
-  .catch(error => {
-    console.error('Error al obtener los datos:', error);
-    generarGraficoOnTime([]); 
-  });
+        generarGraficoOnTime(datosFiltrados); 
+    })
+    .catch(error => {
+        console.error('Error al obtener los datos:', error);
+        generarGraficoOnTime([]); 
+    });
 
 function generarGraficoOnTime(data) {
   // Contar las ocurrencias de cada valor de "on_time"

@@ -6,9 +6,23 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(response => response.json())
       .then(data => {
 
-        // Filtrar datos por la fecha actual
-        const fechaActual = new Date().toISOString().slice(0, 10); // Obtener fecha en formato YYYY-MM-DD
-        const datosFiltrados = data.filter(item => item.fecha_global === fechaActual);
+        // Obtener la fecha actual en la zona horaria de Colombia
+        const hoyColombia = new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' });
+        const fechaActual = new Date(hoyColombia).toISOString().slice(0, 10);
+
+        // Filtrar datos por la fecha actual (usando la fecha en Colombia)
+       
+        const datosFiltrados = data.filter(item => {
+          try {
+            const fechaItem = new Date(item.fecha_global);
+            const fechaColombia = new Date(fechaItem.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
+            const fechaGlobal = fechaColombia.toISOString().slice(0, 10);
+            return fechaGlobal === fechaActual;
+          } catch (error) {
+            console.error("Error al convertir la fecha:", item.fecha_global, error);
+            return false; // Salta este elemento si la fecha es inválida
+          }
+        });
 
         // Contar la cantidad de estados de operación
         const conteoEstados = {};

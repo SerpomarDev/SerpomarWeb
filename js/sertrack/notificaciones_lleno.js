@@ -1,57 +1,64 @@
 const token = localStorage.getItem('authToken');
 
 function openModal() {
-    mostrarAlertasCutoff();
+  mostrarAlertasCutoff();
 }
 
 function mostrarAlertasCutoff() {
-    fetch("https://esenttiapp-production.up.railway.app/api/esenttialleno", {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Error en la solicitud a la API: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log("Datos recibidos de la API:", data); 
+  fetch("https://esenttiapp-production.up.railway.app/api/esenttialleno", {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud a la API: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log("Datos recibidos de la API:", data); 
 
-        if (!Array.isArray(data)) {
-            throw new Error("Los datos de la API no son un array.");
-        }
+    if (!Array.isArray(data)) {
+      throw new Error("Los datos de la API no son un array.");
+    }
 
-        const alertas = data.map(item => {
-            if (!item.cutoff) {
-                console.warn("Elemento con datos faltantes:", item);
-                return null; 
-            }
+    const alertas = data.map(item => {
+      if (!item.cutoff) {
+        console.warn("Elemento con datos faltantes:", item);
+        return null; 
+      }
 
-            const fechaCutoff = new Date(item.cutoff);
-            const hoy = new Date();
-            const diffDias = Math.ceil(Math.abs(hoy - fechaCutoff) / (1000 * 60 * 60 * 24));
-            let nivelAlerta;
+      // Convertir la fecha del item a la zona horaria de Colombia
+      const fechaCutoff = new Date(item.cutoff);
+      const fechaCutoffColombia = new Date(fechaCutoff.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
 
-            if (diffDias <= 1) {
-                nivelAlerta = 'Crítico';
-            } else if (diffDias === 2) {
-                nivelAlerta = 'Medio';
-            } else if (diffDias === 3) {
-                nivelAlerta = 'Bajo';
-            } else {
-                return null; // Ignorar si no cumple con las condiciones de alerta
-            }
+      // Obtener la fecha de hoy en la zona horaria de Colombia
+      const hoyColombia = new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' });
+      const hoy = new Date(hoyColombia);
 
-            return {
-                ...item,
-                nivelAlerta,
-                diasRestantes: diffDias
-            };
-        }).filter(item => item !== null); 
+      const diffDias = Math.ceil(Math.abs(hoy - fechaCutoffColombia) / (1000 * 60 * 60 * 24));
 
-        console.log("Alertas calculadas:", alertas); 
+      let nivelAlerta;
+      if (diffDias <= 1) {
+        nivelAlerta = 'Crítico';
+      } else if (diffDias === 2) {
+        nivelAlerta = 'Medio';
+      } else if (diffDias === 3) {
+        nivelAlerta = 'Bajo';
+      } else {
+        return null; // Ignorar si no cumple con las condiciones de alerta
+      }
+
+      return {
+        ...item,
+        nivelAlerta,
+        diasRestantes: diffDias
+      };
+    }).filter(item => item !== null); 
+
+    console.log("Alertas calculadas:", alertas); 
+
 
         const alertasBaja = alertas.filter(item => item.nivelAlerta === 'Bajo');
         const alertasMedia = alertas.filter(item => item.nivelAlerta === 'Medio'); // Nueva variable para alertas 'Media'

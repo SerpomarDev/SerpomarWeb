@@ -15,10 +15,14 @@
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
 
-</head>
+       <!-- ag-grid -->
+       <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+       <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
 
+</head>
 <body>
     <div id="header-container"></div>
+    
 
     <div class="container mt-5"> 
         <div class="calendar-container">
@@ -34,10 +38,24 @@
                 <h6><span class="morado"></span> 5to. Asig</h6>
                 <h6><span class="negro"></span> 6to. Asig</h6>
             </div>
-            <div class="contador-programa">Total programaciones: 0</div>
-           
+
+            <ul>
+                <div class="calendar" id="arclad-lleno">Patio Llenos: 0 </div> 
+            </ul>
+            <ul>
+                <div class="calendar" id="arclad-vacio">Patio Vacio: 0</div>
+            </ul>
+            <ul>
+                <div class="calendar" id="arclad-">Retiro Vacio: 0 </div> 
+            </ul>
+            <ul>
+                <div class="calendar" id="arclad-">Devolución Vacio: 0</div>
+            </ul>
+            <ul>
+                <div class="calendar" id="arclad-">Retiro Puerto: 0</div>
+            </ul>
+
             <input class="calendar" type="date">
-           
         </div>
         <div class="row">
             <div class="container1"> 
@@ -79,17 +97,17 @@
                     </ul>
                 </div>
             </div>
-
-            <div class="container1"> 
-                <div class="col-md-2"> 
-                    <h5>PLACAS</h5>
-                    <ul id="placas">
-                    </ul>
-                </div>
-            </div>
+        </div>
+        <br>
+        <h1>Trazabilidad</h1>
+        <div class="container-fluid">
+            <div id="searchContenedor" class="ag-theme-alpine" style="height:600px; width: 100%; "></div>
         </div>
     </div>
 
+  
+
+    <script type="text/javascript" src="/js/contenedor/searchContenedor.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/Componentes/header.js"></script>
     <script src="/Componentes/perfil.js"></script>
@@ -97,8 +115,12 @@
     <script src="/Componentes/sidebar.js"></script>
 
     <script src="/js/programacion/programacion_susana.js"></script>
-
+    <script src="/js/programacion/contadores_arclad.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- ag-grid -->
+        <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ag-grid-charts-enterprise@32.1.0/dist/ag-grid-charts-enterprise.js?t=1724946077050"></script>
+    
 
 </body>
 </html>
