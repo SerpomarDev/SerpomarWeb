@@ -17,13 +17,21 @@ document.addEventListener('DOMContentLoaded', function() {
   })
   .then(response => response.json())
   .then(data => {
-    // Obtener la fecha actual en formato YYYY-MM-DD
-    const hoy = new Date().toISOString().slice(0, 10);
+    // Obtener la fecha actual en la zona horaria de Colombia
+    const hoyColombia = new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' });
+    const hoy = new Date(hoyColombia).toISOString().slice(0, 10);
 
-    // Filtrar los datos por la fecha actual
+    // Filtrar los datos por la fecha actual (usando la fecha en Colombia)
     const rowData = data.filter(item => {
-      // Asumiendo que "fecha_global" es una cadena en formato YYYY-MM-DD
-      return item.fecha_global === hoy; 
+      try {
+        const fechaItem = new Date(item.fecha_global);
+        const fechaColombia = new Date(fechaItem.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
+        const fechaGlobal = fechaColombia.toISOString().slice(0, 10);
+        return fechaGlobal === hoy; 
+      } catch (error) {
+        console.error("Error al convertir la fecha:", item.fecha_global, error);
+        return false; // Salta este elemento si la fecha es inválida
+      }
     });
 
     const gridOptions = {

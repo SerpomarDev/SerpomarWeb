@@ -1,63 +1,65 @@
 const token = localStorage.getItem('authToken');
 
 const navierasDiasPermitidos = {
-    'MAERSK': 21,
-    'HAPAG LlOYD': 25,
-    'SHIPLILLY': 20,
-    'SEABOARD': 12,
-    'MEDITERRANEA': 22,
-    'AGUNSA': 21,
-    'CMA CGM': 20,
-    'COSCO': 22,
-    'ZIM': 21,
+  'MAERSK': 21,
+  'HAPAG LlOYD': 25,
+  'SHIPLILLY': 20,
+  'SEABOARD': 12,
+  'MEDITERRANEA': 22,
+  'AGUNSA': 21,
+  'CMA CGM': 20,
+  'COSCO': 22,
+  'ZIM': 21,
 };
 
 function openModal() {
-    mostrarAlertasNavieras();
+  mostrarAlertasNavieras();
 }
 
 function mostrarAlertasNavieras() {
-    fetch("https://esenttiapp-production.up.railway.app/api/esenttiavacio", {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        .then(response => {
-            // Validar la respuesta de la API
-            if (!response.ok) {
-                throw new Error(`Error en la solicitud a la API: ${response.status} ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Datos recibidos de la API:", data); // Imprimir los datos en la consola
+  fetch("https://esenttiapp-production.up.railway.app/api/esenttiavacio", {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud a la API: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log("Datos recibidos de la API:", data); 
 
-            // Validar el formato de los datos
-            if (!Array.isArray(data)) {
-                throw new Error("Los datos de la API no son un array.");
-            }
+    if (!Array.isArray(data)) {
+      throw new Error("Los datos de la API no son un array.");
+    }
 
-            // Calcular los días restantes para cada naviera
-            const alertas = data.map(item => {
-                // Validar los campos necesarios
-                if (!item.fecha_entrada || !item.naviera) {
-                    console.warn("Elemento con datos faltantes:", item);
-                    return null; // Ignorar elementos con datos faltantes
-                }
+    const alertas = data.map(item => {
+      if (!item.fecha_entrada || !item.naviera) {
+        console.warn("Elemento con datos faltantes:", item);
+        return null; 
+      }
 
-                const fechaEntrada = new Date(item.fecha_entrada);
-                const hoy = new Date();
-                const diffDias = Math.ceil(Math.abs(hoy - fechaEntrada) / (1000 * 60 * 60 * 24));
-                const diasPermitidos = navierasDiasPermitidos[item.naviera] || 0; // Asignar 0 si la naviera no está en la lista
-                const diasRestantes = diasPermitidos - diffDias;
+      // Convertir la fecha del item a la zona horaria de Colombia
+      const fechaEntrada = new Date(item.fecha_entrada);
+      const fechaEntradaColombia = new Date(fechaEntrada.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
 
-                return {
-                    ...item,
-                    diasRestantes
-                };
-            }).filter(item => item !== null); // Eliminar elementos nulos
+      // Obtener la fecha de hoy en la zona horaria de Colombia
+      const hoyColombia = new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' });
+      const hoy = new Date(hoyColombia);
 
-            console.log("Alertas calculadas:", alertas); // Imprimir las alertas en la consola
+      const diffDias = Math.ceil(Math.abs(hoy - fechaEntradaColombia) / (1000 * 60 * 60 * 24));
+      const diasPermitidos = navierasDiasPermitidos[item.naviera] || 0; 
+      const diasRestantes = diasPermitidos - diffDias;
+
+      return {
+        ...item,
+        diasRestantes
+      };
+    }).filter(item => item !== null); 
+
+    console.log("Alertas calculadas:", alertas); 
 
             // Dividir las alertas en tres arrays según la cercanía de la fecha
             const alertasBien = alertas.filter(item => item.diasRestantes === 3);

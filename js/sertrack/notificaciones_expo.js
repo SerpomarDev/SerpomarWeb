@@ -17,13 +17,16 @@ function openModal(tipo) {
 }
 
 function calcularDiferenciaDias(fecha1, fecha2) {
-  return Math.ceil(Math.abs(fecha1 - fecha2) / (1000 * 60 * 60 * 24));
+  // Asegurar que las fechas se comparen en la misma zona horaria (Colombia)
+  const fecha1Colombia = new Date(fecha1.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
+  const fecha2Colombia = new Date(fecha2.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
+  return Math.ceil(Math.abs(fecha1Colombia - fecha2Colombia) / (1000 * 60 * 60 * 24));
 }
 
 function mostrarAlertas(tipoAlerta, tipo) {
-  // Obtener la fecha de hoy en formato "YYYY-MM-DD"
-  const hoy = new Date();
-  const fechaHoy = hoy.toISOString().split('T')[0]; // Obtener solo la fecha en formato YYYY-MM-DD
+  // Obtener la fecha de hoy en la zona horaria de Colombia
+  const hoyColombia = new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' });
+  const fechaHoy = new Date(hoyColombia).toISOString().split('T')[0]; 
 
   fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
     headers: {
@@ -34,28 +37,28 @@ function mostrarAlertas(tipoAlerta, tipo) {
     .then(data => {
       // Filtrar los datos según el tipo de alerta, el estado de la operación Y la fecha global
       const alertas = data.filter(item => {
-        const fecha = new Date(item[tipoAlerta === 'Documental' ? 'fecha_documental' : 'fecha_fisico']);
-        const diffDias = calcularDiferenciaDias(fecha, hoy);
-        return diffDias <= 3 && item.estado_operacion !== "FINALIZADO" && item.fecha_global === fechaHoy; // Filtrar por fecha global
+        // Convertir la fecha del item a la zona horaria de Colombia
+        const fechaItem = new Date(item[tipoAlerta === 'Documental' ? 'fecha_documental' : 'fecha_fisico']);
+        const fechaColombia = new Date(fechaItem.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
+
+        const diffDias = calcularDiferenciaDias(fechaColombia, new Date(hoyColombia)); // Usar fechas con zona horaria de Colombia
+        return diffDias <= 3 && item.estado_operacion !== "FINALIZADO" && item.fecha_global === fechaHoy; 
       });
 
       // Dividir las alertas en tres arrays según la cercanía de la fecha
       const alertasBien = alertas.filter(item => {
         const fecha = new Date(item[tipoAlerta === 'Documental' ? 'fecha_documental' : 'fecha_fisico']);
-        const hoy = new Date();
-        const diffDias = calcularDiferenciaDias(fecha, hoy);
+        const diffDias = calcularDiferenciaDias(fecha, new Date(hoyColombia));
         return diffDias === 3;
       });
       const alertasAtencion = alertas.filter(item => {
         const fecha = new Date(item[tipoAlerta === 'Documental' ? 'fecha_documental' : 'fecha_fisico']);
-        const hoy = new Date();
-        const diffDias = calcularDiferenciaDias(fecha, hoy);
+        const diffDias = calcularDiferenciaDias(fecha, new Date(hoyColombia));
         return diffDias === 2;
       });
       const alertasCritico = alertas.filter(item => {
         const fecha = new Date(item[tipoAlerta === 'Documental' ? 'fecha_documental' : 'fecha_fisico']);
-        const hoy = new Date();
-        const diffDias = calcularDiferenciaDias(fecha, hoy);
+        const diffDias = calcularDiferenciaDias(fecha, new Date(hoyColombia));
         return diffDias <= 1;
       });
 
