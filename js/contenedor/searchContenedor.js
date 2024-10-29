@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return button;
             }
         },
+        { headerName: "Pedido", field: "pedido", },
         { headerName: "Contenedores", field: "numero_contenedor", },
         { headerName: "Cliente", field: "cliente",},
         { headerName: "Modalidad", field: "modalidad", },
@@ -124,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return {
                 id_primario: asigControl.id_primario,
                 sp: asigControl.sp,
+                pedido: asigControl.pedido,
                 numero_contenedor: asigControl.numero_contenedor,
                 cliente: asigControl.cliente,
                 modalidad: asigControl.modalidad,
