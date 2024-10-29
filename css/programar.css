@@ -296,3 +296,78 @@ h6 {
     color: #ffffff;
   }
 
+
+
+
+
+
+
+
+
+  /* CONTADORES ------------------------------- */
+
+  .contador {
+    display: block; 
+    margin: 0 auto; 
+    width: 200px; 
+    padding: 8px; 
+    margin-bottom: 15px; 
+    border: none;
+    border-radius: 12px; 
+    font-size: 16px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease; 
+    background: linear-gradient(105deg, #7c7c7c, #007bff); /* Degradado sutil */
+    overflow: hidden; 
+    color: #f0f0f0;
+}
+
+.contador:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
+}
+
+.contador:focus-within { 
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.143);
+}
+
+.contador::-webkit-contador-picker-indicator {
+    background-color: #fff; 
+    color: #555;
+    padding: 10px 14px;
+    border-radius: 10px; 
+    cursor: pointer;
+    transition: all 0.2s ease; 
+    position: relative; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil en el botón */
+}
+
+.contador::-webkit-contador-picker-indicator:hover {
+    background-color: #f0f0f0; 
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); 
+}
+
+  
+.contador-container h6 span {
+    display: inline-block;
+    margin-top: 5px;   /* Permitir aplicar ancho y alto */
+    width: 20px;             /* Ancho del color */
+    height: 12px;            /* Alto del color */
+    margin-right: 2px;        /* Espacio entre color y texto */
+    border-radius: 20%;      /* Hacer el color redondo */
+}
+
+.contador-container {
+    margin-right: 50px;
+    display: flex;
+    flex-direction: row;  /* Colocar elementos en fila */
+    align-items: flex-start; /* Alinear al inicio verticalmente */
+    justify-content: space-between; /* Distribuir espacio entre elementos */
+    margin-bottom: 0px;
+    
+}
+
+.contador-container h6 {
+
+    text-align: right;      /* Alinear texto a la derecha */
+    width: 75px;           /* Ancho fijo para alinear */
+}
