@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     const columnDefs = [
         { headerName: "#", field: "id_primario",hide:true},
@@ -18,8 +17,22 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         { headerName: "Pedido", field: "pedido", },
         { headerName: "Contenedores", field: "numero_contenedor", },
-        { headerName: "Cliente", field: "cliente", },
-        { headerName: "Modalidad", field: "modalidad", },
+        { headerName: "Cliente", field: "cliente",
+            filter: 'agSetColumnFilter',
+            hide: true,
+            filterParams: {
+                value: ['PRODUCTOS AUTOADHESIVOS ARCLAD S.A'],
+                suppressSorting: true 
+            }
+        },
+        { headerName: "Modalidad", field: "modalidad",
+            filter: 'agSetColumnFilter',
+            hide: true,
+            filterParams: {
+                value: ['importacion'],
+                suppressSorting: true 
+            }
+        },
         { headerName: "Estado", field: "estado",},
     ];
 
@@ -69,6 +82,18 @@ document.addEventListener('DOMContentLoaded', function () {
             pagination: true,
             paginationPageSize: 30,
             rowData: processedData,
+            onGridReady: params => { // Aplicar filtro al iniciar la grilla
+                params.api.setFilterModel({
+                    'cliente': {
+                        filterType: 'set',
+                        values: ['PRODUCTOS AUTOADHESIVOS ARCLAD S.A'] 
+                    },
+                    'modalidad': {
+                        filterType: 'set',
+                        values: ['importacion'] 
+                    }
+                });
+            },
         };
         const eGridDiv = document.getElementById('searchContenedor');
         new agGrid.Grid(eGridDiv, gridOptions);
@@ -82,5 +107,8 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = `/view/contenedor/create.html?id=${id}`;
     }
 });
+
+
+
 
 

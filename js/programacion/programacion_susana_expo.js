@@ -4,11 +4,9 @@ const calendarInput = document.querySelector('.calendar');
 const saveButton = document.querySelector('.save');
 
 const seccionesContenedores = {
-    'IMPORTACION': document.getElementById('importacion'),
     'EXPORTACION': document.getElementById('exportacion'),
     'RETIRO VACIO': document.getElementById('retiro-vacio'),
     'TRASLADO': document.getElementById('traslado'),
-    'DEVOLUCION': document.getElementById('devolucion')
 };
 
 calendarInput.addEventListener('change', () => {

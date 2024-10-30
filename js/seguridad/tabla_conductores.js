@@ -1,12 +1,26 @@
 
 const columnDefs = [
     { headerName: "#", field: "id", hide: true },
+    { headerName: "Tipo", field: "externo", 
+        cellRenderer: params => {
+            switch (params.value) {
+                case "NO":
+                    return "Afiliado";
+                case "SI":
+                    return "Externo";
+                case "AP":
+                    return "Apoyo";
+                default:
+                    return params.value; 
+            }
+        }
+    },
     { headerName: "Nombre", field: "nombre" },
     { headerName: "Cedula", field: "identificacion" },
     { headerName: "Telefono", field: "telefono" },
     { headerName: "email", field: "email" },
-    { headerName: "lic. Vence", field: "numero_licencia" },
-    { headerName: "lic. Vencemiento", field: "fecha_vencimiento" },
+    { headerName: "No. licencia", field: "numero_licencia" },
+    { headerName: "Vencemiento licencia", field: "fecha_vencimiento" },
     { headerName: "Estudio SEG", field: "estudio_seg" },
     { headerName: "Poligrafia", field: "poligrafia" },
     {
@@ -40,6 +54,73 @@ const columnDefs = [
             return link;
         }
     },
+    { 
+        headerName: "Acciones", 
+        cellRenderer: params => {
+            const container = document.createElement('div');
+            container.style.display = 'flex';
+            container.style.alignItems = 'center';
+
+            // Switch para activar/desactivar conductor
+            const switchLabel = document.createElement('label');
+            switchLabel.classList.add('switch');
+            const inputElement = document.createElement('input');
+            inputElement.type = 'checkbox';
+            inputElement.checked = !params.data.inactivo; 
+            inputElement.addEventListener('change', () => {
+                Swal.fire({
+                    title: 'Actualizando...',
+                    didOpen: () => {
+                        Swal.showLoading()
+                    },
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showConfirmButton: false
+                });
+
+                fetch(`https://esenttiapp-production.up.railway.app/api/conductores/${params.data.id}`, { 
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                    },
+                    body: JSON.stringify({ inactivo: !inputElement.checked }) 
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al actualizar el estado del conductor');
+                    }
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Estado actualizado',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    gridOptions.api.refreshCells(); 
+                })
+                .catch(error => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Estado actualizado',
+                        text: 'Conductor Actualizado'
+                    });
+                    console.error(error);
+                });
+            });
+
+            switchLabel.appendChild(inputElement);
+
+            // Agregar la clase "slider" al span
+            const spanElement = document.createElement('span');
+            spanElement.classList.add('slider'); 
+            spanElement.classList.add('round'); // Opcional: para que el switch sea redondo
+            switchLabel.appendChild(spanElement); 
+
+            container.appendChild(switchLabel);
+
+            return container;
+        }
+    },
     {
         headerName: 'Eliminar',
         hide: true, // Puedes cambiar esto a false si quieres mostrar la columna
@@ -69,7 +150,7 @@ gridContainer.style.height = '500px';
 gridContainer.style.margin = '20px auto';
 eGridDiv.appendChild(gridContainer); 
 
-fetch("https://esenttiapp-production.up.railway.app/api/uploadconductor", {
+fetch("https://esenttiapp-production.up.railway.app/api/conductores", {
     headers: {
         Authorization: `Bearer ${localStorage.getItem("authToken")}`
     }
