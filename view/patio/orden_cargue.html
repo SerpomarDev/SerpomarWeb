@@ -109,7 +109,42 @@
                                 <span>Tipo de Contenedor</span>
                             </label>
                         </div>
-                       
+                        <div class="flex">
+                            <label>
+                                <input type="number" step="0.01" class="input" id="peso" name="peso">
+                                <span>Peso</span>
+                            </label>
+                            <label>
+                                <input type="text" class="input" id="funcionario_transporte" name="funcionario_transporte">
+                                <span>Funcionario de Transporte</span>
+                            </label>
+                        </div>
+                        <div class="flex">
+                            <label>
+                                <input type="text" class="input" id="precinto" name="precinto">
+                                <span>Precinto</span>
+                            </label>
+                            <label>
+                                <input type="date" class="input" id="vencimiento_cutoff" name="vencimiento_cutoff">
+                                <span>Vencimiento Cut Off</span>
+                            </label>
+                        </div>
+                        <div class="flex">
+                            <label>
+                                <input type="time" class="input" id="hora_soli" name="hora_soli">
+                                <span>Hora de Solicitud</span>
+                            </label>
+
+                            <label>
+
+                                 <select name="lleno_vacio" id="lleno_vacio" class="input" >
+                                    <option value="">Seleccione Opción</option>
+                                    <option value="LLENO">LLENO</option>
+                                    <option value="VACIO">VACIO</option>
+                                 </select>
+                                <span>Vacio o Lleno</span>
+                            </label>
+                        </div>
                         <div class="form-group">
                             <label class="full-width">
                                 <textarea class="input" id="observaciones" name="observaciones" rows="3"></textarea>
