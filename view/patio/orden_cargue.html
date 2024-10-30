@@ -109,51 +109,62 @@
                                 <span>Tipo de Contenedor</span>
                             </label>
                         </div>
-                        <div class="flex">
-                            <label>
-                                <input type="number" step="0.01" class="input" id="peso" name="peso">
-                                <span>Peso</span>
-                            </label>
-                            <label>
-                                <input type="text" class="input" id="funcionario_transporte" name="funcionario_transporte" required>
-                                <span>Funcionario de Transporte</span>
-                            </label>
-                        </div>
-                        <div class="flex">
-                            <label>
-                                <input type="text" class="input" id="precinto" name="precinto">
-                                <span>Precinto</span>
-                            </label>
-                            <label>
-                                <input type="date" class="input" id="vencimiento_cutoff" name="vencimiento_cutoff" required>
-                                <span>Vencimiento Cut Off</span>
-                            </label>
-                        </div>
-                        <div class="flex">
-                            <label>
-                                <input type="time" class="input" id="hora_soli" name="hora_soli" required>
-                                <span>Hora de Solicitud</span>
-                            </label>
-
-                            <label>
-                                <select name="lleno_vacio" id="lleno_vacio" class="input" required>
-                                    <option value="">Seleccione Opción</option>
-                                    <option value="LLENO">LLENO</option>
-                                    <option value="VACIO">VACIO</option>
-                                </select>
-                                <span>Vacio o Lleno</span>
-                            </label>
-                        </div>
+                       
                         <div class="form-group">
                             <label class="full-width">
                                 <textarea class="input" id="observaciones" name="observaciones" rows="3"></textarea>
                                 <span>Observaciones</span>
                             </label>
                         </div>
+                      
+                        <div class="form" id="detallesCarga"> 
+                            <h1 class="message">Detalles de Carga</h1>
+                            <div class="flex">
+                                <label>
+                                    <input type="text" step="0.01" class="input" id="do" name="do">
+                                    <span>Do</span>
+                                </label>
+                                <label>
+                                    <input type="number" step="0.01" class="input" id="pedido" name="pedido">
+                                    <span>Pedido</span>
+                                </label>
+                            </div>
+                            <div class="flex">
+                                <label>
+                                    <input type="number" step="0.01" class="input" id="producto" name="producto">
+                                    <span>Producto</span>
+                                </label>
+                                <label>
+                                    <input type="number" step="0.01" class="input" id="codigo_sap" name="codigo_sap">
+                                    <span>Codigo SAP</span>
+                                </label>
+                            </div>
+                            <div class="flex">
+                                <label>
+                                    <input type="number" step="0.01" class="input" id="cantidad" name="cantidad">
+                                    <span>Cantidad</span>
+                                </label>
+                                <label>
+                                    <input type="number" step="0.01" class="input" id="lote" name="lote">
+                                    <span>Lote</span>
+                                </label>
+                            </div>
+                            <div class="flex">
+                                <label>
+                                    <input type="number" step="0.01" class="input" id="factura" name="factura">
+                                    <span>Factura</span>
+                                </label>
+                                <label>
+                                    <input type="date" class="input" id="fecha_eta" name="fecha_eta" required>
+                                    <span>Fecha de la ETA</span>
+                                </label>
+                            </div>
+                        </div>
+                        <br>
                         <div class="submit-container">
                             <button class="submit" id="BtnSavePlaca">Enviar</button>
                         </div>
-                        <p class="signin"><a href="/view/preventas/index.html">Volver</a></p>
+                       
                     </form>
                 </div>
             </div>
