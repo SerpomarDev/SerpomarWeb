@@ -2,7 +2,7 @@
 let gridOptions; 
 
 const columnDefs = [
-  { headerName: "id", field: "id", hide: false}, 
+  { headerName: "id", field: "id", hide: true}, 
   { headerName: "Pedido", field: "pedido" },
 
   { headerName: "Fecha Global", field: "fecha_global" },
@@ -43,7 +43,8 @@ const columnDefs = [
   { headerName: "Sitio Cargue", field: "sitio_cargue" },
   { headerName: "Remision", field: "remision" },
   { headerName: "Manifiesto", field: "manifiesto" },
-  { headerName: "Dias Libres Piso", field: "dias_libres_piso" },
+  { headerName: "Dias Libres Piso", field: "dias_libre_piso" },
+  { headerName: "Dias Libres Piso", field: "dias_libres_piso", hide: true},
 
  
   // { headerName: "Cedula Conductor", field: "cedula_conductor" },
@@ -53,6 +54,7 @@ const columnDefs = [
   { headerName: "Estado Operación", field: "estado_operacion" },
   { headerName: "Horas Planta", field: "horas_planta" },
   { headerName: "Fecha Retiro Vacio", field: "fecha_retiro_vacio" },
+ 
 ];
 
 fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
@@ -112,6 +114,7 @@ fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
         estado_operacion: Preprogramar.estado_operacion,
         horas_planta: Preprogramar.horas_planta,
         fecha_retiro_vacio: Preprogramar.fecha_retiro_vacio,
+        dias_libre_piso: Preprogramar.dias_libre_piso,
       };
     });
 
