@@ -1,4 +1,3 @@
-
 // Manejo del evento 'submit' del formulario
 document.getElementById('createPlaca').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -14,49 +13,60 @@ document.getElementById('createPlaca').addEventListener('submit', function(event
     });
 
     fetch('https://esenttiapp-production.up.railway.app/api/placas', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-            },
-            body: jsonData
-        })
-        .then(response => {
-            if (!response.ok) {
-                // Manejo de errores del servidor con más detalle
-                if (response.status === 400) { // Ejemplo: Bad Request
-                    return response.json().then(data => {
-                        throw new Error("Solicitud incorrecta: " + data.message || "Verifique los datos del formulario.");
-                    });
-                }
-            } else {
-                return response.text().then(text => {
-                    console.log("Respuesta del servidor:", text);
-                    if (text.includes("Placa creada exitosamente") || text.includes("mensaje de éxito similar del servidor")) {
-                        Swal.fire({
-                            title: "¡Buen trabajo!",
-                            text: "Has Creado una Placa.",
-                            icon: "success",
-                        });
-                        time();
-                    } else {
-                        Swal.fire({ // Cambiado a SweetAlert de éxito
-                            title: "¡Bien hecho!",
-                            text: "Placa creada correctamente",
-                            icon: "success",
-                        });
-                        time();
-                    }
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+        },
+        body: jsonData
+    })
+    .then(response => {
+        if (!response.ok) {
+            // Manejo de errores del servidor con más detalle
+            if (response.status === 400) { // Ejemplo: Bad Request
+                return response.json().then(data => {
+                    throw new Error("Solicitud incorrecta: " + data.message || "Verifique los datos del formulario.");
                 });
             }
-        })
-        .catch(error => {
-            console.error('Error al crear la placa:', error);
-            Swal.fire({
-                title: "Error",
-                text: error.message || "Hubo un problema al crear la placa. Por favor, inténtalo de nuevo.",
-                icon: "error",
+        } else {
+            return response.text().then(text => {
+                console.log("Respuesta del servidor:", text);
+                if (text.includes("Placa creada exitosamente") || text.includes("mensaje de éxito similar del servidor")) {
+                    Swal.fire({
+                        title: "¡Buen trabajo!",
+                        text: "Has Creado una Placa.",
+                        icon: "success",
+                    });
+                    time();
+                } else {
+                    Swal.fire({ // Cambiado a SweetAlert de éxito
+                        title: "¡Bien hecho!",
+                        text: "Placa creada correctamente",
+                        icon: "success",
+                    });
+                    time();
+                }
             });
+        }
+    })
+    .catch(error => {
+        console.error('Error al crear la placa:', error);
+        Swal.fire({
+            title: "Error",
+            text: error.message || "Hubo un problema al crear la placa. Por favor, inténtalo de nuevo.",
+            icon: "error",
         });
+    });
 });
 
+
+// Función para mostrar/ocultar campos al cambiar el checkbox "Externo"
+document.getElementById('externo').addEventListener('change', function() {
+    const camposAEsconder = document.querySelectorAll('#createPlaca .row > div:not(.placa, .soat, .fecha_vencimientos, .tecnomecanica, .fecha_vencimientot, .id_aliado)');
+    
+    if (this.checked) {
+        camposAEsconder.forEach(campo => campo.style.display = 'none');
+    } else {
+        camposAEsconder.forEach(campo => campo.style.display = 'block'); 
+    }
+});

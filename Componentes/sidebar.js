@@ -73,7 +73,7 @@ window.addEventListener('headerLoaded', () => {
                         menuHtml += `
             <li class="dropdown" id="menu-${groupId}">
               <a class="has-arrow" href="#" aria-expanded="false">
-                ${groupIcon} <span class="nav-text">${groupName} ></span>
+                ${groupIcon} <span class="nav-text">${groupName} </span>
               </a>
               <ul aria-expanded="false" id="submenu-${groupId}">`;
 

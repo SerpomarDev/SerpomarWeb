@@ -16,6 +16,10 @@
 
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.css">
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+
 </head>
 
 <div id="header-container"></div>
@@ -72,6 +76,14 @@
                             <input type="text" class="input" id="testigo" name="testigo" required>
                             <span>Nombre del empleado (Testigo)</span>
                         </label>
+                        <label class="full-width">
+                            <p class="message">Firma del empleado (Testigo)</p>
+                            <canvas id="firma" width="580" height="200" ></canvas>
+                        </label>
+                        
+                          <button type="button" id="limpiarFirma">Limpiar Firma</button>
+                          <button type="button" id="guardarFirma">Guardar Firma</button>
+                        
                         <div class="submit-container">
                             <button type="submit" class="submit">Enviar</button>
                         </div>
