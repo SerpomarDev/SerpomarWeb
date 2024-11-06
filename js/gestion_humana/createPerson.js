@@ -7,7 +7,7 @@ document.getElementById("msform").addEventListener("submit", function (e) {
 
     console.log(jsonData)
     
-    fetch("http://esenttiapp.test/api/gestionHumana", {
+    fetch("https://esenttiapp-production.up.railway.app/api/gestionHumana", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
