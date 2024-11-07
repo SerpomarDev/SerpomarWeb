@@ -1,6 +1,7 @@
 const columnDefs = [
     { headerName: "id", field: "id_contenedor", hide: true },
     { headerName: "SP", field: "sp" },
+    { headerName: "DO pedido", field: "do_pedido" },
     { headerName: "Pedido", field: "pedido" },
     { headerName: "Contenedor", field: "contenedor" },
     { headerName: "Cliente", field: "cliente" },
@@ -29,6 +30,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/uploadpreprogramar", {
         return {
             id_contenedor: Preprogramar.id_contenedor,
             sp: Preprogramar.sp,
+            do_pedido: Preprogramar.do_pedido,
             pedido: Preprogramar.pedido,
             contenedor: Preprogramar.contenedor,
             cliente: Preprogramar.cliente,

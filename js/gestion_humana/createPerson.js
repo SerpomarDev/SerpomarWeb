@@ -4,8 +4,6 @@ document.getElementById("msform").addEventListener("submit", function (e) {
     const formData = new FormData(this);
 
     const jsonData = JSON.stringify(Object.fromEntries(formData));
-
-    console.log(jsonData)
     
     fetch("http://esenttiapp.test/api/gestionHumana", {
       method: "POST",
