@@ -6,12 +6,6 @@ html {
     width: 100%;
 }
 
-#menu-items-container {
-    overflow-y: auto;
-    /* Habilita el scroll vertical */
-    max-height: 550px;
-    /* Ajusta la altura máxima según tus necesidades */
-}
 
 .logout-link {
     color: #fff;

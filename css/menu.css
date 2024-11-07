@@ -1,0 +1,134 @@
+
+/* Estilos para el menú */
+/* Estilos generales */
+html, 
+body {
+  height: 100%; /* Asegura que html y body ocupen toda la altura de la ventana */
+  margin: 0; /* Elimina márgenes por defecto */
+}
+
+#menu-items-container {
+  height: 100%; /* Ajustar al alto disponible */
+  overflow-y: auto; /* Habilita el scroll vertical si es necesario */
+}
+
+#sidebar {
+  height: 0;
+  transition: height 0.3s ease-in-out; 
+  overflow: hidden;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column; 
+}
+
+#sidebar.open {
+  height: 100%; /* Ocupa toda la altura disponible */
+}
+
+#menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1; 
+}
+  
+  #menu li {
+    padding: 6px 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones optimizadas */
+  }
+  
+  #menu li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    padding:4px 12px; /* Padding ajustado */
+    border-radius: 6px;
+    position: relative; /* Para posicionar el indicador de dropdown */
+  }
+  
+  #menu li a .nav-text {
+    margin-left: 10px;
+  }
+  
+  #menu li a i {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #00aaff;
+  }
+  
+  /* Hover effect */
+  #menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Efecto hover más sutil */
+    transform: translateX(5px);
+  }
+  
+  /* Focus effect */
+  #menu li a:focus {
+    background-color: rgba(255, 255, 255, 0.2);  /* Efecto focus más sutil */
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 150, 255, 0.5); /* Sombra azul más definida */
+  }
+  
+  #menu li.active > a {
+    background-color: #2980b9;
+    font-weight: bold;
+    border-radius: 8px;
+  }
+  
+  /* Dropdown styles */
+  #menu .dropdown > ul {
+    display: none;
+    padding-left: 20px;
+    background-color: #5d626664; /* Color de fondo para el dropdown */
+    border-radius: 8px;
+    margin-top: 5px;
+  }
+  
+  #menu .dropdown.open > ul {
+    display: block;
+  }
+  
+  /* Indicador de dropdown */
+  #menu .dropdown > a::after {
+    content: '\f107'; /* Flecha hacia abajo (Font Awesome) */
+    font-family: 'Font Awesome 5 Free'; 
+    font-weight: 900;
+    font-size: 12px;
+    color: #ecf0f1;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  #menu .dropdown.open > a::after {
+    transform: translateY(-50%) rotate(180deg); /* Rotar la flecha cuando está abierto */
+  }
+  
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    #menu li {
+      padding: 8px 15px; 
+    }
+    #menu li a {
+      font-size: 14px;
+    }
+    #menu li a i {
+      font-size: 18px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #menu li a {
+      font-size: 12px;
+      padding: 6px 10px; 
+    }
+    #menu li a i {
+      font-size: 16px;
+    }
+  }
+

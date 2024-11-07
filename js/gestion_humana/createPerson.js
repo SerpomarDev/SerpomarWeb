@@ -5,7 +5,7 @@ document.getElementById("msform").addEventListener("submit", function (e) {
 
     const jsonData = JSON.stringify(Object.fromEntries(formData));
     
-    fetch("http://esenttiapp.test/api/gestionHumana", {
+    fetch("https://esenttiapp-production.up.railway.app/api/gestionHumana", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

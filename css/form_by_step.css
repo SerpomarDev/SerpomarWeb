@@ -8,13 +8,13 @@ html {
 }
 
 p {
-    color: grey
+    color: rgb(128, 128, 128)
 }
 
 #heading {
     text-transform: uppercase;
-    color: #673AB7;
-    font-weight: normal
+    color: #0073FF;
+    font-weight: bold
 }
 
 #msform {
@@ -24,7 +24,7 @@ p {
 }
 
 #msform fieldset {
-    background: white;
+    
     border: 0 none;
     border-radius: 0.5rem;
     box-sizing: border-box;
@@ -46,7 +46,7 @@ p {
 #msform textarea {
     padding: 8px 15px 8px 15px;
     border: 1px solid #ccc;
-    border-radius: 0px;
+    border-radius: 8px;
     margin-bottom: 25px;
     margin-top: 2px;
     width: 100%;
@@ -63,7 +63,7 @@ p {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    border: 1px solid #673AB7;
+    border: 1px solid #0073FF;
     outline-width: 0
 }
 
@@ -85,11 +85,11 @@ p {
 
 #msform .action-button {
     width: 100px;
-    background: #673AB7;
+    background: #0073ffe4;
     font-weight: bold;
     color: white;
     border: 0 none;
-    border-radius: 0px;
+    border-radius: 50px;
     cursor: pointer;
     padding: 10px 5px;
     margin: 10px 0px 10px 5px;
@@ -98,16 +98,16 @@ p {
 
 #msform .action-button:hover,
 #msform .action-button:focus {
-    background-color: #311B92
+    background-color: #00aeff
 }
 
 #msform .action-button-previous {
     width: 100px;
-    background: #616161;
+    background: #e20039;
     font-weight: bold;
     color: white;
     border: 0 none;
-    border-radius: 0px;
+    border-radius: 50px;
     cursor: pointer;
     padding: 10px 5px;
     margin: 10px 5px 10px 0px;
@@ -116,7 +116,7 @@ p {
 
 #msform .action-button-previous:hover,
 #msform .action-button-previous:focus {
-    background-color: #000000
+    background-color: #ff001e
 }
 
 .card {
@@ -126,29 +126,33 @@ p {
 	box-shadow: none;
 }
 
+.margenform{
+    padding-top: 80px;
+}
+
 .fs-title {
     font-size: 25px;
-    color: #673AB7;
+    color: #0073FF;
     margin-bottom: 15px;
-    font-weight: normal;
+    font-weight: bold;
     text-align: left
 }
 
 .purple-text {
-    color: #673AB7;
+    color: #0073FF;
     font-weight: normal
 }
 
 .steps {
     font-size: 25px;
-    color: gray;
+    color: #FF0041;
     margin-bottom: 10px;
-    font-weight: normal;
+    font-weight: bold;
     text-align: right
 }
 
 .fieldlabels {
-    color: gray;
+    color: #0073FF;
     text-align: left
 }
 
@@ -159,7 +163,7 @@ p {
 }
 
 #progressbar .active {
-    color: #673AB7
+    color: #0073FF
 }
 
 #progressbar li {
@@ -173,18 +177,24 @@ p {
 
 #progressbar #account:before {
     font-family: FontAwesome;
-    content: "\f13e"
+    content: "\f2bb"
 }
 
 #progressbar #personal:before {
     font-family: FontAwesome;
-    content: "\f007"
+    content: "\f0c0"
 }
 
-#progressbar #payment:before {
+#progressbar #laborales:before {
     font-family: FontAwesome;
-    content: "\f030"
+    content: "\f552"
 }
+
+#progressbar #otros:before {
+    font-family: FontAwesome;
+    content: "\f074"
+}
+
 
 #progressbar #confirm:before {
     font-family: FontAwesome;
@@ -217,15 +227,15 @@ p {
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-    background: #673AB7
+    background: #0073FF
 }
 
 .progress {
-    height: 20px
+    height: 20px;
 }
 
 .progress-bar {
-    background-color: #673AB7
+    background-color: #0073FF
 }
 
 .fit-image {
