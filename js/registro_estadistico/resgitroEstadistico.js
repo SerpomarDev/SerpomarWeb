@@ -13,6 +13,8 @@ const columnDefs = [
         return button;
     }
     },
+    { headerName: "Do", field: "do_pedido" },
+    { headerName: "Pedido", field: "pedido" },
     { headerName: "Número Contenedor", field: "numero_contenedor" },
     { headerName: "Tipo", field: "tipo" },
     { headerName: "Cliente", field: "cliente" },
@@ -35,7 +37,7 @@ const columnDefs = [
     { headerName: "Fecha Cita", field: "fecha_cita" },
     { headerName: "Remesa", field: "remesa" },
     { headerName: "Producto", field: "producto" },
-    { headerName: "Sitio", field: "sitio" },
+    { headerName: "Sitio(retiro o devolucion)", field: "sitio" },
     { headerName: "Puerto", field: "puerto" },
     { headerName: "Patio", field: "patio" },
     { headerName: "Estado", field: "estado" }
@@ -52,6 +54,8 @@ fetch("https://esenttiapp-production.up.railway.app/api/registroestadistico", {
         return {
             id_primario: item.id_primario,
             sp: item.sp,
+            do_pedido: item.do_pedido,
+            pedido: item.pedido,
             numero_contenedor: item.numero_contenedor,
             tipo: item.tipo,
             cliente: item.cliente,
@@ -88,14 +92,14 @@ fetch("https://esenttiapp-production.up.railway.app/api/registroestadistico", {
             sortable: true,
             filter: "agTextColumnFilter",
             floatingFilter: true,
-            editable: false
+            editable: true
         },
         pagination: true,
         paginationPageSize: 20,
         rowData: processedData,
         onCellValueChanged: (event) => {
             const updatedRowData = event.data;
-            const id = updatedRowData.id;
+            const id = updatedRowData.id_primario;
     
             // Mostrar una notificación toast informando del cambio
             Swal.fire({
