@@ -5,8 +5,60 @@ const columnDefs = [
   { headerName: "id", field: "id", hide: true}, 
   { headerName: "Pedido", field: "pedido" },
 
-  { headerName: "Fecha Global", field: "fecha_global" },
-  { headerName: "Fecha Programa", field: "fecha_programa",  sort: 'desc' },
+
+
+  { 
+    headerName: "Fecha Global", 
+    field: "fecha_global",
+    filter: "agDateColumnFilter",
+    floatingFilter: true,
+    filterParams: {
+      browserDatePicker: true, 
+      comparator: (filterLocalDateAtMidnight, cellValue) => {
+        const [year, month, day] = cellValue.split('-');
+        const cellDate = new Date(year, month - 1, day); 
+        cellDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(filterLocalDateAtMidnight); 
+
+        if (cellDate.getTime() === filterDate.getTime()) {
+          return 0;
+        }
+        if (cellDate < filterDate) {
+          return -1;
+        }
+        if (cellDate > filterDate) {
+          return 1;
+        }
+      },
+    }
+  },
+
+
+  { 
+    headerName: "Fecha Programa", 
+    field: "fecha_programa",
+    filter: "agDateColumnFilter",
+    floatingFilter: true,
+    filterParams: {
+      browserDatePicker: true, 
+      comparator: (filterLocalDateAtMidnight, cellValue) => {
+        const [year, month, day] = cellValue.split('-');
+        const cellDate = new Date(year, month - 1, day); 
+        cellDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(filterLocalDateAtMidnight); 
+
+        if (cellDate.getTime() === filterDate.getTime()) {
+          return 0;
+        }
+        if (cellDate < filterDate) {
+          return -1;
+        }
+        if (cellDate > filterDate) {
+          return 1;
+        }
+      },
+    }
+  },
   
   { headerName: "Ingreso Planta", field: "ingreso_planta" },
   { headerName: "Documentos Lleno", field: "documentos_lleno" },

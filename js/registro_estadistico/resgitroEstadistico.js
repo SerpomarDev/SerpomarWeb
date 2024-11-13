@@ -41,6 +41,219 @@ const columnDefs = [
     { headerName: "Sitio(retiro o devolucion)", field: "sitio" },
     { headerName: "Puerto", field: "puerto" },
     { headerName: "Patio", field: "patio" },
+
+    {
+        headerName: "Alerta Documental",
+        field: "fecha_documental", 
+        cellRenderer: params => {
+            const fechaDocumental = params.value ? new Date(params.value) : null; 
+            const hoy = new Date(); 
+            const estado = params.data.estado; // Obtener el estado de la fila
+            if (estado === "PENDIENTE LIQUIDAR") { 
+                const checkIcon = document.createElement('i');
+                checkIcon.className = 'fas fa-check'; 
+                checkIcon.style.color = 'green'; 
+                checkIcon.style.fontSize = '1.2em'; 
+    
+                // Centrar el icono usando text-align
+                const wrapperDiv = document.createElement('div'); 
+                wrapperDiv.style.textAlign = 'center'; // Centrar el contenido del div
+                wrapperDiv.appendChild(checkIcon); 
+    
+                return wrapperDiv;
+            } else if (fechaDocumental) { 
+                const diferenciaDias = Math.ceil(
+                    (fechaDocumental - hoy) / (1000 * 60 * 60 * 24)
+                ); 
+
+                const alertaDiv = document.createElement('div');
+                alertaDiv.textContent = diferenciaDias >= 3 ? '3 DIAS O MAS' : diferenciaDias === 2 ? '2 DIAS' : '1 DIA O MENOS';
+                alertaDiv.style.fontWeight = 'bold';
+                alertaDiv.style.textAlign = 'center'; 
+
+                if (diferenciaDias >= 3) {
+                    alertaDiv.style.backgroundColor = 'green';
+                    alertaDiv.style.color = 'white';
+                } else if (diferenciaDias === 2) {
+                    alertaDiv.style.backgroundColor = 'orange';
+                    alertaDiv.style.color = 'black';
+                } else {
+                    alertaDiv.style.backgroundColor = 'red';
+                    alertaDiv.style.color = 'white';
+                }
+
+                return alertaDiv;
+            } else { 
+                const alertaDiv = document.createElement('div');
+                alertaDiv.textContent = 'Faltan datos';
+                alertaDiv.style.backgroundColor = 'gray';
+                alertaDiv.style.color = 'white';
+                alertaDiv.style.fontWeight = 'bold';
+                alertaDiv.style.textAlign = 'center'; 
+                return alertaDiv;
+            }
+        }
+    },
+
+    {
+        headerName: "Alerta Cutoff Físico",
+        field: "fecha_cutoff_fisico", 
+        cellRenderer: params => {
+            const fechaDocumental = params.value ? new Date(params.value) : null; 
+            const hoy = new Date(); 
+            const estado = params.data.estado; // Obtener el estado de la fila
+            if (estado === "PENDIENTE LIQUIDAR") { 
+                const checkIcon = document.createElement('i');
+                checkIcon.className = 'fas fa-check'; 
+                checkIcon.style.color = 'green'; 
+                checkIcon.style.fontSize = '1.2em'; 
+    
+                // Centrar el icono usando text-align
+                const wrapperDiv = document.createElement('div'); 
+                wrapperDiv.style.textAlign = 'center'; // Centrar el contenido del div
+                wrapperDiv.appendChild(checkIcon); 
+    
+                return wrapperDiv;
+            } else if (fechaDocumental) { 
+                const diferenciaDias = Math.ceil(
+                    (fechaDocumental - hoy) / (1000 * 60 * 60 * 24)
+                ); 
+
+                const alertaDiv = document.createElement('div');
+                alertaDiv.textContent = diferenciaDias >= 3 ? '3 DIAS O MAS' : diferenciaDias === 2 ? '2 DIAS' : '1 DIA O MENOS';
+                alertaDiv.style.fontWeight = 'bold';
+                alertaDiv.style.textAlign = 'center'; 
+
+                if (diferenciaDias >= 3) {
+                    alertaDiv.style.backgroundColor = 'green';
+                    alertaDiv.style.color = 'white';
+                } else if (diferenciaDias === 2) {
+                    alertaDiv.style.backgroundColor = 'orange';
+                    alertaDiv.style.color = 'black';
+                } else {
+                    alertaDiv.style.backgroundColor = 'red';
+                    alertaDiv.style.color = 'white';
+                }
+
+                return alertaDiv;
+            } else { 
+                const alertaDiv = document.createElement('div');
+                alertaDiv.textContent = 'Faltan datos';
+                alertaDiv.style.backgroundColor = 'gray';
+                alertaDiv.style.color = 'white';
+                alertaDiv.style.fontWeight = 'bold';
+                alertaDiv.style.textAlign = 'center'; 
+                return alertaDiv;
+            }
+        }
+    },
+
+    {
+        headerName: "Alerta Libre Hasta",
+        field: "libre_hasta", 
+        cellRenderer: params => {
+            const fechaDocumental = params.value ? new Date(params.value) : null; 
+            const hoy = new Date(); 
+            const estado = params.data.estado; // Obtener el estado de la fila
+            if (estado === "PENDIENTE LIQUIDAR") { 
+                const checkIcon = document.createElement('i');
+                checkIcon.className = 'fas fa-check'; 
+                checkIcon.style.color = 'green'; 
+                checkIcon.style.fontSize = '1.2em'; 
+    
+                // Centrar el icono usando text-align
+                const wrapperDiv = document.createElement('div'); 
+                wrapperDiv.style.textAlign = 'center'; // Centrar el contenido del div
+                wrapperDiv.appendChild(checkIcon); 
+    
+                return wrapperDiv;
+            } else if (fechaDocumental) { 
+                const diferenciaDias = Math.ceil(
+                    (fechaDocumental - hoy) / (1000 * 60 * 60 * 24)
+                ); 
+
+                const alertaDiv = document.createElement('div');
+                alertaDiv.textContent = diferenciaDias >= 3 ? '3 DIAS O MAS' : diferenciaDias === 2 ? '2 DIAS' : '1 DIA O MENOS';
+                alertaDiv.style.fontWeight = 'bold';
+                alertaDiv.style.textAlign = 'center'; 
+
+                if (diferenciaDias >= 3) {
+                    alertaDiv.style.backgroundColor = 'green';
+                    alertaDiv.style.color = 'white';
+                } else if (diferenciaDias === 2) {
+                    alertaDiv.style.backgroundColor = 'orange';
+                    alertaDiv.style.color = 'black';
+                } else {
+                    alertaDiv.style.backgroundColor = 'red';
+                    alertaDiv.style.color = 'white';
+                }
+
+                return alertaDiv;
+            } else { 
+                const alertaDiv = document.createElement('div');
+                alertaDiv.textContent = 'Faltan datos';
+                alertaDiv.style.backgroundColor = 'gray';
+                alertaDiv.style.color = 'white';
+                alertaDiv.style.fontWeight = 'bold';
+                alertaDiv.style.textAlign = 'center'; 
+                return alertaDiv;
+            }
+        }
+    },
+
+    {
+        headerName: "Alerta Bodegaje Hasta",
+        field: "bodegaje_hasta", 
+        cellRenderer: params => {
+            const fechaDocumental = params.value ? new Date(params.value) : null; 
+            const hoy = new Date(); 
+            const estado = params.data.estado; // Obtener el estado de la fila
+            if (estado === "PENDIENTE LIQUIDAR") { 
+                const checkIcon = document.createElement('i');
+                checkIcon.className = 'fas fa-check'; 
+                checkIcon.style.color = 'green'; 
+                checkIcon.style.fontSize = '1.2em'; 
+    
+                // Centrar el icono usando text-align
+                const wrapperDiv = document.createElement('div'); 
+                wrapperDiv.style.textAlign = 'center'; // Centrar el contenido del div
+                wrapperDiv.appendChild(checkIcon); 
+    
+                return wrapperDiv;
+            } else if (fechaDocumental) { 
+                const diferenciaDias = Math.ceil(
+                    (fechaDocumental - hoy) / (1000 * 60 * 60 * 24)
+                ); 
+
+                const alertaDiv = document.createElement('div');
+                alertaDiv.textContent = diferenciaDias >= 3 ? '3 DIAS O MAS' : diferenciaDias === 2 ? '2 DIAS' : '1 DIA O MENOS';
+                alertaDiv.style.fontWeight = 'bold';
+                alertaDiv.style.textAlign = 'center'; 
+
+                if (diferenciaDias >= 3) {
+                    alertaDiv.style.backgroundColor = 'green';
+                    alertaDiv.style.color = 'white';
+                } else if (diferenciaDias === 2) {
+                    alertaDiv.style.backgroundColor = 'orange';
+                    alertaDiv.style.color = 'black';
+                } else {
+                    alertaDiv.style.backgroundColor = 'red';
+                    alertaDiv.style.color = 'white';
+                }
+
+                return alertaDiv;
+            } else { 
+                const alertaDiv = document.createElement('div');
+                alertaDiv.textContent = 'Faltan datos';
+                alertaDiv.style.backgroundColor = 'gray';
+                alertaDiv.style.color = 'white';
+                alertaDiv.style.fontWeight = 'bold';
+                alertaDiv.style.textAlign = 'center'; 
+                return alertaDiv;
+            }
+        }
+    },
+    
     { headerName: "Estado", field: "estado" }
 ];
 

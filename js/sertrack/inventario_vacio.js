@@ -37,9 +37,12 @@ const columnDefs = [
     },
     { headerName: "Contenedor", field: "contenedor" },
     { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
+    { headerName: "Reserva", field: "reserva" },
+    { headerName: "Remisionado", field: "remisionado" },
     { headerName: "Naviera", field: "naviera" },
     { headerName: "Cutoff", field: "cutoff" },
     { headerName: "Dias en patio", field: "cantidad_dias" },
+    { headerName: "Fecha Retiro", field: "fecha_retiro" },
     { 
         headerName: "Fotos", 
         cellRenderer: params => {
@@ -66,21 +69,25 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
             cliente: ordenCargue.cliente,
             contenedor: ordenCargue.contenedor,
             tipo_contenedor: ordenCargue.tipo_contenedor,
+            reserva: ordenCargue.reserva,
+            remisionado: ordenCargue.remisionado,
             naviera: ordenCargue.naviera,
             cutoff: ordenCargue.cutoff,
             cantidad_dias: ordenCargue.cantidad_dias,
+            fecha_retiro: ordenCargue.fecha_retiro,
         };
     });
 
     const gridOptions = {
         columnDefs: columnDefs,
         defaultColDef: {
-            resizable: true,
-            sortable: false,
-            filter: "agTextColumnFilter",
-            floatingFilter: true,
-            flex: 1,
-            minWidth: 100,
+          resizable: true,
+          sortable: false,
+          filter: "agTextColumnFilter",
+          floatingFilter: true,
+          flex: 1,
+          minWidth: 100,
+          editable: true
         },
         enableRangeSelection: true,
         suppressMultiRangeSelection:true,
@@ -98,6 +105,64 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
                     values: ['ESENTTIA S A'] 
                 }
             });
+        },
+
+        rowSelection: 'multiple',
+        enableRangeSelection: true,
+        suppressMultiRangeSelection: true,
+        pagination: true,
+        paginationPageSize: 20,
+        rowData: processedData,
+  
+        onCellValueChanged: (event) => {
+          const updatedRowData = event.data;
+          const id = updatedRowData.id;
+  
+          Swal.fire({
+            title: 'Actualizando...',
+            text: "Se actualizará la información en la base de datos",
+            icon: 'info',
+            timer: 1000,
+            timerProgressBar: true,
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false
+          });
+  
+          setTimeout(() => {
+            fetch(`https://esenttiapp-production.up.railway.app/api/cargarinventario/${id}`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+              },
+              body: JSON.stringify(updatedRowData)
+            })
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Error al actualizar datos');
+                }
+                console.log('Datos actualizados correctamente');
+                Swal.fire({
+                  title: '¡Actualizado!',
+                  text: 'El registro ha sido actualizado.',
+                  icon: 'success',
+                  timer: 1000,
+                  timerProgressBar: true,
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false
+                });
+              })
+              .catch(error => {
+                console.error('Error al actualizar datos:', error);
+                Swal.fire(
+                  'Error',
+                  'No se pudo actualizar el registro.',
+                  'error'
+                );
+              });
+          }, 2000);
         }
     };
     
