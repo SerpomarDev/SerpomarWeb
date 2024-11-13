@@ -20,7 +20,6 @@ new gridjs.Grid({
         },
         "Ruta", "Conductor", "Estado","#ordencompra","#factura",
     ],
-    fixedHeader: true,
     server: {
         url: `https://esenttiapp-production.up.railway.app/api/asignacionespagadas`,
         headers: {
@@ -53,5 +52,3 @@ new gridjs.Grid({
         table: { width: "100%" }
     }
 }).render(document.getElementById('facturasPagadas'));
-
-localStorage.setItem("authToken", data.token);

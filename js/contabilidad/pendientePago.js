@@ -90,7 +90,6 @@ new gridjs.Grid({
     }
 }).render(document.getElementById('pendientePago'));
 
-localStorage.setItem("authToken", data.token);
 
 // function establecerFactura() {
 //   // Obtener los IDs seleccionados y sus números de factura
