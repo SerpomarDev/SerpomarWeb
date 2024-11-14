@@ -35,6 +35,14 @@ const columnDefs = [
             suppressSorting: true 
         }
     },
+    { headerName: "Modalidad", field: "modalidad",
+        filter: 'agSetColumnFilter',
+        hide: true,
+        filterParams: {
+            value: ['EXPORTACION'],
+            suppressSorting: true 
+        }
+    },
     { headerName: "Contenedor", field: "contenedor" },
     { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
     { headerName: "Reserva", field: "reserva" },
@@ -67,6 +75,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
             id: ordenCargue.id,
             lleno_vacio: ordenCargue.lleno_vacio,
             cliente: ordenCargue.cliente,
+            modalidad: ordenCargue.modalidad,
             contenedor: ordenCargue.contenedor,
             tipo_contenedor: ordenCargue.tipo_contenedor,
             reserva: ordenCargue.reserva,
@@ -103,6 +112,10 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
                 'cliente': {
                     filterType: 'set',
                     values: ['ESENTTIA S A'] 
+                },
+                'modalidad': {
+                    filterType: 'set',
+                    values: ['EXPORTACION'] 
                 }
             });
         },
