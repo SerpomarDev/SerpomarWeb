@@ -45,25 +45,73 @@ const columnDefs = [
             return link;
         }
     },
-    {
-        headerName: 'Eliminar',
-        hide: true, // Puedes cambiar esto a false si quieres mostrar la columna
+    { 
+        headerName: "Acciones", 
         cellRenderer: params => {
-            const link = document.createElement('a');
-            link.href = '#';
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                deletePlaca(params.data.id_placa);
+            const container = document.createElement('div');
+            container.style.display = 'flex';
+            container.style.alignItems = 'center';
+
+            // Switch para activar/desactivar conductor
+            const switchLabel = document.createElement('label');
+            switchLabel.classList.add('switch');
+            const inputElement = document.createElement('input');
+            inputElement.type = 'checkbox';
+            inputElement.checked = !params.data.inactivo; 
+            inputElement.addEventListener('change', () => {
+                Swal.fire({
+                    title: 'Actualizando...',
+                    didOpen: () => {
+                        Swal.showLoading()
+                    },
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showConfirmButton: false
+                });
+
+                fetch(`https://esenttiapp-production.up.railway.app/api/cargarplaca/${params.data.id_placa}`, { 
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                    },
+                    body: JSON.stringify({ inactivo: !inputElement.checked }) 
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al actualizar el estado del conductor');
+                    }
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Estado actualizado',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    gridOptions.api.refreshCells(); 
+                })
+                .catch(error => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Estado actualizado',
+                        text: 'Conductor Actualizado'
+                    });
+                    console.error(error);
+                });
             });
-            const img = document.createElement('img');
-            img.src = '/img/basura.png';
-            img.alt = 'eliminar';
-            img.style.width = '20px';
-            img.style.height = '20px';
-            link.appendChild(img);
-            return link;
+
+            switchLabel.appendChild(inputElement);
+
+            // Agregar la clase "slider" al span
+            const spanElement = document.createElement('span');
+            spanElement.classList.add('slider'); 
+            spanElement.classList.add('round'); // Opcional: para que el switch sea redondo
+            switchLabel.appendChild(spanElement); 
+
+            container.appendChild(switchLabel);
+
+            return container;
         }
-    }
+    },
 ];
 
 const eGridDiv = document.getElementById('Placa'); 
@@ -74,7 +122,7 @@ gridContainer.style.height = '500px';
 gridContainer.style.margin = '20px auto';
 eGridDiv.appendChild(gridContainer); 
 
-fetch("https://esenttiapp-production.up.railway.app/api/showplaca", {
+fetch("https://esenttiapp-production.up.railway.app/api/cargarplaca", {
     headers: {
         Authorization: `Bearer ${localStorage.getItem("authToken")}`
     }

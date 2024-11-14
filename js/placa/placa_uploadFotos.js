@@ -1,3 +1,4 @@
+
 // Configuración Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBQh7eqWl_iu02oDPds3nQMigzSrHDOFn0",
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     async function uploadId(id) {
-        document.getElementById('id_placa').value = id;
+        document.getElementById('id').value = id;
         modal.style.display = 'block';
         if (Dropzone.instances.length > 0) {
             Dropzone.instances.forEach(dz => dz.destroy());
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             acceptedFiles: '.pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.png,.jpeg',
             init: function() {
                 this.on('addedfile', async function(file) {
-                    const id = document.getElementById('id_placa').value;
+                    const id = document.getElementById('id').value;
                     let fileName = file.name;
                     let filePath = `adjuntos_placa/${id}/${fileName}`;
                     const storageRef = storage.ref(filePath);
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     async function deleteFile(id, fileName) {
         try {
-            const fileRef = storage.ref(`adjuntos_placa/${id}/${fileName}`);
+            const fileRef = storage.ref(`adjuntos_placa/${id}/${fileName}`); // Updated storage path
             await fileRef.delete();
             console.log(`File deleted: ${fileName}`);
             // Actualizar la lista de archivos adjuntos después de eliminar un archivo
@@ -96,7 +97,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         fileList.innerHTML = '';
 
         try {
-            const listRef = storage.ref(`adjuntos_placa/${id}`);
+            const listRef = storage.ref(`adjuntos_placa/${id}`); // Updated storage path
             const res = await listRef.listAll();
 
             if (res.items.length === 0) {
@@ -134,5 +135,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     window.uploadId = uploadId;
-    window.deleteFile = deleteFile; // Make the deleteFile function globally accessible
+    window.deleteFile = deleteFile;
 });
