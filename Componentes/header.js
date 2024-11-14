@@ -163,21 +163,52 @@ function createHeader() {
                   showCloseButton: true,
                   focusConfirm: false,
                   preConfirm: () => {
-                      const form = document.getElementById('pqrs-form');
-                      const tipo = form.tipo.value;
-                      const nombre = form.nombre.value;
-                      const correo = form.correo.value;
-                      const mensaje = form.mensaje.value;
-
-                      Swal.fire({
-                          title: 'Datos del formulario',
-                          html: `
-                              Tipo: ${tipo}<br>
-                              Nombre: ${nombre}<br>
-                              Correo: ${correo}<br>
-                              Mensaje: ${mensaje}
-                          `
-                      });
+                    const form = document.getElementById('pqrs-form');
+                    const tipo = form.tipo.value;
+                    const nombre = form.nombre.value;
+                    const correo = form.correo.value;
+                    const mensaje = form.mensaje.value;
+                
+                    // Mostrar un mensaje de confirmación antes de enviar el correo
+                    Swal.fire({
+                      title: '¿Estás seguro de enviar estos datos?',
+                      html: `
+                            Tipo: ${tipo}<br>
+                            Nombre: ${nombre}<br>
+                            Correo: ${correo}<br>
+                            Mensaje: ${mensaje}
+                            `,
+                      icon: 'question',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Sí, enviar',
+                      cancelButtonText:   
+                 'Cancelar'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        // Si el usuario confirma, enviar la solicitud fetch
+                        fetch('https://api-pqrs-7vca.onrender.com/enviar_correo', { 
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json'
+                          },
+                          body: JSON.stringify({ tipo, nombre, correo, mensaje })
+                        })
+                        .then(response => {
+                          if (!response.ok) {
+                            throw new Error('Error al enviar el correo');
+                          }
+                          return response.json(); 
+                        })
+                        .then(data => {
+                          Swal.fire('Correo enviado con éxito', '', 'success'); 
+                        })
+                        .catch(error => {
+                          Swal.fire('Error', error.message, 'error');
+                        });
+                      }
+                    });
                   }
               });
           });
