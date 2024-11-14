@@ -69,7 +69,7 @@ const columnDefs = [
                     showConfirmButton: false
                 });
 
-                fetch(`https://esenttiapp-production.up.railway.app/api/cargarplaca/${params.data.id}`, { 
+                fetch(`https://esenttiapp-production.up.railway.app/api/cargarplaca/${params.data.id_placa}`, { 
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -122,7 +122,7 @@ gridContainer.style.height = '500px';
 gridContainer.style.margin = '20px auto';
 eGridDiv.appendChild(gridContainer); 
 
-fetch("https://esenttiapp-production.up.railway.app/api/showplaca", {
+fetch("https://esenttiapp-production.up.railway.app/api/cargarplaca", {
     headers: {
         Authorization: `Bearer ${localStorage.getItem("authToken")}`
     }
