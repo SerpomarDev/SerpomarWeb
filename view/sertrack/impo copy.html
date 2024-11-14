@@ -1,0 +1,166 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title> 
+
+    <link rel="icon" href="/faviconN.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet">
+    <link href="/css/vehiculos.css" rel="stylesheet">
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+   
+    <!-- ag-grid -->
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+
+</head>
+<div id="header-container"></div>
+<script src="/Componentes/header.js"></script>
+<script src="/Componentes/perfil.js"></script>
+
+<body>
+
+
+  <div id="main-wrapper">
+    <div class="header">
+        <div class="title-container">
+            <div class="circle"></div>
+            <h1 class="title">IMPORTACION</h1>
+        </div>
+    </div>
+
+    <div class="margenform">
+        <div class="container-fluid">
+            <div class="col-xl-12 col-xxl-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card progress-card">
+                          <div class="card-body d-flex">
+                            <div class="card-body pb-0 pt-3">
+                              <ul>
+                                <div class="me-auto mb-sm-0 mb-3">
+                                    <h4 class="card-title mb-2">Total Pendientes por Cita:   <span id="total-Pendientes_cita"></span></h4>
+                                </div>
+                                <br>
+                                <div class="me-auto mb-sm-0 mb-3">
+                                    <h4 class="card-title mb-2">Total Citas Programadas:  <span id="total-pendientes-cita"></span></h4>
+                                </div>
+                                <br>
+                                <div class="me-auto mb-sm-0 mb-3">
+                                    <h4 class="card-title mb-2">Total Vacíos en Piso: <span id="total-vacios"></span></h4>
+                                </div>
+                                <br>
+                                <div class="me-auto mb-sm-0 mb-3">
+                                    <h4 class="card-title mb-2">Total Llenos en Piso:  <span id="total-llenos"></span></h4>
+                                </div>
+                               
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                  
+
+
+                    <div class="col-md-6">
+                        <div class="card progress-card">
+                            <div class="card-header d-flex flex-wrap border-0 pb-0">
+                                <div class="me-auto mb-sm-0 mb-3">
+                                  <h4 class="card-title mb-2">Estados del Programa</h4>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex">
+                                <div class="card-body pb-0 pt-3">
+                                    <canvas id="estado-operacion"></canvas>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card progress-card">
+                            <div class="card-header d-flex flex-wrap border-0 pb-0">
+                                <div class="me-auto mb-sm-0 mb-3">
+                                  <h4 class="card-title mb-2">Terminal Portuario</h4>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex">
+                                <div class="card-body pb-0 pt-3">
+                                    <canvas id="grafico-puerto-ingreso"></canvas> 
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+               
+                    <div class="col-md-6">
+                        <div class="card progress-card">
+                            <br>
+                            <div class="card-body d-flex">
+                                <div class="card-body pb-0 pt-3" style="height: 600px;">
+                                    <div id="total_producto" class="w-100 h-100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                  
+
+                </div>
+            </div>
+           
+            <div class="card">
+                <div class="card-header d-flex flex-wrap border-0 pb-0">
+                  <div class="me-auto mb-sm-0 mb-3">
+                    <h4 class="card-title mb-2">Detalle del programa</h4>
+                  </div>
+                </div>
+                <div id="miTabla" class="ag-theme-alpine" style="height:600px; width: 100%; "></div>
+              </div>
+
+        </div>
+    </div>
+</div>
+
+    
+ 
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- Custom JavaScript -->
+
+
+    <script src="/js/login/logout.js"></script>
+    <script src="/Componentes/sidebar.js"></script>
+    <script src="/js/custom.min.js"></script>
+    
+    <script src="/js/sertrack/contador_vacio_lleno.js"></script>
+
+    <script src="/js/sertrack/estado_programa.js"></script>
+    <script src="/js/sertrack/terminal_portuario.js"></script>
+    <script src="/js/sertrack/total_producto.js"></script>
+
+    <script src="/js/sertrack/tabla_programa.js"></script>
+
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-charts-enterprise@32.1.0/dist/ag-grid-charts-enterprise.js?t=1724946077050"></script>
+</body>
+
+</html>
