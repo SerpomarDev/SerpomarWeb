@@ -215,8 +215,17 @@
                               <br>
                         <p class="message">Complete los campos para crear una nueva orden de compra.</p>
                         <div class="row">
-                        
-                            <div class="col-md-4">
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="full-width">
+                                    <input type="date" class="input" id="fecha_creacion" name="fecha_creacion" required>
+                                    <span>fecha creacion</span>
+                                </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="full-width">
                                     <select id="id_proveedor" name="id_proveedor" class="input" required>
@@ -226,7 +235,7 @@
                                 </label>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>
                                     <input type="text" class="input" id="valor" name="valor" required>
@@ -234,7 +243,7 @@
                                 </label>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="full-width">
                                         <textarea class="input" id="condicion" name="condicion" rows="1"></textarea>
@@ -339,9 +348,9 @@
 
     <script type="text/javascript" src="/js/cargar/cargarProveedor.js"></script>
     <script type="text/javascript" src="/js/cargar/uploadSp.js"></script>
+    <script type="text/javascript" src="/js/orden_compra/tableroCosto.js"></script>
     <script type="text/javascript" src="/js/orden_compra/createOrdenCompra.js"></script>
     <script type="text/javascript" src="/js/orden_compra/aprobarOrdenCompra.js"></script>
-    <script type="text/javascript" src="/js/orden_compra/tableroCosto.js"></script>
     <script type="text/javascript" src="/js/orden_compra/rechazarOrdenCompra.js"></script>
     <script type="module" src="/js/orden_compra/upload_fotosOrdenes.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

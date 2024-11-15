@@ -9,6 +9,7 @@ const columnDefs = [
     { headerName: "SP", field: "sp" },
     { headerName: "Dias pendiente", field: "cantidad_dias" },
     { headerName: "Observación", field: "observacion" },
+    { headerName: "Fecha creración", field: "fecha_creacion" },
       {
         headerName: "Soportes",
         cellRenderer: params => {
@@ -21,15 +22,15 @@ const columnDefs = [
         }
       },
       {
-        headerName: "Acciones",
-        cellRenderer: params => {
-            return `
-                <button class="py-2 mb-4 px-4 border rounded bg-blue-600" onclick="aprovarOrdenCompra(${params.data.id})">Aprobar</button>
-                <button class="py-2 mb-4 px-4 border rounded bg-blue-600" onclick="rechazarOrdenCompra(${params.data.id})">Rechazar</button>
-            `;
-        }
-    }
-    ];
+          headerName: "Acciones",
+          cellRenderer: params => {
+              return `
+                  <button class="py-2 mb-4 px-4 border rounded bg-blue-600" onclick="aprovarOrdenCompra(${params.data.id})">Aprobar</button>
+                  <button class="py-2 mb-4 px-4 border rounded bg-blue-600" onclick="rechazarOrdenCompra(${params.data.id})">Rechazar</button>
+              `;
+          }
+      }
+  ];
   
     fetch("https://esenttiapp-production.up.railway.app/api/uploadordencompra",{
       headers: {
@@ -50,6 +51,7 @@ const columnDefs = [
           sp: ordenCompra.sp,
           cantidad_dias: ordenCompra.cantidad_dias,
           observacion: ordenCompra.observacion,
+          fecha_creacion: ordenCompra.fecha_creacion,
         };
       });
   
