@@ -51,7 +51,7 @@ const columnDefs = [
           sp: ordenCompra.sp,
           cantidad_dias: ordenCompra.cantidad_dias,
           observacion: ordenCompra.observacion,
-          fecha_creacion: ordenCompra.fecha_creacion,
+          observacion: ordenCompra.fecha_creacion,
         };
       });
   

@@ -9,13 +9,13 @@ const columnDefs = [
     { headerName: "SP", field: "sp" },
     {
       headerName: "Soportes",
-      cellRenderer: params => {
-          const button = document.createElement('button');
-          button.className = 'upload-btn no-file';
-          button.innerText = 'Ver Adjuntar';
-          button.onclick = () => uploadId(params.data.id);
-          return button;
-      }
+        cellRenderer: params => {
+            const button = document.createElement('button');
+            button.className = 'upload-btn no-file';
+            button.innerText = 'Ver Adjuntos';
+            button.onclick = () => uploadId(params.data.id);
+            return button;
+        }
     },
   ];
 
@@ -49,7 +49,7 @@ const columnDefs = [
         floatingFilter: true,
       },
       pagination: true,
-      paginationPageSize: 7,
+      paginationPageSize: 20,
       rowData: processedData // Asignar los datos procesados
     };
 
