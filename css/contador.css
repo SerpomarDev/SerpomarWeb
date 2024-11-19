@@ -1,0 +1,44 @@
+.progress-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Para que los bordes redondeados se apliquen correctamente */
+  }
+  
+  .counter-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive */
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .counter {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s ease; /* Para el efecto hover */
+  }
+  
+  .counter:hover {
+    transform: translateY(-5px); /* Efecto hover */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  .counter i {
+    font-size: 3em;
+    color: #007bff; /* Color del icono */
+    margin-bottom: 10px;
+  }
+  
+  .counter-value {
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .counter-label {
+    display: block;
+    font-size: 1em;
+    color: #6c757d;
+  }

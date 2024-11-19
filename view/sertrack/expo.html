@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet">
     <link href="/css/vehiculos.css" rel="stylesheet">
+    <link href="/css/contador.css" rel="stylesheet">
     <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -59,6 +60,9 @@
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); 
     }
 
+  
+
+
     </style>
 
 </head>
@@ -91,26 +95,36 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card progress-card">
-                              <div class="card-body d-flex">
-                                <div class="card-body pb-0 pt-3">
-                                  <ul>
-                                    <div class="me-auto mb-sm-0 mb-3">
-                                        <h4 class="card-title mb-2">Total Programa:   <span id="total-programa"></span></h4>
+                              <div class="card-body">
+                                <div class="counter-container">
+                                  <div class="counter">
+                                    <i class="fas fa-list-ol"></i>
+                                    <div class="counter-data">
+                                      <span class="counter-value" id="total-programa"></span>
+                                      <span class="counter-label">Total Programa</span>
                                     </div>
-                                    <br>
-                                    <div class="me-auto mb-sm-0 mb-3">
-                                        <h4 class="card-title mb-2">Total Colocados:   <span id="total-ingreso-planta"></span></h4>
+                                  </div>
+                                  <div class="counter">
+                                    <i class="fas fa-check-circle"></i>
+                                    <div class="counter-data">
+                                      <span class="counter-value" id="total-ingreso-planta"></span>
+                                      <span class="counter-label">Total Colocados</span>
                                     </div>
-                                    <br>
-                                    <div class="me-auto mb-sm-0 mb-3">
-                                        <h4 class="card-title mb-2">Total Cargados:   <span id="total-documento-lleno"></span></h4>
+                                  </div>
+                                  <div class="counter">
+                                    <i class="fas fa-upload"></i>
+                                    <div class="counter-data">
+                                      <span class="counter-value" id="total-documento-lleno"></span>
+                                      <span class="counter-label">Total Cargados</span>
                                     </div>
-                                    <br>
-                                    <div class="me-auto mb-sm-0 mb-3">
-                                        <h4 class="card-title mb-2">Vehículos en Operación:   <span id="total-vehiculos"></span></h4>
+                                  </div>
+                                  <div class="counter">
+                                    <i class="fas fa-truck"></i>
+                                    <div class="counter-data">
+                                      <span class="counter-value" id="total-vehiculos"></span>
+                                      <span class="counter-label">Vehículos en Operación</span>
                                     </div>
-                                   
-                                  </ul>
+                                  </div>
                                 </div>
                               </div>
                             </div>

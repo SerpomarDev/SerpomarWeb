@@ -1,11 +1,11 @@
 const estadosOperacion = [
-  "ASIGNADO",
-  "FINALIZADO",
-  "CARGADO ESPERANDO CITA",
-  "DEVOLUCION DE EXPORTACION",
-  "EN SITIO DE CARGUE",
-  "FALLIDO",
   "PROGRAMADO-CONFIRMADO",
+  "EN SITIO DE CARGUE",
+  "ASIGNADO",
+  "CARGADO ESPERANDO CITA",
+  "FINALIZADO",
+  "DEVOLUCION DE EXPORTACION",
+  "FALLIDO",
 ];
 
 const columnDefs = [
@@ -13,8 +13,10 @@ const columnDefs = [
   { headerName: "Fecha Global", field: "fecha_global", hide: true },
   { headerName: "PEDIDO", field: "pedido", hide: false },
   { headerName: "CONTENEDOR", field: "contenedor", hide: false },
+  { headerName: "Vehiculo", field: "vehiculo", hide: false },
   { headerName: "ESTADO OPERACIÓN", field: "estado_operacion", rowGroup: true }, 
   { headerName: "ESTADO", field: "on_timec", hide: false }, 
+  
   {
       headerName: "CANTIDAD",
       aggFunc: "count", hide: true 
@@ -50,6 +52,7 @@ fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
           fecha_global: Preprogramar.fecha_global,
           pedido: Preprogramar.pedido,
           contenedor: Preprogramar.contenedor,
+          vehiculo: Preprogramar.vehiculo,
           estado_operacion: Preprogramar.estado_operacion,
           on_timec: Preprogramar.on_timec,
       };
