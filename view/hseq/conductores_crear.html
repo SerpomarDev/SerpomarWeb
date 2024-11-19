@@ -15,128 +15,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
 
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+
     <!-- Cargar Firebase App y Firebase Storage desde CDN -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 
-    <style>
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.6);
-            padding-top: 60px;
-        }
-        
-        .modal-content {
-            background-color: #fff;
-            margin: 5% auto;
-            padding: 20px;
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            width: 60%;
-            max-width: 800px;
-        }
-        
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        
-        .title-container {
-            text-align: center;
-        }
-        
-        .title-container .title {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        .modal-details {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        .modal-details div {
-            flex: 1 1 50%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        
-        .dropzone {
-            border: 2px dashed #007bff;
-            border-radius: 5px;
-            background: #f9f9f9;
-        }
-        
-        .dz-message {
-            color: #999;
-            font-size: 18px;
-            text-align: center;
-            padding: 50px 0;
-        }
-        
-        #uploadedFilesContainer {
-            margin-top: 20px;
-        }
-        
-        #uploadedFilesContainer h2 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        
-        #uploadedFilesList {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        #uploadedFilesList li {
-            width: 120px;
-            margin: 5px;
-        }
-        
-        #uploadedFilesList img {
-            width: 100%;
-            height: auto;
-        }
-        
-        .upload-btn.file-uploaded {
-            background-color: #007bff;
-            color: white;
-            border: none;
-        }
-        
-        #detailsModal img {
-            display: block;
-            margin: 0 auto;
-        }
-        
-        #impoexpoChart {
-            width: 100%;
-        }
-        
-        #impoexpoChart {
-            width: 100%;
-            height: 300px;
-            /* O un porcentaje, como height: 80%; */
-        }
-    </style>
 
 </head>
 <div id="header-container"></div>
@@ -151,7 +36,7 @@
     <div id="main-wrapper">
         <div class="header">
             <div class="title-container">
-                <h1 class="title">CREAR CONDUCTOR</h1>
+                <h1 class="title">CONDUCTORES</h1>
             </div>
         </div>
 
@@ -160,48 +45,25 @@
         <div class="margenform">
             <div id="content" class="p-4 p-md-0 pt-5">
                 <div class="container-fluid main-container">
+                    
                     <div class="">
-                        <div id="conductores"></div>
+                        <div id="conductores" class="ag-theme-alpine" style="height:600px; width: 100%;"></div>
                     </div>
                 </div>
 
             </div>
         </div>
 
-
-        <div class="container-fluid main-container">
-            <div style="display: flex; justify-content: center; width: 100%;">
-                <div id="fileUploadModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <div class="title-container">
-                            <h1 class="title">Adjuntar Archivo</h1>
-                        </div>
-                        <form action="#" class="dropzone" id="SaveFile" method="POST">
-                            <input type="hidden" name="id" id="id">
-                            <div class="dz-message">
-                                Arrastra y suelta archivos aquí o haz clic para subir.
-                            </div>
-                        </form>
-                        <div id="uploadedFilesContainer">
-                            <h2>Archivos Adjuntos</h2>
-                            <ul id="uploadedFilesList">
-                                <!-- Aquí se agregarán los archivos subidos -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
         <script src="/Componentes/sidebar.js"></script>
         <script src="/js/login/logout.js"></script>
         <script src="/js/custom.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+
         <script type="text/javascript" src="/js/hseq/createConductor.js"></script>
-        <script type="text/javascript" src="/js/conductor/deleteConductor.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script type="module" src="/js/conductor/conductores_uploadFotos.js"></script>
+
+        <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ag-grid-charts-enterprise@32.1.0/dist/ag-grid-charts-enterprise.js?t=1724946077050"></script>
 </body>
 
 </html>

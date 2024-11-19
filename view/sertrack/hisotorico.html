@@ -9,6 +9,7 @@
     <link rel="icon" href="/faviconN.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/contador.css" rel="stylesheet">
     <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -50,7 +51,46 @@
 
     <div class="margenform">
 
-<br>
+<div class="col-md-12">
+    <div class="">
+      <div class="card-body">
+        <div class="counter-container">
+          <div class="counter">
+            <i class="fas fa-list-ol"></i>
+            <div class="counter-data">
+              <span class="counter-value" id="total-programa"></span>
+              <span class="counter-label">Total Programa</span>
+            </div>
+          </div>
+          <div class="counter">
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-question-circle"></i>
+            <i class="fas fa-times-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <div class="counter-data">
+              <span class="counter-value" id="total-ingreso-planta"></span>
+              <span class="counter-label">Total por Estado</span>
+            </div>
+          </div>
+          <div class="counter">
+            <i class="fas fa-truck"></i>
+            <div class="counter-data">
+              <span class="counter-value" id="total-documento-lleno"></span>
+              <span class="counter-label">Total Vehículos Operación</span>
+            </div>
+          </div>
+          <div class="counter">
+            <i class="fas fa-truck"></i>
+            <div class="counter-data">
+              <span class="counter-value" id="total-vehiculos"></span>
+              <span class="counter-label">Total Puerto Ingreso</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
         <div class="container-fluid">
             <div id="preprogramar" class="ag-theme-alpine" style="height:750px; width: 100%; "></div>
