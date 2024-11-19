@@ -1,4 +1,3 @@
-
 fetch('https://sertrack-production.up.railway.app/api/intervalfifteenday')
   .then(response => response.json())
   .then(data => {
@@ -11,11 +10,13 @@ fetch('https://sertrack-production.up.railway.app/api/intervalfifteenday')
 function generarGraficoTotalPorFecha(data) {
   const ctx = document.getElementById('dias-total-programa').getContext('2d');
 
-  // Agrupar los datos por fecha y contar los IDs
+  // Agrupar los datos por fecha y contar los IDs, ignorando los que tengan fecha_global null
   const conteoPorFecha = {};
   data.forEach(elemento => {
     const fecha = elemento.fecha_global;
-    conteoPorFecha[fecha] = (conteoPorFecha[fecha] || 0) + 1;
+    if (fecha !== null) { // Ignorar si la fecha es null
+      conteoPorFecha[fecha] = (conteoPorFecha[fecha] || 0) + 1;
+    }
   });
 
   // Preparar los datos para el gráfico

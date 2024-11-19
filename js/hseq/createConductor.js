@@ -1,164 +1,94 @@
-new gridjs.Grid({
-    search: true,
-    language: {
-        search: {
-            placeholder: '🔍 Buscar...'
-        }
-    },
-    pagination: {
-        limit: 10,
-        enabled: true,
-    },
-    resizable: true,
-    sort: false,
-    columns: ["Nombre", "Cedula", "Telefono", "", {
 
-            name: 'Adjuntos',
-            hidden: false,
-            formatter: (cell, row) => {
-                return gridjs.html(
-                    `<button id="btn-${row.cells[0].data}" class="upload-btn no-file" onclick="uploadId(${row.cells[0].data})">Adjuntos</button>`
-                );
-            }
-        },
-        {
-            name: 'EDIT',
-            formatter: (cell, row) => {
-                return gridjs.h('a', {
-                    href: '/view/hseq/conductores_edit.html',
-                    onclick: (e) => {
-                        e.preventDefault();
-                        editConductor(row.cells[0].data);
-                    }
-                }, [
-
-                    gridjs.h('img', {
-                        src: '/img/editar-texto.png',
-                        alt: 'Actualizar',
-                        style: 'width: 20px; height: 20px;'
-                    })
-                ]);
-            },
-        }, {
-            name: '',
-            formatter: (cell, row) => {
-                return gridjs.h('a', {
-                    href: '/view/hseq/conductores_crear.html',
-                    onclick: (e) => {
-                        e.preventDefault(); // Evita que el enlace se recargue la página
-                        deleteCondcutor(row.cells[0].data);
-                    }
-                }, [
-                    // Imagen dentro del enlace
-                    gridjs.h('img', {
-                        src: '/img/basura.png',
-                        alt: 'eliminar',
-                        style: 'width: 20px; height: 20px;'
-                    })
-                ]);
-            },
-
-
-        }
-    ],
-    server: {
-        url: "https://esenttiapp-production.up.railway.app/api/uploadconductor",
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("authToken")}`
-        },
-        then: (data) => {
-            if (Array.isArray(data) && data.length > 0) {
-                return data.map((conductor) => [
-                    conductor.nombre,
-                    conductor.examen_medico,
-                    conductor.fecha_realizacion,
-                    conductor.fecha_seguimiento,
-                    conductor.tipo_examen,
-                    conductor.fecha_vencimiento
-
-                ]);
-            } else {
-                console.error("La respuesta del servidor no contiene datos válidos.");
-                return [];
-            }
-        }
-    }
-}).render(document.getElementById('conductores'));
-
-// Manejo del evento 'submit' del formulario
-document.getElementById('createConductor').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const formData = new FormData(this);
-
-    // Convertir los datos del formulario a JSON, escapando caracteres especiales si es necesario
-    const jsonData = JSON.stringify(Object.fromEntries(formData), (key, value) => {
-        if (typeof value === 'string') {
-            return value.replace(/\n/g, ' ').replace(/\t/g, ' ');
-        }
-        return value;
-    });
-
-
-    fetch('https://esenttiapp-production.up.railway.app/api/conductores', {
-        method: 'POST', // O PUT/PATCH si es lo que espera tu API
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-        },
-        body: jsonData
-    })
-
-    .then(response => {
-            if (!response.ok) {
-                // Manejo de errores del servidor con más detalle
-                if (response.status === 400) { // Ejemplo: Bad Request
-                    return response.json().then(data => {
-                        throw new Error("Solicitud incorrecta: " + data.message || "Verifique los datos del formulario.");
-                    });
-                }
-            } else {
-                return response.text().then(text => {
-                    console.log("Respuesta del servidor:", text);
-                    if (text.includes("Conductor creado exitosamente") || text.includes("mensaje de éxito similar del servidor")) {
-                        Swal.fire({
-                            title: "¡Buen trabajo!",
-                            text: "Has Creado un conductor.",
-                            icon: "success",
-                        });
-                        time();
-                    } else {
-                        Swal.fire({ // Cambiado a SweetAlert de éxito
-                            title: "¡Bien hecho!",
-                            text: "Conductor creado correctamente",
-                            icon: "success",
-                        });
-                        time();
-                    }
-                });
-            }
-        })
-        .catch(error => {
-            console.error('Error al crear el conductor:', error);
-            Swal.fire({
-                title: "Error",
-                text: error.message || "Hubo un problema al crear la placa. Por favor, inténtalo de nuevo.",
-                icon: "error",
+const columnDefs = [
+    { headerName: "#", field: "id", hide: true },
+    { headerName: "Nombre", field: "nombre" },
+    { headerName: "Cedula", field: "identificacion" },
+    { headerName: "Telefono", field: "telefono" },
+    {
+        headerName: 'Editar',
+        hide: true,
+        cellRenderer: params => {
+            const link = document.createElement('a');
+            link.href = '/view/hseq/conductores_edit.html',
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                editConductor(params.data.id);
             });
-        });
-});
+            const img = document.createElement('img');
+            img.src = '/img/editar-texto.png';
+            img.alt = 'Actualizar';
+            img.style.width = '20px';
+            img.style.height = '20px';
+            link.appendChild(img);
+            return link;
+        }
+    },
+    
+    
+];
 
+const eGridDiv = document.getElementById('conductores');
+
+const gridContainer = document.createElement('div');
+gridContainer.style.width = '90%';
+gridContainer.style.height = '600px';
+gridContainer.style.margin = '20px auto';
+eGridDiv.appendChild(gridContainer); 
+
+fetch("https://esenttiapp-production.up.railway.app/api/uploadconductor", {
+    headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`
+    }
+})
+.then(response => response.json())
+.then(data => {
+    if (Array.isArray(data) && data.length > 0) {
+        const gridOptions = {
+            columnDefs: columnDefs,
+            defaultColDef: {
+                resizable: true,
+                sortable: false, 
+                filter: "agTextColumnFilter",
+                floatingFilter: true,
+                flex: 1,
+                minWidth: 100,
+            },
+            pagination: true,
+            paginationPageSize: 10,
+            rowData: data 
+        };
+
+        new agGrid.Grid(gridContainer, gridOptions); 
+    } else {
+        console.error("La respuesta del servidor no contiene datos válidos.");
+        const gridOptions = {
+            columnDefs: columnDefs,
+            rowData: [] 
+        };
+
+        new agGrid.Grid(gridContainer, gridOptions);
+    }
+})
+.catch(error => {
+    console.error("Error al cargar los datos:", error);
+});
 
 
 function time() {
     document.getElementById('createConductor').reset();
     setTimeout(() => {
-        window.location.href = `/view/hseq/conductores_crear.html`;
+        window.location.href = `/view/seguridad/conductores_crear.html`;
     }, 1200);
 }
 
 
 function editConductor(id) {
-
-    window.location.href = `/view/hseq/conductores_edit.html?id=${id}`
+    window.location.href = `/view/seguridad/conductores_edit.html?id=${id}`
 }
+
+
+
+// Handle modal close
+$('.close').on('click', function() {
+    $('#fileUploadModal').hide();
+});

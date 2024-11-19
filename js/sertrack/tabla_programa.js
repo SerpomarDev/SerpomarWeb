@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     { headerName: "Pedido", field: "pedido" },
     { headerName: "Contenedor", field: "contenedor" },
     { headerName: "Fecha Programa", field: "fecha_programa" },
+    { headerName: "Vehiculo", field: "vehiculo", hide: false },
     { headerName: "Linea Naviera", field: "linea_naviera" },
     { headerName: "Patio Retiro", field: "patio_retiro" },
     { headerName: "Puerto Ingreso", field: "puerto_ingreso" }, 
