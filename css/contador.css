@@ -13,12 +13,47 @@
   }
   
   .counter {
+    padding-top: 15px;
+    padding-bottom: 15px;
     background-color: #f8f9fa;
     border-radius: 10px;
-    padding: 20px;
     text-align: center;
     transition: transform 0.2s ease; /* Para el efecto hover */
   }
+
+  .counter2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.2s ease; /* Para el efecto hover */
+  }
+
+  .counter2:hover {
+    transform: translateY(-5px); /* Efecto hover */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  .counter2 i {
+    font-size: 3em;
+    color: #007bff; /* Color del icono */
+    margin-bottom: 10px;
+  }
+  
+  .counter2-value {
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .counter2-label {
+    display: block;
+    font-size: 1em;
+    color: #6c757d;
+  }
+
+  
   
   .counter:hover {
     transform: translateY(-5px); /* Efecto hover */
@@ -42,3 +77,18 @@
     font-size: 1em;
     color: #6c757d;
   }
+
+
+  .counter-value2 {
+   
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .counter-label2 {
+    font-size: 1em;
+    color: #6c757d;
+  }
+
+  

@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-
   const columnDefs = [
-    { headerName: "ID", field: "id", hide: true},
+    { headerName: "ID", field: "id", hide: true },
     { headerName: "Pedido", field: "pedido" },
     { headerName: "Contenedor", field: "contenedor" },
     { headerName: "Fecha Programa", field: "fecha_programa" },
@@ -18,20 +17,20 @@ document.addEventListener('DOMContentLoaded', function() {
   })
   .then(response => response.json())
   .then(data => {
-    // Obtener la fecha actual en la zona horaria de Colombia
-    const hoyColombia = new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' });
-    const hoy = new Date(hoyColombia).toISOString().slice(0, 10);
+    // 1. Obtener la fecha actual en la zona horaria de Colombia
+    const hoyColombia = moment().tz('America/Bogota').startOf('day'); 
 
-    // Filtrar los datos por la fecha actual (usando la fecha en Colombia)
+    // 2. Filtrar los datos por la fecha actual (usando la fecha en Colombia)
     const rowData = data.filter(item => {
       try {
-        const fechaItem = new Date(item.fecha_global);
-        const fechaColombia = new Date(fechaItem.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
-        const fechaGlobal = fechaColombia.toISOString().slice(0, 10);
-        return fechaGlobal === hoy; 
+        // Convertir la fecha del item a la zona horaria de Colombia usando moment.js
+        const fechaItem = moment(item.fecha_global).tz('America/Bogota').startOf('day');
+
+        // Comparar las fechas
+        return fechaItem.isSame(hoyColombia); 
       } catch (error) {
         console.error("Error al convertir la fecha:", item.fecha_global, error);
-        return false; // Salta este elemento si la fecha es inválida
+        return false;
       }
     });
 

@@ -1,34 +1,32 @@
 fetch('https://sertrack-production.up.railway.app/api/intervalfifteenday')
-    .then(response => response.json())
-    .then(data => {
-        const hoyColombia = new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' });
-        const fechaActual = new Date(hoyColombia).toISOString().slice(0, 10);
+.then(response => response.json())
+.then(data => {
+  // 1. Obtener la fecha actual en la zona horaria de Colombia con moment.js
+  const hoyColombia = moment().tz('America/Bogota').startOf('day');
 
-        const datosFiltrados = data.filter(item => {
-          try {
-              if (item.fecha_global !== null) { 
-                  // Assuming item.fecha_global is in 'YYYY-MM-DD' format when it's not null
-                  const [year, month, day] = item.fecha_global.split('-');
-                  const fechaItem = new Date(year, month - 1, day);
-                  const fechaColombia = new Date(fechaItem.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
-                  const fechaGlobal = fechaColombia.toISOString().slice(0, 10);
-      
-                  return fechaGlobal === fechaActual; 
-              } else { 
-                  return false; // Or handle null values differently as needed
-              }
-          } catch (error) {
-              console.error("Invalid date:", item.fecha_global, error);
-              return false;
-          }
-      });
+  const datosFiltrados = data.filter(item => {
+    try {
+      if (item.fecha_global !== null) {
+        // Convertir la fecha del item a la zona horaria de Colombia con moment.js
+        const fechaItem = moment(item.fecha_global).tz('America/Bogota').startOf('day');
 
-        generarGraficoOnTime(datosFiltrados); 
-    })
-    .catch(error => {
-        console.error('Error al obtener los datos:', error);
-        generarGraficoOnTime([]); 
-    });
+        // Comparar las fechas (ignorando la hora)
+        return fechaItem.isSame(hoyColombia);
+      } else {
+        return false; // O manejar valores nulos de otra manera
+      }
+    } catch (error) {
+      console.error("Fecha inválida:", item.fecha_global, error);
+      return false;
+    }
+  });
+
+  generarGraficoOnTime(datosFiltrados);
+})
+.catch(error => {
+  console.error('Error al obtener los datos:', error);
+  generarGraficoOnTime([]);
+});
 
 function generarGraficoOnTime(data) {
   // Contar las ocurrencias de cada valor de "on_time"
