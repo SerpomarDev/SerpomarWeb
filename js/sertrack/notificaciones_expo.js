@@ -17,32 +17,35 @@ function openModal(tipo) {
 }
 
 function calcularDiferenciaDias(fecha1, fecha2) {
-  // Asegurar que las fechas se comparen en la misma zona horaria (Colombia)
-  const fecha1Colombia = new Date(fecha1.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
-  const fecha2Colombia = new Date(fecha2.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
-  return Math.ceil(Math.abs(fecha1Colombia - fecha2Colombia) / (1000 * 60 * 60 * 24));
+  // Usar moment.js para asegurar la correcta comparación de fechas en la zona horaria de Colombia
+  const fecha1Colombia = moment(fecha1).tz('America/Bogota');
+  const fecha2Colombia = moment(fecha2).tz('America/Bogota');
+  return fecha1Colombia.diff(fecha2Colombia, 'days'); 
 }
 
 function mostrarAlertas(tipoAlerta, tipo) {
-  // Obtener la fecha de hoy en la zona horaria de Colombia
-  const hoyColombia = new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' });
-  const fechaHoy = new Date(hoyColombia).toISOString().split('T')[0]; 
+  // Obtener la fecha de hoy en la zona horaria de Colombia con moment.js
+  const hoyColombia = moment().tz('America/Bogota').startOf('day'); 
 
   fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
     headers: {
       'Authorization': `Bearer ${token}`
     }
   })
-    .then(response => response.json())
-    .then(data => {
-      // Filtrar los datos según el tipo de alerta, el estado de la operación Y la fecha global
+  .then(response => response.json())
+  .then(data => {
       const alertas = data.filter(item => {
-        // Convertir la fecha del item a la zona horaria de Colombia
-        const fechaItem = new Date(item[tipoAlerta === 'Documental' ? 'fecha_documental' : 'fecha_fisico']);
-        const fechaColombia = new Date(fechaItem.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
-
-        const diffDias = calcularDiferenciaDias(fechaColombia, new Date(hoyColombia)); // Usar fechas con zona horaria de Colombia
-        return diffDias <= 3 && item.estado_operacion !== "FINALIZADO" && item.fecha_global === fechaHoy; 
+        try {
+          // Convertir la fecha del item a la zona horaria de Colombia con moment.js
+          const fechaItem = moment(item[tipoAlerta === 'Documental' ? 'fecha_documental' : 'fecha_fisico']).tz('America/Bogota');
+  
+          const diffDias = calcularDiferenciaDias(fechaItem, hoyColombia); 
+          // Comparar solo la parte de la fecha con moment.js
+          return diffDias <= 3 && item.estado_operacion !== "FINALIZADO" && moment(item.fecha_global).tz('America/Bogota').isSame(hoyColombia, 'day'); 
+        } catch (error) {
+          console.error("Error al convertir la fecha:", item.fecha_global, error);
+          return false;
+        }
       });
 
       // Dividir las alertas en tres arrays según la cercanía de la fecha

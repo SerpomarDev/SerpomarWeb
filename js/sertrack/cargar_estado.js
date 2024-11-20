@@ -30,19 +30,20 @@ fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
 })
 .then(response => response.json())
 .then(data => {
-  const hoyColombia = new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' });
-  const fechaActual = new Date(hoyColombia).toISOString().slice(0, 10);
+  // 1. Obtener la fecha actual en la zona horaria de Colombia con moment.js
+  const hoyColombia = moment().tz('America/Bogota').startOf('day'); 
 
+  // 2. Filtrar los datos por la fecha actual
   const filteredData = data.filter(Preprogramar => {
     try {
-      // Intenta convertir la fecha, si falla, se salta el elemento
-      const fechaItem = new Date(Preprogramar.fecha_global); 
-      const fechaColombia = new Date(fechaItem.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
-      const fechaGlobal = fechaColombia.toISOString().slice(0, 10);
-      return fechaGlobal === fechaActual;
+      // Convertir la fecha del item a la zona horaria de Colombia con moment.js
+      const fechaItem = moment(Preprogramar.fecha_global).tz('America/Bogota').startOf('day');
+
+      // Comparar las fechas (ignorando la hora)
+      return fechaItem.isSame(hoyColombia);
     } catch (error) {
       console.error("Error al convertir la fecha:", Preprogramar.fecha_global, error);
-      return false; // Salta este elemento si la fecha es inválida
+      return false;
     }
   });
 

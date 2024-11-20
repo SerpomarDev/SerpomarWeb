@@ -62,20 +62,30 @@
               <span class="counter-label">Total Programa</span>
             </div>
           </div>
-          <div class="counter">
-            <i class="fas fa-check-circle"></i>
-            <i class="fas fa-question-circle"></i>
-            <i class="fas fa-times-circle"></i>
-            <i class="fas fa-exclamation-circle"></i>
+
+
+          <div class="counter2">
+            <ul class="counter-container2">
+                <li class="counter-item2">
+                  <i class="fas fa-times-circle"></i>
+                  <span class="counter-value2" id="total-ingreso-planta"></span>
+                  <span class="counter-label2">Delayed</span>
+                </li>
+                <li class="counter-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span class="counter-value2" id="total-documento"></span>
+                  <span class="counter-label2">OnTime</span>
+                </li>
+              </ul>
             <div class="counter-data">
-              <span class="counter-value" id="total-ingreso-planta"></span>
+             
               <span class="counter-label">Total por Estado</span>
             </div>
           </div>
           <div class="counter">
             <i class="fas fa-truck"></i>
             <div class="counter-data">
-              <span class="counter-value" id="total-documento-lleno"></span>
+                <span class="counter-value2" id="total-documento-lleno"></span>
               <span class="counter-label">Total Vehículos Operación</span>
             </div>
           </div>
@@ -103,7 +113,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="/js/sertrack/historico.js"></script>
-    <script type="text/javascript" src="/js/sertrack/contadores.js"></script>
+    <script type="text/javascript" src="/js/sertrack/contadores_historico.js"></script>
     <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ag-grid-charts-enterprise@32.1.0/dist/ag-grid-charts-enterprise.js?t=1724946077050"></script>
 
