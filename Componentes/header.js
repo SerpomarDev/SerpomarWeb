@@ -151,8 +151,8 @@ function createHeader() {
                   <input type="text" id="nombre" class="form-control" required>
                 </div>
                 <div class="form-group">
-                  <label for="correo"><i class="fas fa-envelope"></i> Correo electrónico:</label>
-                  <input type="email" id="correo" class="form-control" required>
+                  <label for="email"><i class="fas fa-envelope"></i> Correo electrónico:</label>
+                  <input type="email" id="email" class="form-control" required>
                 </div>
                 <div class="form-group">
                   <label for="mensaje"><i class="fas fa-comment-alt"></i> Comentario:</label>
@@ -166,7 +166,7 @@ function createHeader() {
                     const form = document.getElementById('pqrs-form');
                     const tipo = form.tipo.value;
                     const nombre = form.nombre.value;
-                    const correo = form.correo.value;
+                    const email = form.email.value;
                     const mensaje = form.mensaje.value;
                 
                     // Mostrar un mensaje de confirmación antes de enviar el correo
@@ -175,7 +175,7 @@ function createHeader() {
                       html: `
                             Tipo: ${tipo}<br>
                             Nombre: ${nombre}<br>
-                            Correo: ${correo}<br>
+                            email: ${email}<br>
                             Mensaje: ${mensaje}
                             `,
                       icon: 'question',
@@ -193,7 +193,7 @@ function createHeader() {
                           headers: {
                             'Content-Type': 'application/json'
                           },
-                          body: JSON.stringify({ tipo, nombre, correo, mensaje })
+                          body: JSON.stringify({ tipo, nombre, email, mensaje })
                         })
                         .then(response => {
                           if (!response.ok) {

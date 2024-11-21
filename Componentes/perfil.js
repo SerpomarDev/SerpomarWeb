@@ -58,7 +58,7 @@ window.addEventListener('headerLoaded', () => {
                 })
                 .then(userData => {
                     const dropdownContent = `
-              <p>${userData.correo}</p>
+              <p>${userData.email}</p>
               <p>Cargo: ${userData.cargo}</p>
               <p>Nombre: ${userData.primer_nombre} ${userData.primer_apellido}</p>
               <p>Teléfono: ${userData.telefono}</p>
