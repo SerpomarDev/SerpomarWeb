@@ -174,7 +174,7 @@ function enviarDatos(payload) {
             return response.json();
         })
         .then(data => {
-            console.log("Respuesta del servidor:", data);
+            //console.log("Respuesta del servidor:", data);
 
             Swal.fire({
                 title: "¡Buen trabajo!",

@@ -18,53 +18,37 @@
 
 <body>
 
+
     <header>
         <img src="/img/logow.png" alt="Nodhus Logo" class="logo1" id="nodhus-logo">
+    </header>
     <br><br><br>
     <div class="margenform">
         <div id="content" class="p-4 p-md-5 pt-5">
             <div class="container12">
-
                 <div class="login-container" id="login-container">
                     <span class="close-btn" id="close-btn">&times;</span>
-                    <h2>Reestrabler Contraseña:</h2>
+                    <h2>RECUPERAR CONTRASEÑA:</h2>
                     <div class="logo-container">
                         <img src="./img/nodhus.png" alt="NODHUS" class="nodhus-logo">
                     </div>
-                    <form id="resetPassword" method="POST" enctype="multipart/form-data">
+                    <form id="envioCorreoReestablecer" method="POST" enctype="multipart/form-data">
 
                         <div class="row">
 
-                            <div class="col-md-4">
+                            <div class="col-md-4-center">
                                 <div class="form-group">
                                     <label for="correo">Correo Electrónico:</label>
                                     <input type="email" placeholder="Correo Electrónico..." name="email" id="email" required class="form-control">
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="password">Contraseña:</label>
-                                    <input type="password" id="password" name="password" placeholder="Contraseña..." required class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <input type="hidden" name="id_rol" value="2">
-                                <div class="form-group">
-                                    <label for="password_confirmation">Confirmar Contraseña:</label>
-                                    <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirmar Contraseña..." required class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
-
                         <div class="row">
                             <div class="col-md-4">
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <button type="submit" class="login-button">CONFIRMAR</button>
+                                    <button type="submit" class="login-button">ENVIAR</button>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -76,7 +60,7 @@
         </div>
     </div>
 
-    <script type="javascript" src="/js/resetPassword/resetPassword.js"></script>
+    <script src="/js/resetPassword/enviarCorreo.js"></script>
 
 </body>
 
