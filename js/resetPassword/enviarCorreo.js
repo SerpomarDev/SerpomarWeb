@@ -9,7 +9,7 @@ document.getElementById('envioCorreoReestablecer').addEventListener('submit', fu
     fetch('https://esenttiapp-production.up.railway.app/api/passwordreset', {
         method: 'POST',
         headers: { 
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
          },
         body: jsonData
     })

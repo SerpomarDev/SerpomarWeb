@@ -5,11 +5,11 @@ document.getElementById('resetPassword').addEventListener('submit', function(eve
   
     const jsonData = JSON.stringify(Object.fromEntries(formData));
     
+    console.log(jsonData)
     fetch('https://esenttiapp-production.up.railway.app/api/restablecercontrasena', {
         method: 'POST',
         headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            'Content-Type': 'application/json'
          },
         body: jsonData
     })
@@ -17,6 +17,7 @@ document.getElementById('resetPassword').addEventListener('submit', function(eve
         if (!response.ok) {
             throw new Error('Error al enviar los datos del formulario');
         }
+        return response.json();
     })
     .then(data => {
         Swal.fire({
@@ -24,10 +25,11 @@ document.getElementById('resetPassword').addEventListener('submit', function(eve
           text: "¡Su contraseña ha sido restrablecida con éxito",
           icon: "success",
         });
+
+        setTimeout(() => {
+            window.location.href = `/index.html`; 
+        },  1200);
     })
-    .then((response)=>{
-        time();
-       })
     .catch(error => {
         Swal.fire({
             title: "Error",
@@ -36,10 +38,3 @@ document.getElementById('resetPassword').addEventListener('submit', function(eve
         });
     });
   });
-
-  function time() {
-    document.getElementById('createConcepto').reset();
-    setTimeout(() => {
-        window.location.href = `/index.html`; 
-    },  1200);
-  } 
