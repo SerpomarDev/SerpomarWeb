@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   const columnDefs = [
-    { headerName: "ID", field: "id", hide: true },
+    { headerName: "ID", field: "id", hide: false },
     { headerName: "Pedido", field: "pedido" },
     { headerName: "Contenedor", field: "contenedor" },
     { headerName: "Fecha Programa", field: "fecha_programa" },

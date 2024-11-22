@@ -1,6 +1,8 @@
-const columnDefs = [
+const columnDefsRE = [
     { headerName: "ID Primario", field: "id_primario" , hide:true},
-    { headerName: "ID contenedor", field: "id_contenedor" , hide:true},
+
+
+    // TODO ESTO VIENE DE SOLICITUD DE SERVICIO    
     { headerName: "SP",
       field: "sp",
       cellRenderer: params => {
@@ -17,39 +19,54 @@ const columnDefs = [
     { headerName: "Do", field: "do_pedido" },
     { headerName: "Pedido", field: "pedido" },
     { headerName: "Número Contenedor", field: "numero_contenedor" , rowGroup: true },
-    { headerName: "Tipo", field: "tipo" },
     { headerName: "Cliente", field: "cliente" },
-    { headerName: "Conductor", field: "conductor",hide:true},
-    { headerName: "Placa", field: "placa",hide:true },
-    { headerName: "Conductor Puerto", field: "conductor_puerto" },
-    { headerName: "Placa Puerto", field: "placa_puerto" },
-    { headerName: "Conductor Patio", field: "conductor_patio" },
-    { headerName: "Placa Patio", field: "placa_patio" },
     { headerName: "Modalidad", field: "modalidad" },
     { headerName: "Fecha Levante", field: "fecha_levante" },
     { headerName: "Fecha ETA", field: "fecha_eta" },
     { headerName: "Fecha Notificación", field: "fecha_notificacion" },
     { headerName: "Fecha Documental", field: "fecha_documental" },
     { headerName: "Fecha Cutoff Físico", field: "fecha_cutoff_fisico" },
+    { headerName: "Producto", field: "producto" },
     { headerName: "Booking", field: "booking" },
-    { headerName: "Tara", field: "tara" },
-    { headerName: "Payload", field: "payload" },
-    { headerName: "Fecha Cargue", field: "fecha_cargue" },
-    { headerName: "Fecha Devolución", field: "fecha_devolucion" },
     { headerName: "Libre Hasta", field: "libre_hasta" },
     { headerName: "Bodegaje Hasta", field: "bodegaje_hasta" },
     { headerName: "Naviera", field: "naviera" },
-    { headerName: "Sitio(Cargue o Descargue)", field: "sitio_cargue_descargue" },
-    { headerName: "Fecha Manifiesto", field: "fecha_manifiesto" },
+    { headerName: "Puerto", field: "puerto" },
+    { headerName: "Estado", field: "estado" },
+    //-----------TODO ESTO VIENE DE SOLICITUD DE SERVICIO
+
+    // { headerName: "Conductor", field: "conductor",hide:true},
+    // { headerName: "Placa", field: "placa",hide:true },
+    // { headerName: "Conductor Puerto", field: "conductor_puerto" },
+    // { headerName: "Placa Puerto", field: "placa_puerto" },
+    // { headerName: "Conductor Patio", field: "conductor_patio" },
+    // { headerName: "Placa Patio", field: "placa_patio" },
+
+
+    // TODO ESTO VIENE DE ORDEN DE SERVICIO
+    { headerName: "Fecha Cargue", field: "fecha_cargue" },
+    { headerName: "Fecha Devolución", field: "fecha_devolucion" },
+    { headerName: "Sitio(retiro o devolucion)", field: "sitio" },
     { headerName: "Manifiesto", field: "manifiesto" },
+    { headerName: "Fecha Manifiesto", field: "fecha_manifiesto" },
+    { headerName: "Remesa", field: "remesa" },
     { headerName: "Fecha Remesa", field: "fecha_remesa" },
     { headerName: "Fecha Cita", field: "fecha_cita" },
     { headerName: "Fecha Cliente", field: "fecha_cliente" },
-    { headerName: "Remesa", field: "remesa" },
-    { headerName: "Producto", field: "producto" },
-    { headerName: "Sitio(retiro o devolucion)", field: "sitio" },
-    { headerName: "Puerto", field: "puerto" },
+    { headerName: "Sitio(Cargue o Descargue)", field: "sitio_cargue_descargue" },
     { headerName: "Patio", field: "patio" },
+    //-----------TODO ESTO VIENE DE ORDEN DE SERVICIO
+
+
+    // TODO ESTO VIENE DE CONTENEDORES  
+    { headerName: "Tipo", field: "tipo" },
+    { headerName: "Tara", field: "tara" },
+    { headerName: "Payload", field: "payload" },
+    //-----------TODO ESTO VIENE DE CONTENEDORES
+    
+  
+   
+ 
 
     {
         headerName: "Alerta Documental",
@@ -263,68 +280,77 @@ const columnDefs = [
         }
     },
     
-    { headerName: "Estado", field: "estado" }
+   
 ];
 
-
-fetch("http://127.0.0.1:8000/api/registroestadistico", {
+fetch("https://esenttiapp-production.up.railway.app/api/registroestadistico", {
     headers: {
         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
     },
 })
-.then(response => {
-    if (!response.ok) {
-        throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
-    }
-    return response.json();
-})
+.then((response) => response.json())
 .then((data) => {
     const processedData = data.map((item) => {
         return {
             id_primario: item.id_primario,
-            id_contenedor: item.id_contenedor,
+
+        // TODO ESTO VIENE DE SOLICITUD DE SERVICIO  
             sp: item.sp,
             do_pedido: item.do_pedido,
             pedido: item.pedido,
             numero_contenedor: item.numero_contenedor,
-            tipo: item.tipo,
             cliente: item.cliente,
-            conductor: item.conductor,
-            placa: item.placa,
-            conductor_puerto: item.conductor_puerto,
-            placa_puerto: item.placa_puerto,
-            conductor_patio: item.conductor_patio,
-            placa_patio: item.placa_patio,
             modalidad: item.modalidad,
             fecha_levante: item.fecha_levante,
             fecha_eta: item.fecha_eta,
             fecha_notificacion: item.fecha_notificacion,
             fecha_documental: item.fecha_documental,
             fecha_cutoff_fisico: item.fecha_cutoff_fisico,
+            producto: item.producto,
             booking: item.booking,
-            tara: item.tara,
-            payload: item.payload,
-            fecha_cargue: item.fecha_cargue,
-            fecha_devolucion: item.fecha_devolucion,
             libre_hasta: item.libre_hasta,
             bodegaje_hasta: item.bodegaje_hasta,
-            fecha_manifiesto: item.fecha_manifiesto,
+            naviera: item.naviera,
+            puerto: item.puerto,
+            estado: item.estado,
+    //-----------TODO ESTO VIENE DE SOLICITUD DE SERVICIO
+
+
+            // conductor: item.conductor,
+            // placa: item.placa,
+            // conductor_puerto: item.conductor_puerto,
+            // placa_puerto: item.placa_puerto,
+            // conductor_patio: item.conductor_patio,
+            // placa_patio: item.placa_patio,
+            
+            
+    // TODO ESTO VIENE DE SOLICITUD DE SERVICIO  
+            fecha_cargue: item.fecha_cargue,
+            fecha_devolucion: item.fecha_devolucion,
+            sitio: item.sitio,
             manifiesto: item.manifiesto,
+            fecha_manifiesto: item.fecha_manifiesto,
+            remesa: item.remesa,
             fecha_remesa: item.fecha_remesa,
             fecha_cita: item.fecha_cita,
             fecha_cliente: item.fecha_cliente,
-            remesa: item.remesa,
-            producto: item.producto,
-            sitio: item.sitio,
-            puerto: item.puerto,
+            sitio_cargue_descargue: item.sitio_cargue_descargue,
             patio: item.patio,
-            estado: item.estado, // Asegúrate de que el campo se llama "estado"
+    //-----------TODO ESTO VIENE DE SOLICITUD DE SERVICIO
+
+
+    // TODO ESTO VIENE DE CONTENEDORES 
+            tipo: item.tipo,
+            tara: item.tara,
+            payload: item.payload,
+    //-----------TODO ESTO VIENE DE CONTENEDORES 
+            
+            
         };
     });
 
-
     const gridOptions = {
-        columnDefs: columnDefs,
+        columnDefs: columnDefsRE,
         defaultColDef: {
             resizable: true,
             sortable: true,
@@ -341,48 +367,47 @@ fetch("http://127.0.0.1:8000/api/registroestadistico", {
         rowData: processedData,
         onCellValueChanged: (event) => {
             const updatedRowData = event.data;
-            const id_contenedor = updatedRowData.id_contenedor; // Asegúrate de que esto sea el ID de la solicitud_servicio
+            const id = updatedRowData.id_primario;
     
             // Mostrar una notificación toast informando del cambio
             Swal.fire({
                 title: 'Actualizando...',
                 text: "Se actualizará la información en la base de datos",
                 icon: 'info',
-                timer: 1000, 
+                timer: 1000, // La alerta se cerrará después de 2 segundos
                 timerProgressBar: true, 
                 toast: true, 
                 position: 'top-end', 
-                showConfirmButton: false 
+                showConfirmButton: false // Ocultar el botón de confirmación
             });
     
             // Retrasar la actualización 2 segundos
             setTimeout(() => {
-                fetch(`http://127.0.0.1:8000/api/actualizarregistroestadistico/${id_contenedor}`, { // Ruta correcta
+                fetch(`https://esenttiapp-production.up.railway.app/api/ordenservicios/${id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${localStorage.getItem("authToken")}`
                     },
                     body: JSON.stringify(updatedRowData)
-    
                 })
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error al actualizar datos');
-                    }
-                    console.log('Datos actualizados correctamente');
-                    // Mostrar notificación de éxito
-                    Swal.fire({
-                        title: '¡Actualizado!',
-                        text: 'El registro ha sido actualizado.',
-                        icon: 'success',
-                        timer: 1000, 
-                        timerProgressBar: true,
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false
-                    }); 
-                })
+                  if (!response.ok) {
+                      throw new Error('Error al actualizar datos');
+                  }
+                  console.log('Datos actualizados correctamente');
+                  // Mostrar notificación de éxito más rápida
+                  Swal.fire({
+                      title: '¡Actualizado!',
+                      text: 'El registro ha sido actualizado.',
+                      icon: 'success',
+                      timer: 1000, // 1 segundo (o el tiempo que prefieras)
+                      timerProgressBar: true,
+                      toast: true,
+                      position: 'top-end',
+                      showConfirmButton: false
+                  }); 
+              })
                 .catch(error => {
                     console.error('Error al actualizar datos:', error);
                     Swal.fire(

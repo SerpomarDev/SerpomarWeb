@@ -1,4 +1,5 @@
 const estadosOperacion = [
+  "PROGRAMADO-NO CONFIRMADO", 
   "PROGRAMADO-CONFIRMADO",
   "EN SITIO DE CARGUE",
   "ASIGNADO",
@@ -14,7 +15,17 @@ const columnDefs = [
   { headerName: "PEDIDO", field: "pedido", hide: false },
   { headerName: "CONTENEDOR", field: "contenedor", hide: false },
   { headerName: "Vehiculo", field: "vehiculo", hide: false },
-  { headerName: "ESTADO OPERACIÓN", field: "estado_operacion", rowGroup: true }, 
+  { 
+      headerName: "ESTADO OPERACIÓN", 
+      field: "estado_operacion", 
+      rowGroup: true,
+      // Puedes mantener o eliminar el comparator, ya que groupRowAggNodes se encarga del ordenamiento
+      /*comparator: (valueA, valueB) => {
+          const indexA = estadosOperacion.indexOf(valueA);
+          const indexB = estadosOperacion.indexOf(valueB);
+          return indexA - indexB;
+      }*/
+  },
   { headerName: "ESTADO", field: "on_timec", hide: false }, 
   
   {
@@ -25,7 +36,7 @@ const columnDefs = [
 
 fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
   headers: {
-    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+      'Authorization': `Bearer ${localStorage.getItem("authToken")}`
   }
 })
 .then(response => response.json())
@@ -35,16 +46,16 @@ fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
 
   // 2. Filtrar los datos por la fecha actual
   const filteredData = data.filter(Preprogramar => {
-    try {
-      // Convertir la fecha del item a la zona horaria de Colombia con moment.js
-      const fechaItem = moment(Preprogramar.fecha_global).tz('America/Bogota').startOf('day');
+      try {
+          // Convertir la fecha del item a la zona horaria de Colombia con moment.js
+          const fechaItem = moment(Preprogramar.fecha_global).tz('America/Bogota').startOf('day');
 
-      // Comparar las fechas (ignorando la hora)
-      return fechaItem.isSame(hoyColombia);
-    } catch (error) {
-      console.error("Error al convertir la fecha:", Preprogramar.fecha_global, error);
-      return false;
-    }
+          // Comparar las fechas (ignorando la hora)
+          return fechaItem.isSame(hoyColombia);
+      } catch (error) {
+          console.error("Error al convertir la fecha:", Preprogramar.fecha_global, error);
+          return false;
+      }
   });
 
   const processedData = filteredData.map(Preprogramar => {
@@ -65,12 +76,26 @@ fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
       rowData: processedData,
       groupDisplayType: 'groupRows',
       suppressRowClickSelection: true, 
-      autoGroupColumnDef: { 
-          headerName: "ESTADO DE LA OPERACIÓN", 
-          field: 'estado_operacion',
-          cellRendererParams: {
-              suppressCount: true
-          }
+      //autoGroupColumnDef: { // Puedes comentar o eliminar esta sección 
+      //    headerName: "ESTADO DE LA OPERACIÓN", 
+      //    field: 'estado_operacion',
+      //    cellRendererParams: {
+      //        suppressCount: true
+      //    }
+      //},
+      groupRowAggNodes: (nodes) => {
+          const groupedNodes = {};
+          nodes.forEach(node => {
+              const estadoOperacion = node.data.estado_operacion;
+              if (!groupedNodes[estadoOperacion]) {
+                  groupedNodes[estadoOperacion] = [];
+              }
+              groupedNodes[estadoOperacion].push(node);
+          });
+
+          const sortedNodes = estadosOperacion.map(estado => groupedNodes[estado]).filter(Boolean);
+
+          return sortedNodes.flat();
       }
   };
 
