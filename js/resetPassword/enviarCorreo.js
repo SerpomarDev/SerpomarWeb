@@ -26,9 +26,9 @@ document.getElementById('envioCorreoReestablecer').addEventListener('submit', fu
           icon: "success",
         });
 
-        setTimeout(() => location.reload(),
-        window.location.href = `/index.html`,
-        1500,);
+        setTimeout(() => {
+            window.location.href = `/index.html`; 
+        },  1200);
     })
     .catch(error => {
             Swal.fire({
