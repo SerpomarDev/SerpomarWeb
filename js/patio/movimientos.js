@@ -88,6 +88,7 @@ const storage = getStorage(app);
 const columnDefs = [
     { headerName: "id", field: "id", hide: false },
     { headerName: "Contenedor", field: "contenedor" },
+    { headerName: "Placa", field: "placa" },
     { headerName: "Cliente", field: "cliente" },
     { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
     { headerName: "Tipo transporte", field: "modalidad" },
@@ -121,6 +122,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarhistorico",{
       return {
         id: ordenCargue.id,
         contenedor: ordenCargue.contenedor,
+        placa: ordenCargue.placa,
         cliente: ordenCargue.cliente,
         tipo_contenedor: ordenCargue.tipo_contenedor,
         modalidad: ordenCargue.modalidad,
