@@ -26,12 +26,10 @@ document.getElementById('envioCorreoReestablecer').addEventListener('submit', fu
           icon: "success",
         });
 
-        setTimeout(() => location.reload(), 2500);
+        setTimeout(() => location.reload(), 1500);
     })
     .catch(error => {
-        console.error('Error al hacer envio del correo:', error);
-
-        Swal.fire({
+            Swal.fire({
             title: "Error",
             text: "Hubo un problema al hacer envio del correo. Por favor, inténtalo de nuevo.",
             icon: "error",
