@@ -62,7 +62,21 @@ const columnDefs = [
   
   { headerName: "Ingreso Planta", field: "ingreso_planta" },
   { headerName: "Documentos Lleno", field: "documentos_lleno" },
-  { headerName: "Cita Puerto", field: "cita_puerto" },
+  {
+    headerName: "Cita Puerto",
+    field: "cita_puerto",
+    cellEditor: 'agRichSelectCellEditor',
+    cellEditorParams: {
+      values: getDatesWithHoursAndMinutes(7), // <-- Llamamos a la nueva función (7 días)
+      cellHeight: 50,
+    },
+    valueFormatter: params => {
+      if (params.value) {
+        return params.value; // <-- Mostramos la fecha y hora tal cual
+      }
+      return '';
+    }
+  },
   { headerName: "Observacion OP", field: "observacion_op" },
   { headerName: "Validacion Piso", field: "validacion_piso" },
  
@@ -108,6 +122,28 @@ const columnDefs = [
   { headerName: "Fecha Retiro Vacio", field: "fecha_retiro_vacio" },
  
 ];
+
+function getDatesWithHoursAndMinutes() {
+  const datesWithHours = [];
+  const now = moment(); // Usamos moment() para obtener la fecha y hora actual
+
+  // Iteramos para los próximos 7 días
+  for (let i = 0; i < 2; i++) { 
+    const currentDate = moment().add(i, 'days'); 
+    for (let j = 0; j < 24; j++) { 
+      const hour = j.toString().padStart(2, '0');
+      const minute = '00'; 
+      const dateString = `${currentDate.format('DD-MM-YYYY')} ${hour}:${minute}`;
+      const dateMoment = moment(dateString, 'DD-MM-YYYY HH:mm'); // Convertimos a objeto moment
+
+      // Comparamos si la fecha es igual o posterior a la actual
+      if (dateMoment.isSameOrAfter(now)) { 
+        datesWithHours.push(dateString);
+      }
+    }
+  }
+  return datesWithHours;
+}
 
 fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
   headers: {

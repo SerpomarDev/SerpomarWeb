@@ -1,20 +1,19 @@
-
-let gridOptions; 
+let gridOptions;
 
 const columnDefs = [
-  { headerName: "id", field: "id", hide: true}, 
-  { 
-    headerName: "Fecha Global", 
+  { headerName: "id", field: "id", hide: true },
+  {
+    headerName: "Fecha Global",
     field: "fecha_global",
     filter: "agDateColumnFilter",
     floatingFilter: true,
     filterParams: {
-      browserDatePicker: true, 
+      browserDatePicker: true,
       comparator: (filterLocalDateAtMidnight, cellValue) => {
         const [year, month, day] = cellValue.split('-');
-        const cellDate = new Date(year, month - 1, day); 
+        const cellDate = new Date(year, month - 1, day);
         cellDate.setHours(0, 0, 0, 0);
-        const filterDate = new Date(filterLocalDateAtMidnight); 
+        const filterDate = new Date(filterLocalDateAtMidnight);
 
         if (cellDate.getTime() === filterDate.getTime()) {
           return 0;
@@ -29,51 +28,66 @@ const columnDefs = [
     }
   },
 
-
-  // { 
-  //   headerName: "Fecha Programa", 
-  //   field: "fecha_programa",
-  //   hide: false,
-  //   filter: "agDateColumnFilter",
-   
-  //   floatingFilter: true,
-  //   filterParams: {
-      
-  //     browserDatePicker: true, 
-  //     comparator: (filterLocalDateAtMidnight, cellValue) => {
-  //       const [year, month, day] = cellValue.split('-');
-  //       const cellDate = new Date(year, month - 1, day); 
-  //       cellDate.setHours(0, 0, 0, 0);
-  //       const filterDate = new Date(filterLocalDateAtMidnight); 
-
-  //       if (cellDate.getTime() === filterDate.getTime()) {
-  //         return 0;
-  //       }
-  //       if (cellDate < filterDate) {
-  //         return -1;
-  //       }
-  //       if (cellDate > filterDate) {
-  //         return 1;
-  //       }
-  //     },
-  //   }
-  // },
   { headerName: "Pedido", field: "pedido" },
   { headerName: "Cita Puerto", field: "cita_puerto" },
   { headerName: "Vehiculo", field: "vehiculo" },
   { headerName: "Conductor", field: "conductor" },
   { headerName: "Cedula C", field: "cedula_conductor" },
   { headerName: "Contenedor", field: "contenedor" },
-  { headerName: "Punto Origen", field: "punto_origen" },//falta
-  { headerName: "Hora Salida", field: "hora_salida" },
-  { headerName: "Punto Final", field: "punto_final" },//falta
-  { headerName: "Hora Llegada", field: "hora_llegada" },//falta
-  { headerName: "Duracion recorrido", field: "duracion_recorrido" },//falta
-  { headerName: "Hora Ingreso T", field: "hora_ingreso_terminal" }, //falta
+  { headerName: "Punto Origen", field: "punto_origen" },
+  { 
+    headerName: "Hora Salida", 
+    field: "hora_salida", 
+    cellEditor: 'agRichSelectCellEditor', 
+    cellEditorParams: {
+        values: getHoursWithMinutes(), // <-- Llamamos a la nueva función
+        cellHeight: 50,
+    },
+    valueFormatter: params => {
+        if (params.value) {
+            return params.value; // <-- Mostramos la hora tal cual
+        }
+        return '';
+    }
+},
+  { headerName: "Punto Final", field: "punto_final" },
+  { 
+    headerName: "Hora Llegada", 
+    field: "hora_llegada", 
+    cellEditor: 'agRichSelectCellEditor', 
+    cellEditorParams: {
+        values: getHoursWithMinutes(), // <-- Llamamos a la nueva función
+        cellHeight: 50,
+    },
+    valueFormatter: params => {
+        if (params.value) {
+            return params.value; // <-- Mostramos la hora tal cual
+        }
+        return '';
+    }
+},
+  { headerName: "Duracion recorrido", field: "duracion_recorrido" },
+  { 
+    headerName: "Hora Ingreso T", 
+    field: "hora_ingreso_terminal", 
+    cellEditor: 'agTimePicker'  // <-- Usamos agTimePicker
+  },
 
-
- 
 ];
+
+// Función para generar un array con las horas y minutos
+function getHoursWithMinutes() {
+  const hours = [];
+  for (let i = 0; i < 24; i++) {
+      for (let j = 0; j < 60; j++) { // <-- Iteramos por cada minuto
+          const hour = i.toString().padStart(2, '0');
+          const minute = j.toString().padStart(2, '0');
+          hours.push(`${hour}:${minute}`);
+      }
+  }
+  return hours;
+}
+
 
 fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
   headers: {
@@ -86,7 +100,6 @@ fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
       return {
         id: Preprogramar.id,
         fecha_global: Preprogramar.fecha_global,
-        // fecha_programa: Preprogramar.fecha_programa,
         pedido: Preprogramar.pedido, 
         cita_puerto: Preprogramar.cita_puerto,
         vehiculo: Preprogramar.vehiculo,
