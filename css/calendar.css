@@ -1,0 +1,66 @@
+
+.campo-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+    }
+
+
+.calendar-container h6 span {
+    display: inline-block;
+    margin-top: 5px;   /* Permitir aplicar ancho y alto */
+    width: 20px;             /* Ancho del color */
+    height: 12px;            /* Alto del color */
+    margin-right: 2px;        /* Espacio entre color y texto */
+    border-radius: 20%;      /* Hacer el color redondo */
+}
+
+
+
+
+
+
+.calendar {
+    color: #ffffff;
+    display: block; 
+    margin: 0 auto; 
+    width: 200px; 
+    padding-left: 15px; 
+    padding-right: 8px; 
+    padding-top: 5px; 
+    padding-bottom: 5px; 
+    border: none;
+    border-radius: 12px; 
+    font-size: 16px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease; 
+    background: linear-gradient(105deg, #007bff, #ededed); /* Degradado sutil */
+    overflow: hidden; 
+}
+
+.calendar:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
+}
+
+.calendar:focus-within { 
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.143);
+}
+
+.calendar::-webkit-calendar-picker-indicator {
+    background-color: #fff; 
+    color: #555;
+    padding: 10px 14px;
+    border-radius: 10px; 
+    cursor: pointer;
+    transition: all 0.2s ease; 
+    position: relative; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil en el botón */
+}
+
+.calendar::-webkit-calendar-picker-indicator:hover {
+    background-color: #f0f0f0; 
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); 
+}
+
+
+
