@@ -1,0 +1,14 @@
+.ag-theme-alpine .ag-cell { /* Ajusta el selector según tu tema */
+    display: flex;
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+  }
+  
+  .ag-theme-alpine .ag-row-group { /* Selector para filas de grupo */
+    transition: transform 0.2s ease-in-out; /* Transición suave */
+  }
+  
+  .ag-theme-alpine .ag-row-group.ag-row-group-expanded .ag-cell i {
+    transform: rotate(90deg); /* Gira el icono 90 grados */
+    color: #0080ff;
+  }

@@ -278,7 +278,7 @@ nav ul li a.active::after {
 #menu-items-container {
     overflow-y: auto;
     /* Habilita el scroll vertical */
-    max-height: 400px;
+    max-height: 600px;
     /* Ajusta la altura máxima según tus necesidades */
 }
 
@@ -299,7 +299,7 @@ nav ul li a.active::after {
 }
 
 #menu li {
-    padding: 10px 20px;
+    padding: 2px 15px;
     /* Ajusta el padding */
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.2s ease;
 }
@@ -309,7 +309,7 @@ nav ul li a.active::after {
     text-decoration: none;
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     padding: 6px 10px;
     border-radius: 8px;
@@ -321,7 +321,7 @@ nav ul li a.active::after {
 }
 
 #menu li a i {
-    font-size: 20px;
+    font-size: 18px;
     /* Tamaño de los iconos */
     margin-right: 10px;
     color: #00aaff;

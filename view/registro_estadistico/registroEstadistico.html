@@ -8,6 +8,7 @@
     <link rel="icon" href="/faviconN.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/styles.css">
     <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/checkbox.css" rel="stylesheet" />
     <link href="/css/style-Dash.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -36,40 +37,10 @@
         <div class="margenform">
             
             <div class="container-fluid">
-                <div id="registro_estadistico" class="ag-theme-alpine" style="height:800px; width: 100%; "></div>
+                <div id="Solicitudservicios" class="ag-theme-alpine" style="height:800px; width: 100%; "></div>
             </div>
-
-            
-<br>
-            <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-4">
-                    <p>Solicitud de Servicio</p>
-                    <div id="Solicitudservicios" class="ag-theme-alpine" style="height:800px;"></div>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Contenedor</p>
-                    <div id="Contenedores" class="ag-theme-alpine" style="height:800px;"></div>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Orden de Servicio</p>
-                    <div id="Ordenservicios" class="ag-theme-alpine" style="height:800px;"></div>
-                  </div>
-                </div>,
-              </div>
            
         </div>
-
-        <script type="text/javascript" src="/js/registro_estadistico/resgitroEstadistico.js"></script>
-
-
-        <script type="text/javascript" src="/js/registro_estadistico/tabla_global.js"></script>
-<!-- //aqui de ir la tabla que agrupa las otras 3 -->
-
-        
-        <script type="text/javascript" src="/js/registro_estadistico/solicitudservicios_table.js"></script>
-        <script type="text/javascript" src="/js/registro_estadistico/contenedores_table.js"></script>
-        <script type="text/javascript" src="/js/registro_estadistico/orden_servicio_table.js"></script>
         
         <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -79,7 +50,7 @@
     
         <!-- ag-grid -->
         <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
-
+        <script type="module" src="/js/registro_estadistico/tabla_global.js"></script>
 </body>
 
 </html>

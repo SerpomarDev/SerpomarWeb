@@ -1,7 +1,7 @@
 let gridOptions;
 
 const columnDefsOS = [
-  { headerName: "id", field: "id", hide: true },
+  { headerName: "id", field: "id", hide: false },
   { headerName: "ID C.", field: "id_contenedor", hide: false },
   { headerName: "Fecha Cargue", field: "fecha_cargue" },
   { headerName: "Fecha Devolucion", field: "fecha_devolucion" },
