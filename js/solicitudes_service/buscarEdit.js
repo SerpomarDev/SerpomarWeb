@@ -18,7 +18,7 @@ let id = urlParams.get("id");
         columns: [{
             name:'id',
             hidden: true,
-            },"SP","Cantidad contenedor", "Tipo operación", "Fecha eta", "Fecha levante","Fecha documental","Fecha cutoff fisico","Libre hasta","Bodegaje hasta","Fecha propuesta",{
+            },"SP","Pedido","Cantidad contenedor", "Tipo operación", "Fecha eta", "Fecha levante","Fecha documental","Fecha cutoff fisico","Libre hasta","Bodegaje hasta","Fecha propuesta",{
          
                 name:'Actualizar',
                 formatter:(cell,row)=>{
@@ -69,6 +69,7 @@ let id = urlParams.get("id");
                     return data.map((solic) => [
                         solic.pk,
                         solic.do_sp,
+                        solic.pedido,
                         solic.cantidad_contenedores,
                         solic.tipo_operacion,
                         solic.fecha_eta,
