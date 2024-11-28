@@ -156,7 +156,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
             const apiUrl = `https://esenttiapp-production.up.railway.app/api/updatecontenedorbysoliservi/${idContenedor}`;
 
             const updatedData = {
-              id_solicitud_servicio: event.data.soli_servi,
+              id_primario: event.data.id_primario,
               [fieldName]: newValue
             };
 
