@@ -1,5 +1,5 @@
 const columnDefs = [
-    { headerName: "id", field: "id_placa", hide: true },
+    { headerName: "id", field: "id", hide: false },
     { headerName: "Placa", field: "placa" },
     { headerName: "Eje", field: "eje" },
     { headerName: "Tipologia", field: "tipologia" },
@@ -19,10 +19,10 @@ const columnDefs = [
         cellRenderer: params => {
             const button = document.createElement('button');
             button.innerHTML = 'Adjuntos';
-            button.setAttribute('id', `btn-${params.data.id_placa}`);
+            button.setAttribute('id', `btn-${params.data.id}`);
             button.classList.add('upload-btn', 'no-file');
             button.addEventListener('click', () => {
-                uploadId(params.data.id_placa);
+                uploadId(params.data.id);
             });
             return button;
         }
@@ -34,7 +34,7 @@ const columnDefs = [
             link.href = '/view/Placa/edit.html';
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                editPlaca(params.data.id_placa);
+                editPlaca(params.data.id);
             });
             const img = document.createElement('img');
             img.src = '/img/editar-texto.png';
@@ -69,7 +69,7 @@ const columnDefs = [
                     showConfirmButton: false
                 });
 
-                fetch(`https://esenttiapp-production.up.railway.app/api/cargarplaca/${params.data.id_placa}`, { 
+                fetch(`https://esenttiapp-production.up.railway.app/api/placas/${params.data.id}`, { 
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -130,8 +130,8 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarplaca", {
 .then(response => response.json())
 .then(data => {
     if (Array.isArray(data) && data.length > 0) {
-        // Ordenar los datos por id_placa en orden descendente (opcional)
-        data.sort((a, b) => b.id_placa - a.id_placa);
+        // Ordenar los datos por id en orden descendente (opcional)
+        data.sort((a, b) => b.id - a.id);
 
         const gridOptions = {
             columnDefs: columnDefs,
