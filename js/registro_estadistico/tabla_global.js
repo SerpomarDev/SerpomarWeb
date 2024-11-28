@@ -110,10 +110,25 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
             {
               headerName: "Id",
               field: "id_contenedor",
-              hide: false
+              hide: true
             },
             { headerName: "ID S.S.", field: "id_primario", hide: true },
-            { headerName: "Contenedor", field: "numero_contenedor" },
+
+            {
+              headerName: "Contenedor",
+              field: "numero_contenedor",
+              cellRenderer: params => {
+                const cellValue = params.value;
+                const button = document.createElement('a');
+                button.textContent = cellValue;
+                button.style.cursor = 'pointer';
+                button.style.color = '#6495ED';
+                button.style.fontWeight = 'bold';
+                button.onclick = () => showAsignacion(params.data.id_contenedor);
+                return button;
+              }
+            },
+
             { headerName: "Tipo Contenedor", field: "tipo" },
 
             { headerName: "Conductor Puerto", field: "conductor_puerto" },
@@ -350,5 +365,9 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
   });
 
 function showOrdenService(id) {
-  window.location.href = `/view/contenedor/create.html?id=${id}`
+  window.open(`/view/contenedor/create.html?id=${id}`, '_blank');
+}
+
+function showAsignacion(id) {
+  window.open(`/view/modal/modal.html?id=${id}`, '_blank');
 }
