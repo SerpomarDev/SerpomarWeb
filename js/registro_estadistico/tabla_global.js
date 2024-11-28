@@ -52,7 +52,6 @@ const columnDefsSS = [
   { headerName: "Estado", field: "estado", hide: true },
 ];
 
-// Función modificada para acceder al array 'data' dentro del objeto de respuesta
 function getContenedoresDetail(idSolicitudServicio) {
   return fetch("https://esenttiapp-production.up.railway.app/api/contenedorregistro", {
     headers: {
@@ -67,8 +66,7 @@ function getContenedoresDetail(idSolicitudServicio) {
     })
     .then(data => {
       console.log("Contenedores obtenidos:", data);
-      // Accede al array 'data' dentro del objeto
-      return data.data.filter(contenedor => contenedor.soli_servi === idSolicitudServicio); 
+      return data.data.filter(contenedor => contenedor.id_primario === idSolicitudServicio);
     })
     .catch(error => {
       console.error("Error en getContenedoresDetail:", error);
@@ -112,13 +110,19 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
             {
               headerName: "Id",
               field: "id_contenedor",
-              hide: true
+              hide: false
             },
-            { headerName: "ID S.S.", field: "soli_servi", hide: true },
+            { headerName: "ID S.S.", field: "id_primario", hide: true },
             { headerName: "Contenedor", field: "numero_contenedor" },
-            { headerName: "Tipo Contenedor", field: "tipo_contenedor" },
-            { headerName: "Tara", field: "tara", editable: true }, 
-            { headerName: "Payload", field: "payload", editable: true }, 
+            { headerName: "Tipo Contenedor", field: "tipo" },
+
+            { headerName: "Conductor Puerto", field: "conductor_puerto" },
+            { headerName: "Placa Puerto", field: "placa_puerto" },
+            { headerName: "Conductor Patio", field: "conductor_patio" },
+            { headerName: "Placa Patio", field: "placa_patio" },
+
+            { headerName: "Tara", field: "tara", editable: true },
+            { headerName: "Payload", field: "payload", editable: true },
             { headerName: "Fecha Cargue", field: "fecha_cargue" },
             { headerName: "Fecha Devolucion", field: "fecha_devolucion" },
             { headerName: "Sitio Cargue/Descargue", field: "sitio_cargue_descargue" },
@@ -152,8 +156,8 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
             const apiUrl = `https://esenttiapp-production.up.railway.app/api/updatecontenedorbysoliservi/${idContenedor}`;
 
             const updatedData = {
-              id_solicitud_servicio: event.data.soli_servi, 
-              [fieldName]: newValue 
+              id_solicitud_servicio: event.data.soli_servi,
+              [fieldName]: newValue
             };
 
             fetch(apiUrl, {
@@ -210,9 +214,9 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
         const newValue = event.newValue;
 
         // Validar los datos (agregar validaciones según tus necesidades)
-        if (fieldName === 'fecha_levante' || fieldName === 'fecha_eta' || 
-            fieldName === 'fecha_notificacion' || fieldName === 'fecha_documental' ||
-            fieldName === 'fecha_cutoff_fisico' || fieldName === 'bodegaje_hasta') {
+        if (fieldName === 'fecha_levante' || fieldName === 'fecha_eta' ||
+          fieldName === 'fecha_notificacion' || fieldName === 'fecha_documental' ||
+          fieldName === 'fecha_cutoff_fisico' || fieldName === 'bodegaje_hasta') {
           // Validar formato de fecha
           if (!/^\d{4}-\d{2}-\d{2}$/.test(newValue)) {
             Swal.fire({
@@ -232,9 +236,33 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
 
         const apiUrl = `https://esenttiapp-production.up.railway.app/api/solicitudservicios/${id_primario}`;
 
-        // Acumular los campos modificados en el objeto updatedData
-        const updatedData = {}; 
-        updatedData[fieldName] = newValue; 
+        // Mapear los nombres de los campos
+        const fieldMapping = {
+          'sp': 'sp',
+          'do_pedido': 'do_pedido',
+          'cantidad': 'cantidad_contenedor',
+          'modalidad': 'imp_exp',
+          'fecha_eta': 'fecha_eta',
+          'fecha_levante': 'fecha_levante',
+          'fecha_notificacion': 'fecha_notificacion',
+          'fecha_documental': 'fecha_documental',
+          'fecha_cutoff_fisico': 'fecha_cutoff_fisico',
+          'libre_hasta': 'libre_hasta',
+          'bodegaje_hasta': 'bodegaje_hasta',
+          'booking': 'booking_number',
+          'producto': 'observaciones',
+          'puerto': 'puerto'
+        };
+
+        // Construir updatedData con los nombres de campos mapeados
+        const updatedData = {};
+        const mappedFieldName = fieldMapping[fieldName];
+        if (mappedFieldName) {
+          updatedData[mappedFieldName] = newValue;
+        } else {
+          console.warn(`No se encontró mapeo para el campo: ${fieldName}`);
+          return; // Detener la actualización si no hay mapeo
+        }
 
         fetch(apiUrl, {
           method: 'PUT',
@@ -279,7 +307,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
       },
 
       onGridReady: (params) => {
-        gridApi = params.api; 
+        gridApi = params.api;
 
         const searchInput = document.querySelector('input[type="search"]');
 
