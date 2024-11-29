@@ -58,7 +58,14 @@
                                       </div>
                                       <div class="col-md-6">
                                         <label class="fieldlabels">Contratación:</label>
-                                        <input type="text" name="contratacion" id="contratacion" placeholder="Contratacion con" />
+                                        <!-- <input type="text" name="contratacion" id="contratacion" placeholder="Contratacion con" /> -->
+                                        <select name="contratacion" id="contratacion">
+                                            <option value="">Contratacion</option>
+                                            <option value="SERPOMAR">SERPOMAR</option>
+                                            <option value="SERPOMAR ZF">SERPOMAR ZF</option>
+                                            <option value="ADDECO">ADDECO</option>
+                                            <option value="INLASERV">INLASERV</option>
+                                        </select>
                                       </div>
                                     </div>
                                   </div>
@@ -118,7 +125,15 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label class="fieldlabels">Rango de edad:</label>
-                                            <input type="text" name="rango_edad" id="rango_edad" placeholder="Rango de edad"/>
+                                            <select name="rango_edad" id="rango_edad">
+                                                <option value="">Rango de edad</option>
+                                                <option value="ENTRE 18 Y 20 AÑOS">ENTRE 18 Y 20 AÑOS</option>
+                                                <option value="ENTRE 21 Y 25 AÑOS">ENTRE 21 Y 25 AÑOS</option>
+                                                <option value="ENTRE 26 Y 30 AÑOS">ENTRE 26 Y 30 AÑOS</option>
+                                                <option value="ENTRE 31 Y 40 AÑOS">ENTRE 31 Y 40 AÑOS</option>
+                                                <option value="ENTRE 41 Y 50 AÑOS">ENTRE 41 Y 50 AÑOS</option>
+                                                <option value="MAYOR DE 51">MAYOR DE 51</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -200,7 +215,20 @@
                                     </div>
                                 </div>
                                     <label class="fieldlabels">Ciclo familiar:</label>
-                                    <input type="text" name="ciclo_familiar" id="ciclo_familiar" placeholder="Ciclo familiar" />
+                                    <select name="ciclo_familiar" id="ciclo_familiar">
+                                        <option value="">Seleccione genero</option>
+                                        <option value="FAMILIA CON HIJOS">FAMILIA CON HIJOS</option>
+                                        <option value="FAMILIA CONFORMADA POR MAMÁ Y PAPÁ">FAMILIA CONFORMADA POR MAMÁ Y PAPÁ</option>
+                                        <option value="FAMILIA CONFORMADA POR MAMÁ">FAMILIA CONFORMADA POR MAMÁ</option>
+                                        <option value="FAMILIA CONFORMADA POR PAPÁ">FAMILIA CONFORMADA POR PAPÁ</option>
+                                        <option value="FAMILIA CONFORMADA POR MAMÁ, PAPÁ Y HERMANOS">FAMILIA CONFORMADA POR MAMÁ, PAPÁ Y HERMANOS</option>
+                                        <option value="FAMILIA CONFORMADA POR MAMÁ Y HERMANOS">FAMILIA CONFORMADA POR MAMÁ Y HERMANOS</option>
+                                        <option value="FAMILIA CONFORMADA POR PAPÁ Y HERMANOS">FAMILIA CONFORMADA POR PAPÁ Y HERMANOS</option>
+                                        <option value="FORMACIÓN DE PÁREJA">FORMACIÓN DE PÁREJA</option>
+                                        <option value="SOLO/A">SOLO/A</option>
+                                        <option value="SEGUNDA UNIÓN">SEGUNDA UNIÓN</option>
+                                        <option value="FAMILIA CONFORMADA POR OTROS FAMILIARES">FAMILIA CONFORMADA POR OTROS FAMILIARES</option>
+                                    </select>
                             </div> 
                                 <input type="button" name="next" class="next action-button" value="Siguiente" /> 
                                 <input type="button" name="atr" class="previous action-button-previous" value="Atras" />
@@ -220,7 +248,7 @@
                                 <div class="col-md-12">
                                     <div class="row"> 
                                         <div class="col-md-6">
-                                            <label class="fieldlabels">Lugar de trabajo:</label> 
+                                            <label class="fieldlabels">Area de trabajo:</label> 
                                             <input type="text" name="lugar_trabajo" id="lugar_trabajo" placeholder="Lugar de trabajo" />
                                         </div>
                                         <div class="col-md-6">
