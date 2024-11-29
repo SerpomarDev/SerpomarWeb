@@ -24,7 +24,7 @@ const columnDefs = [
     { headerName: "Año", field: "anio" },
     { headerName: "Mes", field: "mes" },
     { headerName: "Día", field: "dia" },
-    { headerName: "Lugar Trabajo", field: "lugar_trabajo" },
+    { headerName: "Area Trabajo", field: "lugar_trabajo" },
     { headerName: "Cargo", field: "cargo" },
     { headerName: "Salario Base", field: "salario_base" },
     { headerName: "Bonificación", field: "bonificacion" },
