@@ -43,6 +43,9 @@ document.getElementById("msform").addEventListener("submit", function (e) {
           position: 'top-end',
           showConfirmButton: false
       }); 
+      setTimeout(() => {
+        window.location.href = `/view/gestion_humana/create.html`;
+    }, 2000);
       })
       .catch((error) => {
         Swal.fire({
