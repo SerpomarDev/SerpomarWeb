@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nodhus</title>
+  <link rel="icon" href="/faviconN.png" type="image/x-icon">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="/css/pages.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    .bodysertrack {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column; /* Alinea los elementos en columna por defecto */
+      padding: 20px; /* Agrega un padding para evitar que el contenido toque los bordes */
+    }
+
+    .container {
+      margin-top: 15%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center; /* Centra los elementos horizontalmente */
+    }
+
+    .container a {
+      text-decoration: none;
+    }
+
+    .card {
+      background-color: #2196F3;
+      color: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      width: 100%; /* Ajusta el ancho de las tarjetas al 100% por defecto */
+      max-width: 250px; /* Establece un ancho máximo para las tarjetas */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(135deg, #2196F3, #0D47A1);
+      position: relative;
+    }
+
+    .card img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 10px;
+      display: block;
+      margin: 0 auto 20px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(135deg, #0D47A1, #2196F3);
+      color: #f0f0f0;
+    }
+
+    /* Media query para pantallas más pequeñas */
+    @media (max-width: 768px) {
+
+      .card {
+        width: 100%;
+        /* Ajusta el ancho de las tarjetas al 100% en pantallas pequeñas */
+      }
+    }
+  </style>
+</head>
+
+<div id="header-container"></div>
+<script src="/Componentes/header.js"></script>
+<script src="/Componentes/perfil.js"></script>
+
+<body>
+
+  <div class="header">
+    <div class="title-container">
+      <div class="circle"></div>
+      <h1 class="title">MODALIDADES</h1>
+    </div>
+  </div>
+
+  <div class="bodysertrack">
+    <div class="container">
+      <a href="/view/registro_estadistico/registroEstadistico_expo.html">
+        <div class="card">
+          <img src="/img/export.png" alt="Icono de exportación">
+          <p>EXPORTACIÓN</p>
+        </div>
+      </a>
+
+      <a href="/view/registro_estadistico/registroEstadistico_impo.html">
+        <div class="card">
+          <img src="/img/importacion.png" alt="Icono de importación">
+          <p>IMPORTACIÓN</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/Componentes/sidebar.js"></script>
+  <script src="/js/login/logout.js"></script>
+
+
+
+</body>
+
+</html>
