@@ -20,7 +20,7 @@ const columnDefsSS = [
     headerName: "Modalidad", 
     field: "modalidad",
     filter: 'agSetColumnFilter',
-    hide: false,
+    hide: true,
     filterParams: {
       values: ['importacion', 'exportacion'],
       suppressSorting: true
@@ -46,12 +46,12 @@ const columnDefsSS = [
   { headerName: "# Contenedores", field: "cantidad" },
   { headerName: "Cliente", field: "cliente" },
   { headerName: "Fecha Notificacion", field: "fecha_notificacion", editable: true },
-  { headerName: "Fecha Documental", field: "fecha_documental", editable: true },
-  { headerName: "Fecha Cutoff Fisico", field: "fecha_cutoff_fisico", editable: true },
-  { headerName: "Booking", field: "booking", editable: true },
   { headerName: "Naviera", field: "naviera", editable: true },
   { headerName: "Patio Naviera", field: "patio_naviero", editable: true },
   { headerName: "Producto", field: "producto", editable: true },
+  { headerName: "Eta", field: "eta", editable: true },
+  { headerName: "Fecha levante", field: "fecha_levante", editable: true },
+ 
 ];
 
 function getContenedoresDetail(idSolicitudServicio) {
@@ -130,27 +130,42 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                 return button;
               }
             },
-            { headerName: "Tara", field: "tara", editable: true },
-            { headerName: "Payload", field: "payload", editable: true },
-            { headerName: "Fecha Cliente", field: "fecha_cliente" },
-            { headerName: "Notificacion Cliente", field: "notificacion_cliente" },
-            { headerName: "Fecha Retiro Vacio", field: "fecha_vacio" },
-            { headerName: "Conductor Patio", field: "conductor_patio" },
-            { headerName: "Placa Patio", field: "placa_patio" },
+            { headerName: "Tipo Contenedor", field: "tipo" },
+            { headerName: "Notificacion Cliente", field: "notificacion_cliente", editable: true  },
+            { headerName: "Fecha Cliente", field: "fecha_cliente", editable: true },
+            { headerName: "Fecha Cita", field: "fecha_cita", editable: true  },
+
+        
             { headerName: "Conductor Puerto", field: "conductor_puerto" },
             { headerName: "Placa Puerto", field: "placa_puerto" },
-            { headerName: "Tipo Contenedor", field: "tipo" },
-            { headerName: "Fecha Cargue", field: "fecha_cargue" },
-            { headerName: "Sitio Cargue/Descargue", field: "sitio_cargue_descargue" },
-            { headerName: "Fecha Cita", field: "fecha_cita" },
-            { headerName: "Fecha Manifiesto", field: "fecha_manifiesto" },
-            { headerName: "Manifiesto", field: "manifiesto" },
-            { headerName: "Fecha Remesa", field: "fecha_remesa" },
-            { headerName: "Remesa", field: "remesa" },
-            { headerName: "Sitio", field: "sitio" },
-            { headerName: "Patio serpomar", field: "patio" },
-            { headerName: "Observaciones", field: "observaciones" },
+            { headerName: "Sitio Cargue/Descargue", field: "sitio_cargue_descargue", editable: true  },
+            { headerName: "Fecha Descargue", field: "fecha_cargue", editable: true  },
+            { headerName: "Sitio devolucion", field: "sitio", editable: true  },
+            { headerName: "Fecha Devolucion", field: "fecha_vacio", editable: true  },
+            { headerName: "Placa Patio", field: "placa_patio" },
+            { headerName: "Conductor Patio", field: "conductor_patio" },
+            { headerName: "Fecha Manifiesto", field: "fecha_manifiesto", editable: true  },
+            { headerName: "Manifiesto", field: "manifiesto", editable: true  },
+            { headerName: "Fecha Remesa", field: "fecha_remesa", editable: true  },
+            { headerName: "Remesa", field: "remesa", editable: true  },
+
+            { headerName: "Patio serpomar", field: "patio", editable: true  },
+            { headerName: "Observaciones", field: "observaciones", editable: true  },
+            { headerName: "Sitio Inspeccion", field: "sitio_inspeccion", editable: true },
+            { headerName: "Placa Inspeccion", field: "placa_inspeccion", editable: true },
+            { headerName: "Fecha Inspeccion", field: "fecha_inspeccion", editable: true },
+            { headerName: "Peso", field: "Peso", editable: true },
+            { 
+              headerName: "Tipo servicio", 
+              field: "tipo_servico", 
+              editable: true,
+              cellEditor: 'agSelectCellEditor', // Usa el editor de celdas select de ag-Grid
+              cellEditorParams: {
+                values: ['ITR', 'TRANSPORTE']
+              } 
+            },
             { headerName: "Estado", field: "estado" }
+
           ],
           defaultColDef: {
             flex: 1,
@@ -167,7 +182,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
               title: 'Actualizando...',
               text: "Se actualizará la información en la base de datos",
               icon: 'info',
-            });
+          });
 
             const apiUrl = `https://esenttiapp-production.up.railway.app/api/updatecontenedorbysoliservi/${idContenedor}`;
 
@@ -195,6 +210,11 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                   title: '¡Actualizado!',
                   text: 'El registro ha sido actualizado.',
                   icon: 'success',
+                  timer: 1000,
+                  timerProgressBar: true,
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false
                 });
 
                 const rowNode = event.node;
@@ -305,6 +325,11 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
               title: '¡Actualizado!',
               text: 'El registro ha sido actualizado.',
               icon: 'success',
+              timer: 1000,
+              timerProgressBar: true,
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false
             });
 
             const rowNode = event.node;

@@ -27,15 +27,17 @@ const columnDefsSS = [
         }
     },
     {
-        headerName: '+ contenedor',
+        headerName: 'Añadir',
         cellRenderer: params => {
-            const button = document.createElement('button');
-            button.innerHTML = '+';
-            button.classList.add('btn', 'btn-primary');
-            button.onclick = () => {
-                mostrarFormularioContenedor(params.data.id_primario); 
+            const img = document.createElement('img');
+            img.src = '/img/contenedor.png'; 
+            img.style.width = '45px';
+            img.style.height = '32px'; 
+            img.style.cursor = 'pointer';
+            img.onclick = () => {
+                mostrarFormularioContenedor(params.data.id_primario);
             };
-            return button;
+            return img;
         }
     },
     { headerName: "id", field: "id_primario", hide: true },
