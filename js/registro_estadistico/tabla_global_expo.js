@@ -27,17 +27,17 @@ const columnDefsSS = [
         }
     },
     {
-      headerName: 'Acciones',
-      cellRenderer: params => {
-          const button = document.createElement('button');
-          button.innerHTML = '+ contenedores';
-          button.classList.add('btn', 'btn-primary');
-          button.onclick = () => {
-              mostrarFormularioContenedor(params.data.id_primario); 
-          };
-          return button;
-      }
-  },
+        headerName: 'Acciones',
+        cellRenderer: params => {
+            const button = document.createElement('button');
+            button.innerHTML = '+ contenedores';
+            button.classList.add('btn', 'btn-primary');
+            button.onclick = () => {
+                mostrarFormularioContenedor(params.data.id_primario); 
+            };
+            return button;
+        }
+    },
     { headerName: "id", field: "id_primario", hide: true },
     {
         headerName: "SP",
@@ -64,6 +64,10 @@ const columnDefsSS = [
     { headerName: "Naviera", field: "naviera", editable: true },
     { headerName: "Patio Naviera", field: "patio_naviero", editable: true },
     { headerName: "Producto", field: "producto", editable: true },
+    { headerName: "Naviera", field: "naviera", editable: true },
+    { headerName: "Motonave", field: "motonave", editable: true },
+    { headerName: "Uvi", field: "uvi", editable: true },
+    { headerName: "Sae", field: "sae", editable: true },
 ];
 
 function getContenedoresDetail(idSolicitudServicio) {
@@ -144,26 +148,30 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                     },
                     { headerName: "Tara", field: "tara", editable: true },
                     { headerName: "Payload", field: "payload", editable: true },
-                    { headerName: "Fecha Cliente", field: "fecha_cliente" },
-                    { headerName: "Notificacion Cliente", field: "notificacion_cliente" },
-                    { headerName: "Fecha Retiro Vacio", field: "fecha_vacio" },
+                    { headerName: "Fecha Cliente", field: "fecha_cliente", editable: true },
+                    { headerName: "Notificacion Cliente", field: "notificacion_cliente", editable: true },
+                    { headerName: "Fecha Retiro Vacio", field: "fecha_vacio", editable: true },
                     { headerName: "Conductor Patio", field: "conductor_patio" },
                     { headerName: "Placa Patio", field: "placa_patio" },
                     { headerName: "Conductor Puerto", field: "conductor_puerto" },
                     { headerName: "Placa Puerto", field: "placa_puerto" },
                     { headerName: "Tipo Contenedor", field: "tipo" },
-                    { headerName: "Fecha Cargue", field: "fecha_cargue" },
-                    { headerName: "Sitio Cargue/Descargue", field: "sitio_cargue_descargue" },
-                    { headerName: "Fecha Cita", field: "fecha_cita" },
-                    { headerName: "Fecha Manifiesto", field: "fecha_manifiesto" },
-                    { headerName: "Manifiesto", field: "manifiesto" },
-                    { headerName: "Fecha Remesa", field: "fecha_remesa" },
-                    { headerName: "Remesa", field: "remesa" },
-                    { headerName: "Sitio", field: "sitio" },
-                    { headerName: "Patio serpomar", field: "patio" },
-                    { headerName: "Observaciones", field: "observaciones" },
+                    { headerName: "Fecha Cargue", field: "fecha_cargue", editable: true },
+                    { headerName: "Sitio Cargue/Descargue", field: "sitio_cargue_descargue", editable: true },
+                    { headerName: "Fecha Cita", field: "fecha_cita", editable: true },
+                    
+                    { headerName: "Fecha Manifiesto", field: "fecha_manifiesto", editable: true },
+                    { headerName: "Manifiesto", field: "manifiesto", editable: true },
+                    { headerName: "Fecha Remesa", field: "fecha_remesa", editable: true },
+                    { headerName: "Remesa", field: "remesa", editable: true },
+                    // { headerName: "Sitio", field: "sitio" },
+                    { headerName: "Patio serpomar", field: "patio", editable: true },
+                    { headerName: "Observaciones", field: "observaciones", editable: true },
+                    { headerName: "Sello/PT", field: "sello", editable: true },
+                    { headerName: "Fecha hora Salida", field: "fecha_salida", editable: true },
+                    { headerName: "Fecha hora Ingreso plata", field: "ingreso_planta", editable: true },
                     { headerName: "Estado", field: "estado" },
-                  
+                    
                 ],
                 defaultColDef: {
                     flex: 1,
@@ -356,7 +364,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                         const data = node.data;
 
                         let match = (data.do_pedido && data.do_pedido.toLowerCase().includes(searchTerm)) ||
-                            (data.pedido && data.pedido.toLowerCase().includes(searchTerm));
+                                    (data.pedido && data.pedido.toLowerCase().includes(searchTerm));
 
                         if (!match && node.detailGridInfo) {
                             const detailGridApi = node.detailGridInfo.api;
@@ -376,6 +384,9 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                 searchNodes(gridApi.getRenderedNodes());
                 gridApi.onFilterChanged();
             });
+
+            // Llamar a actualizarGrilla() después de que la grilla esté lista
+            actualizarGrilla(); 
         }
     };
 
@@ -397,7 +408,7 @@ function mostrarFormularioContenedor(id_primario) {
                         <label for="id_tipo_contenedor" class="form-label">Tipo Contenedor</label>
                         <select name="id_tipo_contenedor" id="id_tipo_contenedor" class="form-control">
                             <option value="">Seleccione</option>
-                            </select>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -424,8 +435,7 @@ function mostrarFormularioContenedor(id_primario) {
                     <div class="form-group">
                         <label for="peso" class="form-label">Peso</label>
                         <input type="text" id="peso" name="peso" class="form-control">
-                    </div>
-                </div>
+                    </div></div>
             </div>
         `,
         showCancelButton: true,
@@ -440,7 +450,7 @@ function mostrarFormularioContenedor(id_primario) {
             const peso = document.getElementById('peso').value;
 
             // Validaciones (agregar las necesarias)
-            if (!id_tipo_contenedor || !nu_serie || !tara || !payload || !peso) {
+            if (!id_tipo_contenedor || !nu_serie || !tara || !payload) {
                 Swal.showValidationMessage('Por favor, completa todos los campos');
                 return false;
             }
@@ -481,8 +491,12 @@ function mostrarFormularioContenedor(id_primario) {
                     text: "Contenedor Creado!",
                     icon: "success"
                 });
+
                 // Actualizar la grilla (puedes recargar la grilla o agregar la nueva fila manualmente)
-                actualizarGrilla(); 
+                // actualizarGrilla(); // Ya no es necesario llamarlo aquí
+
+                // Recargar la página
+                location.reload();
             })
             .catch(error => {
                 console.error('Error al crear contenedor:', error);
@@ -496,7 +510,7 @@ function mostrarFormularioContenedor(id_primario) {
     });
 
     // Obtener los tipos de contenedores y poblar el select
-    fetch("https://esenttiapp-production.up.railway.app/api/tipocontenedores", { // Reemplaza con la URL correcta de tu API
+    fetch("https://esenttiapp-production.up.railway.app/api/tipocontenedores", {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem("authToken")}`
         }
@@ -508,17 +522,17 @@ function mostrarFormularioContenedor(id_primario) {
         return response.json();
     })
     .then(data => {
-      const selectTipoContenedor = document.getElementById('id_tipo_contenedor');
-      
-      // Corrección: iterar directamente sobre el array 'data'
-      data.forEach(tipoContenedor => { 
-          const option = document.createElement('option');
-          option.value = tipoContenedor.id; // Ajustado a "id" según tu respuesta
-          option.text = tipoContenedor.tipo; // Ajustado a "tipo" según tu respuesta
-          selectTipoContenedor.add(option);
-      });
-  })
-  
+        const selectTipoContenedor = document.getElementById('id_tipo_contenedor');
+        
+        // Corrección: iterar directamente sobre el array 'data'
+        data.forEach(tipoContenedor => { 
+            const option = document.createElement('option');
+            option.value = tipoContenedor.id; 
+            option.text = tipoContenedor.tipo; 
+            selectTipoContenedor.add(option);
+        });
+    })
+    
     .catch(error => {
         console.error("Error al obtener tipos de contenedores:", error);
         Swal.fire(
@@ -537,16 +551,11 @@ function showAsignacion(id) {
     window.open(`/view/modal/modal.html?id=${id}`, '_blank');
 }
 
-function actualizarGrilla(nuevoContenedor) {
-  // 1. Obtener la fila de la grilla principal correspondiente al nuevo contenedor
-  const filaPrincipal = gridOptions1.api.getRowNode(nuevoContenedor.id_solicitud_servicio); 
-
-  // 2. Obtener la grilla hija de la fila principal
-  const grillaHija = filaPrincipal.detailGridInfo.api;
-
-  // 3. Agregar el nuevo contenedor a la grilla hija
-  grillaHija.applyTransaction({ add: [nuevoContenedor] });
-
-  // 4. Expandir la fila principal para mostrar el nuevo contenedor (opcional)
-  filaPrincipal.setExpanded(true); 
+function actualizarGrilla() {
+    // Verificar si gridOptions1.api está definido antes de llamar a refreshCells()
+    if (gridOptions1 && gridOptions1.api) {
+        gridOptions1.api.refreshCells(); 
+    } else {
+        console.warn("La grilla aún no está inicializada.");
+    }
 }
