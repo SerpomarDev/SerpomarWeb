@@ -20,17 +20,17 @@ const columnDefsSS = [
         headerName: "Modalidad", 
         field: "modalidad",
         filter: 'agSetColumnFilter',
-        hide: false,
+        hide: true,
         filterParams: {
             values: ['importacion', 'exportacion'],
             suppressSorting: true
         }
     },
     {
-        headerName: 'Acciones',
+        headerName: '+ contenedor',
         cellRenderer: params => {
             const button = document.createElement('button');
-            button.innerHTML = '+ contenedores';
+            button.innerHTML = '+';
             button.classList.add('btn', 'btn-primary');
             button.onclick = () => {
                 mostrarFormularioContenedor(params.data.id_primario); 
@@ -213,9 +213,14 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                         }
 
                         Swal.fire({
-                            title: '¡Actualizado!',
-                            text: 'El registro ha sido actualizado.',
-                            icon: 'success',
+                          title: '¡Actualizado!',
+                          text: 'El registro ha sido actualizado.',
+                          icon: 'success',
+                          timer: 1000,
+                          timerProgressBar: true,
+                          toast: true,
+                          position: 'top-end',
+                          showConfirmButton: false
                         });
 
                         const rowNode = event.node;
@@ -266,9 +271,14 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
             }
 
             Swal.fire({
-                title: 'Actualizando...',
-                text: "Se actualizará la información en la base de datos",
-                icon: 'info',
+              title: 'Actualizando...',
+              text: "Se actualizará la información en la base de datos",
+              icon: 'info',
+              timer: 1000,
+              timerProgressBar: true,
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false
             });
 
             const apiUrl = `https://esenttiapp-production.up.railway.app/api/solicitudservicios/${id_primario}`;
@@ -323,9 +333,14 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                 }
 
                 Swal.fire({
-                    title: '¡Actualizado!',
-                    text: 'El registro ha sido actualizado.',
-                    icon: 'success',
+                  title: '¡Actualizado!',
+                  text: 'El registro ha sido actualizado.',
+                  icon: 'success',
+                  timer: 1000,
+                  timerProgressBar: true,
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false
                 });
 
                 const rowNode = event.node;
@@ -486,11 +501,16 @@ function mostrarFormularioContenedor(id_primario) {
                 return response.json();
             })
             .then(data => {
-                Swal.fire({
-                    title: "¡Buen trabajo!",
-                    text: "Contenedor Creado!",
-                    icon: "success"
-                });
+               Swal.fire({
+                title: '¡Actualizado!',
+                text: 'El registro ha sido actualizado.',
+                icon: 'success',
+                timer: 1000,
+                timerProgressBar: true,
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false
+              });
 
                 // Actualizar la grilla (puedes recargar la grilla o agregar la nueva fila manualmente)
                 // actualizarGrilla(); // Ya no es necesario llamarlo aquí
@@ -553,6 +573,7 @@ function showAsignacion(id) {
 
 function actualizarGrilla() {
     // Verificar si gridOptions1.api está definido antes de llamar a refreshCells()
+    
     if (gridOptions1 && gridOptions1.api) {
         gridOptions1.api.refreshCells(); 
     } else {
