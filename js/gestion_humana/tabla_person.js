@@ -188,66 +188,33 @@ fetch("https://esenttiapp-production.up.railway.app/api/loadpersonas", {
 });
 
 
-// function uploadId(id) {
-//     // Open the modal or handle file upload
-//     $('#fileUploadModal').show();
-//     $('#id_humana').val(id);
-
-//     Dropzone.autoDiscover = false;
-
-//     // Initialize Dropzone for the form
-//   const  myDropzone = new Dropzone("#SaveFile", {
-//         url: "/upload", // Replace with your upload URL
-//         init: function() {
-//             this.on("success", function(file, response) {
-//                 // Change button state after successful file upload
-//                 const button = document.getElementById(`btn-${id}`);
-//                 if (button) {
-//                     button.classList.remove('no-file');
-//                     button.classList.add('file-uploaded');
-//                 }
-
-//                 // Hide the modal after upload
-//                 $('#fileUploadModal').hide();
-//             });
-//         }
-//     });
-// }
-
-// // Handle modal close
-// $('.close').on('click', function() {
-//     $('#fileUploadModal').hide();
-// });
-
 function uploadId(id) {
     // Muestra el modal
     $('#fileUploadModal').show();
+
+    // Asigna el ID al campo oculto
     $('#id_humana').val(id);
 
-    // Verifica si Dropzone ya está inicializado en el formulario
-    if (Dropzone.instances.length > 0) {
-        Dropzone.instances.forEach(instance => {
-            if (instance.element.id === "SaveFile") {
-                instance.destroy(); // Destruye la instancia existente si es necesario
-            }
-        });
-    }
-
-    // Inicializa Dropzone para el formulario
-    const myDropzone = new Dropzone("#SaveFile", {
-        url: "/upload", // Cambia esto a tu URL de subida
+    // Inicializa una nueva instancia de Dropzone
+    const myDropzone = new Dropzone("#HumanaSaveFile", {
+        url: "/gestionHumana", // Reemplaza con tu URL de carga
         init: function() {
             this.on("success", function(file, response) {
-                // Cambia el estado del botón después de una subida exitosa
+                // Cambia el estado del botón tras la carga exitosa
                 const button = document.getElementById(`btn-${id}`);
                 if (button) {
                     button.classList.remove('no-file');
                     button.classList.add('file-uploaded');
                 }
 
-                // Oculta el modal después de la subida
+                // Oculta el modal después de cargar el archivo
                 $('#fileUploadModal').hide();
             });
         }
     });
 }
+
+// Manejo del cierre del modal
+$('.close').on('click', function() {
+    $('#fileUploadModal').hide();
+});

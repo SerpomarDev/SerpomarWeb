@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (Dropzone.instances.length > 0) {
             Dropzone.instances.forEach(dz => dz.destroy());
         }
-        const myDropzone = new Dropzone('#SaveFile', {
+        const myDropzone = new Dropzone('#HumanaSaveFile', {
             autoProcessQueue: false,
             acceptedFiles: '.pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.png,.jpeg',
             init: function() {
@@ -133,6 +133,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    window.uploadId = uploadId(id);
+    window.uploadId = uploadId;
     window.deleteFile = deleteFile;
 });
