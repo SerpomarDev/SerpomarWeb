@@ -367,10 +367,11 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                 'modalidad': {
                     filterType: 'set',
                     values: ['exportacion']
-                }
+                },
             });
-
-
+            
+            params.api.sizeColumnsToFit(); 
+            
             const searchInput = document.querySelector('input[type="search"]');
 
             searchInput.addEventListener('input', () => {
@@ -402,6 +403,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                 gridApi.onFilterChanged();
             });
 
+            
             // Llamar a actualizarGrilla() después de que la grilla esté lista
             actualizarGrilla(); 
         }
