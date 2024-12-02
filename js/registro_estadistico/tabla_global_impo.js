@@ -49,7 +49,7 @@ const columnDefsSS = [
   { headerName: "Naviera", field: "naviera", editable: true },
   { headerName: "Patio Naviera", field: "patio_naviero", editable: true },
   { headerName: "Producto", field: "producto", editable: true },
-  { headerName: "Eta", field: "eta", editable: true },
+  { headerName: "Eta", field: "fecha_eta", editable: true },
   { headerName: "Fecha levante", field: "fecha_levante", editable: true },
  
 ];
