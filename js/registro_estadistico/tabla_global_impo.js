@@ -45,7 +45,11 @@ const columnDefsSS = [
   { headerName: "Pedido", field: "pedido" },
   { headerName: "# Contenedores", field: "cantidad" },
   { headerName: "Cliente", field: "cliente" },
-  { headerName: "Fecha Notificacion", field: "fecha_notificacion", editable: true },
+  { headerName: "Fecha Notificacion", 
+    field: "fecha_notificacion", 
+    editable: true,
+    dateFormat: 'dd/MM/yyyy', 
+  },
   { headerName: "Naviera", field: "naviera", editable: true },
   { headerName: "Patio Naviera", field: "patio_naviero", editable: true },
   { headerName: "Producto", field: "producto", editable: true },
@@ -130,31 +134,73 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                 return button;
               }
             },
+
             { headerName: "Tipo Contenedor", field: "tipo" },
             { headerName: "Notificacion Cliente", field: "notificacion_cliente", editable: true  },
-            { headerName: "Fecha Cliente", field: "fecha_cliente", editable: true },
-            { headerName: "Fecha Cita", field: "fecha_cita", editable: true  },
 
-        
+            { 
+              headerName: "Fecha Cliente", 
+              field: "fecha_cliente", 
+              editable: true,
+              dateFormat: 'dd/MM/yyyy', 
+            },
+
+            { headerName: "Fecha Cita", 
+              field: "fecha_cita", 
+              editable: true, 
+              dateFormat: 'dd/MM/yyyy',   
+            },
+
             { headerName: "Conductor Puerto", field: "conductor_puerto" },
             { headerName: "Placa Puerto", field: "placa_puerto" },
             { headerName: "Sitio Cargue/Descargue", field: "sitio_cargue_descargue", editable: true  },
-            { headerName: "Fecha Descargue", field: "fecha_cargue", editable: true  },
+
+            { headerName: "Fecha Descargue", 
+              field: "fecha_cargue", 
+              editable: true, 
+              dateFormat: 'dd/MM/yyyy', 
+            },
+
             { headerName: "Sitio devolucion", field: "sitio", editable: true  },
-            { headerName: "Fecha Devolucion", field: "fecha_vacio", editable: true  },
+
+            { headerName: "Fecha Devolucion", 
+              field: "fecha_devolucion", 
+              editable: true, 
+              dateFormat: 'dd/MM/yyyy',   
+            },
+
             { headerName: "Placa Patio", field: "placa_patio" },
             { headerName: "Conductor Patio", field: "conductor_patio" },
-            { headerName: "Fecha Manifiesto", field: "fecha_manifiesto", editable: true  },
+
+            { headerName: "Fecha Manifiesto", 
+              field: "fecha_manifiesto", 
+              editable: true,
+              dateFormat: 'dd/MM/yyyy',   
+            },
+
             { headerName: "Manifiesto", field: "manifiesto", editable: true  },
-            { headerName: "Fecha Remesa", field: "fecha_remesa", editable: true  },
+
+            { headerName: "Fecha Remesa", 
+              field: "fecha_remesa", 
+              editable: true, 
+              dateFormat: 'dd/MM/yyyy',   
+            },
+
             { headerName: "Remesa", field: "remesa", editable: true  },
 
             { headerName: "Patio serpomar", field: "patio", editable: true  },
-            { headerName: "Observaciones", field: "observaciones", editable: true  },
+            { headerName: "Observaciones", field: "comentario", editable: true  },
             { headerName: "Sitio Inspeccion", field: "sitio_inspeccion", editable: true },
             { headerName: "Placa Inspeccion", field: "placa_inspeccion", editable: true },
-            { headerName: "Fecha Inspeccion", field: "fecha_inspeccion", editable: true },
+
+            { headerName: "Fecha Inspeccion", 
+              field: "fecha_inspeccion", 
+              editable: true, 
+              dateFormat: 'dd/MM/yyyy',  
+            },
+
             { headerName: "Peso", field: "Peso", editable: true },
+
             { 
               headerName: "Tipo servicio", 
               field: "tipo_servico", 
@@ -164,6 +210,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                 values: ['ITR', 'TRANSPORTE']
               } 
             },
+
             { headerName: "Estado", field: "estado" }
 
           ],
