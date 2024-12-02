@@ -149,7 +149,7 @@ const columnDefs = [
         $('#id_ordenc').val(id);
     
         // Initialize Dropzone for the form
-      const  myDropzone = new Dropzone("#SaveFileHumana", {
+      const  myDropzone = new Dropzone("#SaveFile", {
             url: "/upload", // Replace with your upload URL
             init: function() {
                 this.on("success", function(file, response) {
