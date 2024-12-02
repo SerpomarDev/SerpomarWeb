@@ -1,20 +1,6 @@
 document.getElementById("msform").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    //  // Obtener los valores de los campos
-    //  const salarioBase = document.getElementById("salario_base").value;
-    //  const bonificacion = document.getElementById("bonificacion").value;
- 
-    //  // Verificar si los valores son numéricos
-    //  if (isNaN(salarioBase) || isNaN(bonificacion)) {
-    //      Swal.fire({
-    //          title: "Error",
-    //          text: "Por favor, ingresa valores numéricos en los campos de Salario base y Bonificación.",
-    //          icon: "error",
-    //      });
-    //      return; // Detener el envío si los valores no son numéricos
-    //  }
-
     const formData = new FormData(this);
 
     const jsonData = JSON.stringify(Object.fromEntries(formData));

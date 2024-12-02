@@ -44,6 +44,17 @@ const columnDefs = [
     { headerName: "Deporte", field: "deporte" },
     { headerName: "Grupo Riesgo", field: "grupo_riesgo" },
     { headerName: "Cual Pertenece", field: "cual_pertenece" },
+    {
+        headerName: "Soportes",
+        cellRenderer: params => {
+            const button = document.createElement('button');
+            button.className = 'upload-btn no-file';
+            button.innerText = 'Adjuntar Archivo';
+            button.id = `btn-${params.data.id}`;
+            button.addEventListener( 'click',()=> uploadId(params.data.id));
+            return button;
+        }
+      },
 ];
 
 fetch("https://esenttiapp-production.up.railway.app/api/loadpersonas", {
@@ -175,3 +186,68 @@ fetch("https://esenttiapp-production.up.railway.app/api/loadpersonas", {
 .catch((error) => {
     console.error("Error al cargar los datos:", error);
 });
+
+
+// function uploadId(id) {
+//     // Open the modal or handle file upload
+//     $('#fileUploadModal').show();
+//     $('#id_humana').val(id);
+
+//     Dropzone.autoDiscover = false;
+
+//     // Initialize Dropzone for the form
+//   const  myDropzone = new Dropzone("#SaveFile", {
+//         url: "/upload", // Replace with your upload URL
+//         init: function() {
+//             this.on("success", function(file, response) {
+//                 // Change button state after successful file upload
+//                 const button = document.getElementById(`btn-${id}`);
+//                 if (button) {
+//                     button.classList.remove('no-file');
+//                     button.classList.add('file-uploaded');
+//                 }
+
+//                 // Hide the modal after upload
+//                 $('#fileUploadModal').hide();
+//             });
+//         }
+//     });
+// }
+
+// // Handle modal close
+// $('.close').on('click', function() {
+//     $('#fileUploadModal').hide();
+// });
+
+function uploadId(id) {
+    // Muestra el modal
+    $('#fileUploadModal').show();
+    $('#id_humana').val(id);
+
+    // Verifica si Dropzone ya está inicializado en el formulario
+    if (Dropzone.instances.length > 0) {
+        Dropzone.instances.forEach(instance => {
+            if (instance.element.id === "SaveFile") {
+                instance.destroy(); // Destruye la instancia existente si es necesario
+            }
+        });
+    }
+
+    // Inicializa Dropzone para el formulario
+    const myDropzone = new Dropzone("#SaveFile", {
+        url: "/upload", // Cambia esto a tu URL de subida
+        init: function() {
+            this.on("success", function(file, response) {
+                // Cambia el estado del botón después de una subida exitosa
+                const button = document.getElementById(`btn-${id}`);
+                if (button) {
+                    button.classList.remove('no-file');
+                    button.classList.add('file-uploaded');
+                }
+
+                // Oculta el modal después de la subida
+                $('#fileUploadModal').hide();
+            });
+        }
+    });
+}
