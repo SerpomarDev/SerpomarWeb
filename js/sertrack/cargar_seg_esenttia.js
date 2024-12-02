@@ -33,8 +33,8 @@ const columnDefs = [
   { headerName: "Vehiculo", field: "vehiculo" },
   { headerName: "Conductor", field: "conductor" },
   { headerName: "Puerto Ingreso", field: "puerto_ingreso" },
-  { headerName: "Diferencia Peso", field: "conductor" },
-  { headerName: "Tiempo Recorrido", field: "puerto_ingreso" },
+  { headerName: "Diferencia Peso", field: "diferencia_peso" },
+  { headerName: "Tiempo Recorrido", field: "duracion_recorrido" },
  
 ];
 
