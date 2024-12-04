@@ -1,8 +1,19 @@
 body {
-    margin: 0;
-    background: #25A3FF;
-    font-family: 'Roboto', sans-serif;
-  }
+  margin: 0;
+  font-family: 'Roboto', sans-serif; 
+}
+
+.video-background {
+  position: fixed; 
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto; 
+  height: auto;
+  z-index: -100;
+}
+
   
   @keyframes superEntrada {
     0% {
