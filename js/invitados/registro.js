@@ -6,7 +6,7 @@ var preguntas = [
     { question: "¿De donde visita?", dbColumn: "de_donde" },
     { question: "¿Conoce las normas de seguridad? (SI/NO)", dbColumn: "conoce_normas_seguridad" },
     { question: "¿Trae algun dispositivo electronico? (SI/NO)", dbColumn: "trae_dispositivo" },
-    { question: "Firma", dbColumn: "firma" }
+    { question: "Firma", dbColumn: "firma" } 
 ];
 
 (function() {
@@ -53,16 +53,16 @@ var preguntas = [
 
         // Enviar los datos al servidor (pero no esperar la respuesta)
         fetch('https://esenttiapp-production.up.railway.app/api/visitante', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-                },
-                body: JSON.stringify(formData)
-            })
-            .catch(error => {
-                console.error('Error al enviar los datos:', error);
-            });
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+            },
+            body: JSON.stringify(formData)
+        })
+        .catch(error => {
+            console.error('Error al enviar los datos:', error);
+        });
 
         // Mostrar el mensaje de bienvenida después de 3 segundos
         setTimeout(mostrarMensajeBienvenida, 3000);
@@ -102,6 +102,17 @@ var preguntas = [
                 // No avanzar a la siguiente pregunta
                 return; 
             }
+        }
+
+        // Verificar si la pregunta actual es sobre dispositivos electrónicos
+        if (preguntas[posicion].dbColumn === "trae_dispositivo") {
+            if (inputField.value.toUpperCase() === "SI") {
+                // Agregar las preguntas de modelo y número de serie
+                preguntas.splice(posicion + 1, 0, 
+                    { question: "Modelo del dispositivo:", dbColumn: "modelo_dispositivo" },
+                    { question: "Número de serie del dispositivo:", dbColumn: "numero_serie_dispositivo" }
+                );
+            } 
         }
 
         if (!inputField.value.match(preguntas[posicion].pattern || /.+/)) {
