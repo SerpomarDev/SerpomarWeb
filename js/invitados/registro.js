@@ -176,6 +176,13 @@ var preguntas = [
         modal.style.alignItems = 'center';
         modal.appendChild(video);
 
+        // Ajustar el tamaño del video
+        video.style.maxWidth = '100%';
+        video.style.maxHeight = '100vh';
+        video.style.width = '100%';
+        video.style.height = 'auto';
+        video.style.objectFit = 'contain';
+
         // Agregar la ventana emergente al cuerpo del documento
         document.body.appendChild(modal);
 
