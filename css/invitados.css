@@ -14,7 +14,20 @@ body {
   z-index: -100;
 }
 
+h3{
+  color: #25a3ff;
+  font-size: 24px;
+  text-align: center;
+}
 
+.logoser{
+  padding-top: 20px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
   
   @keyframes superEntrada {
     0% {
