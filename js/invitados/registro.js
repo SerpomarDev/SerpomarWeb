@@ -19,7 +19,11 @@ var preguntas = [
 
     ponerPregunta();
 
-    progressButton.addEventListener('click', validar);
+    // Agregar listeners a los botones
+    progressButton.addEventListener('click', validar); 
+    backButton.addEventListener('click', retroceder);
+    nextButton.addEventListener('click', validar);
+
     inputField.addEventListener('keyup', function(e) {
         transform(0, 0); // hack para IE para redibujar
         if (e.keyCode == 13) validar();
@@ -58,7 +62,7 @@ var preguntas = [
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem("authToken")}`
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(formData) 
         })
         .catch(error => {
             console.error('Error al enviar los datos:', error);
@@ -88,6 +92,20 @@ var preguntas = [
             register.parentElement.appendChild(h1);
             setTimeout(function() { h1.style.opacity = 1 }, 50);
         }, eTime);
+    }
+
+    function retroceder() {
+        if (posicion > 0) {
+            posicion--;
+            ponerPregunta();
+            progress.style.width = posicion * 100 / preguntas.length + 'vw';
+            // Habilitar/deshabilitar botones según la posición
+            backButton.disabled = (posicion === 0);
+            nextButton.disabled = false; 
+
+            // Restablecer el texto del botón a "Adelante"
+            nextButton.innerHTML = 'Adelante <i class="fas fa-arrow-right"></i>'; 
+        }
     }
 
     function validar() {
@@ -120,6 +138,14 @@ var preguntas = [
         } else {
             correcto(function() {
                 progress.style.width = ++posicion * 100 / preguntas.length + 'vw';
+
+                // Habilitar/deshabilitar botones según la posición
+                backButton.disabled = (posicion === 0);
+
+                // Cambiar el texto del botón "Adelante" a "Finalizar" en la última pregunta
+                if (posicion === preguntas.length - 1) {
+                  nextButton.innerHTML = 'Finalizar <i class="fas fa-check"></i>'; 
+                }
 
                 if (preguntas[posicion]) {
                     ocultarActual(ponerPregunta);
@@ -159,6 +185,15 @@ var preguntas = [
             // Avanzar a la siguiente pregunta después de que el video termina
             correcto(function() {
                 progress.style.width = ++posicion * 100 / preguntas.length + 'vw';
+                // Habilitar/deshabilitar botones según la posición
+                backButton.disabled = (posicion === 0);
+                nextButton.disabled = (posicion === preguntas.length - 1); 
+
+                // Cambiar el texto del botón "Adelante" a "Finalizar" en la última pregunta
+                if (posicion === preguntas.length - 1) {
+                  nextButton.innerHTML = 'Finalizar <i class="fas fa-check"></i>'; 
+                }
+
                 ocultarActual(ponerPregunta);
             });
         });

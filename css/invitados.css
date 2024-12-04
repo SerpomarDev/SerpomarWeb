@@ -4,12 +4,54 @@ body {
     font-family: 'Roboto', sans-serif;
   }
   
+  @keyframes superEntrada {
+    0% {
+      transform: perspective(800px) rotateY(-90deg) translateX(-200px) translateY(200px) scale(0.5);
+      opacity: 0;
+    }
+    100% {
+      transform: perspective(800px) rotateY(0deg) translateX(0) translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+    /* Estilos para centrar los botones */
+    #register button {
+      margin: 10px auto; 
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #25a3ff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #register button:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+
   h1 {
     position: relative;
-    color: #fff;
+    color: #0069ec; /* Color del texto */
     opacity: 0;
     transition: .8s ease-in-out;
+    text-align: center; /* Centrar el texto */
+    font-family: 'Arial', sans-serif; /* Cambiar la fuente */
+    font-size: 2em; /* Ajustar el tamaño */
+    background-color: rgb(255, 255, 255); /* Fondo semi-transparente */
+    padding: 15px; /* Agregar padding */
+    border-radius: 5px; /* Agregar bordes redondeados */
+    display: flex; /* Flexbox para alinear icono y texto */
+    align-items: center; /* Centrar verticalmente */
+    animation: fadeIn 1s ease-in-out; /* Agregar animación */
+    margin: 30px;
+    animation: superEntrada 1.5s ease-in-out; 
   }
+
+  
   
   #progress {
     position: absolute;
