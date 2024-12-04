@@ -162,7 +162,7 @@ var preguntas = [
         video.src = 'VIDEO1.MP4'; // Reemplaza con la ruta correcta
         video.controls = true;
         video.autoplay = true;
-
+      
         // Crear un elemento div para la ventana emergente
         var modal = document.createElement('div');
         modal.style.position = 'fixed';
@@ -175,36 +175,52 @@ var preguntas = [
         modal.style.justifyContent = 'center';
         modal.style.alignItems = 'center';
         modal.appendChild(video);
-
+      
         // Ajustar el tamaño del video
         video.style.maxWidth = '100%';
         video.style.maxHeight = '100vh';
         video.style.width = '100%';
         video.style.height = 'auto';
         video.style.objectFit = 'contain';
-
+      
+        // Crear un botón de cierre
+        var closeButton = document.createElement('button');
+        closeButton.innerHTML = 'X'; 
+        closeButton.style.position = 'absolute';
+        closeButton.style.top = '10px';
+        closeButton.style.right = '10px';
+        closeButton.style.zIndex = '1000'; // Asegurar que el botón esté encima del video
+      
+        // Agregar el botón al modal
+        modal.appendChild(closeButton);
+      
+        // Agregar un evento al botón para cerrar el modal
+        closeButton.addEventListener('click', function() {
+          document.body.removeChild(modal);
+        });
+      
         // Agregar la ventana emergente al cuerpo del documento
         document.body.appendChild(modal);
-
+      
         // Agregar un evento para cerrar la ventana emergente al finalizar el video
         video.addEventListener('ended', function() {
-            document.body.removeChild(modal);
-            // Avanzar a la siguiente pregunta después de que el video termina
-            correcto(function() {
-                progress.style.width = ++posicion * 100 / preguntas.length + 'vw';
-                // Habilitar/deshabilitar botones según la posición
-                backButton.disabled = (posicion === 0);
-                nextButton.disabled = (posicion === preguntas.length - 1); 
-
-                // Cambiar el texto del botón "Adelante" a "Finalizar" en la última pregunta
-                if (posicion === preguntas.length - 1) {
-                  nextButton.innerHTML = 'Finalizar <i class="fas fa-check"></i>'; 
-                }
-
-                ocultarActual(ponerPregunta);
-            });
+          document.body.removeChild(modal);
+          // Avanzar a la siguiente pregunta después de que el video termina
+          correcto(function() {
+            progress.style.width = ++posicion * 100 / preguntas.length + 'vw';
+            // Habilitar/deshabilitar botones según la posición
+            backButton.disabled = (posicion === 0);
+            nextButton.disabled = (posicion === preguntas.length - 1); 
+      
+            // Cambiar el texto del botón "Adelante" a "Finalizar" en la última pregunta
+            if (posicion === preguntas.length - 1) {
+              nextButton.innerHTML = 'Finalizar <i class="fas fa-check"></i>'; 
+            }
+      
+            ocultarActual(ponerPregunta);
+          });
         });
-    }
+      }
 
     function ocultarActual(callback) {
         inputContainer.style.opacity = 0;
