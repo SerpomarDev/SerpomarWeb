@@ -5,7 +5,7 @@ document.getElementById('envioCorreoReestablecer').addEventListener('submit', fu
   
     const jsonData = JSON.stringify(Object.fromEntries(formData));
     
-    console.log(jsonData)
+
     fetch('https://esenttiapp-production.up.railway.app/api/passwordreset', {
         method: 'POST',
         headers: { 
@@ -33,7 +33,7 @@ document.getElementById('envioCorreoReestablecer').addEventListener('submit', fu
     .catch(error => {
             Swal.fire({
             title: "Error",
-            text: "Hubo un problema al hacer envio del correo. Por favor, inténtalo de nuevo.",
+            text: "Hubo un problema al hacer envio del correo o email invalido, inténtalo de nuevo.",
             icon: "error",
         });
     });
