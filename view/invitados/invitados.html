@@ -1,0 +1,54 @@
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nodhus</title>
+  <link rel="icon" href="/faviconN.png" type="image/x-icon">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/invitados.css">
+  <link href="/css/pages.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+
+<body>
+  
+  <video autoplay muted loop class="video-background">
+    <source src="/view/invitados/fondo2.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta de video.
+  </video>
+
+  <div id="progress"></div>
+
+  <div class="center">
+    <div id="register">
+      <div class="logoser">
+        <img class="logoser" src="/img/logo.png" alt=""> 
+      </div>
+      <h3 class="hola">BIENVENIDO!</h3>
+      <div id="inputContainer">
+        <input id="inputField" required autofocus />
+        <label id="inputLabel"></label>
+        <div id="inputProgress"></div>
+      </div>
+      <br>
+      <ul>
+        <button id="backButton" disabled><i class="fas fa-arrow-left"></i> Atrás</button> 
+        <i id="progressButton" class="ion-android-arrow-forward next"></i>
+        <button id="nextButton">Adelante <i class="fas fa-arrow-right"></i></button> 
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/js/invitados/registro.js"></script>
+
+</body>
+
+</html>
