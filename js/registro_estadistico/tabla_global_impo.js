@@ -55,8 +55,8 @@ const columnDefsSS = [
   { headerName: "Producto", field: "producto", editable: true },
   { headerName: "Eta", field: "fecha_eta", editable: true },
   { headerName: "Fecha levante", field: "fecha_levante", editable: true },
-  { headerName: "Libre hasta", field: "libre_hasta", editable: true },
-  { headerName: "Bodegaje hasta", field: "bodegaje_hasta", editable: true },
+  { headerName: "Libre hasta", field: "libre_hasta"},
+  { headerName: "Bodegaje hasta", field: "bodegaje_hasta"},
  
 ];
 
