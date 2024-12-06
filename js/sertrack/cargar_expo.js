@@ -2,7 +2,7 @@
 let gridOptions; 
 
 const columnDefs = [
-  { headerName: "id", field: "id", hide: true}, 
+  { headerName: "id", field: "id", hide: false}, 
   { headerName: "Pedido", field: "pedido" },
 
 
