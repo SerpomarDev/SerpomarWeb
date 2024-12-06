@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title> 
+
+    <link rel="icon" href="/faviconN.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet">
+    <link href="/css/vehiculos.css" rel="stylesheet">
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link href="/css/contador.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+   
+    <!-- ag-grid -->
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+
+
+</head>
+<div id="header-container"></div>
+<script src="/Componentes/header.js"></script>
+<script src="/Componentes/perfil.js"></script>
+
+
+<body>
+
+    <div id="main-wrapper">
+        <div class="header">
+            <div class="title-container">
+                <div class="circle"></div>
+                <h1 class="title">AHORROS</h1>
+            </div>
+        </div>
+
+        <div class="margenform">
+
+            <div class="container-fluid">
+
+                <div class="col-xl-12 col-xxl-12">
+                    <div class="row">
+
+                        <div class="col-md-5">
+                            <div class="card progress-card">
+                                
+                                <div class="card-body d-flex">
+                                 
+                                    <div class="card-body pb-0 pt-3" style="height: 350px;">
+                                    
+                                        <canvas id="navieras" class="w-100 h-100"></canvas>
+                                       
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="card progress-card">
+                              <div class="card-body">
+                                <div class="counter-container">
+
+                                  <div class="counter">
+                                    <i class="fas fa-th"></i>
+                                    <div class="counter-data">
+                                      <span class="counter-value" id="total-contenedores"></span>
+                                      <span class="counter-label">Total Contenedores</span>
+                                    </div>
+                                  </div>
+
+                                  <div class="counter">                        
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <div class="counter-data">
+                                      <span class="counter-value" id="total-ahorro"></span>
+                                      <span class="counter-label">Total Ahorro</span>
+                                    </div>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                    </div>
+                </div>
+               
+
+
+                <div class="col-xl-12 col-xxl-12">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="card progress-card">
+                                <div class="card-header d-flex flex-wrap border-0 pb-0">
+                                    <div class="me-auto mb-sm-0 mb-3">
+                                        <h4 class="card-title mb-2">CONTENEDORES CON AHORRO</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body d-flex">
+                                    <div id="ahorrocliente" class="ag-theme-alpine" style="height: 600px; width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div class="card progress-card">
+                                <div class="card-body d-flex">
+                                    <div class="card-body pb-0 pt-3" style="height: 350px;">
+                                        <canvas id="line-ahorros"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            
+        </div>
+    </div>
+
+   
+
+
+    
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="/js/login/logout.js"></script>
+    <script src="/Componentes/sidebar.js"></script>
+    <script src="/js/custom.min.js"></script>
+    <script src="/js/sertrack/ahorros_naviera.js"></script>
+    <script src="/js/sertrack/contadores_ahorro.js"></script>
+    <script src="/js/sertrack/tabla_ahorro.js"></script>
+
+    <script type="module" src="/js/sertrack/line_ahorros.js"></script>
+
+    
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- AG:grid -->
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-charts-enterprise@32.1.0/dist/ag-grid-charts-enterprise.js?t=1724946077050"></script>
+
+</body>
+
+</html>
