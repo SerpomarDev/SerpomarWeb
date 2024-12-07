@@ -46,7 +46,7 @@
                 <div class="col-xl-12 col-xxl-12">
                     <div class="row">
 
-                        <div class="col-md-5">
+                        <div class="col-md-6">
                             <div class="card progress-card">
                                 
                                 <div class="card-body d-flex">
@@ -111,21 +111,56 @@
 
                         <div class="col-md-6">
                             <div class="card progress-card">
+                                <div class="counter-container">
+
+                                    <div class="counter">
+                                        <i class="fas fa-dollar-sign"></i>
+                                      <div class="counter-data">
+                                        <span class="counter-value" id="total-puerto"></span>
+                                        <span class="counter-label">Total Bodega puerto</span>
+                                      </div>
+                                    </div>
+  
+                                    <div class="counter">                        
+                                      <i class="fas fa-dollar-sign"></i>
+                                      <div class="counter-data">
+                                        <span class="counter-value" id="total-serpomar"></span>
+                                        <span class="counter-label">Total Serpomar</span>
+                                      </div>
+                                    </div>
+  
+                                  </div>
                                 <div class="card-body d-flex">
-                                    <div class="card-body pb-0 pt-3" style="height: 350px;">
+                                    <div class="card-body pb-0 pt-3" style="height: 450px;">
                                         <canvas id="line-ahorros"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
 
+                <div class="col-xl-12 col-xxl-12">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="card progress-card">
+                                <div class="card-header d-flex flex-wrap border-0 pb-0">
+                                    <div class="me-auto mb-sm-0 mb-3">
+                                        <h4 class="card-title mb-2">HISTORICO DE AHORROS</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body d-flex">
+                                    <div class="card-body pb-0 pt-3" style="height: 450px;">
+                                        <canvas id="myChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
-
-
-            
         </div>
     </div>
 
@@ -146,8 +181,9 @@
 
     <script type="module" src="/js/sertrack/line_ahorros.js"></script>
 
-    
+    <script type="module" src="/js/sertrack/total_serpomar_puerto.js"></script>
 
+    <script type="module" src="/js/sertrack/historico_ahorro.js"></script>
    
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 

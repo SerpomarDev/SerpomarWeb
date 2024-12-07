@@ -51,12 +51,12 @@ const columnDefsSS = [
     dateFormat: 'dd/MM/yyyy', 
   },
   { headerName: "Naviera", field: "naviera", editable: true },
-  { headerName: "Patio Naviera", field: "patio_naviero", editable: true },
+  { headerName: "Puerto", field: "puerto", editable: true },
   { headerName: "Producto", field: "producto", editable: true },
   { headerName: "Eta", field: "fecha_eta", editable: true },
   { headerName: "Fecha levante", field: "fecha_levante", editable: true },
-  { headerName: "Libre hasta", field: "libre_hasta"},
-  { headerName: "Bodegaje hasta", field: "bodegaje_hasta"},
+  { headerName: "Libre hasta", field: "libre_hasta",  editable: true },
+  { headerName: "Bodegaje hasta", field: "bodegaje_hasta", editable: true },
  
 ];
 
@@ -191,7 +191,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
             { headerName: "Remesa", field: "remesa", editable: true  },
 
             { headerName: "Patio serpomar", field: "patio", editable: true  },
-            { headerName: "Observaciones", field: "comentario", editable: true  },
+            { headerName: "Comentarios", field: "comentario", editable: true  },
             { headerName: "Sitio Inspeccion", field: "sitio_inspeccion", editable: true },
             { headerName: "Placa Inspeccion", field: "placa_inspeccion", editable: true },
 
