@@ -118,8 +118,8 @@ const columnDefs = [
   //{ headerName: "Estado Operación", field: "estado_operacion" },
   { headerName: "On Time", field: "on_timec" },
   { headerName: "Estado Operación", field: "estado_operacion" },
-  { headerName: "Horas Planta", field: "horas_planta" },
-  { headerName: "Fecha Retiro Vacio", field: "fecha_retiro_vacio" },
+  //{ headerName: "Horas Planta", field: "horas_planta" },
+  //{ headerName: "Fecha Retiro Vacio", field: "fecha_retiro_vacio" },
  
 ];
 
