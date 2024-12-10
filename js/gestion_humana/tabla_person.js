@@ -188,33 +188,37 @@ fetch("https://esenttiapp-production.up.railway.app/api/loadpersonas", {
 });
 
 
-function uploadId(id) {
-    // Muestra el modal
-    $('#fileUploadModal').show();
+document.addEventListener('DOMContentLoaded', () => {
 
-    // Asigna el ID al campo oculto
-    $('#id_humana').val(id);
+    // Inicializar Dropzone
+    const dropzone = new Dropzone("#HumanaSaveFile", {
+        autoProcessQueue: false,
+        acceptedFiles: ".pdf,.doc,.docx,.jpg,.png,.jpeg",
+        // init: function () {
+        //     this.on("addedfile", async (file) => {
+        //         if (!currentFolder) {
+        //             alert("Debe seleccionar una carpeta antes de subir archivos.");
+        //             this.removeFile(file);
+        //             return;
+        //         }
 
-    // Inicializa una nueva instancia de Dropzone
-    const myDropzone = new Dropzone("#HumanaSaveFile", {
-        url: "/gestionHumana", // Reemplaza con tu URL de carga
-        init: function() {
-            this.on("success", function(file, response) {
-                // Cambia el estado del botón tras la carga exitosa
-                const button = document.getElementById(`btn-${id}`);
-                if (button) {
-                    button.classList.remove('no-file');
-                    button.classList.add('file-uploaded');
-                }
+        //         // Ruta de archivo dentro de la carpeta seleccionada
+        //         const filePath = `${currentFolder}/${file.name}`;
+        //         const storageRef = firebase.storage().ref(filePath);
 
-                // Oculta el modal después de cargar el archivo
-                $('#fileUploadModal').hide();
-            });
-        }
+        //         try {
+        //             await storageRef.put(file);
+        //             console.log(`Archivo subido: ${filePath}`);
+
+        //             // Agregar archivo a la carpeta en la estructura y la interfaz
+        //             folders[currentFolder].push(file.name);
+        //             renderFiles(currentFolder);
+        //             this.removeFile(file);
+        //         } catch (error) {
+        //             console.error("Error al subir archivo:", error);
+        //         }
+        //     });
+        // }
     });
-}
 
-// Manejo del cierre del modal
-$('.close').on('click', function() {
-    $('#fileUploadModal').hide();
 });
