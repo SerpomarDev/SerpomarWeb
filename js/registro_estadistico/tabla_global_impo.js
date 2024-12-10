@@ -3,10 +3,29 @@ import 'https://cdn.jsdelivr.net/npm/ag-grid-enterprise@32.3.3/dist/ag-grid-ente
 let gridOptions1;
 let gridApi; // Variable global para almacenar la API de la grilla
 
+
+function getDatesWithHoursAndMinutes() {
+  const datesWithHours = [];
+  const now = moment();
+
+  // Iteramos para el día actual y el siguiente
+  for (let i = 0; i < 2; i++) { 
+      const currentDate = moment().add(i, 'days'); 
+      for (let j = 0; j < 24; j++) { 
+          const hour = j.toString().padStart(2, '0');
+          const minute = '00'; 
+          const dateString = `${currentDate.format('DD-MM-YYYY')} ${hour}:${minute}`;
+          datesWithHours.push(dateString); 
+      }
+  }
+  return datesWithHours;
+}
+
 const columnDefsSS = [
   {
     headerName: '',
     field: 'expandir',
+    editable: false,
     cellRenderer: params => {
       const icon = document.createElement('i');
       icon.classList.add('fas', 'fa-chevron-right');
@@ -87,6 +106,7 @@ function getContenedoresDetail(idSolicitudServicio) {
     });
 }
 
+
 fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
   headers: {
     'Authorization': `Bearer ${localStorage.getItem("authToken")}`
@@ -138,7 +158,16 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
             },
 
             { headerName: "Tipo Contenedor", field: "tipo" },
-            { headerName: "Notificacion Cliente", field: "notificacion_cliente", editable: true  },
+
+            { headerName: "Notificacion Cliente", 
+              field: "notificacion_cliente", 
+              editable: true, 
+              dateFormat: 'dd/MM/yyyy',   
+            },
+
+           
+
+         
 
             { 
               headerName: "Fecha Cliente", 
@@ -147,11 +176,23 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
               dateFormat: 'dd/MM/yyyy', 
             },
 
-            { headerName: "Fecha Cita", 
-              field: "fecha_cita", 
-              editable: true, 
-              dateFormat: 'dd/MM/yyyy',   
+            {
+              headerName: "Fecha Cita",
+              field: "fecha_cita",
+              cellEditor: 'agRichSelectCellEditor',
+              editable: true,
+              cellEditorParams: {
+                values: getDatesWithHoursAndMinutes(7), // <-- Llamamos a la nueva función (7 días)
+                cellHeight: 50,
+              },
+              valueFormatter: params => {
+                if (params.value) {
+                  return params.value; // <-- Mostramos la fecha y hora tal cual
+                }
+                return '';
+              }
             },
+           
 
             { headerName: "Conductor Puerto", field: "conductor_puerto" },
             { headerName: "Placa Puerto", field: "placa_puerto" },
@@ -225,7 +266,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
           onCellValueChanged: (event) => {
             const idContenedor = event.data.id_contenedor;
             const fieldName = event.colDef.field;
-            const newValue = event.newValue;
+            let newValue = event.newValue; // Declaramos newValue con let
 
             Swal.fire({
               title: 'Actualizando...',
@@ -233,12 +274,19 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
               icon: 'info',
           });
 
+       
+
             const apiUrl = `https://esenttiapp-production.up.railway.app/api/updatecontenedorbysoliservi/${idContenedor}`;
+
+              // Convertir la fecha si el campo es fecha_cita
+              if (fieldName === 'fecha_cita') {
+                newValue = moment(newValue, 'DD-MM-YYYY HH:mm').format('YYYY-MM-DD HH:mm:ss');
+            }
 
             const updatedData = {
               id_primario: event.data.id_primario,
-              [fieldName]: newValue
-            };
+              [fieldName]: newValue // Usamos newValue convertido
+          };
 
             fetch(apiUrl, {
               method: 'PUT',
@@ -406,6 +454,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
           }
         });
 
+        
 
         const searchInput = document.querySelector('input[type="search"]');
 

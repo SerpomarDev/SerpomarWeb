@@ -4,15 +4,22 @@ fetch('https://esenttiapp-production.up.railway.app/api/citaprogramada', {
   }
 })
 .then(response => response.json())
-.then(response => { // Cambiado 'data' por 'response'
+.then(response => {
   let pendienteCitaCount = 0;
   let tieneCitaCount = 0;
 
-  // Accede al array dentro de la propiedad 'data'
-  response.data.forEach(cita => { 
+  const fechaActual = new Date();
+
+  response.data.forEach(cita => {
+
     if (cita.Pendiente_cita === "PENDIENTE CITA") {
       pendienteCitaCount++;
-    } else if (cita.Pendiente_cita === "TIENE CITA") {
+    } 
+
+    const fechaCita = new Date(cita.fecha); 
+
+  
+    if (fechaCita >= fechaActual && cita.Pendiente_cita === "TIENE CITA") { 
       tieneCitaCount++;
     }
   });
