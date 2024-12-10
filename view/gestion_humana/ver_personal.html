@@ -18,6 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
     <!-- ag-grid -->
     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
@@ -166,31 +167,6 @@
                 </div>
         </div>
 
-        <!-- <div class="container-fluid main-container">
-            <div style="display: flex; justify-content: center; width: 100%;">
-                <div id="fileUploadModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <div class="title-container">
-                            <h1 class="title">Adjuntar Archivo</h1>
-                        </div>
-                        <form action="#" class="dropzone" id="SaveFile" method="POST">
-                            <input type="hidden" name="id_humana" id="id_humana">
-                            <div class="dz-message">
-                                Arrastra y suelta archivos aquí o haz clic para subir.
-                            </div>
-                        </form>
-                        <div id="uploadedFilesContainer">
-                            <h2>Archivos Adjuntos</h2>
-                            <ul id="uploadedFilesList">
-                               
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
         <div class="container-fluid main-container">
             <div style="display: flex; justify-content: center; width: 100%;">
                 <div id="fileUploadModal" class="modal">
@@ -207,14 +183,13 @@
                         </form>
                         <div id="uploadedFilesContainer">
                             <h2>Archivos Adjuntos</h2>
-                            <ul id="uploadedFilesList">
-                               
-                            </ul>
+                            <ul id="uploadedFilesList"></ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    
 
         <script src="/Componentes/sidebar.js"></script>
         <script src="/js/login/logout.js"></script>
@@ -226,8 +201,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
+        
         <!-- ag-grid -->
         <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/ag-grid-charts-enterprise@32.1.0/dist/ag-grid-charts-enterprise.js?t=1724946077050"></script>
