@@ -307,8 +307,8 @@ function deleteSelectedRows() {
     if (result.isConfirmed) {
       const idsToDelete = selectedRows.map(row => row.id);
       idsToDelete.forEach(id => {
-        fetch(`https://sertrack-production.up.railway.app/api/planeacion/${id}`, {
-          method: 'DELETE',
+        fetch(`https://sertrack-production.up.railway.app/api/deletecst/${id}`, {
+          method: 'PUT',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem("authToken")}`
           }
