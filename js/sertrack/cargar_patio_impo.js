@@ -30,12 +30,8 @@ const columnDefs = [
     { headerName: "Naviera", field: "naviera" },
     { headerName: "Contenedor", field: "contenedor" },
     { headerName: "Tipo de contenedor", field: "tipo_contenedor",
-        filter: 'agSetColumnFilter',
-        hide: false,
-        filterParams: {
-            value: ['20 ISO'],
-            suppressSorting: true 
-        }
+        hide: false, rowGroup: true 
+
     },
     { headerName: "Placa", field: "placa" }
 
@@ -72,6 +68,8 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
           minWidth: 100,
           editable: true
         },
+        groupDisplayType: "groupRows",
+        groupDefaultExpanded: 0, 
         enableRangeSelection: true,
         suppressMultiRangeSelection:true,
         pagination: true,
@@ -90,9 +88,6 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
                 'modalidad': {
                     filterType: 'set',
                     values: ['IMPORTACION'] 
-                },'tipo_contenedor': {
-                    filterType: 'set',
-                    values: ['20 ISO'] 
                 }
             });
         },

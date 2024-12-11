@@ -3,11 +3,9 @@ const columnDefsRE = [
   { headerName: "Número Contenedor", field: "numero_contenedor" },
   { headerName: "Pedido", field: "pedido" },
   { headerName: "Fecha Cita", field: "fecha_cita" },
-  { headerName: "Fecha Notificación", field: "fecha_notificacion" },
   { headerName: "Cliente", field: "cliente", hide: true },
-  { headerName: "Modalidad", field: "modalidad" },
-  { headerName: "Producto", field: "producto" },
-  { headerName: "Estado", field: "estado" },
+  { headerName: "Modalidad", field: "modalidad", hide: true , rowGroup: true  },
+  { headerName: "Producto", field: "producto"}, 
   { headerName: "Placa Puerto", field: "placa_puerto" },
   { headerName: "Sitio Descargue", field: "sitio_cargue_descargue" },
 ];
@@ -17,49 +15,44 @@ hoy.setHours(0, 0, 0, 0);
 
 fetch(`https://esenttiapp-production.up.railway.app/api/registroestadistico`, {
   headers: {
-      Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
   },
 })
 .then((response) => response.json())
 .then((data) => {
   const datosFiltrados = data.filter(item => 
-      item.cliente === "ESENTTIA S A" && 
-      item.modalidad === "importacion" && 
-      item.fecha_cita !== null &&
-      new Date(item.fecha_cita) >= hoy // Filtro adicional en el frontend
+    item.cliente === "ESENTTIA S A" && 
+    item.modalidad === "importacion" && 
+    item.fecha_cita !== null &&
+    new Date(item.fecha_cita) >= hoy 
   );
 
   const processedData = datosFiltrados.map((item) => {
-      return {
-          id_primario: item.id_primario,
-          numero_contenedor: item.numero_contenedor,
-          pedido: item.pedido,
-          fecha_cita: item.fecha_cita,
-          fecha_notificacion: item.fecha_notificacion,
-          cliente: item.cliente,
-          modalidad: item.modalidad,
-          producto: item.producto,
-          estado: item.estado,
-          placa_puerto: item.placa_puerto,
-          sitio_cargue_descargue: item.sitio_cargue_descargue
-      };
+    return {
+      id_primario: item.id_primario,
+      numero_contenedor: item.numero_contenedor,
+      pedido: item.pedido,
+      fecha_cita: item.fecha_cita,
+      cliente: item.cliente,
+      modalidad: item.modalidad,
+      producto: item.producto,
+      placa_puerto: item.placa_puerto,
+      sitio_cargue_descargue: item.sitio_cargue_descargue
+    };
   });
 
   const gridOptions = {
-      columnDefs: columnDefsRE,
-      defaultColDef: {
-          resizable: true,
-          sortable: true,
-          filter: "agTextColumnFilter",
-          floatingFilter: true,
-      },
-      groupDisplayType: "groupRows",
-      rowGroupPanelShow: "always",
-      groupDefaultExpanded: 1,
-      enableRangeSelection: true,
-      pagination: true,
-      paginationPageSize: 20,
-      rowData: processedData, 
+    columnDefs: columnDefsRE,
+    defaultColDef: {
+      resizable: true,
+      sortable: true,
+
+    },
+    groupDisplayType: "groupRows",
+    groupDefaultExpanded: 0, 
+    enableRangeSelection: true,
+    paginationPageSize: 50,
+    rowData: processedData, 
   };
 
   const eGridDiv = document.getElementById("citas-programadas");

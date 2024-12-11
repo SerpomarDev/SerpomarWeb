@@ -1,15 +1,4 @@
-const estadosOperacion = [
-    "PROGRAMADO-NO CONFIRMADO", 
-    "PROGRAMADO-CONFIRMADO",
-    "EN SITIO DE CARGUE",
-    "ASIGNADO",
-    "CARGADO ESPERANDO CITA",
-    "FINALIZADO",
-    "DEVOLUCION DE EXPORTACION",
-    "FALLIDO",
-  ];
-  
-  const columnDefses = [
+   const columnDefses = [
     { headerName: "id", field: "id", hide: true },
     { headerName: "Contenedor", field: "contenedor", hide: false },
     { headerName: "Tipo Contenedor", field: "tipo_contenedor", hide: false },
