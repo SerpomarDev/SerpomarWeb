@@ -56,7 +56,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/showsolicitudservpro",{
       };
     });
 
-    gridOptions = {
+      gridOptions = {
         columnDefs: columnDefs,
         defaultColDef: {
           resizable: true,
@@ -72,7 +72,6 @@ fetch("https://esenttiapp-production.up.railway.app/api/showsolicitudservpro",{
         pagination: true,
         paginationPageSize: 20,
         rowData: processedData,
-        
       };
       
       // Renderizar la tabla en el contenedor
