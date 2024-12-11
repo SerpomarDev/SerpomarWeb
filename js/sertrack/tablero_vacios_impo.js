@@ -1,5 +1,5 @@
 
-const columnDefs = [
+const columnDefsIM = [
     { headerName: "id", field: "id", hide: true },
     { 
         headerName: "lleno o vacio", 
@@ -13,7 +13,7 @@ const columnDefs = [
     },
     { headerName: "Cliente", field: "cliente",
         filter: 'agSetColumnFilter',
-        hide: true,
+        hide: true, rowGroup: true,
         filterParams: {
             value: ['ESENTTIA S A'],
             suppressSorting: true 
@@ -21,19 +21,15 @@ const columnDefs = [
     },
     { headerName: "Modalidad", field: "modalidad",
         filter: 'agSetColumnFilter',
-        hide: true,
+        hide: true, 
         filterParams: {
             value: ['IMPORTACION'],
             suppressSorting: true 
         }
     },
-    { headerName: "Naviera", field: "naviera" },
     { headerName: "Contenedor", field: "contenedor" },
-    { headerName: "Tipo de contenedor", field: "tipo_contenedor",
-        hide: false, rowGroup: true 
-
-    },
-    { headerName: "Placa", field: "placa" }
+    { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
+    { headerName: "Dias en patio", field: "cantidad_dias" },
 
 ];
 
@@ -52,13 +48,12 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
             modalidad: ordenCargue.modalidad,
             contenedor: ordenCargue.contenedor,
             tipo_contenedor: ordenCargue.tipo_contenedor,
-            naviera: ordenCargue.naviera,
-            placa: ordenCargue.placa,
+            cantidad_dias: ordenCargue.cantidad_dias,
         };
     });
 
     const gridOptions = {
-        columnDefs: columnDefs,
+        columnDefs: columnDefsIM,
         defaultColDef: {
           resizable: true,
           sortable: false,
@@ -70,11 +65,13 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
         enableRangeSelection: true,
         suppressMultiRangeSelection:true,
         rowData: processedData,
+
+        rowData: processedData,
         onGridReady: params => { // Aplicar filtro al iniciar la grilla
             params.api.setFilterModel({
                 'lleno_vacio': {
                     filterType: 'set',
-                    values: ['LLENO'] 
+                    values: ['VACIO'] 
                 },
                 'cliente': {
                     filterType: 'set',
@@ -91,13 +88,16 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
         enableRangeSelection: true,
         suppressMultiRangeSelection: true,
         rowData: processedData,
+  
     };
     
     // Renderizar la tabla en el contenedor
-    const eGridDiv = document.getElementById('inventario');
+    const eGridDiv = document.getElementById('vacios-impo');
     new agGrid.Grid(eGridDiv, gridOptions);
 
 })
 .catch(error => {
     console.error("Error al cargar los datos:", error);
 });
+
+
