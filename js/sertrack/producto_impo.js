@@ -1,22 +1,26 @@
 fetch('https://esenttiapp-production.up.railway.app/api/registroestadistico', {
-    headers: {
-        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-    }
+  headers: {
+      'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+  }
 })
-    .then(response => response.json())
-    .then(data => {
-        // Aquí agregamos el filtro
-        const datosFiltrados = data.filter(item => 
-            item.cliente === "ESENTTIA S A" && 
-            item.modalidad === "importacion" && 
-            item.producto !== null 
-        );
+  .then(response => response.json())
+  .then(data => {
+      // Calcular la fecha actual usando Moment.js
+      const fechaActual = moment().format('YYYY-MM-DD'); 
 
-        generarGraficoLineaNaviera(datosFiltrados); // Usamos los datos filtrados
-    })
-    .catch(error => {
-        console.error('Error al obtener los datos:', error);
-    });
+      // Filtrar los datos
+      const datosFiltrados = data.filter(item => 
+          item.cliente === "ESENTTIA S A" && 
+          item.modalidad === "importacion" && 
+          item.producto !== null &&
+          moment(item.fecha_cita).format('YYYY-MM-DD') === fechaActual // Filtrar por fecha actual
+      );
+
+      generarGraficoLineaNaviera(datosFiltrados); 
+  })
+  .catch(error => {
+      console.error('Error al obtener los datos:', error);
+  });
 
 function generarGraficoLineaNaviera(data) {
     // 1. Contar la cantidad de contenedores por línea naviera
@@ -64,7 +68,7 @@ function generarGraficoLineaNaviera(data) {
         trigger: 'item'
       },
       legend: {
-        show: false, //activar para ver etiquetas
+        show: true, //activar para ver etiquetas
         top: '5%',
         left: 'center'
       },

@@ -74,7 +74,7 @@
                                     </div>
                                   </div>
                                   <div class="counter">
-                                    <i class="fas fa-truck"></i>
+                                    <i class="fas fa-th"></i>
                                     <div class="counter-data">
                                       <span class="counter-value" id="total-llenos"></span>
                                       <span class="counter-label">Total llenos en piso</span>
@@ -83,7 +83,7 @@
                                   <div class="counter">
                                     <i class="fas fa-truck"></i>
                                     <div class="counter-data">
-                                      <span class="counter-value" id=""></span>
+                                      <span class="counter-value" id="placa-operacion"></span>
                                       <span class="counter-label">Vehiculos en Operación</span>
                                     </div>
                                   </div>
@@ -100,17 +100,17 @@
                                     <h4 class="card-title mb-2">CITAS PROGRAMADAS DEL DÍA</h4>
                                   </div>
                                 </div>
-                                  <div id="tabla-combinada" class="ag-theme-alpine" style="height:500px; width: 100%; "></div>
+                                  <div id="tabla-combinada" class="ag-theme-alpine" style="height:380px; width: 100%; "></div>
                               </div>
                             </div>
                             <div class="col-md-12">
                               <div class="card">
                                 <div class="card-header d-flex flex-wrap border-0 pb-0">
                                   <div class="me-auto mb-sm-0 mb-3">
-                                    <h4 class="card-title mb-2">ALERTAS</h4>
+                                    <h4 class="card-title mb-2">ALERTAS CONTENEDORES</h4>
                                   </div>
                                 </div>
-                                <div id="" class="ag-theme-alpine" style="height:200px; width: 100%; "></div>
+                                <div id="alertas-impo" class="ag-theme-alpine" style="height:380px; width: 100%; "></div>
                               </div>
                             </div>
                         
@@ -153,6 +153,7 @@
 
                         <div class="col-md-4">
                             <div class="card progress-card">
+                              <br>
                                <div class="card-body d-flex">
                                     <div class="card-body pb-0 pt-3" style="height: 600px;">
                                         <div id="productos" class="w-100 h-100"></div>
@@ -184,39 +185,8 @@
                                 </div>
                             </div>
                         </div>
-
-                       
                     </div>
                 </div>
-               
-           
-
-
-
-                <div class="container-fluid">
-                  <div class="col-xl-12 col-xxl-12">
-                      <div class="row">
-                        <div class="col-md-6">
-                            <div class="card">
-                              <div class="card-header d-flex flex-wrap border-0 pb-0">
-                                <div class="me-auto mb-sm-0 mb-3">
-                                  <h4 class="card-title mb-2">CONTENEDORES RETIRADOS PENDIENTES POR ENTREGAR</h4>
-                                </div>
-                              </div>
-                              <div id="inventario-contenedores" class="ag-theme-alpine" style="height:600px; width: 100%; "></div>
-                          </div>
-                        </div>
-
-                      
-                    </div>
-                  </div>
-                </div>
-
-      
-
-               
-           
-
             </div>
         </div>
     </div>
@@ -237,13 +207,11 @@
     <script src="/js/custom.min.js"></script>
     
     <script src="/js/sertrack/contadores_impo.js"></script>
+    <script src="/js/sertrack/contador_vehiculos_impo.js"></script>
     <script src="/js/sertrack/contador_vacio_lleno.js"></script>
 
     <script src="/js/sertrack/tablas_grupo_impo.js"></script>
-
-    <!-- <script src="/js/sertrack/tabla_citas_programa.js"></script>
-    <script src="/js/sertrack/cargar_patio_impo.js"></script>
-    <script src="/js/sertrack/tablero_vacios_impo.js"></script> -->
+    <script src="/js/sertrack/tabla_alertas.js"></script>
 
     <script src="/js/sertrack/terminal_retiro_puerto_impo.js"></script>
     <script src="/js/sertrack/volumenxmes.js"></script>
@@ -255,6 +223,7 @@
 
     <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ag-grid-charts-enterprise@32.1.0/dist/ag-grid-charts-enterprise.js?t=1724946077050"></script>
+
 </body>
 
 </html>

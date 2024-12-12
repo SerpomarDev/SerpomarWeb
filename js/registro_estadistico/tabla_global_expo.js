@@ -133,20 +133,24 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                         hide: true
                     },
                     { headerName: "ID S.S.", field: "id_primario", hide: true },
-
+                    {
+                        headerName: 'Asignar',
+                        cellRenderer: params => {
+                            const img = document.createElement('img');
+                            img.src = '/img/asignar.png'; 
+                            img.style.width = '30px';
+                            img.style.height = '30px'; 
+                            img.style.cursor = 'pointer';
+                            img.onclick = () => showAsignacion(params.data.id_contenedor);
+                            
+                            return img;
+                        }
+                      
+                    },
                     {
                         headerName: "Contenedor",
                         field: "numero_contenedor",
-                        cellRenderer: params => {
-                            const cellValue = params.value;
-                            const button = document.createElement('a');
-                            button.textContent = cellValue;
-                            button.style.cursor = 'pointer';
-                            button.style.color = '#6495ED';
-                            button.style.fontWeight = 'bold';
-                            button.onclick = () => showAsignacion(params.data.id_contenedor);
-                            return button;
-                        }
+                        
                     },
                     { headerName: "Tara", field: "tara", editable: true },
                     { headerName: "Payload", field: "payload", editable: true },
@@ -259,18 +263,16 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
             const fieldName = event.colDef.field;
             const newValue = event.newValue;
 
-            // Validar los datos (agregar validaciones según tus necesidades)
             if (fieldName === 'fecha_levante' || fieldName === 'fecha_eta' ||
                 fieldName === 'fecha_notificacion' || fieldName === 'fecha_documental' ||
                 fieldName === 'fecha_cutoff_fisico' || fieldName === 'bodegaje_hasta') {
-                // Validar formato de fecha
                 if (!/^\d{4}-\d{2}-\d{2}$/.test(newValue)) {
                     Swal.fire({
                         title: 'Error',
                         text: 'Formato de fecha inválido. Debe ser YYYY-MM-DD',
                         icon: 'error',
                     });
-                    return; // Detener la actualización
+                    return; 
                 }
             }
 
@@ -287,7 +289,6 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
 
             const apiUrl = `https://esenttiapp-production.up.railway.app/api/solicitudservicios/${id_primario}`;
 
-            // Mapear los nombres de los campos
             const fieldMapping = {
                 'sp': 'sp',
                 'do_pedido': 'do_pedido',
@@ -305,14 +306,13 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                 'puerto': 'puerto'
             };
 
-            // Construir updatedData con los nombres de campos mapeados
             const updatedData = {};
             const mappedFieldName = fieldMapping[fieldName];
             if (mappedFieldName) {
                 updatedData[mappedFieldName] = newValue;
             } else {
                 console.warn(`No se encontró mapeo para el campo: ${fieldName}`);
-                return; // Detener la actualización si no hay mapeo
+                return; 
             }
 
             fetch(apiUrl, {
@@ -326,7 +326,6 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
             .then(response => {
                 if (!response.ok) {
                     return response.json().then(errorData => {
-                        // Mostrar mensaje de error específico
                         Swal.fire({
                             title: 'Error',
                             text: `Error al actualizar ${fieldName}: ${errorData.message || response.statusText}`,
@@ -363,8 +362,6 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
         },
         onGridReady: (params) => {
             gridApi = params.api;
-
-            // Aplicar el filtro de modalidad
             gridApi.setFilterModel({
                 'modalidad': {
                     filterType: 'set',
@@ -405,8 +402,6 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                 gridApi.onFilterChanged();
             });
 
-            
-            // Llamar a actualizarGrilla() después de que la grilla esté lista
             actualizarGrilla(); 
         }
     };
@@ -432,31 +427,6 @@ function mostrarFormularioContenedor(id_primario) {
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="nu_serie" class="form-label">Numero Contenedor</label>
-                        <input type="text" id="nu_serie" name="nu_serie" class="form-control">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="tara" class="form-label">Tara</label>
-                        <input type="text" id="tara" name="tara" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="payload" class="form-label">Payload</label>
-                        <input type="text" id="payload" name="payload" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="peso" class="form-label">Peso</label>
-                        <input type="text" id="peso" name="peso" class="form-control">
-                    </div></div>
             </div>
         `,
         showCancelButton: true,
@@ -465,14 +435,10 @@ function mostrarFormularioContenedor(id_primario) {
             // Obtener los valores del formulario
             const id_solicitud_servicio = document.getElementById('id_solicitud_servicio').value;
             const id_tipo_contenedor = document.getElementById('id_tipo_contenedor').value;
-            const nu_serie = document.getElementById('nu_serie').value;
-            const tara = document.getElementById('tara').value;
-            const payload = document.getElementById('payload').value;
-            const peso = document.getElementById('peso').value;
 
             // Validaciones (agregar las necesarias)
-            if (!id_tipo_contenedor || !nu_serie || !tara || !payload) {
-                Swal.showValidationMessage('Por favor, completa todos los campos');
+            if (!id_tipo_contenedor) {
+                Swal.showValidationMessage('Por favor, ingresael tipo todos los campos');
                 return false;
             }
 
@@ -480,10 +446,6 @@ function mostrarFormularioContenedor(id_primario) {
             return {
                 id_solicitud_servicio,
                 id_tipo_contenedor,
-                nu_serie,
-                tara,
-                payload,
-                peso
             };
         }
     }).then((result) => {
@@ -518,11 +480,6 @@ function mostrarFormularioContenedor(id_primario) {
                 showConfirmButton: false
               });
 
-                // Actualizar la grilla (puedes recargar la grilla o agregar la nueva fila manualmente)
-                // actualizarGrilla(); // Ya no es necesario llamarlo aquí
-
-                // Recargar la página
-                location.reload();
             })
             .catch(error => {
                 console.error('Error al crear contenedor:', error);
@@ -575,14 +532,4 @@ function showOrdenService(id) {
 
 function showAsignacion(id) {
     window.open(`/view/modal/modal.html?id=${id}`, '_blank');
-}
-
-function actualizarGrilla() {
-    // Verificar si gridOptions1.api está definido antes de llamar a refreshCells()
-    
-    if (gridOptions1 && gridOptions1.api) {
-        gridOptions1.api.refreshCells(); 
-    } else {
-        console.warn("La grilla aún no está inicializada.");
-    }
 }

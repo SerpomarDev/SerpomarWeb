@@ -1,22 +1,26 @@
 fetch('https://esenttiapp-production.up.railway.app/api/registroestadistico', {
-    headers: {
-        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-    }
+  headers: {
+      'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+  }
 })
-    .then(response => response.json())
-    .then(data => {
-        // Aquí agregamos el filtro
-        const datosFiltrados = data.filter(item => 
-            item.cliente === "ESENTTIA S A" && 
-            item.modalidad === "importacion" && 
-            item.sitio_cargue_descargue !== null 
-        );
+  .then(response => response.json())
+  .then(data => {
+      // Calcular la fecha actual usando Moment.js
+      const fechaActual = moment().format('YYYY-MM-DD'); 
 
-        generarGraficoSitioDescargue(datosFiltrados); // Usamos los datos filtrados
-    })
-    .catch(error => {
-        console.error('Error al obtener los datos:', error);
-    });
+      // Filtrar los datos
+      const datosFiltrados = data.filter(item => 
+          item.cliente === "ESENTTIA S A" && 
+          item.modalidad === "importacion" && 
+          item.sitio_cargue_descargue !== null &&
+          moment(item.fecha_cita).format('YYYY-MM-DD') === fechaActual // Filtrar por fecha actual
+      );
+
+      generarGraficoSitioDescargue(datosFiltrados); 
+  })
+  .catch(error => {
+      console.error('Error al obtener los datos:', error);
+  });
 
 function generarGraficoSitioDescargue(data) {
     // 1. Contar la cantidad de contenedores por línea naviera
