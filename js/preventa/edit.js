@@ -23,7 +23,7 @@ let originalValues;
         const preventa = data[0];
         document.getElementById("id").value = preventa.id;
           document.getElementById("id_placa").value = preventa.id_placa;
-          // document.getElementById("placa").value = preventa.placa;
+          document.getElementById("placa").value = preventa.placa;
           document.getElementById("id_conductor").value = preventa.id_conductor;
           // document.getElementById("conductor").value = preventa.conductor;
           document.getElementById("identificacion").value = preventa.identificacion;

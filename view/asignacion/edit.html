@@ -12,10 +12,13 @@
     <!-- Style css -->
     <link href="/css/style-Dash.css" rel="stylesheet">
 
-
     <link href="/css/pages.css" rel="stylesheet" />
     <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    
+    <!-- SelectTwo -->
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 
 </head>
 <div id="header-container"></div>
@@ -46,22 +49,19 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Placa</label>
-                                    <input type="text" id="id_placa" class="form-control" required />
-                                    <!-- <select name="id_placa" id="id_placa" class="form-control" required>
-                                    <option value="">Seleccione la ruta</option>
-                                </select> -->
+                                    <input type="text" name="id_placa" id="id_placa" class="form-control"/>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Conductor</label>
-                                    <input type="text" id="conductor" class="form-control" readonly="readonly" required>
+                                    <input type="text" id="conductor" class="form-control" readonly="readonly">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Aliado</label>
@@ -75,14 +75,14 @@
                                     <input type="text" class="form-control" id="celular" readonly="readonly" required>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row">
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">Ruta</label>
-                                    <select name="id_ruta" id="id_ruta" class="form-control" required>
+                                    <select name="id_ruta" id="id_ruta" class="form-control">
                                     <option value="">Seleccione la ruta</option>
                                 </select>
                                 </div>
@@ -91,7 +91,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">tarifa</label>
-                                    <input type="text" id="tarifa" class="form-control" readonly="readonly" required>
+                                    <input type="text" id="tarifa" class="form-control" readonly="readonly">
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">Tipo operacion:</label>
-                                    <select id="id_tipo_operacion" name="id_tipo_operacion" class="form-control" required>
+                                    <select id="id_tipo_operacion" name="id_tipo_operacion" class="form-control">
                                     <option value="">Seleccione una Opción</option>
                                 </select>
                                 </div>
@@ -110,7 +110,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">Terminal</label>
-                                    <select name="id_sitio_inspeccion" id="id_sitio_inspeccion" class="form-control" required>
+                                    <select name="id_sitio_inspeccion" id="id_sitio_inspeccion" class="form-control">
                                     <option value="">Seleccione Destino</option>
                                 </select>
                                 </div>
@@ -171,7 +171,7 @@
             <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
             <script type="text/javascript" src="/js/asignacion/editAsignacionCl.js"></script>
             <script type="text/javascript" src="/js/cargar/cargarRutaClientesV.js"></script>
-            <script type="text/javascript" src="/js/cargar/cargarPlaca.js"></script>
+            <script type="text/javascript" src="/js/cargar/cargarPrevnetaClienteV.js"></script>
             <script type="text/javascript" src="/js/cargar/cargarDestino.js"></script>
             <script type="text/javascript" src="/js/cargar/cargarTipoServicio.js"></script>
             <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>

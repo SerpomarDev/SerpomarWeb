@@ -111,6 +111,35 @@ const columnDefs = [
   { headerName: "Manifiesto", field: "manifiesto" },
   { headerName: "Dias Libres Piso", field: "dias_libre_piso" },
   { headerName: "Dias Libres Piso", field: "dias_libres_piso", hide: true},
+  { headerName: "Placa puerto", field: "placa_puerto" },
+  {
+    headerName: "Conductor puerto",
+    field: "conductor_puerto",
+    editable: true,
+    cellEditor: "agSelectCellEditor",
+    onCellValueChanged: async (params) => {
+      if (params.newValue) {
+        try {
+          // Llamada al endpoint para obtener la información del conductor
+          const response = await fetch(`https://mi-api.com/conductores?nombre=${params.newValue}`);
+          const data = await response.json();
+
+          // Actualizar el valor del campo "cedula"
+          if (data && data.cedula) {
+            params.node.setDataValue("cedula", data.cedula);
+          } else {
+            console.warn("No se encontró información para el conductor seleccionado");
+          }
+        } catch (error) {
+          console.error("Error al obtener los datos del conductor:", error);
+        }
+      }
+    },
+  },
+  { headerName: "Cedula", 
+    field: "cedula",
+    editable:false
+  },
 
  
   // { headerName: "Cedula Conductor", field: "cedula_conductor" },
@@ -194,6 +223,9 @@ fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
         remision: Preprogramar.remision,
         manifiesto: Preprogramar.manifiesto,
         dias_libres_piso: Preprogramar.dias_libres_piso,
+        placa_puerto: Preprogramar.placa_puerto,
+        conductor_puerto: Preprogramar.conductor_puerto,
+
         
         // cedula_conductor: Preprogramar.cedula_conductor,
       

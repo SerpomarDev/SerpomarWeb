@@ -27,7 +27,6 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editasignacion/${id}`,{
     document.getElementById("conductor").value = preventa.conductor;
     document.getElementById("aliado").value = preventa.aliado;
     document.getElementById("celular").value = preventa.telefono;
-    console.log(preventa)
   } else {
     console.log("La propiedad array no existe en la respuesta");
   }
@@ -44,7 +43,6 @@ document.getElementById("editAsignacion").addEventListener("submit", function (e
     const formData = new FormData(this);
     const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-    console.log(jsonData)
     fetch(`https://esenttiapp-production.up.railway.app/api/asignaciones/${id}`, {
         method: "PUT",
         headers: {

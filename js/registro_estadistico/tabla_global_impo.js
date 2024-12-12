@@ -250,7 +250,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
               editable: true,
               cellEditor: 'agSelectCellEditor', // Usa el editor de celdas select de ag-Grid
               cellEditorParams: {
-                values: ['ITR', 'TRANSPORTE']
+                values: [' ','ITR', 'TRANSPORTE']
               } 
             },
 

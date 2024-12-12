@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded',function(){
 
     let selectRuta = document.getElementById('id_ruta')
-    let inputTarifa = document.getElementById('tarifa1')
+    let inputTarifa = document.getElementById('tarifa')
 
     fetch('https://esenttiapp-production.up.railway.app/api/uploadRutaclientesv',{
         method: 'GET',

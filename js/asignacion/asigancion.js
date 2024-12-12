@@ -104,11 +104,11 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
             "Fecha propuesta",
             {
                 name: 'Acción',
-                hidden: true,
+                hidden: false,
                 formatter: (cell, row) => {
                     return gridjs.h('button', {
                         className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-                        onClick: () => editAsignacion()
+                        onClick: () => editAsignacion(row.cells[2].data)
                     }, 'Editar')
                 }
             },
@@ -212,11 +212,11 @@ function crearTablas(id_contenedor, id_cliente, impExpValor) {
             "Fecha Propuesta",
             {
                 name: 'Acción',
-                hidden: true,
+                hidden: false,
                 formatter: (cell, row) => {
                     return gridjs.h('button', {
                         className: 'py-2 mb-4 px-4 border rounded bg-blue-600',
-                        onClick: () => editAsignacion()
+                        onClick: () => editAsignacion(row.cells[2].data)
                     }, 'Editar')
                 }
             },
@@ -285,7 +285,6 @@ function time() {
 function editAsignacion(id) {
     window.location.href = `/view/asignacion/edit.html?id=${id}`
 }
-
 
 function cancelarAsignacion(id) {
     cancelarAsignacion(id)
