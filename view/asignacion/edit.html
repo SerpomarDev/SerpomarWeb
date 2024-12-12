@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nodhus</title>
     <link rel="icon" href="/faviconN.png" type="image/x-icon">
-
-    <link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-    <link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+</head>
     <!-- Style css -->
     <link href="/css/style-Dash.css" rel="stylesheet">
 
@@ -21,25 +25,24 @@
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 
 </head>
-<div id="header-container"></div>
+<<div id="header-container"></div>
 <script src="/Componentes/header.js"></script>
 <script src="/Componentes/perfil.js"></script>
 
 <body>
 
 
-    <div id="main-wrapper">
-
-
+    <!-- <div id="main-wrapper"> -->
 
         <div class="header">
             <div class="title-container">
-                <h1 class="title"> Actualizar Asignaciones clientes varios</h1>
+                <div class="circle"></div>
+                <h1 class="title"> ACTUALIZAR ASIGNACIONES</h1>
             </div>
         </div>
 
 
-        <div class="content-body">
+        <div class="margenform">
             <div id="content" class="p-4 p-md-5 pt-5">
                 <div class="container">
                     <form id="editAsignacion" method="PUT" enctype="multipart/form-data">
@@ -48,8 +51,9 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Placa</label>
+                                    <label class="form-label">Placa nueva</label>
                                     <input type="text" name="id_placa" id="id_placa" class="form-control"/>
+                                    <label class="form-label">Placa vieja</label>
                                 </div>
                             </div>
 
@@ -61,27 +65,12 @@
                             </div>
                         </div>
 
-                        <!-- <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label">Aliado</label>
-                                    <input type="text" id="aliado" class="form-control" readonly="readonly" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Telefono</label>
-                                    <input type="text" class="form-control" id="celular" readonly="readonly" required>
-                                </div>
-                            </div>
-                        </div> -->
-
                         <div class="row">
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="form-label">Ruta</label>
+                                   
                                     <select name="id_ruta" id="id_ruta" class="form-control">
                                     <option value="">Seleccione la ruta</option>
                                 </select>
@@ -139,8 +128,6 @@
                             <div class="col-12 d-flex justify-content-between">
                                 <button class="btn btn-primary" onclick="history.back()">Volver</button>
                                 <button class="btn btn-primary" id="BtnEdittAsignacion">Actualizar</button>
-                                <!-- <button  class="btn btn-danger" id="GeneReport">Generar pdf</button>
-                            <button  class="btn btn-success" id="GeneReportExcel">Generar excel</button> -->
                             </div>
                         </div>
                     </form>

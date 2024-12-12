@@ -1,25 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
     let selectPlaca = document.getElementById('id_preventa')
     let inputConductor = document.getElementById('conductor')
-    let inputIdentificacion = document.getElementById('identificacion')
-    let inputAliado = document.getElementById('aliado')
-    let inputTelefono = document.getElementById('celular')
-
-    // fetch('https://esenttiapp-production.up.railway.app/api/showclivarios',{
-    //     method: 'GET',
-    //         headers: {
-    //             'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-    //         }
-    // })
-    // .then(Response => Response.json())
-    // .then(data=>{
-    //     data.forEach(preventaCl => {
-    //         let option = document.createElement('option') 
-    //         option.value  =   preventaCl.id
-    //         option.text  = preventaCl.placa
-    //         selectPlaca.appendChild(option)
-    //     });
-    // })
 
     new TomSelect(selectPlaca, {
         valueField: 'id',
@@ -75,9 +56,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 const preventa = data[0]
                 if(preventa.nombre && preventa.aliado && preventa.celulara){
                     inputConductor.value = preventa.nombre
-                    inputIdentificacion.value = preventa.identificacion
-                    inputAliado.value  = preventa.aliado
-                    inputTelefono.value  = preventa.celulara
+
                 }else{
                     console.error('Los datos esperados no están presentes en la respuesta de la API');
                 }
