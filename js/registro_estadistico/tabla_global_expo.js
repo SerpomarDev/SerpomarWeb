@@ -480,11 +480,6 @@ function mostrarFormularioContenedor(id_primario) {
                 showConfirmButton: false
               });
 
-                // Actualizar la grilla (puedes recargar la grilla o agregar la nueva fila manualmente)
-                // actualizarGrilla(); // Ya no es necesario llamarlo aquí
-
-                // Recargar la página
-                location.reload();
             })
             .catch(error => {
                 console.error('Error al crear contenedor:', error);
@@ -537,14 +532,4 @@ function showOrdenService(id) {
 
 function showAsignacion(id) {
     window.open(`/view/modal/modal.html?id=${id}`, '_blank');
-}
-
-function actualizarGrilla() {
-    // Verificar si gridOptions1.api está definido antes de llamar a refreshCells()
-    
-    if (gridOptions1 && gridOptions1.api) {
-        gridOptions1.api.refreshCells(); 
-    } else {
-        console.warn("La grilla aún no está inicializada.");
-    }
 }
