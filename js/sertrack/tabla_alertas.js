@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
         { headerName: "Contenedor", field: "numero_contenedor" },
         { headerName: "Libre Hasta", field: "libre_hasta" },
         { headerName: "Bodegaje Hasta", field: "bodegaje_hasta" },
-        { headerName: "fecha_notificacion", field: "fecha_notificacion", hide: true },
+        { headerName: "Fecha cita", field: "fecha_cita", hide: true },
+        { headerName: "Fecha_notificacion", field: "fecha_notificacion", hide: true },
         { headerName: "Fecha Devolucion", field: "fecha_devolucion", hide: true },
         { 
             headerName: "Alerta Libre Hasta", 
@@ -82,28 +83,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 alertaLH = "OK";
             }
 
-            // Determinar el nivel de alerta para Bodegaje Hasta (similar a Libre Hasta)
+            // Determinar el nivel de alerta para Bodegaje Hasta 
             let alertaBH;
-            if (diffBodegajeHasta >= 3) {
-                alertaBH = "BIEN +" + diffBodegajeHasta + " dias"; 
-            } else if (diffBodegajeHasta <= 2 && diffBodegajeHasta > 1) {
-                alertaBH = "ALTA 2 dias";
-            } else if (diffBodegajeHasta <= 1 && diffBodegajeHasta >= 0){
-                alertaBH = "CRITICO " + (diffBodegajeHasta * -1) + " dia(s)"; 
+            if (ordenCargue.fecha_cita) {  // <-- Priorizar fecha_cita
+                alertaBH = "OK"; 
             } else {
-                alertaBH = "CRITICO " + (diffBodegajeHasta * -1) + " dia(s)"; 
-            }
-            if (ordenCargue.fecha_devolucion) {
-                alertaBH = "OK";
+                if (diffBodegajeHasta >= 3) {
+                    alertaBH = "BIEN +" + diffBodegajeHasta + " dias"; 
+                } else if (diffBodegajeHasta <= 2 && diffBodegajeHasta > 1) {
+                    alertaBH = "ALTA 2 dias";
+                } else if (diffBodegajeHasta <= 1 && diffBodegajeHasta >= 0){
+                    alertaBH = "CRITICO " + (diffBodegajeHasta * -1) + " dia(s)"; 
+                } else {
+                    alertaBH = "CRITICO " + (diffBodegajeHasta * -1) + " dia(s)"; 
+                }
+                if (ordenCargue.fecha_devolucion) {
+                    alertaBH = "OK";
+                }
             }
 
             return {
                 id_primario: ordenCargue.id_primario,
                 id_contenedor: ordenCargue.id_contenedor,
                 numero_contenedor: ordenCargue.numero_contenedor,
-                fecha_notificacion: ordenCargue.fecha_notificacion,
                 libre_hasta: ordenCargue.libre_hasta,
                 bodegaje_hasta: ordenCargue.bodegaje_hasta,
+                fecha_cita: ordenCargue.fecha_cita,
+                fecha_notificacion: ordenCargue.fecha_notificacion,
                 fecha_devolucion: ordenCargue.fecha_devolucion,
                 alerta_lh: alertaLH, 
                 alerta_bh: alertaBH, 
