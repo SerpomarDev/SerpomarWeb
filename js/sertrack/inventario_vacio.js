@@ -51,7 +51,7 @@ const columnDefs = [
     { headerName: "Naviera", field: "naviera" },
     { headerName: "Cutoff", field: "cutoff" },
     { headerName: "Dias en patio", field: "cantidad_dias" },
-    { headerName: "Fecha Retiro", field: "fecha_retiro" ,dateFormat:'yyyy/MM/dd', editable: true},
+    { headerName: "Fecha Retiro", field: "fecha_retiro"},
     
     { 
         headerName: "Fotos", 
@@ -121,13 +121,6 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
                 }
             });
         },
-
-        rowSelection: 'multiple',
-        enableRangeSelection: true,
-        suppressMultiRangeSelection: true,
-        pagination: true,
-        paginationPageSize: 20,
-        rowData: processedData,
   
         onCellValueChanged: (event) => {
           const updatedRowData = event.data;
@@ -168,6 +161,11 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
                   position: 'top-end',
                   showConfirmButton: false
                 });
+        
+                gridOptions.api.applyTransaction({
+                    update: [updatedRowData]
+                });
+                
               })
               .catch(error => {
                 console.error('Error al actualizar datos:', error);
