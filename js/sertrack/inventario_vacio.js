@@ -51,7 +51,8 @@ const columnDefs = [
     { headerName: "Naviera", field: "naviera" },
     { headerName: "Cutoff", field: "cutoff" },
     { headerName: "Dias en patio", field: "cantidad_dias" },
-    { headerName: "Fecha Retiro", field: "fecha_retiro" },
+    { headerName: "Fecha Retiro", field: "fecha_retiro" ,dateFormat:'yyyy/MM/dd', editable: true},
+    
     { 
         headerName: "Fotos", 
         cellRenderer: params => {

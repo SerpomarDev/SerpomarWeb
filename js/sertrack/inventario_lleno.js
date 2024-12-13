@@ -47,7 +47,7 @@ const columnDefs = [
     { headerName: "Contenedor", field: "contenedor" },
     { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
     { headerName: "Naviera", field: "naviera" },
-    { headerName: "Motonave ", field: "motonave " },
+    { headerName: "Motonave ", field: "moto_nave " },
     { headerName: "Pedido", field: "pedido" },
     { headerName: "Cutoff", field: "cutoff" },
     { headerName: "Dias en patio", field: "cantidad_dias" },
@@ -142,7 +142,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
           });
   
           setTimeout(() => {
-            fetch(`https://esenttiapp-production.up.railway.app/api/cargarinventario/${id}`, {
+            fetch(`https://esenttiapp-production.up.railway.app/api/ordencargue/${id}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
