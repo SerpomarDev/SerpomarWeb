@@ -16,7 +16,7 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 const columnDefs = [
-    { headerName: "id", field: "id", hide: true },
+    { headerName: "id", field: "id", hide: false },
     { 
         headerName: "lleno o vacio", 
         field: "lleno_vacio",
@@ -45,12 +45,14 @@ const columnDefs = [
     },
     { headerName: "Contenedor", field: "contenedor" },
     { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
+    { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
     { headerName: "Reserva", field: "reserva" },
     { headerName: "Remisionado", field: "remisionado" },
     { headerName: "Naviera", field: "naviera" },
     { headerName: "Cutoff", field: "cutoff" },
     { headerName: "Dias en patio", field: "cantidad_dias" },
-    { headerName: "Fecha Retiro", field: "fecha_retiro" },
+    { headerName: "Fecha Retiro", field: "fecha_retiro"},
+    
     { 
         headerName: "Fotos", 
         cellRenderer: params => {
@@ -119,13 +121,6 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
                 }
             });
         },
-
-        rowSelection: 'multiple',
-        enableRangeSelection: true,
-        suppressMultiRangeSelection: true,
-        pagination: true,
-        paginationPageSize: 20,
-        rowData: processedData,
   
         onCellValueChanged: (event) => {
           const updatedRowData = event.data;
@@ -143,7 +138,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
           });
   
           setTimeout(() => {
-            fetch(`https://esenttiapp-production.up.railway.app/api/cargarinventario/${id}`, {
+            fetch(`https://esenttiapp-production.up.railway.app/api/ordencargue/${id}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
@@ -166,6 +161,11 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
                   position: 'top-end',
                   showConfirmButton: false
                 });
+        
+                gridOptions.api.applyTransaction({
+                    update: [updatedRowData]
+                });
+                
               })
               .catch(error => {
                 console.error('Error al actualizar datos:', error);

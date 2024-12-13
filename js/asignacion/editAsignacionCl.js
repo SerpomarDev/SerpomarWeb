@@ -27,6 +27,9 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editasignacion/${id}`,{
     document.getElementById("conductor").value = preventa.conductor;
     document.getElementById("aliado").value = preventa.aliado;
     document.getElementById("celular").value = preventa.telefono;
+    document.getElementById("id_ruta").value = preventa.id_ruta;
+    document.getElementById("ruta").value = preventa.ruta;
+    document.getElementById("tarifa").value = preventa.tarifa;
   } else {
     console.log("La propiedad array no existe en la respuesta");
   }

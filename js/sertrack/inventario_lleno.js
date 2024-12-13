@@ -16,7 +16,7 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 const columnDefs = [
-    { headerName: "id", field: "id", hide: true },
+    { headerName: "id", field: "id", hide: false },
     { 
         headerName: "lleno o vacio", 
         field: "lleno_vacio",
@@ -47,8 +47,8 @@ const columnDefs = [
     { headerName: "Contenedor", field: "contenedor" },
     { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
     { headerName: "Naviera", field: "naviera" },
-    { headerName: "Motonave ", field: "motonave " },
-    { headerName: "Pedido", field: "pedido" },
+    { headerName: "Motonave", field: "motonave",editable: true },
+    { headerName: "Pedido", field: "pedido",editable: true },
     { headerName: "Cutoff", field: "cutoff" },
     { headerName: "Dias en patio", field: "cantidad_dias" },
     { 
@@ -118,13 +118,6 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
                 }
             });
         },
-
-        rowSelection: 'multiple',
-        enableRangeSelection: true,
-        suppressMultiRangeSelection: true,
-        pagination: true,
-        paginationPageSize: 20,
-        rowData: processedData,
   
         onCellValueChanged: (event) => {
           const updatedRowData = event.data;
@@ -142,7 +135,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
           });
   
           setTimeout(() => {
-            fetch(`https://esenttiapp-production.up.railway.app/api/cargarinventario/${id}`, {
+            fetch(`https://esenttiapp-production.up.railway.app/api/ordencargue/${id}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
