@@ -122,7 +122,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/loadpersonas", {
             editable: true
         },
         pagination: true,
-        paginationPageSize: 7,
+        paginationPageSize: 20,
         rowData: processedData,
 
          onCellValueChanged: (event) => {
