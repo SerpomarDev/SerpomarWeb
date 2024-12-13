@@ -16,7 +16,7 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 const columnDefs = [
-    { headerName: "id", field: "id", hide: true },
+    { headerName: "id", field: "id", hide: false },
     { 
         headerName: "lleno o vacio", 
         field: "lleno_vacio",
@@ -44,6 +44,7 @@ const columnDefs = [
         }
     },
     { headerName: "Contenedor", field: "contenedor" },
+    { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
     { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
     { headerName: "Reserva", field: "reserva" },
     { headerName: "Remisionado", field: "remisionado" },
@@ -143,7 +144,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
           });
   
           setTimeout(() => {
-            fetch(`https://esenttiapp-production.up.railway.app/api/cargarinventario/${id}`, {
+            fetch(`https://esenttiapp-production.up.railway.app/api/ordencargue/${id}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
