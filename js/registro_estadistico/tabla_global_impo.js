@@ -69,7 +69,29 @@ const columnDefsSS = [
     editable: true,
     dateFormat: 'dd/MM/yyyy', 
   },
-  { headerName: "Naviera", field: "naviera", editable: true },
+  { 
+    headerName: "Naviera", 
+    field: "naviera", 
+    editable: true,
+    cellEditor: 'agSelectCellEditor', 
+    cellEditorParams: {
+        values: [
+            'MAERSK',
+            'HAPAG LlOYD',
+            'ZIM', 
+            'COSCO', 
+            'CMA CGM', 
+            'SHIPLILLY', 
+            'SEABOARD', 
+            'ONE LINE',
+            'EVERGREEN',
+            'MEDITERRANEA', 
+            'OCEANIC',
+            'KING OCEAN', 
+            'AGUNSA' 
+        ]
+    }
+},
   { headerName: "Puerto", field: "puerto", editable: true },
   { headerName: "Producto", field: "producto", editable: true },
   { headerName: "Eta", field: "fecha_eta", editable: true },

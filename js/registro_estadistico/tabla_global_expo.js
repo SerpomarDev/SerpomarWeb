@@ -2,7 +2,21 @@ import 'https://cdn.jsdelivr.net/npm/ag-grid-enterprise@32.3.3/dist/ag-grid-ente
 
 let gridOptions1;
 let gridApi; // Variable global para almacenar la API de la grilla
-
+const navieras = {
+    'MAERSK': 1,
+    'HAPAG LlOYD': 2,
+    'ZIM': 3,
+    'COSCO': 4,
+    'CMA CGM': 5,
+    'SHIPLILLY': 6,
+    'SEABOARD': 7,
+    'ONE LINE': 8,
+    'EVERGREEN': 9,
+    'MEDITERRANEA': 10,
+    'OCEANIC': 11,
+    'KING OCEAN': 12,
+    'AGUNSA': 13
+};
 const columnDefsSS = [
     {
         headerName: '',
@@ -63,10 +77,25 @@ const columnDefsSS = [
     { headerName: "Fecha Documental", field: "fecha_documental", editable: true },
     { headerName: "Fecha Cutoff Fisico", field: "fecha_cutoff_fisico", editable: true },
     { headerName: "Booking", field: "booking", editable: true },
-    { headerName: "Naviera", field: "naviera", editable: true },
+    { 
+        headerName: "Naviera", 
+        field: "naviera", 
+        editable: true,
+        cellEditor: 'agSelectCellEditor', 
+        cellEditorParams: {
+            values: Object.keys(navieras) // Obtener las claves del objeto
+        },
+        valueFormatter: params => {
+            const idNaviera = params.value;
+            return Object.keys(navieras).find(key => navieras[key] === idNaviera);
+        },
+        valueParser: params => {
+            const nombreNaviera = params.newValue;
+            return navieras[nombreNaviera]; // Obtener el ID a partir del nombre
+        }
+    },
     { headerName: "Patio Naviera", field: "patio_naviero", editable: true },
     { headerName: "Producto", field: "producto", editable: true },
-    { headerName: "Naviera", field: "naviera", editable: true },
     { headerName: "Motonave", field: "motonave", editable: true },
     { headerName: "Uvi", field: "uvi", editable: true },
     { headerName: "Sae", field: "sae", editable: true },

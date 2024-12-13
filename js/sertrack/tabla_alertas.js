@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     const columnDefsAle = [
-        { headerName: "idS", field: "id_primario", hide: true },
-        { headerName: "idC", field: "id_contenedor", hide: true },
+        { headerName: "idS", field: "id_primario", hide: false },
+        { headerName: "idC", field: "id_contenedor", hide: false },
         { headerName: "Contenedor", field: "numero_contenedor" },
         { headerName: "Libre Hasta", field: "libre_hasta" },
         { headerName: "Bodegaje Hasta", field: "bodegaje_hasta" },
