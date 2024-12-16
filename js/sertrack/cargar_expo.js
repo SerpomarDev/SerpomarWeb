@@ -116,41 +116,41 @@ const columnDefs = [
     headerName: "Conductor puerto",
     field: "conductor_puerto",
     editable: true,
-    cellEditor: "agSelectCellEditor",
-    cellEditorParams: async () => {
-      try {
-        // Llamar al endpoint para obtener la lista de conductores
-        const response = await fetch("https://sertrack-production.up.railway.app/api/uploadconductor");
-        const data = await response.json();
+    // cellEditor: "agSelectCellEditor",
+    // cellEditorParams: async () => {
+    //   try {
+    //     // Llamar al endpoint para obtener la lista de conductores
+    //     const response = await fetch("https://sertrack-production.up.railway.app/api/uploadconductor");
+    //     const data = await response.json();
   
-        // Extraer los nombres de los conductores para el select
-        const nombres = data.map((conductor) => conductor.nombre);
-        return { values: nombres };
-      } catch (error) {
-        console.error("Error al cargar los nombres de conductores:", error);
-        return { values: [] }; // Retorna un array vacío si falla
-      }
-    },
-    onCellValueChanged: async (params) => {
-      if (params.newValue) {
-        try {
-          // Llamar al endpoint para obtener información específica del conductor
-          const response = await fetch(
-            `https://sertrack-production.up.railway.app/api/uploadconductor?nombre=${encodeURIComponent(params.newValue)}`
-          );
-          const data = await response.json();
+    //     // Extraer los nombres de los conductores para el select
+    //     const nombres = data.map((conductor) => conductor.nombre);
+    //     return { values: nombres };
+    //   } catch (error) {
+    //     console.error("Error al cargar los nombres de conductores:", error);
+    //     return { values: [] }; // Retorna un array vacío si falla
+    //   }
+    // },
+    // onCellValueChanged: async (params) => {
+    //   if (params.newValue) {
+    //     try {
+    //       // Llamar al endpoint para obtener información específica del conductor
+    //       const response = await fetch(
+    //         `https://sertrack-production.up.railway.app/api/uploadconductor?nombre=${encodeURIComponent(params.newValue)}`
+    //       );
+    //       const data = await response.json();
   
-          // Actualizar el campo "cedula"
-          if (data && data.cedula) {
-            params.node.setDataValue("cedula", data.cedula);
-          } else {
-            console.warn("No se encontró información para el conductor seleccionado");
-          }
-        } catch (error) {
-          console.error("Error al obtener los datos del conductor:", error);
-        }
-      }
-    },
+    //       // Actualizar el campo "cedula"
+    //       if (data && data.cedula) {
+    //         params.node.setDataValue("cedula", data.cedula);
+    //       } else {
+    //         console.warn("No se encontró información para el conductor seleccionado");
+    //       }
+    //     } catch (error) {
+    //       console.error("Error al obtener los datos del conductor:", error);
+    //     }
+    //   }
+    // },
   }
   ,
   { headerName: "Cedula", 
