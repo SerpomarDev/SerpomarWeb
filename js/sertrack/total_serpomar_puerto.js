@@ -20,23 +20,27 @@ fetch('https://esenttiapp-production.up.railway.app/api/ahorrobycliente', {
     // Calcular el total de costo_serpomar
     const totalCostoSerpomar = filteredData.reduce((sum, item) => sum + item.costo_serpomar, 0);
 
+    // **Agregar los valores adicionales**
+    const totalPuerto = totalCostoBodegaje + 179374828 + 308438812; 
+    const totalSerpomar = totalCostoSerpomar + 61880000 + 81640000;
+
     // Formatear los totales
-    const totalCostoBodegajeFormateado = totalCostoBodegaje.toLocaleString('es-CO', {
+    const totalPuertoFormateado = totalPuerto.toLocaleString('es-CO', {
         style: 'decimal', 
         minimumFractionDigits: 0 
     });
 
-    const totalCostoSerpomarFormateado = totalCostoSerpomar.toLocaleString('es-CO', {
+    const totalSerpomarFormateado = totalSerpomar.toLocaleString('es-CO', {
         style: 'decimal', 
         minimumFractionDigits: 0 
     });
 
     // Mostrar los totales en el HTML
     const contadorPuerto = document.getElementById('total-puerto');
-    contadorPuerto.textContent = totalCostoBodegajeFormateado;
+    contadorPuerto.textContent = totalPuertoFormateado;
 
     const contadorSerpomar = document.getElementById('total-serpomar');
-    contadorSerpomar.textContent = totalCostoSerpomarFormateado;
+    contadorSerpomar.textContent = totalSerpomarFormateado;
 
 })
 .catch(error => {
