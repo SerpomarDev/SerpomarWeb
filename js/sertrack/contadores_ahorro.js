@@ -22,7 +22,7 @@ fetch('https://esenttiapp-production.up.railway.app/api/ahorrobycliente', {
   const totalCostoSerpomar = filteredData.reduce((sum, item) => sum + item.costo_serpomar, 0);
   
   // Agregar el valor adicional al totalAhorro
-  let totalAhorro = totalCostoBodegaje - totalCostoSerpomar + 487813640; 
+  let totalAhorro = totalCostoBodegaje - totalCostoSerpomar + 344293640; 
 
   const totalAhorroFormateado = totalAhorro.toLocaleString('es-CO', {
       style: 'decimal', 
