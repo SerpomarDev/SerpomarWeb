@@ -2,11 +2,11 @@ const columnDefs = [
     { headerName: "id", field: "id", hide: true },
     { headerName: "# Abjuntos", field: "aqui la cantidad", hide: true },
     {
-        headerName: "Días para Tecnomecánica",
+        headerName: "Tecnomecánica",
         cellRenderer: params => createDaysRemainingElement(params.data.fecha_vencimientot)
     },
     {
-        headerName: "Días para SOAT",
+        headerName: "SOAT",
         cellRenderer: params => createDaysRemainingElement(params.data.fecha_vencimientos)
     },
 
@@ -107,7 +107,7 @@ function createEditLink(href, id) {
 const eGridDiv = document.getElementById('Placa');
 const gridContainer = document.createElement('div');
 gridContainer.style.width = '90%';
-gridContainer.style.height = '500px';
+gridContainer.style.height = '800px';
 gridContainer.style.margin = '20px auto';
 eGridDiv.appendChild(gridContainer);
 
