@@ -4,9 +4,6 @@ let gridOptions;
 const columnDefs = [
   { headerName: "Orden facturación", field: "id", hide: false}, 
   { headerName: "Pedido", field: "pedido" },
-
-
-
   { 
     headerName: "Fecha Global", 
     field: "fecha_global",
