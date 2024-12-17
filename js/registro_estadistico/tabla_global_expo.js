@@ -2,21 +2,24 @@ import 'https://cdn.jsdelivr.net/npm/ag-grid-enterprise@32.3.3/dist/ag-grid-ente
 
 let gridOptions1;
 let gridApi; // Variable global para almacenar la API de la grilla
+
 const navieras = {
-    'MAERSK': 1,
-    'HAPAG LlOYD': 2,
-    'ZIM': 3,
-    'COSCO': 4,
-    'CMA CGM': 5,
-    'SHIPLILLY': 6,
-    'SEABOARD': 7,
-    'ONE LINE': 8,
-    'EVERGREEN': 9,
-    'MEDITERRANEA': 10,
-    'OCEANIC': 11,
-    'KING OCEAN': 12,
-    'AGUNSA': 13
-};
+    1: 'MAERSK',
+    2: 'HAPAG LlOYD',
+    3: 'ZIM',
+    4: 'COSCO',
+    5: 'CMA CGM',
+    6: 'SHIPLILLY',
+    7: 'SEABOARD',
+    8: 'ONE LINE',
+    9: 'EVERGREEN',
+    10: 'MEDITERRANEA',
+    11: 'OCEANIC',
+    12: 'KING OCEAN',
+    13: 'AGUNSA',
+    14: 'YAN MING MARINE TRANSPORT'
+  };
+
 const columnDefsSS = [
     {
         headerName: '',
@@ -78,22 +81,31 @@ const columnDefsSS = [
     { headerName: "Fecha Cutoff Fisico", field: "fecha_cutoff_fisico", editable: true },
     { headerName: "Booking", field: "booking", editable: true },
     { 
-        headerName: "Naviera", 
-        field: "naviera", 
-        editable: true,
-        cellEditor: 'agSelectCellEditor', 
-        cellEditorParams: {
-            values: Object.keys(navieras) // Obtener las claves del objeto
-        },
-        valueFormatter: params => {
-            const idNaviera = params.value;
-            return Object.keys(navieras).find(key => navieras[key] === idNaviera);
-        },
-        valueParser: params => {
-            const nombreNaviera = params.newValue;
-            return navieras[nombreNaviera]; // Obtener el ID a partir del nombre
-        }
-    },
+    headerName: "Naviera", 
+    field: "naviera", 
+    editable: true,
+    cellEditor: 'agSelectCellEditor', 
+    cellEditorParams: {
+      values: Object.values(navieras), // Usa los nombres de las navieras
+      cellRenderer: (params) => {
+          // Muestra el nombre de la naviera en la celda
+          return navieras[params.value] || ''; 
+      },
+      valueFormatter: (params) => {
+          // Formatea el valor para mostrar el nombre en el editor
+          return navieras[params.value] || '';
+      },
+      valueParser: (params) => {
+          // Convierte el nombre de la naviera al ID correspondiente
+          for (const id in navieras) {
+              if (navieras[id] === params.newValue) {
+                  return id;
+              }
+          }
+          return null; // O maneja el caso donde no se encuentra la naviera
+      }
+  }
+},
     { headerName: "Patio Naviera", field: "patio_naviero", editable: true },
     { headerName: "Producto", field: "producto", editable: true },
     { headerName: "Motonave", field: "motonave", editable: true },
@@ -159,7 +171,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                     {
                         headerName: "Id",
                         field: "id_contenedor",
-                        hide: true
+                        hide: false
                     },
                     { headerName: "ID S.S.", field: "id_primario", hide: true },
                     {
@@ -185,7 +197,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                     { headerName: "Payload", field: "payload", editable: true },
                     { headerName: "Fecha Cliente", field: "fecha_cliente", editable: true, dateFormat: 'dd/MM/yyyy', },
                     { headerName: "Notificacion Cliente", field: "notificacion_cliente", editable: true },
-                    { headerName: "Fecha Retiro Vacio", field: "fecha_vacio", editable: true, dateFormat: 'dd/MM/yyyy',  },
+                    { headerName: "Fecha Retiro Vacio", field: "fecha_vacio", editable: true },
                     { headerName: "Conductor Patio", field: "conductor_patio" },
                     { headerName: "Placa Patio", field: "placa_patio" },
                     { headerName: "Conductor Puerto", field: "conductor_puerto" },
@@ -225,6 +237,11 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                         title: 'Actualizando...',
                         text: "Se actualizará la información en la base de datos",
                         icon: 'info',
+                        timer: 1000,
+                        timerProgressBar: true,
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false
                     });
 
                     const apiUrl = `https://esenttiapp-production.up.railway.app/api/updatecontenedorbysoliservi/${idContenedor}`;
@@ -330,6 +347,10 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                 'fecha_cutoff_fisico': 'fecha_cutoff_fisico',
                 'libre_hasta': 'libre_hasta',
                 'bodegaje_hasta': 'bodegaje_hasta',
+
+                'id_naviera': 'id_naviera',
+                'naviera': 'naviera',
+
                 'booking': 'booking_number',
                 'producto': 'observaciones',
                 'puerto': 'puerto'
