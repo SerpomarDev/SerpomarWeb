@@ -1,6 +1,26 @@
 
 let gridOptions; 
 
+let conductoresArray = []; // Array de conductores
+
+async function cargarConductores() {
+  try {
+    const response = await fetch("https://sertrack-production.up.railway.app/api/uploadconductor");
+    const data = await response.json();
+
+    conductoresArray = data.map((conductor) => ({
+      nombre: conductor.nombre,
+      cedula: conductor.cedula,
+    }));
+
+    //console.log("Conductores cargados:", conductoresArray);
+  } catch (error) {
+    console.error("Error al cargar conductores:", error);
+  }
+}
+
+cargarConductores();
+
 const columnDefs = [
   { headerName: "Orden facturación", field: "id", hide: false}, 
   { headerName: "Pedido", field: "pedido" },
@@ -111,34 +131,31 @@ const columnDefs = [
   { headerName: "Placa puerto", field: "placa_puerto" },
   {
     headerName: "Conductor puerto",
-    field: "conductor_puerto"
-    // cellEditor: "agSelectCellEditor",
-    // onCellValueChanged: async (params) => {
-    //   if (params.newValue) {
-    //     try {
-    //       // Llamada al endpoint para obtener la información del conductor
-    //       const response = await fetch(`https://mi-api.com/conductores?nombre=${params.newValue}`);
-    //       const data = await response.json();
-
-    //       // Actualizar el valor del campo "cedula"
-    //       if (data && data.cedula) {
-    //         params.node.setDataValue("cedula", data.cedula);
-    //       } else {
-    //         console.warn("No se encontró información para el conductor seleccionado");
-    //       }
-    //     } catch (error) {
-    //       console.error("Error al obtener los datos del conductor:", error);
-    //     }
-    //   }
-    // },
+    field: "conductor_puerto",
+    editable: true,
+    cellEditor: "agSelectCellEditor",
+    cellEditorParams: () => {
+      return {
+        values: conductoresArray.map((conductor) => conductor.nombre), // Lista de nombres
+      };
+    },
+    onCellValueChanged: (params) => {
+      // Buscar la cédula correspondiente al nombre seleccionado
+      const conductor = conductoresArray.find((c) => c.nombre === params.newValue);
+      if (conductor) {
+        params.node.setDataValue("cedula_conductor_puerto", conductor.cedula); // Actualizar la cédula
+      }
+    },
   },
-  // { headerName: "Cedula", 
-  //   field: "cedula",
-  //   editable:false
-  // },
+  {
+    headerName: "Cédula",
+    field: "cedula_conductor_puerto",
+    editable: false,
+  },
+  
 
  
-  // { headerName: "Cedula Conductor", field: "cedula_conductor" },
+  //{ headerName: "Cedula Conductor", field: "cedula_conductor" },
  
   //{ headerName: "Estado Operación", field: "estado_operacion" },
   { headerName: "On Time", field: "on_timec" },
@@ -221,9 +238,7 @@ fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
         dias_libres_piso: Preprogramar.dias_libres_piso,
         placa_puerto: Preprogramar.placa_puerto,
         conductor_puerto: Preprogramar.conductor_puerto,
-
-        
-        // cedula_conductor: Preprogramar.cedula_conductor,
+        cedula_conductor_puerto: Preprogramar.cedula_conductor_puerto,
       
         //estado_operacion: Preprogramar.estado_operacion,
         on_timec: Preprogramar.on_timec,
