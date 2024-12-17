@@ -16,7 +16,7 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 const columnDefs = [
-    { headerName: "id", field: "id", hide: false },
+    { headerName: "id", field: "id", hide: true },
     { 
         headerName: "lleno o vacio", 
         field: "lleno_vacio",
@@ -44,7 +44,6 @@ const columnDefs = [
         }
     },
     { headerName: "Contenedor", field: "contenedor" },
-    { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
     { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
     { headerName: "Reserva", field: "reserva" },
     { headerName: "Remisionado", field: "remisionado" },

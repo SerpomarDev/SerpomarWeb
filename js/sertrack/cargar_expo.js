@@ -111,33 +111,16 @@ const columnDefs = [
   { headerName: "Placa puerto", field: "placa_puerto" },
   {
     headerName: "Conductor puerto",
-    field: "conductor_puerto",
-    editable: true,
+    field: "conductor_puerto"
     // cellEditor: "agSelectCellEditor",
-    // cellEditorParams: async () => {
-    //   try {
-    //     // Llamar al endpoint para obtener la lista de conductores
-    //     const response = await fetch("https://sertrack-production.up.railway.app/api/uploadconductor");
-    //     const data = await response.json();
-  
-    //     // Extraer los nombres de los conductores para el select
-    //     const nombres = data.map((conductor) => conductor.nombre);
-    //     return { values: nombres };
-    //   } catch (error) {
-    //     console.error("Error al cargar los nombres de conductores:", error);
-    //     return { values: [] }; // Retorna un array vacío si falla
-    //   }
-    // },
     // onCellValueChanged: async (params) => {
     //   if (params.newValue) {
     //     try {
-    //       // Llamar al endpoint para obtener información específica del conductor
-    //       const response = await fetch(
-    //         `https://sertrack-production.up.railway.app/api/uploadconductor?nombre=${encodeURIComponent(params.newValue)}`
-    //       );
+    //       // Llamada al endpoint para obtener la información del conductor
+    //       const response = await fetch(`https://mi-api.com/conductores?nombre=${params.newValue}`);
     //       const data = await response.json();
-  
-    //       // Actualizar el campo "cedula"
+
+    //       // Actualizar el valor del campo "cedula"
     //       if (data && data.cedula) {
     //         params.node.setDataValue("cedula", data.cedula);
     //       } else {
@@ -148,12 +131,11 @@ const columnDefs = [
     //     }
     //   }
     // },
-  }
-  ,
-  { headerName: "Cedula", 
-    field: "cedula",
-    editable:false
   },
+  // { headerName: "Cedula", 
+  //   field: "cedula",
+  //   editable:false
+  // },
 
  
   // { headerName: "Cedula Conductor", field: "cedula_conductor" },

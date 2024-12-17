@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(response => response.json())
     .then(data => {
         const datosFiltrados = data.filter(item => 
-            item.cliente === "ESENTTIA S A" && 
+            item.cliente === "DISAN COLOMBIA S.A.S" && 
             item.modalidad === "importacion" && 
             item.libre_hasta !== null && 
             item.fecha_notificacion !== null && 

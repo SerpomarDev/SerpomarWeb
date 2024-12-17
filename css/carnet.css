@@ -1,0 +1,157 @@
+.headfoot01 {
+    background-color: white;
+    border-radius: 5px;
+    height: 15px;
+  }
+  #back01 {
+    background-color: #002d6c;
+    width: 185px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  #front01 {
+    background-color: white;
+    border-radius: 5px;
+    font-size: 8px;
+    font-family: Arial;
+  }
+  .head-text01 {
+    color: steelblue;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .header01 {
+    width: 80%;
+    font-size: 5px;
+    font-style: italic;
+  }
+  #image01 {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 5px;
+  }
+  #name01 {
+    font-size: 13px;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+  }
+  #desig01 {
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+  }
+  .card01 {
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+  }
+  .details01 {
+    text-align: left;
+    font-size: 7px;
+    width: 9%;
+    color: rgb(80, 80, 80);
+  }
+  
+  .details02 {
+    text-align: left;
+    font-size: 8px;
+    width: 11%;
+  }
+
+  .details03 {
+    border: 1px solid black;
+    border-radius: 8px;
+  }
+  #profile01 {
+    width: 100%;
+    border-radius: 5px;
+  }
+  .box01{
+    width: 50px;
+    height:50px;
+  }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+
+  .container {
+    display: grid;
+    place-items: center; /* Centers both horizontally and vertically */
+}
+
+  #carnet-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 40%; 
+  }
+
+  #carnet-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  #carnet-form input[type="text"],
+  #carnet-form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+
+  #carnet-form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  #carnet-form button:hover {
+    background-color: #0069d9;
+  }
+
+  #botones button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  #botones button:hover {
+    background-color: #0069d9;
+  }
+
+
+  #header-container {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+    width: 40%; 
+  }
+
