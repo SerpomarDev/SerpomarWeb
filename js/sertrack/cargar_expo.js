@@ -133,11 +133,10 @@ const columnDefs = [
     headerName: "Conductor puerto",
     field: "conductor_puerto",
     editable: true,
-    cellEditor: "agSelectCellEditor",
-    cellEditorParams: () => {
-      return {
-        values: conductoresArray.map((conductor) => conductor.nombre), // Lista de nombres
-      };
+    cellEditor: "agRichSelectCellEditor",
+    cellEditorParams:{
+        values: ()=> conductoresArray.map((conductor) => conductor.nombre), // Lista de nombres
+        searchDebounceDelay: 300,
     },
     onCellValueChanged: (params) => {
       // Buscar la cédula correspondiente al nombre seleccionado
