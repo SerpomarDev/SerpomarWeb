@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Generar Carnet</title>
+<title>Verificar Carnet</title>
 <link rel="stylesheet" href="/css/carnet.css">
-    <!-- Cargar Firebase App y Firebase Storage desde CDN -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 </head>
 <body>
 
-  <h1>Generar Carnet</h1>
+  <h1>Verificar Carnet</h1>
 
   <div class="container">
 
@@ -37,14 +34,7 @@
       </select>
       <br>
       Foto: <input type="file" id="foto" accept="image/*"><br> 
-      <button type="button" onclick="generarCarnet()">Generar Carnet</button>
     </form>
-
-    <div id="header-container"></div> 
-    <div id="botones">
-      <button type="button" onclick="descargarPDF()">Descargar PDF</button>
-      <button type="button" onclick="descargarImagen()">Descargar Imagen</button>  
-    </div>
   </div>
 
   

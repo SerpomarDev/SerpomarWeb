@@ -37,6 +37,12 @@ function generarCarnet() {
         return;
     }
 
+    // Validar campos del formulario (puedes agregar más validaciones)
+    if (!nombreCompleto || !apellidoCompleto || !identificacion || !cargo || !rh || !proceso) {
+        alert("Por favor, completa todos los campos del formulario.");
+        return;
+    }
+
     // Crear un objeto con los datos del formulario (sin la foto todavía)
     var datosCarnet = {
         primer_nombre: primer_nombre,
@@ -79,88 +85,62 @@ function generarCarnet() {
                     },
                     body: JSON.stringify(datosCarnet)
                 })
-                .then(response => response.json())
+                .then(response => {
+                    // Verificar el código de estado de la respuesta
+                    if (!response.ok) {
+                        throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+                    }
+                    return response.json(); // Parsear la respuesta como JSON
+                })
                 .then(data => {
-                    // Verificar si la respuesta del servidor es exitosa
-                    if (data.success) {
-                        // Actualizar el carnet HTML con los valores del formulario
-                        const carnetHTML = `
-                            <center>
-                                <div id="back01">
-                                    <div id="front01">
-                                        <div class="headfoot01"></div>
-                                        <div class="header01">
-                                            <table cellspacing="0px" cellpadding="0px">
-                                                <tr>
-                                                    <td rowspan="2">
-                                                        <img src="/img/logocontorno.png" width="130px" height="100%" alt="Logo.jpg">
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <hr class="details03">
-                                            <br>
-                                        </div>
-                                        <div class="card01">CARNET IDETIFICATIVO</div>
-                                        <div id="image01">
-                                            <img src="${datosCarnet.foto}" alt="Profile.jpg" id="profile01"> 
-                                        </div>
-                                        <table>
-                                            <tr>
-                                                <td colspan="2"></td> 
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" id="name01">${nombreCompleto} ${apellidoCompleto}</td> 
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <table style="padding: 0 14px;">
-                                                    <td>
-                                                        <table>
-                                                            <tr>
-                                                                <th class="details02">ID:</th>
-                                                                <td class="details01">${datosCarnet.identificacion}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="details02">Cargo:</th>
-                                                                <td class="details01">${datosCarnet.cargo}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="details02">RH:</th>
-                                                                <td class="details01">${datosCarnet.rh}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="details02">PROCESO:</th>
-                                                                <td class="details01">${datosCarnet.proceso}</td> 
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                    <td>
-                                                        <div class="box01">
-                                                            <img src="/img/qr-serpomar-online.svg" width="50px" height="100%" alt="Logo.jpg">
-                                                        </div>
-                                                    </td>
-                                                </table>
-                                            </tr>
-                                        </table>
-                                        <div class="header01">
-                                            <hr class="details03"><br>
-                                            Facilitamos y acompañamos experiencias logísticas multimodales.
-                                        </div>
-                                        <div class="headfoot01"> </div>
-                                    </div>
-                                </div>
-                            </center>
-                        `;
+                    console.log(data); // Imprimir la respuesta del servidor
 
-                        // Insertar el HTML en el contenedor
-                        const headerContainer = document.getElementById('header-container');
-                        headerContainer.innerHTML = carnetHTML;
+                    // Verificar si la respuesta del servidor es exitosa
+                    // Ajustar la condición según la respuesta del servidor
+                    if (data.id) { // Ejemplo: verificar si se recibió un ID
+                        // Esperar un tiempo para que la imagen se cargue completamente
+                        setTimeout(() => {
+                            // Actualizar el carnet HTML con los valores del formulario
+                            const carnetHTML = `
+                                <center>
+                                    <div id="back01">
+                                        <div id="front01">
+                                            <div class="headfoot01"></div>
+                                            <div class="header01">
+                                                <table cellspacing="0px" cellpadding="0px">
+                                                    <tr>
+                                                        <td rowspan="2">
+                                                            <img src="/img/logocontorno.png" width="130px" height="100%" alt="Logo.jpg">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <hr class="details03">
+                                                <br>
+                                            </div>
+                                            <div class="card01">CARNET IDETIFICATIVO</div>
+                                            <div id="image01">
+                                                <img src="${datosCarnet.foto}" alt="Profile.jpg" id="profile01" onload="construirCarnet()"> 
+                                            </div>
+                                            <div id="carnet-content"></div> 
+                                            <div class="header01">
+                                                <hr class="details03"><br>
+                                                Facilitamos y acompañamos experiencias logísticas multimodales.
+                                            </div>
+                                            <div class="headfoot01"> </div>
+                                        </div>
+                                    </div>
+                                </center>
+                            `;
+
+                            // Insertar el HTML en el contenedor
+                            const headerContainer = document.getElementById('header-container');
+                            headerContainer.innerHTML = carnetHTML;
+                        }, 3000); // Esperar 3 segundos
                     } else {
                         // Mostrar un mensaje de error si la respuesta del servidor no es exitosa
-                        alert("Error al guardar los datos del carnet. Por favor, inténtalo de nuevo.");
+                        // Verificar si hay un mensaje de error específico del servidor
+                        const errorMessage = data.message || "Error al guardar los datos del carnet.";
+                        alert(errorMessage); 
                     }
                 })
                 .catch(error => {
@@ -171,6 +151,66 @@ function generarCarnet() {
         }
     );
 }
+
+function construirCarnet() {
+    // Obtener los valores del formulario (de nuevo, para asegurar que estén actualizados)
+    var nombreCompleto = document.getElementById("nombre").value;
+    var apellidoCompleto = document.getElementById("apellido").value;
+    var identificacion = document.getElementById("id").value;
+    var cargo = document.getElementById("cargo").value;
+    var rh = document.getElementById("rh").value;
+    var proceso = document.getElementById("Proceso").value;
+
+    // Construir el contenido del carnet
+    const carnetContent = `
+        <table>
+            <tr>
+                <td colspan="2"></td> 
+            </tr>
+            <tr>
+                <td colspan="2" id="name01">${nombreCompleto} ${apellidoCompleto}</td> 
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <table style="padding: 0 14px;">
+                    <td>
+                        <table>
+                            <tr>
+                                <th class="details02">ID:</th>
+                                <td class="details01">${identificacion}</td>
+                            </tr>
+                            <tr>
+                                <th class="details02">Cargo:</th>
+                                <td class="details01">${cargo}</td>
+                            </tr>
+                            <tr>
+                                <th class="details02">RH:</th>
+                                <td class="details01">${rh}</td>
+                            </tr>
+                            <tr>
+                                <th class="details02">PROCESO:</th>
+                                <td class="details01">${proceso}</td> 
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div class="box01">
+                            <img src="/img/qr-serpomar-online.svg" width="50px" height="100%" alt="Logo.jpg">
+                        </div>
+                    </td>
+                </table>
+            </tr>
+        </table>
+    `;
+
+    // Insertar el contenido del carnet en el div correspondiente
+    const carnetContentDiv = document.getElementById('carnet-content');
+    carnetContentDiv.innerHTML = carnetContent;
+}
+
 
 function descargarPDF() {
     const carnet = document.getElementById('back01');

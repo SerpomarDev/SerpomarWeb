@@ -119,6 +119,16 @@
     margin-bottom: 10px;
   }
 
+  
+  select{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+
   #carnet-form button {
     background-color: #007bff;
     color: #fff;
