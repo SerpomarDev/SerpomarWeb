@@ -134,7 +134,7 @@ function getContenedoresDetail(idSolicitudServicio) {
       return response.json();
     })
     .then(data => {
-      console.log("Contenedores obtenidos:", data);
+      //console.log("Contenedores obtenidos:", data);
       return data.data.filter(contenedor => contenedor.id_primario === idSolicitudServicio);
     })
     .catch(error => {
@@ -236,9 +236,13 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
             },
            
 
-            { headerName: "Conductor Puerto", field: "conductor_puerto" },
-            { headerName: "Placa Puerto", field: "placa_puerto" },
-            { headerName: "Sitio Cargue/Descargue", field: "sitio_cargue_descargue", editable: true  },
+            { headerName: "Conductor Puerto", field: "conductor_puerto" ,editable: false},
+            { headerName: "Placa Puerto", field: "placa_puerto",editable: false},
+            { headerName: "Conductor traslado", field: "conductor_traslado",editable: false },
+            { headerName: "Placa traslado", field: "placa_traslado" ,editable: false},
+            { headerName: "Conductor inspeccion", field: "conductor_inspeccion",editable: false },
+            { headerName: "Placa inspeccion", field: "placa_inspeccion",editable: false },
+            { headerName: "Sitio Cargue/Descargue", field: "sitio_cargue_descargue", editable: false  },
 
             { headerName: "Fecha Descargue", 
               field: "fecha_cargue", 
@@ -276,7 +280,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
             { headerName: "Patio serpomar", field: "patio", editable: true  },
             { headerName: "Comentarios", field: "comentario", editable: true  },
             { headerName: "Sitio Inspeccion", field: "sitio_inspeccion", editable: true },
-            { headerName: "Placa Inspeccion", field: "placa_inspeccion", editable: true },
+            //{ headerName: "Placa Inspeccion", field: "placa_inspeccion", editable: true },
 
             { headerName: "Fecha Inspeccion", 
               field: "fecha_inspeccion", 
@@ -380,7 +384,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
           detailRowAutoHeight: true
         },
         getDetailRowData: (params) => {
-          console.log("Params para contenedores:", params);
+          //console.log("Params para contenedores:", params);
           getContenedoresDetail(params.data.id_primario)
             .then(contenedores => {
               params.successCallback(contenedores);
