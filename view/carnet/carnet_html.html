@@ -3,33 +3,54 @@
 <head>
 <title>Generador de Carnet</title>
 <link rel="stylesheet" href="/css/carnet.css">
+    <!-- Cargar Firebase App y Firebase Storage desde CDN -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 </head>
 <body>
 
   <h1>Generador de Carnet</h1>
 
-  <div class="container">  
+  <div class="container">
 
     <form id="carnet-form">
-      Nombre: <input type="text" id="nombre" value="Juan Andres Garcia Silva"><br>
-      Cargo: <input type="text" id="cargo" value="Proyectos"><br>
-      RH: <input type="text" id="rh" value="O+"><br>
-      Área: <input type="text" id="area" value="D2"><br>
-      ID: <input type="text" id="id" value="1007264290"><br>
+      Nombre: <input type="text" id="nombre" value="" placeholder=""><br>
+      Apellido: <input type="text" id="apellido" value="" placeholder=""><br> 
+      Cargo: <input type="text" id="cargo" value=""><br>
+      RH: <input type="text" id="rh" value=""><br>
+      Área: <input type="text" id="area" value=""><br>
+      ID: <input type="text" id="id" value=""><br>
+      
+      Proceso: 
+      <select id="Proceso">
+        <option value="">Selecciona un proceso</option> 
+        <option value="GERENCIA">GERENCIA</option>
+        <option value="SIG">SIG</option>
+        <option value="CEDI">CEDI</option>
+        <option value="TRANSPORTE">TRANSPORTE</option>
+        <option value="COMERCIAL">COMERCIAL</option>
+        <option value="GESTION HUMANA">GESTION HUMANA</option>
+        <option value="MANTENIMIENTO">MANTENIMIENTO</option>
+        <option value="CONTABILIDAD">CONTABILIDAD</option>
+        <option value="COMPRAS">COMPRAS</option>
+        <option value="SEG FISICA">SEG FISICA</option>
+        <option value="TIC">TIC</option>
+      </select>
+      <br>
       Foto: <input type="file" id="foto" accept="image/*"><br> 
       <button type="button" onclick="generarCarnet()">Generar Carnet</button>
     </form>
 
     <div id="header-container"></div> 
     <div id="botones">
-        <button type="button" onclick="descargarPDF()">Descargar PDF</button>
-        <button type="button" onclick="descargarImagen()">Descargar Imagen</button>  
+      <button type="button" onclick="descargarPDF()">Descargar PDF</button>
+      <button type="button" onclick="descargarImagen()">Descargar Imagen</button>  
     </div>
   </div>
 
- 
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  <script src="/js/carnet/carnet.js"></script>
+  <script src="/js/carnet/carnet.js"></script> 
 </body>
 </html>

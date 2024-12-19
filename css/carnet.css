@@ -1,20 +1,22 @@
 .headfoot01 {
-    background-color: white;
-    border-radius: 5px;
-    height: 15px;
-  }
-  #back01 {
-    background-color: #002d6c;
-    width: 185px;
-    padding: 5px;
-    border-radius: 5px;
-  }
-  #front01 {
-    background-color: white;
-    border-radius: 5px;
-    font-size: 8px;
-    font-family: Arial;
-  }
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 5px;
+  height: 10px;
+}
+#back01 {
+  background-color: #f1f1f100;
+  width: 185px;
+  padding: 5px;
+  border-radius: 5px;
+}
+#front01 {
+  background-image: url("/img/carnet.png"); /* Reemplaza con la ruta correcta */
+  background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
+  background-repeat: no-repeat; 
+  border-radius: 5px;
+  font-size: 8px;
+  font-family: Arial;
+}
   .head-text01 {
     color: steelblue;
     font-size: 18px;

@@ -110,13 +110,17 @@ gridContainer.style.width = '90%';
 gridContainer.style.height = '800px';
 gridContainer.style.margin = '20px auto';
 eGridDiv.appendChild(gridContainer);
-
 fetch("https://esenttiapp-production.up.railway.app/api/cargarplaca", {
     headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
 })
 .then(response => response.json())
 .then(data => {
-    const rowData = Array.isArray(data) && data.length > 0 ? data.sort((b, a) => b.id - a.id) : [];
+    // Filtrar los datos aquí
+    const filteredData = data.filter(item => item.inactivo === 0); 
+
+    const rowData = Array.isArray(filteredData) && filteredData.length > 0 
+                    ? filteredData.sort((b, a) => b.id - a.id) 
+                    : [];
 
     const gridOptions = {
         columnDefs,
