@@ -31,7 +31,7 @@ const columnDefs = [
         headerName: 'Editar',
         cellRenderer: params => {
             const link = document.createElement('a');
-            link.href = '/view/Placa/edit.html';
+            link.href = '/view/Placa/edit_alert.html';
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 editPlaca(params.data.id);
@@ -131,7 +131,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarplaca", {
 .then(data => {
     if (Array.isArray(data) && data.length > 0) {
         // Ordenar los datos por id en orden descendente (opcional)
-        data.sort((b, a) => b.id - a.id);
+        data.sort((a, b) => b.id - a.id);
 
         const gridOptions = {
             columnDefs: columnDefs,

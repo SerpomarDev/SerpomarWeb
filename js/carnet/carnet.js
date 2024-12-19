@@ -46,6 +46,10 @@ function generarCarnet() {
                                     <td>
                                         <table>
                                             <tr>
+                                                <th class="details02">ID:</th>
+                                                <td class="details01">${id}</td>
+                                            </tr>
+                                            <tr>
                                                 <th class="details02">Cargo:</th>
                                                 <td class="details01">${cargo}</td>
                                             </tr>
@@ -54,8 +58,9 @@ function generarCarnet() {
                                                 <td class="details01">${rh}</td>
                                             </tr>
                                             <tr>
-                                                <th class="details02">AREA:</th>
+                                                <th class="details02">PROCESO:</th>
                                                 <td class="details01">${area}</td>
+                                                GERENCIA - SIG - CEDI - TRANSPORTE - COMERCIAL - GESTION HUMANA -  MANTENIMIENTO - CONTABILIDAD - COMPRAS - SEG FISICA - TIC
                                             </tr>
                                         </table>
                                     </td>

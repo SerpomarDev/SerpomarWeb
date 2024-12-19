@@ -1,5 +1,5 @@
 const columnDefs = [
-    { headerName: "id", field: "id", hide: true },
+    { headerName: "id", field: "id", hide: false },
     { headerName: "# Abjuntos", field: "aqui la cantidad", hide: true },
     {
         headerName: "Tecnomecánica",
@@ -116,7 +116,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarplaca", {
 })
 .then(response => response.json())
 .then(data => {
-    const rowData = Array.isArray(data) && data.length > 0 ? data.sort((a, b) => b.id - a.id) : [];
+    const rowData = Array.isArray(data) && data.length > 0 ? data.sort((b, a) => b.id - a.id) : [];
 
     const gridOptions = {
         columnDefs,
@@ -138,7 +138,7 @@ function time() {
 }
 
 function editPlaca(id) {
-    window.location.href = `/view/placa/edit.html?id=${id}`
+    window.location.href = `/view/placa/edit_alert.html?id=${id}`
 }
 
 function deletePlaca(id) {
