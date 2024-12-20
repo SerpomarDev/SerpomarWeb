@@ -15,7 +15,7 @@ const columnDefs = [
     { headerName: "Usuario", field: "usuario" },
     { headerName: "Clave", field: "contrasenia" },
     {
-        headerName: 'Documentos',
+        headerName: 'Documentos', hide: false,
         cellRenderer: params => {
             const button = document.createElement('button');
             button.innerHTML = 'Adjuntos';

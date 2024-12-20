@@ -20,7 +20,7 @@ const columnDefs = [
     { headerName: "tecnomecanica", field: "tecnomecanica" },
     { headerName: "tec. vencimiento", field: "fecha_vencimientot" },
     {
-        headerName: 'Documentos',
+        headerName: 'Documentos', hide: false,
         cellRenderer: params => createButton('Adjuntos', params.data.id)
     },
     {
