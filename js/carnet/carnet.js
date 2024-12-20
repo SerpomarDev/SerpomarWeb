@@ -53,107 +53,85 @@ function generarCarnet() {
         cargo: cargo,
         rh: rh,
         proceso: proceso,
-        foto: null // Se actualizará después de subir la foto
+        foto: null // Se actualizará después de leer la foto
     };
 
-    // Subir la foto a Firebase Storage
-    const storageRef = storage.ref(`foto_carnet/${datosCarnet.identificacion}/${foto.name}`);
-    const uploadTask = storageRef.put(foto);
+    // Leer la foto usando FileReader
+    const reader = new FileReader();
 
-    uploadTask.on('state_changed', 
-        (snapshot) => {
-            // Puedes mostrar el progreso de la subida aquí si lo deseas
-            // var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            // console.log('Upload is ' + progress + '% done');
-        }, 
-        (error) => {
-            console.error("Error al subir la foto:", error);
-            alert("Error al subir la foto. Por favor, inténtalo de nuevo.");
-        }, 
-        () => {
-            // Obtener la URL de descarga de la foto
-            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                // Actualizar el objeto datosCarnet con la URL de la foto
-                datosCarnet.foto = downloadURL;
+    reader.onloadend = function() {
+        // Actualizar el objeto datosCarnet con la data URL de la foto
+        datosCarnet.foto = reader.result;
 
-                // Enviar los datos al servidor
-                fetch("https://esenttiapp-production.up.railway.app/api/carnet", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-                    },
-                    body: JSON.stringify(datosCarnet)
-                })
-                .then(response => {
-                    // Verificar el código de estado de la respuesta
-                    if (!response.ok) {
-                        throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
-                    }
-                    return response.json(); // Parsear la respuesta como JSON
-                })
-                .then(data => {
-                    console.log(data); // Imprimir la respuesta del servidor
-
-                    // Verificar si la respuesta del servidor es exitosa
-                    // Ajustar la condición según la respuesta del servidor
-                    if (data.id) { // Ejemplo: verificar si se recibió un ID
-                        // Esperar un tiempo para que la imagen se cargue completamente
-                        setTimeout(() => {
-                            // Actualizar el carnet HTML con los valores del formulario
-                            const carnetHTML = `
-                                <center>
-                                    <div id="back01">
-                                        <div id="front01">
-                                            <div class="headfoot01"></div>
-                                            <div class="header01">
-                                                <table cellspacing="0px" cellpadding="0px">
-                                                    <tr>
-                                                        <td rowspan="2">
-                                                            <img src="/img/logocontorno.png" width="130px" height="100%" alt="Logo.jpg">
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                <hr class="details03">
-                                                <br>
-                                            </div>
-                                            <div class="card01">CARNET IDETIFICATIVO</div>
-                                            <div id="image01">
-                                                <img src="${datosCarnet.foto}" alt="Profile.jpg" id="profile01" onload="construirCarnet()"> 
-                                            </div>
-                                            <div id="carnet-content"></div> 
-                                            <div class="header01">
-                                                <hr class="details03"><br>
-                                                Facilitamos y acompañamos experiencias logísticas multimodales.
-                                            </div>
-                                            <div class="headfoot01"> </div>
-                                        </div>
-                                    </div>
-                                </center>
-                            `;
-
-                            // Insertar el HTML en el contenedor
-                            const headerContainer = document.getElementById('header-container');
-                            headerContainer.innerHTML = carnetHTML;
-                        }, 3000); // Esperar 3 segundos
-                    } else {
-                        // Mostrar un mensaje de error si la respuesta del servidor no es exitosa
-                        // Verificar si hay un mensaje de error específico del servidor
-                        const errorMessage = data.message || "Error al guardar los datos del carnet.";
-                        alert(errorMessage); 
-                    }
-                })
-                .catch(error => {
-                    console.error("Error al enviar los datos al servidor:", error);
-                    alert("Error al guardar los datos del carnet. Por favor, inténtalo de nuevo.");
-                });
+        // Enviar los datos al servidor (opcional, si necesitas guardarlos)
+        fetch("https://esenttiapp-production.up.railway.app/api/carnet", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                },
+                body: JSON.stringify(datosCarnet)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                // ... (código para manejar la respuesta del servidor) ...
+            })
+            .catch(error => {
+                console.error("Error al enviar los datos al servidor:", error);
+                alert("Error al guardar los datos del carnet. Por favor, inténtalo de nuevo.");
             });
-        }
-    );
+
+        // Generar el carnet HTML
+        const carnetHTML = `
+            <center>
+                <div id="back01">
+                    <div id="front01">
+                        <div class="headfoot01"></div>
+                        <div class="header01">
+                            <table cellspacing="0px" cellpadding="0px">
+                                <tr>
+                                    <td rowspan="2">
+                                        <img src="/img/logocontorno.png" width="130px" height="100%" alt="Logo.jpg">
+                                    </td>
+                                </tr>
+                            </table>
+                            <hr class="details03">
+                            <br>
+                        </div>
+                        <div class="card01">CARNET IDETIFICATIVO</div>
+                        <div id="image01">
+                            <img src="${datosCarnet.foto}" alt="Profile.jpg" id="profile01"> 
+                        </div>
+                        <div id="carnet-content"></div> 
+                        <div class="header01">
+                            <hr class="details03"><br>
+                            Facilitamos y acompañamos experiencias logísticas multimodales.
+                        </div>
+                        <div class="headfoot01"> </div>
+                    </div>
+                </div>
+            </center>
+        `;
+
+        const headerContainer = document.getElementById('header-container');
+        headerContainer.innerHTML = carnetHTML;
+
+        // Llamar a construirCarnet después de que el carnetHTML se haya insertado
+        construirCarnet(); 
+    }
+
+    // Iniciar la lectura de la foto
+    reader.readAsDataURL(foto);
 }
 
 function construirCarnet() {
-    // Obtener los valores del formulario (de nuevo, para asegurar que estén actualizados)
+    // Obtener los valores del formulario 
     var nombreCompleto = document.getElementById("nombre").value;
     var apellidoCompleto = document.getElementById("apellido").value;
     var identificacion = document.getElementById("id").value;
@@ -209,29 +187,6 @@ function construirCarnet() {
     // Insertar el contenido del carnet en el div correspondiente
     const carnetContentDiv = document.getElementById('carnet-content');
     carnetContentDiv.innerHTML = carnetContent;
-}
-
-
-function descargarPDF() {
-    const carnet = document.getElementById('back01');
-    html2canvas(carnet, { 
-        scale: 5, 
-        dpi: 300,
-        letterRendering: true,
-        onclone: function (doc) {
-            doc.getElementById('back01').style.width = '185px'; 
-        } 
-    }).then(canvas => {
-        const imgData = canvas.toDataURL('image/png');
-        const pdfWidth = canvas.width / 72 * 2.54; 
-        const pdfHeight = canvas.height / 72 * 2.54;
-        const pdf = new jsPDF({
-            unit: 'pt',
-            format: [pdfWidth, pdfHeight] 
-        });
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight); 
-        pdf.save("carnet.pdf");
-    });
 }
 
 function descargarImagen() {

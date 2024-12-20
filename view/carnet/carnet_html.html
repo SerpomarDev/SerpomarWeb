@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Generar Carnet</title>
-<link rel="stylesheet" href="/css/carnet.css">
-    <!-- Cargar Firebase App y Firebase Storage desde CDN -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <title>Generar Carnet</title>
+  <link rel="stylesheet" href="/css/carnet.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
+  <script src="/js/carnet/carnet.js"></script> 
 </head>
 <body>
 
@@ -42,14 +43,11 @@
 
     <div id="header-container"></div> 
     <div id="botones">
-      <button type="button" onclick="descargarPDF()">Descargar PDF</button>
-      <button type="button" onclick="descargarImagen()">Descargar Imagen</button>  
+      <button type="button" onclick="descargarImagen()">Descargar Imagen</button> 
     </div>
   </div>
 
-  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  <script src="/js/carnet/carnet.js"></script> 
-</body>
+  </body>
 </html>
