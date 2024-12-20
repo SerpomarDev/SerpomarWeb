@@ -104,7 +104,7 @@ function generarCarnet() {
                             <hr class="details03">
                             <br>
                         </div>
-                        <div class="card01">CARNET IDETIFICATIVO</div>
+                        <div class="card01">CARNET IDENTIFICATIVO</div>
                         <div id="image01">
                             <img src="${datosCarnet.foto}" alt="Profile.jpg" id="profile01"> 
                         </div>
