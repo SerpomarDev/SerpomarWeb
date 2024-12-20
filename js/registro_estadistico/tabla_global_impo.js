@@ -180,7 +180,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
             {
               headerName: "Id",
               field: "id_contenedor",
-              hide: true
+              hide: false
             },
             { headerName: "ID S.S.", field: "id_primario", hide: true },
 
@@ -318,6 +318,11 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
               title: 'Actualizando...',
               text: "Se actualizará la información en la base de datos",
               icon: 'info',
+              timer: 1000,
+              timerProgressBar: true,
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false
           });
 
        
@@ -433,9 +438,8 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
           'fecha_cutoff_fisico': 'fecha_cutoff_fisico',
           'libre_hasta': 'libre_hasta',
           'bodegaje_hasta': 'bodegaje_hasta',
-
-          'id_naviera': 'id_naviera',
           'naviera': 'naviera',
+          'id_naviera': 'id_naviera',
 
           'booking': 'booking_number',
           'producto': 'observaciones',

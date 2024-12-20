@@ -1,41 +1,16 @@
-
 <!DOCTYPE html>
-<html class="wide wow-animation" lang="en">
-
+<html>
 <head>
-    <title>Serpomar s.a.s</title>
-    <meta name="format-detection" content="telephone=no">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <link rel="icon" href="favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- <link rel="stylesheet" href="/css/bootstrap.css"> -->
-    <link rel="stylesheet" href="/css/carnet.css">
-
-    <link rel="stylesheet" href="/css/carnet_bar.css">
-    
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-  
-    <script src="/js/carnet/carnet.js"></script> 
+<title>Verificar Carnet</title>
+<link rel="stylesheet" href="/css/carnet.css">
 </head>
-
-
 <body>
 
-  <header>
-    <img src="/img/logow.png" alt="Nodhus Logo" class="logo1" id="nodhus-logo">
-    
-</header>
-
-
- 
+  <h1>Verificar Carnet</h1>
 
   <div class="container">
 
     <form id="carnet-form">
-      <h1>GENERAR CARNET</h1>
       Nombre: <input type="text" id="nombre" value="" placeholder=""><br>
       Apellido: <input type="text" id="apellido" value="" placeholder=""><br> 
       Cargo: <input type="text" id="cargo" value=""><br>
@@ -59,16 +34,12 @@
       </select>
       <br>
       Foto: <input type="file" id="foto" accept="image/*"><br> 
-      <button type="button" onclick="generarCarnet()">Generar Carnet</button>
     </form>
-
-    <div id="header-container"></div> 
-    <div id="botones">
-      <button type="button" onclick="descargarImagen()">Descargar Imagen</button> 
-    </div>
   </div>
 
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  </body>
+  <script src="/js/carnet/carnet.js"></script> 
+</body>
 </html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodhus</title>
+    <link rel="icon" href="/0faviconN.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/pages.css" rel="stylesheet" />
+    <link href="/css/style-Dash.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+</head>
+<div id="header-container"></div>
+<script src="/Componentes/header.js"></script>
+<script src="/Componentes/perfil.js"></script>
+
+<body>
+
+
+    <div id="main-wrapper">
+        <div class="header">
+            <div class="title-container">
+                <div class="circle"></div>
+                <h1 class="title">EDITAR PLACA</h1>
+            </div>
+        </div>
+
+
+
+        <div class="margenform">
+            <div id="content" class="p-4 p-md-5 pt-5">
+                <div class="container">
+                    <form id="editPlaca" method="PUT" enctype="multipart/form-data" class="form">
+                        <input type="hidden" id="id_placa" name="id_placa">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                    <input type="text" class="input" id="placa" name="placa" required>
+                                    <span>Placa</span>
+                                </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="eje" name="eje" required>
+                                        <span>Eje</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="tipologia" name="tipologia" required>
+                                        <span>Tipología</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="full-width">
+                                    <select id="id_aliado" name="id_aliado" class="input" required>
+                                        <option value="">Seleccione una Opción</option>
+                                    </select>
+                                    <span>Propietario</span>
+                                </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="soat" name="soat" required>
+                                        <span>Soat</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="fecha_vencimientos" name="fecha_vencimientos" required>
+                                        <span>Soat fecha vencimiento</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="numero_poliza" name="numero_poliza" required>
+                                        <span>numero de poliza</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="tecnomecanica" name="tecnomecanica" required>
+                                        <span>Tecnicomecanica</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="date" class="input" id="fecha_vencimientot" name="fecha_vencimientot" required>
+                                        <span>tecnicomecanica vencimiento</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                        
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="gps" name="gps" required>
+                                        <span>Plataforma</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="webgps" name="webgps" required>
+                                        <span>Web GPS</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="usuariogps" name="usuariogps" required>
+                                        <span>Usuario GPS</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="input" id="contrasenagps" name="contrasenagps" required>
+                                        <span>Clave GPS</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <br>
+                        <div class="row">
+                            <div class="col-10 d-flex justify-content-between">
+                                <a class="btn btn-primary" href="/view/placa/create.html">Volver</a>
+                                <button class="btn btn-primary" id="BtnEditPlaca">Enviar</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="/Componentes/sidebar.js"></script>
+            <script src="/js/login/logout.js"></script>
+
+
+            <script src="/js/custom.min.js"></script>
+
+            <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+            <script type="text/javascript" src="/js/placa/editPlaca_alert.js"></script>
+            <script type="text/javascript" src="/js/cargar/cargarAliados.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

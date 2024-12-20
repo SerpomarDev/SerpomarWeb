@@ -1,0 +1,33 @@
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 25px;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Color negro con transparencia */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    /* Aumentar la altura del header */
+    z-index: 1000;
+}
+
+.logo {
+    padding-left: 15px;
+    cursor: pointer;
+    height: 60px;
+    /* Ajustar el tamaño del logo según la nueva altura del header */
+}
+
+.logo1 {
+    padding-left: 50px;
+    cursor: pointer;
+    height: 80px;
+    /* Ajustar el tamaño del logo según la nueva altura del header */
+}
+
+

@@ -1,5 +1,5 @@
 const columnDefs = [
-    { headerName: "id", field: "id", hide: true },
+    { headerName: "id", field: "id", hide: false },
     { headerName: "# Abjuntos", field: "aqui la cantidad", hide: true },
     {
         headerName: "Tecnomecánica",
@@ -20,7 +20,7 @@ const columnDefs = [
     { headerName: "tecnomecanica", field: "tecnomecanica" },
     { headerName: "tec. vencimiento", field: "fecha_vencimientot" },
     {
-        headerName: 'Documentos',
+        headerName: 'Documentos', hide: false,
         cellRenderer: params => createButton('Adjuntos', params.data.id)
     },
     {
@@ -110,13 +110,17 @@ gridContainer.style.width = '90%';
 gridContainer.style.height = '800px';
 gridContainer.style.margin = '20px auto';
 eGridDiv.appendChild(gridContainer);
-
 fetch("https://esenttiapp-production.up.railway.app/api/cargarplaca", {
     headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
 })
 .then(response => response.json())
 .then(data => {
-    const rowData = Array.isArray(data) && data.length > 0 ? data.sort((a, b) => b.id - a.id) : [];
+    // Filtrar los datos aquí
+    const filteredData = data.filter(item => item.inactivo === 0); 
+
+    const rowData = Array.isArray(filteredData) && filteredData.length > 0 
+                    ? filteredData.sort((b, a) => b.id - a.id) 
+                    : [];
 
     const gridOptions = {
         columnDefs,
@@ -138,7 +142,7 @@ function time() {
 }
 
 function editPlaca(id) {
-    window.location.href = `/view/placa/edit.html?id=${id}`
+    window.location.href = `/view/placa/edit_alert.html?id=${id}`
 }
 
 function deletePlaca(id) {
