@@ -238,11 +238,11 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
 
             { headerName: "Conductor Puerto", field: "conductor_puerto" ,editable: false},
             { headerName: "Placa Puerto", field: "placa_puerto",editable: false},
-            { headerName: "Conductor traslado", field: "conductor_traslado",editable: false },
+            { headerName: "Conductor traslado", field: "conductor_traslado",editable: false},
             { headerName: "Placa traslado", field: "placa_traslado" ,editable: false},
-            { headerName: "Conductor inspeccion", field: "conductor_inspeccion",editable: false },
+            { headerName: "Conductor inspeccion", field: "conductor_inspeccion",editable: false},
             { headerName: "Placa inspeccion", field: "placa_inspeccion",editable: false },
-            { headerName: "Sitio Cargue/Descargue", field: "sitio_cargue_descargue", editable: false  },
+            { headerName: "Sitio Cargue/Descargue", field: "sitio_cargue_descargue", editable: true },
 
             { headerName: "Fecha Descargue", 
               field: "fecha_cargue", 
