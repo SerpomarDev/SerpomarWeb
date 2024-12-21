@@ -106,28 +106,32 @@ function generarQRCode(ordenCargueId, estado, contenedorText) {
 }
 
 function downloadQRCode(qrCode, contenedorText, ordenCargueId) {
-    const qrCanvas = qrCode._canvas.getContext ? qrCode._canvas : document.querySelector('#qrcode canvas');
+    // Declara qrCanvas con 'let' para permitir la reasignación
+    let qrCanvas = qrCode._canvas; 
+  
     if (!qrCanvas) {
-        console.error("No se pudo obtener el canvas del QR.");
-        return;
+      qrCanvas = document.querySelector('#qrcode canvas'); 
     }
-
+  
+    if (!qrCanvas) {
+      console.error("No se pudo obtener el canvas del QR.");
+      return;
+    }
+  
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     canvas.width = qrCanvas.width;
     canvas.height = qrCanvas.height + 50;
-
+  
     context.drawImage(qrCanvas, 0, 0);
-
-    // Añadir el texto del contenedor debajo del QR
+  
     context.font = '16px Arial';
     context.fillStyle = '#000';
     context.textAlign = 'center';
     context.fillText(`Contenedor: ${contenedorText}`, canvas.width / 2, qrCanvas.height + 30);
-
-    // Descargar la imagen combinada (QR + texto)
+  
     const link = document.createElement('a');
     link.download = `OrdenCargue-${ordenCargueId}.png`;
     link.href = canvas.toDataURL('image/png');
     link.click();
-}
+  }
