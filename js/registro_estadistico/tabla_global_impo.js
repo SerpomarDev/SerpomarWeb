@@ -38,6 +38,16 @@ const navieras = {
   14: 'YAN MING MARINE TRANSPORT'
 };
 
+
+const puertos = {
+  0: '',
+  1: 'SPRC',
+  2: 'CONTECAR',
+  3: 'COMPAS',
+  4: 'CCTO',
+  5: 'PUERTO BAHIA'
+};
+
 const columnDefsSS = [
   {
     headerName: '',
@@ -112,7 +122,22 @@ const columnDefsSS = [
       }
   }
 },
-  { headerName: "Puerto", field: "puerto", editable: true },
+  { headerName: "Puerto", 
+    field: "puerto",
+    editable: true,
+    cellEditor: 'agSelectCellEditor', 
+    cellEditorParams: {
+      values: Object.values(puertos),
+      cellRenderer: (params) => {
+      
+          return puertos[params.value] || ''; 
+      },
+      valueFormatter: (params) => {
+        
+          return puertos[params.value] || '';
+      }
+  }
+  },
   { headerName: "Producto", field: "producto", editable: true },
   { headerName: "Eta", field: "fecha_eta", editable: true },
   { headerName: "Fecha levante", field: "fecha_levante", editable: true },
