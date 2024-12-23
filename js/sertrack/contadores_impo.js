@@ -5,28 +5,27 @@ fetch('https://esenttiapp-production.up.railway.app/api/citaprogramada', {
 })
 .then(response => response.json())
 .then(response => {
+  // Filtrar por cliente "ESENTTIA S A"
+  const citasEsenttia = response.data.filter(cita => cita.cliente === "ESENTTIA S A"); 
+
   let pendienteCitaCount = 0;
   let tieneCitaCount = 0;
 
   const fechaActual = new Date();
-  // Obtener solo la fecha (año, mes, día)
   const añoActual = fechaActual.getFullYear();
   const mesActual = fechaActual.getMonth();
   const diaActual = fechaActual.getDate();
 
-  response.data.forEach(cita => {
+  citasEsenttia.forEach(cita => { // Iterar sobre las citas filtradas
     if (cita.Pendiente_cita === "PENDIENTE CITA") {
       pendienteCitaCount++;
     } 
 
-    // Corrección: usar cita.fecha_cita
     const fechaCita = new Date(cita.fecha_cita); 
-    // Obtener solo la fecha de la cita (año, mes, día)
     const añoCita = fechaCita.getFullYear();
     const mesCita = fechaCita.getMonth();
     const diaCita = fechaCita.getDate();
 
-    // Comparar si la fecha de la cita es mayor o igual a la fecha actual
     if ((añoCita > añoActual) || 
         (añoCita === añoActual && mesCita > mesActual) || 
         (añoCita === añoActual && mesCita === mesActual && diaCita >= diaActual) 
