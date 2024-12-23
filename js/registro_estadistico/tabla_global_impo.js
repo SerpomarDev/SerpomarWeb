@@ -409,7 +409,6 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
           detailRowAutoHeight: true
         },
         getDetailRowData: (params) => {
-          //console.log("Params para contenedores:", params);
           getContenedoresDetail(params.data.id_primario)
             .then(contenedores => {
               params.successCallback(contenedores);
