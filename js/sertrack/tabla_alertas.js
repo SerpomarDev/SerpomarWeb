@@ -123,6 +123,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 sortable: false,
                 flex: 1,
                 minWidth: 100,
+                filter: "agTextColumnFilter",
+                floatingFilter: true,
             },
             groupDisplayType: "groupRows",
             groupDefaultExpanded: 0, 
