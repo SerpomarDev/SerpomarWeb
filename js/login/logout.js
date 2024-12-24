@@ -53,54 +53,6 @@ function forceLogout() {
     window.location.replace("/");
 }
 
-async function refreshToken() {
-    const authToken = localStorage.getItem("authToken");
-    if (authToken) {
-        try {
-            const response = await fetch("https://esenttiapp-production.up.railway.app/api/refresh", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${authToken}`,
-                },
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-
-                // Guardar el token usando la clave correcta (access_token):
-                localStorage.setItem("authToken", data.access_token);  
-                console.log("Token refreshed successfully!");
-                return true; 
-            } else {
-                console.error("Error al refrescar el token:", response.status);
-                return false; 
-            }
-        } catch (error) {
-            console.error("Error de red al intentar refrescar el token:", error);
-            return false; 
-        }
-    }
-}
-
-// Mostrar el modal de confirmación con SweetAlert
-function mostrarModalInicioSesion() {
-    Swal.fire({
-        title: "¿Sigues utilizando la aplicación?",
-        icon: "question",
-        showCancelButton: true,
-        confirmButtonText: "Sí",
-        cancelButtonText: "No",
-    }).then((result) => {
-        if (result.isConfirmed) {
-            refreshToken();
-        } else {
-            logoutUser();
-        }
-    });
-}
-
-// Temporizador de inactividad
 let inactivityTimer;
 
 function resetInactivityTimer() {
@@ -111,7 +63,6 @@ function resetInactivityTimer() {
     }, 25 * 60 * 1000); // 30 minutos en milisegundos
 }
 
-// Reiniciar el temporizador en cada evento de usuario
 document.addEventListener('mousemove', resetInactivityTimer);
 document.addEventListener('keydown', resetInactivityTimer);
 
@@ -127,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     addLogoutEventListener();
-
     // Iniciar el temporizador de inactividad
     resetInactivityTimer();
 });
