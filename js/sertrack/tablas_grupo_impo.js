@@ -163,8 +163,8 @@ const columnDefsCombinados = [
       if (params.data.fuente === "Pendiente por cita") {
         let cantidad = 0;
         if (params.node.childrenAfterGroup) {
-          // Contar solo los hijos que tienen la propiedad 'id'
-          cantidad = params.node.childrenAfterGroup.filter(child => child.id).length;
+          // Contar todos los hijos, sin importar si tienen 'id'
+          cantidad = params.node.childrenAfterGroup.length; 
         }
         return cantidad;
       } else {
@@ -250,19 +250,17 @@ Promise.all([
     const datosPendientesPorCita = dataRegistro.filter(item =>
       item.cliente === "ESENTTIA S A" &&
       item.modalidad === "importacion" &&
-      item.fecha_notificacion !== null &&
-      new Date(item.fecha_notificacion).toLocaleDateString() === hoy.toLocaleDateString()
+        item.fecha_notificacion !== null &&
+        item.fecha_cita === null
     ).map(item => ({
       fuente: "Pendiente por cita",
       id: item.id_primario,
       contenedor: item.numero_contenedor,
       fecha_notificacion: item.fecha_notificacion
-      // ...otros campos que quieras mostrar...
     }));
 
-    // Agregar datosPendientesPorCita solo si no está vacío
     const datosCombinados = [
-      ...(datosPendientesPorCita.length > 0 ? datosPendientesPorCita : []),
+      ...datosPendientesPorCita,
       ...datosCitas,
       ...datosVacios,
       ...datosInventario
