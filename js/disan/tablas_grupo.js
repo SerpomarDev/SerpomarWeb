@@ -27,7 +27,7 @@ const columnDefsIM = [
     filter: 'agSetColumnFilter',
     hide: true, rowGroup: true,
     filterParams: {
-      value: ['ESENTTIA S A'],
+      value: ['DISAN COLOMBIA S.A.S'],
       suppressSorting: true
     }
   },
@@ -63,7 +63,7 @@ const columnDefs = [
     filter: 'agSetColumnFilter',
     hide: true,
     filterParams: {
-      value: ['ESENTTIA S A'],
+      value: ['DISAN COLOMBIA S.A.S'],
       suppressSorting: true
     }
   },
@@ -202,7 +202,7 @@ Promise.all([
   .then(([dataRegistro, dataInventario]) => {
 
     const datosCitas = dataRegistro.filter(item =>
-      item.cliente === "ESENTTIA S A" &&
+      item.cliente === "DISAN COLOMBIA S.A.S" &&
       item.modalidad === "importacion" &&
       item.fecha_cita !== null &&
       new Date(item.fecha_cita) >= hoy
@@ -221,7 +221,7 @@ Promise.all([
 
     const datosVacios = dataInventario.filter(item =>
       item.lleno_vacio === "VACIO" &&
-      item.cliente === "ESENTTIA S A" &&
+      item.cliente === "DISAN COLOMBIA S.A.S" &&
       item.modalidad === "IMPORTACION"
     ).map(item => ({
       fuente: "Vacios en Patio por Devolución",
@@ -233,7 +233,7 @@ Promise.all([
 
     const datosInventario = dataInventario.filter(item =>
       item.lleno_vacio === "LLENO" &&
-      item.cliente === "ESENTTIA S A" &&
+      item.cliente === "DISAN COLOMBIA S.A.S" &&
       item.modalidad === "IMPORTACION"
     ).map(item => ({
       fuente: item.tipo_contenedor === "40 HC"
@@ -248,7 +248,7 @@ Promise.all([
 
     //  Filtro para "Pendiente por cita"
     const datosPendientesPorCita = dataRegistro.filter(item =>
-      item.cliente === "ESENTTIA S A" &&
+      item.cliente === "DISAN COLOMBIA S.A.S" &&
       item.modalidad === "importacion" &&
         item.fecha_notificacion !== null &&
         item.fecha_cita === null
@@ -256,7 +256,13 @@ Promise.all([
       fuente: "Pendiente por cita",
       id: item.id_primario,
       contenedor: item.numero_contenedor,
-      fecha_notificacion: item.fecha_notificacion
+      pedido: item.pedido,
+      fecha_cita: item.fecha_cita,
+      cliente: item.cliente,
+      modalidad: item.modalidad,
+      producto: item.producto,
+      placa_puerto: item.placa_puerto,
+      sitio: item.sitio_cargue_descargue,
     }));
 
     const datosCombinados = [

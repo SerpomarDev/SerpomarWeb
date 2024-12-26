@@ -12,7 +12,7 @@ fetch('https://esenttiapp-production.up.railway.app/api/registroestadistico', {
       const datosFiltrados = data.filter(item => 
           item.cliente === "ESENTTIA S A" && 
           item.modalidad === "importacion" && 
-          item.naviera !== null &&
+          item.naviera1 !== null &&
           moment(item.fecha_cita).format('YYYY-MM-DD') === fechaActual // Filtrar por fecha actual
       );
 
@@ -26,7 +26,7 @@ function generarGraficoNaviera(data) {
     // 1. Contar la cantidad de contenedores por línea naviera
     const conteoDescargue = {};
     data.forEach(item => {
-      conteoDescargue[item.naviera] = (conteoDescargue[item.naviera] || 0) + 1;
+      conteoDescargue[item.naviera1] = (conteoDescargue[item.naviera1] || 0) + 1;
     });
   
     // 2. Preparar los datos para el gráfico
