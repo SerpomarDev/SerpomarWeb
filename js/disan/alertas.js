@@ -116,6 +116,9 @@ document.addEventListener('DOMContentLoaded', function() {
             };
         });
 
+        // Filtrar los datos para ocultar las filas donde ambas alertas son "OK"
+        const filteredData = processedData.filter(item => !(item.alerta_lh === 'OK' && item.alerta_bh === 'OK'));
+
         const gridOptions = {
             columnDefs: columnDefsAle,
             defaultColDef: {
@@ -123,13 +126,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 sortable: false,
                 flex: 1,
                 minWidth: 100,
+                filter: "agTextColumnFilter",
+                floatingFilter: true,
             },
             groupDisplayType: "groupRows",
             groupDefaultExpanded: 0, 
             enableRangeSelection: true,
             suppressMultiRangeSelection:true,
             rowSelection: 'multiple',
-            rowData: processedData, 
+            rowData: filteredData, // Usar los datos filtrados
         };
         
         const eGridDiv = document.getElementById('alertas-impo');
