@@ -30,40 +30,56 @@ let id = urlParams.get("id");
       console.error('Error:', error);
     });
 
-    new gridjs.Grid({
-        search: true,
-        language:{
-            search:{
-                placeholder: '🔍 Buscar...'
+    
+    const columnDefs = [
+        { headerName: "ID", field: "id" },
+        { headerName: "Ruta", field: "item" },
+        { headerName: "Tarifas", field: "tarifas" },
+    
+    ];
+    
+        fetch("https://esenttiapp-production.up.railway.app/api/uploadrutas",{
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+          }
+        })
+        .then(response => response.json())
+      .then(data => {
+        const processedData = data.map(rutas => {
+          return {
+            id: rutas.id,
+            item: rutas.item,
+            tarifas: rutas.tarifas,
+          };
+        });
+    
+          // Configurar la tabla con los datos procesados
+          const gridOptions = {
+            columnDefs: columnDefs,
+            defaultColDef: {
+              resizable: true,
+              sortable: false,
+              filter: "agTextColumnFilter",
+              floatingFilter: true,
+              cellStyle: {
+             'font-size': '14px',
+             'color': '#333',
+             'border-bottom': '1px solid #ddd'
             }
-        },
-        pagination: {
-            limit:10,
-            enabled: true,
-        },
-        resizable: true,
-        sort: false,
-        columns: ["#","Nombre", "Tarifas", "Comentario"],
-        server: {
-            url: "https://esenttiapp-production.up.railway.app/api/uploadrutas",
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("authToken")}`
             },
-            then: (data) => {
-                if (Array.isArray(data) && data.length > 0) {
-                    return data.map((ruta) => [
-                        ruta.id,
-                        ruta.item,
-                        ruta.tarifas,
-                        ruta.notas,
-                    ]);
-                } else {
-                    console.error("La respuesta del servidor no contiene datos válidos.");
-                    return [];
-                }
-            }
-        }
-    }).render(document.getElementById('editRutas'));
+            pagination: true,
+            paginationPageSize: 15,
+            rowData: processedData,
+            onFirstDataRendered: function(params) {
+              params.api.sizeColumnsToFit();
+            },  
+        };
+            const eGridDiv = document.getElementById('editRutas');
+            new agGrid.Grid(eGridDiv, gridOptions);
+        })
+        .catch(error => {
+          console.error("Error al cargar los datos:", error);
+        });
 
    
     document.getElementById("editRuta").addEventListener("submit", function (event) {
