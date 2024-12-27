@@ -15,12 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
             cellStyle: params => {
                 switch (params.value) {
                     case 'OK': return { color: 'blue' };
-                    case 'ALTA 2 dias': return { color: 'orange' };
+                    case 'FALTAN 2 DIAS ': return { color: 'orange' };
                     default: 
-                        if (params.value.startsWith('BIEN')) {
+                        if (params.value.startsWith('FALTAN MAS ')) {
                             return { color: 'green' }; 
-                        } else if (params.value.startsWith('CRITICO')) {
+                        } else if (params.value.startsWith('CRITICO ')) {
                             return { color: 'red' };
+                        } else if (params.value.startsWith('ALERTA ')) {
+                            return { color: 'purple' };
                         }
                         return null;
                 }
@@ -32,12 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
             cellStyle: params => {
                 switch (params.value) {
                     case 'OK': return { color: 'blue' };
-                    case 'ALTA 2 dias': return { color: 'orange' };
+                    case 'FALTAN 2 DIAS ': return { color: 'orange' };
                     default: 
-                        if (params.value.startsWith('BIEN')) {
+                        if (params.value.startsWith('FALTAN MAS ')) {
                             return { color: 'green' }; 
-                        } else if (params.value.startsWith('CRITICO')) {
+                        } else if (params.value.startsWith('CRITICO ')) {
                             return { color: 'red' };
+                        } else if (params.value.startsWith('ALERTA ')) {
+                            return { color: 'purple' };
                         }
                         return null;
                 }
@@ -71,13 +75,13 @@ document.addEventListener('DOMContentLoaded', function() {
             // Determinar el nivel de alerta para Libre Hasta
             let alertaLH;
             if (diffLibreHasta >= 3) {
-                alertaLH = "BIEN +" + diffLibreHasta + " dias"; 
+                alertaLH = "FALTAN MAS" + diffLibreHasta + " DIAS"; 
             } else if (diffLibreHasta <= 2 && diffLibreHasta > 1) {
-                alertaLH = "ALTA 2 dias";
+                alertaLH = "FALTAN 2 DIAS ";
             } else if (diffLibreHasta <= 1 && diffLibreHasta >= 0) {
-                alertaLH = "CRITICO " + (diffLibreHasta * -1) + " dia(s)"; 
+                alertaLH = "CRITICO " + "EN " + (diffLibreHasta) + " DIA(S)"; 
             } else {
-                alertaLH = "CRITICO " + (diffLibreHasta * -1) + " dia(s)"; 
+                alertaLH = "ALERTA " + "HACE " + (diffLibreHasta * -1) + " DIA(S)"; 
             }
             if (ordenCargue.fecha_devolucion) {
                 alertaLH = "OK";
@@ -89,13 +93,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 alertaBH = "OK"; 
             } else {
                 if (diffBodegajeHasta >= 3) {
-                    alertaBH = "BIEN +" + diffBodegajeHasta + " dias"; 
+                    alertaBH = "FALTAN " + diffBodegajeHasta + " DIAS"; 
                 } else if (diffBodegajeHasta <= 2 && diffBodegajeHasta > 1) {
-                    alertaBH = "ALTA 2 dias";
+                    alertaBH = "FALTAN 2 DIAS ";
                 } else if (diffBodegajeHasta <= 1 && diffBodegajeHasta >= 0){
-                    alertaBH = "CRITICO " + (diffBodegajeHasta * -1) + " dia(s)"; 
+                    alertaBH = "CRITICO " + "EN" + (diffBodegajeHasta) + " DIA(S)"; 
                 } else {
-                    alertaBH = "CRITICO " + (diffBodegajeHasta * -1) + " dia(s)"; 
+                    alertaBH =  "ALERTA " + "HACE " + (diffBodegajeHasta * -1) + " DIA(S)"; 
                 }
                 if (ordenCargue.fecha_devolucion) {
                     alertaBH = "OK";

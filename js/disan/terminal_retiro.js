@@ -2,19 +2,21 @@ document.addEventListener('DOMContentLoaded', function() {
     generarGraficoEstadoOperacion();
 
     function generarGraficoEstadoOperacion() {
-        fetch('https://esenttiapp-production.up.railway.app/api/soliserviresgistro', {
+        fetch('https://esenttiapp-production.up.railway.app/api/registroestadistico', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("authToken")}`
             }
         })
         .then(response => response.json())
         .then(data => {
-
+            // Calcular la fecha actual usando Moment.js
+            const fechaActual = moment().format('YYYY-MM-DD'); 
             // Filtrar datos por cliente, modalidad y que no sean nulos
             const datosFiltrados = data.filter(item => 
                 item.cliente === "DISAN COLOMBIA S.A.S" && 
                 item.modalidad === "importacion" && 
-                item.puerto !== null 
+                item.puerto !== null &&
+                moment(item.fecha_cita).format('YYYY-MM-DD') === fechaActual // Filtrar por fecha actual
             );
 
             // Contar la cantidad de estados de operación (usando puerto)
