@@ -26,12 +26,16 @@
     })
     .then(response => response.json())
     .then(response => {
-      const citasEsenttia = response.data.filter(cita => cita.cliente === "ESENTTIA S A");
+      // Obtener el cliente del localStorage
+      const clienteFiltrar = localStorage.getItem("cliente"); 
+
+      // Filtrar las citas por el cliente obtenido del localStorage
+      const citasFiltradas = response.data.filter(cita => cita.cliente === clienteFiltrar);
 
       let pendienteCitaCount = 0;
       let tieneCitaCount = 0;
 
-      citasEsenttia.forEach(cita => {
+      citasFiltradas.forEach(cita => {
         const fechaCita = new Date(cita.fecha_cita);
 
         if (fechaCita.getFullYear() === fechaSeleccionada.getFullYear() &&

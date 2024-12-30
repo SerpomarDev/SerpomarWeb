@@ -10,8 +10,11 @@
     })
     .then(response => response.json())
     .then(data => {
+      // Obtener el cliente del localStorage
+      const clienteFiltrar = localStorage.getItem("cliente");
+
       const totalVacios = data.filter(item =>
-        item.cliente === "ESENTTIA S A" &&
+        item.cliente === clienteFiltrar && // Usa la variable del localStorage
         item.modalidad === "IMPORTACION" &&
         item.lleno_vacio === "VACIO" &&
         item.fecha_retiro === null && // Verifica que fecha_retiro sea null
@@ -19,7 +22,7 @@
       ).length;
 
       const totalLlenos = data.filter(item =>
-        item.cliente === "ESENTTIA S A" &&
+        item.cliente === clienteFiltrar && // Usa la variable del localStorage
         item.modalidad === "IMPORTACION" &&
         item.lleno_vacio === "LLENO" &&
         item.fecha_retiro === null && // Verifica que fecha_retiro sea null

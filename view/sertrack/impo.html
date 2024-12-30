@@ -22,6 +22,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
 
+
 </head>
 <div id="header-container"></div>
 <script src="/Componentes/header.js"></script>
@@ -37,8 +38,16 @@
         </div>
 
         <div class="margenform">
+        
           
+          
+
           <div class="counter-container">
+            <div id="clienteSelectContainer" style=" width: 400px;" >
+              <select id="selectClientesManual" class="form-control">
+                  <option value="" disabled selected>Seleccione un cliente</option>
+              </select>
+            </div>
             <input class="calendar" type="date">
           </div>
 
@@ -208,6 +217,7 @@
     <script src="/Componentes/sidebar.js"></script>
     <script src="/js/custom.min.js"></script>
     
+    <script src="/js/sertrack/select_cliente.js"></script>
     <script src="/js/sertrack/contadores_impo.js"></script>
     <script src="/js/sertrack/tablas_grupo_impo.js"></script>
     <script src="/js/sertrack/contador_vehiculos_impo.js"></script>
