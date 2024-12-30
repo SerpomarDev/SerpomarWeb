@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem("authToken", data.token);
                 localStorage.setItem("userId", data.user_id);
                 localStorage.setItem("rol_Id", data.rol_id);
+                localStorage.setItem("cliente", data.cliente);
 
                 window.location.href = "home.html";
             } else {
