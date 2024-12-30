@@ -1,7 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
-    generarGraficoEstadoOperacion();
+    // Obtener la fecha seleccionada de localStorage, o usar la fecha actual si no hay ninguna
+    const fechaSeleccionada = localStorage.getItem('fechaSeleccionada') || moment().format('YYYY-MM-DD');
 
-    function generarGraficoEstadoOperacion() {
+    // Actualizar el calendario con la fecha seleccionada
+    const calendario = document.querySelector('.calendar');
+    calendario.value = fechaSeleccionada;
+
+    let miGrafico; // Variable para guardar la instancia del gráfico
+
+    generarGraficoEstadoOperacion(fechaSeleccionada); // Pasar la fecha a la función
+
+    calendario.addEventListener('change', () => {
+        const nuevaFechaSeleccionada = calendario.value;
+        localStorage.setItem('fechaSeleccionada', nuevaFechaSeleccionada);
+        generarGraficoEstadoOperacion(nuevaFechaSeleccionada); // Actualizar el gráfico
+    });
+
+    function generarGraficoEstadoOperacion(fecha) { // Recibir la fecha como parámetro
         fetch('https://esenttiapp-production.up.railway.app/api/registroestadistico', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("authToken")}`
@@ -9,14 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            // Calcular la fecha actual usando Moment.js
-            const fechaActual = moment().format('YYYY-MM-DD'); 
-            // Filtrar datos por cliente, modalidad y que no sean nulos
+            // Filtrar datos por cliente, modalidad, fecha y que no sean nulos
             const datosFiltrados = data.filter(item => 
                 item.cliente === "ESENTTIA S A" && 
                 item.modalidad === "importacion" && 
                 item.puerto !== null &&
-                moment(item.fecha_cita).format('YYYY-MM-DD') === fechaActual // Filtrar por fecha actual
+                moment(item.fecha_cita).format('YYYY-MM-DD') === fecha // Usar la fecha del parámetro
             );
 
             // Contar la cantidad de estados de operación (usando puerto)
@@ -53,8 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
+            // Destruir el gráfico anterior si existe
+            if (miGrafico) {
+                miGrafico.destroy();
+            }
+
             // Crear gráfico con Chart.js
-            new Chart(ctx, {
+            miGrafico = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: labels,
@@ -102,8 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error("Error al obtener o procesar los datos:", error);
-            // Aquí puedes agregar código para manejar el error, 
-            // como mostrar un mensaje al usuario.
         });
     }
 });

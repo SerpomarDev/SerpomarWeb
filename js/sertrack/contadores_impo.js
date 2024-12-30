@@ -1,42 +1,59 @@
-fetch('https://esenttiapp-production.up.railway.app/api/citaprogramada', {
-  headers: {
-    'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-  }
-})
-.then(response => response.json())
-.then(response => {
-  // Filtrar por cliente "ESENTTIA S A"
-  const citasEsenttia = response.data.filter(cita => cita.cliente === "ESENTTIA S A"); 
+(function() { // Inicio de la IIFE
 
-  let pendienteCitaCount = 0;
-  let tieneCitaCount = 0;
-
+  const calendario = document.querySelector('.calendar');
   const fechaActual = new Date();
-  const añoActual = fechaActual.getFullYear();
-  const mesActual = fechaActual.getMonth();
-  const diaActual = fechaActual.getDate();
+  const fechaActualFormateada = fechaActual.toISOString().split('T')[0];
 
-  citasEsenttia.forEach(cita => { // Iterar sobre las citas filtradas
-    if (cita.Pendiente_cita === "PENDIENTE CITA") {
-      pendienteCitaCount++;
-    } 
+  calendario.value = fechaActualFormateada;
 
-    const fechaCita = new Date(cita.fecha_cita); 
-    const añoCita = fechaCita.getFullYear();
-    const mesCita = fechaCita.getMonth();
-    const diaCita = fechaCita.getDate();
+  // Guardar la fecha actual en localStorage
+  localStorage.setItem('fechaSeleccionada', fechaActualFormateada);
 
-    if ((añoCita > añoActual) || 
-        (añoCita === añoActual && mesCita > mesActual) || 
-        (añoCita === añoActual && mesCita === mesActual && diaCita >= diaActual) 
-        && cita.Pendiente_cita === "TIENE CITA") { 
-      tieneCitaCount++;
-    }
+  filtrarCitas(fechaActual);
+
+  calendario.addEventListener('change', () => {
+    const fechaSeleccionada = new Date(calendario.value);
+    // Guardar la fecha seleccionada en localStorage
+    localStorage.setItem('fechaSeleccionada', calendario.value);
+    filtrarCitas(fechaSeleccionada);
   });
 
-  document.getElementById('pendiente_cita').textContent = pendienteCitaCount;
-  document.getElementById('total-citas-programa').textContent = tieneCitaCount;
-})
-.catch(error => {
-  console.error('Error al obtener los datos:', error);
-});
+  function filtrarCitas(fechaSeleccionada) {
+    fetch('https://esenttiapp-production.up.railway.app/api/citaprogramada', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+      }
+    })
+    .then(response => response.json())
+    .then(response => {
+      const citasEsenttia = response.data.filter(cita => cita.cliente === "ESENTTIA S A");
+
+      let pendienteCitaCount = 0;
+      let tieneCitaCount = 0;
+
+      citasEsenttia.forEach(cita => {
+        const fechaCita = new Date(cita.fecha_cita);
+
+        if (fechaCita.getFullYear() === fechaSeleccionada.getFullYear() &&
+          fechaCita.getMonth() === fechaSeleccionada.getMonth() &&
+          fechaCita.getDate() === fechaSeleccionada.getDate()) {
+
+          if (cita.Pendiente_cita === "PENDIENTE CITA") {
+            pendienteCitaCount++;
+          }
+
+          if (cita.Pendiente_cita === "TIENE CITA") {
+            tieneCitaCount++;
+          }
+        }
+      });
+
+      document.getElementById('pendiente_cita').textContent = pendienteCitaCount;
+      document.getElementById('total-citas-programa').textContent = tieneCitaCount;
+    })
+    .catch(error => {
+      console.error('Error al obtener los datos:', error);
+    });
+  }
+
+})(); // Fin de la IIFE
