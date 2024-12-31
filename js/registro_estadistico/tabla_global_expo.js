@@ -190,7 +190,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                     },
                     {
                         headerName: "Contenedor",
-                        field: "numero_contenedor",
+                        field: "numero_contenedor" , editable: true ,
                         
                     },
                     { headerName: "Tara", field: "tara", editable: true },
@@ -233,6 +233,9 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                     const fieldName = event.colDef.field;
                     const newValue = event.newValue;
 
+                    // Mapear el nombre del campo si es necesario
+                    const mappedFieldName = fieldName === 'numero_contenedor' ? 'nu_serie' : fieldName; 
+
                     Swal.fire({
                         title: 'Actualizando...',
                         text: "Se actualizará la información en la base de datos",
@@ -248,7 +251,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
 
                     const updatedData = {
                         id_primario: event.data.id_primario,
-                        [fieldName]: newValue
+                        [mappedFieldName]: newValue  // Usar el nombre mapeado
                     };
 
                     fetch(apiUrl, {
