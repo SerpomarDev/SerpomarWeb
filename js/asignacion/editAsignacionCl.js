@@ -23,15 +23,13 @@ fetch(`https://esenttiapp-production.up.railway.app/api/editasignacion/${id}`,{
     const preventa = data[0];
     document.getElementById("id_asignacion").value = preventa.id_asignacion;
     document.getElementById("id_preventa").value = preventa.id_preventa;
-    ocument.getElementById("id_contenedor").value = preventa.id_contenedor;
+    document.getElementById("id_contenedor").value = preventa.id_contenedor;
     document.getElementById("imp_exp").value = preventa.imp_exp;
     document.getElementById("id_placa").value = preventa.placa;
     document.getElementById("conductor").value = preventa.conductor;
     document.getElementById("aliado").value = preventa.aliado;
     document.getElementById("celular").value = preventa.telefono;
-    document.getElementById("id_ruta").value = preventa.id_ruta;
-    document.getElementById("ruta").value = preventa.ruta;
-    document.getElementById("tarifa").value = preventa.tarifa;
+
   } else {
     console.log("La propiedad array no existe en la respuesta");
   }
@@ -81,7 +79,7 @@ document.getElementById("editAsignacion").addEventListener("submit", function (e
 function time() {
     document.getElementById('editAsignacion').reset();
     setTimeout(() => {
-      window.location.href = `/view/asignacion/asignacion.html`;  
+      window.location.href = `/view/asignacion/edit.html`;  
     },  1500);
   }
   
