@@ -27,7 +27,8 @@ const columnDefsIM = [
     filter: 'agSetColumnFilter',
     hide: true, rowGroup: true,
     filterParams: {
-      value: ['ESENTTIA S A'],
+      // Obtiene el valor del localStorage para el filtro
+      values: () => [localStorage.getItem("cliente")], 
       suppressSorting: true
     }
   },
@@ -63,7 +64,8 @@ const columnDefs = [
     filter: 'agSetColumnFilter',
     hide: true,
     filterParams: {
-      value: ['ESENTTIA S A'],
+      // Obtiene el valor del localStorage para el filtro
+      values: () => [localStorage.getItem("cliente")],
       suppressSorting: true
     }
   },
@@ -198,15 +200,17 @@ Promise.all([
     },
   })
 ])
-  .then(responses => Promise.all(responses.map(response => response.json())))
-  .then(([dataRegistro, dataInventario]) => {
+.then(responses => Promise.all(responses.map(response => response.json())))
+.then(([dataRegistro, dataInventario]) => {
+  // Obtener el cliente del localStorage
+  const clienteFiltrar = localStorage.getItem("cliente");
 
-    const datosCitas = dataRegistro.filter(item =>
-      item.cliente === "ESENTTIA S A" &&
-      item.modalidad === "importacion" &&
-      item.fecha_cita !== null &&
-      new Date(item.fecha_cita) >= hoy
-    ).map(item => ({
+  const datosCitas = dataRegistro.filter(item =>
+    item.cliente === clienteFiltrar && // Usa la variable del localStorage
+    item.modalidad === "importacion" &&
+    item.fecha_cita !== null &&
+    new Date(item.fecha_cita) >= hoy
+  ).map(item => ({
       fuente: "Citas Programadas",
       id: item.id_primario,
       contenedor: item.numero_contenedor,
@@ -221,7 +225,7 @@ Promise.all([
 
     const datosVacios = dataInventario.filter(item =>
       item.lleno_vacio === "VACIO" &&
-      item.cliente === "ESENTTIA S A" &&
+      item.cliente === clienteFiltrar && // Usa la variable del localStorage
       item.modalidad === "IMPORTACION"
     ).map(item => ({
       fuente: "Vacios en Patio por Devolución",
@@ -233,7 +237,7 @@ Promise.all([
 
     const datosInventario = dataInventario.filter(item =>
       item.lleno_vacio === "LLENO" &&
-      item.cliente === "ESENTTIA S A" &&
+      item.cliente === clienteFiltrar && // Usa la variable del localStorage
       item.modalidad === "IMPORTACION"
     ).map(item => ({
       fuente: item.tipo_contenedor === "40 HC"
@@ -247,11 +251,12 @@ Promise.all([
     }));
 
     //  Filtro para "Pendiente por cita"
+    //  Filtro para "Pendiente por cita"
     const datosPendientesPorCita = dataRegistro.filter(item =>
-      item.cliente === "ESENTTIA S A" &&
+      item.cliente === clienteFiltrar && // Usa la variable del localStorage
       item.modalidad === "importacion" &&
-        item.fecha_notificacion !== null &&
-        item.fecha_cita === null
+      item.fecha_notificacion !== null &&
+      item.fecha_cita === null
     ).map(item => ({
       fuente: "Pendiente por cita",
       id: item.id_primario,

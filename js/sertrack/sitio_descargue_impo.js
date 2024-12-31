@@ -1,105 +1,130 @@
-fetch('https://esenttiapp-production.up.railway.app/api/registroestadistico', {
-  headers: {
-      'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-  }
-})
-  .then(response => response.json())
-  .then(data => {
-      // Calcular la fecha actual usando Moment.js
-      const fechaActual = moment().format('YYYY-MM-DD'); 
-
-      // Filtrar los datos
-      const datosFiltrados = data.filter(item => 
-          item.cliente === "ESENTTIA S A" && 
-          item.modalidad === "importacion" && 
-          item.sitio_cargue_descargue !== null &&
-          moment(item.fecha_cita).format('YYYY-MM-DD') === fechaActual // Filtrar por fecha actual
-      );
-
-      generarGraficoSitioDescargue(datosFiltrados); 
-  })
-  .catch(error => {
-      console.error('Error al obtener los datos:', error);
-  });
-
-function generarGraficoSitioDescargue(data) {
-    // 1. Contar la cantidad de contenedores por línea naviera
-    const conteoDescargue = {};
-    data.forEach(item => {
-      conteoDescargue[item.sitio_cargue_descargue] = (conteoDescargue[item.sitio_cargue_descargue] || 0) + 1;
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtener la fecha seleccionada de localStorage, o usar la fecha actual si no hay ninguna
+    const fechaSeleccionada = localStorage.getItem('fechaSeleccionada') || moment().format('YYYY-MM-DD');
+  
+    // Actualizar el calendario con la fecha seleccionada
+    const calendario = document.querySelector('.calendar');
+    calendario.value = fechaSeleccionada;
+  
+    let miGrafico; // Variable para guardar la instancia del gráfico
+  
+    obtenerDatosYGenerarGrafico(fechaSeleccionada); // Pasar la fecha a la función
+  
+    calendario.addEventListener('change', () => {
+      const nuevaFechaSeleccionada = calendario.value;
+      localStorage.setItem('fechaSeleccionada', nuevaFechaSeleccionada);
+      obtenerDatosYGenerarGrafico(nuevaFechaSeleccionada); // Actualizar el gráfico
     });
   
-    // 2. Preparar los datos para el gráfico
-    const labels = Object.keys(conteoDescargue);
-    const values = Object.values(conteoDescargue);
+    function obtenerDatosYGenerarGrafico(fecha) {
+      fetch('https://esenttiapp-production.up.railway.app/api/registroestadistico', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Obtener el cliente del localStorage
+        const clienteFiltrar = localStorage.getItem("cliente");
   
-    // 3. Usar la paleta de colores del ejemplo (puedes ajustarla)
-    const colores = [
-      '#00bfff', 
-      '#87cefa', 
-      '#4682b4', 
-      '#1e90ff' 
-    ];
+        // Filtrar los datos
+        const datosFiltrados = data.filter(item =>
+          item.cliente === clienteFiltrar && // Usar la variable del localStorage
+          item.modalidad === "importacion" &&
+          item.sitio_cargue_descargue !== null &&
+          moment(item.fecha_cita).format('YYYY-MM-DD') === fecha // Filtrar por fecha
+        );
   
-    // 4. Crear el gráfico de pastel con ECharts
-    const domLineaNaviera = document.getElementById('sitio-descargue'); 
-    const myChartLineaNaviera = echarts.init(domLineaNaviera);
+        generarGraficoSitioDescargue(datosFiltrados);
+      })
+      .catch(error => {
+        console.error('Error al obtener los datos:', error);
+      });
+    }
   
-    const chartData = labels.map((label, index) => ({
-      value: values[index],
-      name: label,
-      itemStyle: {
-        color: colores[index % colores.length]
+    function generarGraficoSitioDescargue(data) {
+      // 1. Contar la cantidad de contenedores por sitio de descargue
+      const conteoDescargue = {};
+      data.forEach(item => {
+        conteoDescargue[item.sitio_cargue_descargue] = (conteoDescargue[item.sitio_cargue_descargue] || 0) + 1;
+      });
+  
+      // 2. Preparar los datos para el gráfico
+      const labels = Object.keys(conteoDescargue);
+      const values = Object.values(conteoDescargue);
+  
+      // 3. Usar la paleta de colores del ejemplo (puedes ajustarla)
+      const colores = [
+        '#00bfff',
+        '#87cefa',
+        '#4682b4',
+        '#1e90ff'
+      ];
+  
+      // Destruir el gráfico anterior si existe
+      if (miGrafico) {
+        miGrafico.dispose(); // Usar dispose() para gráficos de ECharts
       }
-    }));
   
-    const option = {
-      title: {
-        text: 'Sitio Descargue', 
-        left: 'center',
-        textStyle: {
-          fontSize: 18,
-          fontWeight: 'bold',
-          fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
-        },
-        padding: [0, 0, 20, 0]
-      },
-      tooltip: {
-        trigger: 'item'
-      },
-      legend: {
-        show: true, //activar para ver etiquetas
-        top: '5%',
-        left: 'center'
-      },
-      series: [{
-        name: 'Cantidad', 
-        type: 'pie',
-        radius: ['35%', '75%'],
-        avoidLabelOverlap: false,
+      // 4. Crear el gráfico de pastel con ECharts
+      const domLineaNaviera = document.getElementById('sitio-descargue');
+      miGrafico = echarts.init(domLineaNaviera);
+  
+      const chartData = labels.map((label, index) => ({
+        value: values[index],
+        name: label,
         itemStyle: {
-          borderRadius: 10,
-          borderColor: '#fff',
-          borderWidth: 5
+          color: colores[index % colores.length]
+        }
+      }));
+  
+      const option = {
+        title: {
+          text: 'Sitio Descargue',
+          left: 'center',
+          textStyle: {
+            fontSize: 18,
+            fontWeight: 'bold',
+            fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+          },
+          padding: [0, 0, 20, 0]
         },
-        label: {
-          show: false,
-          position: 'center'
+        tooltip: {
+          trigger: 'item'
         },
-        emphasis: {
+        legend: {
+          show: true, //activar para ver etiquetas
+          top: '5%',
+          left: 'center'
+        },
+        series: [{
+          name: 'Cantidad',
+          type: 'pie',
+          radius: ['35%', '75%'],
+          avoidLabelOverlap: false,
+          itemStyle: {
+            borderRadius: 10,
+            borderColor: '#fff',
+            borderWidth: 5
+          },
           label: {
-            show: true,
-            fontSize: 10,
-            fontWeight: 'bold'
-          }
-        },
-        labelLine: {
-          show: false,
-        },
-        data: chartData
-      }]
-    };
+            show: false,
+            position: 'center'
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: 10,
+              fontWeight: 'bold'
+            }
+          },
+          labelLine: {
+            show: false,
+          },
+          data: chartData
+        }]
+      };
   
-    myChartLineaNaviera.setOption(option);
-  }
-  
+      miGrafico.setOption(option);
+    }
+  });
