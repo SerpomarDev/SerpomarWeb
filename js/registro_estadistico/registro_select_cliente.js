@@ -1,13 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const selectClientesManual = document.getElementById('selectClientesManual');
     const clienteSelectContainer = document.getElementById('clienteSelectContainer');
-    const loader = document.getElementById('loader');
 
-    // Función para mostrar el loader
-    function showLoader() {
-        loader.style.display = 'block';
-    }
-
+  
     // Verificar si hay un valor guardado en localStorage para 'cliente'
     const storedCliente = localStorage.getItem('cliente');
 
@@ -53,10 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Guardar el valor seleccionado en localStorage en la clave 'cliente' y recargar (FUERA DEL ELSE)
     selectClientesManual.addEventListener('change', function() {
         localStorage.setItem('cliente', selectClientesManual.value);
-        showLoader(); // Mostrar loader antes de recargar
         window.location.reload();
     });
 });
