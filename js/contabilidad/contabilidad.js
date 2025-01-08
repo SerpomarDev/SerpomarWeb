@@ -118,7 +118,7 @@ $(document).ready(function () {
       return; // Detener ejecución si factura está vacío
     }
 
-    const spinner = document.getElementById("spinner");
+    const spinner = document.getElementById("loadSpinner");
     spinner.style.display = "flex";
 
     fetch(
@@ -156,11 +156,10 @@ $(document).ready(function () {
 });
 
 function generarReport(id) {
-  const spinner = document.getElementById("spinner");
-  console.log("Spinner encontrado:", spinner);
 
+  const spinner = document.getElementById("loadSpinner");
   spinner.style.display = "flex";
-  console.log("Spinner visible.");
+
 
   fetch(`https://esenttiapp-production.up.railway.app/api/excelpreliquidacioncontenedores/${id}`, {
     method: "GET",
@@ -188,7 +187,6 @@ function generarReport(id) {
       a.click();
 
       spinner.style.display = "none";
-      console.log("Spinner oculto.");
 
       Swal.fire({
         title: "¡Buen trabajo!",
