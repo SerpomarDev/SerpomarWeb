@@ -46,9 +46,9 @@ const columnDefs = [
 
     { headerName: "Contenedor", field: "contenedor" },
     { headerName: "Tipo de contenedor", field: "tipo_contenedor" },
-    { headerName: "Naviera", field: "naviera" },
-    { headerName: "Motonave", field: "motonave",editable: true },
-    { headerName: "Pedido", field: "pedido",editable: true },
+    { headerName: "Naviera", field: "naviera", editable: true  },
+    { headerName: "Motonave", field: "motonave", editable: true },
+    { headerName: "Pedido", field: "pedido", editable: true },
     { headerName: "Cutoff", field: "cutoff" },
     { headerName: "Dias en patio", field: "cantidad_dias" },
     { 
@@ -89,13 +89,13 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
     const gridOptions = {
         columnDefs: columnDefs,
         defaultColDef: {
-          resizable: true,
-          sortable: false,
-          filter: "agTextColumnFilter",
-          floatingFilter: true,
-          flex: 1,
-          minWidth: 100,
-          editable: true
+            resizable: true,
+            sortable: false,
+            filter: "agTextColumnFilter",
+            floatingFilter: true,
+            flex: 1,
+            minWidth: 100,
+            editable: true
         },
         enableRangeSelection: true,
         suppressMultiRangeSelection:true,
@@ -118,56 +118,64 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
                 }
             });
         },
-  
+
         onCellValueChanged: (event) => {
-          const updatedRowData = event.data;
-          const id = updatedRowData.id;
-  
-          Swal.fire({
-            title: 'Actualizando...',
-            text: "Se actualizará la información en la base de datos",
-            icon: 'info',
-            timer: 1000,
-            timerProgressBar: true,
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false
-          });
-  
-          setTimeout(() => {
-            fetch(`https://esenttiapp-production.up.railway.app/api/ordencargue/${id}`, {
-              method: 'PUT',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-              },
-              body: JSON.stringify(updatedRowData)
-            })
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error('Error al actualizar datos');
-                }
-                console.log('Datos actualizados correctamente');
-                Swal.fire({
-                  title: '¡Actualizado!',
-                  text: 'El registro ha sido actualizado.',
-                  icon: 'success',
-                  timer: 1000,
-                  timerProgressBar: true,
-                  toast: true,
-                  position: 'top-end',
-                  showConfirmButton: false
+            const updatedRowData = event.data;
+            const id = updatedRowData.id;
+
+            // Mapear "motonave" a "moto_nave"
+            const dataToSend = {
+                ...updatedRowData,  // Copiar todas las propiedades de updatedRowData
+                moto_nave: updatedRowData.motonave  // Reemplazar "motonave" con "moto_nave"
+            };
+            delete dataToSend.motonave;  // Eliminar la propiedad "motonave" original
+
+
+            Swal.fire({
+                title: 'Actualizando...',
+                text: "Se actualizará la información en la base de datos",
+                icon: 'info',
+                timer: 1000,
+                timerProgressBar: true,
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false
+            });
+
+            setTimeout(() => {
+                fetch(`https://esenttiapp-production.up.railway.app/api/ordencargue/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+                    },
+                    body: JSON.stringify(dataToSend) // Usar dataToSend aquí
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al actualizar datos');
+                    }
+                    console.log('Datos actualizados correctamente');
+                    Swal.fire({
+                        title: '¡Actualizado!',
+                        text: 'El registro ha sido actualizado.',
+                        icon: 'success',
+                        timer: 1000,
+                        timerProgressBar: true,
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al actualizar datos:', error);
+                    Swal.fire(
+                        'Error',
+                        'No se pudo actualizar el registro.',
+                        'error'
+                    );
                 });
-              })
-              .catch(error => {
-                console.error('Error al actualizar datos:', error);
-                Swal.fire(
-                  'Error',
-                  'No se pudo actualizar el registro.',
-                  'error'
-                );
-              });
-          }, 2000);
+            }, 2000);
         }
     };
     
