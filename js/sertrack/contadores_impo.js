@@ -1,63 +1,60 @@
-(function() { // Inicio de la IIFE
+(function () {
+  // Inicio de la IIFE
 
-  const calendario = document.querySelector('.calendar');
-  const fechaActual = new Date();
-  const fechaActualFormateada = fechaActual.toISOString().split('T')[0];
+  function filtrarCitas() {
+    // Obtener la fecha del localStorage
+    const fechaSeleccionada = localStorage.getItem("fechaSeleccionada");
+    console.log("Fecha seleccionada en contadores:", fechaSeleccionada);
 
-  calendario.value = fechaActualFormateada;
-
-  // Guardar la fecha actual en localStorage
-  localStorage.setItem('fechaSeleccionada', fechaActualFormateada);
-
-  filtrarCitas(fechaActual);
-
-  calendario.addEventListener('change', () => {
-    const fechaSeleccionada = new Date(calendario.value);
-    // Guardar la fecha seleccionada en localStorage
-    localStorage.setItem('fechaSeleccionada', calendario.value);
-    filtrarCitas(fechaSeleccionada);
-  });
-
-  function filtrarCitas(fechaSeleccionada) {
-    fetch('https://esenttiapp-production.up.railway.app/api/citaprogramada', {
+    fetch("https://esenttiapp-production.up.railway.app/api/citaprogramada", {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-      }
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+      },
     })
-    .then(response => response.json())
-    .then(response => {
-      // Obtener el cliente del localStorage
-      const clienteFiltrar = localStorage.getItem("cliente"); 
+      .then((response) => response.json())
+      .then((response) => {
+        // Obtener el cliente del localStorage
+        const clienteFiltrar = localStorage.getItem("cliente");
 
-      // Filtrar las citas por el cliente obtenido del localStorage
-      const citasFiltradas = response.data.filter(cita => cita.cliente === clienteFiltrar);
+        // Filtrar las citas por el cliente obtenido del localStorage
+        const citasFiltradas = response.data.filter(
+          (cita) => cita.cliente === clienteFiltrar
+        );
 
-      let pendienteCitaCount = 0;
-      let tieneCitaCount = 0;
+        let pendienteCitaCount = 0;
+        let tieneCitaCount = 0;
 
-      citasFiltradas.forEach(cita => {
-        const fechaCita = new Date(cita.fecha_cita);
-
-        if (fechaCita.getFullYear() === fechaSeleccionada.getFullYear() &&
-          fechaCita.getMonth() === fechaSeleccionada.getMonth() &&
-          fechaCita.getDate() === fechaSeleccionada.getDate()) {
-
+        citasFiltradas.forEach((cita) => {
           if (cita.Pendiente_cita === "PENDIENTE CITA") {
+            // Si la cita está pendiente, no importa la fecha, se cuenta
             pendienteCitaCount++;
+          } else if (cita.Pendiente_cita === "TIENE CITA") {
+            // Solo si tiene fecha se compara
+            if (cita.fecha_cita !== null) {
+              const fechaCita = cita.fecha_cita.slice(0, 10);
+              if (fechaCita === fechaSeleccionada) {
+                tieneCitaCount++;
+              }
+            }
           }
+        });
 
-          if (cita.Pendiente_cita === "TIENE CITA") {
-            tieneCitaCount++;
-          }
-        }
+        document.getElementById("pendiente_cita").textContent =
+          pendienteCitaCount;
+        document.getElementById("total-citas-programa").textContent =
+          tieneCitaCount;
+      })
+      .catch((error) => {
+        console.error("Error al obtener los datos:", error);
       });
-
-      document.getElementById('pendiente_cita').textContent = pendienteCitaCount;
-      document.getElementById('total-citas-programa').textContent = tieneCitaCount;
-    })
-    .catch(error => {
-      console.error('Error al obtener los datos:', error);
-    });
   }
 
+  // Escuchar evento personalizado para actualizar contadores
+  window.addEventListener("fechaCambiada", (event) => {
+    console.log("Evento fechaCambiada detectado en contadores!", event);
+    filtrarCitas();
+  });
+
+  // Llamar a filtrarCitas al inicio para inicializar los contadores
+  filtrarCitas();
 })(); // Fin de la IIFE

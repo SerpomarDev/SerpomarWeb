@@ -22,8 +22,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
 
-      <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator.min.css" rel="stylesheet">
-    
+
 </head>
 <div id="header-container"></div>
 <script src="/Componentes/header.js"></script>
@@ -34,7 +33,7 @@
         <div class="header">
             <div class="title-container">
                 <div class="circle"></div>
-                <h1 class="title">TABLERO IMPORTACION</h1>
+                <h1 class="title">TABLERO EXPORTACION</h1>
             </div>
         </div>
 
@@ -42,6 +41,7 @@
         
           
           
+
           <div class="counter-container">
             <div id="clienteSelectContainer" style=" width: 400px;" >
               <select id="selectClientesManual" class="form-control">
@@ -64,24 +64,24 @@
                                   <div class="counter">
                                     <i class="fas fa-list-ol"></i>
                                     <div class="counter-data">
-                                      <span class="counter-value" id="pendiente_cita"></span>
-                                      <span class="counter-label">Total Pendientes por cita</span>
+                                      <span class="counter-value" id="fecha_cliente"></span>
+                                      <span class="counter-label">Total Programa</span>
                                     </div>
                                   </div>
 
                                   <div class="counter">
                                     <i class="fas fa-check-circle"></i>
                                     <div class="counter-data">
-                                      <span class="counter-value" id="total-citas-programa"></span>
-                                      <span class="counter-label">Total Citas programadas</span>
+                                      <span class="counter-value" id="fecha_scargue"></span>
+                                      <span class="counter-label">Total En sitio Cargue</span>
                                     </div>
                                   </div>
 
                                   <div class="counter">
                                     <i class="fas fa-upload"></i>
                                     <div class="counter-data">
-                                      <span class="counter-value" id="total-vacios"></span>
-                                      <span class="counter-label">Total Vacíos en piso</span>
+                                      <span class="counter-value" id="asignados-dia"></span>
+                                      <span class="counter-label">Asignados</span>
                                     </div>
                                   </div>
                                   <div class="counter">
@@ -205,7 +205,6 @@
 
     
     <!-- JavaScript Libraries -->
-    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.0/dist/js/tabulator.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
@@ -219,13 +218,15 @@
     <script src="/js/custom.min.js"></script>
     
     <script src="/js/registro_estadistico/registro_select_cliente.js"></script>
-    <script src="/js/sertrack/contadores_impo.js"></script>
-    <script src="/js/sertrack/tablas_grupo_impo.js"></script>
+    <script src="/js/sertrack/contador_programa_expo.js"></script>
+    <script src="/js/sertrack/contador_scargue_expo.js"></script>
+    <script src="/js/sertrack/contador_asignado_expo.js"></script>
+    <script src="/js/sertrack/tablas_grupo_expo.js"></script>
     <script src="/js/sertrack/contador_vehiculos_impo.js"></script>
     <script src="/js/sertrack/contador_vacio_lleno.js"></script>
 
   
-    <script src="/js/sertrack/tabla_alertas.js"></script>
+    <script src="/js/sertrack/tabla_alertas_expo.js"></script>
 
     <script src="/js/sertrack/terminal_retiro_puerto_impo.js"></script>
     <script src="/js/sertrack/volumenxmes.js"></script>

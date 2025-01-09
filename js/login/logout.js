@@ -110,7 +110,7 @@ async function logoutUser() {
     inactivityTimer = setTimeout(() => {
       console.log("Temporizador activado. Mostrando modal.");
       mostrarModalInicioSesion();
-    }, 25 * 60 * 1000);
+    }, 20 * 60 * 1000);
   }
   
   document.addEventListener("mousemove", resetInactivityTimer);
