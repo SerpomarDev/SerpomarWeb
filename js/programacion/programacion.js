@@ -20,11 +20,13 @@ function setupSectionToggle() {
 
         // Obtener todos los contenedores dentro de la sección
         const contenedores = section.querySelectorAll('.contenedor');
-        
-        // Crear un span para mostrar el total de contenedores
+
+        // Crear un span para mostrar el total de contenedores y el total con placa
         const totalContenedoresSpan = document.createElement('span');
         totalContenedoresSpan.classList.add('total-contenedores');
-        totalContenedoresSpan.textContent = `(${contenedores.length})`;
+
+        // Calcular y actualizar el texto del span
+        actualizarTextoTotalContenedores(section, totalContenedoresSpan);
 
         // Agregar el span al header
         header.appendChild(totalContenedoresSpan);
@@ -42,6 +44,25 @@ function setupSectionToggle() {
     });
 }
 
+function actualizarTextoTotalContenedores(section, totalContenedoresSpan) {
+    const contenedores = section.querySelectorAll('.contenedor');
+    let conPlaca = 0;
+    contenedores.forEach(contenedor => {
+        const dropZone = contenedor.querySelector('.placa-drop-zone');
+        if (dropZone && dropZone.querySelector('.placa')) {
+            conPlaca++;
+        }
+    });
+
+    // Limpiar contenido previo
+    totalContenedoresSpan.innerHTML = '';
+
+    // Crear el texto para el total de contenedores
+    const textoContenedores = document.createTextNode(`(${conPlaca}/${contenedores.length})`);
+
+    // Agregar los elementos al totalContenedoresSpan
+    totalContenedoresSpan.appendChild(textoContenedores);
+}
 
 calendarInput.addEventListener('change', () => {
     const fechaSeleccionada = calendarInput.value;
@@ -240,6 +261,21 @@ function mostrarContenedores(programacion) {
                 animation: 150,
                 onAdd: function (evt) {
                     console.log("Placa soltada en el contenedor:", item.numero_contenedor);
+
+                    // Esperar a que el DOM se actualice
+                    setTimeout(() => {
+                        const section = contenedorDiv.closest('.programacion-section');
+                        const totalContenedoresSpan = section.previousElementSibling.querySelector('.total-contenedores');
+                        actualizarTextoTotalContenedores(section, totalContenedoresSpan);
+                    }, 0);
+                },
+                onRemove: function (evt) {
+                    // Esperar a que el DOM se actualice
+                    setTimeout(() => {
+                        const section = contenedorDiv.closest('.programacion-section');
+                        const totalContenedoresSpan = section.previousElementSibling.querySelector('.total-contenedores');
+                        actualizarTextoTotalContenedores(section, totalContenedoresSpan);
+                    }, 0);
                 }
             });
         });
@@ -516,20 +552,20 @@ async function reconstruirRelacionesDesdeLocalStorage() {
                 placasOriginales[placa.textContent.trim()] = placa;
             });
 
-            relacionesGuardadas.forEach(relacion => {
+            for (const relacion of relacionesGuardadas) {
                 const contenedor = document.getElementById(relacion.contenedor);
                 if (!contenedor) {
                     console.warn(`No se encontró el contenedor con ID ${relacion.contenedor}`);
-                    return;
+                    continue;
                 }
 
                 const dropZone = contenedor.querySelector('.placa-drop-zone');
                 if (!dropZone) {
                     console.warn(`No se encontró la zona de colocación de placas para el contenedor ${relacion.contenedor}`);
-                    return;
+                    continue;
                 }
 
-                relacion.placas.forEach(placaObj => {
+                for (const placaObj of relacion.placas) {
                     const textoPlaca = placaObj.texto;
                     const colorOriginal = placaObj.colorOriginal;
                     const colorActual = placaObj.colorActual;
@@ -555,10 +591,16 @@ async function reconstruirRelacionesDesdeLocalStorage() {
                     } else {
                         console.warn(`No se encontró la placa original con texto ${textoPlaca}`);
                     }
-                });
-            });
+                }
+            }
         }
-
+        // Actualizar contadores despues de reconstruir las relaciones
+        const sectionHeaders = document.querySelectorAll('.section-header');
+        sectionHeaders.forEach(header => {
+            const section = header.nextElementSibling;
+            const totalContenedoresSpan = header.querySelector('.total-contenedores');
+            actualizarTextoTotalContenedores(section, totalContenedoresSpan);
+        });
     } catch (error) {
         console.error('Error al obtener o procesar la pre-programación:', error);
     }
