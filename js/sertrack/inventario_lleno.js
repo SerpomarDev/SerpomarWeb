@@ -49,7 +49,7 @@ const columnDefs = [
     { headerName: "Naviera", field: "naviera", editable: true  },
     { headerName: "Motonave", field: "motonave", editable: true },
     { headerName: "Pedido", field: "pedido", editable: true },
-    { headerName: "Cutoff", field: "cutoff" },
+    { headerName: "Cutoff", field: "cutoff", editable: true},
     { headerName: "Dias en patio", field: "cantidad_dias" },
     { 
         headerName: "Fotos", 
@@ -126,9 +126,12 @@ fetch("https://esenttiapp-production.up.railway.app/api/cargarinventario",{
             // Mapear "motonave" a "moto_nave"
             const dataToSend = {
                 ...updatedRowData,  // Copiar todas las propiedades de updatedRowData
-                moto_nave: updatedRowData.motonave  // Reemplazar "motonave" con "moto_nave"
+                moto_nave: updatedRowData.motonave, // Reemplazar "motonave" con "moto_nave"
+                vencimiento_cutoff: updatedRowData.cutoff  // Reemplazar "motonave" con "moto_nave"
             };
             delete dataToSend.motonave;  // Eliminar la propiedad "motonave" original
+            delete dataToSend.cutoff;  // Eliminar la propiedad "motonave" original
+
 
 
             Swal.fire({
