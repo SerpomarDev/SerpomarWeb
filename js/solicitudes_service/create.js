@@ -1,93 +1,104 @@
- function impexp(){
-    let selectie = document.getElementById('imp_exp')
-    let fechaDocumental = document.getElementById('fecha_documental')
-    let fechaCutoff = document.getElementById('fecha_cutoff_fisico')
+function impexp() {
+  let selectie = document.getElementById("imp_exp");
+  let fechaDocumental = document.getElementById("fecha_documental");
+  let fechaCutoff = document.getElementById("fecha_cutoff_fisico");
 
-    let fechaEta = document.getElementById('fecha_eta')
-    let fechaLevante = document.getElementById('fecha_levante')
-    let libreHasta = document.getElementById('libre_hasta')
-    let bogegaHasta = document.getElementById('bodegaje_hasta')
+  let fechaEta = document.getElementById("fecha_eta");
+  let fechaLevante = document.getElementById("fecha_levante");
+  let libreHasta = document.getElementById("libre_hasta");
+  let bogegaHasta = document.getElementById("bodegaje_hasta");
 
-    if(selectie.value == 'importacion'){
+  if (selectie.value == "importacion") {
+    fechaDocumental.disabled = true;
+    fechaCutoff.disabled = true;
 
-        fechaDocumental.disabled = true
-        fechaCutoff.disabled = true
+    fechaEta.disabled = false;
+    fechaLevante.disabled = false;
+    libreHasta.disabled = false;
+    bogegaHasta.disabled = false;
+  } else {
+    fechaEta.disabled = true;
+    fechaLevante.disabled = true;
+    libreHasta.disabled = true;
+    bogegaHasta.disabled = true;
 
-        fechaEta.disabled = false
-        fechaLevante.disabled = false
-        libreHasta.disabled = false
-        bogegaHasta.disabled = false
-    }else{
+    fechaDocumental.disabled = false;
+    fechaCutoff.disabled = false;
+  }
+}
+document.getElementById("imp_exp").addEventListener("change", impexp);
 
-        fechaEta.disabled = true
-        fechaLevante.disabled = true
-        libreHasta.disabled = true
-        bogegaHasta.disabled = true
-
-        fechaDocumental.disabled = false
-        fechaCutoff.disabled = false
-    }
- }   
- document.getElementById('imp_exp').addEventListener('change', impexp)
-
-
-document.getElementById('saveSolicitud').addEventListener('submit',function(event){
-
+document
+  .getElementById("saveSolicitud")
+  .addEventListener("submit", function (event) {
     event.preventDefault();
-    impexp()
+    impexp();
 
     const formData = new FormData(this);
     const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-    console.log(jsonData)
+    const spinner = document.getElementById("loadSpinner");
+    spinner.style.display = "flex";
 
-    fetch('https://esenttiapp-production.up.railway.app/api/solicitudservicios', {
-        method: 'POST',
-        headers: { 
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${localStorage.getItem("authToken")}` 
-                },
-        body: jsonData
-    })
-    .then(response => {
+    fetch(
+      "https://esenttiapp-production.up.railway.app/api/solicitudservicios",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
+        body: jsonData,
+      }
+    )
+      .then((response) => {
         if (!response.ok) {
-            throw new Error('Error al enviar los datos del formulario');
+          throw new Error("Error al enviar los datos del formulario");
         }
-    })
-    .then(data => {
-        return fetch('https://esenttiapp-production.up.railway.app/api/ultimoresgistro',{
-            method: 'GET',
+      })
+      .then((data) => {
+        return fetch(
+          "https://esenttiapp-production.up.railway.app/api/ultimoresgistro",
+          {
+            method: "GET",
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-            }
-        });
-    })
-    .then(response => {
+              Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            },
+          }
+        );
+      })
+      .then((response) => {
         if (!response.ok) {
-            throw new Error('Error al obtener los datos de la API');
+          throw new Error("Error al obtener los datos de la API");
         }
         return response.text();
-    })
-    .then(data => {
-        
+      })
+      .then((data) => {
+        spinner.style.display = "none";
         Swal.fire({
-            title: "¡Buen trabajo!",
-            html: `<p id='ultimoRegistro'>${"SP 202400"+data}</p>`,
-            icon: "success",
+          title: "¡Buen trabajo!",
+          html: `<p id='ultimoRegistro'>${"SP 202400" + data}</p>`,
+          icon: "success",
         });
-    })
-    .then(response=>{
-        time()
-    })
-    .catch((error) => {
+      })
+      .then((response) => {
+        time();
+      })
+      .catch((error) => {
         console.error("Error:", error);
-    });
+        spinner.style.display = "none";
+
+        Swal.fire({
+          title: "Error",
+          text: error.message || "Ocurrió un error al procesar la solicitud.",
+          icon: "error",
+        });
+      });
   });
 
-
-  function time() {
-    document.getElementById('saveSolicitud').reset();
-    setTimeout(() => {
-        window.location.href = `/view/solicitudes_servicios/create.html`; 
-    },3500);
-  }  
+function time() {
+  document.getElementById("saveSolicitud").reset();
+  setTimeout(() => {
+    window.location.href = `/view/solicitudes_servicios/create.html`;
+  }, 2500);
+}
