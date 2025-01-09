@@ -11,15 +11,46 @@ const seccionesContenedores = {
     'DEVOLUCION': document.getElementById('devolucion')
 };
 
+// Función para contraer/expandir las secciones
+function setupSectionToggle() {
+    const sectionHeaders = document.querySelectorAll('.section-header');
+    sectionHeaders.forEach(header => {
+        // Obtener la sección (div .programacion-section)
+        const section = header.nextElementSibling;
+
+        // Obtener todos los contenedores dentro de la sección
+        const contenedores = section.querySelectorAll('.contenedor');
+        
+        // Crear un span para mostrar el total de contenedores
+        const totalContenedoresSpan = document.createElement('span');
+        totalContenedoresSpan.classList.add('total-contenedores');
+        totalContenedoresSpan.textContent = `(${contenedores.length})`;
+
+        // Agregar el span al header
+        header.appendChild(totalContenedoresSpan);
+
+        header.addEventListener('click', () => {
+            section.classList.toggle('collapsed');
+            header.classList.toggle('collapsed');
+
+            if (section.classList.contains('collapsed')) {
+                section.style.maxHeight = '0';
+            } else {
+                section.style.maxHeight = '650px';
+            }
+        });
+    });
+}
+
+
 calendarInput.addEventListener('change', () => {
     const fechaSeleccionada = calendarInput.value;
-    localStorage.setItem('fechaSeleccionada', fechaSeleccionada); 
-    filtrarContenedoresPorFecha(); 
+    localStorage.setItem('fechaSeleccionada', fechaSeleccionada);
+    filtrarContenedoresPorFecha();
 
     // Disparar el evento personalizado
-    window.dispatchEvent(new Event('fechaCambiada')); 
+    window.dispatchEvent(new Event('fechaCambiada'));
 });
-
 
 // Obtener la fecha de hoy en formato YYYY-MM-DD
 const fechaHoy = new Date().toISOString().slice(0, 10);
@@ -83,7 +114,6 @@ async function obtenerDatosYCrearInterfaz() {
     }
 }
 
-
 function filtrarContenedoresPorFecha() {
     const fechaSeleccionada = calendarInput.value;
     const contenedoresFiltrados = dataContenedores.filter(contenedor => contenedor.fecha === fechaSeleccionada);
@@ -97,63 +127,114 @@ function filtrarContenedoresPorFecha() {
 function limpiarSeccionesContenedores() {
     for (const servicio in seccionesContenedores) {
         const seccion = seccionesContenedores[servicio];
-        while (seccion.firstChild) {
-            seccion.removeChild(seccion.firstChild);
-        }
+        // Eliminar solo los contenedores agrupados por cliente, no los headers
+        seccion.querySelectorAll('.cliente-group').forEach(group => seccion.removeChild(group));
+
+        // Restablecer la altura máxima y quitar la clase 'collapsed'
+        seccion.style.maxHeight = '650px';
+        seccion.classList.remove('collapsed');
+        // Asegurarse de que la sección sea visible al recargar
+        seccion.style.display = 'block';
     }
 }
 
 function mostrarContenedores(programacion) {
+    const contenedoresPorCliente = {};
+
     programacion.forEach(item => {
-        const contenedorDiv = document.createElement('div');
-        contenedorDiv.id = item.numero_contenedor; 
-        contenedorDiv.classList.add('contenedor');
+        if (!contenedoresPorCliente[item.cliente]) {
+            contenedoresPorCliente[item.cliente] = [];
+        }
+        contenedoresPorCliente[item.cliente].push(item);
+    });
 
-        const servicioSpan = document.createElement('span');
-        servicioSpan.textContent = item.cliente;
+    for (const cliente in contenedoresPorCliente) {
+        const clienteGroup = document.createElement('div');
+        clienteGroup.classList.add('cliente-group');
 
-        const numeroContenedorSpan = document.createElement('span');
-        numeroContenedorSpan.textContent = item.numero_contenedor;
-        numeroContenedorSpan.style.fontWeight = 'bold';
-        numeroContenedorSpan.style.fontSize = '12px';
-        numeroContenedorSpan.style.color = '#007bff';
-        numeroContenedorSpan.style.paddingRight = '5px';
-        numeroContenedorSpan.style.paddingLeft = '5px';
+        const header = document.createElement('div');
+        header.classList.add('cliente-header');
 
-        const horaSpan = document.createElement('span');
-        horaSpan.textContent = `Hora: ${item.hora}`;
-        horaSpan.style.fontSize = '10px';
-        horaSpan.style.paddingRight = '5px';
+        // Crear un span para el título del cliente
+        const tituloCliente = document.createElement('span');
+        tituloCliente.classList.add('cliente-titulo');
+        tituloCliente.textContent = cliente;
+        header.appendChild(tituloCliente);
 
-        const origenSpan = document.createElement('span');
-        origenSpan.textContent = `Origen: ${item.origen}`;
-        origenSpan.style.fontSize = '10px';
-        origenSpan.style.paddingRight = '5px';
+        // Añadir la cantidad de contenedores
+        const cantidadContenedores = contenedoresPorCliente[cliente].length;
+        const cantidadSpan = document.createElement('span');
+        cantidadSpan.classList.add('cantidad-contenedores');
+        cantidadSpan.textContent = `(${cantidadContenedores})`;
+        header.appendChild(cantidadSpan);
 
-        const destinoSpan = document.createElement('span');
-        destinoSpan.textContent = `Destino: ${item.destino}`;
-        destinoSpan.style.fontSize = '10px';
-        destinoSpan.style.paddingRight = '5px';
+        // Añadir un botón para expandir/contraer individualmente
+        const toggleButton = document.createElement('span');
+        toggleButton.classList.add('toggle-button');
+        toggleButton.textContent = '▼'; // Inicialmente expandido
+        header.appendChild(toggleButton);
 
-        const dropZone = document.createElement('div');
-        dropZone.classList.add('placa-drop-zone');
-        dropZone.style.border = '2px dashed #ccc'; 
-        dropZone.style.backgroundColor = '#f0f0f0'; 
-        dropZone.style.padding = '5px'; 
-        dropZone.style.borderRadius = '5px'; 
-        dropZone.style.marginBottom = '5px'; 
+        // Event listener para expandir/contraer clientes
+        toggleButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            clienteGroup.classList.toggle('collapsed');
+            toggleButton.textContent = clienteGroup.classList.contains('collapsed') ? '▶' : '▼';
+        });
 
-        contenedorDiv.appendChild(servicioSpan);
-        contenedorDiv.appendChild(numeroContenedorSpan);
-        contenedorDiv.appendChild(dropZone); 
-        contenedorDiv.appendChild(horaSpan);
-        contenedorDiv.appendChild(origenSpan);
-        contenedorDiv.appendChild(destinoSpan);
-    
+        clienteGroup.appendChild(header);
 
-        const seccion = seccionesContenedores[item.servicio];
-        if (seccion) {
-            seccion.appendChild(contenedorDiv);
+        const contenedoresDiv = document.createElement('div');
+        contenedoresDiv.classList.add('contenedores');
+        clienteGroup.appendChild(contenedoresDiv);
+
+        contenedoresPorCliente[cliente].forEach(item => {
+            const contenedorDiv = document.createElement('div');
+            contenedorDiv.id = item.numero_contenedor;
+            contenedorDiv.classList.add('contenedor');
+
+            const servicioSpan = document.createElement('span');
+            servicioSpan.textContent = item.servicio;
+
+            const numeroContenedorSpan = document.createElement('span');
+            numeroContenedorSpan.textContent = item.numero_contenedor;
+            numeroContenedorSpan.style.fontWeight = 'bold';
+            numeroContenedorSpan.style.fontSize = '12px';
+            numeroContenedorSpan.style.color = '#007bff';
+            numeroContenedorSpan.style.paddingRight = '5px';
+            numeroContenedorSpan.style.paddingLeft = '5px';
+
+            const horaSpan = document.createElement('span');
+            horaSpan.textContent = `Hora: ${item.hora}`;
+            horaSpan.style.fontSize = '10px';
+            horaSpan.style.paddingRight = '5px';
+
+            const origenSpan = document.createElement('span');
+            origenSpan.textContent = `Origen: ${item.origen}`;
+            origenSpan.style.fontSize = '10px';
+            origenSpan.style.paddingRight = '5px';
+
+            const destinoSpan = document.createElement('span');
+            destinoSpan.textContent = `Destino: ${item.destino}`;
+            destinoSpan.style.fontSize = '10px';
+            destinoSpan.style.paddingRight = '5px';
+
+            const dropZone = document.createElement('div');
+            dropZone.classList.add('placa-drop-zone');
+            dropZone.style.border = '2px dashed #ccc';
+            dropZone.style.backgroundColor = '#f0f0f0';
+            dropZone.style.padding = '5px';
+            dropZone.style.borderRadius = '5px';
+            dropZone.style.marginBottom = '5px';
+
+            contenedorDiv.appendChild(servicioSpan);
+            contenedorDiv.appendChild(numeroContenedorSpan);
+            contenedorDiv.appendChild(dropZone);
+            contenedorDiv.appendChild(horaSpan);
+            contenedorDiv.appendChild(origenSpan);
+            contenedorDiv.appendChild(destinoSpan);
+
+            contenedoresDiv.appendChild(contenedorDiv);
+
             new Sortable(dropZone, {
                 group: 'shared',
                 animation: 150,
@@ -161,10 +242,15 @@ function mostrarContenedores(programacion) {
                     console.log("Placa soltada en el contenedor:", item.numero_contenedor);
                 }
             });
+        });
+
+        const seccion = seccionesContenedores[programacion.find(c => c.cliente === cliente).servicio];
+        if (seccion) {
+            seccion.appendChild(clienteGroup);
         } else {
-            console.warn(`Servicio desconocido: ${item.servicio}`);
+            console.warn(`Servicio desconocido: ${programacion.find(c => c.cliente === cliente).servicio}`);
         }
-    });
+    }
 }
 
 function mostrarPlacas(placasData) {
@@ -181,7 +267,6 @@ function mostrarPlacas(placasData) {
 
     for (const tipologia in placasPorTipologia) {
         const placasDeTipologia = placasPorTipologia[tipologia];
-
 
         const tipologiaHeader = document.createElement('h6');
         tipologiaHeader.textContent = tipologia;
@@ -226,7 +311,7 @@ function duplicarPlaca(placaOriginal) {
     const nuevaPlaca = placaOriginal.cloneNode(true);
 
     const numDuplicaciones = parseInt(placaOriginal.dataset.duplicaciones || 0);
-    const colorOriginal = placaOriginal.style.backgroundColor || ""; 
+    const colorOriginal = placaOriginal.style.backgroundColor || "";
 
     switch (numDuplicaciones) {
         case 0:
@@ -246,7 +331,7 @@ function duplicarPlaca(placaOriginal) {
             break;
         default:
             alert("Se ha alcanzado el límite de duplicaciones para esta placa.");
-            return; 
+            return;
     }
 
     placaOriginal.dataset.duplicaciones = numDuplicaciones + 1;
@@ -256,11 +341,8 @@ function duplicarPlaca(placaOriginal) {
     // Insertamos la nueva placa
     placaOriginal.parentNode.insertBefore(nuevaPlaca, placaOriginal.nextSibling);
 
-    // Eliminamos todos los event listeners de la nueva placa
-    // nuevaPlaca.replaceWith(nuevaPlaca.cloneNode(true)); 
-
     // Solo agregamos el event listener si es la placa madre original
-    if (!placaOriginal.dataset.colorOriginal) { 
+    if (!placaOriginal.dataset.colorOriginal) {
         nuevaPlaca.addEventListener('click', () => {
             duplicarPlaca(nuevaPlaca);
         });
@@ -301,7 +383,7 @@ async function guardarRelacionesEnLocalStorage() {
         const existeProgramacion = dataCheck.length > 0;
         let programacionId = null;
         if (existeProgramacion) {
-            programacionId = dataCheck[0].id; 
+            programacionId = dataCheck[0].id;
         }
 
         if (existeProgramacion) {
@@ -315,8 +397,8 @@ async function guardarRelacionesEnLocalStorage() {
             });
 
             if (!result.isConfirmed) {
-                saveButton.disabled = false; 
-                return; 
+                saveButton.disabled = false;
+                return;
             }
         }
         const method = existeProgramacion ? 'PUT' : 'POST';
@@ -329,10 +411,8 @@ async function guardarRelacionesEnLocalStorage() {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-
             },
             body: JSON.stringify({
-
                 programacion: relaciones,
                 fecha: fechaSeleccionada
             })
@@ -340,7 +420,7 @@ async function guardarRelacionesEnLocalStorage() {
 
         const contentType = response.headers.get('content-type');
         if (!contentType || !contentType.includes('application/json')) {
-            const text = await response.text(); 
+            const text = await response.text();
             console.error('La respuesta del servidor no es JSON:', text);
             throw new Error('La respuesta del servidor no es válida.');
         }
@@ -354,7 +434,6 @@ async function guardarRelacionesEnLocalStorage() {
                 text: data.message || (existeProgramacion ? 'La Programación se actualizó correctamente.' : 'La Programación se guardó correctamente.')
             });
         } else {
-
             let errorMessage = 'Ocurrió un error al guardar/actualizar la programación.';
             if (data && data.message) {
                 errorMessage += ' ' + data.message;
@@ -365,9 +444,7 @@ async function guardarRelacionesEnLocalStorage() {
                 text: errorMessage
             });
         }
-
     } catch (error) {
-
         console.error('Error al guardar la programación:', error);
         Swal.fire({
             icon: 'error',
@@ -384,22 +461,24 @@ function obtenerRelacionesContenedoresPlacas() {
 
     for (const servicio in seccionesContenedores) {
         const seccion = seccionesContenedores[servicio];
-        const contenedores = seccion.querySelectorAll('.contenedor');
+
+        // Seleccionar los contenedores dentro de .cliente-group
+        const contenedores = seccion.querySelectorAll('.cliente-group .contenedor');
 
         contenedores.forEach(contenedor => {
             const numeroContenedor = contenedor.id;
             const dropZone = contenedor.querySelector('.placa-drop-zone');
             if (!dropZone) {
                 console.warn(`No se encontró la zona de colocación de placas para el contenedor ${numeroContenedor}`);
-                return; 
+                return;
             }
 
             const placas = dropZone.querySelectorAll('.placa');
             const placasAsociadas = Array.from(placas).map(placa => ({
                 texto: placa.textContent.trim(),
-                colorOriginal: placa.dataset.colorOriginal || "", 
-                colorActual: placa.style.backgroundColor || "",  
-                numDuplicaciones: placa.dataset.duplicaciones || 0 
+                colorOriginal: placa.dataset.colorOriginal || "",
+                colorActual: placa.style.backgroundColor || "",
+                numDuplicaciones: placa.dataset.duplicaciones || 0
             }));
 
             relaciones.push({
@@ -427,10 +506,10 @@ async function reconstruirRelacionesDesdeLocalStorage() {
         }
 
         const data = await response.json();
-        const relacionesGuardadas = data.length > 0 ? data[0].programacion : []; 
+        const relacionesGuardadas = data.length > 0 ? data[0].programacion : [];
 
         if (relacionesGuardadas && relacionesGuardadas.length > 0) {
-            await new Promise(resolve => setTimeout(resolve, 100)); 
+            await new Promise(resolve => setTimeout(resolve, 100));
 
             const placasOriginales = {};
             document.querySelectorAll('#placas .placa').forEach(placa => {
@@ -441,20 +520,20 @@ async function reconstruirRelacionesDesdeLocalStorage() {
                 const contenedor = document.getElementById(relacion.contenedor);
                 if (!contenedor) {
                     console.warn(`No se encontró el contenedor con ID ${relacion.contenedor}`);
-                    return; 
+                    return;
                 }
 
                 const dropZone = contenedor.querySelector('.placa-drop-zone');
                 if (!dropZone) {
                     console.warn(`No se encontró la zona de colocación de placas para el contenedor ${relacion.contenedor}`);
-                    return; 
+                    return;
                 }
 
-                relacion.placas.forEach(placaObj => { 
-                    const textoPlaca = placaObj.texto; 
+                relacion.placas.forEach(placaObj => {
+                    const textoPlaca = placaObj.texto;
                     const colorOriginal = placaObj.colorOriginal;
                     const colorActual = placaObj.colorActual;
-                    const numDuplicaciones = placaObj.numDuplicaciones; 
+                    const numDuplicaciones = placaObj.numDuplicaciones;
 
                     const placaOriginal = placasOriginales[textoPlaca];
 
@@ -462,17 +541,17 @@ async function reconstruirRelacionesDesdeLocalStorage() {
                         const placaExistente = Array.from(dropZone.querySelectorAll('.placa'))
                             .find(placa => placa.textContent.trim() === textoPlaca);
 
-                        if (!placaExistente) { 
+                        if (!placaExistente) {
                             const nuevaPlaca = placaOriginal.cloneNode(true);
-                            nuevaPlaca.style.backgroundColor = colorActual; 
-                            nuevaPlaca.dataset.duplicaciones = numDuplicaciones; 
-                            nuevaPlaca.dataset.colorOriginal = colorOriginal; 
+                            nuevaPlaca.style.backgroundColor = colorActual;
+                            nuevaPlaca.dataset.duplicaciones = numDuplicaciones;
+                            nuevaPlaca.dataset.colorOriginal = colorOriginal;
                             dropZone.appendChild(nuevaPlaca);
 
                             nuevaPlaca.addEventListener('click', () => {
                                 duplicarPlaca(nuevaPlaca);
                             });
-                        } 
+                        }
                     } else {
                         console.warn(`No se encontró la placa original con texto ${textoPlaca}`);
                     }
@@ -485,7 +564,7 @@ async function reconstruirRelacionesDesdeLocalStorage() {
     }
 }
 
+// Llamar a la función para configurar el toggle de las secciones al cargar la página
+document.addEventListener('DOMContentLoaded', setupSectionToggle);
 
-
-
-obtenerDatosYCrearInterfaz(); 
+obtenerDatosYCrearInterfaz();

@@ -1,12 +1,13 @@
 body {
     font-family: sans-serif;
-    background-color: #f0f2f5; 
+    background-color: #f0f2f5;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
+/* Colores */
 .azul { background-color: #007bff; }
 .verde { background-color: green; }
 .naranja { background-color: orange; }
@@ -14,106 +15,102 @@ body {
 .morado { background-color: purple; }
 .negro { background-color: black; }
 
-.color-group {
+/* --- Calendar --- */
+.calendar-container {
+    margin-right: 50px;
     display: flex;
-    flex-direction: column; /* Colocar colores en columna */
-    align-items: flex-end;  /* Alinear a la derecha */
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+
+.calendar-container h6 {
+    text-align: right;
+    width: 75px;
+    font-weight: 600;
 }
 
 .calendar-container h6 span {
     display: inline-block;
-    margin-top: 5px;   /* Permitir aplicar ancho y alto */
-    width: 20px;             /* Ancho del color */
-    height: 12px;            /* Alto del color */
-    margin-right: 2px;        /* Espacio entre color y texto */
-    border-radius: 20%;      /* Hacer el color redondo */
+    margin-top: 5px;
+    width: 20px;
+    height: 12px;
+    margin-right: 2px;
+    border-radius: 20%;
 }
 
-.calendar-container {
-    margin-right: 50px;
+.color-group {
     display: flex;
-    flex-direction: row;  /* Colocar elementos en fila */
-    align-items: flex-start; /* Alinear al inicio verticalmente */
-    justify-content: space-between; /* Distribuir espacio entre elementos */
-    margin-bottom: 0px;
-    
+    flex-direction: column;
+    align-items: flex-end;
 }
-
-.calendar-container h6 {
-
-    text-align: right;      /* Alinear texto a la derecha */
-    width: 75px;           /* Ancho fijo para alinear */
-}
-
 
 .contador-programa {
-   margin-left: 8%;
-   background: linear-gradient(105deg, #007bff, #ededed81); /* Degradado sutil */
-    color: #000000; /* Texto oscuro para contraste */
-    padding: 15px; /* Espacio interno */
-    border-radius: 10px; /* Bordes ligeramente redondeados */
-    text-align: center; /* Centra el texto */
-    font-size: 16px; /* Tamaño de fuente legible */
+    margin-left: 8%;
+    background: linear-gradient(105deg, #007bff, #ededed81);
+    color: #000000;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
 }
 
-
 .calendar {
-    display: block; 
-    margin: 0 auto; 
-    width: 200px; 
-    padding: 8px; 
-    margin-bottom: 15px; 
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    padding: 8px;
+    margin-bottom: 15px;
     border: none;
-    border-radius: 12px; 
+    border-radius: 12px;
     font-size: 16px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); 
-    transition: all 0.3s ease; 
-    background: linear-gradient(105deg, #007bff, #ededed); /* Degradado sutil */
-    overflow: hidden; 
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background: linear-gradient(105deg, #007bff, #ededed);
+    overflow: hidden;
 }
 
 .calendar:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.calendar:focus-within { 
+.calendar:focus-within {
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.143);
 }
 
 .calendar::-webkit-calendar-picker-indicator {
-    background-color: #fff; 
+    background-color: #fff;
     color: #555;
     padding: 10px 14px;
-    border-radius: 10px; 
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.2s ease; 
-    position: relative; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil en el botón */
+    transition: all 0.2s ease;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .calendar::-webkit-calendar-picker-indicator:hover {
-    background-color: #f0f0f0; 
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); 
+    background-color: #f0f0f0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
+/* --- Contenedores Principales --- */
 .container {
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    padding-left: 20px; 
-    padding-right: 20px; 
-    padding-top: 10px; 
-    padding-bottom: 20px; 
-    margin-top: 80px; 
-    width: 99%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px 20px;
+    margin-top: 80px;
+    width: 99%;
 }
 
 .container1 {
     background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    padding: 0px;  
-    width: 100%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0px;
+    width: 100%;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -124,83 +121,125 @@ body {
 
 .col-md-8 {
     flex-grow: 1;
-    display: flex; 
-    flex-direction: column; 
-}
-
-/* Sección para cada categoría */
-.section {
-    margin-bottom: 20px; /* Espacio entre secciones */
+    display: flex;
+    flex-direction: column;
 }
 
 .col-md-4 {
-    flex: 0 0 auto; 
-    width: 300px; 
+    flex: 0 0 auto;
+    width: 300px;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: #333;
-}
-
-h3 { 
-    margin-bottom: 15px;
-    font-weight: bold;
-    color: #555;
-}
-
-h5 {
+/* --- Encabezados --- */
+h2, h3, h5, h6 {
     text-align: center;
     margin-bottom: 5px;
     font-weight: bold;
     color: #333;
 }
-
-h6 {
-    text-align: center;
+h3{
+    margin-bottom: 15px;
+}
+h5{
+    margin-bottom: 5px;
+}
+h6{
     margin-top: 3px;
-    margin-bottom: 3px;
+}
+
+/* --- Secciones --- */
+.section {
+    margin-bottom: 20px; /* Espacio entre secciones */
+}
+
+.section-header {
+    cursor: pointer;
+    background-color: #f8f9fa; /* Color de fondo suave */
+    border: 1px solid #ddd; /* Borde sutil */
+    padding: 10px 15px;
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición suave al hacer hover */
+    user-select: none; /* Evita la selección de texto al hacer clic */
+}
+
+.section-header::after {
+    content: ' ▼';
+    font-size: 0.8em;
+    color: #555;
+    float: right;
+    transition: transform 0.3s ease; /* Transición para la rotación */
+}
+
+.section-header.collapsed::after {
+    content: ' ▶';
+    transform: rotate(0deg); /* Asegura que la flecha esté horizontal */
+}
+
+.section-header:hover {
+    background-color: #e9ecef; /* Color más oscuro al hacer hover */
+}
+
+.total-contenedores {
     font-weight: bold;
+    color: #007bff; /* Puedes cambiar el color a tu gusto */
+    margin-left: 10px; /* Espacio entre el texto y el total */
+}
+
+.programacion-section {
+    transition: max-height 0.3s ease-out;
+    max-height: 650px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.programacion-section.collapsed {
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.row-cols-auto {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* --- Contenedores --- */
+.contenedor {
+    background-color: #f5f5f5ef;
     color: #333;
-}
-
-.contenedor { 
-    background-color: #f5f5f5ef; 
-    color: #333; 
-    border: 1px solid #ced4da8e; 
-    padding: 10px; 
+    border: 1px solid #ced4da8e;
+    padding: 10px;
     text-align: center;
-    border-radius: 8px; 
+    border-radius: 8px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease; 
+    transition: all 0.3s ease;
     font-size: 8px;
-    margin-right: 20px; 
-    margin-bottom: 5px; /* Espacio entre contenedores */
+    margin-right: 20px;
+    margin-bottom: 5px;
 }
 
-
-
-.contenedor span:first-child { 
+.contenedor span:first-child {
     font-weight: bold;
     display: block;
 }
 
-.placa { 
-    background-color: #007bff; 
+/* --- Placas --- */
+.placa {
+    background-color: #007bff;
     color: #fff;
-    padding: 5px 6px; 
+    padding: 5px 6px;
     margin-bottom: 2px;
-    cursor: grab; 
+    cursor: grab;
     list-style: none;
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    font-size: 12px; 
-    display: inline-block; 
-    white-space: nowrap; 
+    font-size: 12px;
+    display: inline-block;
+    white-space: nowrap;
 }
 
 .placa:hover {
@@ -212,162 +251,103 @@ h6 {
 #placas {
     display: flex;
     flex-direction: column;
-    height: 650px; /* Alto fijo para el contenedor de placas */
-    overflow-y: auto; /* Agrega scroll vertical si el contenido desborda */
+    height: 650px;
+    overflow-y: auto;
 }
 
-.row-cols-auto {
-    display: flex;
-    flex-direction: column;
-    height: 650px;
-    overflow-y: auto; /* Agrega scroll vertical si el contenido desborda */
+/* --- Botones --- */
+.save, .edit {
+    color: #fff;
+    margin-top: 0px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
 }
 
 .save {
-    background-color: #007bff; /* Color base, puedes cambiarlo */
-    color: #fff;
-    margin-top: 0px;
+    background-color: #007bff;
     margin-right: 15px;
-    padding: 15px 30px; /* Aumenta el padding para mayor área de clic */
-    border: none;
-    border-radius: 10px; /* Bordes más redondeados */
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease; /* Transiciones suaves */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    text-decoration: none; /* Elimina subrayado si es un enlace */
 }
-
-.save:hover {
-    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
-    transform: translateY(-2px); /* Efecto de elevación */
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
-}
-
-.save:active {
-    transform: translateY(1px); /* Efecto de presionado */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra reducida al presionar */
-}
-
-.save:focus {
-    outline: none; /* Elimina el contorno de enfoque por defecto */
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Añade un contorno de enfoque personalizado */
-}
-
 
 .edit {
-    background: linear-gradient(105deg, #007bff, #ff000081); /* Degradado sutil */
-    color: #fff;
-    margin-top: 0px;
+    background: linear-gradient(105deg, #007bff, #ff000081);
     margin-right: 50px;
-    padding: 15px 30px; /* Aumenta el padding para mayor área de clic */
-    /* height: 45px;
-    width: 45px; */
-    border: none;
-    border-radius: 10px; /* Bordes más redondeados */
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease; /* Transiciones suaves */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    text-decoration: none; /* Elimina subrayado si es un enlace */
-    display: flex; /* Para alinear el ícono y el texto */
-  align-items: center; /* Centra verticalmente */
-  text-decoration: none; /* Elimina el subrayado */
+    display: flex;
+    align-items: center;
 }
 
-.edit:hover {
-    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
-    transform: translateY(-2px); /* Efecto de elevación */
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+.save:hover, .edit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
-.edit:active {
-    transform: translateY(1px); /* Efecto de presionado */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra reducida al presionar */
+.save:active, .edit:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.edit:focus {
-    outline: none; /* Elimina el contorno de enfoque por defecto */
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Añade un contorno de enfoque personalizado */
+.save:focus, .edit:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
 .edit i {
-    margin-right: 0px; /* Espacio entre el ícono y el texto */
+    margin-right: 0px;
     color: #ffffff;
+}
+
+/* --- Cliente --- */
+.cliente-group {
+    border: 1px solid #ced4da;
+    margin-bottom: 10px;
+    border-radius: 5px; /* Bordes redondeados para el grupo */
+}
+
+.cliente-header {
+    background-color: #e9ecef;
+    padding: 5px 12px; /* Reducir el padding vertical de 8px a 5px */
+    border-bottom: 1px solid #ced4da;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 5px 5px 0 0;
+    font-size: 10px; /* Reducir el tamaño de la fuente */
   }
 
-
-
-
-
-
-
-
-
-  /* CONTADORES ------------------------------- */
-
-  .contador {
-    display: block; 
-    margin: 0 auto; 
-    width: 200px; 
-    padding: 8px; 
-    margin-bottom: 15px; 
-    border: none;
-    border-radius: 12px; 
-    font-size: 16px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); 
-    transition: all 0.3s ease; 
-    background: linear-gradient(105deg, #7c7c7c, #007bff); /* Degradado sutil */
-    overflow: hidden; 
-    color: #f0f0f0;
+.cliente-header:last-child{
+    border-radius: 5px;
 }
 
-.contador:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
+.cliente-header:hover {
+    background-color: #dee2e6; /* Un tono más oscuro al hacer hover */
 }
 
-.contador:focus-within { 
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.143);
+.toggle-button {
+    font-size: 1.2em; /* Tamaño de la flecha */
+    color: #333; /* Color de la flecha */
+    padding: 0 10px; /* Espaciado alrededor de la flecha */
+    border-radius: 5px; /* Bordes redondeados para el botón */
+    transition: transform 0.3s ease; /* Transición suave para la rotación */
+}
+.toggle-button:hover {
+    background-color: #c8ccd0; /* Un tono más oscuro al hacer hover */
 }
 
-.contador::-webkit-contador-picker-indicator {
-    background-color: #fff; 
-    color: #555;
-    padding: 10px 14px;
-    border-radius: 10px; 
-    cursor: pointer;
-    transition: all 0.2s ease; 
-    position: relative; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil en el botón */
+.cliente-group.collapsed .toggle-button {
+    transform: rotate(-90deg); /* Rota la flecha cuando está contraído */
 }
 
-.contador::-webkit-contador-picker-indicator:hover {
-    background-color: #f0f0f0; 
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); 
+.cliente-group.collapsed .contenedores {
+    display: none;
 }
 
-  
-.contador-container h6 span {
-    display: inline-block;
-    margin-top: 5px;   /* Permitir aplicar ancho y alto */
-    width: 20px;             /* Ancho del color */
-    height: 12px;            /* Alto del color */
-    margin-right: 2px;        /* Espacio entre color y texto */
-    border-radius: 20%;      /* Hacer el color redondo */
-}
-
-.contador-container {
-    margin-right: 50px;
-    display: flex;
-    flex-direction: row;  /* Colocar elementos en fila */
-    align-items: flex-start; /* Alinear al inicio verticalmente */
-    justify-content: space-between; /* Distribuir espacio entre elementos */
-    margin-bottom: 0px;
-    
-}
-
-.contador-container h6 {
-
-    text-align: right;      /* Alinear texto a la derecha */
-    width: 75px;           /* Ancho fijo para alinear */
+.contenedores {
+    padding: 10px; /* Espaciado interno para los contenedores */
 }
