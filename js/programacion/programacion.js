@@ -108,7 +108,7 @@ async function obtenerDatosYCrearInterfaz() {
             fetch("https://esenttiapp-production.up.railway.app/api/uploadprogramacion", {
                 headers: { 'Authorization': `Bearer ${authToken}` }
             }),
-            fetch("https://esenttiapp-production.up.railway.app/api/uploadplacapreventa", {
+            fetch("https://esenttiapp-production.up.railway.app/api/uploadplaclientev", {
                 headers: { 'Authorization': `Bearer ${authToken}` }
             })
         ]);
