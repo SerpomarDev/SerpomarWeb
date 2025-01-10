@@ -1,0 +1,109 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* Estilos para el contenedor principal (NUEVO) */
+.contenedor-principal {
+  display: flex; /* Activa Flexbox */
+  flex-direction: row; /* Alinea los elementos en fila (horizontalmente) */
+  justify-content: space-around; /* Distribuye el espacio alrededor de los elementos */
+  gap: 20px; /* Espacio entre elementos */
+  width: 100%; /* Asegúrate de que ocupa el ancho completo */
+}
+
+/* Estilos para los elementos hijos (MODIFICADO) */
+.canvas-container,
+#tipologiaPlacas {
+  flex: 1; /* Permite que los elementos crezcan y ocupen el espacio disponible */
+  /* Si quieres que uno sea más ancho que el otro, puedes usar flex: 2; para el más ancho y flex: 1; para el otro */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  min-width: 0; /* Añade esto para evitar que los contenedores se desborden */
+}
+
+.chart-title {
+  color: #333;
+  border-bottom: 2px solid #333;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* #tipologiaPlacas {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+} */ /* Eliminado porque está duplicado con la regla de arriba */
+
+.columna {
+  width: 100%;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.columna:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.total {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #28a745;
+}
+
+.tipo {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #343a40;
+  text-transform: uppercase;
+}
+
+.placas {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.placas li {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #495057;
+  text-align: center;
+}
+
+/* Colores específicos para cada tipología */
+.columna:nth-child(1) .total {
+  color: #007bff;
+}
+/* Azul */
+.columna:nth-child(2) .total {
+  color: #dc3545;
+}
+/* Rojo */
+.columna:nth-child(3) .total {
+  color: #ffc107;
+}
+/* Amarillo */
+.columna:nth-child(4) .total {
+  color: #28a745;
+}
+/* Verde */
+.columna:nth-child(5) .total {
+  color: #6f42c1;
+}
+/* Morado */
