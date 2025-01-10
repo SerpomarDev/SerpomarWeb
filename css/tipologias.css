@@ -3,45 +3,33 @@ body {
   background-color: #f4f4f4;
 }
 
-/* Estilos para el contenedor principal (NUEVO) */
+/* Estilos para el contenedor principal */
 .contenedor-principal {
-  display: flex; /* Activa Flexbox */
-  flex-direction: row; /* Alinea los elementos en fila (horizontalmente) */
-  justify-content: space-around; /* Distribuye el espacio alrededor de los elementos */
-  gap: 20px; /* Espacio entre elementos */
-  width: 100%; /* Asegúrate de que ocupa el ancho completo */
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
 }
 
-/* Estilos para los elementos hijos (MODIFICADO) */
+/* Estilos para los elementos hijos (canvas-container y el contenedor global de tipologias)*/
 .canvas-container,
 #tipologiaPlacas {
-  flex: 1; /* Permite que los elementos crezcan y ocupen el espacio disponible */
-  /* Si quieres que uno sea más ancho que el otro, puedes usar flex: 2; para el más ancho y flex: 1; para el otro */
+  display: flex;
+  flex-wrap: wrap; /* Importante para que las columnas se ajusten a la siguiente línea si no hay espacio */
+  justify-content: space-between; /* Distribuye el espacio entre las columnas */
+  flex: 1;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  min-width: 0; /* Añade esto para evitar que los contenedores se desborden */
+  min-width: 0;
 }
 
-.chart-title {
-  color: #333;
-  border-bottom: 2px solid #333;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-}
-
-/* #tipologiaPlacas {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-} */ /* Eliminado porque está duplicado con la regla de arriba */
-
+/* Estilos para los divs internos de tipologiaPlacas */
 .columna {
-  width: 100%;
+  /* Ancho base para 4 columnas (ajustado por el gap y el padding) */
+  flex-basis: calc(25% - 20px); /* Considera el gap de 20px */
   margin-bottom: 20px;
   border: none;
   border-radius: 8px;
@@ -49,11 +37,19 @@ body {
   background-color: #f8f9fa;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box; /* Importante para incluir padding y border en el ancho total */
 }
 
 .columna:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.chart-title {
+  color: #333;
+  border-bottom: 2px solid #333;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .total {
@@ -90,20 +86,31 @@ body {
 .columna:nth-child(1) .total {
   color: #007bff;
 }
-/* Azul */
+/* Azul - MINIMULA*/
 .columna:nth-child(2) .total {
   color: #dc3545;
 }
-/* Rojo */
+/* Rojo - PATINETA*/
 .columna:nth-child(3) .total {
   color: #ffc107;
 }
-/* Amarillo */
+/* Amarillo - TRACTOMULA*/
 .columna:nth-child(4) .total {
   color: #28a745;
 }
-/* Verde */
+/* Verde - SENCILLO*/
 .columna:nth-child(5) .total {
   color: #6f42c1;
 }
-/* Morado */
+/* Morado - TURBO*/
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .columna {
+      flex-basis: calc(100% - 20px); /* En pantallas pequeñas, ocupa todo el ancho */
+  }
+
+  .contenedor-principal {
+      flex-direction: column;
+  }
+}
