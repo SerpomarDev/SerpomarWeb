@@ -15,8 +15,10 @@ body {
 .canvas-container,
 #tipologiaPlacas {
   display: flex;
-  flex-wrap: wrap; /* Importante para que las columnas se ajusten a la siguiente línea si no hay espacio */
-  justify-content: space-between; /* Distribuye el espacio entre las columnas */
+  flex-wrap: wrap;
+  /* Importante para que las columnas se ajusten a la siguiente línea */
+  justify-content: space-between;
+  /* Distribuye el espacio entre las columnas */
   flex: 1;
   background-color: #fff;
   padding: 20px;
@@ -29,7 +31,8 @@ body {
 /* Estilos para los divs internos de tipologiaPlacas */
 .columna {
   /* Ancho base para 4 columnas (ajustado por el gap y el padding) */
-  flex-basis: calc(25% - 20px); /* Considera el gap de 20px */
+  flex-basis: calc(25% - 20px);
+  /* Considera el gap de 20px */
   margin-bottom: 20px;
   border: none;
   border-radius: 8px;
@@ -37,7 +40,8 @@ body {
   background-color: #f8f9fa;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-sizing: border-box; /* Importante para incluir padding y border en el ancho total */
+  box-sizing: border-box;
+  /* Importante para incluir padding y border en el ancho total */
 }
 
 .columna:hover {
@@ -53,7 +57,7 @@ body {
 }
 
 .total {
-  font-size: 28px;
+  font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
   margin-bottom: 10px;
@@ -73,6 +77,7 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: block;
 }
 
 .placas li {
@@ -86,28 +91,76 @@ body {
 .columna:nth-child(1) .total {
   color: #007bff;
 }
+
 /* Azul - MINIMULA*/
 .columna:nth-child(2) .total {
   color: #dc3545;
 }
+
 /* Rojo - PATINETA*/
 .columna:nth-child(3) .total {
   color: #ffc107;
 }
+
 /* Amarillo - TRACTOMULA*/
 .columna:nth-child(4) .total {
   color: #28a745;
 }
+
 /* Verde - SENCILLO*/
 .columna:nth-child(5) .total {
   color: #6f42c1;
 }
-/* Morado - TURBO*/
+
+.header-tipologia {
+  cursor: pointer;
+  /* Para que el cursor cambie al pasar por encima */
+  display: flex;
+  /* Para alinear los elementos */
+  flex-direction: column;
+  /* Para alinear los elementos verticalmente */
+  align-items: center;
+  /* Para centrar horizontalmente */
+  gap: 10px;
+  /* Espacio entre el icono, el total y el tipo */
+}
+
+.info-tipologia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.expand-icon {
+  font-size: 1.2rem; /* Ajusta el tamaño del icono */
+}
+
+.header-tipologia i {
+  font-size: 24px;
+  /* Ajusta el tamaño del icono */
+}
+
+.placas {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+.icon-container {
+  display: flex;
+  justify-content: center; /* Centra el icono horizontalmente */
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+.total{
+  font-size: 1.5rem;
+}
 
 /* Media query para pantallas pequeñas */
 @media (max-width: 768px) {
   .columna {
-      flex-basis: calc(100% - 20px); /* En pantallas pequeñas, ocupa todo el ancho */
+      flex-basis: calc(100% - 20px);
+      /* En pantallas pequeñas, ocupa todo el ancho */
   }
 
   .contenedor-principal {
