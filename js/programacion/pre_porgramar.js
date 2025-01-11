@@ -1,5 +1,5 @@
 const columnDefs = [
-    { headerCheckboxSelection: true, checkboxSelection: true, width: 50 },
+    { headerCheckboxSelection: false, checkboxSelection: true, width: 50 },
     { headerName: "id", field: "id_contenedor", hide: false },
     { headerName: "SP", field: "sp" },
     { headerName: "Pedido", field: "pedido" },
