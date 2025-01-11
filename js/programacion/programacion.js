@@ -44,6 +44,7 @@ function setupSectionToggle() {
     });
 }
 
+
 function actualizarTextoTotalContenedores(section, totalContenedoresSpan) {
     const contenedores = section.querySelectorAll('.contenedor');
     let conPlaca = 0;
@@ -108,8 +109,8 @@ async function obtenerDatosYCrearInterfaz() {
             fetch("https://esenttiapp-production.up.railway.app/api/uploadprogramacion", {
                 headers: { 'Authorization': `Bearer ${authToken}` }
             }),
-            fetch("https://esenttiapp-production.up.railway.app/api/uploadplacapreventa", {
-                headers: { 'Authorization': `Bearer ${authToken}` }
+            fetch("https://esenttiapp-production.up.railway.app/api/uploadplaclientev", { 
+                headers: { 'Authorization': `Bearer ${authToken}` } 
             })
         ]);
 
@@ -118,7 +119,7 @@ async function obtenerDatosYCrearInterfaz() {
         }
 
         dataContenedores = await responseContenedores.json();
-        const dataPlacas = await responsePlacas.json();
+        const dataPlacas = (await responsePlacas.json()).data;
 
         const fechaHoy = new Date().toISOString().slice(0, 10);
         calendarInput.value = fechaHoy;
