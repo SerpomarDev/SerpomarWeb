@@ -278,3 +278,49 @@ Promise.all([
   .catch((error) => {
     console.error("Error al cargar los datos:", error);
   });
+
+    // Configurar el input de fecha
+    const calendarInput = document.querySelector(".calendar");
+    if (calendarInput) {
+      const fechaActual = new Date();
+      const fechaActualFormateada = fechaActual.toISOString().split("T")[0];
+      calendarInput.value = fechaActualFormateada;
+  
+      localStorage.setItem("fechaSeleccionada", fechaActualFormateada);
+  
+      calendarInput.addEventListener("change", () => {
+        localStorage.setItem("fechaSeleccionada", calendarInput.value);
+        window.dispatchEvent(new CustomEvent("fechaCambiada"));
+      });
+  
+      // Cargar datos iniciales
+      fetchData().then((responses) => {
+        Promise.all(responses.map((response) => response.json()))
+          .then(([dataRegistro, dataInventario]) => {
+            renderTable(dataRegistro, dataInventario);
+          });
+      });
+    } else {
+      console.error("No se encontró el elemento con clase 'calendar'");
+    }
+  
+    // Manejar cambios en el localStorage y el evento personalizado
+    window.addEventListener("storage", (event) => {
+      if (event.key === "fechaSeleccionada") {
+        fetchData().then((responses) => {
+          Promise.all(responses.map((response) => response.json()))
+            .then(([dataRegistro, dataInventario]) => {
+              renderTable(dataRegistro, dataInventario);
+            });
+        });
+      }
+    });
+  
+    window.addEventListener("fechaCambiada", () => {
+      fetchData().then((responses) => {
+        Promise.all(responses.map((response) => response.json()))
+          .then(([dataRegistro, dataInventario]) => {
+            renderTable(dataRegistro, dataInventario);
+          });
+      });
+    });
