@@ -292,14 +292,18 @@ function mostrarContenedores(programacion) {
 
 function mostrarPlacas(placasData) {
     const placasUl = document.getElementById('placas');
+    const tipologiasPermitidas = ["MINIMULA", "PATINETA", "TRACTOMULA", "SENCILLO", "TURBO"]; 
 
     const placasPorTipologia = {};
     placasData.forEach(item => {
         const tipologia = item.tipologia;
-        if (!placasPorTipologia[tipologia]) {
-            placasPorTipologia[tipologia] = [];
+        // Solo procesar las tipologías permitidas
+        if (tipologiasPermitidas.includes(tipologia)) { 
+            if (!placasPorTipologia[tipologia]) {
+                placasPorTipologia[tipologia] = [];
+            }
+            placasPorTipologia[tipologia].push(item.placa);
         }
-        placasPorTipologia[tipologia].push(item.placa);
     });
 
     for (const tipologia in placasPorTipologia) {
