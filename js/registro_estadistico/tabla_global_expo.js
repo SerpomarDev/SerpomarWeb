@@ -356,7 +356,9 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
 
                 'booking': 'booking_number',
                 'producto': 'observaciones',
-                'puerto': 'puerto'
+                'puerto': 'puerto',
+                'uvi': 'uvi',
+                'sae': 'sae',
             };
 
             const updatedData = {};
