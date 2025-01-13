@@ -9,14 +9,14 @@ function getDatesWithHoursAndMinutes() {
   const now = moment();
 
   // Iteramos para el día actual y el siguiente
-  for (let i = 0; i < 2; i++) {
-    const currentDate = moment().add(i, 'days');
-    for (let j = 0; j < 24; j++) {
-      const hour = j.toString().padStart(2, '0');
-      const minute = '00';
-      const dateString = `${currentDate.format('DD-MM-YYYY')} <span class="math-inline">\{hour\}\:</span>{minute}`;
-      datesWithHours.push(dateString);
-    }
+  for (let i = 0; i < 2; i++) { 
+      const currentDate = moment().add(i, 'days'); 
+      for (let j = 0; j < 24; j++) { 
+          const hour = j.toString().padStart(2, '0');
+          const minute = '00'; 
+          const dateString = `${currentDate.format('DD-MM-YYYY')} ${hour}:${minute}`;
+          datesWithHours.push(dateString); 
+      }
   }
   return datesWithHours;
 }
@@ -62,8 +62,8 @@ const columnDefsSS = [
     },
     width: 50
   },
-  {
-    headerName: "Modalidad",
+  { 
+    headerName: "Modalidad", 
     field: "modalidad",
     filter: 'agSetColumnFilter',
     hide: true,
@@ -91,98 +91,59 @@ const columnDefsSS = [
   { headerName: "Pedido", field: "pedido" },
   { headerName: "# Contenedores", field: "cantidad" },
   { headerName: "Cliente", field: "cliente" },
-  {
-    headerName: "Fecha Notificacion",
-    field: "fecha_notificacion",
+  { headerName: "Fecha Notificacion", 
+    field: "fecha_notificacion", 
     editable: true,
-    // dateFormat: 'dd/MM/yyyy', // Remove this line, ag-grid handles date format internally
-    cellEditor: 'agDateCellEditor', // Add date editor
-    cellEditorParams: {
-        format: 'dd/MM/yyyy',
-        placeholder: 'dd/MM/yyyy',
-    },
-    valueFormatter: params => {
-        return params.value ? moment(params.value).format('DD/MM/YYYY') : '';
-    }
+    dateFormat: 'dd/MM/yyyy', 
   },
-  {
-    headerName: "Naviera",
-    field: "naviera",
+  { 
+    headerName: "Naviera", 
+    field: "naviera", 
     editable: true,
-    cellEditor: 'agSelectCellEditor',
+    cellEditor: 'agSelectCellEditor', 
     cellEditorParams: {
-      values: Object.values(navieras),
-    },
-    valueFormatter: params => {
-      // Find the key (ID) associated with the naviera name
-      const navieraId = Object.keys(navieras).find(key => navieras[key] === params.value);
-      return navieras[navieraId] || '';
-    },
-    valueParser: params => {
-      // Find the key (ID) associated with the selected naviera name
-      const navieraId = Object.keys(navieras).find(key => navieras[key] === params.newValue);
-      return navieraId; // Return the ID, not the name
-    }
-  },
-  {
-    headerName: "Puerto",
+      values: Object.values(navieras), // Usa los nombres de las navieras
+      cellRenderer: (params) => {
+          // Muestra el nombre de la naviera en la celda
+          return navieras[params.value] || ''; 
+      },
+      valueFormatter: (params) => {
+          // Formatea el valor para mostrar el nombre en el editor
+          return navieras[params.value] || '';
+      },
+      valueParser: (params) => {
+          // Convierte el nombre de la naviera al ID correspondiente
+          for (const id in navieras) {
+              if (navieras[id] === params.newValue) {
+                  return id;
+              }
+          }
+          return null; // O maneja el caso donde no se encuentra la naviera
+      }
+  }
+},
+  { headerName: "Puerto", 
     field: "puerto",
     editable: true,
-    cellEditor: 'agSelectCellEditor',
+    cellEditor: 'agSelectCellEditor', 
     cellEditorParams: {
       values: Object.values(puertos),
-    },
-    valueFormatter: params => {
-      const puertoId = Object.keys(puertos).find(key => puertos[key] === params.value);
-      return puertos[puertoId] || '';
-    },
-    valueParser: params => {
-      const puertoId = Object.keys(puertos).find(key => puertos[key] === params.newValue);
-      return puertoId;
-    }
+      cellRenderer: (params) => {
+      
+          return puertos[params.value] || ''; 
+      },
+      valueFormatter: (params) => {
+        
+          return puertos[params.value] || '';
+      }
+  }
   },
   { headerName: "Producto", field: "producto", editable: true },
-  { headerName: "Eta", field: "fecha_eta", editable: true,
-    cellEditor: 'agDateCellEditor', // Add date editor
-    cellEditorParams: {
-        format: 'dd/MM/yyyy',
-        placeholder: 'dd/MM/yyyy',
-    },
-    valueFormatter: params => {
-        return params.value ? moment(params.value).format('DD/MM/YYYY') : '';
-    }
-  },
-  { headerName: "Fecha levante", field: "fecha_levante", editable: true,
-    cellEditor: 'agDateCellEditor', // Add date editor
-    cellEditorParams: {
-        format: 'dd/MM/yyyy',
-        placeholder: 'dd/MM/yyyy',
-    },
-    valueFormatter: params => {
-        return params.value ? moment(params.value).format('DD/MM/YYYY') : '';
-    }
-  },
-  { headerName: "Libre hasta", field: "libre_hasta", editable: true,
-    cellEditor: 'agDateCellEditor', // Add date editor
-    cellEditorParams: {
-        format: 'dd/MM/yyyy',
-        placeholder: 'dd/MM/yyyy',
-    },
-    valueFormatter: params => {
-        return params.value ? moment(params.value).format('DD/MM/YYYY') : '';
-    }
-  },
-  { headerName: "Bodegaje hasta", field: "bodegaje_hasta", editable: true,
-    cellEditor: 'agDateCellEditor', // Add date editor
-    cellEditorParams: {
-        format: 'dd/MM/yyyy',
-        placeholder: 'dd/MM/yyyy',
-    },
-    valueFormatter: params => {
-        return params.value ? moment(params.value).format('DD/MM/YYYY') : '';
-    }
-  },
-
+  { headerName: "Eta", field: "fecha_eta", editable: true },
+  { headerName: "Fecha levante", field: "fecha_levante", editable: true },
+  { headerName: "Libre hasta", field: "libre_hasta",  editable: true },
+  { headerName: "Bodegaje hasta", field: "bodegaje_hasta", editable: true },
+ 
 ];
 
 function getContenedoresDetail(idSolicitudServicio) {
@@ -265,34 +226,21 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
 
             { headerName: "Tipo Contenedor", field: "tipo" },
 
-            {
-              headerName: "Notificacion Cliente",
-              field: "notificacion_cliente",
-              editable: true,
-              // dateFormat: 'dd/MM/yyyy',
-              cellEditor: 'agDateCellEditor', // Add date editor
-              cellEditorParams: {
-                  format: 'dd/MM/yyyy',
-                  placeholder: 'dd/MM/yyyy',
-              },
-              valueFormatter: params => {
-                  return params.value ? moment(params.value).format('DD/MM/YYYY') : '';
-              }
+            { headerName: "Notificacion Cliente", 
+              field: "notificacion_cliente", 
+              editable: true, 
+              dateFormat: 'dd/MM/yyyy',   
             },
 
-            {
-              headerName: "Fecha Cliente",
-              field: "fecha_cliente",
+           
+
+         
+
+            { 
+              headerName: "Fecha Cliente", 
+              field: "fecha_cliente", 
               editable: true,
-              // dateFormat: 'dd/MM/yyyy',
-              cellEditor: 'agDateCellEditor', // Add date editor
-              cellEditorParams: {
-                  format: 'dd/MM/yyyy',
-                  placeholder: 'dd/MM/yyyy',
-              },
-              valueFormatter: params => {
-                  return params.value ? moment(params.value).format('DD/MM/YYYY') : '';
-              }
+              dateFormat: 'dd/MM/yyyy', 
             },
 
             {
@@ -311,115 +259,70 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                 return '';
               }
             },
+           
 
-
-            { headerName: "Conductor Puerto", field: "conductor_puerto", editable: false },
-            { headerName: "Placa Puerto", field: "placa_puerto", editable: false },
-            { headerName: "Conductor traslado", field: "conductor_traslado", editable: false },
-            { headerName: "Placa traslado", field: "placa_traslado", editable: false },
-            { headerName: "Conductor inspeccion", field: "conductor_inspeccion", editable: false },
-            { headerName: "Placa inspeccion", field: "placa_inspeccion", editable: false },
+            { headerName: "Conductor Puerto", field: "conductor_puerto" ,editable: false},
+            { headerName: "Placa Puerto", field: "placa_puerto",editable: false},
+            { headerName: "Conductor traslado", field: "conductor_traslado",editable: false},
+            { headerName: "Placa traslado", field: "placa_traslado" ,editable: false},
+            { headerName: "Conductor inspeccion", field: "conductor_inspeccion",editable: false},
+            { headerName: "Placa inspeccion", field: "placa_inspeccion",editable: false },
             { headerName: "Sitio Cargue/Descargue", field: "sitio_cargue_descargue", editable: true },
 
-            {
-              headerName: "Fecha Descargue",
-              field: "fecha_cargue",
-              editable: true,
-              // dateFormat: 'dd/MM/yyyy',
-              cellEditor: 'agDateCellEditor', // Add date editor
-              cellEditorParams: {
-                  format: 'dd/MM/yyyy',
-                  placeholder: 'dd/MM/yyyy',
-              },
-              valueFormatter: params => {
-                  return params.value ? moment(params.value).format('DD/MM/YYYY') : '';
-              }
+            { headerName: "Fecha Descargue", 
+              field: "fecha_cargue", 
+              editable: true, 
+              dateFormat: 'dd/MM/yyyy', 
             },
 
-            { headerName: "Sitio devolucion", field: "sitio", editable: true },
+            { headerName: "Sitio devolucion", field: "sitio", editable: true  },
 
-            {
-              headerName: "Fecha Devolucion",
-              field: "fecha_devolucion",
-              editable: true,
-              // dateFormat: 'dd/MM/yyyy',
-              cellEditor: 'agDateCellEditor', // Add date editor
-              cellEditorParams: {
-                  format: 'dd/MM/yyyy',
-                  placeholder: 'dd/MM/yyyy',
-              },
-              valueFormatter: params => {
-                  return params.value ? moment(params.value).format('DD/MM/YYYY') : '';
-              }
+            { headerName: "Fecha Devolucion", 
+              field: "fecha_devolucion", 
+              editable: true, 
+              dateFormat: 'dd/MM/yyyy',   
             },
 
             { headerName: "Placa Patio", field: "placa_patio" },
             { headerName: "Conductor Patio", field: "conductor_patio" },
 
-            {
-              headerName: "Fecha Manifiesto",
-              field: "fecha_manifiesto",
+            { headerName: "Fecha Manifiesto", 
+              field: "fecha_manifiesto", 
               editable: true,
-              // dateFormat: 'dd/MM/yyyy',
-              cellEditor: 'agDateCellEditor', // Add date editor
-              cellEditorParams: {
-                  format: 'dd/MM/yyyy',
-                  placeholder: 'dd/MM/yyyy',
-              },
-              valueFormatter: params => {
-                  return params.value ? moment(params.value).format('DD/MM/YYYY') : '';
-              }
+              dateFormat: 'dd/MM/yyyy',   
             },
 
-            { headerName: "Manifiesto", field: "manifiesto", editable: true },
+            { headerName: "Manifiesto", field: "manifiesto", editable: true  },
 
-            {
-              headerName: "Fecha Remesa",
-              field: "fecha_remesa",
-              editable: true,
-              // dateFormat: 'dd/MM/yyyy',
-              cellEditor: 'agDateCellEditor', // Add date editor
-              cellEditorParams: {
-                  format: 'dd/MM/yyyy',
-                  placeholder: 'dd/MM/yyyy',
-              },
-              valueFormatter: params => {
-                  return params.value ? moment(params.value).format('DD/MM/YYYY') : '';
-              }
+            { headerName: "Fecha Remesa", 
+              field: "fecha_remesa", 
+              editable: true, 
+              dateFormat: 'dd/MM/yyyy',   
             },
 
-            { headerName: "Remesa", field: "remesa", editable: true },
+            { headerName: "Remesa", field: "remesa", editable: true  },
 
-            { headerName: "Patio serpomar", field: "patio", editable: true },
-            { headerName: "Comentarios", field: "comentario", editable: true },
+            { headerName: "Patio serpomar", field: "patio", editable: true  },
+            { headerName: "Comentarios", field: "comentario", editable: true  },
             { headerName: "Sitio Inspeccion", field: "sitio_inspeccion", editable: true },
             //{ headerName: "Placa Inspeccion", field: "placa_inspeccion", editable: true },
 
-            {
-              headerName: "Fecha Inspeccion",
-              field: "fecha_inspeccion",
-              editable: true,
-              // dateFormat: 'dd/MM/yyyy',
-              cellEditor: 'agDateCellEditor', // Add date editor
-              cellEditorParams: {
-                  format: 'dd/MM/yyyy',
-                  placeholder: 'dd/MM/yyyy',
-              },
-              valueFormatter: params => {
-                  return params.value ? moment(params.value).format('DD/MM/YYYY') : '';
-              }
+            { headerName: "Fecha Inspeccion", 
+              field: "fecha_inspeccion", 
+              editable: true, 
+              dateFormat: 'dd/MM/yyyy',  
             },
 
             { headerName: "Peso", field: "Peso", editable: true },
 
-            {
-              headerName: "Tipo servicio",
-              field: "tipo_servicio",
+            { 
+              headerName: "Tipo servicio", 
+              field: "tipo_servicio", 
               editable: true,
               cellEditor: 'agSelectCellEditor', // Usa el editor de celdas select de ag-Grid
               cellEditorParams: {
-                values: [' ', 'ITR', 'TRANSPORTE']
-              }
+                values: [' ','ITR', 'TRANSPORTE']
+              } 
             },
 
             { headerName: "Estado", field: "estado" }
@@ -445,21 +348,21 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
               toast: true,
               position: 'top-end',
               showConfirmButton: false
-            });
+          });
 
-
+       
 
             const apiUrl = `https://esenttiapp-production.up.railway.app/api/updatecontenedorbysoliservi/${idContenedor}`;
 
-            // Convertir la fecha si el campo es fecha_cita
-            if (fieldName === 'fecha_cita') {
-              newValue = moment(newValue, 'DD-MM-YYYY HH:mm').format('YYYY-MM-DD HH:mm:ss');
+              // Convertir la fecha si el campo es fecha_cita
+              if (fieldName === 'fecha_cita') {
+                newValue = moment(newValue, 'DD-MM-YYYY HH:mm').format('YYYY-MM-DD HH:mm:ss');
             }
 
             const updatedData = {
               id_primario: event.data.id_primario,
               [fieldName]: newValue // Usamos newValue convertido
-            };
+          };
 
             fetch(apiUrl, {
               method: 'PUT',
@@ -523,18 +426,14 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
           fieldName === 'fecha_notificacion' || fieldName === 'fecha_documental' ||
           fieldName === 'fecha_cutoff_fisico' || fieldName === 'bodegaje_hasta') {
           // Validar formato de fecha
-          if (!moment(newValue, 'YYYY-MM-DD', true).isValid()) {
-                
-                Swal.fire({
-                  title: 'Error',
-                  text: 'Formato de fecha inválido. Debe ser YYYY-MM-DD',
-                  icon: 'error',
-                });
-                
-                event.node.setDataValue(fieldName, event.oldValue); // Restablecer el valor anterior en caso de error
-
-                return; // Detener la actualización
-            }
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(newValue)) {
+            Swal.fire({
+              title: 'Error',
+              text: 'Formato de fecha inválido. Debe ser YYYY-MM-DD',
+              icon: 'error',
+            });
+            return; // Detener la actualización
+          }
         }
 
         Swal.fire({
@@ -574,18 +473,12 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
         // Construir updatedData con los nombres de campos mapeados
         const updatedData = {};
         const mappedFieldName = fieldMapping[fieldName];
-        
-        
         if (mappedFieldName) {
-            if(fieldName === 'naviera' || fieldName === 'puerto'){
-              updatedData[mappedFieldName] = parseInt(newValue, 10);
-            } else {
-              updatedData[mappedFieldName] = newValue;
-            }
-          } else {
-            console.warn(`No se encontró mapeo para el campo: ${fieldName}`);
-            return; // Detener la actualización si no hay mapeo
-          }
+          updatedData[mappedFieldName] = newValue;
+        } else {
+          console.warn(`No se encontró mapeo para el campo: ${fieldName}`);
+          return; // Detener la actualización si no hay mapeo
+        }
 
         fetch(apiUrl, {
           method: 'PUT',
@@ -644,7 +537,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
           }
         });
 
-
+        
 
         const searchInput = document.querySelector('input[type="search"]');
 
