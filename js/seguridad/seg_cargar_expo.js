@@ -35,59 +35,66 @@ const columnDefs = [
   { headerName: "Cedula C", field: "cedula_conductor" },
   { headerName: "Contenedor", field: "contenedor" },
   { headerName: "Punto Origen", field: "punto_origen" },
-  { 
-    headerName: "Hora Salida", 
-    field: "hora_salida", 
-    cellEditor: 'agRichSelectCellEditor', 
+
+
+  {
+    headerName: "Hora Salida",
+    field: "hora_salida",
+    cellEditor: 'agRichSelectCellEditor',
     cellEditorParams: {
-        values: getHoursWithMinutes(), // <-- Llamamos a la nueva función
-        cellHeight: 50,
+      values: getHoursWithMinutes(),
+      cellHeight: 50,
     },
     valueFormatter: params => {
-        if (params.value) {
-            return params.value; // <-- Mostramos la hora tal cual
-        }
-        return '';
+      if (params.value) {
+        return params.value;
+      }
+      return '';
     }
-},
+  },
+
+
   { headerName: "Punto Final", field: "punto_final" },
-  { 
-    headerName: "Hora Llegada", 
-    field: "hora_llegada", 
-    cellEditor: 'agRichSelectCellEditor', 
+
+  {
+    headerName: "Hora Llegada",
+    field: "hora_llegada",
+    cellEditor: 'agRichSelectCellEditor',
     cellEditorParams: {
-        values: getHoursWithMinutes(), // <-- Llamamos a la nueva función
-        cellHeight: 50,
+      values: getHoursWithMinutes(),
+      cellHeight: 50,
     },
     valueFormatter: params => {
-        if (params.value) {
-            return params.value; // <-- Mostramos la hora tal cual
-        }
-        return '';
+      if (params.value) {
+        return params.value;
+      }
+      return '';
     }
-},
+  },
+
   { headerName: "Duracion recorrido", field: "duracion_recorrido" },
-  { 
-    headerName: "Hora Ingreso T", 
-    field: "hora_ingreso_terminal", 
-    cellEditor: 'agTimePicker'  // <-- Usamos agTimePicker
+  {
+    headerName: "Hora Ingreso T",
+    field: "hora_ingreso_terminal",
+    cellEditor: 'agTimePicker'
   },
 
 ];
 
-// Función para generar un array con las horas y minutos
+// Función modificada para generar el array de horas
 function getHoursWithMinutes() {
-  const hours = [];
-  for (let i = 0; i < 24; i++) {
-      for (let j = 0; j < 60; j++) { // <-- Iteramos por cada minuto
-          const hour = i.toString().padStart(2, '0');
-          const minute = j.toString().padStart(2, '0');
-          hours.push(`${hour}:${minute}`);
-      }
-  }
-  return hours;
-}
+  const hoursWithMinutes = [];
+  const now = moment().subtract(1, 'hour');
 
+  for (let hour = now.hour(); hour <= 23; hour++) {
+    for (let minute = 0; minute < 60; minute += 2) {
+      const formattedHour = hour.toString().padStart(2, '0');
+      const formattedMinute = minute.toString().padStart(2, '0');
+      hoursWithMinutes.push(`${formattedHour}:${formattedMinute}`);
+    }
+  }
+  return hoursWithMinutes;
+}
 
 fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
   headers: {
@@ -100,7 +107,7 @@ fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
       return {
         id: Preprogramar.id,
         fecha_global: Preprogramar.fecha_global,
-        pedido: Preprogramar.pedido, 
+        pedido: Preprogramar.pedido,
         cita_puerto: Preprogramar.cita_puerto,
         vehiculo: Preprogramar.vehiculo,
         conductor: Preprogramar.conductor,
@@ -136,6 +143,26 @@ fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
       onCellValueChanged: (event) => {
         const updatedRowData = event.data;
         const id = updatedRowData.id;
+
+        // ---->  Código para calcular la duración  <----
+        if (event.column.colId === 'hora_salida' || event.column.colId === 'hora_llegada') {
+          const horaSalida = moment(updatedRowData.hora_salida, 'HH:mm');
+          const horaLlegada = moment(updatedRowData.hora_llegada, 'HH:mm');
+
+          if (horaSalida.isValid() && horaLlegada.isValid()) {
+            let duracion = moment.duration(horaLlegada.diff(horaSalida));
+
+            if (duracion.asMinutes() < 0) {
+              duracion = moment.duration(duracion.asMilliseconds() + 86400000);
+            }
+
+            const horas = Math.floor(duracion.asHours()).toString().padStart(2, '0');
+            const minutos = duracion.minutes().toString().padStart(2, '0');
+            updatedRowData.duracion_recorrido = `${horas}:${minutos}`;
+
+            gridOptions.api.applyTransaction({ update: [updatedRowData] });
+          }
+        }
 
         Swal.fire({
           title: 'Actualizando...',
@@ -226,8 +253,7 @@ function deleteSelectedRows() {
             if (!response.ok) {
               throw new Error('Error al eliminar el registro');
             }
-            // Eliminar las filas seleccionadas del grid
-            gridOptions.api.applyTransaction({ remove: selectedRows }); 
+            gridOptions.api.applyTransaction({ remove: selectedRows });
           })
           .catch(error => {
             console.error('Error al eliminar el registro:', error);
