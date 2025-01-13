@@ -9,11 +9,7 @@ const columnDefs = [
       headerName: "Accion",
       cellRenderer: (params) => {
         const id = params.data.id_contenedor;
-        return `<button  
-                   class="py-2 px-4 bg-blue-600 text-white rounded" 
-                   onclick="CrearProgramacion('${id}')"> 
-                   Programar 
-               </button>`;
+        return `<button class="py-2 px-4 bg-blue-600 text-white rounded" onclick="CrearProgramacion('${id}')"> Programar </button>`;
       },
       suppressRowClickSelection: true, // Evita conflictos con la selección de filas
     },
@@ -127,7 +123,7 @@ const columnDefs = [
       return null;
     }
   
-    console.log("Nodos seleccionados:", selectedNodes);
+    //console.log("Nodos seleccionados:", selectedNodes);
   
     return {
       programacion: selectedNodes.map((node) => ({
@@ -172,12 +168,12 @@ const columnDefs = [
       item.hora = hora;
     });
   
-    console.log("Payload actualizado con datos del modal:", payloadGlobal);
+    //console.log("Payload actualizado con datos del modal:", payloadGlobal);
   }
   
   // Función para enviar datos al backend
   function enviarDatos(payload) {
-    console.log("Payload enviado al backend:", JSON.stringify(payload));
+    //console.log("Payload enviado al backend:", JSON.stringify(payload));
   
     disableButton(); // Deshabilita el botón al iniciar el envío
     isSending = true; // Indica que hay un envío en progreso
