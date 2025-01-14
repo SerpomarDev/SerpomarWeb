@@ -105,10 +105,10 @@ function generatePQRSForm() {
       <div class="form-group">
         <label for="tipo"><i class="fas fa-question-circle"></i> Tipo de solicitud:</label>
         <select id="tipo" name="tipo" class="form-control">
-          <option value="peticion">Petición</option>
-          <option value="soporte">Queja</option>
-          <option value="reclamo">Reclamo</option>
-          <option value="sugerencia">Sugerencia</option>
+          <option value="PETICION">PETICIÓN</option>
+          <option value="QUEJA">QUEJA</option>
+          <option value="RECLAMO">RECLAMO</option>
+          <option value="SUGERENCIA">SUGERENCIA</option>
         </select>
       </div>
       <div class="form-group">
@@ -183,7 +183,7 @@ function sendPQRSData(data) {
       if (responses.some((response) => !response.ok)) {
         throw new Error("Error en una o ambas solicitudes");
       }
-      Swal.fire("Datos enviados con éxito a ambos endpoints", "", "success");
+      Swal.fire("Datos enviados con éxito", "", "success");
     })
     .catch((error) => {
       Swal.fire("Error", error.message, "error");
