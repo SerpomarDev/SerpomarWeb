@@ -126,7 +126,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/solicitudservicios", {
               if (!response.ok) {
                 throw new Error('Error al actualizar datos');
               }
-              console.log('Datos actualizados correctamente');
+              //console.log('Datos actualizados correctamente');
               Swal.fire({
                 title: '¡Actualizado!',
                 text: 'El registro ha sido actualizado.',

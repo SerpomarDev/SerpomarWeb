@@ -110,7 +110,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/registroestadistico", {
                   if (!response.ok) {
                       throw new Error('Error al actualizar datos');
                   }
-                  console.log('Datos actualizados correctamente');
+                  //console.log('Datos actualizados correctamente');
                   // Mostrar notificación de éxito más rápida
                   Swal.fire({
                       title: '¡Actualizado!',

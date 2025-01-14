@@ -9,7 +9,7 @@ const columnDefs = [
         editable: true,
               cellEditor: 'agSelectCellEditor', // Usa el editor de celdas select de ag-Grid
               cellEditorParams: {
-                values: [' ','PROCESO', 'FINALIZADO', 'CANCELADO']
+                values: [' ','EN CURSO', 'LISTO', 'CANCELADO']
               }
     },
    

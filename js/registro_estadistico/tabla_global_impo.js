@@ -159,7 +159,6 @@ function getContenedoresDetail(idSolicitudServicio) {
       return response.json();
     })
     .then(data => {
-      //console.log("Contenedores obtenidos:", data);
       return data.data.filter(contenedor => contenedor.id_primario === idSolicitudServicio);
     })
     .catch(error => {

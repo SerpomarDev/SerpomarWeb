@@ -22,7 +22,7 @@ async function obtenerDatos(textoBusqueda) {
   }
 
   try {
-    console.log("URL de la solicitud:", url);
+    //console.log("URL de la solicitud:", url);
 
     const response = await fetch(url, {
       headers: {
@@ -30,14 +30,14 @@ async function obtenerDatos(textoBusqueda) {
       },
     });
 
-    console.log("Respuesta del servidor:", response);
+    //console.log("Respuesta del servidor:", response);
 
     if (!response.ok) {
       throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
     }
 
     const data = await response.json();
-    console.log("Datos recibidos:", data);
+    //console.log("Datos recibidos:", data);
 
     // Verificar si la respuesta es un array y si tiene elementos
     if (Array.isArray(data) && data.length > 0) {

@@ -96,7 +96,7 @@ Promise.all([
               if (!response.ok) {
                 throw new Error('Error al actualizar datos');
               }
-              console.log('Datos actualizados correctamente');
+              //('Datos actualizados correctamente');
               Swal.fire({
                 title: '¡Actualizado!',
                 text: 'El registro ha sido actualizado.',
