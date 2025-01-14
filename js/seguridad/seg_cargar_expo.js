@@ -81,12 +81,25 @@ const columnDefs = [
 
 ];
 
-// Función modificada para generar el array de horas
+// // Función modificada para generar el array de horas
+// function getHoursWithMinutes() {
+//   const hoursWithMinutes = [];
+//   const now = moment().subtract(1, 'hour');
+
+//   for (let hour = now.hour(); hour <= 23; hour++) {
+//     for (let minute = 0; minute < 60; minute += 2) {
+//       const formattedHour = hour.toString().padStart(2, '0');
+//       const formattedMinute = minute.toString().padStart(2, '0');
+//       hoursWithMinutes.push(`${formattedHour}:${formattedMinute}`);
+//     }
+//   }
+//   return hoursWithMinutes;
+// }
+
 function getHoursWithMinutes() {
   const hoursWithMinutes = [];
-  const now = moment().subtract(1, 'hour');
 
-  for (let hour = now.hour(); hour <= 23; hour++) {
+  for (let hour = 0; hour <= 23; hour++) {
     for (let minute = 0; minute < 60; minute += 2) {
       const formattedHour = hour.toString().padStart(2, '0');
       const formattedMinute = minute.toString().padStart(2, '0');
@@ -95,6 +108,7 @@ function getHoursWithMinutes() {
   }
   return hoursWithMinutes;
 }
+
 
 fetch("https://sertrack-production.up.railway.app/api/intervalfifteenday", {
   headers: {

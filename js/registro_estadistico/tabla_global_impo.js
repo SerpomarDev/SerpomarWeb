@@ -317,7 +317,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
 
             { 
               headerName: "Tipo servicio", 
-              field: "tipo_servico", 
+              field: "tipo_servicio", 
               editable: true,
               cellEditor: 'agSelectCellEditor', // Usa el editor de celdas select de ag-Grid
               cellEditorParams: {

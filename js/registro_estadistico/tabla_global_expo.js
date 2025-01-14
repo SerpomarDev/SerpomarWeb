@@ -213,7 +213,7 @@ fetch("https://esenttiapp-production.up.railway.app/api/soliserviresgistro", {
                     { headerName: "Remesa", field: "remesa", editable: true },
                     // { headerName: "Sitio", field: "sitio" },
                     { headerName: "Patio serpomar", field: "patio", editable: true },
-                    { headerName: "Observaciones", field: "observaciones", editable: true },
+                    { headerName: "Observaciones", field: "comentario", editable: true },
                     { headerName: "Sello/PT", field: "sello", editable: true },
                     { headerName: "Fecha Salida", field: "fecha_salida", editable: true, dateFormat: 'dd/MM/yyyy',  },
                     { headerName: "Hora Salida", field: "hora_salida", editable: true, dateFormat: 'HH:mm',  },
