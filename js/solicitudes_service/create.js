@@ -28,9 +28,7 @@ function impexp() {
 }
 document.getElementById("imp_exp").addEventListener("change", impexp);
 
-document
-  .getElementById("saveSolicitud")
-  .addEventListener("submit", function (event) {
+document.getElementById("saveSolicitud").addEventListener("submit", function (event) {
     event.preventDefault();
     impexp();
 
